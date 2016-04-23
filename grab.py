@@ -1,3 +1,4 @@
+import os
 import time
 import datetime as dt
 from html.parser import HTMLParser
@@ -35,7 +36,7 @@ def strip_tags(html):
     return s.get_data()
 
 
-def grab_student(last_date, rss_url, project, student):
+def grab_student(last_date, rss_url, project, studeOnt):
     feed = feedparser.parse(rss_url)
     dates = [last_date]
     for item in feed['items']:
@@ -44,9 +45,14 @@ def grab_student(last_date, rss_url, project, student):
         # wordpress; time.struct_time
         if item_date > last_date:
             dates.append(item_date)
-            filename = '{date:%Y%m%d_%H%M}_{student}.rst'.format(date=item_date, student=student)# TODO: make it so it goes to the directory
-            with open(filename,'w') as post:
-                post.write(TEMPLATE.format(title=item['title'],
+            directory = os.path.join('posts', '{:%Y}'.format(item_date), '{:%m}'.format(item_date))
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            filename = '{date:%Y%m%d_%H%M}_{student}.rst'.format(date=item_date, student=student)
+            with open(os.path.join(directory, filename),'w') as post:
+                # some posts have an empty title, taking the first 30 characters.
+                title_post = item['title'] if item['title'] != '' else strip_tags(item['summary'])[:30]+'...'
+                post.write(TEMPLATE.format(title=title_post,
                                            date=item_date,
                                            tags=project,
                                            author=item['author_detail']['name'],

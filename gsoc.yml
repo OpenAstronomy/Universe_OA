@@ -1,0 +1,24 @@
+# rirze:
+#   rss_feed: ""
+#   project: 'Astropy'
+# nocturnalastro:
+#   rss_feed: ""
+#   project: 'Astropy'
+OlgaVorokh:
+  rss_feed: "http://alcyonegammapy.blogspot.com/feeds/posts/default?alt=rss"
+  project: 'Astropy'
+mirca:
+  rss_feed: "http://mirca.github.io/feed.xml"
+  project: 'Astropy'
+tdwilkinson:
+  rss_feed: "http://tdwilkinson.blogspot.com/feeds/posts/default?alt=rss"
+  project: 'SunPy'
+Punyaslok:
+  rss_feed: "https://punyaslokpattnaik.wordpress.com/feed/"
+  project: 'SunPy'
+sudk1896:
+  rss_feed: "https://sudonymousblog.wordpress.com/feed/"
+  project: 'SunPy'
+kvyh:
+  rss_feed: "http://kvyhastroplan.blogspot.com/feeds/posts/default?alt=rss"
+  project: 'Astropy'
