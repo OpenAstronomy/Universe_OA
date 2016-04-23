@@ -1,0 +1,4 @@
+Sitemap: https://openastronomy.org/Universe_OA/sitemapindex.xml
+
+User-Agent: *
+Host: openastronomy.org
