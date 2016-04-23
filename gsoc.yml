@@ -1,9 +1,9 @@
 # rirze:
 #   rss_feed: ""
 #   project: 'Astropy'
-# nocturnalastro:
-#   rss_feed: ""
-#   project: 'Astropy'
+nocturnalastro:
+   rss_feed: "http://myopensauceadventure.blogspot.co.uk/feeds/posts/default?alt=rss"
+   project: 'Astropy'
 OlgaVorokh:
   rss_feed: "http://alcyonegammapy.blogspot.com/feeds/posts/default?alt=rss"
   project: 'Astropy'
