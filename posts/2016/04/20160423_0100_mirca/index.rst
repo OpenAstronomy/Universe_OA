@@ -12,9 +12,9 @@ I'm very glad to say that I have been selected by the Astropy project to partici
 
 
 
-Many thanks surely goes to Duília de Mello, Jandro Abot, Marcelo Davanco, Moritz Günther, and to all who make the Astropy development community ;-)
+Many thanks surely goes to Duília, Jandro, Marcelo, Moritz, Brigitta and Erik and to all who make the Astropy development community ;-)
 
 
 
-During the  `...READ MORE... <http://mirca.github.io/gsoc-astropy-bonding-period-week-one/>`__
+During the GSoC (and af `...READ MORE... <http://mirca.github.io/gsoc-astropy-bonding-period-week-one/>`__
 
