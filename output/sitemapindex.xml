@@ -15,7 +15,7 @@
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/authors/karl.xml</loc>
-  <lastmod>2016-05-14T17:31:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/authors/michele-costa.xml</loc>
@@ -24,6 +24,10 @@
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/authors/olga-vorokh.xml</loc>
   <lastmod>2016-05-14T17:31:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://openastronomy.org/Universe_OA/authors/paragrine.xml</loc>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/authors/punyaslokpattnaik.xml</loc>
@@ -35,7 +39,7 @@
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/authors/sudk1896.xml</loc>
-  <lastmod>2016-05-14T17:31:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/authors/tessa-wilkinson.xml</loc>
@@ -47,7 +51,7 @@
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/categories/astropy.xml</loc>
-  <lastmod>2016-05-14T17:32:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/categories/blog.xml</loc>
@@ -55,7 +59,7 @@
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/categories/cat_gsoc2016.xml</loc>
-  <lastmod>2016-05-14T17:32:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/categories/cat_nikola.xml</loc>
@@ -75,7 +79,7 @@
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/categories/sunpy.xml</loc>
-  <lastmod>2016-05-14T17:31:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/galleries/demo/rss.xml</loc>
@@ -87,10 +91,10 @@
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/rss.xml</loc>
-  <lastmod>2016-05-14T17:32:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://openastronomy.org/Universe_OA/sitemap.xml</loc>
-  <lastmod>2016-05-14T17:32:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </sitemap>
 </sitemapindex>
