@@ -1,6 +1,6 @@
-# rirze:
-#   rss_feed: ""
-#   project: 'Astropy'
+ rirze:
+   rss_feed: "http://www.roseateblog.wordpress.com/category/GSOC/feed"
+   project: 'Astropy'
 nocturnalastro:
    rss_feed: "http://myopensauceadventure.blogspot.co.uk/feeds/posts/default?alt=rss"
    project: 'Astropy'
