@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://openastronomy.org/Universe_OA/</loc>
-  <lastmod>2016-05-14T17:31:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </url>
  <url>
   <loc>http://openastronomy.org/Universe_OA/2011/</loc>
@@ -31,11 +31,11 @@
  </url>
  <url>
   <loc>http://openastronomy.org/Universe_OA/archive.html</loc>
-  <lastmod>2016-05-14T17:32:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </url>
  <url>
   <loc>http://openastronomy.org/Universe_OA/authors/</loc>
-  <lastmod>2016-05-14T17:31:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </url>
  <url>
   <loc>http://openastronomy.org/Universe_OA/authors/asubsetofdaves/</loc>
@@ -56,6 +56,10 @@
  <url>
   <loc>http://openastronomy.org/Universe_OA/authors/olga-vorokh/</loc>
   <lastmod>2016-05-14T17:31:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://openastronomy.org/Universe_OA/authors/paragrine/</loc>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </url>
  <url>
   <loc>http://openastronomy.org/Universe_OA/authors/punyaslokpattnaik/</loc>
@@ -123,7 +127,11 @@
  </url>
  <url>
   <loc>http://openastronomy.org/Universe_OA/index-1.html</loc>
-  <lastmod>2016-05-14T17:32:00Z</lastmod>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://openastronomy.org/Universe_OA/index-2.html</loc>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </url>
  <url>
   <loc>http://openastronomy.org/Universe_OA/listings/</loc>
@@ -224,6 +232,18 @@
  <url>
   <loc>http://openastronomy.org/Universe_OA/posts/2016/05/20160512_0100_mirca/</loc>
   <lastmod>2016-05-14T17:32:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://openastronomy.org/Universe_OA/posts/2016/05/20160515_0520_kvyh/</loc>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://openastronomy.org/Universe_OA/posts/2016/05/20160516_2136_rirze/</loc>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://openastronomy.org/Universe_OA/posts/2016/05/20160517_1152_sudk1896/</loc>
+  <lastmod>2016-05-17T12:45:00Z</lastmod>
  </url>
  <url>
   <loc>http://openastronomy.org/Universe_OA/posts/2016/20160212_1224_asubsetofdaves/</loc>
