@@ -13,7 +13,7 @@ before_install:
   -in ./travis/travis_key.enc -out ./travis/travis_key -d
 
 install:
-- pip install jupyter nikola markdown yaml feedparser
+- pip install jupyter nikola markdown pyyaml feedparser
 
 script:
 - git config --global user.email "TravisBot@nomail"
