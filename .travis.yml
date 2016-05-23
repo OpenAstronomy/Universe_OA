@@ -1,0 +1,31 @@
+language: python
+sudo: false
+matrix:
+  include:
+  - python: 3.4
+
+env:
+   global:
+     - SSH_KEY='./travis/travis_rsa'
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_8b5c89e9c96b_key -iv $encrypted_8b5c89e9c96b_iv
+  -in ./travis/travis_key.enc -out ./travis/travis_key -d
+
+install:
+- pip install jupyter nikola markdown yaml feedparser
+
+script:
+- git config --global user.email "TravisBot@nomail"
+- git config --global user.name "TravisBot"
+- git config --global push.default simple
+- git remote set-url origin git@github.com:OpenAstronomy/Universe_OA.git
+- git fetch origin
+- git checkout -b run origin/run
+- python grab.py
+- nikola build
+- git add gsoc* output/* posts/*
+- git commit -m "update from $(date)"
+- git subtree split --prefix output -b gh-pages
+after_success:
+  - ./travis/deploy.sh
