@@ -22,3 +22,6 @@ sudk1896:
 kvyh:
   rss_feed: "http://kvyhastroplan.blogspot.com/feeds/posts/default?alt=rss"
   project: 'Astropy'
+ahamilton:
+  rss_feed: "http://socis2016.blogspot.com/feeds/posts/default?alt=rss"
+  project: 'SunPy'
