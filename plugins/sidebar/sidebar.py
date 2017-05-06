@@ -36,8 +36,18 @@ class Sidebar(ConfigPlugin):
             now_2w = datetime.datetime.utcnow() - datetime.timedelta(weeks=2)
             now_2w = now_2w.replace(tzinfo=utc)
             image = {'Astropy':'http://www.astropy.org/favicon.ico',
-                     'SunPy': 'https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg'}
+                     'SunPy': 'https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg',
+                     'Casacore': 'https://github.com/casacore.png?size=40',
+                     'JuliaAstro': 'https://github.com/juliaastro.png?size=40',
+                     'yt': 'http://openastronomy.org/img/members/yt.png',
+                     'Glue': 'https://github.com/glue-viz.png?size=40',
+                     'poliastro': 'http://openastronomy.org/img/members/poliastro.png',
+                     'ChiantiPy': 'http://openastronomy.org/img/members/chiantipy.png',
+                     'IMS': 'http://openastronomy.org/img/members/ims.png',
+                     'COIN': 'https://github.com/COINtoolbox.png?size=40'}
             for author in authors.keys():
+                if authors[author]['date'].year < datetime.datetime.utcnow().year:
+                    break
                 style = ''
                 print(authors[author])
                 print(now_2w)

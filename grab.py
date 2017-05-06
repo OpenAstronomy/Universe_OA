@@ -20,15 +20,19 @@ TEMPLATE = '''.. title: {title}
 
 '''
 
+
 class MLStripper(HTMLParser):
     def __init__(self):
         super().__init__()
         self.reset()
         self.fed = []
+
     def handle_data(self, d):
         self.fed.append(d)
+
     def get_data(self):
         return ''.join(self.fed)
+
 
 def strip_tags(html):
     s = MLStripper()
@@ -36,7 +40,7 @@ def strip_tags(html):
     return s.get_data()
 
 
-def grab_student(last_date, rss_url, project, studeOnt):
+def grab_student(last_date, rss_url, project, student, season):
     feed = feedparser.parse(rss_url)
     dates = [last_date]
     for item in feed['items']:
@@ -49,7 +53,7 @@ def grab_student(last_date, rss_url, project, studeOnt):
             if not os.path.exists(directory):
                 os.makedirs(directory)
             filename = '{date:%Y%m%d_%H%M}_{student}.rst'.format(date=item_date, student=student)
-            with open(os.path.join(directory, filename),'w') as post:
+            with open(os.path.join(directory, filename), 'w') as post:
                 # some posts have an empty title, taking the first 30 characters.
                 title_post = item['title'] if item['title'] != '' else strip_tags(item['summary'])[:30]+'...'
                 post.write(TEMPLATE.format(title=title_post,
@@ -57,7 +61,7 @@ def grab_student(last_date, rss_url, project, studeOnt):
                                            tags=project,
                                            author=item['author_detail']['name'],
                                            link=item['link'],
-                                           category='gsoc2016',
+                                           category=season,
                                            summary=strip_tags(item['summary'])[:300]))
     return(max(dates))
 
@@ -65,15 +69,22 @@ def grab_student(last_date, rss_url, project, studeOnt):
 with open('gsoc_times.yml', 'r') as file_times:
     levels = yaml.load_all(file_times)
     for level in levels:
-        students_times  = level
+        students_times = level
 
 with open('gsoc.yml', 'r') as stream:
-    list_students = yaml.load_all(stream)
-    for students in list_students:
-        for student,propers in students.items():
-            print(student,':',propers['rss_feed'])
-            print(student,':',propers['project'])
-            students_times[student] = grab_student(students_times[student], propers['rss_feed'], propers['project'], student)
+    list_seasons = yaml.load_all(stream)
+    for season, list_students in list_seasons.items():
+        yearseason = int(season[4:])
+        if yearseason < dt.datetime.utcnow().year:
+            break
+        for student, propers in list_students.items():
+            print(student, ':', propers['rss_feed'])
+            print(student, ':', propers['project'])
+            students_times[student] = grab_student(students_times[student],
+                                                   propers['rss_feed'],
+                                                   propers['project'],
+                                                   student,
+                                                   season)
 
 
 with open('gsoc_times.yml', 'w') as file_times:

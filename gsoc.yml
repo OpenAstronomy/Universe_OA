@@ -1,27 +1,56 @@
- rirze:
-   rss_feed: "http://www.roseateblog.wordpress.com/category/GSOC/feed"
-   project: 'Astropy'
-nocturnalastro:
-   rss_feed: "http://myopensauceadventure.blogspot.co.uk/feeds/posts/default?alt=rss"
-   project: 'Astropy'
-OlgaVorokh:
-  rss_feed: "http://alcyonegammapy.blogspot.com/feeds/posts/default?alt=rss"
-  project: 'Astropy'
-mirca:
-  rss_feed: "http://mirca.github.io/feed.xml"
-  project: 'Astropy'
-tdwilkinson:
-  rss_feed: "http://tdwilkinson.blogspot.com/feeds/posts/default?alt=rss"
-  project: 'SunPy'
-Punyaslok:
-  rss_feed: "https://punyaslokpattnaik.wordpress.com/feed/"
-  project: 'SunPy'
-sudk1896:
-  rss_feed: "https://sudonymousblog.wordpress.com/feed/"
-  project: 'SunPy'
-kvyh:
-  rss_feed: "http://kvyhastroplan.blogspot.com/feeds/posts/default?alt=rss"
-  project: 'Astropy'
-ahamilton:
-  rss_feed: "http://socis2016.blogspot.com/feeds/posts/default?alt=rss"
-  project: 'SunPy'
+gsoc2017:
+  ayadav:
+    rss_feed: "https://medium.com/feed/@ayushyadav"
+    project: 'Astropy'
+  haikyu:
+    rss_feed: "https://aaryapatil.wordpress.com/feed/"
+    project: 'Astropy'
+  shibasisp:
+    rss_feed: "http://www.techievirus.com/feed.xml"
+    project: 'Casacore'
+  nitinkgp23:
+    rss_feed: "https://medium.com/feed/@nitinkgp23"
+    project: 'SunPy'
+  adl1995:
+    rss_feed: "https://adl1995.github.io/feeds/all.rss.xml"
+    project: 'Astropy'
+  abit2:
+    rss_feed: "https://medium.com/feed/@ankit_b"
+    project: 'SunPy'
+  # TestSubjector:
+  #   rss_feed: #No RSS??
+  #   project: 'JuliaAstro'
+  Punyaslok:
+    rss_feed: "https://punyaslokpattnaik.wordpress.com/feed/"
+    project: 'SunPy'
+  duygukeskek:
+    rss_feed: "https://medium.com/feed/@duygukeskek"
+    project: 'SunPy'
+gsoc2016:
+  rirze:
+    rss_feed: "http://www.roseateblog.wordpress.com/category/GSOC/feed"
+    project: 'Astropy'
+  nocturnalastro:
+    rss_feed: "http://myopensauceadventure.blogspot.co.uk/feeds/posts/default?alt=rss"
+    project: 'Astropy'
+  OlgaVorokh:
+    rss_feed: "http://alcyonegammapy.blogspot.com/feeds/posts/default?alt=rss"
+    project: 'Astropy'
+  mirca:
+    rss_feed: "http://mirca.github.io/feed.xml"
+    project: 'Astropy'
+  tdwilkinson:
+    rss_feed: "http://tdwilkinson.blogspot.com/feeds/posts/default?alt=rss"
+    project: 'SunPy'
+  Punyaslok:
+    rss_feed: "https://punyaslokpattnaik.wordpress.com/feed/"
+    project: 'SunPy'
+  sudk1896:
+    rss_feed: "https://sudonymousblog.wordpress.com/feed/"
+    project: 'SunPy'
+  kvyh:
+    rss_feed: "http://kvyhastroplan.blogspot.com/feeds/posts/default?alt=rss"
+    project: 'Astropy'
+  ahamilton:
+    rss_feed: "http://socis2016.blogspot.com/feeds/posts/default?alt=rss"
+    project: 'SunPy'
