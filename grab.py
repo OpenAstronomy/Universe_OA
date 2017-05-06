@@ -72,7 +72,7 @@ with open('gsoc_times.yml', 'r') as file_times:
         students_times = level
 
 with open('gsoc.yml', 'r') as stream:
-    list_seasons = yaml.load_all(stream)
+    list_seasons = yaml.load(stream)
     for season, list_students in list_seasons.items():
         yearseason = int(season[4:])
         if yearseason < dt.datetime.utcnow().year:
