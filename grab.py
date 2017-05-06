@@ -3,9 +3,12 @@ import time
 import datetime as dt
 from html.parser import HTMLParser
 import pickle
+import pprint
 
 import yaml
 import feedparser
+
+pp = pprint.PrettyPrinter(indent=4)
 
 TEMPLATE = '''.. title: {title}
 .. slug:
@@ -48,6 +51,8 @@ def grab_student(last_date, rss_url, project, student, season):
         # item_date.tm_zone; tm_gmtoff
         # wordpress; time.struct_time
         if item_date > last_date:
+            print("#################### New post!")
+            pp.pprint(item)
             dates.append(item_date)
             directory = os.path.join('posts', '{:%Y}'.format(item_date), '{:%m}'.format(item_date))
             if not os.path.exists(directory):

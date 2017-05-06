@@ -5,9 +5,9 @@ gsoc2017:
   haikyu:
     rss_feed: "https://aaryapatil.wordpress.com/feed/"
     project: 'Astropy'
-  shibasisp:
-    rss_feed: "http://www.techievirus.com/feed.xml"
-    project: 'Casacore'
+  # shibasisp: # RSS without author
+  #   rss_feed: "http://www.techievirus.com/feed.xml"
+  #   project: 'Casacore'
   nitinkgp23:
     rss_feed: "https://medium.com/feed/@nitinkgp23"
     project: 'SunPy'
