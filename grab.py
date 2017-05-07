@@ -81,7 +81,7 @@ with open('gsoc.yml', 'r') as stream:
     for season, list_students in list_seasons.items():
         yearseason = int(season[4:])
         if yearseason < dt.datetime.utcnow().year:
-            break
+            continue
         for student, propers in list_students.items():
             print(student, ':', propers['rss_feed'])
             print(student, ':', propers['project'])
