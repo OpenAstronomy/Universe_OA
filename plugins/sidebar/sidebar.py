@@ -47,7 +47,7 @@ class Sidebar(ConfigPlugin):
                      'COIN': 'https://github.com/COINtoolbox.png?size=40'}
             for author in authors.keys():
                 if authors[author]['date'].year < datetime.datetime.utcnow().year:
-                    break
+                    continue
                 style = ''
                 print(authors[author])
                 print(now_2w)
