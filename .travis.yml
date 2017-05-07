@@ -29,6 +29,7 @@ script:
 - git fetch origin
 - git branch -avv
 - git checkout -b run origin/run
+- python hello.py
 - python grab.py
 - nikola build
 - git add gsoc* output/* posts/*
