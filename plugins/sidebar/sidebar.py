@@ -27,7 +27,12 @@ class Sidebar(ConfigPlugin):
                 if datepost > author_lists[author]['date']:
                     author_lists[author] = {'date':{datepost}}
             author_lists[author]['team'] = team
-            author_lists[author]['url'] = re.search("(?P<url>https?://[^\s/]+)", text).group("url")
+            post_link = post.meta['en']['link']
+            if "medium" in post_link:
+                regex_url = "(?P<url>https?://[^\s+/\s+/]+\/\@\w+)"
+            else:
+                regex_url = "(?P<url>https?://[^\s/]+)"
+            author_lists[author]['url'] = re.search(regex_url, post_link).group("url")
         author_lists = OrderedDict(sorted(author_lists.items(), key=lambda t: str.lower(t[0])))
 
         def html_bit(authors, site=None, context=None):

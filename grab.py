@@ -51,6 +51,8 @@ def grab_student(last_date, rss_url, project, student, season):
         # item_date.tm_zone; tm_gmtoff
         # wordpress; time.struct_time
         if item_date > last_date:
+            if "https://medium" in rss_url and not any(x.get('term').lower() == 'gsoc' for x in item.get('tags', [{'term': ''}])):
+                continue
             print("#################### New post!")
             pp.pprint(item)
             dates.append(item_date)
