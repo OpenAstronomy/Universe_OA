@@ -17,9 +17,9 @@ gsoc2017:
   abit2:
     rss_feed: "https://medium.com/feed/@ankit_b"
     project: 'SunPy'
-  # TestSubjector:
-  #   rss_feed: #No RSS??
-  #   project: 'JuliaAstro'
+  TestSubjector:
+    rss_feed: "https://medium.com/feed/@prasunk2"
+    project: 'JuliaAstro'
   Punyaslok:
     rss_feed: "https://punyaslokpattnaik.wordpress.com/feed/"
     project: 'SunPy'
