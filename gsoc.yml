@@ -26,6 +26,9 @@ gsoc2017:
   duygukeskek:
     rss_feed: "https://medium.com/feed/@duygukeskek"
     project: 'SunPy'
+  pgabor:
+    rss_feed: "http://pgabor.blogspot.com/feeds/posts/default/-/SunPy/?alt=rss"
+    project: 'SunPy'
 gsoc2016:
   rirze:
     rss_feed: "http://www.roseateblog.wordpress.com/category/GSOC/feed"
