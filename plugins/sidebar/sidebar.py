@@ -40,7 +40,7 @@ class Sidebar(ConfigPlugin):
             final_text = u'<div class="sidebar">'
             now_2w = datetime.datetime.utcnow() - datetime.timedelta(weeks=2)
             now_2w = now_2w.replace(tzinfo=utc)
-            image = {'Astropy':'http://www.astropy.org/favicon.ico',
+            image = {'Astropy':'https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg',
                      'SunPy': 'https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg',
                      'Casacore': 'https://github.com/casacore.png?size=40',
                      'JuliaAstro': 'https://github.com/juliaastro.png?size=40',
