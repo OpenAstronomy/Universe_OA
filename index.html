@@ -15,8 +15,8 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/">
-<link rel="next" href="index-13.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2017/08/20170829_2011_punyaslok/" type="text/html">
+<link rel="next" href="index-14.html" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2017/09/20170909_0558_adl1995/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -68,7 +68,7 @@
                    </a>
                 </li>
 <li>
-                   <img src="http://www.astropy.org/favicon.ico" height="16" width="16"><a href="https://adl1995.github.io" data-toggle="tooltip" data-placement="top" title="2017-08-28 17:35:00+01:00">
+                   <img src="http://www.astropy.org/favicon.ico" height="16" width="16"><a href="https://adl1995.github.io" data-toggle="tooltip" data-placement="top" title="2017-09-09 05:58:00+01:00">
                     Adeel Ahmad
                    </a>
                 </li>
@@ -120,7 +120,18 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2017/08/20170829_2011_punyaslok/" class="u-url">Second Half of the Final Third of the Coding Period</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2017/09/20170909_0558_adl1995/" class="u-url">Parallel tile fetching and CPU-and-memory statistics</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/adeel-ahmad/">Adeel Ahmad</a>
+            </span></p>
+            <p class="dateline"><a href="posts/2017/09/20170909_0558_adl1995/" rel="bookmark"><time class="published dt-published" datetime="2017-09-09T05:58:00+01:00" title="2017-09-09 05:58">2017-09-09 05:58</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <p>The hips package now supports parallel tile fetching. The user can achieve this either using urllib or aiohttp.
+In case of aiohttp, the fetched tile data is coupled with HipsTileMeta to create a HipsTile object. This ensures there is no misalignment of tile data, otherwise, tiles could be swapped du <a class="reference external" href="https://adl1995.github.io/parallel-tile-fetching-and-cpu-and-memory-statistics.html">...READ MORE...</a></p>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2017/08/20170829_2011_punyaslok/" class="u-url">Second Half of the Final Third of the Coding Period</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/punyaslokpattnaik/">punyaslokpattnaik</a>
@@ -218,23 +229,12 @@ Add methods for drawing markers over sky im <a class="reference external" href="
     </header><div class="e-content entry-content">
     <p>So finally NDcube is being used in IRISPy. NDCube turned out to be pretty generic and so it can be used for other mission also.Starting to write the to_sunpy() method it will convert the NDCube to a Sunpy object depending on the wcs axis and shape of data. Also need to make corrections in the meta,  <a class="reference external" href="https://medium.com/@ankit_b/irispy-using-ndcube-c30383234a18?source=rss-fc0a4b737255------2">...READ MORE...</a></p>
     </div>
-    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/2017/08/20170810_0628_adl1995/" class="u-url">Fixing tile distortion issue in hips package</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/adeel-ahmad/">Adeel Ahmad</a>
-            </span></p>
-            <p class="dateline"><a href="posts/2017/08/20170810_0628_adl1995/" rel="bookmark"><time class="published dt-published" datetime="2017-08-10T06:28:00+01:00" title="2017-08-10 06:28">2017-08-10 06:28</time></a></p>
-        </div>
-    </header><div class="e-content entry-content">
-    <p>As documented in the Tile distortion issue section, the previous technique for drawing HiPS tiles brings some astrometry offsets for distorted tiles.
-An example of such distortions is shown in the example below (uncheck "Activate deformations reduction algorithm" to view the astrometry offsets): htt <a class="reference external" href="https://adl1995.github.io/fixing-tile-distortion-issue-in-hips-package.html">...READ MORE...</a></p>
-    </div>
     </article>
 </div>
 
         <nav class="postindexpager"><ul class="pager">
 <li class="next">
-                <a href="index-13.html" rel="next">Older posts</a>
+                <a href="index-14.html" rel="next">Older posts</a>
             </li>
         </ul></nav>
 </div>
