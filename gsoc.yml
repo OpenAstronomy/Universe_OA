@@ -1,3 +1,31 @@
+gsoc2018:
+  MananAgarwal:
+    rss_feed: "FIXME"
+    project: 'Astropy'
+  sushobhana:
+    rss_feed:  "https://medium.com/feed/@sushobhanapatra"
+    project: 'Astropy'
+  rkiman:
+    rss_feed: "https://rociokiman.blogspot.com/feeds/posts/default?alt=rss" # set up tag? FIXME?
+    project: 'Astropy'
+  ritiek:
+    rss_feed: "https://ritiek.github.io/feed.xml"  # set up tag? FIXME?
+    project: 'PlasmaPy'
+  nikita-astronaut:
+    rss_feed: "FIXME"
+    project: 'poliastro'
+  abotiamnot:
+    rss_feed: "FIXME"
+    project: 'HelioPy'
+  swapsha96:
+    rss_feed: "https://medium.com/feed/@swapsha96"
+    project: 'TimeLab'
+  prakharcode:
+    rss_feed: "FIXME"
+    project: 'JuliaAstro'
+  vn-ki:
+    rss_feed: "FIXME"
+    project: 'SunPy'
 gsoc2017:
   ayadav:
     rss_feed: "https://medium.com/feed/@ayushyadav"
