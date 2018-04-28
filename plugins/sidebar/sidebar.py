@@ -49,7 +49,11 @@ class Sidebar(ConfigPlugin):
                      'poliastro': 'http://openastronomy.org/img/members/poliastro.png',
                      'ChiantiPy': 'http://openastronomy.org/img/members/chiantipy.png',
                      'IMS': 'http://openastronomy.org/img/members/ims.png',
-                     'COIN': 'https://github.com/COINtoolbox.png?size=40'}
+                     'COIN': 'https://github.com/COINtoolbox.png?size=40',
+                     'PlasmaPy': 'https://github.com/plasmapy.png?size=40',
+                     'HelioPy': 'http://openastronomy.org/img/members/heliopy.png',
+                     'Sherpa': 'http://openastronomy.org/img/members/sherpa_logo.gif'
+                     'TimeLab': 'http://openastronomy.org/img/members/timelab.png'}
             for author in authors.keys():
                 if authors[author]['date'].year < datetime.datetime.utcnow().year:
                     continue
