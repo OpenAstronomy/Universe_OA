@@ -1,6 +1,6 @@
 gsoc2018:
   MananAgarwal:
-    rss_feed: "FIXME"
+    rss_feed: "https://medium.com/feed/@manan_agarwal"
     project: 'Astropy'
   sushobhana:
     rss_feed:  "https://medium.com/feed/@sushobhanapatra"
