@@ -12,7 +12,7 @@ gsoc2018:
     rss_feed: "https://ritiek.github.io/feed.xml"  # set up tag? FIXME?
     project: 'PlasmaPy'
   nikita-astronaut:
-    rss_feed: "FIXME"
+    rss_feed: "https://medium.com/feed/@nikita.astronaut"
     project: 'poliastro'
   abotiamnot:
     rss_feed: "https://medium.com/feed/@yatharthrai16"
