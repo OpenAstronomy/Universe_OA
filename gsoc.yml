@@ -24,7 +24,7 @@ gsoc2018:
     rss_feed: "FIXME"
     project: 'JuliaAstro'
   vn-ki:
-    rss_feed: "FIXME"
+    rss_feed: "https://medium.com/feed/@appukuttancr"
     project: 'SunPy'
 gsoc2017:
   ayadav:
