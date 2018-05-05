@@ -21,7 +21,7 @@ gsoc2018:
     rss_feed: "https://medium.com/feed/@swapsha96"
     project: 'TimeLab'
   prakharcode:
-    rss_feed: "https://prakharcode.github.io/feed.xml"
+    rss_feed: "https://prakharcode.github.io/gsoc_feed.xml"
     project: 'JuliaAstro'
   vn-ki:
     rss_feed: "FIXME"
