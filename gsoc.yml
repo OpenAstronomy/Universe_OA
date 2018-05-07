@@ -1,3 +1,31 @@
+gsoc2018:
+  MananAgarwal:
+    rss_feed: "https://medium.com/feed/@manan_agarwal"
+    project: 'Astropy'
+  sushobhana:
+    rss_feed:  "https://medium.com/feed/@sushobhanapatra"
+    project: 'Astropy'
+  rkiman:
+    rss_feed: "https://rociokiman.blogspot.com/feeds/posts/default/-/GSoC/?alt=rss"
+    project: 'Astropy'
+  ritiek:
+    rss_feed: "https://ritiek.github.io/feed/gsoc.xml"
+    project: 'PlasmaPy'
+  nikita-astronaut:
+    rss_feed: "https://medium.com/feed/@nikita.astronaut"
+    project: 'poliastro'
+  abotiamnot:
+    rss_feed: "https://medium.com/feed/@yatharthrai16"
+    project: 'HelioPy'
+  swapsha96:
+    rss_feed: "https://medium.com/feed/@swapsha96"
+    project: 'TimeLab'
+  prakharcode:
+    rss_feed: "https://prakharcode.github.io/gsoc_feed.xml"
+    project: 'JuliaAstro'
+  vn-ki:
+    rss_feed: "https://medium.com/feed/@appukuttancr"
+    project: 'SunPy'
 gsoc2017:
   ayadav:
     rss_feed: "https://medium.com/feed/@ayushyadav"
