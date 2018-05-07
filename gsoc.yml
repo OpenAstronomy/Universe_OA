@@ -12,7 +12,7 @@ gsoc2018:
     rss_feed: "https://ritiek.github.io/feed/gsoc.xml"
     project: 'PlasmaPy'
   nikita-astronaut:
-    rss_feed: "https://medium.com/feed/@nikita.astronaut"
+    rss_feed: "http://blog.poliastro.space/"
     project: 'poliastro'
   abotiamnot:
     rss_feed: "https://medium.com/feed/@yatharthrai16"
