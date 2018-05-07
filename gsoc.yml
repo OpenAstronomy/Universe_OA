@@ -9,7 +9,7 @@ gsoc2018:
     rss_feed: "https://rociokiman.blogspot.com/feeds/posts/default/-/GSoC/?alt=rss"
     project: 'Astropy'
   ritiek:
-    rss_feed: "https://ritiek.github.io/feed.xml"  # set up tag? FIXME?
+    rss_feed: "https://ritiek.github.io/feed/gsoc.xml"
     project: 'PlasmaPy'
   nikita-astronaut:
     rss_feed: "https://medium.com/feed/@nikita.astronaut"
