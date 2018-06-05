@@ -32,7 +32,11 @@ class Sidebar(ConfigPlugin):
                 regex_url = "(?P<url>https?://[^\s+/\s+/]+\/\@\w+)"
             else:
                 regex_url = "(?P<url>https?://[^\s/]+)"
-            author_lists[author]['url'] = re.search(regex_url, post_link).group("url")
+            try:
+                author_lists[author]['url'] = re.search(regex_url, post_link).group("url")
+            except AttributeError:
+                # Some medium bloggers subgrouping their posts, skipping those for now
+                author_lists[author]['url'] = None
         author_lists = OrderedDict(sorted(author_lists.items(), key=lambda t: str.lower(t[0])))
 
         def html_bit(authors, site=None, context=None):
