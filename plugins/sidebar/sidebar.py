@@ -61,6 +61,8 @@ class Sidebar(ConfigPlugin):
             for author in authors.keys():
                 if authors[author]['date'].year < datetime.datetime.utcnow().year:
                     continue
+                if author == 'rkiman':
+                    continue
                 style = ''
                 print(authors[author])
                 print(now_2w)
