@@ -29,7 +29,7 @@ class Sidebar(ConfigPlugin):
             author_lists[author]['team'] = team
             post_link = post.meta['en']['link']
             if "medium" in post_link:
-                regex_url = "(?P<url>https?://[^\s+/\s+/]+\/\@\w+)"
+                regex_url = "(?P<url>https?://[^\s+/\s+/]+\/\@\w+(\.\w+)?)"
             else:
                 regex_url = "(?P<url>https?://[^\s/]+)"
             try:
