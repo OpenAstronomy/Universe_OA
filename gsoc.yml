@@ -5,9 +5,9 @@ gsoc2018:
   sushobhana:
     rss_feed:  "https://medium.com/feed/@sushobhanapatra"
     project: 'Astropy'
-  rkiman:
-    rss_feed: "https://rociokiman.blogspot.com/feeds/posts/default/-/GSoC/?alt=rss"
-    project: 'Astropy'
+#  rkiman:
+#    rss_feed: "https://rociokiman.blogspot.com/feeds/posts/default/-/GSoC/?alt=rss"
+#    project: 'Astropy'
   ritiek:
     rss_feed: "https://ritiek.github.io/feed/gsoc.xml"
     project: 'PlasmaPy'
