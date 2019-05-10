@@ -21,7 +21,7 @@ gsoc2019:
     rss_feed: "https://astrotiff.home.blog/feed/***" # FIXME add gsoc tag
     project: 'Astropy'
   aquatiko:
-    rss_feed: "https://aquatiko.github.io/blog/***" # FIXME add gsoc tag
+    rss_feed: "https://aquatiko.github.io/series/gsoc/"
     project: 'JuliaAstro'
   jredondopizarro:
     rss_feed: "https://jredondopizarro.github.io/***" # FIXME add gsoc tag
