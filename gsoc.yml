@@ -24,7 +24,7 @@ gsoc2019:
     rss_feed: "https://aquatiko.github.io/series/gsoc/"
     project: 'JuliaAstro'
   jredondopizarro:
-    rss_feed: "https://jredondopizarro.github.io/***" # FIXME add gsoc tag
+    rss_feed: "https://medium.com/feed/@jrpg1996" 
     project: 'CTLearn'
 gsoc2018:
   MananAgarwal:
