@@ -3,7 +3,7 @@ gsoc2019:
     rss_feed: ""
     project: 'poliastro'
   jorgepiloto:
-    rss_feed: ""
+    rss_feed: "https://blog.poliastro.space/feeds/jorge-martinez-garrido.rss.xml"
     project: 'poliastro'
   kakirastern:
     rss_feed: "https://medium.com/feed/@krisastern"
