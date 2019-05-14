@@ -1,6 +1,6 @@
 gsoc2019:
   Sedictious:
-    rss_feed: ""
+    rss_feed: "https://blog.poliastro.space/feeds/eleftheria-chatziargyriou.rss.xml"
     project: 'poliastro'
   jorgepiloto:
     rss_feed: "https://blog.poliastro.space/feeds/jorge-martinez-garrido.rss.xml"
