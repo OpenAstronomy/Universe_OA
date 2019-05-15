@@ -1,3 +1,31 @@
+gsoc2019:
+  Sedictious:
+    rss_feed: "https://blog.poliastro.space/feeds/eleftheria-chatziargyriou.rss.xml"
+    project: 'poliastro'
+  jorgepiloto:
+    rss_feed: "https://blog.poliastro.space/feeds/jorge-martinez-garrido.rss.xml"
+    project: 'poliastro'
+  kakirastern:
+    rss_feed: "https://medium.com/feed/@krisastern"
+    project: 'SunPy'
+  vatch123:
+    rss_feed: "https://medium.com/feed/@vatsalyachaubey19980"
+    project: 'SunPy'
+  vn-ki:
+    rss_feed: "https://medium.com/feed/@appukuttancr"
+    project: 'SunPy'
+  ​yashrsharma44:
+    rss_feed: "https://medium.com/feed/@yashrsharma44"
+    project: 'SunPy'
+  ​tcjansen:
+    rss_feed: "https://astrotiff.home.blog/category/gsoc/feed/"
+    project: 'Astropy'
+  aquatiko:
+    rss_feed: "https://aquatiko.github.io/series/gsoc/"
+    project: 'JuliaAstro'
+  jredondopizarro:
+    rss_feed: "https://medium.com/feed/@jrpg1996" 
+    project: 'CTLearn'
 gsoc2018:
   MananAgarwal:
     rss_feed: "https://medium.com/feed/@manan_agarwal"
