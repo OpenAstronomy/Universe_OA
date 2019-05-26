@@ -21,7 +21,7 @@ gsoc2019:
     rss_feed: "https://astrotiff.home.blog/category/gsoc/feed/"
     project: 'Astropy'
   aquatiko:
-    rss_feed: "https://aquatiko.github.io/series/gsoc/"
+    rss_feed: "https://aquatiko.github.io/series/gsoc/index.xml"
     project: 'JuliaAstro'
   jredondopizarro:
     rss_feed: "https://medium.com/feed/@jrpg1996" 
