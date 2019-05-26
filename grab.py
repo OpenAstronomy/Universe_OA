@@ -63,10 +63,11 @@ def grab_student(last_date, rss_url, project, student, season):
             with open(os.path.join(directory, filename), 'w') as post:
                 # some posts have an empty title, taking the first 30 characters.
                 title_post = item['title'] if item['title'] != '' else strip_tags(item['summary'])[:30]+'...'
+                author = item.get('author_detail', {'name': student})  # Not everyone got their author name in their blog :(
                 post.write(TEMPLATE.format(title=title_post,
                                            date=item_date,
                                            tags=project,
-                                           author=item['author_detail']['name'],
+                                           author=author['name'],
                                            link=item['link'],
                                            category=season,
                                            summary=strip_tags(item['summary'])[:300]))
@@ -79,7 +80,7 @@ with open('gsoc_times.yml', 'r') as file_times:
         students_times = level
 
 with open('gsoc.yml', 'r') as stream:
-    list_seasons = yaml.load(stream)
+    list_seasons = yaml.load(stream, Loader=yaml.FullLoader)
     for season, list_students in list_seasons.items():
         yearseason = int(season[4:])
         if yearseason < dt.datetime.utcnow().year:
