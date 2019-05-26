@@ -57,7 +57,8 @@ class Sidebar(ConfigPlugin):
                      'PlasmaPy': 'https://github.com/plasmapy.png?size=40',
                      'HelioPy': 'http://openastronomy.org/img/members/heliopy.png',
                      'Sherpa': 'http://openastronomy.org/img/members/sherpa_logo.gif',
-                     'TimeLab': 'http://openastronomy.org/img/members/timelab.png'}
+                     'TimeLab': 'http://openastronomy.org/img/members/timelab.png',
+                     'CTLearn': 'https://github.com/ctlearn-project.png?size=40'}
             for author in authors.keys():
                 if authors[author]['date'].year < datetime.datetime.utcnow().year:
                     continue
