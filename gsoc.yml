@@ -17,6 +17,9 @@ gsoc2019:
   yashrsharma44:
     rss_feed: "https://medium.com/feed/@yashrsharma44"
     project: 'SunPy'
+  tianxiaoma:
+    rss_feed: "https://medium.com/feed/@tianxiaoma"
+    project: 'SunPy'
   tcjansen:
     rss_feed: "https://astrotiff.home.blog/category/gsoc/feed/"
     project: 'Astropy'
