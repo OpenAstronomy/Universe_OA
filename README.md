@@ -46,7 +46,7 @@ search the commits that we care about.
    ```bash
    year=$(date +"%Y")
    lastyear=$(( ${year} - 1))
-   sed -n "/^gsoc${year}/,/gsoc${lastyear}"/p" gsoc.yml | grep "^  [[:alpha:]].*:$" | sed 's/^[ ]*//' | sed "s/$/ ${year}-05-01 00:00:00/g" >> gsoc_times.yml
+   sed -n "/^gsoc${year}/,/gsoc${lastyear}/p" gsoc.yml | grep "^  [[:alpha:]].*:$" | sed 's/^[ ]*//' | sed "s/$/ ${year}-05-01 00:00:00/g" >> gsoc_times.yml
    LC_COLLATE=C sort -o  gsoc_times.yml gsoc_times.yml # So it sorts as python does, first upper case, then lower
    ```
 
