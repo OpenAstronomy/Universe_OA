@@ -72,7 +72,13 @@ class Sidebar(ConfigPlugin):
                      'HelioPy': 'http://openastronomy.org/img/members/heliopy.png',
                      'Sherpa': 'http://openastronomy.org/img/members/sherpa_logo.gif',
                      'TimeLab': 'http://openastronomy.org/img/members/timelab.png',
-                     'CTLearn': 'https://github.com/ctlearn-project.png?size=40'}
+                     'CTLearn': 'https://github.com/ctlearn-project.png?size=40',
+                     'EinsteinPy': 'https://openastronomy.org/img/members/einsteinpy.png',
+                     'radis': 'https://openastronomy.org/img/members/radis_ico.png',
+                     'astronomy-commons': 'https://openastronomy.org/img/members/astronomy-commons.png',
+                     'stingray': 'https://github.com/StingraySoftware.png?size=40',
+            }
+
             date_ranges = [(datetime.datetime(2020,5,4).replace(tzinfo=utc), datetime.datetime(2020,6,1).replace(tzinfo=utc)),
                            (datetime.datetime(2020,6,1).replace(tzinfo=utc), datetime.datetime(2020,6,15).replace(tzinfo=utc)),
                            (datetime.datetime(2020,6,15).replace(tzinfo=utc), datetime.datetime(2020,6,29).replace(tzinfo=utc)),
