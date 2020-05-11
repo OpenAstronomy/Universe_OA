@@ -24,7 +24,7 @@ gsoc2020:
     rss_feed: "https://medium.com/@abhijeetmanhas720" # TODO (add gsoc tag)
     projects: 'SunPy'
   Raahul-Singh:
-    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    rss_feed: "https://medium.com/@_hawks_" # TODO (add blog with gsoc tag)
     projects: 'SunPy'
   techguybiswa:
     rss_feed: "rss-url" # TODO (add blog with gsoc tag)
