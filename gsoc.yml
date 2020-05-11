@@ -1,3 +1,34 @@
+gsoc2020:
+  theand9:
+    rss_fed: "rss-url" # TODO (add blog with gsoc tag)
+    project: 'stingray'
+  pkj-m:
+    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    project: 'radis'
+  siddharthlal25:
+    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    project: 'JuliaAstro'
+  meuge:
+    rss_feed: "https://meuge.github.io/blog/feed.xml" # TODO (add gsoc tag)
+    project: 'poliastro'
+  JeS24:
+    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    project: 'EinsteinPy'
+  sahilyadav27:
+    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    project: 'CTLearn'
+  ​kakirastern:
+    rss_feed: "https://medium.com/@krisastern"
+    project: 'SunPy'
+  abhijeetmanhas:
+    rss_feed: "https://medium.com/@abhijeetmanhas720" # TODO (add gsoc tag)
+    projects: 'SunPy'
+  Raahul-Singh:
+    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    projects: 'SunPy'
+  techguybiswa:
+    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    projects: 'astronomy-commons'
 gsoc2019:
   Sedictious:
     rss_feed: "https://blog.poliastro.space/feeds/eleftheria-chatziargyriou.rss.xml"
