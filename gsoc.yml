@@ -15,7 +15,7 @@ gsoc2020:
     rss_feed: "rss-url" # TODO (add blog with gsoc tag)
     project: 'EinsteinPy'
   sahilyadav27:
-    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    rss_feed: "https://medium.com/@sahilyadav27" # TODO (add blog with gsoc tag)
     project: 'CTLearn'
   ​kakirastern:
     rss_feed: "https://medium.com/@krisastern"
