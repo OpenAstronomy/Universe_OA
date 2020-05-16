@@ -3,7 +3,7 @@ gsoc2020:
     rss_fed: "rss-url" # TODO (add blog with gsoc tag)
     project: 'stingray'
   pkj-m:
-    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    rss_feed: "https://pkj-m.github.io/blog/feed.gsoc.xml"
     project: 'radis'
   siddharthlal25:
     rss_feed: "rss-url" # TODO (add blog with gsoc tag)
