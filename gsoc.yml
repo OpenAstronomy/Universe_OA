@@ -6,7 +6,7 @@ gsoc2020:
     rss_feed: "https://pkj-m.github.io/blog/feed.gsoc.xml"
     project: 'radis'
   siddharthlal25:
-    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    rss_feed: "https://siddharthlal25.github.io/feed.xml" # TODO (add blog with gsoc tag)
     project: 'JuliaAstro'
   meuge:
     rss_feed: "https://meuge.github.io/blog/feed.xml" # TODO (add gsoc tag)
