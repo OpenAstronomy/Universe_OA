@@ -12,7 +12,7 @@ gsoc2020:
     rss_feed: "https://blog.poliastro.space/feeds/meuge.rss.xml"
     project: 'poliastro'
   JeS24:
-    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    rss_feed: "https://dev.to/feed/jes24"
     project: 'EinsteinPy'
   sahilyadav27:
     rss_feed: "https://medium.com/@sahilyadav27"
