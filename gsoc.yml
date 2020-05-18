@@ -21,7 +21,7 @@ gsoc2020:
     rss_feed: "https://medium.com/@krisastern"
     project: 'SunPy'
   abhijeetmanhas:
-    rss_feed: "https://medium.com/@abhijeetmanhas720" # TODO (add gsoc tag)
+    rss_feed: "https://medium.com/@abhijeetmanhas720"
     projects: 'SunPy'
   Raahul-Singh:
     rss_feed: "https://medium.com/@_hawks_"
