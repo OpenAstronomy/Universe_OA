@@ -9,7 +9,7 @@ gsoc2020:
     rss_feed: "https://siddharthlal25.github.io/feed.xml" # TODO (add blog with gsoc tag)
     project: 'JuliaAstro'
   meuge:
-    rss_feed: "https://meuge.github.io/blog/feed.xml" # TODO (add gsoc tag)
+    rss_feed: "https://blog.poliastro.space/feeds/meuge.rss.xml"
     project: 'poliastro'
   JeS24:
     rss_feed: "rss-url" # TODO (add blog with gsoc tag)
