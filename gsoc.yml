@@ -27,7 +27,7 @@ gsoc2020:
     rss_feed: "https://medium.com/@_hawks_"
     projects: 'SunPy'
   techguybiswa:
-    rss_feed: "rss-url" # TODO (add blog with gsoc tag)
+    rss_feed: "https://medium.com/feed/@biswarupbanerjee"
     projects: 'astronomy-commons'
 gsoc2019:
   Sedictious:
