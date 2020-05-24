@@ -6,7 +6,7 @@ gsoc2020:
     rss_feed: "https://pkj-m.github.io/blog/feed.gsoc.xml"
     project: 'radis'
   siddharthlal25:
-    rss_feed: "https://siddharthlal25.github.io/blog/feed.gsoc.xml" # TODO (add blog with gsoc tag)
+    rss_feed: "https://siddharthlal25.github.io/blog/feed.gsoc.xml"
     project: 'JuliaAstro'
   meuge:
     rss_feed: "https://blog.poliastro.space/feeds/meuge.rss.xml"
@@ -15,16 +15,16 @@ gsoc2020:
     rss_feed: "https://dev.to/feed/jes24"
     project: 'EinsteinPy'
   sahilyadav27:
-    rss_feed: "https://medium.com/@sahilyadav27"
+    rss_feed: "https://medium.com/feed/@sahilyadav27"
     project: 'CTLearn'
   ​kakirastern:
-    rss_feed: "https://medium.com/@krisastern"
+    rss_feed: "https://medium.com/feed/@krisastern"
     project: 'SunPy'
   abhijeetmanhas:
-    rss_feed: "https://medium.com/@abhimanhas"
+    rss_feed: "https://medium.com/feed/@abhimanhas"
     projects: 'SunPy'
   Raahul-Singh:
-    rss_feed: "https://medium.com/@_hawks_"
+    rss_feed: "https://medium.com/feed/@_hawks_"
     projects: 'SunPy'
   techguybiswa:
     rss_feed: "https://medium.com/feed/@biswarupbanerjee"
