@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC 2020: glue-solar project 0.1 | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2020/05/20200517_0228_kakirastern/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Kris Stern">
+<link rel="prev" href="../20200514_1804_pkj-m/" title="Google Summer of Code - Blog #0!" type="text/html">
+<link rel="next" href="../20200517_1000_meuge/" title="GSoC 2020, I am going to an adventure!" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSoC 2020: glue-solar project 0.1">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2020/05/20200517_0228_kakirastern/">
+<meta property="og:description" content="I feel grateful for having been selected for the second time in a row to participate in GSoC with the OpenAstronomy organization with SunPy as the sub-organization. My mentors this year are Thomas Rob">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-05-17T02:28:15+01:00">
+<meta property="article:tag" content="SunPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="http://openastronomy.org/Universe_OA/">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@abhimanhas" data-toggle="tooltip" data-placement="top" title="2020-05-19 05:13:15+01:00">
+                    Abhijeet Manhas
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@andsbmp17" data-toggle="tooltip" data-placement="top" title="2020-05-24 23:32:49+01:00">
+                    Amogh Desai
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/astronomy-commons.png" height="16" width="16"><a href="https://blog.usejournal.com" data-toggle="tooltip" data-placement="top" title="2020-05-21 04:52:58+01:00">
+                    Biswarup Banerjee
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/einsteinpy.png" height="16" width="16"><a href="https://dev.to" data-toggle="tooltip" data-placement="top" title="2020-05-18 22:14:41+01:00">
+                    Jyotirmaya Shivottam
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@krisastern" data-toggle="tooltip" data-placement="top" title="2020-05-17 02:28:15+01:00">
+                    Kris Stern
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="http://openastronomy.org/img/members/poliastro.png" height="16" width="16"><a href="https://blog.poliastro.space" data-toggle="tooltip" data-placement="top" title="2020-05-17 10:00:00+01:00">
+                    Meuge
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="http://pkj-m.github.io" data-toggle="tooltip" data-placement="top" title="2020-05-14 18:04:56+01:00">
+                    pkj-m
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@_hawks_" data-toggle="tooltip" data-placement="top" title="2020-05-12 05:54:46+01:00">
+                    Raahul Singh
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/ctlearn-project.png?size=40" height="16" width="16"><a href="https://medium.com/@sahilyadav27" data-toggle="tooltip" data-placement="top" title="2020-05-18 12:59:01+01:00">
+                    Sahil Yadav
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="http://siddharthlal25.github.io" data-toggle="tooltip" data-placement="top" title="2020-05-14 18:04:56+01:00">
+                    siddharthlal25
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC 2020: glue-solar project 0.1</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/kris-stern/">Kris Stern</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-05-17T02:28:15+01:00" itemprop="datePublished" title="2020-05-17 02:28">2020-05-17 02:28</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://medium.com/@krisastern/gsoc-2020-glue-solar-project-0-1-aae452de5e9?source=rss-33703681b362------2">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>I feel grateful for having been selected for the second time in a row to participate in <strong>GSoC</strong> with the <strong>OpenAstronomy</strong> organization with <strong>SunPy</strong> as the sub-organization. My mentors this year are <strong><em>Thomas Robitaille, Stuart Mumford, and Nabil Freij</em></strong>, whom I have come to know within the astrophysics community over the past year or so and have come to respect. I am definitely looking forward to having a summer of serious fun with glue (or glueviz) in order to develop a plugin called glue-solar for use in solar physics data visualization. But to start I simply cannot resist delving more deeply into the glue-solar project. First off, here is a <a href="https://summerofcode.withgoogle.com/projects/#5824429948403712">link</a> to my project description over at GSoC’s official website.</p>
+<p>To introduce the glue-solar plugin, it is only natural to first introduce the glue package for which it operates on. As its official <a href="http://glueviz.org/">website</a> would suggest, glue is a package for multi-dimensional linked-data exploration. With glue, users can generate scatter plots, histograms, and both 2D and 3D images of their own data. The package emphasizes on the brushing and linking paradigm, where selections in any graph can propagate to all others. Moreover, glue uses the existing logical links between different data sets to overlay visualizations of different datasets, and to propagate the same selections across all other data sets. To clarify, these can be spatial and temporal links. These links are specified by the user, and are designed to be arbitrarily flexible. Finally, glue is written in Python, and built on top of its standard scientific libraries (e.g., Numpy, Matplotlib, Scipy), such that users can easily integrate their own python code for data input, cleaning, and analysis, enabling full scripting capability.</p>
+<iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2FqO3RQiRjWA4%3Ffeature%3Doembed&amp;display_name=YouTube&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DqO3RQiRjWA4&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2FqO3RQiRjWA4%2Fhqdefault.jpg&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=youtube" width="640" height="480" frameborder="0" scrolling="no"><a href="https://medium.com/media/c5d030f496449b3a2e665643fa02682e/href">https://medium.com/media/c5d030f496449b3a2e665643fa02682e/href</a></iframe><p>Back to the glue-solar project, it is to provide a foundation for interactively exploring and quickly analyzing large datasets (100Gb or larger) in solar physics to be built in Python. This software will enable multi-instrument interactive visualisation as a <strong>plugin</strong> of glue. While a fully featured GUI toolkit for solar data is not expected to be built in one summer due to time constraint, the goal is to provide the technical building blocks, but more importantly to demonstrate, and document, how this framework can be used by various instrument teams to build custom solutions for their solar data. Glue-solar, like glue is completely free for anyone to use and is open-source. Furthermore, glue-solar is a collaboration between glue and SunPy, hence its focus on solar physics.</p>
+<!-- TEASER_END -->
+<p>The official start date of this year’s GSoC is June 2nd, 2020, immediately after the current community bonding period. But work has already begun and we have already opened pull requests (or PRs) at both the glue and glue-solar repos to enable loading of basic SunPy maps such as AIA and HMI data so that they can be overplotted as different colormaps. As per usual, GSoC will last for about three months, until August 25th, 2020. This summer is surely going to be filled with many fun hours of coding for both glue and glue-solar for me. I am definitely looking forward to enjoying working on my last GSoC project this year, with my amazing mentors’ guidance.</p>
+<img src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=aae452de5e9" width="1" height="1">
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20200514_1804_pkj-m/" rel="prev" title="Google Summer of Code - Blog #0!">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20200517_1000_meuge/" rel="next" title="GSoC 2020, I am going to an adventure!">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2020         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

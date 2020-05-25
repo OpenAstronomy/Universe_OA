@@ -1,0 +1,147 @@
+.. title: GSoC 2020: Blog 0 - A Brief History...
+.. slug:
+.. date: 2020-05-18 22:14:41 
+.. tags: EinsteinPy
+.. author: Jyotirmaya Shivottam
+.. link: https://dev.to/jes24/gsoc-2020-blog-0-a-brief-history-3oom
+.. description:
+.. category: gsoc2020
+
+
+.. raw:: html
+
+    <div class="highlight"><pre class="highlight plaintext"><code>&gt;&gt;&gt; print("Hello, World!")
+    Hello, World!
+    &gt;&gt;&gt;
+    <!-- TEASER_END -->
+    </code></pre></div>
+    
+    
+    <p>Hi, I am Jyotirmaya Shivottam, a Physics Undergrad at <a href="https://www.niser.ac.in/">National Institute of Science Education and Research, Bhubaneswar</a>. I am thrilled to have been selected in Google Summer of Code 2020 to work on implementing a module for Null Geodesics in Kerr and Schwarzschild Spacetimes in <a href="https://einsteinpy.org/">EinsteinPy</a> (EPY), under <a href="http://openastronomy.org/">OpenAstronomy</a>. This will (tentatively) be an 8-part blog series.</p>
+    
+    
+    <h2>
+    <a href="#a-brief-history-of-my-brush-with-numerical-relativity-and-epy" class="anchor">
+    </a>
+    A Brief History of my brush with Numerical Relativity and EPY
+    </h2>
+    
+    <p>I had developed an interest in Cosmology and in particular, Einstein's Theory of Relativity, after taking a course in the Special Theory of Relativity, at my university. The course content and presentation intrigued me. So, I decided to read up more on the subject and found the mathematical description of spacetime in General Relativity immensely satisfying. But soon after, it became difficult to visualize the complicated geometries. I am used to understanding things by putting them in code. So naturally, I endeavoured to do the same here. After a brief period of trying and failing to solve it myself, in true programmer fashion, I started looking up software projects that could help me. I was surprised to find that most projects were either in severely outdated <code>FORTRAN77</code> (yikes!), or in <code>CUDA C</code>, which gets messy to set up. Then, I found EinsteinPy, which is a python package for Numerical Relativity. Their GitHub Repo had listed an issue quite similar to what I wanted to solve. I also came to know that they were participating in GSoC this year and so, I picked up and solved an issue and opened a PR. Thus began my voyage into the world of Numerical Relativity and Free &amp; Open Source Software.</p>
+    
+    <p>But enough about me. Let me introduce you to the project, that I will be spending this summer on.</p>
+    <h2>
+    <a href="#null-geodesics-is-it-another-java-exception-spoiler-alert-no" class="anchor">
+    </a>
+    Null Geodesics - Is it another Java Exception? (Spoiler Alert: NO!)
+    </h2>
+    
+    <p>As mentioned before, my project is on implementing Null Geodesics in Kerr and Schwarzschild Spacetimes. Geodesics can be understood as a generalization of the concept of shortest paths, between two points, to higher dimensions. In Euclidean or flat geometries, a geodesic is a straight line and in trivial non-Euclidean geometries, like a thin spherical shell, it is an arc of a great circle. Around 115 years ago, Einstein, through his Special Theory of Relativity and then, through its successor, ten years later, the General Theory of Relativity (GR), unified our understanding of space and time into a 3+1-Dimensional <em>spacetime</em>, where many Euclidean axioms and equations no longer work, partly due to the special behaviour of the time dimension (hence, 3+1D). GR, in particular, sheds a lot of light on the relation between the geometry of spacetime and the distribution of matter in it and how they affect each other. Here, John Archibald Wheeler's famous quote on GR comes to mind:</p>
+    
+    <blockquote>
+    <p>"Spacetime tells matter how to move; matter tells spacetime how to curve".</p>
+    </blockquote>
+    
+    <p>This correspondence, in mathematical form, is given by Einstein's Field Equations (EFE):<br>
+    
+    
+    </p>
+    <div class="katex-element">
+    <span class="katex-display"><span class="katex"><span class="katex-mathml">Rμν−12Rgμν+Λgμν=8πGc4Tμν
+    \boxed{R_{\mu\nu} - {\tfrac{1}{2}}Rg_{\mu\nu} + \Lambda g_{\mu\nu} = {\frac {8\pi G}{c^{4}}}T_{\mu\nu}}
+    </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="boxpad"><span class="mord"><span class="mord"><span class="mord"><span class="mord mathdefault">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span><span class="mord mathdefault mtight">ν</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mspace"></span><span class="mbin">−</span><span class="mspace"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mord mathdefault">R</span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span><span class="mord mathdefault mtight">ν</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mspace"></span><span class="mbin">+</span><span class="mspace"></span><span class="mord">Λ</span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span><span class="mord mathdefault mtight">ν</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="mord"><span class="mord">8</span><span class="mord mathdefault">π</span><span class="mord mathdefault">G</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mord"><span class="mord mathdefault">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span><span class="mord mathdefault mtight">ν</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span></span><span><span class="pstrut"></span><span class="stretchy fbox"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </div>
+    
+    
+    
+    <p>Where, you can understand the left-hand side as describing the spacetime curvature (geometry), while the right-hand side describes the matter-energy content of the spacetime. A helpful analogue might be Gauss' Divergence Theorem from Electromagnetism:
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">∇V=−ρ/ϵ0\nabla V = -\rho/\epsilon_0 </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord">∇</span><span class="mord mathdefault">V</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord">−</span><span class="mord mathdefault">ρ</span><span class="mord">/</span><span class="mord"><span class="mord mathdefault">ϵ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    , where the left-hand side describes the structure of a scalar electric potential field, while the right-hand side describes the charge distribution. The potential field tells charges how to arrange themselves, while charges tell how the potential should vary.</p>
+    
+    <p>The equation above is a Tensor Equation, wherein we solve for
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">gμνg_{\mu\nu}</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span><span class="mord mathdefault mtight">ν</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    , the spacetime Metric Tensor or simply, the Metric.
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">gμνg_{\mu\nu}</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span><span class="mord mathdefault mtight">ν</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    defines the geometry of the spacetime. The aforementioned Kerr and Schwarzschild Spacetimes are in fact, Kerr and Schwarzschild Metric Tensors. These fall under a special class of EFE solutions, namely "Vacuum Solutions", because they describe a spacetime, devoid of any matter or non-gravitational fields. The Kerr Metric describes the spacetime around an uncharged, rotating, axisymmetric Black Hole, while the Schwarzschild Metric is a particular simplification of Kerr Metric to non-rotating Black Holes.</p>
+    
+    <p>Now that we have our spacetime geometry set up, we can think about how the motion of massive objects (read: having non-zero mass, e.g. neutrons) and massless objects, like photons, that make up light, would look like in the spacetime. Here's where, geodesics come in, now in 3+1D. They characterize the paths of such objects, given the metric. The corresponding Geodesic equation can be derived using the metric and the <a href="https://en.wikipedia.org/wiki/Geodesics_in_general_relativity">Equivalence Principle or through Variational Methods</a> and is given as:</p>
+    
+    
+    <div class="katex-element">
+    <span class="katex-display"><span class="katex"><span class="katex-mathml">d2xμdλ2+Γαβμdxαdλdxβdλ=0
+    \boxed{
+    {\mathrm{d}^{2}x^{\mu} \over \mathrm{d}\lambda^{2}} + \Gamma^{\mu}_{\alpha \beta}{\mathrm{d}x^{\alpha} \over \mathrm{d}\lambda}{\mathrm{d}x^{\beta} \over \mathrm{d}\lambda} = 0
+    }
+    </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="boxpad"><span class="mord"><span class="mord"><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord mathrm">d</span></span><span class="mord"><span class="mord mathdefault">λ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord"><span class="mord mathrm">d</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace"></span><span class="mbin">+</span><span class="mspace"></span><span class="mord"><span class="mord">Γ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">α</span><span class="mord mathdefault mtight">β</span></span></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord mathrm">d</span></span><span class="mord mathdefault">λ</span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord mathrm">d</span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">α</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord mathrm">d</span></span><span class="mord mathdefault">λ</span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord mathrm">d</span></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">β</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span><span class="mord">0</span></span></span></span></span><span><span class="pstrut"></span><span class="stretchy fbox"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </div>
+    
+    
+    <p>Here,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">xαx^\alpha</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">α</span></span></span></span></span></span></span></span></span></span></span>
+    </span>
+    is 4-position of the object in motion (Position vector in a 3+1D spacetime),
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">Γαβμ\Gamma_{\alpha\beta}^{\mu}</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord">Γ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">α</span><span class="mord mathdefault mtight">β</span></span></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    or the Christoffel Symbols are a convenient way of writing metric derivatives (derivatives of
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">gμνg_{\mu\nu}</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">μ</span><span class="mord mathdefault mtight">ν</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    ) and
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">λ\lambda</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">λ</span></span></span></span>
+    </span>
+    is called an Affine Parameter, that is helpful in describing a general geodesic. You might ask, if we are talking about a moving object, why not use time (in particular, "Proper Time",
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">Δτ\Delta\tau</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord">Δ</span><span class="mord mathdefault">τ</span></span></span></span>
+    </span>
+    ), instead of some arbitrary
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">λ\lambda</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">λ</span></span></span></span>
+    </span>
+    parameter. The reason behind this and the importance of this parameter will be apparent soon.</p>
+    
+    <p>We have understood, what spacetime and geodesics refer to (even though, we glossed over most details :P), but what are <em>Null Geodesics</em>? Simply speaking, all massive objects follow time-like geodesics and all massless objects, like light, follow null-like geodesics. Before going into the distinction, we need to know, what "Proper Time" means. Proper Time (
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">Δτ\Delta\tau</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord">Δ</span><span class="mord mathdefault">τ</span></span></span></span>
+    </span>
+    ) is the time measured by a clock in an object's rest or proper frame. This is the time physically experienced by the object. Now, the distinction between paths, followed by massive and massless particles, or correspondingly, "time-like" and "null-like" geodesics, arises due to the causal structure of spacetime, in which the constancy of Speed of Light in vacuum plays a major role. Light or massless particles always move at the speed of light, at 299,792,458 m/s. This implies that we cannot construct a reference frame, where a clock is at rest with respect to the photon or massless particle, as no clock can move at that speed. Thus, no proper time ever elapses for light rays or massless particles, i.e.
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">Δτ=0\Delta\tau = 0</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord">Δ</span><span class="mord mathdefault">τ</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord">0</span></span></span></span>
+    </span>
+    . This is also why, we cannot use
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">Δτ\Delta\tau</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord">Δ</span><span class="mord mathdefault">τ</span></span></span></span>
+    </span>
+    in the geodesic equation to obtain the paths, traced by massless particles. So, we seek another parameterization and that is given by the affine parameter,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">λ\lambda</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">λ</span></span></span></span>
+    </span>
+    . Do note that, for massive objects,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">Δτ\Delta\tau</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord">Δ</span><span class="mord mathdefault">τ</span></span></span></span>
+    </span>
+    works just fine, as it is well-defined there.</p>
+    
+    <p>And so, we have assembled all the parts for getting a basic understanding of "Null Geodesics in Kerr and Schwarzschild Spacetimes". In my GSoC project, I will be implementing a numerical solver for the geodesic equation for null geodesics and I will use the computed geodesics for Radiative Transfer calculations. At the moment, the Community Bonding Period is underway. My mentors and I have set up a weekly meeting schedule, where we brainstorm on the project specifics. An outcome of those meetings is an <a href="https://github.com/einsteinpy/EinsteinPy-EPEs/pull/4">EPE</a> (EinsteinPy Proposal for Enhancement), where you can find the details on my proposed implementation and coolest of all, you can help shape the implementation, if you are interested. Isn't open source awesome? (Yes, it is!)</p>
+    
+    <h2>
+    <a href="#what-now" class="anchor">
+    </a>
+    What now?
+    </h2>
+    
+    <p>I plan to document my progress with the project here, with biweekly blogs. While this blog was physics-heavy, the plan for the next blog is to post a distilled summary of the actual code implementation. Nonetheless, I hope, you found this small introduction into the domain of Relativity interesting. If you wish to play around with some numerical relativity (especially during this pandemic, when most are home and bored), you can try out EinsteinPy. For now, I will leave here with a small tidbit:</p>
+    
+    <blockquote>
+    <p>If you've watched Chris Nolan's brilliant movie, Interstellar, and wanted to simulate and obtain a Black Hole "image" similar to Gargantua, all you would need to solve is the geodesic equation alongside a couple more complicated equations. A brilliant resource to do that is a <a href="http://www.its.caltech.edu/~kip/Interstellar/RayBundleDerive.nb">Mathematica Notebook</a>, hosted on Dr. Kip Thorne's personal Caltech homepage.</p>
+    </blockquote>
+    
+    <p><a href="https://res.cloudinary.com/practicaldev/image/fetch/s--l7V8gtJV--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/rhy8r0ibprwkh8koql4y.png" class="article-body-image-wrapper"><img src="https://res.cloudinary.com/practicaldev/image/fetch/s--l7V8gtJV--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/rhy8r0ibprwkh8koql4y.png" alt="Gargantua, Accreting (from Interstellar)"></a></p>
+
