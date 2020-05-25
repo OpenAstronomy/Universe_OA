@@ -110,7 +110,7 @@ with open('gsoc.yml', 'r') as stream:
     list_seasons = yaml.load(stream, Loader=yaml.BaseLoader)
     for season, list_students in list_seasons.items():
         yearseason = int(season[4:])
-        if yearseason < dt.datetime.utcnow().year - 1:
+        if yearseason < dt.datetime.utcnow().year:
             continue
         for student, propers in list_students.items():
             print(student, ':', propers['rss_feed'])
