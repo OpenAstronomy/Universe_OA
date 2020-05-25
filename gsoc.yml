@@ -1,7 +1,7 @@
 gsoc2020:
   theand9:
-    rss_fed: "rss-url" # TODO (add blog with gsoc tag)
-    project: 'stingray'
+    rss_fed: "https://medium.com/feed/@andsbmp17/"
+    project: 'Stingray'
   pkj-m:
     rss_feed: "https://pkj-m.github.io/blog/feed.gsoc.xml"
     project: 'radis'
@@ -58,7 +58,7 @@ gsoc2019:
     rss_feed: "https://aquatiko.github.io/series/gsoc/index.xml"
     project: 'JuliaAstro'
   jredondopizarro:
-    rss_feed: "https://medium.com/feed/@jrpg1996" 
+    rss_feed: "https://medium.com/feed/@jrpg1996"
     project: 'CTLearn'
 gsoc2018:
   MananAgarwal:
