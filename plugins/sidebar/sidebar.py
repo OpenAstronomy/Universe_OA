@@ -96,7 +96,7 @@ class Sidebar(ConfigPlugin):
                 # filling table:
                 filltable = ""
                 for st, en in date_ranges:
-                    if datetime.datetime.utcnow().replace(tzinfo=utc) < en:
+                    if datetime.datetime.utcnow().replace(tzinfo=utc) < st:
                         symbol = "🔲"
                         style = "opacity: 0.5;"
                     else:
