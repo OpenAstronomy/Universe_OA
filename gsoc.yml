@@ -1,6 +1,6 @@
 gsoc2020:
   theand9:
-    rss_fed: "https://medium.com/feed/@andsbmp17"
+    rss_feed: "https://medium.com/feed/@andsbmp17"
     project: 'stingray'
   pkj-m:
     rss_feed: "https://pkj-m.github.io/blog/feed.gsoc.xml"
