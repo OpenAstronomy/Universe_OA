@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by siddharthlal25)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/siddharthlal25.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 25 May 2020 19:15:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The story behing GSoC!</title><link>http://openastronomy.org/Universe_OA/posts/2020/05/20200514_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;div&gt;&lt;p&gt;Hola amigos! Welcome to my first blog of an upcoming series of blogs where I will be trying to chronicle my journey this year as an open source contributor to JuliaAstro under the Google Summer of Code program!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/div&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/05/20200514_1804_siddharthlal25/</guid><pubDate>Thu, 14 May 2020 17:04:56 GMT</pubDate></item></channel></rss>
