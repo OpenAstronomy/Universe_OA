@@ -22,13 +22,13 @@ gsoc2020:
     project: 'SunPy'
   abhijeetmanhas:
     rss_feed: "https://medium.com/feed/@abhimanhas"
-    projects: 'SunPy'
+    project: 'SunPy'
   Raahul-Singh:
     rss_feed: "https://medium.com/feed/@_hawks_"
-    projects: 'SunPy'
+    project: 'SunPy'
   techguybiswa:
     rss_feed: "https://medium.com/feed/@biswarupbanerjee"
-    projects: 'astronomy-commons'
+    project: 'astronomy-commons'
 gsoc2019:
   Sedictious:
     rss_feed: "https://blog.poliastro.space/feeds/eleftheria-chatziargyriou.rss.xml"
