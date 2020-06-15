@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter 1: Apricity | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2020/06/20200615_0026_raahul-singh/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Raahul Singh">
+<link rel="prev" href="../20200614_0634_kakirastern/" title="GSoC 2020: glue-solar project 1.1" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Chapter 1: Apricity">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2020/06/20200615_0026_raahul-singh/">
+<meta property="og:description" content="An endeavour to better understand our Sun’s choleric dispositionThe Bhagirathi Massif. The mountain is named after Bhagiratha, the legendary king of the Ikshvaku dynasty who brought the River Ganges, ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-06-15T00:26:29+01:00">
+<meta property="article:tag" content="SunPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="http://openastronomy.org/Universe_OA/">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@abhimanhas" data-toggle="tooltip" data-placement="top" title="2020-05-19 05:13:15+01:00" style="color:rgb(255,0,0)">
+                    Abhijeet Manhas
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@andsbmp17" data-toggle="tooltip" data-placement="top" title="2020-05-24 23:32:49+01:00" style="color:rgb(255,0,0)">
+                    Amogh Desai
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/astronomy-commons.png" height="16" width="16"><a href="https://blog.usejournal.com" data-toggle="tooltip" data-placement="top" title="2020-05-21 04:52:58+01:00" style="color:rgb(255,0,0)">
+                    Biswarup Banerjee
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/einsteinpy.png" height="16" width="16"><a href="https://dev.to" data-toggle="tooltip" data-placement="top" title="2020-06-13 18:20:19+01:00">
+                    Jyotirmaya Shivottam
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@krisastern" data-toggle="tooltip" data-placement="top" title="2020-06-14 06:34:50+01:00">
+                    Kris Stern
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="http://openastronomy.org/img/members/poliastro.png" height="16" width="16"><a href="https://blog.poliastro.space" data-toggle="tooltip" data-placement="top" title="2020-05-17 10:00:00+01:00" style="color:rgb(255,0,0)">
+                    Meuge
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="http://pkj-m.github.io" data-toggle="tooltip" data-placement="top" title="2020-05-30 18:04:56+01:00" style="color:rgb(255,0,0)">
+                    pkj-m
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@_hawks_" data-toggle="tooltip" data-placement="top" title="2020-06-15 00:26:29+01:00">
+                    Raahul Singh
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/ctlearn-project.png?size=40" height="16" width="16"><a href="https://medium.com/@sahilyadav27" data-toggle="tooltip" data-placement="top" title="2020-06-13 09:50:12+01:00">
+                    Sahil Yadav
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="http://siddharthlal25.github.io" data-toggle="tooltip" data-placement="top" title="2020-05-30 18:04:56+01:00" style="color:rgb(255,0,0)">
+                    siddharthlal25
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Chapter 1: Apricity</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/raahul-singh/">Raahul Singh</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-06-15T00:26:29+01:00" itemprop="datePublished" title="2020-06-15 00:26">2020-06-15 00:26</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://medium.com/@_hawks_/chapter-1-apricity-aef3bd172dab?source=rss-9fa6f618876c------2">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<h5>An endeavour to better understand our Sun’s choleric disposition</h5>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/781/1*tAMsUBRSvq7pUUyMNRAEuQ.jpeg"><figcaption><strong>The Bhagirathi Massif</strong>. The mountain is named after <a href="https://en.wikipedia.org/wiki/Bhagiratha">Bhagiratha</a>, the legendary king of the Ikshvaku dynasty who brought the River Ganges, to Earth from the heavens. It symbolizes the flow of divine knowledge, or the knowledge of liberation (Ganga), into human consciousness (earth) by the grace of God (Shiva) and the austere efforts of enlightened masters (Bhagiratha).</figcaption></figure><blockquote><strong>ॐ भूर् भुवः स्वः।</strong></blockquote>
+<blockquote><strong>तत्सवितुर्वरेण्यं भर्गो॑ देवस्य धीमहि।</strong></blockquote>
+<blockquote><strong>धियो यो नः प्रचोदयात् ॥</strong></blockquote>
+<p>There is some beauty in the fact that the essence of my undertaking needs not more than 24 letters of explanation.</p>
+<p>What I have written above in the <a href="https://en.wikipedia.org/wiki/Devanagari">Devanagari</a> script is one of the most important and highly revered Vedic hymns, the Gayatri Mantra. As translated by <a href="https://en.wikipedia.org/wiki/S._Radhakrishnan">Dr S. Radhakrishnan,</a> it states,</p>
+<blockquote>“We meditate on the effulgent glory of the divine Light; may he inspire our understanding.’’</blockquote>
+<p>The goal of my project is to study solar flares. The effulgent glory, the flares, that the divine Light, our Sun, produces. I shall meditate on them over the summer and better my understanding and appreciation of the mechanisms that govern them.</p>
+<!-- TEASER_END -->
+<p>I shall also dare to predict them.</p>
+<p>And there you have it,<br><strong>Solar Weather Forecasting using linear algebra.</strong></p>
+<h4><em>The Dataset</em></h4>
+<p>When thinking about flares, you may imagine something like this :</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/800/1*YC4dFQkU03gCMsuZI36RfA.jpeg"><figcaption>On August 31, 2012, a long prominence/filament of solar material that had been hovering in the Sun’s atmosphere, the corona, erupted out into space at 4:36 p.m. EDT. Seen here from the <a href="https://en.wikipedia.org/wiki/Solar_Dynamics_Observatory">Solar Dynamics Observatory</a>, the flare caused auroras to be seen on Earth on September 3.</figcaption></figure><p>Flares indeed are mesmerizing. <br>
+To analyze the properties of flares, we must understand what flares are.</p>
+<p>A <a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#FLARE">solar flare</a> occurs when magnetic energy that has built up in the <a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#SOLAR_ATMOSPHERE">solar atmosphere</a> is suddenly released. <a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#ELECTROMAGNETIC_RADIATION">Radiation</a> is emitted across virtually the entire <a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#ELECTROMAGNETIC_SPECTRUM">electromagnetic spectrum</a>, from radio waves at the long <a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#WAVELENGTH">wavelength</a> end, through <a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#OPTICAL">optical</a> emission to <a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#X_RAY">x-rays</a> and <a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#GAMMA_RAY">gamma rays</a> at the short wavelength end. The amount of energy released is the equivalent of millions of 100-<a href="https://hesperia.gsfc.nasa.gov/sftheory/glossary.htm#MEGATON">megaton</a> hydrogen bombs exploding at the same time!</p>
+<p>These flares emanate from active regions (ARs) in which high magnetic non-potentiality resides in a wide variety of forms.</p>
+<p><strong>Active regions</strong> on the Sun are places where the Sun’s magnetic field is disturbed. These <strong>regions</strong> frequently spawn various types of <strong>solar</strong> <strong>activity</strong>, including explosive “<strong>solar</strong> <strong>storms</strong>” such as <strong>solar</strong> <strong>flares</strong> and coronal mass ejections (<strong>CME</strong>).</p>
+<p>What you see below, is a full disk Line of Sight (LOS) Magnetogram, which is an image of the sun’s magnetic field in the line of sight of the observer.</p>
+<p>The data used in this project comes from <a href="https://www.sunspotter.org/">Sunspotter,</a> which is a dataset of such magnetograms with some measured properties for each Active Region.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*oegoLxwR316N4RUuqfKoVw.png"><figcaption>A full disk Magnetogram</figcaption></figure><figure><img alt="" src="https://cdn-images-1.medium.com/max/360/1*MNeHF04MLtDXL_0U0D15uw.jpeg"><figcaption>An Active Region</figcaption></figure><figure><img alt="" src="https://cdn-images-1.medium.com/max/360/1*zH_kdPqd0HymM1j94CRjMg.jpeg"><figcaption>Another Active Region</figcaption></figure><p><a href="https://www.sunspotter.org/">Sunspotter</a> is a citizen science project that asked volunteers to classify solar active regions by their complexity — as it’s believed complexity has a direct relationship with their activity. With more than 25,000 volunteers and millions of classifications produced, we’ve got a <a href="https://zenodo.org/record/1478972#.XI4YPqHgqr8">very nice dataset</a>. The images used come from the <a href="http://soi.stanford.edu/science/obs_prog.html">MDI instrument</a>, which is onboard of <a href="https://en.wikipedia.org/wiki/Solar_and_Heliospheric_Observatory">SOHO</a> — the NASA-ESA mission that’s been observing the sun for more than two decades.</p>
+<p>All of the Active Region observations have a corresponding image, like the ones you see here.</p>
+<p>The dataset is composed of five files:</p>
+<ul>
+<li>
+<strong>lookup_timesfits.csv</strong>: lists the filenames and the date of the data acquisition.</li>
+<li>
+<strong>lookup_properties.csv</strong>: lists the properties of the active region observed in each frame to be classified.</li>
+<li>
+<strong>classifications.csv</strong>: lists each classification made by the volunteers.</li>
+<li>
+<strong>rankings.csv</strong>: lists the final ranking on complexity.</li>
+</ul>
+<p>The score provided on the rankings file follows the <a href="https://en.wikipedia.org/wiki/Elo_rating_system">Elo rating system</a>.</p>
+<p>I have <a href="https://github.com/Raahul-Singh/pythia/pull/26">recreated the ELO rating algorithm in python</a>, to reassign complexity score to the Active Regions. This gives us better control over the range of values, which in turn can be tuned to match the sensitivity of the forecasting model.</p>
+<h4>Apollo’s chosen one</h4>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/345/1*OQvcPJAalRluEumfTTZwcA.jpeg"><figcaption><em>Priestess of Delphi</em> (1891) by <a href="https://en.wikipedia.org/wiki/John_Collier_(Pre-Raphaelite_painter)">John Collier</a>, showing the Pythia sitting on a tripod with vapour rising from a crack in the earth beneath her</figcaption></figure><p>Apollo, the Greek god of the Sun, was also the god of prophecies. It is said that when Apollo wished to speak to the mortals, he would speak through his chief priestess, the Oracle of Delphi. She, who alone could understand Apollo’s whims and fancies. The High priestess, <a href="https://en.wikipedia.org/wiki/Pythia"><strong><em>Pythia</em></strong></a><strong><em>.</em></strong></p>
+<p>In reverence, I have thus decided to name the repository that holds the code for this project, <a href="https://github.com/Raahul-Singh/pythia"><strong>Pythia</strong></a><strong>.</strong></p>
+<p><strong>Pythia</strong>, <strong>for Solar Active Region Data Analysis.</strong><br>
+Although we have just started, there is a lot you can do with Pythia already.</p>
+<p>To install Pythia, for now, run the following command:</p>
+<iframe src="." width="0" height="0" frameborder="0" scrolling="no"><a href="https://medium.com/media/43055aa62917cd54a819f498174ce0f5/href">https://medium.com/media/43055aa62917cd54a819f498174ce0f5/href</a></iframe><p>Some of the functionalities that Pythia offers, as of writing this post are:</p>
+<p>Using Pythia, you can get the measured properties of any AR in the Sunspotter dataset. This is done using <a href="https://docs.sunpy.org/en/stable/guide/acquiring_data/hek.html">SunPy’s HEK </a>module. This is the function description.</p>
+<iframe src="." width="0" height="0" frameborder="0" scrolling="no"><a href="https://medium.com/media/339c9dc8054c807970ce6a1823d0e284/href">https://medium.com/media/339c9dc8054c807970ce6a1823d0e284/href</a></iframe><p>You can also download the full disk MDI magnetograms. This uses <a href="https://docs.sunpy.org/en/stable/guide/acquiring_data/fido.html">SunPy’s FIDO</a> module to get the magnetogram as a FITS file. The following function returns an <a href="https://docs.sunpy.org/en/stable/guide/data_types/maps.html">MDI map</a> for a given observation date. Should the observation date not be in the Sunspotter dataset CSV files currently loaded in the Sunspotter object, the observation date nearest to the given observation date is used.</p>
+<iframe src="." width="0" height="0" frameborder="0" scrolling="no"><a href="https://medium.com/media/c19b389e053b71b99ada4301c317e5b1/href">https://medium.com/media/c19b389e053b71b99ada4301c317e5b1/href</a></iframe><p>Should you wish for all the maps in a given range, you can use:</p>
+<iframe src="." width="0" height="0" frameborder="0" scrolling="no"><a href="https://medium.com/media/501b65fb40960a2b1af47fbaa1d36962/href">https://medium.com/media/501b65fb40960a2b1af47fbaa1d36962/href</a></iframe><p>Finally, if you wish to plot all the ARs on a full disk magnetogram for which we have data, for any observation date,</p>
+<iframe src="." width="0" height="0" frameborder="0" scrolling="no"><a href="https://medium.com/media/83603bbd1bd1805d5c0885e08143e66b/href">https://medium.com/media/83603bbd1bd1805d5c0885e08143e66b/href</a></iframe><p>Which, when used for observation date <strong>2002–03–18 09:39:01 </strong>gets you the following plot. I have magnified it to highlight the fact that Active Regions come in all shapes and sizes.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*TyCM1QtLG2yYXXiToq6eZQ.png"><figcaption>ARs Plotted on an MDI map</figcaption></figure><p>What I have given is a brief introduction of the project, along with some code examples. Pythia is in active development and there are modules whichI have not mentioned here. I encourage my readers to install Pythia and play around with the code!</p>
+<p>If you find any bugs or would like me to add any features, feel free to <a href="https://github.com/Raahul-Singh/pythia/issues">open an issue on the main repository</a>.</p>
+<p>My next post will be all about the Exploratory Data Analysis of the Sunspotter data, where we shall delve deep into the Sunspotter dataset.</p>
+<p>Till then,</p>
+<p><strong><em>Divina Luceit Vos!</em></strong></p>
+<p><strong><em>:)</em></strong></p>
+<img src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=aef3bd172dab" width="1" height="1">
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20200614_0634_kakirastern/" rel="prev" title="GSoC 2020: glue-solar project 1.1">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2020         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
