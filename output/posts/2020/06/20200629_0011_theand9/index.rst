@@ -1,0 +1,70 @@
+.. title: gsoc_journey.update({“Chapter 1”: [“Community Bonding Phase”, “Stingray”]})
+.. slug:
+.. date: 2020-06-29 00:11:13 
+.. tags: stingray
+.. author: Amogh Desai
+.. link: https://medium.com/@andsbmp17/gsoc-journey-update-chapter-1-community-bonding-phase-stingray-f3f95dffe246?source=rss-3ed41af55c89------2
+.. description:
+.. category: gsoc2020
+
+
+.. raw:: html
+
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*WHlJZxJwoGsHr2RSafxoRQ.jpeg" /><figcaption><strong>“Across the sea of space, the stars are other suns.” </strong>~ Carl Sagan</figcaption></figure><iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fwww.youtube.com%2Fembed%2Feb1A4KmVJME%3Ffeature%3Doembed&amp;display_name=YouTube&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Deb1A4KmVJME&amp;image=https%3A%2F%2Fi.ytimg.com%2Fvi%2Feb1A4KmVJME%2Fhqdefault.jpg&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=youtube" width="640" height="480" frameborder="0" scrolling="no"><a href="https://medium.com/media/09696909e30878c50221a3fd74dca870/href">https://medium.com/media/09696909e30878c50221a3fd74dca870/href</a></iframe><p>Firstly, I would like to apologize for not posting a blog for more than a month.</p>
+    <p>Secondly, I would again like to apologize as this blog is going to be astronomically jargon-heavy(pun intended). <br>
+    Now before you decide to just watch the funny Joey video and go watch more Friends episodes; trust me after reading this 7 minute blog you will gain serious bragging rights. After which you can binge Friends to your heart’s content(I already got my popcorn bowl with me 😉).</p>
+    <!-- TEASER_END -->
+    <h3>Community Bonding Phase and APE — 17</h3><figure><img alt="" src="https://cdn-images-1.medium.com/max/925/1*r3LeWqbDsz2bz-NfL3zadA.png" /><figcaption><strong>“Community is about doing something that makes belonging matter”</strong></figcaption></figure><p>Community, as defined by the Cambridge Dictionary is the “people living in one particular area or people who are considered as a unit because of their common interests, social group, or nationality.”</p>
+    <p>Akin to the communities in the real world, the Open-Source Software community is one of the most diverse and active communities in the world. All Open-Source projects from the Linux Kernel to a niche, newly conceptualized project have several contributors keeping the project alive. <br>
+    The best part about this online community is that any individual willing to contribute to the project is welcomed irrespective of their caste, creed, gender, race, nationality, level of expertise. <br>
+    To be a part of a community of zealous, like-minded individuals working towards making the world a better place with software, makes you feel somewhat like a superhero😁.</p>
+    <blockquote><strong>The power of Open-Source is the power of the people </strong>~ Philippe Kahn</blockquote><p>The community bonding phase is probably the most important part of the whole program. A month is given to students to get acquainted with the project community and mentors. Students are expected to get familiarized with the <em>Code of Conduct</em> and other guidelines such as Contributing, Coding, Testing guidelines.<br>
+    This is an amazing opportunity to not only plan and research more about one’s project but also interact with other students of the same/different organization’s and learn more about their projects.</p>
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*rzgbbfXrjVV2jcr08x8MUg.png" /><figcaption>First Contact. The most exhilarating~2700 seconds of my life</figcaption></figure><p>I had two calls with my mentor Mr Matteo Bachetti during the community bonding phase. Lucky me, I got a one-to-one introduction to X-Ray Astronomy(with an amazing presentation) from Mr Bachetti himself!!<br>
+    We discussed the goals, specifics as well as a rough trajectory of the project.</p>
+    <p>The community bonding phase gave me an amazing opportunity to not only associate with my peers from OpenAstronomy but also other organizations. I was particularly interested in a few projects from CERN-HSF as well as other projects from various sub-organizations in OpenAstronomy. <br>
+    Thank you so much, Siddharth Lal, Biswarup Banerjee, Raahul Singh, Kris Stern, Abhijeet Manhas and Sahil Yadav, Honey Gupta, Prateek Kumar Agnihotri and Pranath Reddy for answering my persistent and often novice-level questions. You guys are awesome!!</p>
+    <p>Towards the end of the community bonding phase, I started working on updating stingray to APE-17(view my PR <a href="https://github.com/StingraySoftware/stingray/pull/469">here</a>). It was my first major PR(For all the non-techies out there a Pull Request(PR) is a proposal to implement changes to the main codebase to squash a bug or add a new feature). Looking at the status of the PR changed to “<strong>merged</strong>” gave me an unprecedented level of gratification. <em>#justprogrammerthings</em><br>
+    I will not bore you with the technical aspects of APE-17 but if you wish to learn more about it, here’s a <a href="https://github.com/StingraySoftware/stingray/files/4718995/APE17.Update.pdf">summarized document I created</a>.</p>
+    <h3>X-ray Astronomy 101 with stingray</h3><figure><img alt="" src="https://cdn-images-1.medium.com/max/879/1*EsYpWW63Ui-bHMtjnIHjtQ.png" /></figure><p><strong>Disclaimer: </strong>I am not an expert at X-ray Astronomy, not even by a long shot(Just a month’s experience). I am a Computer Science techie, passionate about space and great at googling stuff 😁.</p>
+    <p>Now the part that all of you have been waiting for, the part that will give you the ultimate bragging rights of learning something new, <em>being productive</em> in these lazy lockdown times, presenting to you<em>(insert drum roll) </em><br>
+    <strong>X-ray Astronomy 101 with stingray.</strong></p>
+    <p>1. What is stingray? What does it do?</p>
+    <p>Stingray is a community-developed spectral-timing software package in Python for astrophysical data. It provides a basis for advanced spectral-timing analysis with a correct statistical framework while also being open-source.<br>
+    Stingray provides functionalities such as:<br>
+    a. Constructing light curves from event data and performing various operations on light curves (e.g. add, subtract, join, truncate)<br>
+    b. Good Time Interval operations<br>
+    c. Creating periodograms(power spectra) and cross spectra<br>
+    and many more.</p>
+    <p>2. So well what does all of this mean?</p>
+    <p>I apologize for the abrupt deep dive into the realm of long and daunting words that make zero sense at the moment. But please bear with me for a moment, once we are done with the basic you will truly appreciate the role that stingray plays.</p>
+    <p>So let’s start with the basics.</p>
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/780/1*c_HQHP_uPGD4z6o11j7veg.png" /><figcaption>A time series is a simple graph that can be plotted for any values eg. temperature, rainfall, stock price etc.</figcaption></figure><p>a. <strong>Time Series:</strong> It is a sequence of observations recorded at a succession of time intervals. In general, time series are characterized by the interdependence of its values. This means that the value of the series at some time <strong>t</strong> is generally not independent of its value at, say, <strong>t−1</strong>.</p>
+    <p>b.<strong> Time Series Analysis:</strong> It is a statistical technique that deals with gaining insights from periodic or stochastic(a fancy way of saying random, aperiodic) time-series data.</p>
+    <p>Now let’s learn some astronomical terms:</p>
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/850/1*yMWqnSRF06lxoYKptQ4d-A.png" /><figcaption>FFT I am looking at you</figcaption></figure><p>a. <strong>Timing Analysis</strong>: Many time series show periodic behaviour. This periodic behaviour can be very complex. Spectral analysis is a technique that allows us to discover underlying periodicities by decomposing the complex signal into simpler parts. To perform spectral analysis, we first must transform data from the time domain to the frequency domain. <br>
+    Hence spectral analysis can be defined as decomposing a stationary time series {<em>xT}</em> into a combination of sinusoids(sine waves), with a random (and uncorrelated) coefficient; essentially analysis in the frequency domain.</p>
+    <p>b. <strong>Good Time Intervals (GTI’s)</strong>: When observing a stellar object with a satellite, data is accumulated by observing the source with short exposures over time or collecting single photons(light particles) with their arrival time.<br>
+    While recording observations, there will be times when everything is working perfectly. At other times we might have obstructions from the Earth that hinder our ability to observe the source properly.<br>
+    Good time intervals (GTIs) are the time intervals where instruments are working well and the source is perfectly visible.</p>
+    <p>c. <strong>Light Curves</strong>: Light curves are graphs that show the brightness of an object over a period of time. Images show from the part of an object from where light is emitted. Another piece of information we have about light is the time when it reaches the detector. Astronomers use this “timing” information to create light curves and perform timing analysis. <br>
+    They are simply graphs of brightness (Y-axis) vs. time (X-axis). Brightness increases as you go up the graph and time advances as you move to the right.<br>
+    eg. The following lightcurve can be generated with the values from the table on the left. The change in brightness is periodic.</p>
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/860/1*FNFYTegivTDTnsfqis1Tag.jpeg" /></figure><p>We can generate similar light curves for studying any part of the light spectrum eg. X-Rays. The record of changes in brightness that a light curve provides can help astronomers understand processes at work within the object they are studying and identify specific categories of stellar events.</p>
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/591/0*r2NyyR6RtBfhevGq.png" /></figure><p>d.<strong> Spectral Density/Power Spectra</strong>: The power spectra of a time series {<em>xT} </em>describes the distribution of power into the frequency components of that signal. When these signals are viewed in the form of a frequency spectrum, certain aspects of the received signals or the underlying processes producing them are revealed.</p>
+    <p>e.<strong> Power Spectral Density Function</strong>: A Power spectral density function (PSD) shows the number of energy variations as a function of frequency. In other words, it shows at which frequencies are variations strong, weak.</p>
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/582/0*ZYcuX1JdLSPTjPeM.png" /></figure><p>f. <strong>Cross Spectra</strong>: Cross spectral analysis allows one to determine the relationship between two time-series as a function of frequency. Normally, we wish to compare two time-series along their peaks to see if these signals are related to one another at the same frequency and if so, what is the phase relationship between them. Even if two signals look identical we wish to check their periodicity and understand how they are related.<br>
+    The Cross spectrum is a frequency domain analysis of the cross-correlation (how two lightcurves are related) or cross-covariance(how two lightcurves are related if one of them is linearly transformed eg. shifted in time).<br>
+    For further reference check this out: <a href="https://atmos.washington.edu/~dennis/552_Notes_6c.pdf">https://atmos.washington.edu/~dennis/552_Notes_6c.pdf</a></p>
+    <p>3. How does stingray contribute to all of this confusing stuff?</p>
+    <p>Stingray implements all of these complex functions in a single easy to use package. It has various methods and classes such as lightcurve, powerspectrum, crossspectrum.<br>
+    Stingray also provides a <em>HENDRICS </em>CLI and <em>dave </em>GUI interface for abstract analysis.</p>
+    <p>Woohoo!!🎉🎉 you made it through.<br>
+    Now if all of this intrigues you as much as it did me, you can go through the references mentioned below and the <a href="https://github.com/StingraySoftware/notebooks">stingray notebooks </a>that demonstrate the functionality mentioned above or even fork the repository and tinker around with the code yourself(<strong>Highly Recommended!</strong>).</p>
+    <p>Thank you soo much for giving it a read. Please comment and leave a clap if you liked the article. Feel free to reach out to me on <a href="https://www.linkedin.com/in/theand9/">Linkedin</a>. <br>
+    Have an amazing day!! <strong>You are awesome!!!</strong></p>
+    <blockquote><strong>References:</strong></blockquote><blockquote>1. <a href="http://web.stanford.edu/class/earthsys214/notes/series.html">http://web.stanford.edu/class/earthsys214/notes/series.html </a><br>
+    2. <a href="https://www.investopedia.com/terms/t/timeseries.asp..">https://www.investopedia.com/terms/t/timeseries.asp</a><br>
+    3. <a href="https://imagine.gsfc.nasa.gov/science/toolbox/timing1.html..">https://imagine.gsfc.nasa.gov/science/toolbox/timing1.html</a><br>
+    4. <a href="http://coolwiki.ipac.caltech.edu/index.php/What_is_a_periodogram">http://coolwiki.ipac.caltech.edu/index.php/What_is_a_periodogram</a></blockquote><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=f3f95dffe246" width="1" height="1">
+
