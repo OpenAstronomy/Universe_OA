@@ -79,13 +79,13 @@ class Sidebar(ConfigPlugin):
                      'stingray': 'https://github.com/StingraySoftware.png?size=40',
             }
 
-            date_ranges = [(datetime.datetime(2020,5,4).replace(tzinfo=utc), datetime.datetime(2020,6,1).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,6,1).replace(tzinfo=utc), datetime.datetime(2020,6,15).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,6,15).replace(tzinfo=utc), datetime.datetime(2020,6,29).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,6,29).replace(tzinfo=utc), datetime.datetime(2020,7,13).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,7,13).replace(tzinfo=utc), datetime.datetime(2020,7,27).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,7,27).replace(tzinfo=utc), datetime.datetime(2020,8,10).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,8,10).replace(tzinfo=utc), datetime.datetime(2020,8,24).replace(tzinfo=utc)),
+            date_ranges = [(datetime.datetime(2020,5,4).replace(tzinfo=utc), datetime.datetime(2020,6,3).replace(tzinfo=utc)),
+                           (datetime.datetime(2020,6,3).replace(tzinfo=utc), datetime.datetime(2020,6,17).replace(tzinfo=utc)),
+                           (datetime.datetime(2020,6,17).replace(tzinfo=utc), datetime.datetime(2020,7,1).replace(tzinfo=utc)),
+                           (datetime.datetime(2020,7,1).replace(tzinfo=utc), datetime.datetime(2020,7,15).replace(tzinfo=utc)),
+                           (datetime.datetime(2020,7,15).replace(tzinfo=utc), datetime.datetime(2020,7,29).replace(tzinfo=utc)),
+                           (datetime.datetime(2020,7,29).replace(tzinfo=utc), datetime.datetime(2020,8,12).replace(tzinfo=utc)),
+                           (datetime.datetime(2020,8,13).replace(tzinfo=utc), datetime.datetime(2020,8,26).replace(tzinfo=utc)),
             ]
             for author in authors.keys():
                 if authors[author]['date'].year < datetime.datetime.utcnow().year:
@@ -100,11 +100,14 @@ class Sidebar(ConfigPlugin):
                         symbol = "🔲"
                         style = "opacity: 0.5;"
                     else:
-                        anydate = any(filter(lambda x: st <= x <= en, authors[author]['dates']))
+                        anydate = any(filter(lambda x: st < x <= en, authors[author]['dates']))
                         if anydate:
                             symbol = "✅"
                         else:
-                            symbol = "❌"
+                            if st < datetime.datetime.utcnow().replace(tzinfo=utc) < en:
+                                symbol = "🔲"
+                            else:
+                                symbol = "❌"
                     filltable += f"<span style=\"display:table-cell; width:7%;{style}\" data-toggle=\"tooltip\" title=\"{st:%Y-%m-%d} - {en:%Y-%m-%d}\">{symbol}</span>"
 
                 style = ''
