@@ -28,10 +28,11 @@ class Sidebar(ConfigPlugin):
                 author_lists[author]['dates'].append(datepost)
             author_lists[author]['team'] = team
             post_link = post.meta['en']['link']
-            if "medium" in post_link:
-                regex_url = "(?P<url>https?://[^\s+/\s+/]+\/\@\w+(\.\w+)?)"
+            if "medium" in post_link or "dev.to" in post_link:
+                usertag = '\@' if 'medium' in post_link else ''
+                regex_url = f"(?P<url>https?://[^\s+/\s+/]+\/{usertag}\w+(\.\w+)?)"
             else:
-                regex_url = "(?P<url>https?://[^\s/]+)"
+                regex_url = "(?P<url>https?://[^\s/]+(/blog/)?)" # adds an optional blog as some have it as a different repository
             try:
                 author_lists[author]['url'] = re.search(regex_url, post_link).group("url")
             except AttributeError:
