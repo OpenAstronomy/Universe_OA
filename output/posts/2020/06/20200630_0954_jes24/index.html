@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC 2020: Blog 2 - Parameters and incompatible units | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2020/06/20200630_0954_jes24/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jyotirmaya Shivottam">
+<link rel="prev" href="../20200629_2034_techguybiswa/" title="Launching Version 1 of Start Spark" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSoC 2020: Blog 2 - Parameters and incompatible units">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2020/06/20200630_0954_jes24/">
+<meta property="og:description" content="Progress so far...
+
+
+Over the last two weeks, PR #512 was finalized and merged into EinsteinPy. With it, the big refactor of the metric module is over. As I had mentioned in my last blog, this PR adds">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-06-30T09:54:19+01:00">
+<meta property="article:tag" content="EinsteinPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@abhimanhas" data-toggle="tooltip" data-placement="top" title="2020-06-29 18:13:52+01:00">
+                    Abhijeet Manhas
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@andsbmp17" data-toggle="tooltip" data-placement="top" title="2020-06-29 00:11:13+01:00">
+                    Amogh Desai
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/astronomy-commons.png" height="16" width="16"><a href="https://blog.usejournal.com" data-toggle="tooltip" data-placement="top" title="2020-06-29 20:34:53+01:00">
+                    Biswarup Banerjee
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/einsteinpy.png" height="16" width="16"><a href="https://dev.to" data-toggle="tooltip" data-placement="top" title="2020-06-30 09:54:19+01:00">
+                    Jyotirmaya Shivottam
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@krisastern" data-toggle="tooltip" data-placement="top" title="2020-06-29 19:11:30+01:00">
+                    Kris Stern
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="http://openastronomy.org/img/members/poliastro.png" height="16" width="16"><a href="https://blog.poliastro.space" data-toggle="tooltip" data-placement="top" title="2020-06-28 07:00:00+01:00">
+                    Meuge
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="http://pkj-m.github.io" data-toggle="tooltip" data-placement="top" title="2020-06-13 21:35:56+01:00" style="color:rgb(255,0,0)">
+                    pkj-m
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@_hawks_" data-toggle="tooltip" data-placement="top" title="2020-06-28 23:15:06+01:00">
+                    Raahul Singh
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/ctlearn-project.png?size=40" height="16" width="16"><a href="https://medium.com/@sahilyadav27" data-toggle="tooltip" data-placement="top" title="2020-06-28 13:22:03+01:00">
+                    Sahil Yadav
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="http://siddharthlal25.github.io" data-toggle="tooltip" data-placement="top" title="2020-06-15 18:04:56+01:00" style="color:rgb(255,0,0)">
+                    siddharthlal25
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-01 - 2020-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-15 - 2020-06-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-29 - 2020-07-13">❌</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-13 - 2020-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-07-27 - 2020-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-10 - 2020-08-24">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC 2020: Blog 2 - Parameters and incompatible units</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/jyotirmaya-shivottam/">Jyotirmaya Shivottam</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-06-30T09:54:19+01:00" itemprop="datePublished" title="2020-06-30 09:54">2020-06-30 09:54</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://dev.to/jes24/gsoc-2020-blog-2-parameters-and-incompatible-units-fb5">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<h3>
+<a href="#progress-so-far" class="anchor">
+</a>
+<!-- TEASER_END -->
+Progress so far...
+</h3>
+
+<p>Over the last two weeks, PR <a href="https://github.com/einsteinpy/einsteinpy/pull/512">#512</a> was finalized and merged into EinsteinPy. With it, the big refactor of the <code>metric</code> module is over. As I had mentioned in my last blog, this PR adds a core structure to the <code>metric</code> module, with the <code>metric.BaseMetric</code> class, and adds some new functionalities, like support for Kerr-Schild Perturbations. Also, 7 issues, big and small, were fixed in this PR, ranging from purely semantic issues to mathematical inaccuracies. One of the important ones was Issue <a href="https://github.com/einsteinpy/einsteinpy/issues/514">#514</a>, the distinction between Rotational Length Parameter,
+
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">α\alpha </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">α</span></span></span></span>
+</span>
+and Dimensionless Spin Parameter,
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">aa </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span></span></span></span>
+</span>
+, which has had a cascade effect across the codebase. It is worth a discussion, as it has led to many changes across the numerical side of EinsteinPy.</p>
+
+
+
+
+<h3>
+<a href="#whats-all-the-fuss-about" class="anchor">
+</a>
+What's all the fuss about?
+</h3>
+
+<p>The expressions for the Rotational Length Parameter,
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">α\alpha </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">α</span></span></span></span>
+</span>
+, and Spin Parameter,
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">aa </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span></span></span></span>
+</span>
+, are as follows:<br></p>
+<div class="katex-element">
+<span class="katex-display"><span class="katex"><span class="katex-mathml">α=JMc
+\alpha = \frac{J}{Mc}
+</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">α</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="mord"><span class="mord mathdefault">M</span><span class="mord mathdefault">c</span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="mord"><span class="mord mathdefault">J</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+</div>
+<br><div class="katex-element">
+<span class="katex-display"><span class="katex"><span class="katex-mathml">a=JJMax=JcGM2
+a = \frac{J}{J_{Max}} = \frac{Jc}{GM^2}
+</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord mathdefault">J</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">M</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="mord"><span class="mord mathdefault">J</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="mord"><span class="mord mathdefault">G</span><span class="mord"><span class="mord mathdefault">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="mord"><span class="mord mathdefault">J</span><span class="mord mathdefault">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+</div>
+<br>
+which give us:<br><div class="katex-element">
+<span class="katex-display"><span class="katex"><span class="katex-mathml">α=GMc2a
+\boxed{
+\alpha = \frac{GM}{c^2}a
+}
+</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="boxpad"><span class="mord"><span class="mord"><span class="mord mathdefault">α</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="mord"><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="mord"><span class="mord mathdefault">G</span><span class="mord mathdefault">M</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathdefault">a</span></span></span></span></span><span><span class="pstrut"></span><span class="stretchy fbox"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+</div>
+<br>
+Here,
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">J,MJ, M </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">J</span><span class="mpunct">,</span><span class="mspace"></span><span class="mord mathdefault">M</span></span></span></span>
+</span>
+denote the angular momentum and mass of the gravitating body (for example, black holes), respectively, while
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">G,cG, c </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">G</span><span class="mpunct">,</span><span class="mspace"></span><span class="mord mathdefault">c</span></span></span></span>
+</span>
+denote the Gravitational Constant and speed of light in vacuum, respectively. As the expression for
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">aa </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span></span></span></span>
+</span>
+tells us, it is a constraint on the body's angular momentum. It might seem arbitrary at first, as in classical physics, we do not bother with such constraints and
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">JJ </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">J</span></span></span></span>
+</span>
+is not limited. However, in General Relativity, especially in the context of how black holes are formed, or more appropriately, how we hypothesize their formation, we find that, for certain solutions to the Einstein Field Equations, like the Kerr solutions (rotating black hole), a maximum limit needs to be placed on the black hole angular momentum. This is a direct consequence of the efforts to contain the causality-breaking nature of black hole singularities, especially a naked singularity. As the name suggests, naked singularities are not covered by an Event Horizon and so, they would be observable from outside the black hole. This breaks the framework of GR, as no deterministic predictions about the future evolution of spacetime can be made near a singularity. Note that, GR breaks for covered singularities as well, but causality remains intact, because the spacetime within the event horizon is not viewable or approachable from outside. To complicate things further, GR, as is, does not preclude the existence of naked singularities. All of this led to much deliberation on this issue and ultimately, in 1969, Sir Roger Penrose postulated the (Weak) Cosmic Censorship Hypothesis. This hypothesis aims to alleviate the issue with physical singularities by claiming that naked or observable singularities cannot exist in the universe, as the deterministic nature of general relativity will fall apart otherwise. It is worth mentioning that, while this is still a conjecture, we are yet to detect naked singularities through astronomical observations. Also, in order to work in the theoretical framework of GR and make physical predictions using GR, one needs to circumvent the problem of naked singularities and this is where
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">aa </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span></span></span></span>
+</span>
+comes in for rotating black holes, like in the Kerr solution. To ensure that, the black hole singularity has an event horizon, we must constrain
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">JJ </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">J</span></span></span></span>
+</span>
+and this is done by the spin parameter,
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">aa </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span></span></span></span>
+</span>
+. Here, for
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">∣J∣≤GM2c|J| \leq \frac{GM^2}{c} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord">∣</span><span class="mord mathdefault">J</span><span class="mord">∣</span><span class="mspace"></span><span class="mrel">≤</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">G</span><span class="mord mtight"><span class="mord mathdefault mtight">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>
+</span>
+, the solution has an event horizon, while for
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">∣J∣&gt;GM2c|J| &gt; \frac{GM^2}{c} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord">∣</span><span class="mord mathdefault">J</span><span class="mord">∣</span><span class="mspace"></span><span class="mrel">&gt;</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">G</span><span class="mord mtight"><span class="mord mathdefault mtight">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>
+</span>
+, the solution possesses naked singularities, which we must exclude, due to reasons discussed above. This condition is obtained by solving for singularities in the Kerr solutions.
+
+<p>As for
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">α\alpha </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">α</span></span></span></span>
+</span>
+, it is a convenient length parameter, that helps in making equations shorter to write.</p>
+
+<p>Physics aside, the issue, as mentioned in <a href="https://github.com/einsteinpy/einsteinpy/issues/514">#514</a>, was that the modules in EinsteinPy do not differentiate between
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">α\alpha </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">α</span></span></span></span>
+</span>
+and
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">aa </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span></span></span></span>
+</span>
+. This is due to the intermixing of Geometrized quantities with that in SI units. In geometrized units,
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">G=c=1G = c = 1 </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">G</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord mathdefault">c</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord">1</span></span></span></span>
+</span>
+, making
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">α=a=JM\alpha = a = \frac{J}{M} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">α</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">M</span></span></span></span><span><span class="pstrut"></span><span class="frac-line"></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">J</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>
+</span>
+. However, in SI, this is not the case. EinsteinPy works purely in SI and this issue is an artifact from the changes around unit conversions. This issue has been fixed now, after <a href="https://github.com/einsteinpy/einsteinpy/pull/512">#512</a>, with
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">aa </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span></span></span></span>
+</span>
+being one of the defining parameters in rotating spacetimes, while
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">α\alpha </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">α</span></span></span></span>
+</span>
+is calculated using
+<span class="katex-element">
+<span class="katex"><span class="katex-mathml">aa </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">a</span></span></span></span>
+</span>
+.</p>
+
+<p>As I mentioned earlier, this issue has caused a ripple effect across the numerical side of EinsteinPy. It has highlighted some problems, around systems of unit, in the definition of a few core methods in the <code>metric</code> classes, as well as the <code>coordinates</code> module.</p>
+
+<h3>
+<a href="#until-next-time" class="anchor">
+</a>
+Until next time...
+</h3>
+
+<p>I am currently working on fixing the aforementioned issues, as well as refactoring the <code>coordinates</code> module. To be specific, I am working on adding support for 4-Vector calculations and Kerr-Schild coordinates to the <code>coordinates</code> module. The latter would make use of the Kerr-Schild perturbation functionality of the <code>metric</code> module and help in modularizing the definition of new metric classes. I will discuss Kerr-Schild perturbations and the so-called Kerr-Schild form of the metric tensor in my next blog. </p>
+
+
+
+
+<p>In the meantime, here's a piece of trivia, related to the Cosmic Censorship Hypothesis.</p>
+
+<blockquote>
+<p>In 1991, John Preskill and Kip Thorne bet against Stephen Hawking that the hypothesis was false. Hawking conceded the bet in 1997, due to the discovery of some special situations, that violated the hypothesis, which he characterized as "technicalities". Hawking later reformulated the bet to exclude those technicalities. The revised bet is still open, with the prize being "clothing to cover the winner's nakedness".</p>
+</blockquote>
+
+<p>The description of the original bet can be found <a href="http://www.theory.caltech.edu/people/preskill/old_naked_bet.html">here</a>, while that of the new bet can be found <a href="http://www.theory.caltech.edu/people/preskill/new_naked_bet.html">here</a>.</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/einsteinpy/" rel="tag">EinsteinPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20200629_2034_techguybiswa/" rel="prev" title="Launching Version 1 of Start Spark">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2020         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
