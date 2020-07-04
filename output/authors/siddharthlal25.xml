@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by siddharthlal25)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/siddharthlal25.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 03 Jul 2020 01:35:11 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 1 &amp; 2: Coding Officially Begins!</title><link>http://openastronomy.org/Universe_OA/posts/2020/06/20200615_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;div&gt;&lt;h3 id="hey-sid-did-the-coding-period-officially-begin"&gt;&lt;em&gt;Hey Sid, did the coding period officially begin?&lt;/em&gt;&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by siddharthlal25)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/siddharthlal25.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 04 Jul 2020 01:35:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 3 &amp; 4: The end of first month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/06/20200628_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;div&gt;&lt;h3 id="hey-sid-you-mentioned-about-releasing-the-package-in-the-previous-post-did-you-go-for-the-release"&gt;&lt;em&gt;Hey Sid, you mentioned about releasing the package in the previous post, did you go for the release?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, I wrote the interface for &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt; function with FITS files and finally released &lt;em&gt;version-0.2.0&lt;/em&gt;, come check it! (&lt;a href="https://github.com/JuliaAstro/CCDReduction.jl"&gt;CCDReduction.jl&lt;/a&gt;)&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="so-how-were-the-weeks-3--4"&gt;&lt;em&gt;So, how were the weeks 3 &amp;amp; 4?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p align="center"&gt; &lt;img src="https://beta.techcrunch.com/wp-content/uploads/2010/10/awesome.jpg"&gt; &lt;/p&gt;
+
+&lt;p&gt;These two weeks were quite interesting! After packing all the basic functionalties in the package, &lt;em&gt;version-0.2.0&lt;/em&gt; was released, the next problem to be tackled was collecting and listing all relevant files from a directory. So, to solve this &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; was created, it takes a path, searches it recursively (if the user wants) for FITS files with ImageHDUs, list them together and return them in a data frame. It has some advanced functionalities as well, check the &lt;a href="https://juliaastro.github.io/CCDReduction.jl/dev/api/#CCDReduction.fitscollection-Tuple%7BString%7D"&gt;documentation&lt;/a&gt; to know more!&lt;/p&gt;
+
+&lt;p&gt;Next, we created generators for filenames, image arrays, and ImageHDUs which works something like this:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# listing all FITS files present at some location with ImageHDUs
+df = fitscollection(“location_of_some_fits_files”)
+for arr in arrays(df)
+# arr is the array representation of images present in entries of the data frame
+# (i.e. array of ImageHDU's image data)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The generators created were &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt;, and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;. &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; generates the path of the file, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; generates the array representation of images in ImageHDU and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt; generates ImageHDU of FITS files. These generators work on output of &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; i.e. a data frame returned by the function. All these generators were written using &lt;a href="https://github.com/BenLauwens/ResumableFunctions.jl"&gt;ResumableFunctions.jl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/div&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/06/20200628_1804_siddharthlal25/</guid><pubDate>Sun, 28 Jun 2020 17:04:56 GMT</pubDate></item><item><title>Week 1 &amp; 2: Coding Officially Begins!</title><link>http://openastronomy.org/Universe_OA/posts/2020/06/20200615_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;div&gt;&lt;h3 id="hey-sid-did-the-coding-period-officially-begin"&gt;&lt;em&gt;Hey Sid, did the coding period officially begin?&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;The community bonding period ended by the end of last month and the coding period officially began, I started to work on basic structure of the package and setting up the (not so user-friendly, PS: from astronomer’s perspective) interface for the image reduction methods.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
