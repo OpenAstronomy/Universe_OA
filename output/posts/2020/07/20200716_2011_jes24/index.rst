@@ -1,0 +1,171 @@
+.. title: GSoC 2020: Blog 3 - Coordinates & Perturbations
+.. slug:
+.. date: 2020-07-16 20:11:49 
+.. tags: EinsteinPy
+.. author: Jyotirmaya Shivottam
+.. link: https://dev.to/jes24/gsoc-2020-blog-3-coordinates-perturbations-48c2
+.. description:
+.. category: gsoc2020
+
+
+.. raw:: html
+
+    <h2>
+    <a href="#progress-so-far" class="anchor">
+    </a>
+    <!-- TEASER_END -->
+    Progress so far...
+    </h2>
+    
+    <p>The refactor of the <code>coordinates</code> module of EinsteinPy was completed over the last week and PR <a href="https://github.com/einsteinpy/einsteinpy/pull/521">#521</a> was merged. With this, EinsteinPy now supports 4-Position and 4-Velocity calculations. To better reflect these additions across EinsteinPy, a few changes were also made to <code>einsteinpy.metric</code> and <code>einsteinpy.geodesic</code> modules. All core modules of EinsteinPy are well-integrated now. As an aside, new metric and coordinate classes can now be added to the numerical side of EinsteinPy and we welcome community contributions for the same. Please refer to <a href="https://github.com/einsteinpy/einsteinpy/issues/525">#525</a> for more details.</p>
+    
+    <p>In my last blog, I had mentioned that this PR would also add support for Kerr-Schild (KS) coordinates and KS forms of the vacuum solutions. However, after discussions with my mentors, we have rejigged the schedule a bit and we are now prioritizing the implementation of Null Geodesics calculation and Radiative Transfer functionality in EinsteinPy, with the addition of KS coordinates becoming optional now. This has been put up as issue <a href="https://github.com/einsteinpy/einsteinpy/issues/526">#526</a>, and as before, community contributions are welcome. Nonetheless, as promised, let’s discuss what KS perturbations are and why KS coordinates are so interesting.</p>
+    
+    
+    
+    
+    <h3>
+    <a href="#a-case-of-hard-differential-equations" class="anchor">
+    </a>
+    A case of hard differential equations
+    </h3>
+    
+    <p>Einstein's Field Equations (EFE), at their core, describe a field theory for gravity, quite similar to how Maxwell's Equations define a field theory for Electromagnetism. In Electromagnetism, electric and magnetic fields are basic physical entities, which both affect and are affected by a matter property called charge. Similarly, in GR, there is an underlying structure of spacetime, quantified by the metric tensor, which is calculated using EFE. These equations are second order, non-linear differential equations, which makes finding solutions for general matter-energy distributions rather difficult.</p>
+    
+    <p>However, let's say, we are only interested in cases, where the deviation from a known distribution is "small", for example, when we go from a perfectly spherical body to a spheroidal body. In these cases, we can look for an approximate "perturbed" solution (metric) to this "perturbed" distribution by writing the approximate solution as
+    
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">gab(λ)=0gab(λ)+hab(λ)g_{ab}(\lambda) = {^0g_{ab}}(\lambda) + h_{ab}(\lambda) </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">λ</span><span class="mclose">)</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">λ</span><span class="mclose">)</span><span class="mspace"></span><span class="mbin">+</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">λ</span><span class="mclose">)</span></span></span></span>
+    </span>
+    , where
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">λ\lambda </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">λ</span></span></span></span>
+    </span>
+    is a parameter,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">0gab{^0g_{ab}} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span></span>
+    </span>
+    is the known exact solution for the underlying distribution and
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">habh_{ab} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    is a linear perturbation ("Linear", as
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">gabg_{ab} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    depends on the first power of
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">habh_{ab} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    ). Kerr-Schild perturbations are a way of linearizing EFE or to form linearized approximation to EFE. Note that, EFE are in general, non-linear. So, these approximations usually only describe the solution till the first order and higher order corrections become necessary as systems grow in complexity. However, Kerr-Schild class of perturbations is unique as all higher order corrections vanish.</p>
+    
+    <h3>
+    <a href="#kerrschild-perturbation" class="anchor">
+    </a>
+    Kerr-Schild Perturbation
+    </h3>
+    
+    <p>A generalized Kerr-Schild perturbation has the form:<br>
+    
+    </p>
+    <div class="katex-element">
+    <span class="katex-display"><span class="katex"><span class="katex-mathml">habKS(λ)=Vlalb
+    h_{ab}^{KS}(\lambda) = V l_a l_b
+    </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">K</span><span class="mord mathdefault mtight">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">λ</span><span class="mclose">)</span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord mathdefault">V</span><span class="mord"><span class="mord mathdefault">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span></span>
+    </div>
+    <br>
+    where,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">VV </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">V</span></span></span></span>
+    </span>
+    is some scalar and
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">ll </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">l</span></span></span></span>
+    </span>
+    are <em>one-forms</em> or <em>functionals</em>, defined with respect to the underlying or background metric,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">0gab{^0g_{ab}} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span></span>
+    </span>
+    . A functional can be understood as a usual function, which outputs a number, but instead of accepting numbers as inputs, it takes in functions. Now, the form of
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">habKSh_{ab}^{KS} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">K</span><span class="mord mathdefault mtight">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    might seem arbitrary. However, there are some reasonable constraints on this form. First among them is, for
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">λ→0\lambda \to 0 </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">λ</span><span class="mspace"></span><span class="mrel">→</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord">0</span></span></span></span>
+    </span>
+    , we must recover
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">0gab{^0g_{ab}}</span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span></span>
+    </span>
+    . Also,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">ll </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">l</span></span></span></span>
+    </span>
+    must be <em>null</em> with respect to
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">0gab{^0g_{ab}} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span></span>
+    </span>
+    , i.e.
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">0gablalb=0  ⟹  gablalb=0{^0g_{ab}}l_a l_b = 0 \implies {g_{ab}}l_a l_b = 0  </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord">0</span><span class="mspace"></span><span class="mspace"></span><span class="mrel">⟹</span><span class="mspace"></span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">l</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span><span class="mspace"></span><span class="mrel">=</span><span class="mspace"></span></span><span class="base"><span class="strut"></span><span class="mord">0</span></span></span></span>
+    </span>
+    . And, depending on the spacetime, there are additional properties that must be satisfied.
+    
+    <p>Due to the strictly linear nature of KS perturbations, we obtain some nice features for the perturbed metric, that can even be linked back to the background metric,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">0gab{^0g_{ab}} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span></span>
+    </span>
+    . For example, the causality of an arbitrary vector,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">vav^a </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span></span></span></span></span></span></span></span>
+    </span>
+    is guaranteed to remain the same across
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">0gab{^0g_{ab}} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span></span>
+    </span>
+    and
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">gabg_{ab} </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    . This implies timelike and spacelike vectors remain timelike and spacelike, respectively, even in the perturbed spacetime. This also extends to null geodesics, meaning that the two metrics have shared light rays. This property, in particular, is incredibly useful from the perspective of my project. But a more notable property is that, KS perturbations impose a structure on the Stress-Energy Tensor,
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">TbaT_b^a </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord"><span class="mord mathdefault">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span><span><span class="pstrut"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"><span></span></span></span></span></span></span></span></span></span>
+    </span>
+    . </p>
+    
+    <p>These properties make the KS forms of the metric particularly suited to describe vacuum solutions, on a flat underlying metric, such as Schwarzschild and Kerr solutions. In these cases, a particular set of coordinates, called the (cartesian form of) Kerr-Schild coordinates, are chosen to define
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">VV </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">V</span></span></span></span>
+    </span>
+    and
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">ll </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">l</span></span></span></span>
+    </span>
+    . These coordinates are usually more involved than the most basic coordinate for the spacetime (such as Schwarzschild or Boyer-Lindquist Coordinates), but they have an interesting property, in that they expose the singularity structure well, with no coordinate singularities.</p>
+    
+    <p>More interesting spacetimes, such as <em>pp</em>-waves and <em>anti-de Sitter</em> space can also be generated through KS perturbations. Not all solutions however, can be linearized to a KS form, as we only have three degrees of freedom in varying
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">VV </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">V</span></span></span></span>
+    </span>
+    and
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">ll </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">l</span></span></span></span>
+    </span>
+    . Moreover, as is usual with perturbation techniques, it is difficult to estimate how small
+    <span class="katex-element">
+    <span class="katex"><span class="katex-mathml">λ\lambda </span><span class="katex-html"><span class="base"><span class="strut"></span><span class="mord mathdefault">λ</span></span></span></span>
+    </span>
+    must be, so that the approximation has sufficient accuracy. In any case, Perturbation Theory is a powerful mathematical tool, that most physicists use on a regular basis. A (surprisingly) simple and general introduction can be found at <a href="https://en.wikipedia.org/wiki/Perturbation_theory">Wikipedia</a>.</p>
+    
+    
+    
+    
+    <h2>
+    <a href="#until-next-time" class="anchor">
+    </a>
+    Until next time...
+    </h2>
+    
+    <p>While I am not working on KS perturbation functionality for EinsteinPy, at the moment, I have opened an issue (<a href="https://github.com/einsteinpy/einsteinpy/issues/526">#526</a>) for it. Addition of KS perturbed forms of metrics to EinsteinPy is relatively easy now, due to the structure of the Metric classes in <code>einsteinpy.metric</code>. Feel free to take a look and contribute. Currently, I am working on the crux of the project - <em>Null Geodesics and Radiative Transfer in Kerr spacetime</em>, figuring out the equations and validating them for use with SI units, with proper unit conversions. Once this is done, I will start putting them into code and hopefully, we will soon have this new functionality ready to be merged into EinsteinPy and open to people for use. I expect my next blog to be on Null Geodesics.</p>
+
