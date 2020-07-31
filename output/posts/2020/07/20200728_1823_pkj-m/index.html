@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Summer of Code - Blog #4! | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2020/07/20200728_1823_pkj-m/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="pkj-m">
+<link rel="prev" href="../20200728_1816_abhijeetmanhas/" title="GSOC 2020: Metadata searches using Fido" type="text/html">
+<link rel="next" href="../20200728_1932_raahul-singh/" title="Chapter 3 : The Search Events Object" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Google Summer of Code - Blog #4!">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2020/07/20200728_1823_pkj-m/">
+<meta property="og:description" content="Hello! Welcome to the latest blog post in my Google Summer of Code series. With this blog, we’ll marking the end of the second phase of evaluations! Additionally, this blog is going to be a little dif">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2020-07-28T18:23:12+01:00">
+<meta property="article:tag" content="radis">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@abhimanhas" data-toggle="tooltip" data-placement="top" title="2020-07-28 18:16:19+01:00">
+                    Abhijeet Manhas
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@andsbmp17" data-toggle="tooltip" data-placement="top" title="2020-07-29 16:43:01+01:00">
+                    Amogh Desai
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/astronomy-commons.png" height="16" width="16"><a href="https://blog.usejournal.com" data-toggle="tooltip" data-placement="top" title="2020-07-27 13:41:49+01:00">
+                    Biswarup Banerjee
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/einsteinpy.png" height="16" width="16"><a href="https://dev.to/jes24" data-toggle="tooltip" data-placement="top" title="2020-07-16 20:11:49+01:00" style="color:rgb(255,0,0)">
+                    Jyotirmaya Shivottam
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@krisastern" data-toggle="tooltip" data-placement="top" title="2020-07-26 12:13:28+01:00">
+                    Kris Stern
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="http://openastronomy.org/img/members/poliastro.png" height="16" width="16"><a href="https://blog.poliastro.space" data-toggle="tooltip" data-placement="top" title="2020-07-24 07:00:00+01:00">
+                    Meuge
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="http://pkj-m.github.io/blog/" data-toggle="tooltip" data-placement="top" title="2020-07-28 18:23:12+01:00">
+                    pkj-m
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@_hawks_" data-toggle="tooltip" data-placement="top" title="2020-07-28 19:32:44+01:00">
+                    Raahul Singh
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/ctlearn-project.png?size=40" height="16" width="16"><a href="https://medium.com/@sahilyadav27" data-toggle="tooltip" data-placement="top" title="2020-07-27 17:15:13+01:00">
+                    Sahil Yadav
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="http://siddharthlal25.github.io/blog/" data-toggle="tooltip" data-placement="top" title="2020-07-13 00:44:56+01:00" style="color:rgb(255,0,0)">
+                    siddharthlal25
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-05-04 - 2020-06-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-03 - 2020-06-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-06-17 - 2020-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-01 - 2020-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-15 - 2020-07-29">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2020-07-29 - 2020-08-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2020-08-13 - 2020-08-26">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Google Summer of Code - Blog #4!</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/pkj-m/">pkj-m</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2020-07-28T18:23:12+01:00" itemprop="datePublished" title="2020-07-28 18:23">2020-07-28 18:23</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="http://pkj-m.github.io/blog//gsoc/week-7-8">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Hello! Welcome to the latest blog post in my Google Summer of Code series. With this blog, we’ll marking the end of the second phase of evaluations! Additionally, this blog is going to be a little different from all the previous ones as we finally start to work and discuss about Python and the actual RADIS code base.</p>
+
+<p>Honestly, I am actually really glad that we’re finally at this stage. The monotonity of Cython and working on the same, huge Cython+CuPy file with more than a thousand lines of code was getting very frustrating :P</p>
+<!-- TEASER_END -->
+
+<p>In this blog, I shall be discussing more about the way we will integrate the GPU code with RADIS. But before we do that, let us first understand how RADIS handles this part right now, performing computations purely on the CPU. In order to compute the spectra of a molecule, we make use of module defined in RADIS known as <code class="language-plaintext highlighter-rouge">Line-by-Line</code> Module or LBL for short. This module contains numerous methods which are used for calculations of spectras. One of the most standard methods for computing the spectras is known as <code class="language-plaintext highlighter-rouge">calc_spectrum</code>, which takes in inputs such as the molecule, isotopes, temperature, pressure, waverange over which the spectra needs to be calculated (and many other depending on the user’s requirements) and returns the result in the form of <code class="language-plaintext highlighter-rouge">Spectrum</code> object which neatly packs the information in single object which can then be processed as needed. This is what the user sees when they use RADIS. However, for us to develop and contribute, we also need to understand what goes on under the hood when a method such as <code class="language-plaintext highlighter-rouge">calc_spectrum</code> is called.</p>
+
+<p>The first thing that occurs when <code class="language-plaintext highlighter-rouge">calc_spectrum</code> is called is the validation and conversion of physical quantities (such as temprature and pressure) into default units that are assumed in the rest of the code. This is followed by the instantiation of an object from the <code class="language-plaintext highlighter-rouge">SpectrumFactory</code> class, which will contain all the information about the spectrum to be computed. This is all standard, something that will happen each time <code class="language-plaintext highlighter-rouge">calc_spectrum</code> gets called. However, from here on, things start to get interesting as we look into the databank. Let us first understand what the purpose of a databank is: in order to compute a spectra for a specfic molecule, we need information about it. This could include data like line positions, line intensities, pressure-broadening parameters, etc. We don’t have to understand what each of these quantities mean or represent (to be honest, I don’t either) but the main idea we need to internalize is that we can’t compute a spectra without any information. So while it might be fair to say that a spectra can literally be generated from thin air, metaphorically that does not hold true.
+This data, used to compute the spectra, can often be huge and therefore we try to avoid moving it around as much as possible. RADIS has implemented cache features in order to minimize the computations to be done on the raw databank. The important idea we need to focus on, is that once a databank has been loaded, we don’t have to load it once more if we ever call <code class="language-plaintext highlighter-rouge">calc_spectrum</code> again for the same data (with maybe different waverange, etc.) This is done using extra memory: the original data that is loaded in the memory is saved as a dataframe, and every call made to <code class="language-plaintext highlighter-rouge">calc_spectrum</code> first creates a copy of this data and works on it instead. This preserves the original dataset and allows us to use it again in case it is required, as the cost of the extra memory needed to save the copy. This was also the first problem I had to tackle: the GPU code we were going to use made use of <code class="language-plaintext highlighter-rouge">npy</code> formatted arrays to load the data, whereas RADIS was designed to load <code class="language-plaintext highlighter-rouge">h5</code> or <code class="language-plaintext highlighter-rouge">par</code> files. This meant I had to modify the databank loader RADIS used to support npy files. This was not a very significant problem however, as we could simply load the data separately instead of using the databank. The only issue with this approach would have been the repeated loading of data everytime the function call was made, but since we were using a small dataset, it wasn’t a significant issue and we decided to push it back and first focus on getting the GPU code to work with independent data being loaded.</p>
+
+<p>Once we had the data, the next step was to perform the computations. Now I won’t go into the details in this part since the mathematics behind these computations was something which: 1. I didn’t understand completely, and 2. I didn’t need to understand completely. Given my project already had a proof-of-concept code with the mathematics inplace, and my job was to make that code compatible with RADIS, I didn’t need to understand the nuances of it. I did go through the paper draft to understand the general idea behind the parallel approach we used, but I didn’t even try with the serial code since I had absolutely nothing to do with it. This mathematics was actually abstracted and encapsulated in another method <code class="language-plaintext highlighter-rouge">eq_spectrum</code>. Once this method finished execution, we would have the spectrum ready with all the information ready for the user. Within this method, there was one specific method that was of particular interest to us: <code class="language-plaintext highlighter-rouge">_calc_broadening</code>, responsible for the broadening step in the spectra calculation pipeline. This method was the bottleneck in the entire process, and the GPU code was primarily helping us speed up this particular portion of the process. My job here was to create another analogous method <code class="language-plaintext highlighter-rouge">eq_spectrum_gpu</code> which would do the exact same job as <code class="language-plaintext highlighter-rouge">eq_spectrum</code>, except instead of calling the sequence of serial methods to compute the spectra, I’d simply call the GPU code which was ready for us, and obtain the result. Some further processing of this result (which is computationally very inexpensive compared the rest of process), we have our spectra ready. It is a lot simpler and significantly easier than the CPU equivalent since we off-load the entire process to the Cython-compiled binaries and don’t have to worry about anything else. One problem I had with this (which is still not resolved as of writing this) is how do we fill in the missing information gaps in the Spectrum object, which in case of the CPU code were filled sequentially as the pipeline proceeded. Since our GPU code would only return the final result, I am not sure if we would be able to recover the preceding information bits which we didn’t obtain. Hopefully I’ll have the answer to it tomororrow when Erwan replies. That would pretty much finish my job here.</p>
+
+<p>However, another important bit of information that we’re skimming over is how we call the compiled binary file. This part is in fact what I will be working on over the coming week. The idea is that although right now I am using a simple binary file located in the same file to run the code, it is possible (and highly likely) that the same binary file will not work properly (or at all) in another system it is not meant for. As a consequence, the entire method might crash. In order to resolve this, we will be looking into placing the source code instead of the binary file in the RADIS codebase, and everytime a user needs to use the GPU version of <code class="language-plaintext highlighter-rouge">calc_spectrum</code>, the code will first, automatically, compile the Cython file on their system, obtain the binary file meant for their system, and use that instead. The details regarding the implementation of this bit are still not clear as it is something I will be working on next week!
+The next blog will cover the implementation details about this runtime-compilation setup along with a discussion on what is next! Thank you!</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20200728_1816_abhijeetmanhas/" rel="prev" title="GSOC 2020: Metadata searches using Fido">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20200728_1932_raahul-singh/" rel="next" title="Chapter 3 : The Search Events Object">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2020         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>
