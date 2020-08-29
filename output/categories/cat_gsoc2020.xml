@@ -1,5 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2020)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2020.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 28 Aug 2020 02:02:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 10 &amp; 11: The End…</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200826_0322_sahilyadav27/</link><dc:creator>Sahil Yadav</dc:creator><description>&lt;div&gt;&lt;p&gt;The past 3 months have been really amazing. I’ve learned a lot about working on a collaborative project and working with deadlines.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2020)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2020.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 29 Aug 2020 02:02:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Final Chapter: The Road Goes Ever On</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200828_1223_raahul-singh/</link><dc:creator>Raahul Singh</dc:creator><description>&lt;div&gt;&lt;h5&gt;The Autumn of my GSoC project.&lt;/h5&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/810/1*9YtpATtGuoLUSIEOasTixQ.jpeg"&gt;&lt;figcaption&gt;The Doon Valley, my home.&lt;/figcaption&gt;&lt;/figure&gt;&lt;blockquote&gt;“Roads go ever ever on,&lt;br&gt;
+Over rock and under tree,&lt;br&gt;
+By caves where never sun has shone,&lt;br&gt;
+&lt;!-- TEASER_END --&gt;
+By streams that never find the sea;&lt;br&gt;
+Over snow by winter sown,&lt;br&gt;
+And through the merry flowers of June,&lt;br&gt;
+Over grass and over stone,&lt;br&gt;
+And under mountains in the moon.”&lt;/blockquote&gt;&lt;blockquote&gt;~ The Hobbit, J.R.R. Tolkien&lt;/blockquote&gt;&lt;p&gt;When I first read the Hobbit, I always wondered what going on an adventure would feel like.&lt;br&gt;
+Would I be fighting goblins, striding through enchanted forests with wizards?&lt;br&gt;
+Would there be a treasure? Would there be a Dragon? &lt;br&gt;
+And as I grew older, would or could there be a happy ending?&lt;/p&gt;
+&lt;p&gt;Well, an adventure it indeed was.&lt;br&gt;
+Building a domain specific Deep Learning Toolkit, learning about packaging, testing, and the best practices, all to just set the package up!&lt;/p&gt;
+&lt;p&gt;I did fight goblins that were the bugs in my PyTorch pipelines. Those NaNs, oh those pesky NaNs! They really were like goblins that popped up in the input data when I least expected them.&lt;br&gt;
+Though I did enlist the help of my wizard mentors, &lt;a href="https://github.com/dpshelio"&gt;David&lt;/a&gt;, &lt;a href="https://github.com/drsophiemurray"&gt;Sophie&lt;/a&gt;, and &lt;a href="https://github.com/mbobra"&gt;Monica,&lt;/a&gt; and together we marched through the enchanted (or were they cursed?) forests of SWPC and HEK to get the data we wanted.&lt;/p&gt;
+&lt;p&gt;It was a fascinating experience. One that I will cherish forever.&lt;br&gt;
+I wish I could extend this summer, but my time is up, and all our goals for this project have been completed.&lt;/p&gt;
+&lt;p&gt;After all, all adventures must come to an end.&lt;/p&gt;
+&lt;blockquote&gt;“The Road goes ever on and on &lt;br&gt;
+Out from the door where it began.&lt;br&gt;
+Now far ahead the Road has gone,&lt;br&gt;
+Let others follow it who can!&lt;br&gt;
+Let them a journey new begin,&lt;br&gt;
+But I at last with weary feet&lt;br&gt;
+Will turn towards the lighted inn,&lt;br&gt;
+My evening-rest and sleep to meet”&lt;/blockquote&gt;&lt;p&gt;And so we come to the end of my GSoC journey, let’s talk about the treasure!&lt;/p&gt;
+&lt;h4&gt;The Treasure&lt;/h4&gt;&lt;h5&gt;1 ) The Search Events Object&lt;/h5&gt;&lt;p&gt;Often we find data representing the same observed physical phenomenon to have slightly different values when the data comes from different sources.&lt;br&gt;
+This could be due to noise or different choices of parameters for the preprocessing techniques employed.&lt;br&gt;
+This creates problems when the two datasets need to be compared, and /or may data exclusive to them.&lt;br&gt;
+We faced this problem when the data from NOAA that characterizes the Active Regions was not available in the Sunspotter dataset.&lt;br&gt;
+Although the observations were identical, they were not exact. &lt;br&gt;
+Their multidimensional nature also prevented matching by simple sorting.&lt;/p&gt;
+&lt;p&gt;In my repository, &lt;a href="https://github.com/Raahul-Singh/pythia"&gt;Pythia,&lt;/a&gt; we created a general Search Events Table Matching algorithm that would solve this problem.&lt;br&gt;
+Although it is general enough to be used with any tabular dataset, we do plan on making it more ‘intelligent’ so as to require minimal preprocessing from the user.&lt;/p&gt;
+&lt;h5&gt;&lt;strong&gt;2) The Flare Forecasting&lt;/strong&gt;&lt;/h5&gt;&lt;p&gt;After significant preprocessing, we were able to get a good enough dataset to feed to our deep learning pipeline. &lt;br&gt;
+We wanted to predict if an Active Region would flare in the first six hours from its observation or not.&lt;br&gt;
+We were inspired by architectures, popular in academia in the domain of flare forecasting, Though our approach was the first to combine modern Deep Learning techniques for building our Convolutional Nets.&lt;/p&gt;
+&lt;p&gt;With some PyTorch magic, we were able to get a prediction accuracy of around 84% on the test set in the binary classification of whether an active region would flare or not. A study of flare forecasting using Machine learning in a fixed time frame from observation is unique in itself.&lt;/p&gt;
+&lt;p&gt;We implemented an Autoencoder to get a low dimensional representation of the Active Regions, so that they may be used with other scalar measurements.&lt;/p&gt;
+&lt;p&gt;We also were curious to see if the absolute orientation of the Active regions with respect to the sun was of any significance in the Active Region’s flaring activity.&lt;br&gt;
+While we were expecting a connection, we were surprised to see that the orientation mattered more in the case where the Active Region did flare than in the case where it did not. More work is required before we can quantitatively state our findings on this front.&lt;/p&gt;
+&lt;h5&gt;3) &lt;a href="https://github.com/Raahul-Singh/pythia"&gt;Pythia&lt;/a&gt;&lt;/h5&gt;&lt;p&gt;What began as a project to analyze the Sunspotter dataset, has grown way beyond its original scope.&lt;br&gt;
+With the power of Pytorch Lightning and SunPy, Pythia is shaping out be a general-purpose Deep learning Toolkit for Solar Physics.&lt;/p&gt;
+&lt;p&gt;The barrier to entry for using Deep Learning in Solar Physics Research is quite high for people without the technical knowledge of Deep Learning and without the time to invest heavily into learning the many nuances of modern Deep Learning frameworks.&lt;/p&gt;
+&lt;p&gt;With Pythia, we plan on providing a SciKit Learn like interface, with the power and muscle of PyTorch and the elegance and order of Pytorch Lightning.&lt;br&gt;
+Although the expansion and generalization are still underway, with more use cases and help from the community, Pythia will surely help in making modern Deep Learning more accessible to the Solar Physics community.&lt;/p&gt;
+&lt;h4&gt;The Dragon&lt;/h4&gt;&lt;blockquote&gt;“Roads go ever ever on&lt;br&gt;
+Under cloud and under star,&lt;br&gt;
+Yet feet that wandering have gone&lt;br&gt;
+Turn at last to home afar.&lt;br&gt;
+Eyes that fire and sword have seen&lt;br&gt;
+And horror in the halls of stone&lt;br&gt;
+Look at last on meadows green&lt;br&gt;
+And trees and hills they long have known.”&lt;/blockquote&gt;&lt;p&gt;Unlike Bilbo, my Dragon isn’t evil like Smaug. &lt;br&gt;
+It isn’t greedy of gold, nor too large or too scary.&lt;br&gt;
+It tells me it prefers gardening over desolating lands as a hobby. &lt;br&gt;
+And has so far been fairly consistent in his participation in our friendship.&lt;/p&gt;
+&lt;p&gt;A little secret that not many know is that my dragon doesn’t have a physical existence.&lt;br&gt;
+I confide in my reader and trust them to keep this secret, a secret.&lt;/p&gt;
+&lt;p&gt;The Dragon I am talking about, of course, is this newfound sense of spirit and the freedom that I have acquired over this summer.&lt;/p&gt;
+&lt;p&gt;This summer has been magical for me.&lt;/p&gt;
+&lt;p&gt;This summer, I worked on what I would call a dream project, using AI in Natural Sciences.&lt;br&gt;
+I interacted with scientists from NASA, UCL, Trinity, etc., all of whom are heroes to me.&lt;/p&gt;
+&lt;p&gt;I co-founded an Open Source organization, &lt;a href="https://github.com/wildfirepy"&gt;The WildfirePy Project,&lt;/a&gt; for doing my part in studying, understanding, and preventing wildfires.&lt;/p&gt;
+&lt;p&gt;And finally, I got my first job! Becoming financially independent, and working on projects that make a difference!&lt;/p&gt;
+&lt;p&gt;Even in my wildest dreams, I never imagined such fortune and serendipity.&lt;br&gt;
+In all honesty, I’m not sure if the Dragon will stay, or fly away.&lt;br&gt;
+I am yet to start counting on it for its company when I need it.&lt;/p&gt;
+&lt;p&gt;But I hope it stays. :)&lt;/p&gt;
+&lt;p&gt;GSoC and Open Source in general, have been life-changing for me.&lt;br&gt;
+More than anything, it has given me a way to express myself, my love for science, my love for code and my desire to be part of something bigger than myself.&lt;br&gt;
+And act on it.&lt;br&gt;
+Open source is nourishment to my soul, and I shall forever be grateful to Google Summer of Code for helping me get started with it.&lt;/p&gt;
+&lt;p&gt;And to SunPy for making my life more luminous!&lt;/p&gt;
+&lt;h4&gt;&lt;strong&gt;Happy Ending?&lt;/strong&gt;&lt;/h4&gt;&lt;blockquote&gt;“The Road goes ever on and on&lt;br&gt;
+Down from the door where it began.&lt;br&gt;
+Now far ahead the Road has gone,&lt;br&gt;
+And I must follow, if I can,&lt;br&gt;
+Pursuing it with eager feet,&lt;br&gt;
+Until it joins some larger way&lt;br&gt;
+Where many paths and errands meet.&lt;br&gt;
+And whither then? I cannot say.”&lt;/blockquote&gt;&lt;p&gt;Happy Ending? &lt;br&gt;
+Well, I wouldn’t know.&lt;br&gt;
+I am just getting started!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;:)&lt;/strong&gt;&lt;/p&gt;
+&lt;img src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=53fb35e650f4" width="1" height="1"&gt;&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200828_1223_raahul-singh/</guid><pubDate>Fri, 28 Aug 2020 11:23:27 GMT</pubDate></item><item><title>Week 10 &amp; 11: The End…</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200826_0322_sahilyadav27/</link><dc:creator>Sahil Yadav</dc:creator><description>&lt;div&gt;&lt;p&gt;The past 3 months have been really amazing. I’ve learned a lot about working on a collaborative project and working with deadlines.&lt;/p&gt;
 &lt;p&gt;In the past two weeks, I polished off the work done for the project in the PR, so that it is ready to merge. There were a few merge conflicts that needed to be addressed.&lt;/p&gt;
 &lt;p&gt;Then, I worked on a generate_runlist file to make runlists for converting MAGIC ROOT data to HDF5 data. In a few days, training will start on the approximately 5000 MAGIC data runs using CTLearn’s models.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -66,78 +152,4 @@ They await review as of now, maybe merged within this week. In short, almost all
 &lt;p&gt;All of the above will form the bulk of work to be submitted for the GSoC project.&lt;/p&gt;
 &lt;p&gt;More can be done for glue-solar, including but not limited to the following:&lt;/p&gt;
 &lt;ol&gt;&lt;li&gt;Add NDData support to glue via glue-solar&lt;/li&gt;&lt;li&gt;Add instrument loader code from sunkit-instruments to glue-solar&lt;/li&gt;&lt;li&gt;Enable image / Movie exports, both with axes and without axes via matplotlib&lt;/li&gt;&lt;li&gt;Add support for pre-computed statistics in datasets / viewers.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Hopefully with the support of the mentors much of what has been planned can be brought to fruition, so that this project will be a successful one.&lt;/p&gt;
-&lt;img src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=4aebd6964154" width="1" height="1"&gt;&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200809_2322_kakirastern/</guid><pubDate>Sun, 09 Aug 2020 22:22:40 GMT</pubDate></item><item><title>GSoC 2020: Blog 4 - Update on Null Geodesics in Kerr Spacetime</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200806_1009_jes24/</link><dc:creator>Jyotirmaya Shivottam</dc:creator><description>&lt;div&gt;&lt;h3&gt;
-&lt;a href="http://openastronomy.org/Universe_OA/posts/2020/08/20200806_1009_jes24/#progress-so-far" class="anchor"&gt;
-&lt;/a&gt;
-&lt;!-- TEASER_END --&gt;
-Progress so far...
-&lt;/h3&gt;
-
-&lt;p&gt;Support for calculation and graphing of Null Geodesics in Kerr (and by extension, Schwarzschild) spacetime is nearing completion (PR &lt;a href="https://github.com/einsteinpy/einsteinpy/pull/527"&gt;#527&lt;/a&gt;). Last week, I hit a serious obstacle, related to maximum floating point precision and accumulation of numerical errors (which is also the reason for the delayed blog). Since the Geodesic Equations are stiff ODEs, small instabilities can wreak havoc on step-size control and completely destabilize the solution. I observed this happening with my code for Null Geodesics. As the light ray approaches the black hole, the integrator can no longer choose a proper step-size and the solution becomes inaccurate. In this blog, I will be discussing this issue and how we are approaching it with the new Null Geodesics module. I also present some of the null geodesic plots, created using this module.&lt;/p&gt;
-
-&lt;h3&gt;
-&lt;a href="http://openastronomy.org/Universe_OA/posts/2020/08/20200806_1009_jes24/#stiff-odes-are-evil" class="anchor"&gt;
-&lt;/a&gt;
-Stiff ODEs are evil!
-&lt;/h3&gt;
-
-&lt;p&gt;Stiff ODEs and Numerical Methods have always been at loggerheads. There is no precise definition for stiff ODEs, but an important feature is that, they are prone to become unstable. The usual solution is to choose a solver, that can accommodate very small step-sizes, while keeping overall error low. SciPy provides performant wrappers for LSODA/BDF methods, that are usually suitable for stiff systems, but in our case, these methods are unhelpful, as can be seen in the image below. For comparison, I have used Mathematica to obtain geodesics for the same conditions. The only major difference, here, is the solver. The plot on the left is Mathematica-generated, while the plot on the right was generated by Python. Note that, all the plots in this post have their axes normalized to the gravitational radius, or units of
-
-&lt;span class="katex-element"&gt;
-&lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;GMc2\frac{GM}{c^2}&lt;/span&gt;&lt;span class="katex-html"&gt;&lt;span class="base"&gt;&lt;span class="strut"&gt;&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mopen nulldelimiter"&gt;&lt;/span&gt;&lt;span class="mfrac"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist"&gt;&lt;span&gt;&lt;span class="pstrut"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mtight"&gt;&lt;span class="mord mtight"&gt;&lt;span class="mord mathdefault mtight"&gt;c&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist"&gt;&lt;span&gt;&lt;span class="pstrut"&gt;&lt;/span&gt;&lt;span class="sizing reset-size3 size1 mtight"&gt;&lt;span class="mord mtight"&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span&gt;&lt;span class="pstrut"&gt;&lt;/span&gt;&lt;span class="frac-line"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span&gt;&lt;span class="pstrut"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mtight"&gt;&lt;span class="mord mathdefault mtight"&gt;G&lt;/span&gt;&lt;span class="mord mathdefault mtight"&gt;M&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mclose nulldelimiter"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;/span&gt;
-.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://res.cloudinary.com/practicaldev/image/fetch/s--3K6LPGIe--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/4rrh7mkn6fgd46l61r5s.jpg" class="article-body-image-wrapper"&gt;&lt;img src="https://res.cloudinary.com/practicaldev/image/fetch/s--3K6LPGIe--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/4rrh7mkn6fgd46l61r5s.jpg" alt="Plot 1"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The initial conditions for the plots above are as follows. The timelike component of the initial velocity was calculated by setting
-&lt;span class="katex-element"&gt;
-&lt;span class="katex"&gt;&lt;span class="katex-mathml"&gt;gabuaub=0g_{ab}u^au^b = 0&lt;/span&gt;&lt;span class="katex-html"&gt;&lt;span class="base"&gt;&lt;span class="strut"&gt;&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathdefault"&gt;g&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist"&gt;&lt;span&gt;&lt;span class="pstrut"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mtight"&gt;&lt;span class="mord mathdefault mtight"&gt;a&lt;/span&gt;&lt;span class="mord mathdefault mtight"&gt;b&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathdefault"&gt;u&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist"&gt;&lt;span&gt;&lt;span class="pstrut"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathdefault mtight"&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathdefault"&gt;u&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist"&gt;&lt;span&gt;&lt;span class="pstrut"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathdefault mtight"&gt;b&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mspace"&gt;&lt;/span&gt;&lt;span class="mrel"&gt;=&lt;/span&gt;&lt;span class="mspace"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut"&gt;&lt;/span&gt;&lt;span class="mord"&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;/span&gt;
-.&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre class="highlight plaintext"&gt;&lt;code&gt;a = 0.9
-end_lambda = 200
-max_steps = 200
-position = [0, 20., pi / 2, pi / 2]
-velocity = [-0.2, 0., 0.002]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;Other solvers (that are suited to non-stiff problems) become unstable long before the desired number of integration steps is reached. Given the lack of a proper solver, I wrote my own solver, using a step-size control scheme from the venerable Numerical Recipes (Press et al, 2007), fine-tuned to the problem. Sadly, this did not produce better results and it even failed for certain pathological higher-order orbits. Here, "high-order" implies "loopy" orbits, very close to the black hole, while "pathological" can encompass higher-order orbits to orbits, that are scattered at large angles (i.e., orbits, with sharp turning points, à la the plots above).&lt;/p&gt;
-
-&lt;p&gt;Then, I set out to find the reason behind the instability. Based on my tests, the stiffness comes from the singular nature of the black hole horizon (in Boyer-Lindquist coordinates), which can force the solver to choose incredibly small step-sizes, which in turn leads to more and more floating point error and over large intervals, the obtained solution becomes completely unphysical. This is what, "unstable" means here. Apart from the graphical representation of the instability through the plots, we can also see the instability numerically, through the norm of 4-Velocity of the light ray, as it evolves:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://res.cloudinary.com/practicaldev/image/fetch/s--x773iglx--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/unqkuukvuez64rw9sytu.jpg" class="article-body-image-wrapper"&gt;&lt;img src="https://res.cloudinary.com/practicaldev/image/fetch/s--x773iglx--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/unqkuukvuez64rw9sytu.jpg" alt="U1"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;All of these values should be ~0 and on comparing with the plot on the right, it is easy to see, that the norm becomes too high as the light ray gets closer to the black hole. This tells us, that a correlation exists between the initial conditions and the instability, which is expected.&lt;/p&gt;
-
-&lt;p&gt;In discussions with my mentors, we explored a few solutions, such as, using another system of units or coordinate system. However, we are already using the most suitable unit and coordinate systems for numerical computation of geodesics - &lt;em&gt;M&lt;/em&gt;-Units and Boyer-Lindquist Coordinates. I should note here, that at slightly larger initial radial distances and speeds, the code provides a good approximation to the actual solution, as can be observed in the plot and table below.&lt;br&gt;
-&lt;a href="https://res.cloudinary.com/practicaldev/image/fetch/s--MpWHMED6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/8jguox8rqj06yjwrrleo.jpg" class="article-body-image-wrapper"&gt;&lt;img src="https://res.cloudinary.com/practicaldev/image/fetch/s--MpWHMED6--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/8jguox8rqj06yjwrrleo.jpg" alt="Plot 2"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://res.cloudinary.com/practicaldev/image/fetch/s--d97ENcX4--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/b7m73dy8glfgu6wyg78c.jpg" class="article-body-image-wrapper"&gt;&lt;img src="https://res.cloudinary.com/practicaldev/image/fetch/s--d97ENcX4--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/b7m73dy8glfgu6wyg78c.jpg" alt="U2"&gt;&lt;/a&gt;&lt;br&gt;
-Clearly, the accumulated error over lambda is smaller in this plot.&lt;/p&gt;
-
-&lt;p&gt;The initial conditions for the second set of plots are as follows:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight"&gt;&lt;pre class="highlight plaintext"&gt;&lt;code&gt;a = 0.9
-end_lambda = 200
-max_steps = 200
-position = [0, 30., pi / 2, pi / 2] # Only difference
-velocity = [-0.2, 0., 0.002]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-
-&lt;h3&gt;
-&lt;a href="http://openastronomy.org/Universe_OA/posts/2020/08/20200806_1009_jes24/#until-next-time" class="anchor"&gt;
-&lt;/a&gt;
-Until next time...
-&lt;/h3&gt;
-
-&lt;p&gt;Initially, I had planned to develop the Null Geodesics module, such that simulating a photon sheet would be possible through this module itself. The purpose would be applications in radiative transfer calculations, which require simulation of pathological orbits for better approximations in the strong gravity regime. But the issue of error accumulation has made it difficult to continue with this strategy. We have decided to make the current code merge-ready, while keeping the PR open, mainly because, the code performs well at larger initial distances. I have already made relevant changes to ensure the code is merge-ready. The status of the PR can be viewed at &lt;a href="https://github.com/einsteinpy/einsteinpy/pull/527"&gt;PR #527&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I am currently mulling the option of implementing the code in some low level language and then, building a wrapper around it, goal being to achieve better error-control, which I have not been able to obtain with Python/SciPy. Another approach that I am considering, is to restrict integration near the event horizon, based on step-size changes. Since multiple options are being explored and this is the last coding period, I have decided to make these blogs weekly. So my next blog should be up, next Friday. Hopefully, I will have solved this by then.&lt;/p&gt;&lt;/div&gt;</description><category>EinsteinPy</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200806_1009_jes24/</guid><pubDate>Thu, 06 Aug 2020 09:09:20 GMT</pubDate></item></channel></rss>
+&lt;img src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=4aebd6964154" width="1" height="1"&gt;&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200809_2322_kakirastern/</guid><pubDate>Sun, 09 Aug 2020 22:22:40 GMT</pubDate></item></channel></rss>
