@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by siddharthlal25)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/siddharthlal25.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 30 Aug 2020 02:03:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 9 &amp; 10: Beginning of the last month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200818_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;div&gt;&lt;h3 id="hey-sid-lets-get-to-the-point-directly-did-your-previous-pr-get-merged"&gt;&lt;em&gt;Hey Sid! Let’s get to the point directly, did your previous PR get merged?&lt;/em&gt;&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by siddharthlal25)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/siddharthlal25.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 31 Aug 2020 02:04:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 11 &amp; 12: Last two weeks of GSoC</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200830_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;div&gt;&lt;h3 id="hey-sid-whats-the-progress-what-did-you-do-in-last-2-weeks"&gt;&lt;em&gt;Hey Sid! What’s the progress? What did you do in last 2 weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;The work was completed on time! I spent the last two weeks coding up the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;ccds&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;. With these, one can apply a function on the desired object (i.e. ccd or array or filename) and can also save it to FITS file. There are various options available for saving, like the prefix name of the saved file, suffix name of saved file and also the location at which to save, check out the repo for more info!&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="awesome-can-you-show-some-work-samples"&gt;&lt;em&gt;Awesome, Can you show some work samples?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Sure, here it is!&lt;/p&gt;
+
+&lt;p&gt;This is a bias frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes overscan subtraction followed by trimming the overscan region, it turns out to be:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/div&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200830_1113_siddharthlal25/</guid><pubDate>Sun, 30 Aug 2020 10:13:56 GMT</pubDate></item><item><title>Week 9 &amp; 10: Beginning of the last month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200818_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;div&gt;&lt;h3 id="hey-sid-lets-get-to-the-point-directly-did-your-previous-pr-get-merged"&gt;&lt;em&gt;Hey Sid! Let’s get to the point directly, did your previous PR get merged?&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;Yes! The PR which involved creation of new data structure for &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s got merged, the code is up and running now!&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
