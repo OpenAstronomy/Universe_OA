@@ -104,12 +104,9 @@ bg-dark
             </p>
         </div>
     </header><div class="p-summary entry-summary">
-    <div>
-<p>Null Geodesics functionality has been implemented into EinsteinPy, with PR<a href="https://github.com/einsteinpy/einsteinpy/pull/527">#527</a>, having been merged 🎉🎉. I apologize for no blogs in the past 3 weeks. There was a COVID situation here, that required multiple tests and isolation and all that it entails. This led to me foregoing an entire week. And, when that had settled, I had to take the call on abandoning the plan of numerically integrating the Geodesics equations, due to the massive error accumulation, as discussed in my last blog. A confusing fact about that, was that <em>Mathematica</em> could still keep the error build-up to a minimum, while <em>Python</em> simply could not, even with adaptive and symplectic schemes. But the symplectic schemes did bring the error down, by around 2 orders of magnitude, which gave me the idea to take a Hamiltonian approach, which would increase the number of ODEs to solve, but drop the order by 1. And, as it turns out, the Kerr Hamiltonian is separable (Carter, 1968a [1]), which makes the implementation even simpler. In this blog, I will be discussing this approach, which has finally led to proper geodesic calculations. I have also included some plots (and a cool animation) for Kerr &amp; Schwarzschild Null-like (and Time-like) geodesics.</p>
-
-<h3>
-</h3>
-<p class="more"><a href="posts/2020/08/20200830_1733_jes24/">Read more…</a></p>
+    <div class="system-message">
+<p class="system-message-title">System Message: ERROR/3 (<span class="docutils literal">&lt;string&gt;</span>)</p>
+<p>Line 24 exceeds the line-length-limit.</p>
 </div>
     </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2020/08/20200830_1113_siddharthlal25/" class="u-url">Week 11 &amp; 12: Last two weeks of GSoC</a></h1>
