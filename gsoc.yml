@@ -1,15 +1,15 @@
 gsoc2021:
   Suyog7130:
-    rss_feed: ""
+    rss_feed: "https://suyog20.blogspot.com/feeds/posts/default/-/gsoc/?alt=rss"
     project: 'astropy'
   adwaitbhope:
     rss_feed: ""
     project: 'SunPy'
   jeffreypaul15:
-    rss_feed: ""
+    rss_feed: "https://jeffrey-paul2000.medium.com/feed"
     project: 'SunPy'
   ndanzanello:
-    rss_feed: ""
+    rss_feed: "https://ndanzanello.wordpress.com/tag/gsoc/feed" # FIXME Check gsoc tag is there
     project: 'gnuastro'
   anandxkumar:
     rss_feed: ""
@@ -18,13 +18,13 @@ gsoc2021:
     rss_feed: ""
     project: 'radis'
   dhruv9vats:
-    rss_feed: ""
+    rss_feed: "https://medium.com/feed/@dhruv9vats"
     project: 'stingray'
   godslayer201:
     rss_feed: ""
     project: 'stingray'
   rashmiraj137:
-    rss_feed: ""
+    rss_feed: "https://rashmiraj137.blogspot.com/feeds/posts/default/-/gsoc/?alt=rss" # FIXME confirm gsoc label
     project: 'stingray'
 gsoc2020:
   theand9:
