@@ -15,7 +15,7 @@ gsoc2021:
     rss_feed: ""
     project: 'radis'
   gagan-aryan:
-    rss_feed: ""
+    rss_feed: "https://gagan-aryan.netlify.app/tags/gsoc21//index.xml"
     project: 'radis'
   dhruv9vats:
     rss_feed: "https://medium.com/feed/@dhruv9vats"
