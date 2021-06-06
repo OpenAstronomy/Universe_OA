@@ -12,7 +12,7 @@ gsoc2021:
     rss_feed: "https://ndanzanello.wordpress.com/tag/gsoc/feed" # FIXME Check gsoc tag is there
     project: 'gnuastro'
   anandxkumar:
-    rss_feed: ""
+    rss_feed: "https://anandkumar-blog.netlify.app/rss.xml"
     project: 'radis'
   gagan-aryan:
     rss_feed: ""
