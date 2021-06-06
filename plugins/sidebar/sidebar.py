@@ -78,15 +78,16 @@ class Sidebar(ConfigPlugin):
                      'radis': 'https://openastronomy.org/img/members/radis_ico.png',
                      'astronomy-commons': 'https://openastronomy.org/img/members/astronomy-commons.png',
                      'stingray': 'https://github.com/StingraySoftware.png?size=40',
+                     'gnuastro': 'https://openastronomy.org/img/members/gnuastro.svg',
             }
 
-            date_ranges = [(datetime.datetime(2020,5,4).replace(tzinfo=utc), datetime.datetime(2020,6,3).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,6,3).replace(tzinfo=utc), datetime.datetime(2020,6,17).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,6,17).replace(tzinfo=utc), datetime.datetime(2020,7,1).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,7,1).replace(tzinfo=utc), datetime.datetime(2020,7,15).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,7,15).replace(tzinfo=utc), datetime.datetime(2020,7,29).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,7,29).replace(tzinfo=utc), datetime.datetime(2020,8,12).replace(tzinfo=utc)),
-                           (datetime.datetime(2020,8,13).replace(tzinfo=utc), datetime.datetime(2020,8,26).replace(tzinfo=utc)),
+            date_ranges = [(datetime.datetime(2021,5,4).replace(tzinfo=utc), datetime.datetime(2021,6,7).replace(tzinfo=utc)),
+                           (datetime.datetime(2021,6,7).replace(tzinfo=utc), datetime.datetime(2021,6,15).replace(tzinfo=utc)),
+                           (datetime.datetime(2021,6,15).replace(tzinfo=utc), datetime.datetime(2021,6,29).replace(tzinfo=utc)),
+                           (datetime.datetime(2021,6,29).replace(tzinfo=utc), datetime.datetime(2021,7,13).replace(tzinfo=utc)),
+                           (datetime.datetime(2021,7,13).replace(tzinfo=utc), datetime.datetime(2021,7,27).replace(tzinfo=utc)),
+                           (datetime.datetime(2021,7,27).replace(tzinfo=utc), datetime.datetime(2021,8,10).replace(tzinfo=utc)),
+                           (datetime.datetime(2021,8,10).replace(tzinfo=utc), datetime.datetime(2021,8,24).replace(tzinfo=utc)),
             ]
             for author in authors.keys():
                 if authors[author]['date'].year < datetime.datetime.utcnow().year:
