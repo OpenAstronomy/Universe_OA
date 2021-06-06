@@ -1,3 +1,31 @@
+gsoc2021:
+  Suyog7130:
+    rss_feed: ""
+    project: 'astropy'
+  adwaitbhope:
+    rss_feed: ""
+    project: 'SunPy'
+  jeffreypaul15:
+    rss_feed: ""
+    project: 'SunPy'
+  ndanzanello:
+    rss_feed: ""
+    project: 'gnuastro'
+  anandxkumar:
+    rss_feed: ""
+    project: 'radis'
+  gagan-aryan:
+    rss_feed: ""
+    project: 'radis'
+  dhruv9vats:
+    rss_feed: ""
+    project: 'stingray'
+  godslayer201:
+    rss_feed: ""
+    project: 'stingray'
+  rashmiraj137:
+    rss_feed: ""
+    project: 'stingray'
 gsoc2020:
   theand9:
     rss_feed: "https://medium.com/feed/@andsbmp17"
