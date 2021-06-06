@@ -78,6 +78,7 @@ class Sidebar(ConfigPlugin):
                      'radis': 'https://openastronomy.org/img/members/radis_ico.png',
                      'astronomy-commons': 'https://openastronomy.org/img/members/astronomy-commons.png',
                      'stingray': 'https://github.com/StingraySoftware.png?size=40',
+                     'gnuastro': 'https://openastronomy.org/img/members/gnuastro.svg',
             }
 
             date_ranges = [(datetime.datetime(2020,5,4).replace(tzinfo=utc), datetime.datetime(2020,6,3).replace(tzinfo=utc)),
