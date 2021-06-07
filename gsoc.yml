@@ -24,7 +24,7 @@ gsoc2021:
     rss_feed: ""
     project: 'stingray'
   rashmiraj137:
-    rss_feed: "https://rashmiraj137.blogspot.com/feeds/posts/default/-/gsoc/?alt=rss" # FIXME confirm gsoc label
+    rss_feed: "https://medium.com/feed/@raj-rashmi741"
     project: 'stingray'
 gsoc2020:
   theand9:
