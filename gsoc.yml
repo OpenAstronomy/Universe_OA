@@ -3,7 +3,7 @@ gsoc2021:
     rss_feed: "https://suyog20.blogspot.com/feeds/posts/default/-/gsoc/?alt=rss"
     project: 'astropy'
   adwaitbhope:
-    rss_feed: ""
+    rss_feed: "https://medium.com/feed/@adwaitbhope"
     project: 'SunPy'
   jeffreypaul15:
     rss_feed: "https://jeffrey-paul2000.medium.com/feed"
