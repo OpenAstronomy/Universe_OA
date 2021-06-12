@@ -9,7 +9,7 @@ gsoc2021:
     rss_feed: "https://jeffrey-paul2000.medium.com/feed"
     project: 'SunPy'
   ndanzanello:
-    rss_feed: "https://ndanzanello.wordpress.com/tag/gsoc/feed" # FIXME Check gsoc tag is there
+    rss_feed: "https://ndanzanello.wordpress.com/tag/gsoc/feed"
     project: 'gnuastro'
   anandxkumar:
     rss_feed: "https://anandkumar-blog.netlify.app/rss.xml"
