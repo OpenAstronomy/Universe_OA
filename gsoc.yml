@@ -1,7 +1,7 @@
 gsoc2021:
   Suyog7130:
     rss_feed: "https://suyog20.blogspot.com/feeds/posts/default/-/gsoc/?alt=rss"
-    project: 'astropy'
+    project: 'Astropy'
   adwaitbhope:
     rss_feed: "https://medium.com/feed/@adwaitbhope"
     project: 'SunPy'
