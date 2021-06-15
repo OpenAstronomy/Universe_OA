@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC - 0 | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2021/06/20210606_0300_gagan-aryan/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Gagan Aryan">
+<link rel="prev" href="../20210605_1932_dhruv9vats/" title="Google Summer of Code" type="text/html">
+<link rel="next" href="../20210606_1659_suyog7130/" title="astropy@GSoC Blog Post #1" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSoC - 0">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2021/06/20210606_0300_gagan-aryan/">
+<meta property="og:description" content="I will be documenting my journey in the GSoC program under Radis (OpenAstronomy). This blog is the first in the series of those blogs and will contain a quick overview of what Google Summer of Code is">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-06-06T03:00:06+01:00">
+<meta property="article:tag" content="radis">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://gatsbystarterblogsource.gatsbyjs.io" data-toggle="tooltip" data-placement="top" title="2021-06-06 22:40:32+01:00">
+                    anandxkumar
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-04 - 2021-06-07">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-07 - 2021-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-15 - 2021-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-06-29 - 2021-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-13 - 2021-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-27 - 2021-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-10 - 2021-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="None" data-toggle="tooltip" data-placement="top" title="2021-06-05 19:32:19+01:00">
+                    Dhruv Vats
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-04 - 2021-06-07">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-07 - 2021-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-15 - 2021-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-06-29 - 2021-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-13 - 2021-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-27 - 2021-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-10 - 2021-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://gagan-aryan.netlify.app" data-toggle="tooltip" data-placement="top" title="2021-06-06 03:00:06+01:00">
+                    Gagan Aryan
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-04 - 2021-06-07">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-07 - 2021-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-15 - 2021-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-06-29 - 2021-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-13 - 2021-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-27 - 2021-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-10 - 2021-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="None" data-toggle="tooltip" data-placement="top" title="2021-06-03 08:34:39+01:00">
+                    Jeffrey Paul
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-04 - 2021-06-07">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-07 - 2021-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-15 - 2021-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-06-29 - 2021-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-13 - 2021-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-27 - 2021-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-10 - 2021-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="None" data-toggle="tooltip" data-placement="top" title="2021-06-07 14:03:09+01:00">
+                    Rachitt Shah
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-04 - 2021-06-07">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-07 - 2021-06-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-15 - 2021-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-06-29 - 2021-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-13 - 2021-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-27 - 2021-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-10 - 2021-08-24">🔲</span></span>
+                </li>
+<li>
+                   <img src="http://www.astropy.org/favicon.ico" height="16" width="16"><a href="https://suyog20.blogspot.com" data-toggle="tooltip" data-placement="top" title="2021-06-06 16:59:00+01:00">
+                    Suyog Garg
+                   </a> <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-04 - 2021-06-07">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-07 - 2021-06-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-15 - 2021-06-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-06-29 - 2021-07-13">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-13 - 2021-07-27">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-27 - 2021-08-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-10 - 2021-08-24">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC - 0</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/gagan-aryan/">Gagan Aryan</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2021-06-06T03:00:06+01:00" itemprop="datePublished" title="2021-06-06 03:00">2021-06-06 03:00</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://gagan-aryan.netlify.app/posts/gsoc-0/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>I will be documenting my journey in the GSoC program under Radis (OpenAstronomy). This blog is the first in the series of those blogs and will contain a quick overview of what Google Summer of Code is, an intro to the organization I will be working with and the project I will be involved in, and what I did in the 20-day community bonding period.</p>
+<h3 id="what-is-gsoc">What is GSoC?</h3>
+<p>I remember attending one of Programming Club IIT Kanpur’s lectures in my freshman year of college, and my senior just asked the students if they knew what GSoC was. I had no idea. But I glanced over to see if my peers knew something and saw a few of them nodding enthusiastically and a few others muttering among themselves. The senior didn’t explain what GSoC was, but he did ask us to check it out ourselves. I did. I wouldn’t save I understood the entire program back then since I didn’t even know what open source was.</p>
+<!-- TEASER_END -->
+<p>Fast forward around 9-10 months, I started contributing to open source. I really felt it helped me skill up as a developer, which motivated me to participate in GSoC.</p>
+<p>Google Summer of Code or GSoC is a program sponsored by Google that aims to connect university students worldwide with open source organizations to promote the open-source culture. Students work with an open-source organization on a 10-week programming project during their break from school and get an opportunity to contribute to high-quality code, learn new skills, and also get compensated for the work. In turn, the organizations benefit from a few extra pairs of helping hands. Any college student interested in software development should definitely check out this program.</p>
+<h3 id="radis-and-my-project">Radis and my project</h3>
+<p>Radis<sup id="fnref:1"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1">1</a></sup> is a fast line-by-line code for synthesizing and fitting infrared absorption and emmision spectra such as encountered in laboratory plasmas or exoplanet atmospheres.</p>
+<p>Radis aims to provide a wide array of features and remain user-friendly at the same so. It currently supports spectral calculations on databases like HTIRAN and high-temperature databases like HITEMP, CDSD-4000 with a future plan on extending the support to ExoMol. It comes with just a one-line install and post-processing tools for analysis of the spectra. Users can also combine ranges to create a mixture of gases or calculate radiative transfer along the line-of-sight.</p>
+<p>RADIS uses Pandas dataframe for handling all the databases currently. Quoting the words of Wes (the core dev of Pandas), “pandas rule of thumb: have 5 to 10 times as much RAM as the size of the dataset” <sup id="fnref:2"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:2">2</a></sup>. Which makes it impossible to read, say, a database of size 5GB on a machine with a RAM of 16GB.</p>
+<p><img alt="Pandas Meme" src="https://gagan-aryan.netlify.app/images/gsoc-0/pandas_meme.jpeg"></p>
+<p>The goal of this project would be first to reduce the memory usage of the current calculations. Then, we replace pandas with libraries that are better suited for handling larger-than-memory databases, which would make it possible to compute spectral databases of up to billions of lines (of the scale of hundreds of GB or terabytes). I will say the core technical details of the project for the upcoming blogs.</p>
+<h3 id="community-bonding-period">Community Bonding Period</h3>
+<p>The Community Bonding Period is an almost 20-days long period meant to serve as a warm-up or a buffer before the actual coding period begins. It can be used for a wide variety of purposes, such as getting a better understanding of the codebase and figuring out its intricacies. I started out by quickly going over Spectro-102<sup id="fnref:3"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:3">3</a></sup> again since I had left out a few parts the last time I did. I then studied the RADIS <sup id="fnref:1"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1">1</a></sup> paper. Though I cannot really say the entire document, I did get a top-level idea of how it works and how it is different from other software.</p>
+<h4 id="my-failed-attempts-in-wrapping-up-the-previous-work">My failed attempts in wrapping up the previous work</h4>
+<p>After my GSoC application, I started working on a feature request that asked a specific function in the code to return the wavelength and the intensity grid in sorted ascending order. I just assumed that all I need to do was sort the grids, and I did this and created a PR. I later learned that Radis, like any good codebase, has many tests that make sure things don’t break when a new change is made. Apparently, returning the wavelengths and intensity grid in the sorted order broke the physics when combining spectra.</p>
+<p>Before this PR, I was unaware of <code>pytests</code>. I went through the documentation<sup id="fnref:4"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:4">4</a></sup>, ran the tests on my machine, and checked out each of the failing tests. This helped me understand different parts of the code, especially the <code>spectrum</code> and <code>los</code> modules of the repository. The tests passed of the <code>spectrum</code> module passed after a few modifications. But, after I updated Erwan regarding my progress, I realized that I need to now design new tests since we cannot pinpoint where we are having problems in the codebase with the existing ones. Besides, I learned about the different types of tests (non-regression, validation, and verification) that exist in RADIS to ensure things don’t break after a brief chat with Erwan.</p>
+<p>We have decided how we will tackle this issue, but since I am required to start on my project from tomorrow, I will be getting back to this PR later and hope to find time for the same during the coding period.</p>
+<h4 id="discovery-during--hitemp-co2h2o-download-automation">Discovery during HITEMP (CO2/H2O) download automation</h4>
+<p>In the first phase of my project, I am required to use a few hacks<sup id="fnref:5"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:5">5</a></sup> in the pandas and boost their memory performance. This includes dropping a few columns and changing the datatypes of a few others. Coincidentally Dirk encountered an issue while working on automating the download of CO2/H2O for HITEMP. So, CO2/H2O spectral databases contain multiple zip files, and automatic download of this was not supported in RADIS. Due to NaN values and the <code>np.uint</code> not supporting them, the datatypes of a few columns conflicted when databases were added on top of one another. Currently, this is being handled by returning the parameters in the form of a memory inefficient <code>np.float64</code>. I will have to bring them down to more suitable datatypes (<code>np.uint</code>) most probably. This will probably be the first thing I will do as part of the project.</p>
+<h3 id="the-next-two-weeks">The next two weeks</h3>
+<p>In the next two weeks I will be involved in figuring out and implement all the database pre-processing that can be done to boost pandas’ performance<sup id="fnref:4"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:4">4</a></sup>. I will also setup memory performance benchmarks to track these changes. I am super excited to see how this project goes. I would like to thank Google, OpenAstronomy, RADIS and my mentors <a href="https://github.com/erwanp">Erwan Pannier</a>, <a href="https://github.com/dcmvdbekerom">Dirk van den Bekerom</a> and <a href="https://github.com/pkj-m">Pankaj Mishra</a>. I hope to learn a lot of stuff along the way and hopefully I will deliver. So,</p>
+<p><img alt="Let the Games Begin" src="https://media1.giphy.com/media/xT0xevozBTg7ChpL44/source.gif"></p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://gagan-aryan.netlify.app/tags/gsoc21/doi.org/10.1016/j.jqsrt.2018.09.027">RADIS: A nonequilibrium line-by-line radiative code for CO2 and HITRAN-like database species, E. Pannier &amp; C. O. Laux</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:1">↩︎</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://wesmckinney.com/blog/apache-arrow-pandas-internals">Apache Arrow and the “10 Things I Hate About pandas”, Wes Mckinney</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:2">↩︎</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://mybinder.org/v2/gh/radis/spectro101/HEAD?filepath=102_lab_spectroscopy.ipynb">Spectro102</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:3">↩︎</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://radis.github.io/">Radis Documentation</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:4">↩︎</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://pythonspeed.com/articles/pandas-load-less-data/">Pythonspeed article - Pandas Load less data</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:5">↩︎</a></p>
+</li>
+</ol>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20210605_1932_dhruv9vats/" rel="prev" title="Google Summer of Code">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20210606_1659_suyog7130/" rel="next" title="astropy@GSoC Blog Post #1">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2021         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

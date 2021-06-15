@@ -1,0 +1,15 @@
+.. title: astropy@GSoC Blog Post #1
+.. slug:
+.. date: 2021-06-06 16:59:00 
+.. tags: Astropy
+.. author: Suyog Garg
+.. link: https://suyog20.blogspot.com/2021/06/astropygsoc-blog-post-1.html
+.. description:
+.. category: gsoc2021
+
+
+.. raw:: html
+
+    <div>Hey there,</div><div><br /></div><div>How are you?</div><div>Chances are that you are coming across me for the first time.</div><div>Nice meeting you too! 😄</div><div><br /></div><div>  Since this is an introductory astropy@GSoC Blog Post, I would keep things   brief.</div><div><br /></div><div>  <br />  <div class="separator" style="clear: both; text-align: center;">    <img alt="" height="336" src="https://lh3.googleusercontent.com/-kVduvrsYzQ4/YL0ClAcy0hI/AAAAAAAA3Yk/PrbBQBkgxu8Y_f7-qpLAPlI6tr0zISXFgCLcBGAsYHQ/w336-h336/image.png" width="336" /><div style="margin-left: 1em; margin-right: 1em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;<div class="separator" style="clear: both; text-align: center;"><a href="https://lh3.googleusercontent.com/-OkQcow92n4s/YL0DELFw56I/AAAAAAAA3Y0/43e2Ak8Bsy8VaTSw6RYB3ryocKQUCnM1ACLcBGAsYHQ/image.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img alt="" height="154" src="https://lh3.googleusercontent.com/-OkQcow92n4s/YL0DELFw56I/AAAAAAAA3Y0/43e2Ak8Bsy8VaTSw6RYB3ryocKQUCnM1ACLcBGAsYHQ/image.png" width="320" /></a><img alt="" height="169" src="https://lh3.googleusercontent.com/-qshucfTcxpY/YL0CwsGOS2I/AAAAAAAA3Yo/OGuKkhEkZtkmz3xw6qVy3YYTANGN5Zi2gCLcBGAsYHQ/w169-h169/image.png" style="text-align: center;" width="169" /></div></div></div></div><div><br /></div><div><br /></div><div>As you probably already know, my name is Suyog and I am a participant for Google Summer of Code (GSoC) 2021. Over the course of the next 10 weeks or so, I will be working on the Astropy project under the umbrella organisation OpenAstronomy. During this while, I aim to add a CDS format writer to the Astropy library with the help of my affable mentors Aarya and Moritz.&nbsp; &nbsp;</div><div><br /></div><div>I had actually also applied for GSoC last summer, however I had failed to pass   one of the eligibility criteria, and so wasn't selected. This astropy@GSoC   project, therefore, is quite an awesome opportunity for me. I am looking   forward to making the most of it and enjoying the time all the same. </div><div><br /></div><div>There are two preliminary observations:</div><div>  &nbsp; &nbsp; 1. The associated stipend, albeit somewhat lower than what used   to be the case a few years back, is freaking awesome. 😉 </div><div>  &nbsp; &nbsp; 2. Dunno, why this project is marked as Difficultly Low!?   Nothing as easy as being just the third person to write a Table writer for the   world's largest Astronomy code library! 😂😎 </div><div><br /></div><div>Alright. Bye.</div><div>See ya the next time! 🙋‍♂️</div><div><br /></div><div>  Stay tuned for more GSoC updates, or what is far better, for the next post in   general. </div>
+    <!-- TEASER_END -->
+
