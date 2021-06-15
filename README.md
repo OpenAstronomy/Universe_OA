@@ -58,4 +58,4 @@ search the commits that we care about.
    ```
    where `<x>` is the commit before than `<y>` which is the one we want to copy
    (up to <z> included) to `run`.
-   Then push it and all should work.
+   Then push it `run` and all should work.
