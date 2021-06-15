@@ -1,0 +1,56 @@
+.. title: GSoC - 0
+.. slug:
+.. date: 2021-06-06 03:00:06 
+.. tags: radis
+.. author: Gagan Aryan
+.. link: https://gagan-aryan.netlify.app/posts/gsoc-0/
+.. description:
+.. category: gsoc2021
+
+
+.. raw:: html
+
+    <p>I will be documenting my journey in the GSoC program under Radis (OpenAstronomy). This blog is the first in the series of those blogs and will contain a quick overview of what Google Summer of Code is, an intro to the organization I will be working with and the project I will be involved in, and what I did in the 20-day community bonding period.</p>
+    <h2 id="what-is-gsoc">What is GSoC?</h2>
+    <p>I remember attending one of Programming Club IIT Kanpur&rsquo;s lectures in my freshman year of college, and my senior just asked the students if they knew what GSoC was. I had no idea. But I glanced over to see if my peers knew something and saw a few of them nodding enthusiastically and a few others muttering among themselves. The senior didn&rsquo;t explain what GSoC was, but he did ask us to check it out ourselves. I did. I wouldn&rsquo;t save I understood the entire program back then since I didn&rsquo;t even know what open source was.</p>
+    <!-- TEASER_END -->
+    <p>Fast forward around 9-10 months, I started contributing to open source. I really felt it helped me skill up as a developer, which motivated me to participate in GSoC.</p>
+    <p>Google Summer of Code or GSoC is a program sponsored by Google that aims to connect university students worldwide with open source organizations to promote the open-source culture. Students work with an open-source organization on a 10-week programming project during their break from school and get an opportunity to contribute to high-quality code, learn new skills, and also get compensated for the work. In turn, the organizations benefit from a few extra pairs of helping hands. Any college student interested in software development should definitely check out this program.</p>
+    <h2 id="radis-and-my-project">Radis and my project</h2>
+    <p>Radis<sup id="fnref:1"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1">1</a></sup> is a fast line-by-line code for synthesizing and fitting infrared absorption and emmision spectra such as encountered in laboratory plasmas or exoplanet atmospheres.</p>
+    <p>Radis aims to provide a wide array of features and remain user-friendly at the same so. It currently supports spectral calculations on databases like HTIRAN and high-temperature databases like HITEMP, CDSD-4000 with a future plan on extending the support to ExoMol. It comes with just a one-line install and post-processing tools for analysis of the spectra. Users can also combine ranges to create a mixture of gases or calculate radiative transfer along the line-of-sight.</p>
+    <p>RADIS uses Pandas dataframe for handling all the databases currently. Quoting the words of Wes (the core dev of Pandas), “pandas rule of thumb: have 5 to 10 times as much RAM as the size of the dataset” <sup id="fnref:2"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:2">2</a></sup>. Which makes it impossible to read, say, a database of size 5GB on a machine with a RAM of 16GB.</p>
+    <p><img alt="Pandas Meme" src="https://gagan-aryan.netlify.app/images/gsoc-0/pandas_meme.jpeg" /></p>
+    <p>The goal of this project would be first to reduce the memory usage of the current calculations. Then, we replace pandas with libraries that are better suited for handling larger-than-memory databases, which would make it possible to compute spectral databases of up to billions of lines (of the scale of hundreds of GB or terabytes). I will say the core technical details of the project for the upcoming blogs.</p>
+    <h2 id="community-bonding-period">Community Bonding Period</h2>
+    <p>The Community Bonding Period is an almost 20-days long period meant to serve as a warm-up or a buffer before the actual coding period begins. It can be used for a wide variety of purposes, such as getting a better understanding of the codebase and figuring out its intricacies. I started out by quickly going over Spectro-102<sup id="fnref:3"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:3">3</a></sup> again since I had left out a few parts the last time I did. I then studied the RADIS <sup id="fnref:1"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1">1</a></sup> paper. Though I cannot really say the entire document, I did get a top-level idea of how it works and how it is different from other software.</p>
+    <h3 id="my-failed-attempts-in-wrapping-up-the-previous-work">My failed attempts in wrapping up the previous work</h3>
+    <p>After my GSoC application, I started working on a feature request that asked a specific function in the code to return the wavelength and the intensity grid in sorted ascending order. I just assumed that all I need to do was sort the grids, and I did this and created a PR. I later learned that Radis, like any good codebase, has many tests that make sure things don&rsquo;t break when a new change is made. Apparently, returning the wavelengths and intensity grid in the sorted order broke the physics when combining spectra.</p>
+    <p>Before this PR, I was unaware of <code>pytests</code>. I went through the documentation<sup id="fnref:4"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:4">4</a></sup>, ran the tests on my machine, and checked out each of the failing tests. This helped me understand different parts of the code, especially the <code>spectrum</code> and <code>los</code> modules of the repository. The tests passed of the <code>spectrum</code> module passed after a few modifications. But, after I updated Erwan regarding my progress, I realized that I need to now design new tests since we cannot pinpoint where we are having problems in the codebase with the existing ones. Besides, I learned about the different types of tests (non-regression, validation, and verification) that exist in RADIS to ensure things don&rsquo;t break after a brief chat with Erwan.</p>
+    <p>We have decided how we will tackle this issue, but since I am required to start on my project from tomorrow, I will be getting back to this PR later and hope to find time for the same during the coding period.</p>
+    <h3 id="discovery-during--hitemp-co2h2o-download-automation">Discovery during HITEMP (CO2/H2O) download automation</h3>
+    <p>In the first phase of my project, I am required to use a few hacks<sup id="fnref:5"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:5">5</a></sup> in the pandas and boost their memory performance. This includes dropping a few columns and changing the datatypes of a few others. Coincidentally Dirk encountered an issue while working on automating the download of CO2/H2O for HITEMP. So, CO2/H2O spectral databases contain multiple zip files, and automatic download of this was not supported in RADIS. Due to NaN values and the <code>np.uint</code> not supporting them, the datatypes of a few columns conflicted when databases were added on top of one another. Currently, this is being handled by returning the parameters in the form of a memory inefficient <code>np.float64</code>. I will have to bring them down to more suitable datatypes (<code>np.uint</code>) most probably. This will probably be the first thing I will do as part of the project.</p>
+    <h2 id="the-next-two-weeks">The next two weeks</h2>
+    <p>In the next two weeks I will be involved in figuring out and implement all the database pre-processing that can be done to boost pandas&rsquo; performance<sup id="fnref:4"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:4">4</a></sup>. I will also setup memory performance benchmarks to track these changes. I am super excited to see how this project goes. I would like to thank Google, OpenAstronomy, RADIS and my mentors <a href="https://github.com/erwanp">Erwan Pannier</a>, <a href="https://github.com/dcmvdbekerom">Dirk van den Bekerom</a> and <a href="https://github.com/pkj-m">Pankaj Mishra</a>. I hope to learn a lot of stuff along the way and hopefully I will deliver. So,</p>
+    <p><img alt="Let the Games Begin" src="https://media1.giphy.com/media/xT0xevozBTg7ChpL44/source.gif" /></p>
+    <div class="footnotes">
+    <hr />
+    <ol>
+    <li id="fn:1">
+    <p><a href="https://gagan-aryan.netlify.app/tags/gsoc21/doi.org/10.1016/j.jqsrt.2018.09.027">RADIS: A nonequilibrium line-by-line radiative code for CO2 and HITRAN-like database species, E. Pannier &amp; C. O. Laux</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:1">&#x21a9;&#xfe0e;</a></p>
+    </li>
+    <li id="fn:2">
+    <p><a href="https://wesmckinney.com/blog/apache-arrow-pandas-internals">Apache Arrow and the “10 Things I Hate About pandas”, Wes Mckinney</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:2">&#x21a9;&#xfe0e;</a></p>
+    </li>
+    <li id="fn:3">
+    <p><a href="https://mybinder.org/v2/gh/radis/spectro101/HEAD?filepath=102_lab_spectroscopy.ipynb">Spectro102</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:3">&#x21a9;&#xfe0e;</a></p>
+    </li>
+    <li id="fn:4">
+    <p><a href="https://radis.github.io/">Radis Documentation</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:4">&#x21a9;&#xfe0e;</a></p>
+    </li>
+    <li id="fn:5">
+    <p><a href="https://pythonspeed.com/articles/pandas-load-less-data/">Pythonspeed article - Pandas Load less data</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:5">&#x21a9;&#xfe0e;</a></p>
+    </li>
+    </ol>
+    </div>
+
