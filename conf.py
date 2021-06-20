@@ -1171,3 +1171,5 @@ GLOBAL_CONTEXT_FILLER = []
 
 with open("organisations.yaml") as forgs:
     LOGOS = yaml.load(forgs, Loader=yaml.SafeLoader)
+with open("dates_posts.yaml") as fdates:
+    DATES = yaml.load(fdates, Loader=yaml.SafeLoader)
