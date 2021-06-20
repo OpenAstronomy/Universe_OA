@@ -3,7 +3,7 @@
 .. date: 2021-05-18 22:40:32 
 .. tags: radis
 .. author: anandxkumar
-.. link: https://gatsbystarterblogsource.gatsbyjs.io/0/
+.. link: https://anandkumar-blog.netlify.app/0/
 .. description:
 .. category: gsoc2021
 
