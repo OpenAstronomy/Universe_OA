@@ -28,7 +28,7 @@ class Sidebar(ConfigPlugin):
                 author_lists[author]['dates'].append(datepost)
             author_lists[author]['team'] = team
             post_link = post.meta['en']['link']
-            if "medium" in post_link or "dev.to" in post_link:
+            if ("medium" in post_link and "@" in post_link) or "dev.to" in post_link:
                 usertag = '\@' if 'medium' in post_link else ''
                 regex_url = f"(?P<url>https?://[^\s+/\s+/]+\/{usertag}\w+(\.\w+)?)"
             else:
