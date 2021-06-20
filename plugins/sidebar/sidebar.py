@@ -59,27 +59,7 @@ class Sidebar(ConfigPlugin):
             final_text = text_mobile + u'<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>'
             now_2w = datetime.datetime.utcnow() - datetime.timedelta(weeks=2)
             now_2w = now_2w.replace(tzinfo=utc)
-            image = {'Astropy':'https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg',
-                     'SunPy': 'https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg',
-                     'Casacore': 'https://github.com/casacore.png?size=40',
-                     'JuliaAstro': 'https://github.com/juliaastro.png?size=40',
-                     'yt': 'http://openastronomy.org/img/members/yt.png',
-                     'Glue': 'https://github.com/glue-viz.png?size=40',
-                     'poliastro': 'http://openastronomy.org/img/members/poliastro.png',
-                     'ChiantiPy': 'http://openastronomy.org/img/members/chiantipy.png',
-                     'IMS': 'http://openastronomy.org/img/members/ims.png',
-                     'COIN': 'https://github.com/COINtoolbox.png?size=40',
-                     'PlasmaPy': 'https://github.com/plasmapy.png?size=40',
-                     'HelioPy': 'http://openastronomy.org/img/members/heliopy.png',
-                     'Sherpa': 'http://openastronomy.org/img/members/sherpa_logo.gif',
-                     'TimeLab': 'http://openastronomy.org/img/members/timelab.png',
-                     'CTLearn': 'https://github.com/ctlearn-project.png?size=40',
-                     'EinsteinPy': 'https://openastronomy.org/img/members/einsteinpy.png',
-                     'radis': 'https://openastronomy.org/img/members/radis_ico.png',
-                     'astronomy-commons': 'https://openastronomy.org/img/members/astronomy-commons.png',
-                     'stingray': 'https://github.com/StingraySoftware.png?size=40',
-                     'gnuastro': 'https://openastronomy.org/img/members/gnuastro.svg',
-            }
+            image = site.config["LOGOS"]
 
             date_ranges = [(datetime.datetime(2021,5,4).replace(tzinfo=utc), datetime.datetime(2021,6,7).replace(tzinfo=utc)),
                            (datetime.datetime(2021,6,7).replace(tzinfo=utc), datetime.datetime(2021,6,15).replace(tzinfo=utc)),
