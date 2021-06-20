@@ -59,18 +59,14 @@ class Sidebar(ConfigPlugin):
             final_text = text_mobile + u'<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>'
             now_2w = datetime.datetime.utcnow() - datetime.timedelta(weeks=2)
             now_2w = now_2w.replace(tzinfo=utc)
+            this_year = datetime.datetime.utcnow().year
             image = site.config["LOGOS"]
+            dates = site.config["DATES"].get(this_year)
 
-            date_ranges = [(datetime.datetime(2021,5,4).replace(tzinfo=utc), datetime.datetime(2021,6,7).replace(tzinfo=utc)),
-                           (datetime.datetime(2021,6,7).replace(tzinfo=utc), datetime.datetime(2021,6,15).replace(tzinfo=utc)),
-                           (datetime.datetime(2021,6,15).replace(tzinfo=utc), datetime.datetime(2021,6,29).replace(tzinfo=utc)),
-                           (datetime.datetime(2021,6,29).replace(tzinfo=utc), datetime.datetime(2021,7,13).replace(tzinfo=utc)),
-                           (datetime.datetime(2021,7,13).replace(tzinfo=utc), datetime.datetime(2021,7,27).replace(tzinfo=utc)),
-                           (datetime.datetime(2021,7,27).replace(tzinfo=utc), datetime.datetime(2021,8,10).replace(tzinfo=utc)),
-                           (datetime.datetime(2021,8,10).replace(tzinfo=utc), datetime.datetime(2021,8,24).replace(tzinfo=utc)),
-            ]
+            date_ranges = [ (datetime.datetime.combine(x["start"], datetime.datetime.min.time()).replace(tzinfo=utc),
+                             (datetime.datetime.combine(x["end"], datetime.datetime.min.time()).replace(tzinfo=utc)))  for x in dates]
             for author in authors.keys():
-                if authors[author]['date'].year < datetime.datetime.utcnow().year:
+                if authors[author]['date'].year < this_year:
                     continue
                 if author == 'rkiman':
                     continue
