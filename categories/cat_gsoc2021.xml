@@ -1,5 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2021)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2021.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 20 Jun 2021 04:33:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A Summer of Coding and Astronomy — GSoC’21 at OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210607_1403_rachittshah/</link><dc:creator>Rachitt Shah</dc:creator><description>&lt;div&gt;&lt;h4&gt;A Summer of Coding and Astronomy — GSoC’21 at OpenAstronomy&lt;/h4&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/400/0*5kDNG2NTio40EKZh.gif"&gt;&lt;/figure&gt;&lt;h4&gt;“In real open source, you have the right to control your own destiny.”&lt;/h4&gt;&lt;p&gt;— Linus Torvalds&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2021)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2021.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 20 Jun 2021 17:55:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Post 1</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_1617_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;div&gt;&lt;p&gt;Hey there. I am working on the Astrometry project from Gnuastro and I will explain below the first things that I have been doing.&lt;br&gt;&lt;br&gt;Basically, we have two catalogs: one is the query catalog, which we want to find its wcs, and the reference catalog, that gives some stars positions in celestial coordinates. We begin finding “quads”, a group of 4 stars, on both catalogs. This part was already done, but the matching part between the quads needed some fixes.&lt;/p&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;The first thing we needed to fix was the vertices found on each catalog. It’s very important that all the vertices are labeled the same. First, we label the A and B vertices as the most separated ones. In the query catalog it’s just the Euclidean distance between the points, but on the reference catalog we have to use the angular distance between the points to get the same vertices. Prior to that, it was also using the Euclidean distance to the vertices on the reference catalog, so it would give different most separated A and B for the two catalogs.&lt;br&gt;After that, we have to choose the C and D vertices. First we label randomly the two remaining vertices as C and D and then we compare the ACB and ADB angles that are less than 180 degrees and choose C to be the one that has the lesser angle.&lt;/p&gt;
+
+
+
+&lt;p&gt;Now, we have the A, B, C and D vertices to be the same when dealing with the same quads and we have to compute their hashes. The hashes were calculated using Cx = (c1-a1)/(b1-a1), where a1, b1 and c1 are the coordinates along the axis 1. Now we have the problem related to the rotations: the distance between the points is the same, but the distance along each axis is not the same! So the Cx would be different for different axis. The same would happen for Cy, Dx and Dy.&lt;/p&gt;
+
+
+
+&lt;p&gt;To solve this, first we transform the celestial coordinates of the reference catalog into projection plane coordinates (TAN projection) using the midpoint of AB as the coordinates of the native pole.&lt;br&gt; We proceed defining new two axis (x and y, where the hashes will be calculated) using the A-B vector as a 45 degrees line contained in these axis. Then, we project the C-A and D-A vectors in these axis and get the hashes.&lt;/p&gt;
+
+
+
+&lt;p&gt;The image below show an overview of the steps explained above.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/div&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_1617_ndanzanello/</guid><pubDate>Sun, 20 Jun 2021 15:17:45 GMT</pubDate></item><item><title>GSoC - 1</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;div&gt;&lt;p&gt;This is the first blog that documents the coding period of my GSoC21 journey. I learnt a few interesting things in these two weeks, as I expected I would. So, let’s dive in and see if you knew few of these stuff I learnt.&lt;/p&gt;
+&lt;h3 id="starting-off-"&gt;Starting off !!!&lt;/h3&gt;
+&lt;p&gt;I started off by getting a brief idea of the scope of the changes that could be done to the dataframe. This was the task I had decided on for the first week. Whenever we are involved in a project that runs for a period of anywhere between 2-4 months it is important to have a timeline or a roadmap of sorts to be able to look back to. This doesn’t really have to be something rigid. We can chose to deviate from it and infact deviations are bound to happen due to multiple reasons. It can happen because of an unexpected bug in between, or because you came across some alternative that you did not consider at the start or simply because it is one of those projects that gives better insights as you dwell into it.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Every good GSoC proposal consists of a tentative timeline that depicts the work we plan on doing as the weeks progress. Here is the timeline I had submitted in my proposal.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Timeline1" src="https://gagan-aryan.netlify.app/images/gsoc-1/timeline1.png"&gt;&lt;br&gt;
+&lt;img alt="Timeline2" src="https://gagan-aryan.netlify.app/images/gsoc-1/timeline2.png"&gt;&lt;/p&gt;
+&lt;p&gt;So as per this I was supposed to finish off the refactors to the dataframe and also finish setting up the benchamarks. But I was unable to complete these. I had underestimated the work it would take to complete them. Nonetheless, I also did have some time to look up at the things I am supposed to do in the second half of the coding period.&lt;/p&gt;
+&lt;h3 id="memory-and-time-performance-benchmarks---tic-tok"&gt;Memory and Time performance benchmarks - Tic-Tok&lt;/h3&gt;
+&lt;p&gt;Before making any changes to the codebase Erwan suggested me to have the benchmarks setup. So what do I mean by this? To make sure that the changes I am making to the code are indeed reducing the memory consumption of the computations we use a few tools that help us track the memory consumption for various calculations as a function of git commits. There are multiple tools that help us do this. Radis already used a tool developed by &lt;a href="https://github.com/airspeed-velocity/asv"&gt;airspeed velocity&lt;/a&gt; to track the memory computions. I ran into a lot of troubles in setting these up and a lost a lot of valuable time in the process ultimately Erwan fixed it and I was able to run the benchmarks on my machine.&lt;/p&gt;
+&lt;p&gt;The benchmarks still seem to take a lot of time to run though and for them to be feasible to be used a tool through which I can check the performance regularly there are a few things I need to learn. I hope to pick these up in the next few days.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Performance" src="https://gagan-aryan.netlify.app/images/gsoc-1/brace-yourselves.png"&gt;&lt;/p&gt;
+&lt;p&gt;We are also trying to look at a few other alternatives that can be used instead of asv. I will update the you guys regarding this in the next blog post.&lt;/p&gt;
+&lt;h3 id="oh-pandas-here-i-deal-with-you-"&gt;Oh Pandas here I deal with you !&lt;/h3&gt;
+&lt;h4 id="lets-ditch-a-few-columns"&gt;Let’s ditch a few columns&lt;/h4&gt;
+&lt;p&gt;We can reduce the memory usage of pandas by using one really simple trick - avoid giving loading the columns that are not required for computation. Below I demostrate how just dropping a few columns can provide significant improvement in the memory consumption. I am using &lt;code&gt;HITEMP-CH4&lt;/code&gt; database for demonstration.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;radis.io.hitran&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;hit2df&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;hit2df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"06_HITEMP2020_2000.0-2500.0.par"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"deep"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;30.5&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s2"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"deep"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;25.4&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;The peak memory usage before dropping the columns was 30.5 MB and once I remove a few columns the peak memory usage becomes 25.4 MB. I have already implemented the dropping of id column and handled the case of single isotope as well by dropping the column and istead just storing the information of the isotope as a meta attribute. We have also finalised on the discarding of the other columns by considering the physics of these quantities. Let’s check out a few of them. Since I haven’t already implemented the optimisations that follow I will save the implementation details for the next blog.&lt;/p&gt;
+&lt;h4 id="einsteins-coeffecients-and-linestrengths"&gt;Einstein’s Coeffecients and Linestrengths&lt;/h4&gt;
+&lt;p&gt;There are four parameters of interest to describe the intensity of a line : Linestrength $(int)$, Einstein emission coefficient $(A)$ and Einstein absorption coefificent $(B_{lu})$, Einstein induced emission coefficient $(B_{ul})$. All of them are somehow linked to the Squared Transition Dipole Moment $(R)$. &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;$$ B_{lu}=10^{-36}\cdot\frac{8{\pi}^3}{3h^2} R_s^2 \cdot 10^{-7} $$&lt;br&gt;
+$$ B_{ul}=10^{-36}\cdot\frac{8{\pi}^3}{3h^2} \frac{gl}{gu} R_s^2 \cdot 10^{-7} $$&lt;br&gt;
+$$ A_{ul}=10^{-36}\cdot\frac{\frac{64{\pi}^4}{3h} {\nu}^3 gl}{gu} R_s^2 $$&lt;/p&gt;
+&lt;p&gt;So now the idea would be to drop the $int$ column and use $A_{ul}$ to calculate the value of $int$ from it. The reason to drop $int$ and not $A_{ul}$ some databases like &lt;code&gt;ExoMol&lt;/code&gt; databases only provide the value of $A_{ul}$.&lt;/p&gt;
+&lt;h4 id="concat-better"&gt;Concat better&lt;/h4&gt;
+&lt;p&gt;For anyone who wants concate multiple datafiles pandas tends to become useless as the memory scales up. I started out experimenting concat operations inorder to cluster the isotopes of each type, run computations on them and later concat them. But I later learnt that since this data is already in the form of a single dataframe, indexing is a better parameter to track the memory consumption. Nonetheless there are a few other places in Radis where we process multiple files and concat them, hence this experiment would help us decide how we can chose to replace the current approach with a better one. I tried out three methods. I was using some random dummy datafiles of around 780 MBs.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Normal &lt;code&gt;pandas.concat&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Concat with a doubly ended queue&lt;/li&gt;
+&lt;li&gt;Concat with parquet&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here are the results of each of these methods -&lt;/p&gt;
+&lt;div class="tab" id="cbbfde2b70afc7e2"&gt;
+&lt;div class="tab__links"&gt;
+&lt;button class="tab__link"&gt;pandas.concat&lt;/button&gt;
+&lt;button class="tab__link"&gt;deque&lt;/button&gt;
+&lt;button class="tab__link"&gt;parquet&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="tab__content" id="c6b1e010ed52c9f8"&gt;
+&lt;h4 id="pandasconcat"&gt;pandas.concat&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;CPU Time - 0:02:43.797588
+Peak Memory Usage - 4.1050 GB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="tab__content" id="a412292f0cf68165"&gt;
+&lt;h4 id="pandasconcat-with-a-doubly-queue"&gt;pandas.concat with a doubly queue&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;CPU Time - 0:02:34.484612
+Peak Memory Usage - 3.7725 GB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class="tab__content" id="c655ff276a8106d7"&gt;
+&lt;h4 id="concat-with-parquet"&gt;Concat with parquet&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;CPU Time - 0:01:37.984875
+Peak Memory Usage - 1.6829 GB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Looking at the results, parquet seems like a really good option to me. But we will run for a few more examples and later check which one suits the best.&lt;/p&gt;
+&lt;h3 id="the-next-two-weeks"&gt;The next two weeks&lt;/h3&gt;
+&lt;p&gt;The project is making progress in all fronts. I feel I need to reorganize my thoughts a bit. My main work for now would be to complete the task list of &lt;a href="https://github.com/radis/radis/pull/287"&gt;this pr&lt;/a&gt;. And then look at other stuff.&lt;/p&gt;
+&lt;div class="footnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;&lt;a href="https://www.sciencedirect.com/science/article/pii/S0022407398000788?via%3Dihub"&gt;Rothmann Paper (Eqs.(A7), (A8), (A9)&lt;/a&gt; &lt;a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:1"&gt;↩︎&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_0300_gagan-aryan/</guid><pubDate>Sun, 20 Jun 2021 02:00:06 GMT</pubDate></item><item><title>A Summer of Coding and Astronomy — GSoC’21 at OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210607_1403_rachittshah/</link><dc:creator>Rachitt Shah</dc:creator><description>&lt;div&gt;&lt;h4&gt;A Summer of Coding and Astronomy — GSoC’21 at OpenAstronomy&lt;/h4&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/400/0*5kDNG2NTio40EKZh.gif"&gt;&lt;/figure&gt;&lt;h4&gt;“In real open source, you have the right to control your own destiny.”&lt;/h4&gt;&lt;p&gt;— Linus Torvalds&lt;/p&gt;
 &lt;p&gt;Google Summer of Code is probably the most notable and interesting programs a student can be a part of an undergrad can be a part of. From reading GSoC blogs to write my story, it feels unnatural.&lt;/p&gt;
 &lt;p&gt;This post is more of an introduction to GSoC and my project at OpenAstronomy, I’ll be covering my prep and journey later on.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
