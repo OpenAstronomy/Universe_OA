@@ -91,16 +91,27 @@ class Sidebar(ConfigPlugin):
                 style = ''
                 if authors[author]['date'] < now_2w:
                     style = 'style="color:rgb(255,0,0)"'
+
+                if authors[author]['url']:
+                    href = '''<a href="{url}" data-toggle="tooltip" data-placement="top" title="{date}" {style}>
+                    {author}
+                   </a>'''.format(url=authors[author]['url'],
+                                  author=author,
+                                  style=style,
+                                  date=authors[author]['date'])
+                else:
+                    href = '''<span data-toggle="tooltip" data-placement="top" title="{date}" {style}>
+                    {author}
+                    </span>'''.format(url=authors[author]['url'],
+                                      author=author,
+                                      style=style,
+                                      date=authors[author]['date'])
                 final_text += '''<li>
                    <img src="{img}" height="16" width="16">
-                   <a href="{url}" data-toggle="tooltip" data-placement="top" title="{date}" {style}>
-                    {author}
-                   </a> <span class="table-done" style="float: right; padding-right:600px;">{intable}</span>
+                   {href}
+                   <span class="table-done" style="float: right; padding-right:600px;">{intable}</span>
                 </li>'''.format(img=image[authors[author]['team']],
-                                url=authors[author]['url'],
-                                date=authors[author]['date'],
-                                author=author,
-                                style=style,
+                                href=href,
                                 intable=filltable,
                 )
             final_text += '</ul></div>'
