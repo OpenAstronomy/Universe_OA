@@ -1,0 +1,20 @@
+.. title: About my Google Summer of Code Project: Part 1
+.. slug:
+.. date: 2021-06-21 16:58:34 
+.. tags: SunPy
+.. author: Adwait Bhope
+.. link: https://adwaitbhope.medium.com/about-my-google-summer-of-code-project-part-1-b56e7277046e?source=rss-95bf796cebb------2
+.. description:
+.. category: gsoc2021
+
+
+.. raw:: html
+
+    <p>I had been eyeing Google Summer of Code last year (and the year before that), but never really got around to doing anything about it. It’s a wonderful learning experience and being in my final year of college this was the last opportunity I was going to get. So I decided to give it a shot.</p>
+    <p>I started late, sometime during late February. I picked out a few organizations that looked interesting to me. <a href="https://openastronomy.org/">openastronomy</a> particularly caught my eye because I was working on another project of mine related to Astronomy. In fact we were using one of the Python libraries under openastronomy. Now this is an umbrella organization, which means that there are multiple sub-organizations — sunpy, astropy, radis, poliastro, and a few more. They’re used extensively by the scientific community in their research. The project I selected was under sunpy, which is a Python library for solar data analysis. The project is about resampling data to increase or decrease its resolution — more on that later. Again, I had recently performed this operation in one of my projects, so it seemed only natural for me to go with this one. I worked on some issues on GitHub and submitted PRs, tried to get a hold of the codebase, put together a proposal, got feedback from the project mentors and friends, and submitted it. After about a month of impatient waiting, I received an email saying that my proposal was accepted! Awesome!</p>
+    <p>Now, I plan to continue writing these blogs throughout the project and since this is the first one, let me take a moment to talk about the project. So, there’s a sunpy-affiliated package called ndcube, which exists to provide users an easier way of handling coordinates. Astronomical data like images taken from cameras are usually stored as n-dimensional arrays. A dimension could represent spatial or temporal axes. In such an array, the pixel coordinates map to some coordinates in the real world. These could be RA and Dec, or in the case of solar data, Helioprojective Latitude and Longitude. Nevertheless, there needs to be a mapping from the pixels to the real world. This is given by the World Coordinate System, which is just a set of (complicated) mathematical transformations. ndcube is a package that correlates the actual data with its transformations in such a way that you can manipulate the data, and the transformations will continue to remain consistent. It can be used with any type of data like images, spectra, timeseries data, and so on.</p>
+    <!-- TEASER_END -->
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*MHKTGHeR4F3nHd2gO1ocUw.png" /><figcaption>Open Astronomy and SunPy</figcaption></figure><p>Often, researchers like to upsample or downsample the resolution of their data, perhaps to improve the Signal to Noise Ratio or even just to get their data onto the same grid. My project under Google Summer of Code is exactly this — to implement this functionality under ndcube. Luckily, there exists a package called reproject that has a few algorithms implemented already. My job would be to expose this through a succinct API under ndcube.</p>
+    <p>So far, my mentors and I have broken down this work and set smaller and more achievable targets to begin with, and I’ve started working on them. Unfortunately, my Community Bonding Period was quite stagnant thanks to my college commitments, but now that they’re out of the way, I have more time on my hands to devote to the project. I’ll be publishing more blogs about my progress in the coming weeks, hopefully more frequently. Talk to you in the next one!</p>
+    <img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=b56e7277046e" width="1" />
+
