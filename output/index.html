@@ -12,7 +12,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/">
 <link rel="next" href="index-35.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2021/06/20210622_0048_jeffreypaul15/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2021/06/20210622_2223_suyog7130/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -110,10 +110,10 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
                 </li>
 <li>
-                   <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://suyog20.blogspot.com" data-toggle="tooltip" data-placement="top" title="2021-06-06 16:59:00+01:00" style="color:rgb(255,0,0)">
+                   <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://suyog20.blogspot.com" data-toggle="tooltip" data-placement="top" title="2021-06-22 22:23:00+01:00">
                     Suyog Garg
                    </a>
-                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
                 </li>
 </ul></div>
         
@@ -124,7 +124,34 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210622_0048_jeffreypaul15/" class="u-url">Rotation and Coordinates</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210622_2223_suyog7130/" class="u-url">astropy@GSoC Blog Post #3, Week 3</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/suyog-garg/">Suyog Garg</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2021/06/20210622_2223_suyog7130/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-06-22T22:23:00+01:00" itemprop="datePublished" title="2021-06-22 22:23">2021-06-22 22:23</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>So, it's the start of the 3rd week now. I will be virtually meeting Aarya and Moritz again Tom.<br><br>For the past few weeks now, I have been pushing commits to a Draft PR <a href="https://github.com/astropy/astropy/pull/11835">https://github.com/astropy/astropy/pull/11835</a> on GitHub. I wanted to have something working quite early in the project, in order to be able to pinpoint accurately when something doesn't work. This is why I started with directly adding the <b>cdspyreadme</b> code within Astropy. Afterwards, I am also writing the code from scratch. As more of the required features from <b>cdspyreadme</b> get integrated into <i>cds.py</i>, those files and codes added earlier will be removed.<br><br>About the reading/writing to Machine Readable Table format, in fact I wrote about it briefly in my GSoC Proposal that I could attempt it as an extension. I don't have an opinion on whether or not it should have it's own format classes etc. However, since the title of my GSoC project is to <b>Add a CDS format writer to Astropy</b>, I would prefer to work on the CDS format writer first and then on the MRT format. The MRT header anyway appears to be a bit simpler than the CDS header, so there shouldn't be much difficulty in the extension.<br><br>So, in a nutshell, this is my workflow:<br><ul style="text-align: left;">
+<li>Try out directly using <b>cdspyreadme</b> from within Astropy.</li>
+<li>Add CdsData.write method.</li>
+<li>Add a ByteByByte writer.</li>
+<li>Write features to add complete ReadMe to the Header, starting off with having both ReadMe and Data in a single file.</li>
+<li>Have features for writing separate CDS ReadMe and Data file.</li>
+<li>Further work on some specific table columns, for instance, those containing Units and Coordinates.</li>
+<li>Add appropriate tests along the way.</li>
+<li>Resolve other issues that come up.</li>
+<li>MRT format reader/writer.</li>
+</ul>
+<br>I have completed the first three tasks and will now work on the fourth. I think by the time this finishes, a separate <i>CDSColumn.py</i> won't be required. I can open another PR which adds the Data writer, in the meantime.<div><br></div>
+<div>Let's see how it goes!</div>
+<p class="more"><a href="posts/2021/06/20210622_2223_suyog7130/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210622_0048_jeffreypaul15/" class="u-url">Rotation and Coordinates</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/jeffrey-paul/">Jeffrey Paul</a>
@@ -251,6 +278,24 @@ bg-dark
 <p class="more"><a href="posts/2021/06/20210620_0300_gagan-aryan/">Read more…</a></p>
 </div>
     </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210619_2154_suyog7130/" class="u-url">astropy@GSoC Blog Post #2, Week 1&amp;2</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/suyog-garg/">Suyog Garg</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2021/06/20210619_2154_suyog7130/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-06-19T21:54:00+01:00" itemprop="datePublished" title="2021-06-19 21:54">2021-06-19 21:54</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>Hi,</p>
+<p>How are you?</p>
+<p>So, it's been two weeks of astropy@GSoC work already. Of course I have been damn busy! With the last commit made to the draft PR <a href="https://github.com/astropy/astropy/pull/11835">https://github.com/astropy/astropy/pull/11835</a>, a few hours back, I have successfully written a basic CDS writer. And voilà it works, albeit without the ReadMe at present! 😁</p>
+<p class="more"><a href="posts/2021/06/20210619_2154_suyog7130/">Read more…</a></p>
+</div>
+    </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210607_1403_rachittshah/" class="u-url">A Summer of Coding and Astronomy — GSoC’21 at OpenAstronomy</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
@@ -269,67 +314,6 @@ bg-dark
 <p>Google Summer of Code is probably the most notable and interesting programs a student can be a part of an undergrad can be a part of. From reading GSoC blogs to write my story, it feels unnatural.</p>
 <p>This post is more of an introduction to GSoC and my project at OpenAstronomy, I’ll be covering my prep and journey later on.</p>
 <p class="more"><a href="posts/2021/06/20210607_1403_rachittshah/">Read more…</a></p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210606_2240_anandxkumar/" class="u-url">Chapter 0: Prologue</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/anandxkumar/">anandxkumar</a>
-            </span></p>
-            <p class="dateline">
-            <a href="posts/2021/06/20210606_2240_anandxkumar/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-06-06T22:40:32+01:00" itemprop="datePublished" title="2021-06-06 22:40">2021-06-06 22:40</time></a>
-            </p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<p>Hi There and Namaste! This is going to be the second blog and first blog related to GSoC where I will be sharing my experience Community Bonding Period Experience with <b>Radis</b>. Before moving ahead lets learn about GSoC and my perspective about it.</p>
-<h3>Google Summer of Code</h3>
-<p>GSoC or the way I like to say it <strong>(Great Summer Opportunity to Code ;)</strong> is a program conducted and funded by Google to promote college students around the world to engage with Open Source Community and contribute to the organization for a tenure of 3 months. In the process, code is created and released for the world to see and use. But the main aim of GSoC is to promote students to stick to the organizations and help to grow the Open Source Community. This is a great initiative by Google that brings thousands of students every year and help them get an opportunity to peek into the world of open source development, learn new skills and also get compensated for the work, quite generously.</p>
-<p class="more"><a href="posts/2021/06/20210606_2240_anandxkumar/">Read more…</a></p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210606_1659_suyog7130/" class="u-url">astropy@GSoC Blog Post #1</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/suyog-garg/">Suyog Garg</a>
-            </span></p>
-            <p class="dateline">
-            <a href="posts/2021/06/20210606_1659_suyog7130/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-06-06T16:59:00+01:00" itemprop="datePublished" title="2021-06-06 16:59">2021-06-06 16:59</time></a>
-            </p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<div>Hey there,</div>
-<div><br></div>
-<div>How are you?</div>
-<div>Chances are that you are coming across me for the first time.</div>
-<div>Nice meeting you too! 😄</div>
-<div><br></div>
-<div>  Since this is an introductory astropy@GSoC Blog Post, I would keep things   brief.</div>
-<div><br></div>
-<div>  <br><div class="separator" style="clear: both; text-align: center;">    <img alt="" height="336" src="https://lh3.googleusercontent.com/-kVduvrsYzQ4/YL0ClAcy0hI/AAAAAAAA3Yk/PrbBQBkgxu8Y_f7-qpLAPlI6tr0zISXFgCLcBGAsYHQ/w336-h336/image.png" width="336"><div style="margin-left: 1em; margin-right: 1em;">                      <div class="separator" style="clear: both; text-align: center;">
-<a href="https://lh3.googleusercontent.com/-OkQcow92n4s/YL0DELFw56I/AAAAAAAA3Y0/43e2Ak8Bsy8VaTSw6RYB3ryocKQUCnM1ACLcBGAsYHQ/image.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"><img alt="" height="154" src="https://lh3.googleusercontent.com/-OkQcow92n4s/YL0DELFw56I/AAAAAAAA3Y0/43e2Ak8Bsy8VaTSw6RYB3ryocKQUCnM1ACLcBGAsYHQ/image.png" width="320"></a><img alt="" height="169" src="https://lh3.googleusercontent.com/-qshucfTcxpY/YL0CwsGOS2I/AAAAAAAA3Yo/OGuKkhEkZtkmz3xw6qVy3YYTANGN5Zi2gCLcBGAsYHQ/w169-h169/image.png" style="text-align: center;" width="169">
-</div>
-</div>
-</div>
-</div>
-<div><br></div>
-<div><br></div>
-<div>As you probably already know, my name is Suyog and I am a participant for Google Summer of Code (GSoC) 2021. Over the course of the next 10 weeks or so, I will be working on the Astropy project under the umbrella organisation OpenAstronomy. During this while, I aim to add a CDS format writer to the Astropy library with the help of my affable mentors Aarya and Moritz.   </div>
-<div><br></div>
-<div>I had actually also applied for GSoC last summer, however I had failed to pass   one of the eligibility criteria, and so wasn't selected. This astropy@GSoC   project, therefore, is quite an awesome opportunity for me. I am looking   forward to making the most of it and enjoying the time all the same. </div>
-<div><br></div>
-<div>There are two preliminary observations:</div>
-<div>      1. The associated stipend, albeit somewhat lower than what used   to be the case a few years back, is freaking awesome. 😉 </div>
-<div>      2. Dunno, why this project is marked as Difficultly Low!?   Nothing as easy as being just the third person to write a Table writer for the   world's largest Astronomy code library! 😂😎 </div>
-<div><br></div>
-<div>Alright. Bye.</div>
-<div>See ya the next time! 🙋‍♂️</div>
-<div><br></div>
-<div>  Stay tuned for more GSoC updates, or what is far better, for the next post in   general. </div>
-<p class="more"><a href="posts/2021/06/20210606_1659_suyog7130/">Read more…</a></p>
 </div>
     </div>
     </article>
