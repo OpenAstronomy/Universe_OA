@@ -110,6 +110,12 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
                 </li>
 <li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://raj-rashmi741.medium.com" data-toggle="tooltip" data-placement="top" title="2021-06-21 14:04:09+01:00">
+                    Raj Rashmi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
                    <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://suyog20.blogspot.com" data-toggle="tooltip" data-placement="top" title="2021-06-22 22:23:00+01:00">
                     Suyog Garg
                    </a>
@@ -224,6 +230,24 @@ bg-dark
 <p class="more"><a href="posts/2021/06/20210621_1523_dhruv9vats/">Read more…</a></p>
 </div>
     </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210621_1404_rashmiraj137/" class="u-url">JAX-based automatic differentiation: Introduction of modern statistical modeling to Stingray</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/raj-rashmi/">Raj Rashmi</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2021/06/20210621_1404_rashmiraj137/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-06-21T14:04:09+01:00" itemprop="datePublished" title="2021-06-21 14:04">2021-06-21 14:04</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>I assume everyone reading this is already aware of two classical forms of differentiation, namely symbolic and finite differentiation. Symbolic differentiation operates on expanded mathematical expressions which lead to inefficient code and introduction of truncation error while finite differentiation deals with round-off errors. Optimized calculation of derivatives is crucial when it comes to training neural networks or mathematical modeling using bayesian inference. Both classical methods are slow at computing partial derivatives of a function with respect to many inputs, as is needed for gradient-based optimization algorithms. Here, automatic differentiation comes to the rescue. Automatic differentiation is a powerful tool to automate the calculation of derivatives and is preferable to more traditional methods, especially when differentiating complex algorithms and mathematical functions.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*NzyxsrkiLjjyjiIuCf123w.png"><figcaption>Photo Source: Wikipedia</figcaption></figure><p>Stingray is astrophysical spectral timing software, a library in python built to perform time series analysis and related tasks on astronomical light curves. JAX is a python library designed for high-performance numerical computing. Its API for numerical functions is based on NumPy, a collection of functions used in scientific computing. Both Python and NumPy are widely used and familiar, making JAX simple, flexible, and easy to adopt. It can differentiate through a large subset of python’s features, including loops, ifs, recursion, and closures, and it can even take derivatives of derivatives. Such modern differentiation packages deploy a broad range of computational techniques to improve the applicability, run time, and memory management.</p>
+<p>JAX utilizes the grad function transformation to convert a function into a function that returns the original function’s gradient, just like Autograd. Beyond that, JAX offers a function transformation jit for just-in-time compilation of existing functions and vmap and pmap for vectorization and parallelization, respectively.</p>
+<p class="more"><a href="posts/2021/06/20210621_1404_rashmiraj137/">Read more…</a></p>
+</div>
+    </div>
     </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210620_1829_rachittshah/" class="u-url">The first weeks of X-Rays and Electron.Js</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
@@ -294,26 +318,6 @@ bg-dark
 <p>How are you?</p>
 <p>So, it's been two weeks of astropy@GSoC work already. Of course I have been damn busy! With the last commit made to the draft PR <a href="https://github.com/astropy/astropy/pull/11835">https://github.com/astropy/astropy/pull/11835</a>, a few hours back, I have successfully written a basic CDS writer. And voilà it works, albeit without the ReadMe at present! 😁</p>
 <p class="more"><a href="posts/2021/06/20210619_2154_suyog7130/">Read more…</a></p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/06/20210607_1403_rachittshah/" class="u-url">A Summer of Coding and Astronomy — GSoC’21 at OpenAstronomy</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/rachitt-shah/">Rachitt Shah</a>
-            </span></p>
-            <p class="dateline">
-            <a href="posts/2021/06/20210607_1403_rachittshah/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-06-07T14:03:09+01:00" itemprop="datePublished" title="2021-06-07 14:03">2021-06-07 14:03</time></a>
-            </p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<h4>A Summer of Coding and Astronomy — GSoC’21 at OpenAstronomy</h4>
-<figure><img alt="" src="https://cdn-images-1.medium.com/max/400/0*5kDNG2NTio40EKZh.gif"></figure><h4>“In real open source, you have the right to control your own destiny.”</h4>
-<p>— Linus Torvalds</p>
-<p>Google Summer of Code is probably the most notable and interesting programs a student can be a part of an undergrad can be a part of. From reading GSoC blogs to write my story, it feels unnatural.</p>
-<p>This post is more of an introduction to GSoC and my project at OpenAstronomy, I’ll be covering my prep and journey later on.</p>
-<p class="more"><a href="posts/2021/06/20210607_1403_rachittshah/">Read more…</a></p>
 </div>
     </div>
     </article>
