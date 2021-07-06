@@ -1,5 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2021)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2021.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 05 Jul 2021 04:40:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>astropy@GSoC Blog Post #3, Week 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210622_2223_suyog7130/</link><dc:creator>Suyog Garg</dc:creator><description>&lt;div&gt;So, it's the start of the 3rd week now. I will be virtually meeting Aarya and Moritz again Tom.&lt;br&gt;&lt;br&gt;For the past few weeks now, I have been pushing commits to a Draft PR &lt;a href="https://github.com/astropy/astropy/pull/11835"&gt;https://github.com/astropy/astropy/pull/11835&lt;/a&gt; on GitHub. I wanted to have something working quite early in the project, in order to be able to pinpoint accurately when something doesn't work. This is why I started with directly adding the &lt;b&gt;cdspyreadme&lt;/b&gt; code within Astropy. Afterwards, I am also writing the code from scratch. As more of the required features from &lt;b&gt;cdspyreadme&lt;/b&gt; get integrated into &lt;i&gt;cds.py&lt;/i&gt;, those files and codes added earlier will be removed.&lt;br&gt;&lt;br&gt;About the reading/writing to Machine Readable Table format, in fact I wrote about it briefly in my GSoC Proposal that I could attempt it as an extension. I don't have an opinion on whether or not it should have it's own format classes etc. However, since the title of my GSoC project is to &lt;b&gt;Add a CDS format writer to Astropy&lt;/b&gt;, I would prefer to work on the CDS format writer first and then on the MRT format. The MRT header anyway appears to be a bit simpler than the CDS header, so there shouldn't be much difficulty in the extension.&lt;br&gt;&lt;br&gt;So, in a nutshell, this is my workflow:&lt;br&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Try out directly using &lt;b&gt;cdspyreadme&lt;/b&gt; from within Astropy.&lt;/li&gt;&lt;li&gt;Add CdsData.write method.&lt;/li&gt;&lt;li&gt;Add a ByteByByte writer.&lt;/li&gt;&lt;li&gt;Write features to add complete ReadMe to the Header, starting off with having both ReadMe and Data in a single file.&lt;/li&gt;&lt;li&gt;Have features for writing separate CDS ReadMe and Data file.&lt;/li&gt;&lt;li&gt;Further work on some specific table columns, for instance, those containing Units and Coordinates.&lt;/li&gt;&lt;li&gt;Add appropriate tests along the way.&lt;/li&gt;&lt;li&gt;Resolve other issues that come up.&lt;/li&gt;&lt;li&gt;MRT format reader/writer.&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;I have completed the first three tasks and will now work on the fourth. I think by the time this finishes, a separate &lt;i&gt;CDSColumn.py&lt;/i&gt; won't be required. I can open another PR which adds the Data writer, in the meantime.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Let's see how it goes!&lt;/div&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2021)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2021.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 06 Jul 2021 04:41:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Chapter 2: Survey Corps</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2340_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;So its been around 4 weeks into the coding period, a lot of insights and progress so far!&lt;/p&gt;
+&lt;h3&gt;Profiler Class&lt;/h3&gt;
+&lt;p&gt;The good news is that the Profiler class has been successfully implemented in the develop branch and will be available to users by version &lt;code class="language-text"&gt;0.9.30&lt;/code&gt; .&lt;br&gt;
+&lt;!-- TEASER_END --&gt;
+Link : &lt;a href="https://github.com/radis/radis/pull/286"&gt;Profiler PR&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Below is a simple example how all steps are printed based on the verbose level:&lt;br&gt;&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;wmin = 2000
+wmax = 3300
+wstep = 0.01
+T = 3000.0 #K
+p = 0.1 #bar
+broadening_max_width=10
+
+sf = SpectrumFactory(wavenum_min=wmin, wavenum_max=wmax,
+pressure=p,
+wstep=wstep,
+broadening_max_width=broadening_max_width,
+molecule="CO",
+cutoff=0, # 1e-27,
+verbose=3,
+)
+sf.load_databank('HITEMP-CO')
+s = sf.eq_spectrum(T)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;... Scaling equilibrium linestrength
+... 0.01s - Scaled equilibrium linestrength
+... 0.00s - Calculated lineshift
+... 0.00s - Calculate broadening HWHM
+... Calculating line broadening (60869 lines: expect ~ 6.09s on 1 CPU)
+...... 0.16s - Precomputed DLM lineshapes (30)
+...... 0.00s - Initialized vectors
+...... 0.00s - Get closest matching line &amp;amp; fraction
+...... 0.02s - Distribute lines over DLM
+...... 1.95s - Convolve and sum on spectral range
+... 2.14s - Calculated line broadening
+... 0.01s - Calculated other spectral quantities
+... 2.21s - Spectrum calculated (before object generation)
+... 0.01s - Generated Spectrum object
+2.22s - Spectrum calculated&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also we can access these steps and the time taken by them using &lt;code class="language-text"&gt;Spectrum.get_conditions()['profiler']&lt;/code&gt;. Also there is a parameter &lt;code class="language-text"&gt;SpectrumFactory.profiler.relative_time_percentage&lt;/code&gt; that stores the percentage of time taken by each steps at a particular verbose level, helpful seeing the most expensive steps in Spectrum calculation.&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;Legacy Method Complexity&lt;/h3&gt;
+&lt;p&gt;Several Spectrums were benchmarked against various parameters to see it’s correlation and derive its complexity. We used Profiler class with &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.lbl.loader.html#radis.lbl.loader.DatabankLoader.init_database"&gt;init_database()&lt;/a&gt; which stores all parameters of Spectrum along the Profiler in a &lt;code class="language-text"&gt;csv&lt;/code&gt; generated file; all spectrum info got added into the csv file  which could be used to do create visualizations to analyze the data. We used &lt;code class="language-text"&gt;Xexplorer&lt;/code&gt; library and &lt;code class="language-text"&gt;Tableau&lt;/code&gt;(a visual analytics platform) to create visualizations. A &lt;a href="https://github.com/anandxkumar/Benchmark_Visualization_GSoC_2021"&gt;github repository&lt;/a&gt; was created to store the Visualization along the CSV data file of each benchmark.&lt;/p&gt;
+&lt;p&gt;Following are the inference of the benchmarks for Legacy Method:&lt;/p&gt;
+&lt;b&gt;
+•  Calculation Time ∝ Number of lines&lt;br&gt;
+•  Calculation Time ∝ Broadening max width&lt;br&gt;
+•  Calculation Time ∝ 1/wstep&lt;br&gt;
+•  Calculation Time not dependent on Spectral Range&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;
+&lt;p&gt;So complexity of Legacy method can be derived as: &lt;br&gt;
+&lt;strong&gt;&lt;code class="language-text"&gt;complexity = constant * Number of lines * Broadening Max Width / Wstep&lt;/code&gt;&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;LDM Method Complexity&lt;/h3&gt;
+&lt;p&gt;Similar technique was used to benchmark LDM method. Now LDM uses 2 types of broadening method that are &lt;code class="language-text"&gt;voigt&lt;/code&gt; and &lt;code class="language-text"&gt;fft&lt;/code&gt;. &lt;code class="language-text"&gt;voigt&lt;/code&gt; uses truncation for calculating spectrum  in wavenmber space where as &lt;code class="language-text"&gt;fft&lt;/code&gt; calculates spectrum on entire spectral range in fourier space. So benchmarks were done on both methods to compare their performance against various parameters.&lt;/p&gt;
+&lt;p&gt;Spectrum were benchmarked against parameters like Spectral Range, Wstep, Spectral Points, Number of Lines and Broadening Max Width. Following are the inferences.&lt;/p&gt;
+&lt;p&gt;For &lt;code class="language-text"&gt;fft&lt;/code&gt;:&lt;br&gt;
+&lt;b&gt;
+• Calculation Time ∝ Spectral Points&lt;br&gt;
+• Calculation Time ∝ Number of Lines&lt;br&gt;
+&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;For &lt;code class="language-text"&gt;voigt&lt;/code&gt;:&lt;br&gt;
+&lt;b&gt;
+• Calculation Time ∝ Spectral Points&lt;br&gt;
+• Calculation Time ∝ Number of Lines&lt;br&gt;
+• Calculation Time ∝ Broadening Max Width&lt;br&gt;
+&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;For LDM we are expecting the following complexity:&lt;br&gt;
+&lt;strong&gt;&lt;code class="language-text"&gt;t_LDM_fft ~ c2*N_lines + c3*(N_G*N_L + 1)*N_v*log(N_v)&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;&lt;code class="language-text"&gt;t_LDM_voigt ~ c2*N_lines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation)&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt; So the goal for the next 2 weeks will be to get the complexity of both &lt;code class="language-text"&gt;voigt&lt;/code&gt; and &lt;code class="language-text"&gt;fft&lt;/code&gt; method and see places for improving both methods and quite possibily create a &lt;code class="language-text"&gt;Hybrid&lt;/code&gt; method taking the best of both worlds. &lt;/p&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2340_anandxkumar/</guid><pubDate>Mon, 05 Jul 2021 22:40:32 GMT</pubDate></item><item><title>A Month into GSoC</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2037_dhruv9vats/</link><dc:creator>Dhruv Vats</dc:creator><description>&lt;div&gt;&lt;p&gt;It’s almost been a month since the start of GSoC’s coding period and the work, I’m glad to write, is progressing at a steady and satisfactory rate.&lt;/p&gt;
+&lt;h5&gt;The Developments&lt;/h5&gt;&lt;p&gt;The last time around, my first ever not-so-meaningless contribution to open-source had just got merged, and I was really happy about it. But what that also did was, get me over the initial anxiety and intimidation I might have been feeling towards open-source. This, I think, has also helped speed things along.&lt;/p&gt;
+&lt;p&gt;While I started working on the optional features of my project around 2 weeks ago, I had to scrape the initial implementation because it turned out to be very, very slow and therefore had to be completely replaced with a better and more efficient approach, which was a bit less straightforward. But now, two weeks into experimenting and iterating, a new pull-request has been opened with the newly implemented efficient version of the feature, and while it's still a few minor commits away from its final form, the core functionality works as expected and, if everything goes as expected, which is never a guarantee, a hefty part of my proposal’s objectives will be complete.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;And while this does not guarantee anything, I’d be lying if I said that I am not hoping for something exciting to do as I might have time to try out other things. What exactly, I honestly don’t know, but if I find myself in that minority who actually like what there doing, it’ll be an absolute privilege, which I’m looking forward to and wishing for.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*DvmM4lhclsVa5tIwl5um4A.png"&gt;&lt;figcaption&gt;Just some pastel colors for you to look at&lt;/figcaption&gt;&lt;/figure&gt;&lt;h5&gt;The Goal&lt;/h5&gt;&lt;p&gt;What follows might be a very steep change in topic, but is one, that I think lies at the root of many seemingly normal activities. This is just something that has been on my mind lately, and what writing is, if not a tool to better understand yourself?&lt;/p&gt;
+&lt;p&gt;I feel like an invisible aura is building around me saying that you are at a stage in life where you need to man up, where you should have everything together and figured out, but whenever I try and assess myself in this context, I always, without fail, fell short of it and by a good margin. While the contrasting opposite of this would be saying that I am everything I ever wanted to be and have nothing to work towards, would be outright arrogant and even dangerous, there must be a balance somewhere, right?&lt;/p&gt;
+&lt;p&gt;But why should I have it all figured out, what’s even the need? And while statements like these can be argued against using something like, because everyone is doing it, and this is the way, they give the vibes of being in a pipeline you’ve been pushed into and now have no option but to pass through. And this, I think, many will agree, is not a very desirable situation.&lt;/p&gt;
+&lt;p&gt;This need to progress towards something also spurs off many questions, one of which is “the why ?”. The why, is an oh-so-difficult question to answer that honestly makes me feel frustrated at times, not knowing to what end all the efforts are being put.&lt;/p&gt;
+&lt;p&gt;While it can be argued that this is a ridiculous thing to think about, and one should not set overly optimistic expectations, this, I feel, contradicts the notion of elegance that I somehow have associated with the fundamental workings of the world. If someone asked me to comment on the secrets of the Universe, I’d be very comfortable with using the words elegant and sophisticated, even though I basically know nothing about it? Why? Is this just a desire to find meaning in everything, or is there something else at play?&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=805d42b1b5ce" width="1"&gt;&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2037_dhruv9vats/</guid><pubDate>Mon, 05 Jul 2021 19:37:36 GMT</pubDate></item><item><title>Insight of Implementation of JAX to stingray- GSoC coding period!</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_1420_rashmiraj137/</link><dc:creator>Raj Rashmi</dc:creator><description>&lt;div&gt;&lt;p&gt;In the last blog, I wrote about Introduction to JAX and Automatic Differentiation. In this one, my plan for the next stage of implementation. Currently, I am working on the modeling notebook (&lt;a href="https://github.com/StingraySoftware/notebooks/blob/main/Modeling/ModelingExamples.ipynb"&gt;https://github.com/StingraySoftware/notebooks/blob/main/Modeling/ModelingExamples.ipynb&lt;/a&gt;) to re-design it using JAX, especially to make optimization more robust by having JAX compute gradients on the likelihood function.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/380/1*u_c4S0h60T1IECOBQVTS1A.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;My mentor Daniela highlighted the issue that the current implementation is not robust using NumPy. The plan is to keep working on the current modeling notebook replacing NumPy by jax.numpy and also use grad, jit, vmap, random functionality of JAX.&lt;br&gt;When it comes to re-design, understanding the current design and the possible drawback and issues with corresponding packages comes on you first and I am trying them out. One such challenge is importing emcee into jupyter notebook for sampling. Despite making sure, I download the dependency in the current virtual environment and then making sure I import emcee into the notebook, it is still acting weird and showing an error: emcee not installed! Can’t sample! It looks like a clash of dependencies.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/240/1*JtGB50sLscB1BBPt9k3pfw.jpeg"&gt;&lt;figcaption&gt;Trying to have fun while it lasts!&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;For now, the plan is to solve every bug I face in the journey and then proceed with understanding how everything connects and the next step is to come up with the report of optimization using JAX. Stay tuned for more on how JAX can accelerate and augment the current modeling framework.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I would recommend one video for anyone who wants to understand the functionality of JAX better and relate more to my study (click &lt;a href="https://www.youtube.com/watch?v=0mVmRHMaOJ4&amp;amp;ab_channel=GoogleCloudTech"&gt;here&lt;/a&gt;).&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1756040fa5ae" width="1"&gt;&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_1420_rashmiraj137/</guid><pubDate>Mon, 05 Jul 2021 13:20:55 GMT</pubDate></item><item><title>GSoC Post 2</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_1417_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;div&gt;&lt;p&gt;Hi! In the previous post I mentioned that the matching part between the quads was done. Following that, the past 2 weeks were devoted to:&lt;/p&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;ul&gt;&lt;li&gt;first get the theta (rotation) and scale values related to each quad. To do this, we use a linear transformation between the pixel coordinates and the projection plane coordinates (that come from the celestial ones);&lt;/li&gt;&lt;li&gt;use some statistics in the thetas and scales above to get the parameters of the wcs (world coordinate system). Also, we have to decide where the reference point is. To do this, we use the A vertex that is closer to the median of all A vertices from the matched quads;&lt;/li&gt;&lt;li&gt;after the parameters of the wcs are ready, we write them into a fits file.&lt;/li&gt;&lt;/ul&gt;
+
+
+
+&lt;p&gt;Basically, this would make this part over. But we noticed a problem that needed a debug: we were finding few matches. In examples with fainter stars, we wouldn’t even get one match. So, to solve this, we had to change the way we were making the quads, because we were not considering all the possible quads combinations of the stars we selected. After that, we could go, for example, from ten of thousands of quads to millions of quads! This also improves a lot the statistics that we need to do.&lt;/p&gt;
+
+
+
+&lt;p&gt;So now we have to start dealing with some distortions too! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/div&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_1417_ndanzanello/</guid><pubDate>Mon, 05 Jul 2021 13:17:22 GMT</pubDate></item><item><title>astropy@GSoC Blog Post #3, Week 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210622_2223_suyog7130/</link><dc:creator>Suyog Garg</dc:creator><description>&lt;div&gt;So, it's the start of the 3rd week now. I will be virtually meeting Aarya and Moritz again Tom.&lt;br&gt;&lt;br&gt;For the past few weeks now, I have been pushing commits to a Draft PR &lt;a href="https://github.com/astropy/astropy/pull/11835"&gt;https://github.com/astropy/astropy/pull/11835&lt;/a&gt; on GitHub. I wanted to have something working quite early in the project, in order to be able to pinpoint accurately when something doesn't work. This is why I started with directly adding the &lt;b&gt;cdspyreadme&lt;/b&gt; code within Astropy. Afterwards, I am also writing the code from scratch. As more of the required features from &lt;b&gt;cdspyreadme&lt;/b&gt; get integrated into &lt;i&gt;cds.py&lt;/i&gt;, those files and codes added earlier will be removed.&lt;br&gt;&lt;br&gt;About the reading/writing to Machine Readable Table format, in fact I wrote about it briefly in my GSoC Proposal that I could attempt it as an extension. I don't have an opinion on whether or not it should have it's own format classes etc. However, since the title of my GSoC project is to &lt;b&gt;Add a CDS format writer to Astropy&lt;/b&gt;, I would prefer to work on the CDS format writer first and then on the MRT format. The MRT header anyway appears to be a bit simpler than the CDS header, so there shouldn't be much difficulty in the extension.&lt;br&gt;&lt;br&gt;So, in a nutshell, this is my workflow:&lt;br&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Try out directly using &lt;b&gt;cdspyreadme&lt;/b&gt; from within Astropy.&lt;/li&gt;&lt;li&gt;Add CdsData.write method.&lt;/li&gt;&lt;li&gt;Add a ByteByByte writer.&lt;/li&gt;&lt;li&gt;Write features to add complete ReadMe to the Header, starting off with having both ReadMe and Data in a single file.&lt;/li&gt;&lt;li&gt;Have features for writing separate CDS ReadMe and Data file.&lt;/li&gt;&lt;li&gt;Further work on some specific table columns, for instance, those containing Units and Coordinates.&lt;/li&gt;&lt;li&gt;Add appropriate tests along the way.&lt;/li&gt;&lt;li&gt;Resolve other issues that come up.&lt;/li&gt;&lt;li&gt;MRT format reader/writer.&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;I have completed the first three tasks and will now work on the fourth. I think by the time this finishes, a separate &lt;i&gt;CDSColumn.py&lt;/i&gt; won't be required. I can open another PR which adds the Data writer, in the meantime.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Let's see how it goes!&lt;/div&gt;
 &lt;!-- TEASER_END --&gt;&lt;/div&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210622_2223_suyog7130/</guid><pubDate>Tue, 22 Jun 2021 21:23:00 GMT</pubDate></item><item><title>Rotation and Coordinates</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210622_0048_jeffreypaul15/</link><dc:creator>Jeffrey Paul</dc:creator><description>&lt;div&gt;&lt;p&gt;Finally, the official “coding period” of &lt;strong&gt;GSoC&lt;/strong&gt; finally began a couple of days ago. From where we started of with Sunkit-Pyvista, to where we are today makes me feel a tad bit happy! 😄&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/985/1*-X2tw67TTrMoj3F43QS0uA.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;Weeks 1 and 2 were initially set out for me to complete adding rotation functionality to the library, which started off great, but ended up causing some confusion 😅.&lt;/p&gt;
 &lt;p&gt;This was quickly sorted out and we went with not having to implement rotation functionality and moved on, learning that not everything will go according to plan and it’s okay for stuff to not work out at times.&lt;/p&gt;
@@ -129,143 +229,4 @@ Spectral Range but rather &lt;code class="language-text"&gt;Number of Calculated
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*5hEIw7ou4eeAX-HnP_23_A.png"&gt;&lt;figcaption&gt;&lt;em&gt;Mini-MLP(Multiple layer Perceptron) execution time for 10,000 updates with a batch size of 1024. Source: AI Zone&lt;/em&gt;&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;As seen in the above figure, PyTorch has much more effective in terms of execution speed than TensorFlow when it came to implementing fully connected neural layers. For low-level implementations, on the other hand, JAX offers impressive speed-ups of an order of magnitude or more over the comparable Autograd library. JAX is faster than any other library when MLP implementation was limited to matrix multiplication operations.&lt;/p&gt;
 &lt;h4&gt;&lt;strong&gt;How do we decide the ideal library to go with?&lt;/strong&gt;&lt;/h4&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/626/1*8-_tFBCgszXxQwkMEwEcjA.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;Our choice will first depend on the history of the project we start working on, if the code already uses PyTorch then most probably we will end up using PyTorch for writing our code. For general differentiable programming with low-level implementations of abstract mathematical concepts, JAX offers substantial advantages in speed and scale over Autograd while retaining much of Autograd’s simplicity and flexibility, while also offering surprisingly competitive performance against PyTorch and TensorFlow.&lt;/p&gt;
 &lt;p&gt;I am implementing modern stingray modeling to Stingray software as a part of my GSoC project. Reference to Stingray source code: &lt;a href="https://github.com/StingraySoftware"&gt;https://github.com/StingraySoftware&lt;/a&gt;. Reference to JAX-based automatic differentiation: &lt;a href="https://jax.readthedocs.io/en/latest/jax-101/index.html"&gt;https://jax.readthedocs.io/en/latest/jax-101/index.html&lt;/a&gt;.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1bc26da7571f" width="1"&gt;&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210621_1404_rashmiraj137/</guid><pubDate>Mon, 21 Jun 2021 13:04:09 GMT</pubDate></item><item><title>The first weeks of X-Rays and Electron.Js</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_1829_rachittshah/</link><dc:creator>Rachitt Shah</dc:creator><description>&lt;div&gt;&lt;p&gt;Python, X-rays, and JSON files that don’t comply and make you cry.&lt;/p&gt;
-&lt;p&gt;GSoC has officially started!&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/498/0*AXMzJYLpLP0sFPgE"&gt;&lt;figcaption&gt;We’re going to code!&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;Since is a Desktop App made with Electron and Python, my first priority was getting DAVE to compile again. The process was tedious and took a good amount of time to fix the flask backends which power DAVE.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Another error that came while getting DAVE up was that DAVE uses Stingray’s APIs which are lower than 2.0, which gave a lot of broken packages. Fixing this was something that would be covered in the POC enhancements, however, it was important to tackle this to build the MVP.&lt;/p&gt;
-&lt;p&gt;Looked at some major changes in the coming 0.3 for Stingray and how to accommodate them, so we don’t have issues later.&lt;/p&gt;
-&lt;p&gt;Had exams alongside, so the first week was less effort extensive for GSoC.&lt;/p&gt;
-&lt;p&gt;Waiting for the next week to write more about my progress and journey!&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=84f7557d97a7" width="1"&gt;&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_1829_rachittshah/</guid><pubDate>Sun, 20 Jun 2021 17:29:09 GMT</pubDate></item><item><title>GSoC Post 1</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_1617_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;div&gt;&lt;p&gt;Hey there. I am working on the Astrometry project from Gnuastro and I will explain below the first things that I have been doing.&lt;br&gt;&lt;br&gt;Basically, we have two catalogs: one is the query catalog, which we want to find its wcs, and the reference catalog, that gives some stars positions in celestial coordinates. We begin finding “quads”, a group of 4 stars, on both catalogs. This part was already done, but the matching part between the quads needed some fixes.&lt;/p&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;The first thing we needed to fix was the vertices found on each catalog. It’s very important that all the vertices are labeled the same. First, we label the A and B vertices as the most separated ones. In the query catalog it’s just the Euclidean distance between the points, but on the reference catalog we have to use the angular distance between the points to get the same vertices. Prior to that, it was also using the Euclidean distance to the vertices on the reference catalog, so it would give different most separated A and B for the two catalogs.&lt;br&gt;After that, we have to choose the C and D vertices. First we label randomly the two remaining vertices as C and D and then we compare the ACB and ADB angles that are less than 180 degrees and choose C to be the one that has the lesser angle.&lt;/p&gt;
-
-
-
-&lt;p&gt;Now, we have the A, B, C and D vertices to be the same when dealing with the same quads and we have to compute their hashes. The hashes were calculated using Cx = (c1-a1)/(b1-a1), where a1, b1 and c1 are the coordinates along the axis 1. Now we have the problem related to the rotations: the distance between the points is the same, but the distance along each axis is not the same! So the Cx would be different for different axis. The same would happen for Cy, Dx and Dy.&lt;/p&gt;
-
-
-
-&lt;p&gt;To solve this, first we transform the celestial coordinates of the reference catalog into projection plane coordinates (TAN projection) using the midpoint of AB as the coordinates of the native pole.&lt;br&gt; We proceed defining new two axis (x and y, where the hashes will be calculated) using the A-B vector as a 45 degrees line contained in these axis. Then, we project the C-A and D-A vectors in these axis and get the hashes.&lt;/p&gt;
-
-
-
-&lt;p&gt;The image below show an overview of the steps explained above.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;&lt;/div&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_1617_ndanzanello/</guid><pubDate>Sun, 20 Jun 2021 15:17:45 GMT</pubDate></item><item><title>GSoC - 1</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;div&gt;&lt;p&gt;This is the first blog that documents the coding period of my GSoC21 journey. I learnt a few interesting things in these two weeks, as I expected I would. So, let’s dive in and see if you knew few of these stuff I learnt.&lt;/p&gt;
-&lt;h3 id="starting-off-"&gt;Starting off !!!&lt;/h3&gt;
-&lt;p&gt;I started off by getting a brief idea of the scope of the changes that could be done to the dataframe. This was the task I had decided on for the first week. Whenever we are involved in a project that runs for a period of anywhere between 2-4 months it is important to have a timeline or a roadmap of sorts to be able to look back to. This doesn’t really have to be something rigid. We can chose to deviate from it and infact deviations are bound to happen due to multiple reasons. It can happen because of an unexpected bug in between, or because you came across some alternative that you did not consider at the start or simply because it is one of those projects that gives better insights as you dwell into it.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Every good GSoC proposal consists of a tentative timeline that depicts the work we plan on doing as the weeks progress. Here is the timeline I had submitted in my proposal.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Timeline1" src="https://gagan-aryan.netlify.app/images/gsoc-1/timeline1.png"&gt;&lt;br&gt;
-&lt;img alt="Timeline2" src="https://gagan-aryan.netlify.app/images/gsoc-1/timeline2.png"&gt;&lt;/p&gt;
-&lt;p&gt;So as per this I was supposed to finish off the refactors to the dataframe and also finish setting up the benchamarks. But I was unable to complete these. I had underestimated the work it would take to complete them. Nonetheless, I also did have some time to look up at the things I am supposed to do in the second half of the coding period.&lt;/p&gt;
-&lt;h3 id="memory-and-time-performance-benchmarks---tic-tok"&gt;Memory and Time performance benchmarks - Tic-Tok&lt;/h3&gt;
-&lt;p&gt;Before making any changes to the codebase Erwan suggested me to have the benchmarks setup. So what do I mean by this? To make sure that the changes I am making to the code are indeed reducing the memory consumption of the computations we use a few tools that help us track the memory consumption for various calculations as a function of git commits. There are multiple tools that help us do this. Radis already used a tool developed by &lt;a href="https://github.com/airspeed-velocity/asv"&gt;airspeed velocity&lt;/a&gt; to track the memory computions. I ran into a lot of troubles in setting these up and a lost a lot of valuable time in the process ultimately Erwan fixed it and I was able to run the benchmarks on my machine.&lt;/p&gt;
-&lt;p&gt;The benchmarks still seem to take a lot of time to run though and for them to be feasible to be used a tool through which I can check the performance regularly there are a few things I need to learn. I hope to pick these up in the next few days.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Performance" src="https://gagan-aryan.netlify.app/images/gsoc-1/brace-yourselves.png"&gt;&lt;/p&gt;
-&lt;p&gt;We are also trying to look at a few other alternatives that can be used instead of asv. I will update the you guys regarding this in the next blog post.&lt;/p&gt;
-&lt;h3 id="oh-pandas-here-i-deal-with-you-"&gt;Oh Pandas here I deal with you !&lt;/h3&gt;
-&lt;h4 id="lets-ditch-a-few-columns"&gt;Let’s ditch a few columns&lt;/h4&gt;
-&lt;p&gt;We can reduce the memory usage of pandas by using one really simple trick - avoid giving loading the columns that are not required for computation. Below I demostrate how just dropping a few columns can provide significant improvement in the memory consumption. I am using &lt;code&gt;HITEMP-CH4&lt;/code&gt; database for demonstration.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
-&lt;/span&gt;&lt;span class="lnt"&gt; 2
-&lt;/span&gt;&lt;span class="lnt"&gt; 3
-&lt;/span&gt;&lt;span class="lnt"&gt; 4
-&lt;/span&gt;&lt;span class="lnt"&gt; 5
-&lt;/span&gt;&lt;span class="lnt"&gt; 6
-&lt;/span&gt;&lt;span class="lnt"&gt; 7
-&lt;/span&gt;&lt;span class="lnt"&gt; 8
-&lt;/span&gt;&lt;span class="lnt"&gt; 9
-&lt;/span&gt;&lt;span class="lnt"&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;radis.io.hitran&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;hit2df&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;hit2df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"06_HITEMP2020_2000.0-2500.0.par"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"deep"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;30.5&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s2"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"deep"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;25.4&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The peak memory usage before dropping the columns was 30.5 MB and once I remove a few columns the peak memory usage becomes 25.4 MB. I have already implemented the dropping of id column and handled the case of single isotope as well by dropping the column and istead just storing the information of the isotope as a meta attribute. We have also finalised on the discarding of the other columns by considering the physics of these quantities. Let’s check out a few of them. Since I haven’t already implemented the optimisations that follow I will save the implementation details for the next blog.&lt;/p&gt;
-&lt;h4 id="einsteins-coeffecients-and-linestrengths"&gt;Einstein’s Coeffecients and Linestrengths&lt;/h4&gt;
-&lt;p&gt;There are four parameters of interest to describe the intensity of a line : Linestrength $(int)$, Einstein emission coefficient $(A)$ and Einstein absorption coefificent $(B_{lu})$, Einstein induced emission coefficient $(B_{ul})$. All of them are somehow linked to the Squared Transition Dipole Moment $(R)$. &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;$$ B_{lu}=10^{-36}\cdot\frac{8{\pi}^3}{3h^2} R_s^2 \cdot 10^{-7} $$&lt;br&gt;
-$$ B_{ul}=10^{-36}\cdot\frac{8{\pi}^3}{3h^2} \frac{gl}{gu} R_s^2 \cdot 10^{-7} $$&lt;br&gt;
-$$ A_{ul}=10^{-36}\cdot\frac{\frac{64{\pi}^4}{3h} {\nu}^3 gl}{gu} R_s^2 $$&lt;/p&gt;
-&lt;p&gt;So now the idea would be to drop the $int$ column and use $A_{ul}$ to calculate the value of $int$ from it. The reason to drop $int$ and not $A_{ul}$ some databases like &lt;code&gt;ExoMol&lt;/code&gt; databases only provide the value of $A_{ul}$.&lt;/p&gt;
-&lt;h4 id="concat-better"&gt;Concat better&lt;/h4&gt;
-&lt;p&gt;For anyone who wants concate multiple datafiles pandas tends to become useless as the memory scales up. I started out experimenting concat operations inorder to cluster the isotopes of each type, run computations on them and later concat them. But I later learnt that since this data is already in the form of a single dataframe, indexing is a better parameter to track the memory consumption. Nonetheless there are a few other places in Radis where we process multiple files and concat them, hence this experiment would help us decide how we can chose to replace the current approach with a better one. I tried out three methods. I was using some random dummy datafiles of around 780 MBs.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Normal &lt;code&gt;pandas.concat&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Concat with a doubly ended queue&lt;/li&gt;
-&lt;li&gt;Concat with parquet&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here are the results of each of these methods -&lt;/p&gt;
-&lt;div class="tab" id="cbbfde2b70afc7e2"&gt;
-&lt;div class="tab__links"&gt;
-&lt;button class="tab__link"&gt;pandas.concat&lt;/button&gt;
-&lt;button class="tab__link"&gt;deque&lt;/button&gt;
-&lt;button class="tab__link"&gt;parquet&lt;/button&gt;
-&lt;/div&gt;
-&lt;div class="tab__content" id="c6b1e010ed52c9f8"&gt;
-&lt;h4 id="pandasconcat"&gt;pandas.concat&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;CPU Time - 0:02:43.797588
-Peak Memory Usage - 4.1050 GB
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="tab__content" id="a412292f0cf68165"&gt;
-&lt;h4 id="pandasconcat-with-a-doubly-queue"&gt;pandas.concat with a doubly queue&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;CPU Time - 0:02:34.484612
-Peak Memory Usage - 3.7725 GB
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="tab__content" id="c655ff276a8106d7"&gt;
-&lt;h4 id="concat-with-parquet"&gt;Concat with parquet&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;CPU Time - 0:01:37.984875
-Peak Memory Usage - 1.6829 GB
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Looking at the results, parquet seems like a really good option to me. But we will run for a few more examples and later check which one suits the best.&lt;/p&gt;
-&lt;h3 id="the-next-two-weeks"&gt;The next two weeks&lt;/h3&gt;
-&lt;p&gt;The project is making progress in all fronts. I feel I need to reorganize my thoughts a bit. My main work for now would be to complete the task list of &lt;a href="https://github.com/radis/radis/pull/287"&gt;this pr&lt;/a&gt;. And then look at other stuff.&lt;/p&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;&lt;a href="https://www.sciencedirect.com/science/article/pii/S0022407398000788?via%3Dihub"&gt;Rothmann Paper (Eqs.(A7), (A8), (A9)&lt;/a&gt; &lt;a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:1"&gt;↩︎&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_0300_gagan-aryan/</guid><pubDate>Sun, 20 Jun 2021 02:00:06 GMT</pubDate></item><item><title>astropy@GSoC Blog Post #2, Week 1&amp;2</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210619_2154_suyog7130/</link><dc:creator>Suyog Garg</dc:creator><description>&lt;div&gt;&lt;p&gt;Hi,&lt;/p&gt;
-&lt;p&gt;How are you?&lt;/p&gt;
-&lt;p&gt;So, it's been two weeks of astropy@GSoC work already. Of course I have been damn busy! With the last commit made to the draft PR &lt;a href="https://github.com/astropy/astropy/pull/11835"&gt;https://github.com/astropy/astropy/pull/11835&lt;/a&gt;, a few hours back, I have successfully written a basic CDS writer. And voilà it works, albeit without the ReadMe at present! 😁&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Note that I am quite unlikely to go into technical details here in these posts. There are two reasons for this. Hhm..., Na I guess there's just one single reason. It would be too repetitive a task to write them. I already write aplenty about those in the GitHub comments and other communications. And of course, the whole codes I am writing during the project are available publicly on GitHub, for the overly curious kind. Moreover, the final report is gonna have more than ample discussion too, because I like to explain myself a lot. 😐 What then is the need to write all that here again? So consider these posts my plain uncouth thoughts, which in any case, I suppose, aligns more with the spirit OpenAstronomy asks these for.&lt;/p&gt;
-&lt;p&gt;On a second important point, honestly, these Astropy people are really intelligent. It would appear, even more as the project progresses, that they knowingly marked a normal project as &lt;i&gt;Easy&lt;/i&gt; to lure some innocent students! 😂&lt;/p&gt;
-&lt;p&gt;Anyway, Bye.&lt;/p&gt;
-&lt;p&gt;See ya the next time! 🙋‍♂️&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;/div&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210619_2154_suyog7130/</guid><pubDate>Sat, 19 Jun 2021 20:54:00 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1bc26da7571f" width="1"&gt;&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210621_1404_rashmiraj137/</guid><pubDate>Mon, 21 Jun 2021 13:04:09 GMT</pubDate></item></channel></rss>
