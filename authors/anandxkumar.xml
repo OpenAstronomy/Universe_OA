@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by anandxkumar)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/anandxkumar.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 05 Jul 2021 04:40:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Chapter 1: First Flight</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210621_2240_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;Hey! Missed me? I’m back with another blog, the first related to the Coding Period. Got some progress and interesting observation to share!&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by anandxkumar)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/anandxkumar.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 06 Jul 2021 04:41:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Chapter 2: Survey Corps</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2340_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;So its been around 4 weeks into the coding period, a lot of insights and progress so far!&lt;/p&gt;
+&lt;h3&gt;Profiler Class&lt;/h3&gt;
+&lt;p&gt;The good news is that the Profiler class has been successfully implemented in the develop branch and will be available to users by version &lt;code class="language-text"&gt;0.9.30&lt;/code&gt; .&lt;br&gt;
+&lt;!-- TEASER_END --&gt;
+Link : &lt;a href="https://github.com/radis/radis/pull/286"&gt;Profiler PR&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Below is a simple example how all steps are printed based on the verbose level:&lt;br&gt;&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;wmin = 2000
+wmax = 3300
+wstep = 0.01
+T = 3000.0 #K
+p = 0.1 #bar
+broadening_max_width=10
+
+sf = SpectrumFactory(wavenum_min=wmin, wavenum_max=wmax,
+pressure=p,
+wstep=wstep,
+broadening_max_width=broadening_max_width,
+molecule="CO",
+cutoff=0, # 1e-27,
+verbose=3,
+)
+sf.load_databank('HITEMP-CO')
+s = sf.eq_spectrum(T)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Output:&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;... Scaling equilibrium linestrength
+... 0.01s - Scaled equilibrium linestrength
+... 0.00s - Calculated lineshift
+... 0.00s - Calculate broadening HWHM
+... Calculating line broadening (60869 lines: expect ~ 6.09s on 1 CPU)
+...... 0.16s - Precomputed DLM lineshapes (30)
+...... 0.00s - Initialized vectors
+...... 0.00s - Get closest matching line &amp;amp; fraction
+...... 0.02s - Distribute lines over DLM
+...... 1.95s - Convolve and sum on spectral range
+... 2.14s - Calculated line broadening
+... 0.01s - Calculated other spectral quantities
+... 2.21s - Spectrum calculated (before object generation)
+... 0.01s - Generated Spectrum object
+2.22s - Spectrum calculated&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also we can access these steps and the time taken by them using &lt;code class="language-text"&gt;Spectrum.get_conditions()['profiler']&lt;/code&gt;. Also there is a parameter &lt;code class="language-text"&gt;SpectrumFactory.profiler.relative_time_percentage&lt;/code&gt; that stores the percentage of time taken by each steps at a particular verbose level, helpful seeing the most expensive steps in Spectrum calculation.&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;Legacy Method Complexity&lt;/h3&gt;
+&lt;p&gt;Several Spectrums were benchmarked against various parameters to see it’s correlation and derive its complexity. We used Profiler class with &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.lbl.loader.html#radis.lbl.loader.DatabankLoader.init_database"&gt;init_database()&lt;/a&gt; which stores all parameters of Spectrum along the Profiler in a &lt;code class="language-text"&gt;csv&lt;/code&gt; generated file; all spectrum info got added into the csv file  which could be used to do create visualizations to analyze the data. We used &lt;code class="language-text"&gt;Xexplorer&lt;/code&gt; library and &lt;code class="language-text"&gt;Tableau&lt;/code&gt;(a visual analytics platform) to create visualizations. A &lt;a href="https://github.com/anandxkumar/Benchmark_Visualization_GSoC_2021"&gt;github repository&lt;/a&gt; was created to store the Visualization along the CSV data file of each benchmark.&lt;/p&gt;
+&lt;p&gt;Following are the inference of the benchmarks for Legacy Method:&lt;/p&gt;
+&lt;b&gt;
+•  Calculation Time ∝ Number of lines&lt;br&gt;
+•  Calculation Time ∝ Broadening max width&lt;br&gt;
+•  Calculation Time ∝ 1/wstep&lt;br&gt;
+•  Calculation Time not dependent on Spectral Range&lt;br&gt;
+&lt;/b&gt;&lt;br&gt;
+&lt;p&gt;So complexity of Legacy method can be derived as: &lt;br&gt;
+&lt;strong&gt;&lt;code class="language-text"&gt;complexity = constant * Number of lines * Broadening Max Width / Wstep&lt;/code&gt;&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;LDM Method Complexity&lt;/h3&gt;
+&lt;p&gt;Similar technique was used to benchmark LDM method. Now LDM uses 2 types of broadening method that are &lt;code class="language-text"&gt;voigt&lt;/code&gt; and &lt;code class="language-text"&gt;fft&lt;/code&gt;. &lt;code class="language-text"&gt;voigt&lt;/code&gt; uses truncation for calculating spectrum  in wavenmber space where as &lt;code class="language-text"&gt;fft&lt;/code&gt; calculates spectrum on entire spectral range in fourier space. So benchmarks were done on both methods to compare their performance against various parameters.&lt;/p&gt;
+&lt;p&gt;Spectrum were benchmarked against parameters like Spectral Range, Wstep, Spectral Points, Number of Lines and Broadening Max Width. Following are the inferences.&lt;/p&gt;
+&lt;p&gt;For &lt;code class="language-text"&gt;fft&lt;/code&gt;:&lt;br&gt;
+&lt;b&gt;
+• Calculation Time ∝ Spectral Points&lt;br&gt;
+• Calculation Time ∝ Number of Lines&lt;br&gt;
+&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;For &lt;code class="language-text"&gt;voigt&lt;/code&gt;:&lt;br&gt;
+&lt;b&gt;
+• Calculation Time ∝ Spectral Points&lt;br&gt;
+• Calculation Time ∝ Number of Lines&lt;br&gt;
+• Calculation Time ∝ Broadening Max Width&lt;br&gt;
+&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;For LDM we are expecting the following complexity:&lt;br&gt;
+&lt;strong&gt;&lt;code class="language-text"&gt;t_LDM_fft ~ c2*N_lines + c3*(N_G*N_L + 1)*N_v*log(N_v)&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;&lt;code class="language-text"&gt;t_LDM_voigt ~ c2*N_lines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation)&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt; So the goal for the next 2 weeks will be to get the complexity of both &lt;code class="language-text"&gt;voigt&lt;/code&gt; and &lt;code class="language-text"&gt;fft&lt;/code&gt; method and see places for improving both methods and quite possibily create a &lt;code class="language-text"&gt;Hybrid&lt;/code&gt; method taking the best of both worlds. &lt;/p&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2340_anandxkumar/</guid><pubDate>Mon, 05 Jul 2021 22:40:32 GMT</pubDate></item><item><title>Chapter 1: First Flight</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210621_2240_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;Hey! Missed me? I’m back with another blog, the first related to the Coding Period. Got some progress and interesting observation to share!&lt;/p&gt;
 &lt;h3&gt;Ready -&amp;gt; Set -&amp;gt; Code -&amp;gt; Analyze&lt;/h3&gt;
 &lt;p&gt;The first thing I did in the coding period, was analyse the problem and get a feasible approach to resolve it.&lt;br&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
