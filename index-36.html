@@ -93,10 +93,10 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
                 </li>
 <li>
-                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://jeffrey-paul2000.medium.com" data-toggle="tooltip" data-placement="top" title="2021-07-10 12:54:23+01:00" style="color:rgb(255,0,0)">
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://jeffrey-paul2000.medium.com" data-toggle="tooltip" data-placement="top" title="2021-07-30 19:25:35+01:00">
                     Jeffrey Paul
                    </a>
-                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
                 </li>
 <li>
                    <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://ndanzanello.wordpress.com" data-toggle="tooltip" data-placement="top" title="2021-07-05 14:17:22+01:00" style="color:rgb(255,0,0)">
@@ -131,7 +131,25 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/07/20210705_1417_ndanzanello/" class="u-url">GSoC Post 2</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/07/20210705_1420_rashmiraj137/" class="u-url">Insight of Implementation of JAX to stingray- GSoC coding period!</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/raj-rashmi/">Raj Rashmi</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2021/07/20210705_1420_rashmiraj137/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-07-05T14:20:55+01:00" itemprop="datePublished" title="2021-07-05 14:20">2021-07-05 14:20</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>In the last blog, I wrote about Introduction to JAX and Automatic Differentiation. In this one, my plan for the next stage of implementation. Currently, I am working on the modeling notebook (<a href="https://github.com/StingraySoftware/notebooks/blob/main/Modeling/ModelingExamples.ipynb">https://github.com/StingraySoftware/notebooks/blob/main/Modeling/ModelingExamples.ipynb</a>) to re-design it using JAX, especially to make optimization more robust by having JAX compute gradients on the likelihood function.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/380/1*u_c4S0h60T1IECOBQVTS1A.jpeg"></figure><p>My mentor Daniela highlighted the issue that the current implementation is not robust using NumPy. The plan is to keep working on the current modeling notebook replacing NumPy by jax.numpy and also use grad, jit, vmap, random functionality of JAX.<br>When it comes to re-design, understanding the current design and the possible drawback and issues with corresponding packages comes on you first and I am trying them out. One such challenge is importing emcee into jupyter notebook for sampling. Despite making sure, I download the dependency in the current virtual environment and then making sure I import emcee into the notebook, it is still acting weird and showing an error: emcee not installed! Can’t sample! It looks like a clash of dependencies.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/240/1*JtGB50sLscB1BBPt9k3pfw.jpeg"><figcaption>Trying to have fun while it lasts!</figcaption></figure><p>For now, the plan is to solve every bug I face in the journey and then proceed with understanding how everything connects and the next step is to come up with the report of optimization using JAX. Stay tuned for more on how JAX can accelerate and augment the current modeling framework.</p>
+<p class="more"><a href="posts/2021/07/20210705_1420_rashmiraj137/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/07/20210705_1417_ndanzanello/" class="u-url">GSoC Post 2</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/ndanzanello/">ndanzanello</a>
