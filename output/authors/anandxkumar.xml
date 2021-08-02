@@ -1,5 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by anandxkumar)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/anandxkumar.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 01 Aug 2021 04:59:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Chapter 3: Midnight Sun</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210719_1645_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;Phase 1 is over :) ! We are half way through the journey. Great learning experience so far. Let’s find out what I accomplished during the previous 2 weeks (since I believe you have been following me from the beginning ;)&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by anandxkumar)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/anandxkumar.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 02 Aug 2021 04:59:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Chapter 4: The Other Side</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1424_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;A new month has started and I have started to see the light at the end of the tunnel. Good Morning and welcome back. Phase 2 has been rolling and let us look at the new findings.&lt;/p&gt;
+&lt;p&gt;Earlier the complexity of Legacy method was determined. The complexity of LDM Voigt and LDM FFT was to be determined using similar approach. Upon executing several benchmarks based on Number of lines, Spectum range, wstep, broadening max width. Previously it was thought the complexity was: &lt;br&gt;&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;time(LDM_fft) ~ c2*Nlines + c3*(N_G*N_L + 1)*N_v*log(N_v) (where N_v =  Spectral Points)
+&lt;!-- TEASER_END --&gt;
+time(LDM_voigt) ~ c2*Nlines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation) (where N_truncation = broadening width / wstep)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But in actual Re running all benchmarks for &lt;strong&gt;LDM&amp;gt;Voigt&lt;/strong&gt; and &lt;strong&gt;LDM&amp;gt;FFT&lt;/strong&gt; with a &lt;code class="language-text"&gt;broadening max width = 300 cm-1&lt;/code&gt;. All benchmarks and visualizations can be found &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/"&gt;here&lt;/a&gt; we were able to conclude the followings:&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;FFT:&lt;/strong&gt;&lt;br&gt;
+•  Complexity doesn’t depend on Nlines but rather wL x wG ; check this benchmark: &lt;a href="https://public.tableau.com/app/profile/anand.kumar4841/viz/LDMLinesvsCalculationTimeUpdatedCO2/Sheet1"&gt;link&lt;/a&gt;, it certainly looks like Complexity ∝ Nlines but its actually dependent on wL and wG, and gives same result on (wL x wG+ 1) x Spectral&lt;em&gt;Points x Log(Spectral&lt;/em&gt;Points).&lt;br&gt;
+•  Upon implementing multiple linear regression for &lt;strong&gt;c1 x Nlines + c2 x (wL x wG+ 1)*Spectral&lt;em&gt;Points x Log(Spectral&lt;/em&gt;Points)&lt;/strong&gt; gives &lt;code class="language-text"&gt;c1=2.65e-07&lt;/code&gt;, &lt;code class="language-text"&gt;c2=4.48256e-08&lt;/code&gt; but their &lt;code class="language-text"&gt;p value = 0.648 and 0.00001&lt;/code&gt;, and &lt;code class="language-text"&gt;p&amp;gt;0.05&lt;/code&gt; are insignificant, thus Nlines is insignificant for determining the complexity.&lt;br&gt;
+•  Since FFT is independent of broadening max width; benchmark: &lt;a href="https://public.tableau.com/app/profile/anand.kumar4841/viz/LDMVoigtandFFTBMW_NEW/Sheet1"&gt;link&lt;/a&gt;, so on comparing it Spectral point gives us same same time. Thus Spectral Point =  (wavenum max - wavenum max)/wstep instead of (wavenum maxcalc - wavenum min calc)/wstep&lt;br&gt;
+•  &lt;strong&gt;Overall complexity =  4.48256897e-08 x (wL x wG+ 1) x Spectral&lt;em&gt;Points(without BMW) x Log(Spectral&lt;/em&gt;Points(without BMW))&lt;/strong&gt;  &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/LDM/Complexity_FFT_Final/Complexity_FFT_Final.html"&gt;link&lt;/a&gt; (with the help of multple linear regression using sklearn; is almost accurate)&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Voigt:&lt;/strong&gt;&lt;br&gt;
+•  Similar to 1st point of FFT.&lt;br&gt;
+•  Upon doing multiple linear regression for &lt;strong&gt;c1 x N lines + c2 x (wL x wG + 1) x SpectralPoints x BMW xLog(SpectralPoints x (BMW) )&lt;/strong&gt; gives &lt;code class="language-text"&gt;c1=-1.9392e-06, c2=1.28256e-09&lt;/code&gt; but their &lt;code class="language-text"&gt;p value = 0.848 and 0.00001&lt;/code&gt;, and &lt;code class="language-text"&gt;p&amp;gt;0.05&lt;/code&gt; are insignificant, thus N&lt;em&gt;lines is insignificant for determining the complexity.&lt;br&gt;
+•  Calculation time is dependent `Broadening&lt;/em&gt;Max&lt;em&gt;width`, but upon inspections with Spectral Points, we have the exact same plot. So complexity is dependent only on Spectral Points but with broadening&lt;/em&gt;max&lt;em&gt;width i.e. wavenum&lt;/em&gt;calc, which causes the increase in computational time on increasing broadening&lt;em&gt;max&lt;/em&gt;width.&lt;br&gt;
+•  &lt;strong&gt;Overall complexity = 5.26795e-07 * (wL x wG+ 1)*Spectral Points x Log(Spectral Points)&lt;/strong&gt; &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/LDM/Complexity_Voigt_Final/Complexity_Voigt_Final.html"&gt;link&lt;/a&gt; (with the help of multple linear regression using sklearn; almost straight)&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Also:&lt;/strong&gt; From all the above plots, it really clear if going with broadening&lt;em&gt;max&lt;/em&gt;width=300cm-1 in wavespace, it will take alot more time than fft in all aspects.&lt;/p&gt;
+&lt;p&gt;But upon replacing &lt;code class="language-text"&gt;np.convolve&lt;/code&gt; with &lt;code class="language-text"&gt;scipy.signal.oaconvolve&lt;/code&gt;, we were able to achieve &lt;code class="language-text"&gt;2 to 30&lt;/code&gt; times performance boost. So it will be interesting to re run benchmarks with the latest piece of code and see which method performs better. Also some benchmarks will be added to ASV benchmark too to see how its performance changes over time.&lt;/p&gt;
+&lt;p&gt;Also profiler was modified to a tree like a stucture using &lt;code class="language-text"&gt;OrderedDict&lt;/code&gt; and &lt;code class="language-text"&gt;YAML&lt;/code&gt; has been used to print the profiler in a proper structued way using &lt;strong&gt;Spectrum.print_perf_profiler()&lt;/strong&gt; or &lt;strong&gt;SpectrumFactory.print_perf_profiler()&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;s = calc_spectrum(1900, 2300,         # cm-1
+molecule='CO',
+isotope='1,2,3',
+pressure=1.01325,   # bar
+Tvib=1000,          # K
+Trot=300,           # K
+mole_fraction=0.1,
+verbose=3,
+)
+s.print_perf_profile()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Gives the following output:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;&amp;gt;&amp;gt;&amp;gt; spectrum_calculation:
+&amp;gt;&amp;gt;&amp;gt;   applied_linestrength_cutoff: 0.0024361610412597656
+&amp;gt;&amp;gt;&amp;gt;   calc_emission_integral: 0.006468772888183594
+&amp;gt;&amp;gt;&amp;gt;   calc_hwhm: 0.006415128707885742
+&amp;gt;&amp;gt;&amp;gt;   calc_line_broadening:
+&amp;gt;&amp;gt;&amp;gt;     DLM_Distribute_lines: 0.0003898143768310547
+&amp;gt;&amp;gt;&amp;gt;     DLM_Initialized_vectors: 9.775161743164062e-06
+&amp;gt;&amp;gt;&amp;gt;     DLM_closest_matching_line: 0.0005028247833251953
+&amp;gt;&amp;gt;&amp;gt;     DLM_convolve: 0.029767990112304688
+&amp;gt;&amp;gt;&amp;gt;     precompute_DLM_lineshapes: 0.013132810592651367
+&amp;gt;&amp;gt;&amp;gt;     value: 0.07619166374206543
+&amp;gt;&amp;gt;&amp;gt;   calc_lineshift: 0.00074005126953125
+&amp;gt;&amp;gt;&amp;gt;   calc_noneq_population:
+&amp;gt;&amp;gt;&amp;gt;     part_function: 0.03405046463012695
+&amp;gt;&amp;gt;&amp;gt;     population: 0.005669832229614258
+&amp;gt;&amp;gt;&amp;gt;     value: 0.03983640670776367
+&amp;gt;&amp;gt;&amp;gt;   calc_other_spectral_quan: 0.002928495407104492
+&amp;gt;&amp;gt;&amp;gt;   calc_weight_trans: 0.008247852325439453
+&amp;gt;&amp;gt;&amp;gt;   check_line_databank: 0.0002810955047607422
+&amp;gt;&amp;gt;&amp;gt;   check_non_eq_param: 0.04109525680541992
+&amp;gt;&amp;gt;&amp;gt;   fetch_energy_5: 0.014983654022216797
+&amp;gt;&amp;gt;&amp;gt;   generate_spectrum_obj: 0.00032138824462890625
+&amp;gt;&amp;gt;&amp;gt;   generate_wavenumber_arrays: 0.0010433197021484375
+&amp;gt;&amp;gt;&amp;gt;   reinitialize:
+&amp;gt;&amp;gt;&amp;gt;     copy_database: 2.1457672119140625e-06
+&amp;gt;&amp;gt;&amp;gt;     memory_usage_warning: 0.0018389225006103516
+&amp;gt;&amp;gt;&amp;gt;     reset_population: 2.6226043701171875e-05
+&amp;gt;&amp;gt;&amp;gt;     value: 0.001964569091796875
+&amp;gt;&amp;gt;&amp;gt;   scaled_non_eq_linestrength:
+&amp;gt;&amp;gt;&amp;gt;     corrected_population_se: 0.002747774124145508
+&amp;gt;&amp;gt;&amp;gt;     map_part_func: 0.0010590553283691406
+&amp;gt;&amp;gt;&amp;gt;     value: 0.0038983821868896484
+&amp;gt;&amp;gt;&amp;gt;   value: 0.1904621124267578&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So at the end a productive week! Looking forward to conclude GSoC with a worthy ending :)&lt;/p&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1424_anandxkumar/</guid><pubDate>Sun, 01 Aug 2021 13:24:32 GMT</pubDate></item><item><title>Chapter 3: Midnight Sun</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210719_1645_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;Phase 1 is over :) ! We are half way through the journey. Great learning experience so far. Let’s find out what I accomplished during the previous 2 weeks (since I believe you have been following me from the beginning ;)&lt;/p&gt;
 &lt;p&gt;Getting straight to the point, most of the time was spent on fixing bugs of the Profiler class and other Pull requests regarding documentation and gallery example. A new gallery example was added to demonstrate the working of &lt;code class="language-text"&gt;SpecDatabase&lt;/code&gt; and &lt;code class="language-text"&gt;init_database&lt;/code&gt; to help user to store all Spectrums in the form of a &lt;code class="language-text"&gt;.spec&lt;/code&gt; file and all input parameters in a &lt;code class="language-text"&gt;csv&lt;/code&gt; file under a folder. The same folder can be used to retrieve all Spectrums thus saving a lot of time and also no need to recompute all spectrums, so quite a handy feature. Radis has &lt;code class="language-text"&gt;plot_cond&lt;/code&gt; function to plot a 2D heat map based on the parameters in csv file for all spectrums. Creates some good looking and informative plots :) &lt;br&gt;-&amp;gt; &lt;a href="https://radis.readthedocs.io/en/latest/auto_examples/plot_SpecDatabase.html#sphx-glr-auto-examples-plot-specdatabase-py"&gt;Gallery Example&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
 &lt;p&gt;Back to the analysis part; for LDM we expected:&lt;br&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;

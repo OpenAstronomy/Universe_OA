@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2021)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2021.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 01 Aug 2021 04:59:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Balance</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210730_1925_jeffreypaul15/</link><dc:creator>Jeffrey Paul</dc:creator><description>&lt;div&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/400/1*6vTTZ8HC33kEpYk0Wr8gxg.jpeg"&gt;&lt;figcaption&gt;“Cosmic Balance” — completely unrelated type of balance to what I go on to talk to talk about in this post. Although, outer space looks all fancy and it goes well with the theme of OpenAstronomy.&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;From all my previous posts, it is quite evident that I obsess over small and insignificant details, mainly directed towards how my life is going to be in the future and this entire concept of “happiness”. However, the past few months of working with Sunpy has brought about this odd sense of calm. The entire feeling of stress being an emotion goes out the window. Maybe this is what doing something you love, maybe it’s the people — or maybe it’s just extremely good timing combined with coincidence.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2021)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2021.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 02 Aug 2021 04:59:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>About my Google Summer of Code Project: Part 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1853_adwaitbhope/</link><dc:creator>Adwait Bhope</dc:creator><description>&lt;div&gt;&lt;p&gt;First and foremost, I celebrate the merging of the PR that brings reproject to NDCube! It defines a base-level functionality or MVP if you want to call it that, along with some relevant documentation. We also mark the release of ndcube’s 2.0 RC1. This is an important milestone since ndcube 2.0 brings significant changes, owing to the implementation of the new high-level WCS API.&lt;/p&gt;
+&lt;p&gt;Our next plan of action was to extend the method to use other algorithms that reproject supports. Interpolation (the one that the above PR implements) supports multi-dimensional cubes but “adaptive” and “exact” algorithms do not. For the time being, they only work on 2D cubes containing celestial axes. So that’s what I’ve implemented them for in a new PR, which is currently under review and should hopefully get merged soon.&lt;/p&gt;
+&lt;p&gt;The only problem for this PR was identifying celestial axes. We’ve taken a shortcut to solve this quickly and avoid creating a blocker, but a better implementation is due.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;The NDCubeSequence PR that I talked about in the last blog post hit a few unexpected edge cases which are under work.&lt;/p&gt;
+&lt;p&gt;We’re nearing the end of GSoC’s official timeline and while that is saddening, the good thing is that open source doesn’t need a GSoC timeline for contributing. I do hope that I’ll be able to tie up any loose ends before the end date, but I suppose that does not matter in the community’s bigger picture. Functional additions, bug fixes, and performance improvements are always going to be coming in for reproject, and I plan to maintain at least that bit of code (or more) in the future.&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f6354389b27f" width="1"&gt;&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1853_adwaitbhope/</guid><pubDate>Sun, 01 Aug 2021 17:53:41 GMT</pubDate></item><item><title>Chapter 4: The Other Side</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1424_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;A new month has started and I have started to see the light at the end of the tunnel. Good Morning and welcome back. Phase 2 has been rolling and let us look at the new findings.&lt;/p&gt;
+&lt;p&gt;Earlier the complexity of Legacy method was determined. The complexity of LDM Voigt and LDM FFT was to be determined using similar approach. Upon executing several benchmarks based on Number of lines, Spectum range, wstep, broadening max width. Previously it was thought the complexity was: &lt;br&gt;&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;time(LDM_fft) ~ c2*Nlines + c3*(N_G*N_L + 1)*N_v*log(N_v) (where N_v =  Spectral Points)
+&lt;!-- TEASER_END --&gt;
+time(LDM_voigt) ~ c2*Nlines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation) (where N_truncation = broadening width / wstep)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But in actual Re running all benchmarks for &lt;strong&gt;LDM&amp;gt;Voigt&lt;/strong&gt; and &lt;strong&gt;LDM&amp;gt;FFT&lt;/strong&gt; with a &lt;code class="language-text"&gt;broadening max width = 300 cm-1&lt;/code&gt;. All benchmarks and visualizations can be found &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/"&gt;here&lt;/a&gt; we were able to conclude the followings:&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;FFT:&lt;/strong&gt;&lt;br&gt;
+•  Complexity doesn’t depend on Nlines but rather wL x wG ; check this benchmark: &lt;a href="https://public.tableau.com/app/profile/anand.kumar4841/viz/LDMLinesvsCalculationTimeUpdatedCO2/Sheet1"&gt;link&lt;/a&gt;, it certainly looks like Complexity ∝ Nlines but its actually dependent on wL and wG, and gives same result on (wL x wG+ 1) x Spectral&lt;em&gt;Points x Log(Spectral&lt;/em&gt;Points).&lt;br&gt;
+•  Upon implementing multiple linear regression for &lt;strong&gt;c1 x Nlines + c2 x (wL x wG+ 1)*Spectral&lt;em&gt;Points x Log(Spectral&lt;/em&gt;Points)&lt;/strong&gt; gives &lt;code class="language-text"&gt;c1=2.65e-07&lt;/code&gt;, &lt;code class="language-text"&gt;c2=4.48256e-08&lt;/code&gt; but their &lt;code class="language-text"&gt;p value = 0.648 and 0.00001&lt;/code&gt;, and &lt;code class="language-text"&gt;p&amp;gt;0.05&lt;/code&gt; are insignificant, thus Nlines is insignificant for determining the complexity.&lt;br&gt;
+•  Since FFT is independent of broadening max width; benchmark: &lt;a href="https://public.tableau.com/app/profile/anand.kumar4841/viz/LDMVoigtandFFTBMW_NEW/Sheet1"&gt;link&lt;/a&gt;, so on comparing it Spectral point gives us same same time. Thus Spectral Point =  (wavenum max - wavenum max)/wstep instead of (wavenum maxcalc - wavenum min calc)/wstep&lt;br&gt;
+•  &lt;strong&gt;Overall complexity =  4.48256897e-08 x (wL x wG+ 1) x Spectral&lt;em&gt;Points(without BMW) x Log(Spectral&lt;/em&gt;Points(without BMW))&lt;/strong&gt;  &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/LDM/Complexity_FFT_Final/Complexity_FFT_Final.html"&gt;link&lt;/a&gt; (with the help of multple linear regression using sklearn; is almost accurate)&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Voigt:&lt;/strong&gt;&lt;br&gt;
+•  Similar to 1st point of FFT.&lt;br&gt;
+•  Upon doing multiple linear regression for &lt;strong&gt;c1 x N lines + c2 x (wL x wG + 1) x SpectralPoints x BMW xLog(SpectralPoints x (BMW) )&lt;/strong&gt; gives &lt;code class="language-text"&gt;c1=-1.9392e-06, c2=1.28256e-09&lt;/code&gt; but their &lt;code class="language-text"&gt;p value = 0.848 and 0.00001&lt;/code&gt;, and &lt;code class="language-text"&gt;p&amp;gt;0.05&lt;/code&gt; are insignificant, thus N&lt;em&gt;lines is insignificant for determining the complexity.&lt;br&gt;
+•  Calculation time is dependent `Broadening&lt;/em&gt;Max&lt;em&gt;width`, but upon inspections with Spectral Points, we have the exact same plot. So complexity is dependent only on Spectral Points but with broadening&lt;/em&gt;max&lt;em&gt;width i.e. wavenum&lt;/em&gt;calc, which causes the increase in computational time on increasing broadening&lt;em&gt;max&lt;/em&gt;width.&lt;br&gt;
+•  &lt;strong&gt;Overall complexity = 5.26795e-07 * (wL x wG+ 1)*Spectral Points x Log(Spectral Points)&lt;/strong&gt; &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/LDM/Complexity_Voigt_Final/Complexity_Voigt_Final.html"&gt;link&lt;/a&gt; (with the help of multple linear regression using sklearn; almost straight)&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Also:&lt;/strong&gt; From all the above plots, it really clear if going with broadening&lt;em&gt;max&lt;/em&gt;width=300cm-1 in wavespace, it will take alot more time than fft in all aspects.&lt;/p&gt;
+&lt;p&gt;But upon replacing &lt;code class="language-text"&gt;np.convolve&lt;/code&gt; with &lt;code class="language-text"&gt;scipy.signal.oaconvolve&lt;/code&gt;, we were able to achieve &lt;code class="language-text"&gt;2 to 30&lt;/code&gt; times performance boost. So it will be interesting to re run benchmarks with the latest piece of code and see which method performs better. Also some benchmarks will be added to ASV benchmark too to see how its performance changes over time.&lt;/p&gt;
+&lt;p&gt;Also profiler was modified to a tree like a stucture using &lt;code class="language-text"&gt;OrderedDict&lt;/code&gt; and &lt;code class="language-text"&gt;YAML&lt;/code&gt; has been used to print the profiler in a proper structued way using &lt;strong&gt;Spectrum.print_perf_profiler()&lt;/strong&gt; or &lt;strong&gt;SpectrumFactory.print_perf_profiler()&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;s = calc_spectrum(1900, 2300,         # cm-1
+molecule='CO',
+isotope='1,2,3',
+pressure=1.01325,   # bar
+Tvib=1000,          # K
+Trot=300,           # K
+mole_fraction=0.1,
+verbose=3,
+)
+s.print_perf_profile()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Gives the following output:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;&amp;gt;&amp;gt;&amp;gt; spectrum_calculation:
+&amp;gt;&amp;gt;&amp;gt;   applied_linestrength_cutoff: 0.0024361610412597656
+&amp;gt;&amp;gt;&amp;gt;   calc_emission_integral: 0.006468772888183594
+&amp;gt;&amp;gt;&amp;gt;   calc_hwhm: 0.006415128707885742
+&amp;gt;&amp;gt;&amp;gt;   calc_line_broadening:
+&amp;gt;&amp;gt;&amp;gt;     DLM_Distribute_lines: 0.0003898143768310547
+&amp;gt;&amp;gt;&amp;gt;     DLM_Initialized_vectors: 9.775161743164062e-06
+&amp;gt;&amp;gt;&amp;gt;     DLM_closest_matching_line: 0.0005028247833251953
+&amp;gt;&amp;gt;&amp;gt;     DLM_convolve: 0.029767990112304688
+&amp;gt;&amp;gt;&amp;gt;     precompute_DLM_lineshapes: 0.013132810592651367
+&amp;gt;&amp;gt;&amp;gt;     value: 0.07619166374206543
+&amp;gt;&amp;gt;&amp;gt;   calc_lineshift: 0.00074005126953125
+&amp;gt;&amp;gt;&amp;gt;   calc_noneq_population:
+&amp;gt;&amp;gt;&amp;gt;     part_function: 0.03405046463012695
+&amp;gt;&amp;gt;&amp;gt;     population: 0.005669832229614258
+&amp;gt;&amp;gt;&amp;gt;     value: 0.03983640670776367
+&amp;gt;&amp;gt;&amp;gt;   calc_other_spectral_quan: 0.002928495407104492
+&amp;gt;&amp;gt;&amp;gt;   calc_weight_trans: 0.008247852325439453
+&amp;gt;&amp;gt;&amp;gt;   check_line_databank: 0.0002810955047607422
+&amp;gt;&amp;gt;&amp;gt;   check_non_eq_param: 0.04109525680541992
+&amp;gt;&amp;gt;&amp;gt;   fetch_energy_5: 0.014983654022216797
+&amp;gt;&amp;gt;&amp;gt;   generate_spectrum_obj: 0.00032138824462890625
+&amp;gt;&amp;gt;&amp;gt;   generate_wavenumber_arrays: 0.0010433197021484375
+&amp;gt;&amp;gt;&amp;gt;   reinitialize:
+&amp;gt;&amp;gt;&amp;gt;     copy_database: 2.1457672119140625e-06
+&amp;gt;&amp;gt;&amp;gt;     memory_usage_warning: 0.0018389225006103516
+&amp;gt;&amp;gt;&amp;gt;     reset_population: 2.6226043701171875e-05
+&amp;gt;&amp;gt;&amp;gt;     value: 0.001964569091796875
+&amp;gt;&amp;gt;&amp;gt;   scaled_non_eq_linestrength:
+&amp;gt;&amp;gt;&amp;gt;     corrected_population_se: 0.002747774124145508
+&amp;gt;&amp;gt;&amp;gt;     map_part_func: 0.0010590553283691406
+&amp;gt;&amp;gt;&amp;gt;     value: 0.0038983821868896484
+&amp;gt;&amp;gt;&amp;gt;   value: 0.1904621124267578&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So at the end a productive week! Looking forward to conclude GSoC with a worthy ending :)&lt;/p&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1424_anandxkumar/</guid><pubDate>Sun, 01 Aug 2021 13:24:32 GMT</pubDate></item><item><title>GSoC Post 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1244_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;div&gt;&lt;p&gt;Hi! In my last post I mentioned that we would start calculating the distortions contained in the image. But we followed a different path! As the linear part was ready, we first worked on making some plots (scatter plots with side histograms of the difference in pixel scale of the celestial coordinates measured with the WCS we find and the celestial coordinates given as input) and drawing some quads to visualize it. This part was done using LaTeX and TikZ, a wonderful tool to produce graphics!&lt;/p&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;div class="wp-block-image"&gt;&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-73" src="https://ndanzanello.files.wordpress.com/2021/08/image.png?w=342"&gt;&lt;figcaption&gt;Example of a quad drawn using TikZ. The black points are the stars of the catalog.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;After that, we started to evaluate our results, and some changes were made: in statistics, for example, instead of getting direct the median, we use sigma clipping (a technique that removes outliers), allowing a better result. We also compared our results with one well established software: Astrometry.net. We’re getting pretty good results, but our running time was way bigger than the Astrometry.net one. So, we started working on that, and we have some ways to decrease our running time, such as making an only geo-hash search on the kdtree before the search containing the magnitude hashes. This reduces the dimentionality, which degrades the performance the higher it is. Other solution is to divide the celestial catalog in tiles, decreasing the number of total quads that we have to evaluate. Also, we can reduce the number of stars that we use to make quads. With these approaches, our running time got way better! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;/div&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1244_ndanzanello/</guid><pubDate>Sun, 01 Aug 2021 11:44:53 GMT</pubDate></item><item><title>Balance</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210730_1925_jeffreypaul15/</link><dc:creator>Jeffrey Paul</dc:creator><description>&lt;div&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/400/1*6vTTZ8HC33kEpYk0Wr8gxg.jpeg"&gt;&lt;figcaption&gt;“Cosmic Balance” — completely unrelated type of balance to what I go on to talk to talk about in this post. Although, outer space looks all fancy and it goes well with the theme of OpenAstronomy.&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;From all my previous posts, it is quite evident that I obsess over small and insignificant details, mainly directed towards how my life is going to be in the future and this entire concept of “happiness”. However, the past few months of working with Sunpy has brought about this odd sense of calm. The entire feeling of stress being an emotion goes out the window. Maybe this is what doing something you love, maybe it’s the people — or maybe it’s just extremely good timing combined with coincidence.&lt;/p&gt;
 &lt;p&gt;Ah, I suppose these questions don’t have simple answers. Regardless, whatever I’m doing with right now has restored that balance that I was longing for.&lt;/p&gt;
 &lt;p&gt;Coming to what has been happening with sunkit-pyvista. To summarize, I spent an entire week fixing things that I caused due to over-confidence :)&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -80,85 +159,4 @@ but rather t_LDM_voigt ~ c2*N_lines + c3*(N_G*N_L + 1)*N_v*log(N_v)&lt;/code&gt;
 &lt;p&gt;To summarize what happened over the past few weeks —&lt;/p&gt;
 &lt;ul&gt;&lt;li&gt;We’ve gotten over most of the project and we’re now working towards the initial stuff we put a pin in.&lt;/li&gt;&lt;li&gt;The basic plotting functionality of Sunpy now exists with Sunkit-Pyvista.&lt;/li&gt;&lt;li&gt;We moved the documentation over to GitHub workflows and I’m hoping that we get it to work by the end of the month.&lt;/li&gt;&lt;li&gt;We’ve introduced animations as a new feature to our work and we’ve got some ideas with how to take this forward.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Having no prior experience with Astrophysics, I decided to give Stephen Hawking’s “The Theory of Everything” a read. (Well, not a read, I prefer listening to audio books even though they are inferior). Revisiting physics with an astronomical sense gave me such a new perspective on what I am doing and fueled the motivation to continue the project with the same excitement I began with.&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*zrsJJIzLw4FexpUa1-SAUw.png"&gt;&lt;figcaption&gt;Regardless of it not actually looking like this — it still is fascinating, isn’t it?&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;A year ago, I never saw myself voluntarily taking an interest in astrophysics or open source software, but here I am today, doing both of them simultaneously. Who knows what the future holds for me, I’ve always been anxious about that. At times like these I try to think of how this universe is so nondeterministic, we may have a few guesses and theories as to why things happen the way it does but, we can’t say for sure. This thought grounds my thoughts and I suddenly stop worrying about everything, for sometime at-least…&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=ef21d76e0152" width="1"&gt;&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210710_1254_jeffreypaul15/</guid><pubDate>Sat, 10 Jul 2021 11:54:23 GMT</pubDate></item><item><title>astropy@GSoC Blog Post #4, Week 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210709_2232_suyog7130/</link><dc:creator>Suyog Garg</dc:creator><description>&lt;div&gt;&lt;p&gt;Hi,&lt;/p&gt;
-&lt;p&gt;How you doing?&lt;/p&gt;
-&lt;p&gt;Yup! Lots of things done again. I have finally completed the main goal of the project. Yahoo!&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;&lt;/div&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210709_2232_suyog7130/</guid><pubDate>Fri, 09 Jul 2021 21:32:00 GMT</pubDate></item><item><title>Chapter 2: Survey Corps</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2340_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;div&gt;&lt;p&gt;So its been around 4 weeks into the coding period, a lot of insights and progress so far!&lt;/p&gt;
-&lt;h3&gt;Profiler Class&lt;/h3&gt;
-&lt;p&gt;The good news is that the Profiler class has been successfully implemented in the develop branch and will be available to users by version &lt;code class="language-text"&gt;0.9.30&lt;/code&gt; .&lt;br&gt;
-&lt;!-- TEASER_END --&gt;
-Link : &lt;a href="https://github.com/radis/radis/pull/286"&gt;Profiler PR&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;Below is a simple example how all steps are printed based on the verbose level:&lt;br&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;wmin = 2000
-wmax = 3300
-wstep = 0.01
-T = 3000.0 #K
-p = 0.1 #bar
-broadening_max_width=10
-
-sf = SpectrumFactory(wavenum_min=wmin, wavenum_max=wmax,
-pressure=p,
-wstep=wstep,
-broadening_max_width=broadening_max_width,
-molecule="CO",
-cutoff=0, # 1e-27,
-verbose=3,
-)
-sf.load_databank('HITEMP-CO')
-s = sf.eq_spectrum(T)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Output:&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;... Scaling equilibrium linestrength
-... 0.01s - Scaled equilibrium linestrength
-... 0.00s - Calculated lineshift
-... 0.00s - Calculate broadening HWHM
-... Calculating line broadening (60869 lines: expect ~ 6.09s on 1 CPU)
-...... 0.16s - Precomputed DLM lineshapes (30)
-...... 0.00s - Initialized vectors
-...... 0.00s - Get closest matching line &amp;amp; fraction
-...... 0.02s - Distribute lines over DLM
-...... 1.95s - Convolve and sum on spectral range
-... 2.14s - Calculated line broadening
-... 0.01s - Calculated other spectral quantities
-... 2.21s - Spectrum calculated (before object generation)
-... 0.01s - Generated Spectrum object
-2.22s - Spectrum calculated&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Also we can access these steps and the time taken by them using &lt;code class="language-text"&gt;Spectrum.get_conditions()['profiler']&lt;/code&gt;. Also there is a parameter &lt;code class="language-text"&gt;SpectrumFactory.profiler.relative_time_percentage&lt;/code&gt; that stores the percentage of time taken by each steps at a particular verbose level, helpful seeing the most expensive steps in Spectrum calculation.&lt;br&gt;&lt;/p&gt;
-&lt;h3&gt;Legacy Method Complexity&lt;/h3&gt;
-&lt;p&gt;Several Spectrums were benchmarked against various parameters to see it’s correlation and derive its complexity. We used Profiler class with &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.lbl.loader.html#radis.lbl.loader.DatabankLoader.init_database"&gt;init_database()&lt;/a&gt; which stores all parameters of Spectrum along the Profiler in a &lt;code class="language-text"&gt;csv&lt;/code&gt; generated file; all spectrum info got added into the csv file  which could be used to do create visualizations to analyze the data. We used &lt;code class="language-text"&gt;Xexplorer&lt;/code&gt; library and &lt;code class="language-text"&gt;Tableau&lt;/code&gt;(a visual analytics platform) to create visualizations. A &lt;a href="https://github.com/anandxkumar/Benchmark_Visualization_GSoC_2021"&gt;github repository&lt;/a&gt; was created to store the Visualization along the CSV data file of each benchmark.&lt;/p&gt;
-&lt;p&gt;Following are the inference of the benchmarks for Legacy Method:&lt;/p&gt;
-&lt;b&gt;
-•  Calculation Time ∝ Number of lines&lt;br&gt;
-•  Calculation Time ∝ Broadening max width&lt;br&gt;
-•  Calculation Time ∝ 1/wstep&lt;br&gt;
-•  Calculation Time not dependent on Spectral Range&lt;br&gt;
-&lt;/b&gt;&lt;br&gt;
-&lt;p&gt;So complexity of Legacy method can be derived as: &lt;br&gt;
-&lt;strong&gt;&lt;code class="language-text"&gt;complexity = constant * Number of lines * Broadening Max Width / Wstep&lt;/code&gt;&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
-&lt;h3&gt;LDM Method Complexity&lt;/h3&gt;
-&lt;p&gt;Similar technique was used to benchmark LDM method. Now LDM uses 2 types of broadening method that are &lt;code class="language-text"&gt;voigt&lt;/code&gt; and &lt;code class="language-text"&gt;fft&lt;/code&gt;. &lt;code class="language-text"&gt;voigt&lt;/code&gt; uses truncation for calculating spectrum  in wavenmber space where as &lt;code class="language-text"&gt;fft&lt;/code&gt; calculates spectrum on entire spectral range in fourier space. So benchmarks were done on both methods to compare their performance against various parameters.&lt;/p&gt;
-&lt;p&gt;Spectrum were benchmarked against parameters like Spectral Range, Wstep, Spectral Points, Number of Lines and Broadening Max Width. Following are the inferences.&lt;/p&gt;
-&lt;p&gt;For &lt;code class="language-text"&gt;fft&lt;/code&gt;:&lt;br&gt;
-&lt;b&gt;
-• Calculation Time ∝ Spectral Points&lt;br&gt;
-• Calculation Time ∝ Number of Lines&lt;br&gt;
-&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;For &lt;code class="language-text"&gt;voigt&lt;/code&gt;:&lt;br&gt;
-&lt;b&gt;
-• Calculation Time ∝ Spectral Points&lt;br&gt;
-• Calculation Time ∝ Number of Lines&lt;br&gt;
-• Calculation Time ∝ Broadening Max Width&lt;br&gt;
-&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;For LDM we are expecting the following complexity:&lt;br&gt;
-&lt;strong&gt;&lt;code class="language-text"&gt;t_LDM_fft ~ c2*N_lines + c3*(N_G*N_L + 1)*N_v*log(N_v)&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
-&lt;strong&gt;&lt;code class="language-text"&gt;t_LDM_voigt ~ c2*N_lines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation)&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt; So the goal for the next 2 weeks will be to get the complexity of both &lt;code class="language-text"&gt;voigt&lt;/code&gt; and &lt;code class="language-text"&gt;fft&lt;/code&gt; method and see places for improving both methods and quite possibily create a &lt;code class="language-text"&gt;Hybrid&lt;/code&gt; method taking the best of both worlds. &lt;/p&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2340_anandxkumar/</guid><pubDate>Mon, 05 Jul 2021 22:40:32 GMT</pubDate></item><item><title>A Month into GSoC</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2037_dhruv9vats/</link><dc:creator>Dhruv Vats</dc:creator><description>&lt;div&gt;&lt;p&gt;It’s almost been a month since the start of GSoC’s coding period and the work, I’m glad to write, is progressing at a steady and satisfactory rate.&lt;/p&gt;
-&lt;h5&gt;The Developments&lt;/h5&gt;&lt;p&gt;The last time around, my first ever not-so-meaningless contribution to open-source had just got merged, and I was really happy about it. But what that also did was, get me over the initial anxiety and intimidation I might have been feeling towards open-source. This, I think, has also helped speed things along.&lt;/p&gt;
-&lt;p&gt;While I started working on the optional features of my project around 2 weeks ago, I had to scrape the initial implementation because it turned out to be very, very slow and therefore had to be completely replaced with a better and more efficient approach, which was a bit less straightforward. But now, two weeks into experimenting and iterating, a new pull-request has been opened with the newly implemented efficient version of the feature, and while it's still a few minor commits away from its final form, the core functionality works as expected and, if everything goes as expected, which is never a guarantee, a hefty part of my proposal’s objectives will be complete.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;And while this does not guarantee anything, I’d be lying if I said that I am not hoping for something exciting to do as I might have time to try out other things. What exactly, I honestly don’t know, but if I find myself in that minority who actually like what there doing, it’ll be an absolute privilege, which I’m looking forward to and wishing for.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*DvmM4lhclsVa5tIwl5um4A.png"&gt;&lt;figcaption&gt;Just some pastel colors for you to look at&lt;/figcaption&gt;&lt;/figure&gt;&lt;h5&gt;The Goal&lt;/h5&gt;&lt;p&gt;What follows might be a very steep change in topic, but is one, that I think lies at the root of many seemingly normal activities. This is just something that has been on my mind lately, and what writing is, if not a tool to better understand yourself?&lt;/p&gt;
-&lt;p&gt;I feel like an invisible aura is building around me saying that you are at a stage in life where you need to man up, where you should have everything together and figured out, but whenever I try and assess myself in this context, I always, without fail, fell short of it and by a good margin. While the contrasting opposite of this would be saying that I am everything I ever wanted to be and have nothing to work towards, would be outright arrogant and even dangerous, there must be a balance somewhere, right?&lt;/p&gt;
-&lt;p&gt;But why should I have it all figured out, what’s even the need? And while statements like these can be argued against using something like, because everyone is doing it, and this is the way, they give the vibes of being in a pipeline you’ve been pushed into and now have no option but to pass through. And this, I think, many will agree, is not a very desirable situation.&lt;/p&gt;
-&lt;p&gt;This need to progress towards something also spurs off many questions, one of which is “the why ?”. The why, is an oh-so-difficult question to answer that honestly makes me feel frustrated at times, not knowing to what end all the efforts are being put.&lt;/p&gt;
-&lt;p&gt;While it can be argued that this is a ridiculous thing to think about, and one should not set overly optimistic expectations, this, I feel, contradicts the notion of elegance that I somehow have associated with the fundamental workings of the world. If someone asked me to comment on the secrets of the Universe, I’d be very comfortable with using the words elegant and sophisticated, even though I basically know nothing about it? Why? Is this just a desire to find meaning in everything, or is there something else at play?&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=805d42b1b5ce" width="1"&gt;&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2037_dhruv9vats/</guid><pubDate>Mon, 05 Jul 2021 19:37:36 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=ef21d76e0152" width="1"&gt;&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210710_1254_jeffreypaul15/</guid><pubDate>Sat, 10 Jul 2021 11:54:23 GMT</pubDate></item></channel></rss>
