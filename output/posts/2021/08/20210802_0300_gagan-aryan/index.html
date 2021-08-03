@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC - 3 | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2021/08/20210802_0300_gagan-aryan/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Gagan Aryan">
+<link rel="prev" href="../20210801_1853_adwaitbhope/" title="About my Google Summer of Code Project: Part 3" type="text/html">
+<link rel="next" href="../20210803_0200_rashmiraj137/" title="GSoC update!" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSoC - 3">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2021/08/20210802_0300_gagan-aryan/">
+<meta property="og:description" content="Hello and welcome to the first blog of GSoC phase-2. Ever faced a time when there was way too much on the plate and you find it really hard to catch up on all the work? That is pretty much how the pre">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-08-02T03:00:06+01:00">
+<meta property="article:tag" content="radis">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://adwaitbhope.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-01 18:53:41+01:00">
+                    Adwait Bhope
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://anandkumar-blog.netlify.app" data-toggle="tooltip" data-placement="top" title="2021-08-01 14:24:32+01:00">
+                    anandxkumar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dhruv9vats.medium.com" data-toggle="tooltip" data-placement="top" title="2021-07-19 19:16:00+01:00" style="color:rgb(255,0,0)">
+                    Dhruv Vats
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://gagan-aryan.netlify.app" data-toggle="tooltip" data-placement="top" title="2021-08-02 03:00:06+01:00">
+                    Gagan Aryan
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://jeffrey-paul2000.medium.com" data-toggle="tooltip" data-placement="top" title="2021-07-30 19:25:35+01:00">
+                    Jeffrey Paul
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://ndanzanello.wordpress.com" data-toggle="tooltip" data-placement="top" title="2021-08-01 12:44:53+01:00">
+                    ndanzanello
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://rachitt01.medium.com" data-toggle="tooltip" data-placement="top" title="2021-06-20 18:29:09+01:00" style="color:rgb(255,0,0)">
+                    Rachitt Shah
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://raj-rashmi741.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-03 02:00:58+01:00">
+                    Raj Rashmi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://suyog20.blogspot.com" data-toggle="tooltip" data-placement="top" title="2021-07-21 20:00:00+01:00">
+                    Suyog Garg
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC - 3</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/gagan-aryan/">Gagan Aryan</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-02T03:00:06+01:00" itemprop="datePublished" title="2021-08-02 03:00">2021-08-02 03:00</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://gagan-aryan.netlify.app/posts/gsoc-3/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>Hello and welcome to the first blog of GSoC phase-2. Ever faced a time when there was way too much on the plate and you find it really hard to catch up on all the work? That is pretty much how the previous two weeks were for me. With the start of the oncampus internship drive, I was finding it really hard to give manage the project. Somehow I was able to make some progress but I am yet to complete the task.</p>
+<p>I am basically trying to parse the <code>.bz2</code> files of <code>HITEMP</code> databases into HDF5 files in a Vaex friendly format. Currently <code>.bz2</code> files are parsed into HDF5 files with the help of high level pandas functions. But as we already know pandas can be very memory consuming. So, I am trying to write to HDF5 files with <code>h5py</code> library and produce HDF5 files that are vaex friendly (column based).</p>
+<p>In order to do this, I am first converting <code>bz2</code> files to <code>.csv</code> upon download -&gt; mapping the datatypes of each of the columns -&gt; writing to a HDF5 file with <code>h5py</code>. I am currently stuck at mapping the datatypes and also trying to make optimizations with respect to the chunksize.</p>
+<!-- TEASER_END -->
+<p>This blog is just a quick update on the things that are happening currently. Once the writing to a HDF5 files is completed, look out for a detailed tutorial on the same on towardsdatascience :)</p>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20210801_1853_adwaitbhope/" rel="prev" title="About my Google Summer of Code Project: Part 3">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20210803_0200_rashmiraj137/" rel="next" title="GSoC update!">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2021         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
