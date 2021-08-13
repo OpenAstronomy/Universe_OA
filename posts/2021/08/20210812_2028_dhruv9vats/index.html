@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Glimpse into my GSoC project | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2021/08/20210812_2028_dhruv9vats/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Dhruv Vats">
+<link rel="prev" href="../20210809_0848_suyog7130/" title="astropy@GSoC Blog Post #6, Week 8&amp;9" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="A Glimpse into my GSoC project">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2021/08/20210812_2028_dhruv9vats/">
+<meta property="og:description" content="While all my blog posts till now were kind of abstract, here I will try to show some of the technical details of the project without making it too bloated. So as a one-line description, I had to study">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-08-12T20:28:01+01:00">
+<meta property="article:tag" content="stingray">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://adwaitbhope.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-01 18:53:41+01:00">
+                    Adwait Bhope
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://anandkumar-blog.netlify.app" data-toggle="tooltip" data-placement="top" title="2021-08-01 14:24:32+01:00">
+                    anandxkumar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dhruv9vats.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-12 20:28:01+01:00">
+                    Dhruv Vats
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://gagan-aryan.netlify.app" data-toggle="tooltip" data-placement="top" title="2021-08-02 03:00:06+01:00">
+                    Gagan Aryan
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://jeffrey-paul2000.medium.com" data-toggle="tooltip" data-placement="top" title="2021-07-30 19:25:35+01:00">
+                    Jeffrey Paul
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://ndanzanello.wordpress.com" data-toggle="tooltip" data-placement="top" title="2021-08-01 12:44:53+01:00">
+                    ndanzanello
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://rachitt01.medium.com" data-toggle="tooltip" data-placement="top" title="2021-06-20 18:29:09+01:00" style="color:rgb(255,0,0)">
+                    Rachitt Shah
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://raj-rashmi741.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-03 02:00:58+01:00">
+                    Raj Rashmi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://suyog20.blogspot.com" data-toggle="tooltip" data-placement="top" title="2021-08-09 08:48:00+01:00">
+                    Suyog Garg
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">A Glimpse into my GSoC project</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/dhruv-vats/">Dhruv Vats</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-12T20:28:01+01:00" itemprop="datePublished" title="2021-08-12 20:28">2021-08-12 20:28</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://dhruv9vats.medium.com/a-glimpse-into-my-gsoc-project-25c0fe3296dd?source=rss-f1d0746d59b5------2">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<p>While all my blog posts till now were kind of abstract, here I will try to show some of the technical details of the project without making it too bloated. So as a one-line description, I had to study, implement and integrate a spectral estimation technique, namely the <em>Multitaper Periodogram³</em> (and its derivatives¹), which are used to analyze astronomical time series.</p>
+<h5>Why spectral representations?</h5>
+<p>Before getting into the how of spectral analysis and its estimation, a brief sidenote on the why. Why do we even bother to study the spectral properties of a time series? It turns out, some of the determining characteristics or defining parameters associated with a certain time series are better <em>brought out</em> in their spectral representations (frequency domain representations).</p>
+<p>As an example, the power spectral density is a common tool to try and unearth the periodic element(s) in a time series. Such spectral analysis techniques, at their core, are enabled by the Fourier Transform, and if you’d like to gain a better intuitive understanding of it, do check out <a href="https://www.youtube.com/watch?v=spUNpyF58BY">this awesome video</a> by <a href="https://www.youtube.com/c/GrantSanderson">Grant Sanderson</a> on <a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw">3Blue1Brown</a>.</p>
+<!-- TEASER_END -->
+<h5>Multi what?</h5>
+<p>Spectral analysis isn’t without its fair share of practical complications, in fact, far from it. But there have been quite a few very effective techniques to mitigate them.</p>
+<p>One of them is <em>tapering (</em>multiplying the time series with a bell-shaped function), effective in reducing spectral leakage. Tapering a time series as a way of obtaining a spectral estimator with acceptable bias properties is an important concept. The loss of information (contained at the extremes of the time series) inherent in tapering can often be avoided either by prewhitening or by using Welch’s overlapped segment averaging.</p>
+<p>The multitaper periodogram is another approach to recover information lost due to tapering. This approach was introduced by Thomson (1982)³ and involves the use of multiple orthogonal tapers, having approximately uncorrelated spectral densities.</p>
+<p>In the multitaper method, the data is windowed or tapered, but this method differs from the traditional methods in the tapers used, which are the most band-limited functions amongst those defined on a finite time domain, and also, these tapers are orthogonal, enabling us to average the <em>eigenspectrum</em> (spectrum estimates from individual tapers) from more than one tapers to obtain a superior estimate in terms of noise. The resulting spectrum has low leakage, low variance, and retains information contained in the beginning and end of the time series.</p>
+<p>The tapers used are the discrete prolate spheroidal sequences (DPSS), or, the Slepians (Slepian 1978)⁴.</p>
+<h5>A look at the DPSS tapers</h5>
+<p>Let’s consider a time series sampled from an autoregressive process of order 4, AR(4), which has been frequently exemplified in literature¹ in similar contexts.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/657/1*h-k9Xm1CgerMQVIeKbfyOw.png"><figcaption>A time series sampled from an autoregressive process of order 4.</figcaption></figure><p>A good way to gain an intuitive understanding of the properties of the DPSS tapers, and how they affect the time series, is to visualize the effect. Given here are the time and frequency domain representations of the tapers and the tapered time series.</p>
+<p>The first 8 tapers and the corresponding tapered time series⁵.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/645/1*SEG0OEstBuAgP5OqgnS4zA.png"></figure><p>This showcases the product of a windowing function and a time series quite well. Next let’s have a look at their spectral representations⁵, more specifically, their power spectrum densities (PSD).</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/680/1*nvqbaD08gDf1zdh9P2ljqQ.png"><figcaption>For this example, we took the normalized half-bandwidth product to be equal to 4 (NW = 4), resulting in 8 tapers being used. The spectral concentration in the band [-W, W] can then be seen from the plots. (Here N, the number of data points, is 1024, hence, W = 4/N = 0.003906)</figcaption></figure><p>There is a significant increase in the bias of the PSD estimates as the spectral concentration of the tapers worsens. To prevent these estimates with greater biases from affecting the final averaged estimate but still use the variance reductions they bring, we weigh the different estimates according to their spectral concentration (percentage of energy concentrated in the desired frequency band).</p>
+<p>This can be kicked up a notch by using what is called adaptive weighing, which adaptively (duh?!) combines the different estimates, calculating the weights using an iterative process.</p>
+<h5>A brief summary of the Multitaper spectral estimation</h5>
+<a href="https://medium.com/media/3f23eb5c2c41460b8793fbc2e6fbc04d/href">https://medium.com/media/3f23eb5c2c41460b8793fbc2e6fbc04d/href</a><p>This summary, by no means, is an exhaustive explanation of the multitapering concept. Further exploration of the topic is highly encouraged. Use the references as the starting point.</p>
+<h5>The Final Result</h5>
+<p>Using all the techniques outlined here, let's see how well can this multitaper periodogram estimate the true spectrum of this auto-regressive process. Also added is the classical periodogram (also sometimes referred to as a naïve spectrum estimator because of its basic estimation process) for comparison.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/707/1*7eYiabftab1cYuMpBC4uqA.png"><figcaption>Here the multitaper estimate uses the adaptive weighting technique and the first 7 DPSS tapers</figcaption></figure><p>All this functionality is now implemented in <a href="https://github.com/StingraySoftware/stingray">Stingray</a>²</p>
+<h5>References</h5>
+<p>[1]: Springford, Aaron, Gwendolyn M. Eadie, and David J. Thomson. 2020. “Improving the Lomb–Scargle Periodogram with the Thomson Multitaper.” The Astronomical Journal (American Astronomical Society) 159: 205. doi:10.3847/1538–3881/ab7fa1.</p>
+<p>[2]: Huppenkothen, Daniela, Matteo Bachetti, Abigail L. Stevens, Simone Migliari, Paul Balm, Omar Hammad, Usman Mahmood Khan, et al. 2019. “Stingray: A Modern Python Library for Spectral Timing.” The Astrophysical Journal (American Astronomical Society) 881: 39. doi:10.3847/1538–4357/ab258d.</p>
+<p>[3]: Thomson, D. J. 1982. “Spectrum Estimation and Harmonic Analysis.” IEEE Proceedings 70: 1055–1096. <a href="https://ui.adsabs.harvard.edu/abs/1982IEEEP..70.1055T.">https://ui.adsabs.harvard.edu/abs/1982IEEEP..70.1055T.</a></p>
+<p>[4]: Slepian, D. 1978. “Prolate Spheroidal Wave Functions, Fourier Analysis, and Uncertainty-V: The Discrete Case.” Bell System Technical Journal (Institute of Electrical and Electronics Engineers (IEEE)) 57: 1371–1430. doi:10.1002/j.1538–7305.1978.tb02104.x</p>
+<p>[5]: D.B. Percival and A.T. Walden, Spectral Analysis for Physical Applications: Multitaper and Conventional Univariate Techniques. Cambridge, U.K.: Cambridge Univ. Press, 1993.</p>
+<p>[6]: Thomson, D. J. 1990. “Time series analysis of Holocene climate data.” Philosophical Transactions of the Royal Society of London. Series A, Mathematical and Physical Sciences (The Royal Society) 330: 601–616. doi:10.1098/rsta.1990.0041</p>
+<img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=25c0fe3296dd" width="1">
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/stingray/" rel="tag">stingray</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20210809_0848_suyog7130/" rel="prev" title="astropy@GSoC Blog Post #6, Week 8&amp;9">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2021         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
