@@ -12,7 +12,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/">
 <link rel="next" href="index-37.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2021/08/20210809_0848_suyog7130/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2021/08/20210812_2028_dhruv9vats/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -80,10 +80,10 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
                 </li>
 <li>
-                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dhruv9vats.medium.com" data-toggle="tooltip" data-placement="top" title="2021-07-19 19:16:00+01:00" style="color:rgb(255,0,0)">
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dhruv9vats.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-12 20:28:01+01:00">
                     Dhruv Vats
                    </a>
-                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">🔲</span></span>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
                 </li>
 <li>
                    <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://gagan-aryan.netlify.app" data-toggle="tooltip" data-placement="top" title="2021-08-02 03:00:06+01:00">
@@ -130,7 +130,26 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/08/20210809_0848_suyog7130/" class="u-url">astropy@GSoC Blog Post #6, Week 8&amp;9</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/08/20210812_2028_dhruv9vats/" class="u-url">A Glimpse into my GSoC project</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/dhruv-vats/">Dhruv Vats</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2021/08/20210812_2028_dhruv9vats/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-12T20:28:01+01:00" itemprop="datePublished" title="2021-08-12 20:28">2021-08-12 20:28</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>While all my blog posts till now were kind of abstract, here I will try to show some of the technical details of the project without making it too bloated. So as a one-line description, I had to study, implement and integrate a spectral estimation technique, namely the <em>Multitaper Periodogram³</em> (and its derivatives¹), which are used to analyze astronomical time series.</p>
+<h5>Why spectral representations?</h5>
+<p>Before getting into the how of spectral analysis and its estimation, a brief sidenote on the why. Why do we even bother to study the spectral properties of a time series? It turns out, some of the determining characteristics or defining parameters associated with a certain time series are better <em>brought out</em> in their spectral representations (frequency domain representations).</p>
+<p>As an example, the power spectral density is a common tool to try and unearth the periodic element(s) in a time series. Such spectral analysis techniques, at their core, are enabled by the Fourier Transform, and if you’d like to gain a better intuitive understanding of it, do check out <a href="https://www.youtube.com/watch?v=spUNpyF58BY">this awesome video</a> by <a href="https://www.youtube.com/c/GrantSanderson">Grant Sanderson</a> on <a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw">3Blue1Brown</a>.</p>
+<p class="more"><a href="posts/2021/08/20210812_2028_dhruv9vats/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/08/20210809_0848_suyog7130/" class="u-url">astropy@GSoC Blog Post #6, Week 8&amp;9</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/suyog-garg/">Suyog Garg</a>
@@ -308,24 +327,6 @@ bg-dark
 <h5>What next?</h5>
 <p>While most of the “proposed” work has been done, I will now be preparing some tutorials for the newly added functionality and tools, in an attempt to reduce the barrier to experimentation, use, and possible adoption of these new techniques into the workflow of its users.</p>
 <p class="more"><a href="posts/2021/07/20210719_1916_dhruv9vats/">Read more…</a></p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/07/20210719_1645_anandxkumar/" class="u-url">Chapter 3: Midnight Sun</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/anandxkumar/">anandxkumar</a>
-            </span></p>
-            <p class="dateline">
-            <a href="posts/2021/07/20210719_1645_anandxkumar/" rel="bookmark">
-            <time class="published dt-published" datetime="2021-07-19T16:45:32+01:00" itemprop="datePublished" title="2021-07-19 16:45">2021-07-19 16:45</time></a>
-            </p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<p>Phase 1 is over :) ! We are half way through the journey. Great learning experience so far. Let’s find out what I accomplished during the previous 2 weeks (since I believe you have been following me from the beginning ;)</p>
-<p>Getting straight to the point, most of the time was spent on fixing bugs of the Profiler class and other Pull requests regarding documentation and gallery example. A new gallery example was added to demonstrate the working of <code class="language-text">SpecDatabase</code> and <code class="language-text">init_database</code> to help user to store all Spectrums in the form of a <code class="language-text">.spec</code> file and all input parameters in a <code class="language-text">csv</code> file under a folder. The same folder can be used to retrieve all Spectrums thus saving a lot of time and also no need to recompute all spectrums, so quite a handy feature. Radis has <code class="language-text">plot_cond</code> function to plot a 2D heat map based on the parameters in csv file for all spectrums. Creates some good looking and informative plots :) <br>-&gt; <a href="https://radis.readthedocs.io/en/latest/auto_examples/plot_SpecDatabase.html#sphx-glr-auto-examples-plot-specdatabase-py">Gallery Example</a><br></p>
-<p>Back to the analysis part; for LDM we expected:<br></p>
-<p class="more"><a href="posts/2021/07/20210719_1645_anandxkumar/">Read more…</a></p>
 </div>
     </div>
     </article>
