@@ -69,7 +69,7 @@ bg-dark
             </style>
 <div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
 <li>
-                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://adwaitbhope.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-17 09:56:14+01:00">
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://adwaitbhope.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-20 11:05:17+01:00">
                     Adwait Bhope
                    </a>
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">❌</span></span>
@@ -131,7 +131,25 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/08/20210801_1853_adwaitbhope/" class="u-url">About my Google Summer of Code Project: Part 3</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/08/20210802_0300_gagan-aryan/" class="u-url">GSoC - 3</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/gagan-aryan/">Gagan Aryan</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2021/08/20210802_0300_gagan-aryan/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-02T03:00:06+01:00" itemprop="datePublished" title="2021-08-02 03:00">2021-08-02 03:00</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>Hello and welcome to the first blog of GSoC phase-2. Ever faced a time when there was way too much on the plate and you find it really hard to catch up on all the work? That is pretty much how the previous two weeks were for me. With the start of the oncampus internship drive, I was finding it really hard to give manage the project. Somehow I was able to make some progress but I am yet to complete the task.</p>
+<p>I am basically trying to parse the <code>.bz2</code> files of <code>HITEMP</code> databases into HDF5 files in a Vaex friendly format. Currently <code>.bz2</code> files are parsed into HDF5 files with the help of high level pandas functions. But as we already know pandas can be very memory consuming. So, I am trying to write to HDF5 files with <code>h5py</code> library and produce HDF5 files that are vaex friendly (column based).</p>
+<p>In order to do this, I am first converting <code>bz2</code> files to <code>.csv</code> upon download -&gt; mapping the datatypes of each of the columns -&gt; writing to a HDF5 file with <code>h5py</code>. I am currently stuck at mapping the datatypes and also trying to make optimizations with respect to the chunksize.</p>
+<p class="more"><a href="posts/2021/08/20210802_0300_gagan-aryan/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2021/08/20210801_1853_adwaitbhope/" class="u-url">About my Google Summer of Code Project: Part 3</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/adwait-bhope/">Adwait Bhope</a>
