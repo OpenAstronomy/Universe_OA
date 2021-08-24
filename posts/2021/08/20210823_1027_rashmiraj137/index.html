@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Summer of Code- Final Evaluation | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2021/08/20210823_1027_rashmiraj137/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Raj Rashmi">
+<link rel="prev" href="../20210823_0300_gagan-aryan/" title="GSoC - 4" type="text/html">
+<link rel="next" href="../20210823_1424_anandxkumar/" title="Chapter 5: Birds of a Feather" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Google Summer of Code- Final Evaluation">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2021/08/20210823_1027_rashmiraj137/">
+<meta property="og:description" content="Topic: Implement JAX based automatic differentiation to StingrayThe project involved the study of modern statistical modelling to augment the accuracy, speed, and robustness of the likelihood function">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-08-23T10:27:57+01:00">
+<meta property="article:tag" content="stingray">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://adwaitbhope.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-20 11:05:17+01:00">
+                    Adwait Bhope
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">❌</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://anandkumar-blog.netlify.app" data-toggle="tooltip" data-placement="top" title="2021-08-23 14:24:32+01:00">
+                    anandxkumar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">❌</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dhruv9vats.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-12 20:28:01+01:00">
+                    Dhruv Vats
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://gagan-aryan.netlify.app" data-toggle="tooltip" data-placement="top" title="2021-08-23 03:00:06+01:00">
+                    Gagan Aryan
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">❌</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://jeffrey-paul2000.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-19 02:50:29+01:00">
+                    Jeffrey Paul
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://ndanzanello.wordpress.com" data-toggle="tooltip" data-placement="top" title="2021-08-15 14:02:15+01:00">
+                    ndanzanello
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://rachitt01.medium.com" data-toggle="tooltip" data-placement="top" title="2021-06-20 18:29:09+01:00" style="color:rgb(255,0,0)">
+                    Rachitt Shah
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">❌</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://raj-rashmi741.medium.com" data-toggle="tooltip" data-placement="top" title="2021-08-23 10:27:57+01:00">
+                    Raj Rashmi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://suyog20.blogspot.com" data-toggle="tooltip" data-placement="top" title="2021-08-14 22:36:00+01:00">
+                    Suyog Garg
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-05-01 - 2021-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-08 - 2021-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-06-22 - 2021-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-06 - 2021-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-07-20 - 2021-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2021-08-03 - 2021-08-17">✅</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Google Summer of Code- Final Evaluation</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/raj-rashmi/">Raj Rashmi</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2021-08-23T10:27:57+01:00" itemprop="datePublished" title="2021-08-23 10:27">2021-08-23 10:27</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://raj-rashmi741.medium.com/google-summer-of-code-final-evaluation-578c0088bcbd?source=rss-8f41b3524ac1------2">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<h4><strong>Topic: Implement JAX based automatic differentiation to Stingray</strong></h4>
+<p>The project involved the study of modern statistical modelling to augment the accuracy, speed, and robustness of the likelihood function, into a software package called Stingray. This report demonstrates the experiment done for a combination of different optimizers to fit the scipy.optimize function. Another emphasis is to investigate the gradient calculation using JAX and compare it with scipy.optimize.</p>
+<h4><strong>Introduction:</strong></h4>
+<p>The proposed milestone was to investigate the room for improvement to enhance the overall performance of modelling to Stingray, using JAX. However, the current stage of the model is still a sandbox model. Stingray is astrophysical spectral timing software, a library in python built to perform time series analysis and related tasks on astronomical light curves. JAX is a python library designed for high-performance numerical computing. Its API for numerical functions is based on NumPy, a collection of functions used in scientific computing. Both Python and NumPy are widely used and familiar, making JAX simple, flexible, and easy to adopt. It can differentiate through a large subset of python’s features, including loops, ifs, recursion, and closures, and it can even take derivatives of derivatives. Such modern differentiation packages deploy a broad range of computational techniques to improve applicability, run time, and memory management.</p>
+<p>JAX utilizes the grad function transformation to convert a function into a function that returns the original function’s gradient, just like Autograd. Beyond that, JAX offers a function transformation jit for just-in-time compilation of existing functions and vmap and pmap for vectorization and parallelization, respectively.</p>
+<!-- TEASER_END -->
+<h4>Experiment:</h4>
+<p>The powerlaw and lorentzian function are the most used to describe periodograms in astronomy. In practice, we use the sum of these components to design a realistic model. For the analysis here we consider a quasi-periodic oscillation and a constant and try to fail the algorithm by, (i) reduce the amplitude, (ii) start the optimization process with parameters very far away from the true parameters, (iii) try different optimizers to experiment on different sensitive aspect of the current likelihood calculation. The current ongoing milestone is to try alternatives of scipy.optimize but this requires series of tests for the same.</p>
+<p>The above tests can be visualized in the notebook added on Github: <a href="https://github.com/rashmiraj137/GSoC-Project">https://github.com/rashmiraj137/GSoC-Project</a></p>
+<h4>Results:</h4>
+<p>During the experiment, it was observed that the algorithm is sensitive to input parameters i.e., it fails for couple of combinations like when the amplitude is set far away from true value, precisely blow absolute value of 1. In general, if we set the parameters very far away from the true value, it fails to approximate the likelihood function. In the notebook (<a href="https://github.com/rashmiraj137/GSoC-Project/blob/main/GSoC_Evaluation%20Notebook.ipynb">link</a>), we demonstrate the room for improvement in the current algorithm by choosing a different set of parameters. The current data fit for the evaluation of likelihood happens using scipy.optimize.minimize function. However, there exists numerous ways to do this. SciPy optimize provides functions for minimizing (or maximizing) objective functions, possibly subject to constraints. It includes solvers for nonlinear problems (with support for both local and global optimization algorithms), linear programming, constrained and nonlinear least-squares, root finding, and curve fitting. The problem with the current minimization algorithm is that it converges at local minimum instead of global, i.e. it is not very robust. Recently, Machine Learning has evident development in such optimization tools. The strategy was to find alternatives that potentially accelerate the code, makes it robust.</p>
+<p>For this experiment case, we choose a couple of optimizers and compare the robustness to Powell (the current optimizer used). So we visualize the fit for couple of optimizers like :</p>
+<ul>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-neldermead.html">minimize(method=’Nelder-Mead’)</a></li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-powell.html">minimize(method=’Powell’)</a></li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-cg.html">minimize(method=’CG’)</a></li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-bfgs.html">minimize(method=’BFGS’)</a></li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-newtoncg.html">minimize(method=’Newton-CG’)</a></li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html">minimize(method=’L-BFGS-B’)</a></li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-tnc.html">minimize(method=’TNC’)</a></li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-cobyla.html">minimize(method=’COBYLA’)</a></li>
+<li><a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html">minimize(method=’SLSQP’)</a></li>
+<li>minimize(method = “trust-constr”)</li>
+</ul>
+<p>This notebook (<a href="https://github.com/rashmiraj137/GSoC-Project/blob/main/GSoC_Evaluation%20Notebook.ipynb">link</a>) has results using each method and it was observed that Nelder-Mead is more robust as compared to other optimizers. Another optimizer like dogleg, trust-ncg, might be good as well, but the jacobian and hess need to be calculated for them.</p>
+<h4>Future Work:</h4>
+<p>JAX has now its own version of scipy.optimize.minimize but it has couple of bugs and is not as robust as scipy.optimize.minimize. Finding an alternative for scipy.optimize.minimize such that it doesn’t fails even if the start parameters are far away from the true parameters was a goal for this project but unfortunately JAX did not assist that well enough. But there might be a superior algorithm to scipy.optimize.minimize that can be useful.</p>
+<h4>Repositories:</h4>
+<p><a href="https://github.com/StingraySoftware/stingray">https://github.com/StingraySoftware/stingray</a></p>
+<p><a href="https://github.com/StingraySoftware/notebooks">GitHub - StingraySoftware/notebooks: Tutorial notebooks for Stingray</a></p>
+<h4>Blog Post:</h4>
+<p>1. <a href="https://raj-rashmi741.medium.com/jax-based-automatic-differentiation-introduction-of-modern-statistical-modeling-to-stingray-1bc26da7571f">JAX-based automatic differentiation: Introduction of modern statistical modeling to Stingray.</a></p>
+<p>2. Insight of Implementation of JAX to stingray- GSoC coding period!</p>
+<p>3. <a href="https://raj-rashmi741.medium.com/gsoc-update-2d16a70cc267?source=your_stories_page-------------------------------------">GSoC update!</a></p>
+<p><a href="https://raj-rashmi741.medium.com/time-to-review-my-gsoc-project-c34297f2dc81">4. Time to review my GSoC Project.</a></p>
+<h4>Profiles:</h4>
+<p>GitHub: <a href="https://github.com/rashmiraj137">https://github.com/rashmiraj137</a></p>
+<p>LinkedIn: <a href="https://www.linkedin.com/in/rashmi-raj-4b8a2b106/">https://www.linkedin.com/in/rashmi-raj-4b8a2b106/</a></p>
+<p>Medium: <a href="https://raj-rashmi741.medium.com/">https://raj-rashmi741.medium.com/</a></p>
+<img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=578c0088bcbd" width="1">
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/stingray/" rel="tag">stingray</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20210823_0300_gagan-aryan/" rel="prev" title="GSoC - 4">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20210823_1424_anandxkumar/" rel="next" title="Chapter 5: Birds of a Feather">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2021         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

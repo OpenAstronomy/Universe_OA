@@ -1,5 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Gagan Aryan)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/gagan-aryan.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 23 Aug 2021 05:14:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC - 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210802_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello and welcome to the first blog of GSoC phase-2. Ever faced a time when there was way too much on the plate and you find it really hard to catch up on all the work? That is pretty much how the previous two weeks were for me. With the start of the oncampus internship drive, I was finding it really hard to give manage the project. Somehow I was able to make some progress but I am yet to complete the task.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Gagan Aryan)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/gagan-aryan.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 24 Aug 2021 05:15:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC - 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;div&gt;&lt;p&gt;&lt;img alt="Radis" src="https://gagan-aryan.netlify.app/images/gsoc-4/Radis.png"&gt;&lt;/p&gt;
+&lt;p&gt;Today is the last day of GSoC-21. The entire journey was a rollercoaster ride and I learnt a lot of new things along the way. I started out with hardly knowing any of the shortcomings of pandas and as we dug in, I was surprised to see so many loopholes it contains. This will be the final blogpost of my gsoc journey and I hope you like it.&lt;/p&gt;
+&lt;h3 id="pandas-and-vaex"&gt;Pandas and Vaex&lt;/h3&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;h4 id="why-do-people-use-pandas-"&gt;Why do people use Pandas ?&lt;/h4&gt;
+&lt;p&gt;Pandas is an open source Python package that is most widely used for data science/data analysis and machine learning tasks. It is built on top of another package named Numpy, which provides support for multi-dimensional arrays.&lt;/p&gt;
+&lt;p&gt;Pandas makes it simple to do many of the time consuming, repetitive tasks associated with working with data, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Data visualization&lt;/li&gt;
+&lt;li&gt;Statistical analysis&lt;/li&gt;
+&lt;li&gt;Data inspection&lt;/li&gt;
+&lt;li&gt;Loading and saving data&lt;/li&gt;
+&lt;li&gt;Data cleansing&lt;/li&gt;
+&lt;li&gt;Data fill&lt;/li&gt;
+&lt;li&gt;Data normalization&lt;/li&gt;
+&lt;li&gt;Merges and joins&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As of the time I this blog was written pandas is arguably the most popular dataframe library that data scientists use. While pandas works smoothly while dealing with smaller data, it becomes very slow and inefficient when there are huge datasets.&lt;/p&gt;
+&lt;h4 id="why-use-vaex-"&gt;Why use Vaex ?&lt;/h4&gt;
+&lt;p&gt;Vaex is a python library that is closely similar to Pandas. Vaex is a library especially for lazy Out-of-Core DataFrames, helps to visualize and explore big tabular datasets. It is a high performance library and can solve many of the shortcomings of pandas. As the API is similar to pandas, users do not face difficulty in shifting.&lt;/p&gt;
+&lt;p&gt;Vaex is capable to calculate statistics such as mean, standard deviation etc, on an N-dimensional grid up to a billion (109109) objects/rows per second.&lt;/p&gt;
+&lt;h3 id="pandas-or-vaex-"&gt;Pandas or Vaex ?&lt;/h3&gt;
+&lt;p&gt;Here at Radis the underlying algorithm was not able to perform to its maximum capacity due to usage of pandas which consumes way too much of memory. So we tried to see how vaex can help improve the performance.&lt;/p&gt;
+&lt;p&gt;Below we are using &lt;a href="https://hitran.org/hitemp/"&gt;HITEMP-N2O Database&lt;/a&gt; for all checking the performance. It is to be noted that there is a difference between the pytables that pandas use and vaex friendly HDF5. The former is row-based whereas vaex friendly HDF5 files are column based.&lt;/p&gt;
+&lt;h4 id="loading-time"&gt;Loading time&lt;/h4&gt;
+&lt;p&gt;In the code below we -&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;load the the vaex HFD5 file and then convert it to pandas dataframe&lt;/li&gt;
+&lt;li&gt;directly load the pandas hdf5 file&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;vaex&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;7.833287477493286&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;28.142656087875366&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Clearly the first appraoch is almost 4 times faster than the second one.&lt;/p&gt;
+&lt;h4 id="load-specific-columns"&gt;Load specific columns&lt;/h4&gt;
+&lt;p&gt;As already stated, vaex hdf5 files are column based so loading only specific columns from vaex hdf5 file should be able give much better results than loading only specific columns in pandas. Lets check this and see the time taken to do both of these -&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;column_names&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"wav"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"int"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"El"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;0.1795198917388916&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"wav"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"int"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"El"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;22.85481858253479&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;In comparison, loading 4 out of 19 columns is about 70% as slow with Pandas.&lt;/p&gt;
+&lt;h4 id="load-specific-rows"&gt;Load specific rows&lt;/h4&gt;
+&lt;p&gt;To be fair to the pytables let’s try to load specific rows and check if pandas can now provide better performance with its row indexed HDF5s.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"iso==1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;30.680099725723267&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iso&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;selection&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mf"&gt;7.043155670166016&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Even in this case vaex provides better performance. So the idea was to harness this memory efficiency of vaex for all the I/O operations on the dataset in Radis. In order to do this I have written down a HDF5 writer that fetches &lt;code&gt;bz2&lt;/code&gt; file and parses it into a column-major HDF5. The complete code to the HDF5 writer can be found &lt;a href="https://gist.github.com/gagan-aryan/8ed5ba1f69074bbc72d081c31d43fcbd"&gt;in this gist&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That is it for GSoC21 from my side. Even though the second phase of my project got affected due to schools, I had an exciting summer as a whole. I am looking forward to be in touch with Radis and will try to contribute to it whenever I get a chance.&lt;/p&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_0300_gagan-aryan/</guid><pubDate>Mon, 23 Aug 2021 02:00:06 GMT</pubDate></item><item><title>GSoC - 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210802_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;div&gt;&lt;p&gt;Hello and welcome to the first blog of GSoC phase-2. Ever faced a time when there was way too much on the plate and you find it really hard to catch up on all the work? That is pretty much how the previous two weeks were for me. With the start of the oncampus internship drive, I was finding it really hard to give manage the project. Somehow I was able to make some progress but I am yet to complete the task.&lt;/p&gt;
 &lt;p&gt;I am basically trying to parse the &lt;code&gt;.bz2&lt;/code&gt; files of &lt;code&gt;HITEMP&lt;/code&gt; databases into HDF5 files in a Vaex friendly format. Currently &lt;code&gt;.bz2&lt;/code&gt; files are parsed into HDF5 files with the help of high level pandas functions. But as we already know pandas can be very memory consuming. So, I am trying to write to HDF5 files with &lt;code&gt;h5py&lt;/code&gt; library and produce HDF5 files that are vaex friendly (column based).&lt;/p&gt;
 &lt;p&gt;In order to do this, I am first converting &lt;code&gt;bz2&lt;/code&gt; files to &lt;code&gt;.csv&lt;/code&gt; upon download -&amp;gt; mapping the datatypes of each of the columns -&amp;gt; writing to a HDF5 file with &lt;code&gt;h5py&lt;/code&gt;. I am currently stuck at mapping the datatypes and also trying to make optimizations with respect to the chunksize.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
