@@ -148,8 +148,7 @@ bg-dark
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p>With the end of the GSoC project, I will give this blog to summarise the JAX based optimization to analyze its applicability to enhance the loglikelihood calculation. The goal is to analyze, (i) the performance of different optimizers to evaluate the loglikelihood function, (ii) demonstrated the robustness of JAX to calculate gradients. And talk about the current code and corresponding improvement due to JAX.</p>
+    <p>With the end of the GSoC project, I will give this blog to summarise the JAX based optimization to analyze its applicability to enhance the loglikelihood calculation. The goal is to analyze, (i) the performance of different optimizers to evaluate the loglikelihood function, (ii) demonstrated the robustness of JAX to calculate gradients. And talk about the current code and corresponding improvement due to JAX.</p>
 <p>The application of loglikelihood fitting to periodograms is discussed in [1]. Let us start with analyzing best-fit power spectrum (i) with different sets of optimizers namely: <em>minimize(method=’Nelder-Mead’, ’Powell’, ’CG’, ’BFGS’, ’Newton-CG’, ’L-BFGS-B’, ’TNC’, ’COBYLA’, ’SLSQP’, ’trust-constr’, ’dogleg’, ’trust-ncg’, ’trust-krylov’, ’trust-exact’). </em>The problem setting shifts the start and test parameters to study the graph of best fit optimizer using different “methods” listed above. First, we will stick with the Powell optimizer and try to check what is the current sensitivity of the implementation.</p>
 <p>Currently, we seek to find a solution to the problem when the optimization algorithm often gets stuck in local minima, terminate without meeting its formal success criteria, or fails due to any contributing factor. Possible ways are: (1) add more Lorentzian components, (2) reduce the amplitude, (3) start the optimization process with parameters very far away from the true parameters, (4) experiment with the different optimizers/ “methods” to investigate if there is more superior algorithm compared to Powell.</p>
 <!-- TEASER_END -->
@@ -167,7 +166,6 @@ bg-dark
 <p>[1] Maximum likelihood fitting of X-ray power density spectra: Application to high-frequency quasi-periodic oscillations from the neutron star X-ray binary 4U1608-522. Didier Barret, Simon Vaughan. <a href="https://arxiv.org/abs/1112.0535">https://arxiv.org/abs/1112.0535</a></p>
 <img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=c34297f2dc81" width="1">
 </div>
-    </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../../../categories/stingray/" rel="tag">stingray</a></li>
         </ul>

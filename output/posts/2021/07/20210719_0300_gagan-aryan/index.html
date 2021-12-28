@@ -148,8 +148,7 @@ bg-dark
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p>Welcome back !! So we are done with our first phase of the project and are shifting into the second one. I will be keeping this blog short since most of the details of the refactor have already been written in my previous post.</p>
+    <p>Welcome back !! So we are done with our first phase of the project and are shifting into the second one. I will be keeping this blog short since most of the details of the refactor have already been written in my previous post.</p>
 <p>By the time I was writing my previous post I had a pretty decent idea of how I would be doing each of the refactors. We had already decided that we may not have to implement all of them because Vaex might render a few of those changes redundant.</p>
 <p>I started out by writing a proof-of-concept to remove the column where partition function was added. Only the case of equilibrium molecules was handled here. The idea was to make use of pandas’ dictionary efficiently and remove the column. With the proof-of-concept we could conclude that not only did this approach reduce memory, but it also reduced CPU pressure by around 2x. For the lines of <code>HITEMP-CH4</code> molecules for the waverange 2000-3000 previously the dataframe occupied 1.2 GB but with this method we could compress that to around 100 MB. <sup id="fnref:1"><a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1">1</a></sup></p>
 <!-- TEASER_END -->
@@ -165,7 +164,6 @@ bg-dark
 <p><a href="https://github.com/radis/radis-benchmark/pull/11">Proof-of-Concept for Datatype Crunching - WIP</a> <a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:2">↩︎</a></p>
 </li>
 </ol>
-</div>
 </div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">

@@ -151,8 +151,7 @@ bg-dark
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<h3>
+    <h3>
 <a href="#progress-so-far" class="anchor">
 </a>
 <!-- TEASER_END -->
@@ -224,7 +223,6 @@ Until next time...
 <p>Initially, I had planned to develop the Null Geodesics module, such that simulating a photon sheet would be possible through this module itself. The purpose would be applications in radiative transfer calculations, which require simulation of pathological orbits for better approximations in the strong gravity regime. But the issue of error accumulation has made it difficult to continue with this strategy. We have decided to make the current code merge-ready, while keeping the PR open, mainly because, the code performs well at larger initial distances. I have already made relevant changes to ensure the code is merge-ready. The status of the PR can be viewed at <a href="https://github.com/einsteinpy/einsteinpy/pull/527">PR #527</a>.</p>
 
 <p>I am currently mulling the option of implementing the code in some low level language and then, building a wrapper around it, goal being to achieve better error-control, which I have not been able to obtain with Python/SciPy. Another approach that I am considering, is to restrict integration near the event horizon, based on step-size changes. Since multiple options are being explored and this is the last coding period, I have decided to make these blogs weekly. So my next blog should be up, next Friday. Hopefully, I will have solved this by then.</p>
-</div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../../../categories/einsteinpy/" rel="tag">EinsteinPy</a></li>

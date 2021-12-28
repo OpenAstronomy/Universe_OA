@@ -150,8 +150,7 @@ bg-dark
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p>I have successfully been able to show the kernel logs in realtime into the Jupyter front end.<br>
+    <p>I have successfully been able to show the kernel logs in realtime into the Jupyter front end.<br>
 So basically I configured the Jupyter kernel to dump the logs in real-time in a log file.<br>
 Then I created a new function that runs in a separate thread and pulls the content of the log file every 2 seconds.<br><!-- TEASER_END -->
 Then the fetched data is sent to the front end via sockets every two seconds ONLY when the user opens the log.<br>
@@ -164,7 +163,6 @@ So when the user is not in the logs page the socket communication and the readin
 <blockquote>threading.Timer(2.0,fetch_logs, [comm]).start()</blockquote>
 <img src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=3a522a2b89e4" width="1" height="1">
 </div>
-    </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../../../categories/astronomy-commons/" rel="tag">astronomy-commons</a></li>
         </ul>

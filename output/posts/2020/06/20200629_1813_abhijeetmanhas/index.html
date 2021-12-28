@@ -148,8 +148,7 @@ bg-dark
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<figure><img alt="" src="https://cdn-images-1.medium.com/max/800/0*EsjuLxEt1BrtrdCG"><figcaption>Solar Eclipse 2020 in Vadodara, Gujarat (Lucky Enough to witness it this year!)</figcaption></figure><p>This fortnight, I worked around iterating over different designs for redesigning the Dataretriever Clients so that its implementation can be simpler and more general. Generalization here means the ability to inherit most of the methods from the base class itself; therefore minimizing a number of similar methods in the subclasses.</p>
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/800/0*EsjuLxEt1BrtrdCG"><figcaption>Solar Eclipse 2020 in Vadodara, Gujarat (Lucky Enough to witness it this year!)</figcaption></figure><p>This fortnight, I worked around iterating over different designs for redesigning the Dataretriever Clients so that its implementation can be simpler and more general. Generalization here means the ability to inherit most of the methods from the base class itself; therefore minimizing a number of similar methods in the subclasses.</p>
 <h5>Show Method for QueryResponse</h5>
 <p>I got<a href="https://github.com/sunpy/sunpy/pull/4309"> PR #4309</a> merged which solved an old <a href="https://github.com/sunpy/sunpy/issues/556">Issue #556</a>. A simple show() function in ~sunpy.net.base_client.BaseQueryResponse enabled QueryResponse objects for Dataretriever, VSO, and JSOC clients to specify the columns to be shown in the result.</p>
 <p>This returns an ~astropy.table.Table instance, so table operations can also be easily performed on the result.</p>
@@ -171,7 +170,6 @@ bg-dark
 <p>Every week we move closer and closer to Generalization :). Enjoying the meetings where I and my mentors discuss the pros and cons of different designs of GenericClient!</p>
 <img src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=1879f5dfe436" width="1" height="1">
 </div>
-    </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
         </ul>

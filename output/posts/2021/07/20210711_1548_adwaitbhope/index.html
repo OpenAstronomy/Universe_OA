@@ -148,8 +148,7 @@ bg-dark
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<h4>About my Google Summer of Code Project: Part 2</h4>
+    <h4>About my Google Summer of Code Project: Part 2</h4>
 <p>So here I am, a month into the coding period and at the onset of the first evaluation. I talked about what my project was in the <a href="https://adwaitbhope.medium.com/about-my-google-summer-of-code-project-part-1-b56e7277046e">last blog</a>, and I’ll use this one to cover the progress we’ve made.</p>
 <p>All the work so far has been compiled into 3 messy PRs. To start with, reprojecting an NDCube onto another WCS requires that you first validate whether the source and target WCS transformations are in fact compatible. It’s no good if they represent an entirely different coordinate system. They need to have the same number of world axes and in the same order. The first PR introduces a function to check this and it has been merged into the main branch.</p>
 <p>The second one implements the actual reproject method on NDCube, leveraging the reproject package. Currently, it serves as a wrapper around the interpolation algorithm, with plans to support more algorithms soon. But that bit is dependent on optimizing the current functionality by being a little smarter about detecting axes that do not need to be modified. This would also help speed up the function AND use less memory!</p>
@@ -159,7 +158,6 @@ bg-dark
 <p>The next steps would be to refine this behaviour and try to optimize wherever possible. Then we’ll try to get these 2 remaining PRs merged in the main branch to avoid getting inundated later. So, this is all for this post, see you in the next one!</p>
 <img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=2e6f76a45653" width="1">
 </div>
-    </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
         </ul>
