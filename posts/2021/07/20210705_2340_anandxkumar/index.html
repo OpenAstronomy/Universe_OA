@@ -150,8 +150,7 @@ bg-dark
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <div>
-<p>So its been around 4 weeks into the coding period, a lot of insights and progress so far!</p>
+    <p>So its been around 4 weeks into the coding period, a lot of insights and progress so far!</p>
 <h3>Profiler Class</h3>
 <p>The good news is that the Profiler class has been successfully implemented in the develop branch and will be available to users by version <code class="language-text">0.9.30</code> .<br><!-- TEASER_END -->
 Link : <a href="https://github.com/radis/radis/pull/286">Profiler PR</a><br></p>
@@ -210,7 +209,6 @@ s = sf.eq_spectrum(T)</code></pre></div>
 • Calculation Time ∝ Broadening Max Width<br></b></p>
 <p>For LDM we are expecting the following complexity:<br><strong><code class="language-text">t_LDM_fft ~ c2*N_lines + c3*(N_G*N_L + 1)*N_v*log(N_v)</code></strong><br><strong><code class="language-text">t_LDM_voigt ~ c2*N_lines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation)</code></strong><br></p>
 <p> So the goal for the next 2 weeks will be to get the complexity of both <code class="language-text">voigt</code> and <code class="language-text">fft</code> method and see places for improving both methods and quite possibily create a <code class="language-text">Hybrid</code> method taking the best of both worlds. </p>
-</div>
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
 <li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
