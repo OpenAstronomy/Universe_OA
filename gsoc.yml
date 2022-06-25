@@ -9,7 +9,7 @@ gsoc2022:
     rss_feed: "FIXME"
     project: 'radis'
    Supriya1702:
-    rss_feed: "FIXME"
+    rss_feed: "https://supriya-gsoc.netlify.app/rss.xml"
     project: 'radis'
   TranHuuNhatHuy:
     rss_feed: "FIXME"
