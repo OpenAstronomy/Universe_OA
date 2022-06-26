@@ -3,7 +3,7 @@ gsoc2022:
     rss_feed: "FIXME"
     project: 'SunPy'
   arunavabasu-03:
-    rss_feed: "FIXME"
+    rss_feed: "https://gsoc.arunavabasu.com/"
     project: 'radis'
   sagarchotalia:
     rss_feed: "FIXME"
