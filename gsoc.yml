@@ -12,7 +12,7 @@ gsoc2022:
     rss_feed: "FIXME"
     project: 'radis'
   TranHuuNhatHuy:
-    rss_feed: "FIXME"
+    rss_feed: "https://gsoc2022tranhuunhathuy.gatsbyjs.io/rss.xml"
     project: 'radis'
   Jash-Shah:
     rss_feed: "FIXME"
