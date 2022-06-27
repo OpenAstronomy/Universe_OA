@@ -15,7 +15,7 @@ gsoc2022:
     rss_feed: "https://gsoc2022tranhuunhathuy.gatsbyjs.io/rss.xml"
     project: 'radis'
   Jash-Shah:
-    rss_feed: "FIXME"
+    rss_feed: "https://jash-shah.github.io/Blogs/feed.gsoc.xml"
     project: 'gnuastro'
   mihirtripathi97:
     rss_feed: "FIXME"
