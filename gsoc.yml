@@ -6,7 +6,7 @@ gsoc2022:
     rss_feed: "FIXME"
     project: 'radis'
   sagarchotalia:
-    rss_feed: "FIXME"
+    rss_feed: "https://sagarchotalia.github.io/Blog/feed.xml"
     project: 'radis'
    Supriya1702:
     rss_feed: "https://supriya-gsoc.netlify.app/rss.xml"
