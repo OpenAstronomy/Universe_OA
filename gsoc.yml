@@ -1,3 +1,28 @@
+gsoc2022:
+  akash5100:
+    rss_feed: "https://medium.com/feed/@akash5100"
+    project: 'SunPy'
+  arunavabasu-03:
+    rss_feed: "https://gsoc.arunavabasu.com/rss.xml"
+    project: 'radis'
+  sagarchotalia:
+    rss_feed: "https://sagarchotalia.github.io/Blog/feed.xml"
+    project: 'radis'
+   Supriya1702:
+    rss_feed: "https://supriya-gsoc.netlify.app/rss.xml"
+    project: 'radis'
+  TranHuuNhatHuy:
+    rss_feed: "https://gsoc2022tranhuunhathuy.gatsbyjs.io/rss.xml"
+    project: 'radis'
+  Jash-Shah:
+    rss_feed: "https://jash-shah.github.io/Blogs/feed.gsoc.xml"
+    project: 'gnuastro'
+  mihirtripathi97:
+    rss_feed: "https://medium.com/feed/@mihirtripathi97"
+    project: 'stingray'
+  Aman-Pandey-afk:
+    rss_feed: "https://medium.com/feed/@aman_p"
+    project: 'stingray'
 gsoc2021:
   Suyog7130:
     rss_feed: "https://suyog20.blogspot.com/feeds/posts/default/-/gsoc/?alt=rss"
