@@ -3,7 +3,7 @@ gsoc2022:
     rss_feed: "https://medium.com/feed/@akash5100"
     project: 'SunPy'
   arunavabasu-03:
-    rss_feed: "FIXME"
+    rss_feed: "https://gsoc.arunavabasu.com/rss.xml"
     project: 'radis'
   sagarchotalia:
     rss_feed: "https://sagarchotalia.github.io/Blog/feed.xml"
