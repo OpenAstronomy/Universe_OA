@@ -2,8 +2,7 @@
 
 from __future__ import unicode_literals
 import time
-
-import yaml
+import warnings
 
 # !! This is the configuration of Nikola. !! #
 # !!  You should edit it to your liking.  !! #
@@ -1169,7 +1168,17 @@ GLOBAL_CONTEXT = {}
 # rendered
 GLOBAL_CONTEXT_FILLER = []
 
-with open("organisations.yaml") as forgs:
-    LOGOS = yaml.load(forgs, Loader=yaml.SafeLoader)
-with open("dates_posts.yaml") as fdates:
-    DATES = yaml.load(fdates, Loader=yaml.SafeLoader)
+# This try/except block is only to make the Nikola gh actions to work
+# https://github.com/getnikola/nikola-action#caveats
+try:
+    import yaml
+
+    with open("organisations.yaml") as forgs:
+        LOGOS = yaml.load(forgs, Loader=yaml.SafeLoader)
+    with open("dates_posts.yaml") as fdates:
+        DATES = yaml.load(fdates, Loader=yaml.SafeLoader)
+
+except ImportError:
+    warnings.warn("YAML not imported")
+    LOGOS = ""
+    DATES = ""
