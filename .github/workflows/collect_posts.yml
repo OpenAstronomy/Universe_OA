@@ -26,3 +26,11 @@ jobs:
         uses: getnikola/nikola-action@v4
         with:
           dry_run: false
+      - name: check branch
+        run: |
+          sudo chmod -R ugo+rwX .
+          git config --global user.name 'GHABot'
+          git config --global user.email 'GHABot@nomail'
+          git add gsoc* output/* posts/*
+          git commit -m "update from $(date)"
+          git push origin run:run
