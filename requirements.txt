@@ -1,0 +1,6 @@
+jupyter
+nikola
+markdown
+pyyaml
+feedparser
+pytz

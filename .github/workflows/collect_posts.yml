@@ -1,0 +1,24 @@
+name: collect-posts
+on:  # FIXME add  cron
+  - push
+jobs:
+  download-posts:
+    name: "Check for new posts, download them and re-publish"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: 'run'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.6'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: grab posts
+        run: python grab.py
+      - name: Build and Deploy Nikola
+        uses: getnikola/nikola-action@v4
+        with:
+          dry_run: false
