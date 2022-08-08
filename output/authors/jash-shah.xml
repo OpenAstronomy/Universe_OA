@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Jash Shah)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/jash-shah.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 08 Aug 2022 17:11:47 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My GSoC Journey - Part 4</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</link><dc:creator>Jash Shah</dc:creator><description>&lt;p&gt;&lt;em&gt;Writing the extension modules and Python wrappers for a package is one thing, but a step that is often overlooked is making a build system that complies with the rest of your program, ensures the correct installation based on your dependencies and also is portable enough to be distributable.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I learned these things the hard way in Week 3 and 4, where I went as low level as I could to try to solve all the weird build errors and glitches I had while &lt;strong&gt;trying to build a Python Package using GNU Autotools&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="building"&gt;Building&lt;/h3&gt;
+&lt;p&gt;As discussed in my last GSoC blog, I was mainly using &lt;code class="language-plaintext highlighter-rouge"&gt;distutils&lt;/code&gt; along with it’s &lt;code class="language-plaintext highlighter-rouge"&gt;distutils.setup&lt;/code&gt; script to take care of all the building and linking required for building the &lt;code class="language-plaintext highlighter-rouge"&gt;.so&lt;/code&gt; (shared object) file required by the  Python Interpreter. However, one of my co-mentors brought up a good point that &lt;code class="language-plaintext highlighter-rouge"&gt;setuptools&lt;/code&gt; is the packaging tool that is recommended by &lt;a href="https://packaging.python.org/en/latest/guides/tool-recommendations/"&gt;PyPA&lt;/a&gt; and also using &lt;code class="language-plaintext highlighter-rouge"&gt;wheels&lt;/code&gt; to package the modules instead of the standard &lt;code class="language-plaintext highlighter-rouge"&gt;setup.py build&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Hence, &lt;strong&gt;Week 3 was spent mainly learning about &lt;code class="language-plaintext highlighter-rouge"&gt;setuptools&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;wheels&lt;/code&gt;&lt;/strong&gt;. &lt;a href="https://realpython.com/python-wheels/#the-manylinux-wheel-tag"&gt;What Are Python Wheels and Why Should You Care?&lt;/a&gt; is a great article to start with Python Wheels. The &lt;a href="https://setuptools.pypa.io/en/latest/index.html"&gt;setuptools documentation&lt;/a&gt; is a great place to know about setuptools, if you already know about distutils like me! Luckily, while &lt;code class="language-plaintext highlighter-rouge"&gt;Setuptools&lt;/code&gt; is a “beefier” version of distutils, as it offers better and more packaging utilities, it keeps the same functions, so in terms of code it was just a change of one line for me.&lt;/p&gt;
+
+&lt;p&gt;Originally, with &lt;code class="language-plaintext highlighter-rouge"&gt;distutils&lt;/code&gt;, the plan was to have the files related to the Python Package in a separate &lt;em&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;python/&lt;/code&gt;&lt;/em&gt; directory at the root of the Gnuastro source like:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;📦python
+┣ 📂gnuastro.arithmetic
+┃ ┣ 📜arithmetic.c
+┃ ┗ 🔧setup.py
+┣ 📂gnuastro.cosmology
+┃ ┣ 📜cosmology.c
+┃ ┗ 🔧setup.py
+┣ 📂gnuastro.fits
+┃ ┣ 📜fits.c
+┃ ┗ 🔧setup.py
+┗ 📑Makefile.am
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The idea was to have the &lt;code class="language-plaintext highlighter-rouge"&gt;setup.py&lt;/code&gt; script in each folder build that specific extension, and let the Makefile handle the linking. But I soon realized that this was too excessive. A better structure would be:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt; 📦python
+┣ 📂src
+┃ ┣ 📜arithmetic.c
+┃ ┣ 📜cosmology.c
+┃ ┗ 📜fits.c
+┣ 📑Makefile.am
+┗ 🔧setup.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id="using-autotools-to-build-python-package"&gt;Using Autotools to build Python Package&lt;/h4&gt;
+&lt;p&gt;As the name suggests &lt;strong&gt;GNU&lt;/strong&gt;astro is a GNU project, and thus depends on Autotools(&lt;a href="https://www.gnu.org/software/automake/manual/html_node/index.html#SEC_Contents"&gt;Automake&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/autoconf/"&gt;Autoconf&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/libtool/"&gt;Libtool&lt;/a&gt;) for its building and compiling. These are the tools behind the&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;./configure
+make
+make check
+make install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;set of instructions.&lt;/p&gt;
+
+&lt;p&gt;Alongwith the setup script, I also added a new file(&lt;a href="https://github.com/Jash-Shah/gnuastro-jash/blob/6997730fab6cb18fd7b34f77f9a0f65f0c7e0730/lib/python.c"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;python.c&lt;/code&gt;&lt;/a&gt;) to the &lt;em&gt;lib/&lt;/em&gt; directory of Gnuastro. This file basically provides any utility functions I might require while building the Python package. Currently, the file provides type conversion functions, which facilitate converting between Gnuastro and NumPy’s datatypes.&lt;/p&gt;
+
+&lt;p&gt;So, what is the difference between your traditional Makefile and using Autotools instead:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Autoconf&lt;/strong&gt; easily scans an existing tree to find its dependencies and creates a configure script that will run under almost any kind of shell. The configure script allows the user to control the build behavior (i.e. –with-foo, –without-python, –prefix, –sysconfdir, etc..) as well as doing checks to ensure that the system can compile the program.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Configure generates a &lt;code class="language-plaintext highlighter-rouge"&gt;config.h&lt;/code&gt; file (from a template) which programs can include to work around portability issues. For example, if HAVE_NUMPY is not defined, don’t build the Python package.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automake&lt;/strong&gt; provides a short template that describes what programs will be built and what objects need to be linked to build them, thus Makefiles that adhere to GNU coding standards can automatically be created.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;My job was to use these tools to also call the &lt;code class="language-plaintext highlighter-rouge"&gt;setup&lt;/code&gt; script for building my Python package.&lt;/p&gt;
+
+&lt;p&gt;My approach to building the package using Autotools involved 4 basic steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Adding the necessary checks in the &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt; script.
+&lt;ul&gt;
+&lt;li&gt;Check if a user has Python 3 on their system and get it’s include path i.e. path to &lt;code class="language-plaintext highlighter-rouge"&gt;Python.h&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;If Python 3 is found, Check if the user has NumPy on their system and get it’s include path.&lt;/li&gt;
+&lt;li&gt;Substitute the include paths as variables to be passed to all &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am's&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conditionally build the Python package and its utility functions module(&lt;code class="language-plaintext highlighter-rouge"&gt;lib/python.c&lt;/code&gt;) only if the above checks are passed.&lt;/li&gt;
+&lt;li&gt;Write the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt; in the &lt;code class="language-plaintext highlighter-rouge"&gt;python/&lt;/code&gt; directory which would handle the &lt;em&gt;build, install, uninstall and clean&lt;/em&gt; targets for the Python package.&lt;/li&gt;
+&lt;li&gt;Re-write the setup.py script to make it more generic, by using the environment variables passed by the configure script instead of hardcoding the include and install paths.
+&lt;ul&gt;
+&lt;li&gt;This also ensures that the Python package building supports &lt;a href="https://www.gnu.org/software/automake/manual/html_node/VPATH-Builds.html"&gt;VPATH&lt;/a&gt; builds, which is another great feature of Autotools. For the uninitiated, &lt;code class="language-plaintext highlighter-rouge"&gt;VPATH builds&lt;/code&gt; are basically a way to separate your source and build tree, so that all the built files (.o, .so, etc) are in a separate directory than your source files but are symlinked to the source tree.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This process took a lot of trial and error, digging into the Autotools(mostly Automake) documentation and playing around with the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt; to get right. But it introduced me to these amazing tools and taught me how to make any scrawny personal project distributable!&lt;/p&gt;
+
+&lt;h3 id="installing"&gt;Installing&lt;/h3&gt;
+&lt;p&gt;After running,&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;python3 setup.py build_ext bdist_wheel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;the distributable wheel file, with all of the package’s metadata, is created under the &lt;code class="language-plaintext highlighter-rouge"&gt;dist/&lt;/code&gt; folder. In order to install this file we use pip as follows:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;pip install Gnuastro.whl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;YES! It is in fact as simple as that!&lt;/p&gt;
+
+&lt;p&gt;But there is an issue that I faced here, suppose that a user wants to install the Gnuastro library in their root directory, or to any directory where they dont have privileges. This means they’ll run &lt;code class="language-plaintext highlighter-rouge"&gt;sudo make install&lt;/code&gt; from the root of the source. This cascades to calling the Makefile in the &lt;em&gt;python/&lt;/em&gt; directory with root access as well. However, running &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; with sudo access is a big NO, NO. And &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; would warn you of that with a warning like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="PIP sudo error message" height="50" src="https://jash-shah.github.io/Blogs/img/posts/gsoc-week3_4/pip_error.png" width="1000"&gt;&lt;/p&gt;
+
+&lt;!-- ![PIP sudo error message](/Blogs/img/posts/gsoc-week3_4/pip_error.png) --&gt;
+
+&lt;p&gt;This is because, Python packages are generally installed at a local level, in the &lt;code class="language-plaintext highlighter-rouge"&gt;/usr/local&lt;/code&gt; directory. However, if you call &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; with &lt;code class="language-plaintext highlighter-rouge"&gt;sudo&lt;/code&gt; then it installs the packages in the root directory. To sove this, we use&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;sudo -u "$SUDO_USER pip install Gnuastro,whl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;which basically runs the pip command as the user who called sudo. This will ensure that your package gets installed in the local directory instead of root!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</guid><pubDate>Tue, 19 Jul 2022 23:00:00 GMT</pubDate></item><item><title>My GSoC Journey - Part 3</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220701_0000_jash-shah/</link><dc:creator>Jash Shah</dc:creator><description>&lt;h3 id="coding-begins"&gt;Coding Begins!&lt;/h3&gt;
+&lt;p&gt;So, now that I got to know the Gnuastro community a bit and had discussed the plan of attack with my mentor it was time to start with the actual coding.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;h4 id="week-1"&gt;Week 1&lt;/h4&gt;
+&lt;p&gt;As planned, I started with the building the extension module for &lt;a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/manual/html_node/CosmicCalculator.html"&gt;Cosmic Calculator&lt;/a&gt;(cosmiccal) library. A simple Python extension Module should be structed as:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Code-Block1" src="https://jash-shah.github.io/Blogs/img/posts/gsoc-coding-begins/code-block-1.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;The cosmical library was chosen as a starting point because it contained only 6 functions and solely dealt with &lt;em&gt;doubles, ints, and floats&lt;/em&gt;. Consequently, there wasn’t yet a requirement for a NumPy Converter. It was pretty straight forward to create wrappers for these functions by following the aforementioned structure. The &lt;code class="language-plaintext highlighter-rouge"&gt;setup.py&lt;/code&gt; script for building and installing these modules was created at the following stage. For this, I followed the &lt;a href="https://docs.python.org/3/extending/building.html#building"&gt;Python Extension documentation’s&lt;/a&gt; advice and utilised &lt;a href="https://docs.python.org/3/distutils/apiref.html"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;distutils&lt;/code&gt;&lt;/a&gt;, which offers two crucial functions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.python.org/3/distutils/apiref.html#distutils.core.Extension"&gt;&lt;u&gt;distutils.core.Extension&lt;/u&gt;&lt;/a&gt; which is used to describe a &lt;code class="language-plaintext highlighter-rouge"&gt;C/C++&lt;/code&gt; extension.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.python.org/3/distutils/apiref.html#distutils.core.setup"&gt;&lt;u&gt;distutils.core.setup&lt;/u&gt;&lt;/a&gt; the frontman in actually building and compiling the modules.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="Code-Block2" src="https://jash-shah.github.io/Blogs/img/posts/gsoc-coding-begins/code-block-2.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;After this, the commands to build and install these modules were simply:&lt;/p&gt;
+&lt;div class="language-bash highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;python3 setup.py build
+python3 setup.py &lt;span class="nb"&gt;install&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id="week-2"&gt;Week 2&lt;/h4&gt;
+&lt;p&gt;At our subsequent meeting, my mentor confirmed my work, and we both agreed that the next step should be to write the NumPy converter so that this may be &lt;em&gt;expanded&lt;/em&gt; to include the other library modules as well.&lt;/p&gt;
+
+&lt;p&gt;Week 2 was a little light on work because I was out of town for a few days. However, the most of my reading time was devoted to learning about the &lt;code class="language-plaintext highlighter-rouge"&gt;NumPy C-API&lt;/code&gt; and how it connected with the &lt;code class="language-plaintext highlighter-rouge"&gt;Python C-API&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I discovered that a NumPy array’s primary container object was the &lt;a href="https://numpy.org/doc/stable/reference/c-api/types-and-structures.html#c.PyArrayObject"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;PyArrayObject&lt;/code&gt;&lt;/a&gt;, and its &lt;code class="language-plaintext highlighter-rouge"&gt;PyTypeObject&lt;/code&gt; was the &lt;a href="https://numpy.org/doc/stable/reference/c-api/types-and-structures.html#c.PyArray_Type"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;PyArray_Type&lt;/code&gt;&lt;/a&gt;. Therefore, in order for any &lt;code class="language-plaintext highlighter-rouge"&gt;PyObject&lt;/code&gt; to be regarded as a NumPy Array, it has to fulfil these two requirements.&lt;/p&gt;
+
+&lt;p&gt;The API itself offered &lt;a href="https://numpy.org/doc/stable/reference/c-api/array.html#creating-arrays"&gt;functions&lt;/a&gt; that allowed any generic array type data container to be converted into &lt;code class="language-plaintext highlighter-rouge"&gt;PyArray_Type&lt;/code&gt; or one of its subclasses. For creating the converter, I would always turn to these!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220701_0000_jash-shah/</guid><pubDate>Thu, 30 Jun 2022 23:00:00 GMT</pubDate></item><item><title>My GSoC Journey - Part 2</title><link>http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_jash-shah/</link><dc:creator>Jash Shah</dc:creator><description>&lt;h3 id="community-bonding-period"&gt;Community Bonding Period&lt;/h3&gt;
+&lt;p&gt;The official &lt;a href="https://google.github.io/gsocguides/student/how-gsoc-works"&gt;GSoC docs&lt;/a&gt; describes the Community Bonding Period as &lt;em&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;"The first phase in which you get to know your community and get familiar with their code base and work style."&lt;/code&gt;&lt;/em&gt; So following this definition, my main goal in these few weeks(&lt;strong&gt;20th May - 13th June&lt;/strong&gt;) was to get to learn the inner workings of Gnuastro and trying to understand the communication within it, by becoming an active part of the community.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;h4 id="week-1"&gt;Week 1&lt;/h4&gt;
+&lt;p&gt;As I had my end semester exams scheduled from 9th May till 27th May, it was tough for me to be as active as I would like, so this week was majorly spent &lt;strong&gt;observing the communication between the different memebers of the community&lt;/strong&gt;, mainly through our &lt;a href="https://matrix.to/#/#gnuastro:openastronomy.org"&gt;Element(Matrix) Channel&lt;/a&gt;. I would also browse through the &lt;a href="https://savannah.gnu.org/bugs/?group=gnuastro"&gt;Savannah pages&lt;/a&gt; of Gnuastro to see the current bugs/features in work, while also noting the contributions currenty being made, by reading through the great commit messages.&lt;/p&gt;
+
+&lt;h4 id="week-23---the-first-meet-with-mentor-"&gt;Week 2/3 - The First Meet with Mentor !!&lt;/h4&gt;
+&lt;p&gt;I dedicated myself to learning about &lt;a href="https://docs.python.org/3/extending/extending.html#compilation-and-linkage"&gt;Python Extensions&lt;/a&gt;(whose docs are really succinct!) and testing them out by creating some sample modules during this period. It was quite inciteful as it gave me a greater perspective into what the final outcome of my project will be and what flow of work I would have to follow to achieve that.
+&lt;br&gt;&lt;br&gt;
+I was also pretty excited about finally getting to meet my mentor, &lt;a href="https://akhlaghi.org/"&gt;Mohammad Akhlaghi&lt;/a&gt;, who I had only talked to over the mail and IRC, but had been incredibly kind and welcoming. Taking the schedules of all other developers into cosideration as well, we decided to make &lt;strong&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;Tuesdays 1:00PM,CEST(4:30PM IST) as our weekly meet times&lt;/code&gt;&lt;/strong&gt;. The first meet went great, and was really fun(allbeit overwhelming) to meet all the other developers and get an insight into the awesome work everyone’s doing at Gnuastro! I presented a few slides I had prepared to give an overview of my project to the the other developers. Alongwith Mohammad, we were also able to decide a few goals for the next meet, them being:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Learn more about &lt;strong&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;Python Extension Modules&lt;/code&gt;&lt;/strong&gt; and try to extend a simple Gnuastro Library module(&lt;a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/manual/html_node/CosmicCalculator.html"&gt;&lt;u&gt;cosmiccal&lt;/u&gt;&lt;/a&gt; in particular) into Python.&lt;/li&gt;
+&lt;li&gt;Reasearch into the &lt;a href="https://numpy.org/doc/stable/reference/c-api/index.html"&gt;&lt;u&gt;NumPy C-API&lt;/u&gt;&lt;/a&gt; and how we can go about building a converter between &lt;a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/manual/html_node/Generic-data-container.html"&gt;&lt;u&gt;Gnuastro's core data-structure&lt;/u&gt;&lt;/a&gt; and NumPy’s &lt;a href="https://numpy.org/doc/stable/reference/c-api/types-and-structures.html#c.PyArray_Type"&gt;&lt;u&gt;PyArrayObject&lt;/u&gt;&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="conclusion"&gt;Conclusion&lt;/h4&gt;
+&lt;p&gt;As mentioned in the afformentioned definition of &lt;em&gt;Community Bonding&lt;/em&gt; given by GSoC, I think I managed to get a good insight into the Gnuastro’s community by &lt;strong&gt;observing their communications and contributions&lt;/strong&gt; while also making myself familiar with their work style!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_jash-shah/</guid><pubDate>Sat, 25 Jun 2022 23:00:00 GMT</pubDate></item><item><title>My GSoC Journey - Part 1</title><link>http://openastronomy.org/Universe_OA/posts/2022/05/20220529_0000_jash-shah/</link><dc:creator>Jash Shah</dc:creator><description>&lt;h3 id="what-is-google-summer-of-code-gsoc"&gt;What Is Google Summer of Code (GSoC)&lt;/h3&gt;
+&lt;p&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;Google Summer of Code&lt;/code&gt;(shortly known as GSoC) is a global, online program(organized by…..you guessed it! Google) focused on bringing new contributors into open source software development. GSoC Contributors work with an open source organization on a 12+ week programming project under the guidance of mentors. You can think of GSoC as an incubator for nurturing future open source developers.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;h4 id="why-is-open-source-important"&gt;Why is Open Source important?&lt;/h4&gt;
+&lt;p&gt;Open source software is code that is designed to be publicly accessible—&lt;strong&gt;anyone can see, modify, and distribute the code&lt;/strong&gt; as they see fit. This makes it ideal for developers who want to contribute towards making a &lt;em&gt;small but significant change&lt;/em&gt; in the world of softwares, but might lack the credentials, time, resources or just plain will to go through the grueling process of first getting employed by a software firm. Open source organiztions, are genrally helmed by engineers, who are &lt;em&gt;extremely practical&lt;/em&gt;(even to a fault sometimes ;) ). Thus, Open Source slices through all the social constructs and procedural beuracracy invovled in getting a job in a software firm, by giving anyone with an idea and the will+ability to bring that idea to fruition, a chance to contribute to these softwares, thus working towards making it a better software for everyone.
+&lt;img alt="Matrix Open Source Software Meme" src="https://images-cdn.9gag.com/photo/aM4jpy6_700b.jpg"&gt;&lt;/p&gt;
+
+&lt;h3 id="why-did-i-participate-in-gsoc"&gt;Why did I participate in GSoC?&lt;/h3&gt;
+&lt;p&gt;Well…there a bunch of reasons for this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It seemed like &lt;code class="language-plaintext highlighter-rouge"&gt;the natural next step&lt;/code&gt; in my journey as a Computer Engineer. I have just finished my IV Semester, got a few good projects under my belt, taken part(&amp;amp; won) in a few competitions, ad GSoC feels like the right way to now start getting into the world of free software!&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;Peer Pressure 🙃 : The Good Kind&lt;/code&gt;&lt;br&gt;
+My college (&lt;a href="https://vjti.ac.in/"&gt;VJTI, Matunga&lt;/a&gt;) had a staggering &lt;strong&gt;24 GSoC’ers in 2022&lt;/strong&gt;. 21 of these were from &lt;a href="https://github.com/SRA-VJTI"&gt;SRA(Society of Robotics and Automation)&lt;/a&gt; a club that I’ve been a very active part of. Hence, being surrounded by people who were also working towards getting accepted in GSoC definetly helped me in doing the same.&lt;/li&gt;
+&lt;li&gt;I felt the &lt;code class="language-plaintext highlighter-rouge"&gt;need(nay obligation) to contribute to the open source softwares that had helped ME&lt;/code&gt; in my few budding years of being a Computer Engineer. When you get to use and interact with the communities of something as good as Linux, OpenCV, ROS, VLC, React for free; you will feel the same way, trust me ;)&lt;/li&gt;
+&lt;li&gt;The prospect of &lt;code class="language-plaintext highlighter-rouge"&gt;being mentored&lt;/code&gt; by someone, &lt;em&gt;much much more&lt;/em&gt; proficient than me at such an early stage, while also getting paid to do so !!&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;College Work just doesn't seem enough&lt;/code&gt;&lt;br&gt;
+This might be exclusive to just me, but I was not satisfied with the challenge offered by the assignments and projects in my college curriculum. Hence, GSoC also fills that gap of trying out something outside of the normal confines of my college,&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="how-to-start-with-gsoc"&gt;How to start with GSoC?&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Find an Organization:&lt;/strong&gt;&lt;br&gt;
+According to the &lt;a href="https://developers.google.com/open-source/gsoc/timeline"&gt;timeline of GSoC 22’&lt;/a&gt;, the organizations were announced on &lt;em&gt;7th March, 2022&lt;/em&gt;. However, there are a few legacy organiztions (like CERN-HSF, Red Hat, OpenCV, Julia, etc.) that have been participating in GSoC for long, hence aiming for one of these orgs(if you like them!) and starting even as early as Januaray (i.e ~4 months before the application period) is a good idea. It will also give you time to browse various orgs and settle into their communities. Although because of some other commitments, I was not able to start properly working on GSoC till April (i.e. a month before the application period :0 ). So, &lt;em&gt;don’t do as I do but do as I say&lt;/em&gt;.&lt;br&gt;
+The org which I chose was &lt;a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/gnuastro.html"&gt;Gnuastro&lt;/a&gt; which is part of the umbrella org &lt;a href="https://openastronomy.org/"&gt;openastronomy&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Finding a Project:&lt;/strong&gt;&lt;br&gt;
+Every org participating in GSoC will have an ideas page with many prospect ideas, also some unfinished ideas(or ideas requiring enhancement) from previous GSoC’s. I combed through the &lt;a href="https://openastronomy.org/gsoc/gsoc2022/#/projects"&gt;ideas page of openastronomy&lt;/a&gt; and found a project that piqued my interest called &lt;a href="https://openastronomy.org/gsoc/gsoc2022/#/projects?project=gnuastro_library_in_python"&gt;GNUAstro Library in Python&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Finding my Mentor:&lt;/strong&gt;&lt;br&gt;
+I followed the links to the Element(Matrix) channel of my org, where I introduced myself and was greeted warmly by my mentor with help regarding the &lt;a href="https://savannah.gnu.org/support/index.php?110613#comment0"&gt;GSoC Checklist&lt;/a&gt; that Gnuastro had. This step might be different for different orgs. Some may have you commit some code my creating a Pull Request(PR), some have you solve tasks, some may have no &lt;em&gt;necessary&lt;/em&gt; criteria except for a proposal. The aspect common to all orgs/mentors is &lt;code class="language-plaintext highlighter-rouge"&gt;showing your enthusiasm for the project, and to learn&lt;/code&gt;. Also &lt;strong&gt;having a few(or even one in my case) commits to the org before submitting the proposal&lt;/strong&gt; will go a long way!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Making the right proposal&lt;/strong&gt;&lt;br&gt;
+The proposal submission deadline in GSoC 22’ was &lt;strong&gt;19th April&lt;/strong&gt;. So I had less than a month post joining my org to submit a proposal. To be frank, this was a tough and hectic period(amplified more by all my friends also being in the same state). This is where the helpfulness of my mentor and the push from my college seniors really pushed me. I built my proposal by first carefully studying previous year proposals, while these are not publicly available (and some GSoCers even refuse to share them), there are many great resources maintained by GSoCers to help the new aspirants. I used the &lt;a href="https://github.com/Google-Summer-of-Code-Archive/gsoc-proposals-archive"&gt;Proposal Archive&lt;/a&gt; to study different proposals, for varied orgs, theor structure, content, concisivness and balance between technical and theoretical language.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="conclusion"&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Luckily, I must’ve done something right, as I did get selected for Gnuastro(openastronomy) in GSoC. And will now be spending my summer(12 weeks) contributing to the same under the guidance of my mentor!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/05/20220529_0000_jash-shah/</guid><pubDate>Sat, 28 May 2022 23:00:00 GMT</pubDate></item></channel></rss>

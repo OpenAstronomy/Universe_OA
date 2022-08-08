@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My GSoC Journey - Part 2 | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_jash-shah/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Jash Shah">
+<link rel="prev" href="../20220626_0000_tranhuunhathuy/" title="Second week - Development of new fitting module" type="text/html">
+<link rel="next" href="../20220628_0946_akash5100/" title="Starting my summer with SunPy" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="My GSoC Journey - Part 2">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_jash-shah/">
+<meta property="og:description" content='Community Bonding Period
+The official GSoC docs describes the Community Bonding Period as "The first phase in which you get to know your community and get familiar with their code base and work style.'>
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-06-26T00:00:00+01:00">
+<meta property="article:tag" content="gnuastro">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@akash5100" data-toggle="tooltip" data-placement="top" title="2022-07-18 05:37:22+01:00" style="color:rgb(255,0,0)">
+                    Akash
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@aman_p" data-toggle="tooltip" data-placement="top" title="2022-07-26 05:59:13+01:00">
+                    AMAN PANDEY
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://minimal-blog.lekoarts.de" data-toggle="tooltip" data-placement="top" title="2022-07-31 00:00:00+01:00">
+                    arunavabasu-03
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://jash_shah.github.io" data-toggle="tooltip" data-placement="top" title="2022-07-20 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Jash Shah
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@mihirtripathi97" data-toggle="tooltip" data-placement="top" title="2022-07-24 18:11:57+01:00" style="color:rgb(255,0,0)">
+                    Mihirtripathi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://minimal-blog.lekoarts.de" data-toggle="tooltip" data-placement="top" title="2022-07-23 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Supriya1702
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://https:" data-toggle="tooltip" data-placement="top" title="2022-07-17 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    TranHuuNhatHuy
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">My GSoC Journey - Part 2</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/jash-shah/">Jash Shah</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-06-26T00:00:00+01:00" itemprop="datePublished" title="2022-06-26 00:00">2022-06-26 00:00</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://jash_shah.github.io/Blogs/2022/06/26/Community-Bonding.html">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <h3 id="community-bonding-period">Community Bonding Period</h3>
+<p>The official <a href="https://google.github.io/gsocguides/student/how-gsoc-works">GSoC docs</a> describes the Community Bonding Period as <em><code class="language-plaintext highlighter-rouge">"The first phase in which you get to know your community and get familiar with their code base and work style."</code></em> So following this definition, my main goal in these few weeks(<strong>20th May - 13th June</strong>) was to get to learn the inner workings of Gnuastro and trying to understand the communication within it, by becoming an active part of the community.</p>
+
+<!-- TEASER_END -->
+<h4 id="week-1">Week 1</h4>
+<p>As I had my end semester exams scheduled from 9th May till 27th May, it was tough for me to be as active as I would like, so this week was majorly spent <strong>observing the communication between the different memebers of the community</strong>, mainly through our <a href="https://matrix.to/#/#gnuastro:openastronomy.org">Element(Matrix) Channel</a>. I would also browse through the <a href="https://savannah.gnu.org/bugs/?group=gnuastro">Savannah pages</a> of Gnuastro to see the current bugs/features in work, while also noting the contributions currenty being made, by reading through the great commit messages.</p>
+
+<h4 id="week-23---the-first-meet-with-mentor-">Week 2/3 - The First Meet with Mentor !!</h4>
+<p>I dedicated myself to learning about <a href="https://docs.python.org/3/extending/extending.html#compilation-and-linkage">Python Extensions</a>(whose docs are really succinct!) and testing them out by creating some sample modules during this period. It was quite inciteful as it gave me a greater perspective into what the final outcome of my project will be and what flow of work I would have to follow to achieve that.
+<br><br>
+I was also pretty excited about finally getting to meet my mentor, <a href="https://akhlaghi.org/">Mohammad Akhlaghi</a>, who I had only talked to over the mail and IRC, but had been incredibly kind and welcoming. Taking the schedules of all other developers into cosideration as well, we decided to make <strong><code class="language-plaintext highlighter-rouge">Tuesdays 1:00PM,CEST(4:30PM IST) as our weekly meet times</code></strong>. The first meet went great, and was really fun(allbeit overwhelming) to meet all the other developers and get an insight into the awesome work everyone’s doing at Gnuastro! I presented a few slides I had prepared to give an overview of my project to the the other developers. Alongwith Mohammad, we were also able to decide a few goals for the next meet, them being:</p>
+<ul>
+<li>Learn more about <strong><code class="language-plaintext highlighter-rouge">Python Extension Modules</code></strong> and try to extend a simple Gnuastro Library module(<a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/manual/html_node/CosmicCalculator.html"><u>cosmiccal</u></a> in particular) into Python.</li>
+<li>Reasearch into the <a href="https://numpy.org/doc/stable/reference/c-api/index.html"><u>NumPy C-API</u></a> and how we can go about building a converter between <a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/manual/html_node/Generic-data-container.html"><u>Gnuastro's core data-structure</u></a> and NumPy’s <a href="https://numpy.org/doc/stable/reference/c-api/types-and-structures.html#c.PyArray_Type"><u>PyArrayObject</u></a>.</li>
+</ul>
+<h4 id="conclusion">Conclusion</h4>
+<p>As mentioned in the afformentioned definition of <em>Community Bonding</em> given by GSoC, I think I managed to get a good insight into the Gnuastro’s community by <strong>observing their communications and contributions</strong> while also making myself familiar with their work style!</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/gnuastro/" rel="tag">gnuastro</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20220626_0000_tranhuunhathuy/" rel="prev" title="Second week - Development of new fitting module">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20220628_0946_akash5100/" rel="next" title="Starting my summer with SunPy">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

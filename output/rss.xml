@@ -1,220 +1,688 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 31 Dec 2021 06:33:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Chapter 5: Birds of a Feather</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_1424_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;p align="center"&gt;
-&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://anandkumar-blog.netlify.app/static/91ec1b99c3601cea5ada6089b36f443e/63868/Radis.png" rel="noopener" style="display: block;" target="_blank"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 08 Aug 2022 17:11:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Advanced options</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220731_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Impove default resolution of ploted spectrum In  wstep = “auto”  radis app gives slitly low res. for that reasons plotted  spectrum  is…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/6thweek/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220731_0000_arunavabasu-03/</guid><pubDate>Sat, 30 Jul 2022 23:00:00 GMT</pubDate></item><item><title>GSoC Blog#2</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220726_0559_aman-pandey-afk/</link><dc:creator>AMAN PANDEY</dc:creator><description>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/680/1*dfjiDfMcY8h9eEOySAnxbA.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;The first half of the coding period is almost done, and here I am with the updates! As stated at the end of the last blog, I started the 3rd week by improving the &lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/2"&gt;second PR&lt;/a&gt;. I performed pretty intensive memory and performance analysis on the functions in fourier.jl, using BenchmarkTools and .mem files to analyze bottlenecks in the program. With my mentors’ help, I removed many allocation and type-stability related issues during that time. I also had some problems with non-idiomatic code, like I could use multiple-dispatch or dot broadcast in functions, some of which I solved, and some are due for refactoring after the mid-evaluation. After finishing the improvements and getting my second PR merged, I planned to work on LightCurves and implement periodograms and other APIs so that users can easily manipulate photon count data. But my mentor suggested I implement file reading and mechanisms to manage the GTIs (Good Time Intervals) obtained from these files.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Working out the GTI mechanisms&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I had learned a lot from the previous PR, and one of the things was I should try to implement some of the methods in my way rather than using the python algorithms with an idiomatic Julian code in mind. I started the 4th week with methods for reading GTIs from a FITS file (For those unfamiliar, it is a file format for storing, processing, and transmitting scientific data, especially images). I used the FITSIO.jl package, and experimenting on the terminal led me to manipulate HDUs and their data. One thing I thoroughly thought of was the appropriate data structure of the GTIs. Should I use Intervals from the Intervals.jl package? Or a vector of vector like the python library does? I finally decided to use what I was using in the fourier.jl, an AbstractMatrix of Reals. It was easy to access data from them, and you could use slices to get a list of start and end times. For the operations, I had to convert among matrix, intervals frequently, and vectors as the Intervals.jl provided many ways to manipulate GTIs like union or intersection or getting its complement, i.e., Bad Time Intervals. With some more methods like creating masks and GTIs from conditions and implementing Tests for all of these functions, I was finished with the gti.jl file. A little performance analysis told me that the code was efficient. After some refactoring, like removing code duplication by merging union and intersection in the same function, I was done with the PR. It has some minor changes currently to be made before it gets merged.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;span class="gatsby-resp-image-background-image" style="padding-bottom: 100%; display: block;"&gt;&lt;/span&gt;
-&lt;img alt="Radis.png" class="gatsby-resp-image-image" src="https://anandkumar-blog.netlify.app/static/91ec1b99c3601cea5ada6089b36f443e/63868/Radis.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Radis.png"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;br&gt;
-&lt;/p&gt;
-&lt;p&gt;So &lt;code class="language-text"&gt;GSoC 2021&lt;/code&gt; has officially ended and I can say without a doubt that what a journey it was. I recently concluded with my GSoC project, the final PR got merged and I’m quite satisfied with the outcome. &lt;/p&gt;
-&lt;p&gt;Earlier we were able to find the time complexity of &lt;strong&gt;LBL&amp;gt;Voigt&lt;/strong&gt;, &lt;strong&gt;DIT&amp;gt;Voigt&lt;/strong&gt; and &lt;strong&gt;DIT&amp;gt;FFT&lt;/strong&gt; (Formely known as LDM&amp;gt;FFT). On a small test replacing &lt;code class="language-text"&gt;np.convolve&lt;/code&gt; with &lt;code class="language-text"&gt;scipy.signal.oaconvolve&lt;/code&gt;, we were able to achieve 2 to 30 times performance boost. So we re-ran the benchmarks and were able to confirm this fact.
-You can see the result at &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/"&gt;Benchmark Visualization GSoC 2021&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The above results proved that &lt;code class="language-text"&gt;DIT&amp;gt;Voigt&lt;/code&gt; performs better than &lt;code class="language-text"&gt;DIT&amp;gt;FFT&lt;/code&gt; in almost every case. So we decided to use &lt;code class="language-text"&gt;DIT&amp;gt;Voigt&lt;/code&gt; as the default setting in &lt;code class="language-text"&gt;Radis&lt;/code&gt;. &lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;predict_time()&lt;/strong&gt; function was added, which computes the predicted time for &lt;strong&gt;LBL&amp;gt;Voigt&lt;/strong&gt;, &lt;strong&gt;DIT&amp;gt;Voigt&lt;/strong&gt; and &lt;strong&gt;DIT&amp;gt;FFT&lt;/strong&gt; using the derived time complexity, and on &lt;code class="language-text"&gt;verbose&amp;gt;=2&lt;/code&gt; shows the user the predicted time.&lt;/p&gt;
-&lt;p&gt;Also we Bifurcated &lt;code class="language-text"&gt;broadening_max_width&lt;/code&gt; into 2 parameters:&lt;br&gt;
-•  &lt;strong&gt;Truncation:&lt;/strong&gt; Used in truncation of Voigt method.&lt;br&gt;
-•  &lt;strong&gt;neighbour_lines:&lt;/strong&gt; Increases Spectral range&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;So now users have a lot of flexibility. Based on Physics, the default value of &lt;strong&gt;truncation&lt;/strong&gt; is set to &lt;strong&gt;50cm-1&lt;/strong&gt; and the default value of &lt;strong&gt;neighbour_lines&lt;/strong&gt; is set to &lt;strong&gt;0 cm-1&lt;/strong&gt;. Apart from this, some minor improvements were done in the &lt;code class="language-text"&gt;Profiler class&lt;/code&gt; such as an improved algorithm is used to store data and now calculation time gets appended to the same key rather than overwriting it, which useful when we use &lt;code class="language-text"&gt;chunksize&lt;/code&gt; or DIT optimization for &lt;code class="language-text"&gt;Non_equilibrium&lt;/code&gt; conditions. &lt;/p&gt;
-&lt;p&gt;So overall the code has been optimized and a user can expect a performance boost upto &lt;strong&gt;40x&lt;/strong&gt; in worst scenarios. &lt;/p&gt;
-&lt;p&gt;You can find all my work during the GSoC period &lt;a href="https://github.com/radis/radis/projects/5"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It was a great experience contributing to &lt;strong&gt;Radis&lt;/strong&gt; and I definitely have learned alot along the way. And a big thanks to the great mentors at Radis especially &lt;a href="https://github.com/erwanp"&gt;Erwan Pannier&lt;/a&gt; who guided me at every stage of the program. The road doesn’t end here as I will stick around the organisation and will always find ways to contribute to Radis. One last thanks to &lt;strong&gt;GSoC&lt;/strong&gt; for providing such a wonderful opportunity.&lt;/p&gt;
-&lt;p align="center"&gt;
-Till we meet again, keep &lt;b&gt;Swinging for the fences.&lt;/b&gt;
-&lt;br&gt;
-&lt;img alt="/08e70d471ee717d1624f04f21c586cd4/spidermanMM_traversal.gif" src="https://anandkumar-blog.netlify.app/08e70d471ee717d1624f04f21c586cd4/spidermanMM_traversal.gif" width="500"&gt;&lt;br&gt;
-&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_1424_anandxkumar/</guid><pubDate>Mon, 23 Aug 2021 13:24:32 GMT</pubDate></item><item><title>Google Summer of Code- Final Evaluation</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_1027_rashmiraj137/</link><dc:creator>Raj Rashmi</dc:creator><description>&lt;h4&gt;&lt;strong&gt;Topic: Implement JAX based automatic differentiation to Stingray&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;The project involved the study of modern statistical modelling to augment the accuracy, speed, and robustness of the likelihood function, into a software package called Stingray. This report demonstrates the experiment done for a combination of different optimizers to fit the scipy.optimize function. Another emphasis is to investigate the gradient calculation using JAX and compare it with scipy.optimize.&lt;/p&gt;
-&lt;h4&gt;&lt;strong&gt;Introduction:&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;The proposed milestone was to investigate the room for improvement to enhance the overall performance of modelling to Stingray, using JAX. However, the current stage of the model is still a sandbox model. Stingray is astrophysical spectral timing software, a library in python built to perform time series analysis and related tasks on astronomical light curves. JAX is a python library designed for high-performance numerical computing. Its API for numerical functions is based on NumPy, a collection of functions used in scientific computing. Both Python and NumPy are widely used and familiar, making JAX simple, flexible, and easy to adopt. It can differentiate through a large subset of python’s features, including loops, ifs, recursion, and closures, and it can even take derivatives of derivatives. Such modern differentiation packages deploy a broad range of computational techniques to improve applicability, run time, and memory management.&lt;/p&gt;
-&lt;p&gt;JAX utilizes the grad function transformation to convert a function into a function that returns the original function’s gradient, just like Autograd. Beyond that, JAX offers a function transformation jit for just-in-time compilation of existing functions and vmap and pmap for vectorization and parallelization, respectively.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Working on the documentation&lt;/strong&gt;&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*lbM1DS0_-Ja0lb53Owb6PQ.png"&gt;&lt;/figure&gt;&lt;p&gt;As the mid evaluations have begun this week, I will be taking some time to write the docstring and deploy them on GitHub. The stingray python docs are pretty good, so I will mostly use them as a Base and tweak them as necessary (when there is a different function signature or the Julian way of doing things is different). Documenter.jl will be the package I would be using for this. The complete documentation will be a milestone for the end of the program, where I, along with my mentors, will try to write notebook tutorials for the package and host them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;For the second phase&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I hope to qualify for the mid-evals, after which the second phase will begin. The core implementation is done; users can now use the library and its different methods to read from a file, process the data, and create periodograms. The main motive now will be to ease its access and implement other helpful features, a major one of which will be plotting the periodograms. I initially proposed working with these APIs before mid-evals, but who knows about the future? I have done some things meant for the other half, so I guess it’s okay. As an end note, I am pretty much excited for the other half of this program, it has made me learn a lot, and the workings of Julia awe-inspire me as I explore it side by side. Goodbye for now!&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=63d283e1a60b" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220726_0559_aman-pandey-afk/</guid><pubDate>Tue, 26 Jul 2022 04:59:13 GMT</pubDate></item><item><title>GSoC @ Stingray: Diving into coding period. blog #2</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_1811_mihirtripathi97/</link><dc:creator>Mihirtripathi</dc:creator><description>&lt;p&gt;Hey there!&lt;/p&gt;
+&lt;p&gt;It is time to write a blog about my experience in the coding period so far. So here it goes.&lt;/p&gt;
+&lt;p&gt;The official coding period for GSoC’22 started on the 13th of June. After discussing with mentors I decided that the first task would be to create a base structure of the code for Bexvar. As the method was already implemented by Dr. Johannes Buchner (who also suggested implementing this method in Stingray)and David Bogensberger, we decided to use this &lt;a href="https://github.com/JohannesBuchner/bexvar"&gt;implementation&lt;/a&gt; as a reference.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;h4&gt;Experiment:&lt;/h4&gt;&lt;p&gt;The powerlaw and lorentzian function are the most used to describe periodograms in astronomy. In practice, we use the sum of these components to design a realistic model. For the analysis here we consider a quasi-periodic oscillation and a constant and try to fail the algorithm by, (i) reduce the amplitude, (ii) start the optimization process with parameters very far away from the true parameters, (iii) try different optimizers to experiment on different sensitive aspect of the current likelihood calculation. The current ongoing milestone is to try alternatives of scipy.optimize but this requires series of tests for the same.&lt;/p&gt;
-&lt;p&gt;The above tests can be visualized in the notebook added on Github: &lt;a href="https://github.com/rashmiraj137/GSoC-Project"&gt;https://github.com/rashmiraj137/GSoC-Project&lt;/a&gt;&lt;/p&gt;
-&lt;h4&gt;Results:&lt;/h4&gt;&lt;p&gt;During the experiment, it was observed that the algorithm is sensitive to input parameters i.e., it fails for couple of combinations like when the amplitude is set far away from true value, precisely blow absolute value of 1. In general, if we set the parameters very far away from the true value, it fails to approximate the likelihood function. In the notebook (&lt;a href="https://github.com/rashmiraj137/GSoC-Project/blob/main/GSoC_Evaluation%20Notebook.ipynb"&gt;link&lt;/a&gt;), we demonstrate the room for improvement in the current algorithm by choosing a different set of parameters. The current data fit for the evaluation of likelihood happens using scipy.optimize.minimize function. However, there exists numerous ways to do this. SciPy optimize provides functions for minimizing (or maximizing) objective functions, possibly subject to constraints. It includes solvers for nonlinear problems (with support for both local and global optimization algorithms), linear programming, constrained and nonlinear least-squares, root finding, and curve fitting. The problem with the current minimization algorithm is that it converges at local minimum instead of global, i.e. it is not very robust. Recently, Machine Learning has evident development in such optimization tools. The strategy was to find alternatives that potentially accelerate the code, makes it robust.&lt;/p&gt;
-&lt;p&gt;For this experiment case, we choose a couple of optimizers and compare the robustness to Powell (the current optimizer used). So we visualize the fit for couple of optimizers like :&lt;/p&gt;
-&lt;ul&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-neldermead.html"&gt;minimize(method=’Nelder-Mead’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-powell.html"&gt;minimize(method=’Powell’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-cg.html"&gt;minimize(method=’CG’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-bfgs.html"&gt;minimize(method=’BFGS’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-newtoncg.html"&gt;minimize(method=’Newton-CG’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-lbfgsb.html"&gt;minimize(method=’L-BFGS-B’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-tnc.html"&gt;minimize(method=’TNC’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-cobyla.html"&gt;minimize(method=’COBYLA’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html"&gt;minimize(method=’SLSQP’)&lt;/a&gt;&lt;/li&gt;&lt;li&gt;minimize(method = “trust-constr”)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;This notebook (&lt;a href="https://github.com/rashmiraj137/GSoC-Project/blob/main/GSoC_Evaluation%20Notebook.ipynb"&gt;link&lt;/a&gt;) has results using each method and it was observed that Nelder-Mead is more robust as compared to other optimizers. Another optimizer like dogleg, trust-ncg, might be good as well, but the jacobian and hess need to be calculated for them.&lt;/p&gt;
-&lt;h4&gt;Future Work:&lt;/h4&gt;&lt;p&gt;JAX has now its own version of scipy.optimize.minimize but it has couple of bugs and is not as robust as scipy.optimize.minimize. Finding an alternative for scipy.optimize.minimize such that it doesn’t fails even if the start parameters are far away from the true parameters was a goal for this project but unfortunately JAX did not assist that well enough. But there might be a superior algorithm to scipy.optimize.minimize that can be useful.&lt;/p&gt;
-&lt;h4&gt;Repositories:&lt;/h4&gt;&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/stingray"&gt;https://github.com/StingraySoftware/stingray&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/notebooks"&gt;GitHub - StingraySoftware/notebooks: Tutorial notebooks for Stingray&lt;/a&gt;&lt;/p&gt;
-&lt;h4&gt;Blog Post:&lt;/h4&gt;&lt;p&gt;1. &lt;a href="https://raj-rashmi741.medium.com/jax-based-automatic-differentiation-introduction-of-modern-statistical-modeling-to-stingray-1bc26da7571f"&gt;JAX-based automatic differentiation: Introduction of modern statistical modeling to Stingray.&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;2. Insight of Implementation of JAX to stingray- GSoC coding period!&lt;/p&gt;
-&lt;p&gt;3. &lt;a href="https://raj-rashmi741.medium.com/gsoc-update-2d16a70cc267?source=your_stories_page-------------------------------------"&gt;GSoC update!&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://raj-rashmi741.medium.com/time-to-review-my-gsoc-project-c34297f2dc81"&gt;4. Time to review my GSoC Project.&lt;/a&gt;&lt;/p&gt;
-&lt;h4&gt;Profiles:&lt;/h4&gt;&lt;p&gt;GitHub: &lt;a href="https://github.com/rashmiraj137"&gt;https://github.com/rashmiraj137&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;LinkedIn: &lt;a href="https://www.linkedin.com/in/rashmi-raj-4b8a2b106/"&gt;https://www.linkedin.com/in/rashmi-raj-4b8a2b106/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Medium: &lt;a href="https://raj-rashmi741.medium.com/"&gt;https://raj-rashmi741.medium.com/&lt;/a&gt;&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=578c0088bcbd" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_1027_rashmiraj137/</guid><pubDate>Mon, 23 Aug 2021 09:27:57 GMT</pubDate></item><item><title>GSoC - 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;p&gt;&lt;img alt="Radis" src="https://gagan-aryan.netlify.app/images/gsoc-4/Radis.png"&gt;&lt;/p&gt;
-&lt;p&gt;Today is the last day of GSoC-21. The entire journey was a rollercoaster ride and I learnt a lot of new things along the way. I started out with hardly knowing any of the shortcomings of pandas and as we dug in, I was surprised to see so many loopholes it contains. This will be the final blogpost of my gsoc journey and I hope you like it.&lt;/p&gt;
-&lt;h3 id="pandas-and-vaex"&gt;Pandas and Vaex&lt;/h3&gt;
+&lt;p&gt;I spent the first 2–3 days planning the structure of the code and planning its implementation in Stingray’s code base. At first, the implementation seemed easy. Although as I explored more and discussed my ideas with my mentors I realized that there are many small but important changes that need to be made.&lt;/p&gt;
+&lt;p&gt;In addition to these, I realized that I had to set up a proper environment on my computer to write, edit and test the codes that I write. I decided to use &lt;a href="https://code.visualstudio.com/"&gt;Visual Studio Code&lt;/a&gt; (VS Code) for it. Before the contribution period, I had only a little familiarity with Github and had never used git in my local system. I somehow made it through the contribution period without installing it. Now since I had an open source project at hand which will require frequent commits, I decided to install git and GitHub desktop on my computer and learn to use git with CLI. I found out that along with many useful tools for professional programming, VS Code also provided support to use git inside from the editor, this seemed quite useful for my purpose. I learned how to install and work with multiple versions of Python. I learned how to set up a Python virtual environment and use it to test codes in a controlled environment. I had to go through multiple iterations of installing, uninstalling, and then reinstalling several packages to set everything perfectly. This made me a bit irritated but later on, I realized that this helped me save a lot of time while coding for the project.&lt;/p&gt;
+&lt;p&gt;After going through a few iterations the base code was ready and working. It still needed some improvements and structural changes. It had a core function that reads the light curve data from an AstroPy table. After that, it would call internal functions successively to finally obtain the Bayesian Excess Variance of count rate. My mentor Prof. Matteo suggested that I start a PR with this version of the code. As I made this &lt;a href="https://github.com/StingraySoftware/stingray/pull/664"&gt;PR&lt;/a&gt;, we started discussing how to improve the code.&lt;/p&gt;
+&lt;p&gt;My mentors pointed out that my core function &lt;em&gt;bexvar()&lt;/em&gt; needed further modularization. We decided to separate it into two functions, A core function &lt;em&gt;bexvar()&lt;/em&gt; which will accept light curve data as a set of NumPy arrays or lists and calculate bexvar, and a &lt;em&gt;bexvar_from_table()&lt;/em&gt; function which can read light curve data from an AstroPy table and call &lt;em&gt;bexvar()&lt;/em&gt;. This change made the core &lt;em&gt;bexvar()&lt;/em&gt; function more general as now users would not need to have light curve data in form of an AstroPy Table object to obtain bexvar. Also, in the future, we can create a function like &lt;em&gt;bexvar_from_table()&lt;/em&gt; which can read data from Stingray’s Lightcurve object and call &lt;em&gt;bexvar()&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In the next phase, I updated existing docstrings, added docstrings where it was missing, and worked on code formating. At this stage, the code was still failing in Stingray’s CI tests. The reason behind the failures was that the code uses an integrator &lt;a href="https://johannesbuchner.github.io/UltraNest/_modules/ultranest/integrator.html#ReactiveNestedSampler"&gt;&lt;strong&gt;ReactiveNestedSampler&lt;/strong&gt;&lt;/a&gt; from &lt;a href="https://arxiv.org/abs/2101.09604"&gt;UltraNest — a robust, general purpose Bayesian inference engine&lt;/a&gt;. UltraNest is not a required dependency for Stingray, hence CI tests were failing with import error. To resolve this, the import statement of UltraNest in bexvar.py needed to be moved inside a try-except statement. This would restrict the user from using bexvar.py if UltraNest is not installed. With this change, the code has passed the majority of CI tests.&lt;/p&gt;
+&lt;p&gt;The overall experience of the coding period so far has been good. During this period I learned a lot about the essentials of open-source programming. I am learning to think like a programmer. I learned how small improvements in code make it more general and versatile. I learned about the best practices to write code. I must say that all this time my mentors Matteo and Daniela have been quite supportive and helpful. They have patiently listened to my queries and doubts and have always helped me with them.&lt;/p&gt;
+&lt;p&gt;My code is running perfectly now, from this week onwards I will be focussing on writing tests for the code. Writing tests for a code is a completely new experience for me. I am looking forward to learn a lot about professional code testing in the following weeks. I will soon be back with a blog on my experience with testing. Till then take care! Goodbye!&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f24a03c00014" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_1811_mihirtripathi97/</guid><pubDate>Sun, 24 Jul 2022 17:11:57 GMT</pubDate></item><item><title>Implementing React Hook Form</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;After analyzing the the benchmarks and taking with my mentors , we are decided to go with  React Hook Form  for it’s performace , low…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/4th&amp;amp;5thWeek/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_0000_arunavabasu-03/</guid><pubDate>Sat, 23 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Week 5 and Week 6</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220723_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Entering into the 5th week I created a PR  https://github.com/radis/radis/pull/492   to address the task to add, retrieve and store the…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-5-and-week-6"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220723_0000_supriya1702/</guid><pubDate>Fri, 22 Jul 2022 23:00:00 GMT</pubDate></item><item><title>My GSoC Journey - Part 4</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</link><dc:creator>Jash Shah</dc:creator><description>&lt;p&gt;&lt;em&gt;Writing the extension modules and Python wrappers for a package is one thing, but a step that is often overlooked is making a build system that complies with the rest of your program, ensures the correct installation based on your dependencies and also is portable enough to be distributable.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I learned these things the hard way in Week 3 and 4, where I went as low level as I could to try to solve all the weird build errors and glitches I had while &lt;strong&gt;trying to build a Python Package using GNU Autotools&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;h4 id="why-do-people-use-pandas-"&gt;Why do people use Pandas ?&lt;/h4&gt;
-&lt;p&gt;Pandas is an open source Python package that is most widely used for data science/data analysis and machine learning tasks. It is built on top of another package named Numpy, which provides support for multi-dimensional arrays.&lt;/p&gt;
-&lt;p&gt;Pandas makes it simple to do many of the time consuming, repetitive tasks associated with working with data, including:&lt;/p&gt;
+
+&lt;h3 id="building"&gt;Building&lt;/h3&gt;
+&lt;p&gt;As discussed in my last GSoC blog, I was mainly using &lt;code class="language-plaintext highlighter-rouge"&gt;distutils&lt;/code&gt; along with it’s &lt;code class="language-plaintext highlighter-rouge"&gt;distutils.setup&lt;/code&gt; script to take care of all the building and linking required for building the &lt;code class="language-plaintext highlighter-rouge"&gt;.so&lt;/code&gt; (shared object) file required by the  Python Interpreter. However, one of my co-mentors brought up a good point that &lt;code class="language-plaintext highlighter-rouge"&gt;setuptools&lt;/code&gt; is the packaging tool that is recommended by &lt;a href="https://packaging.python.org/en/latest/guides/tool-recommendations/"&gt;PyPA&lt;/a&gt; and also using &lt;code class="language-plaintext highlighter-rouge"&gt;wheels&lt;/code&gt; to package the modules instead of the standard &lt;code class="language-plaintext highlighter-rouge"&gt;setup.py build&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Hence, &lt;strong&gt;Week 3 was spent mainly learning about &lt;code class="language-plaintext highlighter-rouge"&gt;setuptools&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;wheels&lt;/code&gt;&lt;/strong&gt;. &lt;a href="https://realpython.com/python-wheels/#the-manylinux-wheel-tag"&gt;What Are Python Wheels and Why Should You Care?&lt;/a&gt; is a great article to start with Python Wheels. The &lt;a href="https://setuptools.pypa.io/en/latest/index.html"&gt;setuptools documentation&lt;/a&gt; is a great place to know about setuptools, if you already know about distutils like me! Luckily, while &lt;code class="language-plaintext highlighter-rouge"&gt;Setuptools&lt;/code&gt; is a “beefier” version of distutils, as it offers better and more packaging utilities, it keeps the same functions, so in terms of code it was just a change of one line for me.&lt;/p&gt;
+
+&lt;p&gt;Originally, with &lt;code class="language-plaintext highlighter-rouge"&gt;distutils&lt;/code&gt;, the plan was to have the files related to the Python Package in a separate &lt;em&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;python/&lt;/code&gt;&lt;/em&gt; directory at the root of the Gnuastro source like:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;📦python
+┣ 📂gnuastro.arithmetic
+┃ ┣ 📜arithmetic.c
+┃ ┗ 🔧setup.py
+┣ 📂gnuastro.cosmology
+┃ ┣ 📜cosmology.c
+┃ ┗ 🔧setup.py
+┣ 📂gnuastro.fits
+┃ ┣ 📜fits.c
+┃ ┗ 🔧setup.py
+┗ 📑Makefile.am
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The idea was to have the &lt;code class="language-plaintext highlighter-rouge"&gt;setup.py&lt;/code&gt; script in each folder build that specific extension, and let the Makefile handle the linking. But I soon realized that this was too excessive. A better structure would be:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt; 📦python
+┣ 📂src
+┃ ┣ 📜arithmetic.c
+┃ ┣ 📜cosmology.c
+┃ ┗ 📜fits.c
+┣ 📑Makefile.am
+┗ 🔧setup.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id="using-autotools-to-build-python-package"&gt;Using Autotools to build Python Package&lt;/h4&gt;
+&lt;p&gt;As the name suggests &lt;strong&gt;GNU&lt;/strong&gt;astro is a GNU project, and thus depends on Autotools(&lt;a href="https://www.gnu.org/software/automake/manual/html_node/index.html#SEC_Contents"&gt;Automake&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/autoconf/"&gt;Autoconf&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/libtool/"&gt;Libtool&lt;/a&gt;) for its building and compiling. These are the tools behind the&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;./configure
+make
+make check
+make install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;set of instructions.&lt;/p&gt;
+
+&lt;p&gt;Alongwith the setup script, I also added a new file(&lt;a href="https://github.com/Jash-Shah/gnuastro-jash/blob/6997730fab6cb18fd7b34f77f9a0f65f0c7e0730/lib/python.c"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;python.c&lt;/code&gt;&lt;/a&gt;) to the &lt;em&gt;lib/&lt;/em&gt; directory of Gnuastro. This file basically provides any utility functions I might require while building the Python package. Currently, the file provides type conversion functions, which facilitate converting between Gnuastro and NumPy’s datatypes.&lt;/p&gt;
+
+&lt;p&gt;So, what is the difference between your traditional Makefile and using Autotools instead:-&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Data visualization&lt;/li&gt;
-&lt;li&gt;Statistical analysis&lt;/li&gt;
-&lt;li&gt;Data inspection&lt;/li&gt;
-&lt;li&gt;Loading and saving data&lt;/li&gt;
-&lt;li&gt;Data cleansing&lt;/li&gt;
-&lt;li&gt;Data fill&lt;/li&gt;
-&lt;li&gt;Data normalization&lt;/li&gt;
-&lt;li&gt;Merges and joins&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Autoconf&lt;/strong&gt; easily scans an existing tree to find its dependencies and creates a configure script that will run under almost any kind of shell. The configure script allows the user to control the build behavior (i.e. –with-foo, –without-python, –prefix, –sysconfdir, etc..) as well as doing checks to ensure that the system can compile the program.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;As of the time I this blog was written pandas is arguably the most popular dataframe library that data scientists use. While pandas works smoothly while dealing with smaller data, it becomes very slow and inefficient when there are huge datasets.&lt;/p&gt;
-&lt;h4 id="why-use-vaex-"&gt;Why use Vaex ?&lt;/h4&gt;
-&lt;p&gt;Vaex is a python library that is closely similar to Pandas. Vaex is a library especially for lazy Out-of-Core DataFrames, helps to visualize and explore big tabular datasets. It is a high performance library and can solve many of the shortcomings of pandas. As the API is similar to pandas, users do not face difficulty in shifting.&lt;/p&gt;
-&lt;p&gt;Vaex is capable to calculate statistics such as mean, standard deviation etc, on an N-dimensional grid up to a billion (109109) objects/rows per second.&lt;/p&gt;
-&lt;h3 id="pandas-or-vaex-"&gt;Pandas or Vaex ?&lt;/h3&gt;
-&lt;p&gt;Here at Radis the underlying algorithm was not able to perform to its maximum capacity due to usage of pandas which consumes way too much of memory. So we tried to see how vaex can help improve the performance.&lt;/p&gt;
-&lt;p&gt;Below we are using &lt;a href="https://hitran.org/hitemp/"&gt;HITEMP-N2O Database&lt;/a&gt; for all checking the performance. It is to be noted that there is a difference between the pytables that pandas use and vaex friendly HDF5. The former is row-based whereas vaex friendly HDF5 files are column based.&lt;/p&gt;
-&lt;h4 id="loading-time"&gt;Loading time&lt;/h4&gt;
-&lt;p&gt;In the code below we -&lt;/p&gt;
+
+&lt;p&gt;Configure generates a &lt;code class="language-plaintext highlighter-rouge"&gt;config.h&lt;/code&gt; file (from a template) which programs can include to work around portability issues. For example, if HAVE_NUMPY is not defined, don’t build the Python package.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Automake&lt;/strong&gt; provides a short template that describes what programs will be built and what objects need to be linked to build them, thus Makefiles that adhere to GNU coding standards can automatically be created.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;My job was to use these tools to also call the &lt;code class="language-plaintext highlighter-rouge"&gt;setup&lt;/code&gt; script for building my Python package.&lt;/p&gt;
+
+&lt;p&gt;My approach to building the package using Autotools involved 4 basic steps:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;load the the vaex HFD5 file and then convert it to pandas dataframe&lt;/li&gt;
-&lt;li&gt;directly load the pandas hdf5 file&lt;/li&gt;
+&lt;li&gt;Adding the necessary checks in the &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt; script.
+&lt;ul&gt;
+&lt;li&gt;Check if a user has Python 3 on their system and get it’s include path i.e. path to &lt;code class="language-plaintext highlighter-rouge"&gt;Python.h&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;If Python 3 is found, Check if the user has NumPy on their system and get it’s include path.&lt;/li&gt;
+&lt;li&gt;Substitute the include paths as variables to be passed to all &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am's&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Conditionally build the Python package and its utility functions module(&lt;code class="language-plaintext highlighter-rouge"&gt;lib/python.c&lt;/code&gt;) only if the above checks are passed.&lt;/li&gt;
+&lt;li&gt;Write the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt; in the &lt;code class="language-plaintext highlighter-rouge"&gt;python/&lt;/code&gt; directory which would handle the &lt;em&gt;build, install, uninstall and clean&lt;/em&gt; targets for the Python package.&lt;/li&gt;
+&lt;li&gt;Re-write the setup.py script to make it more generic, by using the environment variables passed by the configure script instead of hardcoding the include and install paths.
+&lt;ul&gt;
+&lt;li&gt;This also ensures that the Python package building supports &lt;a href="https://www.gnu.org/software/automake/manual/html_node/VPATH-Builds.html"&gt;VPATH&lt;/a&gt; builds, which is another great feature of Autotools. For the uninitiated, &lt;code class="language-plaintext highlighter-rouge"&gt;VPATH builds&lt;/code&gt; are basically a way to separate your source and build tree, so that all the built files (.o, .so, etc) are in a separate directory than your source files but are symlinked to the source tree.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
-&lt;/span&gt;&lt;span class="lnt"&gt; 2
-&lt;/span&gt;&lt;span class="lnt"&gt; 3
-&lt;/span&gt;&lt;span class="lnt"&gt; 4
-&lt;/span&gt;&lt;span class="lnt"&gt; 5
-&lt;/span&gt;&lt;span class="lnt"&gt; 6
-&lt;/span&gt;&lt;span class="lnt"&gt; 7
-&lt;/span&gt;&lt;span class="lnt"&gt; 8
-&lt;/span&gt;&lt;span class="lnt"&gt; 9
-&lt;/span&gt;&lt;span class="lnt"&gt;10
-&lt;/span&gt;&lt;span class="lnt"&gt;11
-&lt;/span&gt;&lt;span class="lnt"&gt;12
-&lt;/span&gt;&lt;span class="lnt"&gt;13
-&lt;/span&gt;&lt;span class="lnt"&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;vaex&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;7.833287477493286&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;28.142656087875366&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Clearly the first appraoch is almost 4 times faster than the second one.&lt;/p&gt;
-&lt;h4 id="load-specific-columns"&gt;Load specific columns&lt;/h4&gt;
-&lt;p&gt;As already stated, vaex hdf5 files are column based so loading only specific columns from vaex hdf5 file should be able give much better results than loading only specific columns in pandas. Lets check this and see the time taken to do both of these -&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
-&lt;/span&gt;&lt;span class="lnt"&gt; 2
-&lt;/span&gt;&lt;span class="lnt"&gt; 3
-&lt;/span&gt;&lt;span class="lnt"&gt; 4
-&lt;/span&gt;&lt;span class="lnt"&gt; 5
-&lt;/span&gt;&lt;span class="lnt"&gt; 6
-&lt;/span&gt;&lt;span class="lnt"&gt; 7
-&lt;/span&gt;&lt;span class="lnt"&gt; 8
-&lt;/span&gt;&lt;span class="lnt"&gt; 9
-&lt;/span&gt;&lt;span class="lnt"&gt;10
-&lt;/span&gt;&lt;span class="lnt"&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;column_names&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"wav"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"int"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"El"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;0.1795198917388916&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"wav"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"int"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"El"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;22.85481858253479&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;In comparison, loading 4 out of 19 columns is about 70% as slow with Pandas.&lt;/p&gt;
-&lt;h4 id="load-specific-rows"&gt;Load specific rows&lt;/h4&gt;
-&lt;p&gt;To be fair to the pytables let’s try to load specific rows and check if pandas can now provide better performance with its row indexed HDF5s.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
-&lt;/span&gt;&lt;span class="lnt"&gt; 2
-&lt;/span&gt;&lt;span class="lnt"&gt; 3
-&lt;/span&gt;&lt;span class="lnt"&gt; 4
-&lt;/span&gt;&lt;span class="lnt"&gt; 5
-&lt;/span&gt;&lt;span class="lnt"&gt; 6
-&lt;/span&gt;&lt;span class="lnt"&gt; 7
-&lt;/span&gt;&lt;span class="lnt"&gt; 8
-&lt;/span&gt;&lt;span class="lnt"&gt; 9
-&lt;/span&gt;&lt;span class="lnt"&gt;10
-&lt;/span&gt;&lt;span class="lnt"&gt;11
-&lt;/span&gt;&lt;span class="lnt"&gt;12
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"iso==1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;30.680099725723267&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iso&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;selection&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;7.043155670166016&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Even in this case vaex provides better performance. So the idea was to harness this memory efficiency of vaex for all the I/O operations on the dataset in Radis. In order to do this I have written down a HDF5 writer that fetches &lt;code&gt;bz2&lt;/code&gt; file and parses it into a column-major HDF5. The complete code to the HDF5 writer can be found &lt;a href="https://gist.github.com/gagan-aryan/8ed5ba1f69074bbc72d081c31d43fcbd"&gt;in this gist&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;That is it for GSoC21 from my side. Even though the second phase of my project got affected due to schools, I had an exciting summer as a whole. I am looking forward to be in touch with Radis and will try to contribute to it whenever I get a chance.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_0300_gagan-aryan/</guid><pubDate>Mon, 23 Aug 2021 02:00:06 GMT</pubDate></item><item><title>Google Summer of Code Work Product Submission</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210820_1105_adwaitbhope/</link><dc:creator>Adwait Bhope</dc:creator><description>&lt;p&gt;This blog post is a consolidated report of my &lt;a href="https://summerofcode.withgoogle.com/projects/#5357890195423232"&gt;GSoC ’21 project&lt;/a&gt;. I’ve been contributing to &lt;a href="https://github.com/sunpy/ndcube"&gt;ndcube&lt;/a&gt; - a &lt;a href="https://sunpy.org/"&gt;sunpy&lt;/a&gt; affiliated package, which is itself a part of the umbrella organization called &lt;a href="https://openastronomy.org/"&gt;openastronomy&lt;/a&gt;. Phew, that’s quite some hierarchy.&lt;/p&gt;
-&lt;p&gt;Here’s a list of pull requests that I’ve opened during the coding period:&lt;/p&gt;
-&lt;ol&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/ndcube/pull/433"&gt;Initial implementation for validating two WCS&lt;/a&gt;: &lt;em&gt;Merged&lt;/em&gt;&lt;br&gt;Implements a function to check if two given WCS objects are compatible with each other for reprojecting the NDCube.&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/ndcube/pull/434"&gt;Reproject implementation&lt;/a&gt;: &lt;em&gt;Merged&lt;/em&gt;&lt;br&gt;Adds a method to reproject an NDCube using the astropy package called reproject.&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/ndcube/pull/439"&gt;Reproject NDCube Documentation&lt;/a&gt;: &lt;em&gt;Merged&lt;/em&gt;&lt;br&gt;Documentation for the above PR.&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/ndcube/pull/436"&gt;Combine cubes from NDCubeSequence using reproject&lt;/a&gt;: &lt;em&gt;Unmerged&lt;/em&gt;&lt;br&gt;Stacks the data of all cubes in an NDCubeSequence together into one cube. This PR is ready to merge but awaits testing from the community.&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/ndcube/pull/441"&gt;Reproject NDCubeSequence Documentation&lt;/a&gt;: &lt;em&gt;Unmerged&lt;/em&gt;&lt;br&gt;Documentation for the above PR. This will be merged after the code.&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/ndcube/pull/448"&gt;Support adaptive and exact algorithms for reproject&lt;/a&gt;: &lt;em&gt;Unmerged&lt;/em&gt;&lt;br&gt;This PR is completed and is ready to merge.&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/ndcube/pull/459"&gt;Make reproject more efficient by identifying invariant axes&lt;/a&gt;: &lt;em&gt;Unmerged&lt;/em&gt;&lt;br&gt;This PR is a work in progress and might need some time until it’s ready. The last commit on this PR as of writing this post can be found &lt;a href="https://github.com/sunpy/ndcube/pull/459/commits/0c4c5a369c55f3f3e53837dd3db2b5f589b750ae"&gt;here&lt;/a&gt;.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;I’ve also been writing blog posts throughout the coding period. Here are links to the 4 parts I’ve written so far: &lt;a href="https://adwaitbhope.medium.com/about-my-google-summer-of-code-project-part-1-b56e7277046e"&gt;Part 1&lt;/a&gt;, &lt;a href="https://adwaitbhope.medium.com/so-here-i-am-a-month-into-the-coding-period-and-at-the-onset-of-the-first-evaluation-2e6f76a45653"&gt;Part 2&lt;/a&gt;, &lt;a href="https://adwaitbhope.medium.com/about-my-google-summer-of-code-project-part-3-f6354389b27f"&gt;Part 3&lt;/a&gt;, and &lt;a href="https://adwaitbhope.medium.com/about-my-google-summer-of-code-project-part-4-8c7c62861783"&gt;Part 4&lt;/a&gt;. They contain a more technical description of the work along with some obstacles that we faced.&lt;/p&gt;
+
+&lt;p&gt;This process took a lot of trial and error, digging into the Autotools(mostly Automake) documentation and playing around with the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt; to get right. But it introduced me to these amazing tools and taught me how to make any scrawny personal project distributable!&lt;/p&gt;
+
+&lt;h3 id="installing"&gt;Installing&lt;/h3&gt;
+&lt;p&gt;After running,&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;python3 setup.py build_ext bdist_wheel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;the distributable wheel file, with all of the package’s metadata, is created under the &lt;code class="language-plaintext highlighter-rouge"&gt;dist/&lt;/code&gt; folder. In order to install this file we use pip as follows:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;pip install Gnuastro.whl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;YES! It is in fact as simple as that!&lt;/p&gt;
+
+&lt;p&gt;But there is an issue that I faced here, suppose that a user wants to install the Gnuastro library in their root directory, or to any directory where they dont have privileges. This means they’ll run &lt;code class="language-plaintext highlighter-rouge"&gt;sudo make install&lt;/code&gt; from the root of the source. This cascades to calling the Makefile in the &lt;em&gt;python/&lt;/em&gt; directory with root access as well. However, running &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; with sudo access is a big NO, NO. And &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; would warn you of that with a warning like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="PIP sudo error message" height="50" src="https://jash-shah.github.io/Blogs/img/posts/gsoc-week3_4/pip_error.png" width="1000"&gt;&lt;/p&gt;
+
+&lt;!-- ![PIP sudo error message](/Blogs/img/posts/gsoc-week3_4/pip_error.png) --&gt;
+
+&lt;p&gt;This is because, Python packages are generally installed at a local level, in the &lt;code class="language-plaintext highlighter-rouge"&gt;/usr/local&lt;/code&gt; directory. However, if you call &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; with &lt;code class="language-plaintext highlighter-rouge"&gt;sudo&lt;/code&gt; then it installs the packages in the root directory. To sove this, we use&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;sudo -u "$SUDO_USER pip install Gnuastro,whl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;which basically runs the pip command as the user who called sudo. This will ensure that your package gets installed in the local directory instead of root!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</guid><pubDate>Tue, 19 Jul 2022 23:00:00 GMT</pubDate></item><item><title>GSoC 2022: Project Helioviewer — Facade for the API wrapper</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220718_0537_akash5100/</link><dc:creator>Akash</dc:creator><description>&lt;h4&gt;GSoC 2022: Project Helioviewer — Facade for the API wrapper&lt;/h4&gt;&lt;h4&gt;Week 3&lt;/h4&gt;&lt;p&gt;The Generic Function got merged with PR &lt;a href="https://github.com/Helioviewer-Project/python-api/pull/21"&gt;#21&lt;/a&gt;. This PR adds a function that accepts a URL Endpoint, Input Parameters (dictionary), and a descriptor of Output Parameters (what the endpoint is expected to return), which all the endpoint classes will inherit.&lt;/p&gt;
+&lt;p&gt;This PR also includes the unittest for the Generic function and brings the first endpoint to the API wrapper, which is &lt;a href="https://hvpy.readthedocs.io/en/latest/api/hvpy.parameters.getJP2ImageInputParameters.html#getjp2imageinputparameters"&gt;&lt;strong&gt;getJP2Image&lt;/strong&gt;&lt;/a&gt;&lt;strong&gt;. &lt;/strong&gt;This endpoint retrieves a JP2000 image from the &lt;a href="http://helioviewer.org"&gt;helioviewer.org&lt;/a&gt; API.&lt;/p&gt;
+&lt;h4&gt;Week 4&lt;/h4&gt;&lt;p&gt;The next task was to create a frontend for the &lt;strong&gt;getJP2Image &lt;/strong&gt;endpoint. The actual front end that users will interface with lives in a file called &lt;strong&gt;facade&lt;/strong&gt; which will hide this internal design. This module contains the API interface in its simplest form. It is responsible for taking user input, constructing the &lt;strong&gt;HvpyParameters &lt;/strong&gt;instance (the base class) and passing it to the &lt;strong&gt;core&lt;/strong&gt; to perform the request.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=b35a6c6cba33" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210820_1105_adwaitbhope/</guid><pubDate>Fri, 20 Aug 2021 10:05:17 GMT</pubDate></item><item><title>GSoC 2021 — Final Report</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210819_0250_jeffreypaul15/</link><dc:creator>Jeffrey Paul</dc:creator><description>&lt;h4&gt;GSoC 2021 — Final Report&lt;/h4&gt;&lt;p&gt;Summer of 2021 held quite a few surprises for me. I’d have never imagined working with SunPy as a GSoC student and here I am concluding it with the final report. Before I summarize all the 30+ pull requests I’ve made to Sunkit-Pyvista, I just want to take a moment to than the brilliant mentors I’ve gotten to work with. The were not only patient and understanding but also extremely helpful with making me understand how everything works.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/300/1*SExFSpEK386SN8OQ_fOtEQ.png"&gt;&lt;/figure&gt;&lt;p&gt;Coming to Sunpy, or should I say Sunkit-Pyvista.&lt;/p&gt;
-&lt;p&gt;Sunkit-Pyvista was created with the intention of extending Sunpy’s extensive plotting capabilities to 3D with the help of a VTK wrapper for Python — Pyvista.&lt;/p&gt;
+&lt;p&gt;View the code in:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;PR &lt;a href="https://github.com/Helioviewer-Project/python-api/pull/33"&gt;#33&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;Week 5&lt;/h4&gt;&lt;p&gt;Finally, after the merging of the frontend function, we bring more JPEG2000 endpoints.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;PR &lt;a href="https://github.com/Helioviewer-Project/python-api/pull/34"&gt;#34&lt;/a&gt; — Adds the endpoint to the backend.&lt;/li&gt;&lt;li&gt;PR &lt;a href="https://github.com/Helioviewer-Project/python-api/pull/36"&gt;#36&lt;/a&gt; — Adds the frontend function.&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;Week 6&lt;/h4&gt;&lt;p&gt;Still, a problem left to solve. There are several mirrors for Helioviewer and people might want to use a mirror instead of the main URL. So we will need to add a way to change this.&lt;/p&gt;
+&lt;p&gt;PR &lt;a href="https://github.com/Helioviewer-Project/python-api/pull/41"&gt;#41&lt;/a&gt; closes this issue but it’s still under work. Hopefully, by the end of the week, it gets merged :)&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=69689b163879" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220718_0537_akash5100/</guid><pubDate>Mon, 18 Jul 2022 04:37:22 GMT</pubDate></item><item><title>Fifth week - Major updates on literally everything, and non-LTE benchmarking</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220717_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;p&gt;&lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/b6a43fd435ed51da926a7346d2f66de9/JSON_sample.json"&gt;JSON sample&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;1. Fitting method benchmarking&lt;/h4&gt;
+&lt;p&gt;The ideal of benchmarking result is to test and assess under what conditions, such as fitting method, pipeline, refinement, etc., the fitting process can achieve a stable and robust result. Firstly, I want to test the fitting method and see which ones are the best to put into the module as the default method. As we use LMFIT.Minimizer, we have 23 fitting methods in total:&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;p&gt;My experience with either of these libraries were extremely short-lived, but over the summer I got my hands dirty with them and loved every bit of it. I would’ve never imagined me doing a project regarding astronomy or 3D plotting, but here we are today.&lt;/p&gt;
-&lt;p&gt;The original idea was proposed by one of the mentors a while and after an entire summer of working on it, I’m proud to say that I was a part of this library’s initial setup.&lt;/p&gt;
-&lt;p&gt;The entire project was planned out over the 10 weeks of the GSoC period and I’m pretty proud to say that we had gotten done with everything slightly ahead of time which left us a few buffer weeks for us to review code and catch some bugs. For now, majority of the plotting/visualization functionality from Sunpy has been added to Sunkit-Pyvista, and we do have plans for some pretty cool stuff later on! I’m excited to see how this project would be used.&lt;/p&gt;
-&lt;p&gt;Now, here’s a list of all the significant PRs I’ve made to the library which were carefully reviewed by both my mentors before any merges happened. The entire list of all my PRs can be found &lt;a href="https://github.com/sunpy/sunkit-pyvista/pulls?q=is%3Apr+is%3Aclosed"&gt;here&lt;/a&gt;. Every PR came with it’s own change-log and was carefully documented throughout.&lt;/p&gt;
-&lt;ol&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/4"&gt;Initial setup of the code written by one of the mentors&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/10"&gt;Ability to set camera coordinates functionality&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/12"&gt;Addition of Pfsspy field lines visualization&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/17"&gt;Drawing_Quadrangle on a 3D map&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/23"&gt;Unit test time!&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/24"&gt;Efficient Plotting with MultiBlocks&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/26"&gt;Clip Interval for clipping of data&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/29"&gt;Functionality to Plot tiny sphere at a given coordinate&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/30"&gt;Adding in some examples&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://jeffrey-paul2000.medium.com/feed#34"&gt;Ah, bug-fixes&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/37"&gt;Saving and loading plots&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/38"&gt;Figure tests are now a thing!&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/52"&gt;Performance enhancements to draw_quadrangle&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/55"&gt;Plot_limb from Sunpy, but in 3D&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/73"&gt;Color enhancements&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Aside from these PRs, a lot more smaller ones were made which were related these significant ones in terms of enhancements or bug-fixes, but for the most part, everything is covered here. I think we’re set to have our 0.1 release right after the mentors take care of how the documentation works.&lt;/p&gt;
-&lt;p&gt;We also planned to work on some cool &lt;a href="https://github.com/sunpy/sunkit-pyvista/pull/57"&gt;animations&lt;/a&gt; using the Pyvistaqt module but this was out of the scope of the original GSoC project so we’ve put a pin in it for now.&lt;/p&gt;
-&lt;p&gt;Of course, my work doesn’t stop here. Being one of the main developers of this project, I’d love to continue working and building on it. Here’s to the amazing folks at SunPy and GSoC for this opportunity. 🍻&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=87f74dd364df" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210819_0250_jeffreypaul15/</guid><pubDate>Thu, 19 Aug 2021 01:50:29 GMT</pubDate></item><item><title>About my Google Summer of Code Project: Part 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210817_0956_adwaitbhope/</link><dc:creator>Adwait Bhope</dc:creator><description>&lt;p&gt;The last few days haven’t been as productive as earlier. We fixed some issues with the NDCubeSequence’s stacking PR and it looks like it’s ready to merge now. With some feedback from the community, I think it will happen soon. There have also been some minor updates to the PR that brings reproject’s other algorithms to NDCube.&lt;/p&gt;
-&lt;p&gt;A new task that I’ve taken up now is identifying invariant axes in a cube. Let’s say there’s a 3D data cube where one of the axes corresponds to a quantity like time, which you don’t want to reproject onto another grid. Identifying this axis would let us reproject at only one point along this axis and then apply it throughout. This will speed up the execution significantly and require a lesser amount of memory. It’s a tricky path though and the first implementation might not be very efficient. What we’re trying to do is convert pixel coordinates to world coordinates using the source WCS, and convert it back from world to pixel using the target WCS. If the original and final pixel coordinates match, we can conclude that the axis is invariant.&lt;/p&gt;
-&lt;p&gt;I shall update its progress soon, but this is all for now. GSoC is officially coming to an end, but as I said in the previous post, it doesn’t matter much for continuing my contributions to this community. I’ve been fascinated by this open-source environment and culture and learned so much along the way. I guess GSoC did serve its purpose for me.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;: Levenberg-Marquardt (default).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;least_squares&lt;/code&gt;: Least-Squares minimization, using Trust Region Reflective method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;differential_evolution&lt;/code&gt;: differential evolution.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;brute&lt;/code&gt;: brute force method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;basinhopping&lt;/code&gt;: Basin-hopping method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;ampgo&lt;/code&gt;: Adaptive Memory Programming for Global Optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;nelder&lt;/code&gt;: Nelder-Mead.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;: Limited-memory Broyden–Fletcher–Goldfarb–Shanno (L-BFGS-B).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;powell&lt;/code&gt;: Powell’s method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;cg&lt;/code&gt;: Conjugate-Gradient.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;newton&lt;/code&gt;: Newton-Conjugate-Gradient.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;cobyla&lt;/code&gt;: Cobyla.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;bfgs&lt;/code&gt;: Broyden–Fletcher–Goldfarb–Shanno (BFGS).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;tnc&lt;/code&gt;: Truncated Newton.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-ncg&lt;/code&gt;: Newton-Conjugate-Gradient trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-exact&lt;/code&gt;: nearly exact trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-krylov&lt;/code&gt;: Newton’s Generalized Lanczos Trust-Region (GLTR).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-constr&lt;/code&gt;: trust-region for constrained optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;dogleg&lt;/code&gt;: Dog-leg trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;slsqp&lt;/code&gt;: Sequential Linear Squares Programming.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;emcee&lt;/code&gt;: Maximum likelihood via Monte-Carlo Markov Chain.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;shgo&lt;/code&gt;: Simplicial Homology Global Optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;dual_annealing&lt;/code&gt;: Dual Annealing optimization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this list, there are 5 methods - &lt;code class="language-text"&gt;newton&lt;/code&gt;, &lt;code class="language-text"&gt;trust-ncg&lt;/code&gt;, &lt;code class="language-text"&gt;trust_exact&lt;/code&gt;, &lt;code class="language-text"&gt;trust-krylov&lt;/code&gt; and &lt;code class="language-text"&gt;dogleg&lt;/code&gt; - that require Jacobian function to work, which adds more complexity into our fitting process and codebase, hence I remove them from the benchmark and never use them again. There are also &lt;code class="language-text"&gt;emcee&lt;/code&gt; method that, for some unknown reasons, the fitting procedure never stops even after passing the loop limit, thus I have to remove it. Now we have 17 methods left that are stable enough to compare. Additionally, I set the max number of fitting loops as 200, so this means that any method that have equal of higher than 200 loops means that they are most likely unable to stop. I will conduct benchmarking process on the &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt; first.&lt;/p&gt;
+&lt;p&gt;The result for this method-comparing benchmark can be found in &lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/method_comparison.txt"&gt;this JSON file&lt;/a&gt;.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;Method&lt;/th&gt;
+&lt;th align="center"&gt;Last residual&lt;/th&gt;
+&lt;th align="center"&gt;Number of loops&lt;/th&gt;
+&lt;th align="center"&gt;Processing time (s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;leastsq&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042272&lt;/td&gt;
+&lt;td align="center"&gt;17&lt;/td&gt;
+&lt;td align="center"&gt;6.128568887710571&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;least_squares&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299046347&lt;/td&gt;
+&lt;td align="center"&gt;14&lt;/td&gt;
+&lt;td align="center"&gt;3.8792104721069336&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;differential_evolution&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042330&lt;/td&gt;
+&lt;td align="center"&gt;48&lt;/td&gt;
+&lt;td align="center"&gt;7.211840629577637&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;brute&lt;/td&gt;
+&lt;td align="center"&gt;0.0027847218345&lt;/td&gt;
+&lt;td align="center"&gt;20&lt;/td&gt;
+&lt;td align="center"&gt;3.13600492477417&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;basinhopping&lt;/td&gt;
+&lt;td align="center"&gt;0.0030471725482&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;31.650216579437256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;ampgo&lt;/td&gt;
+&lt;td align="center"&gt;0.0027301332094&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;36.60996413230896&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;nelder&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042330&lt;/td&gt;
+&lt;td align="center"&gt;48&lt;/td&gt;
+&lt;td align="center"&gt;7.532714605331421&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;lbfgsb&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299043815&lt;/td&gt;
+&lt;td align="center"&gt;12&lt;/td&gt;
+&lt;td align="center"&gt;1.8955962657928467&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;powell&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042271&lt;/td&gt;
+&lt;td align="center"&gt;38&lt;/td&gt;
+&lt;td align="center"&gt;6.310025691986084&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;cg&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299046922&lt;/td&gt;
+&lt;td align="center"&gt;34&lt;/td&gt;
+&lt;td align="center"&gt;5.223567724227905&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;cobyla&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299044752&lt;/td&gt;
+&lt;td align="center"&gt;22&lt;/td&gt;
+&lt;td align="center"&gt;3.028048515319824&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;bfgs&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042351&lt;/td&gt;
+&lt;td align="center"&gt;20&lt;/td&gt;
+&lt;td align="center"&gt;2.9560532569885254&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;tnc&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042284&lt;/td&gt;
+&lt;td align="center"&gt;36&lt;/td&gt;
+&lt;td align="center"&gt;5.905533313751221&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;trust-constr&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042271&lt;/td&gt;
+&lt;td align="center"&gt;16&lt;/td&gt;
+&lt;td align="center"&gt;2.3700413703918457&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;slsqp&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299969016&lt;/td&gt;
+&lt;td align="center"&gt;18&lt;/td&gt;
+&lt;td align="center"&gt;3.160074472427368&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;shgo&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042272&lt;/td&gt;
+&lt;td align="center"&gt;32&lt;/td&gt;
+&lt;td align="center"&gt;6.185185194015503&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;dual_annealing&lt;/td&gt;
+&lt;td align="center"&gt;0.0221619241989&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;32.40411591529846&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;(It is important to remember that this result might differ for each run, but rest assure the common trend is unchanged)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As you can see from the data above, we have &lt;code class="language-text"&gt;basinhopping&lt;/code&gt;, &lt;code class="language-text"&gt;ampgo&lt;/code&gt; and &lt;code class="language-text"&gt;dual_annealing&lt;/code&gt; jumping out of the loop limit of 200, and it’s totally not a good thing, which I would like to exclude them out for the sake of better visualization. Then, in order to compare the rest of 14 methods, I have a scatter plot below in which I focus on analyzing the &lt;code class="language-text"&gt;last_residual&lt;/code&gt; - indicator of accuracy - on the horizontal axis, and &lt;code class="language-text"&gt;loops&lt;/code&gt; - indicator of fitting iterations needed - on the vertical axis. As &lt;code class="language-text"&gt;time&lt;/code&gt; is heavily influenced by the computational capacity of each device, I don’t prioritize it than other two criteria in the result assessment, and thus it is indicated by color code.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Scatter plot of the result." src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/result_plot.png"&gt;&lt;/p&gt;
+&lt;p&gt;If we zoom in the best 8 cases marked by the red rectangle above:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Best 8" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/result_zoomed.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the zoomed figure, the result is quite satisfying as I expected. When we talk about the most famous curve-fitting algorithms, we can mention either &lt;code class="language-text"&gt;leastsq&lt;/code&gt;/&lt;code class="language-text"&gt;least_squares&lt;/code&gt; or &lt;code class="language-text"&gt;bfgs&lt;/code&gt;/&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;, and now we can see them taking 4 out of top 5. Now let’s focus on the two competitors: &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and &lt;code class="language-text"&gt;least_squares&lt;/code&gt; and get some observations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; has a little lower residual and so a little bit better in accuracy than &lt;code class="language-text"&gt;least_squares&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Although approximately same fitting loops (12 and 14), the time required for &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; is 1.895596s, significantly lower than &lt;code class="language-text"&gt;least_squares&lt;/code&gt; of 3.879210s. We can also see this behavior in their neighbors: &lt;code class="language-text"&gt;bfgs&lt;/code&gt; (2.956053s) &amp;lt; &lt;code class="language-text"&gt;leastsq&lt;/code&gt; (6.128569s).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is explainable. While &lt;code class="language-text"&gt;least_squares&lt;/code&gt; simply calculating and minimizing the sum of the residuals of points from the comparative curves, &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; - Limited-memory BFGS uses a limited amount of computer memory to conduct &lt;a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm"&gt;Broyden-Fletcher-Goldfarb-Shanno algorithm&lt;/a&gt; for the minimization.&lt;/p&gt;
+&lt;p&gt;So for now, I have initial assumption that &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; performs slightly better than &lt;code class="language-text"&gt;leastsq&lt;/code&gt;. After conducting fitting process on other spectra, the &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and &lt;code class="language-text"&gt;leastsq&lt;/code&gt; are seem to be dominant in terms of speed (based on number of loops and time elapsed) and accuracy (this depends a little bit on pipeline combination, which will be addressed in next part) compared to other methods. However, more benchmarks are needed to confirm my initla assumption.&lt;/p&gt;
+&lt;h4&gt;2. Fitting pipeline comparison&lt;/h4&gt;
+&lt;p&gt;Next is the benchmarking process focusing on pipeline comparison. A fitting pipeline comprises of several options, from spectrum refinement methods such as which spectral quantity to take, whether applying normalization on both spectra or not, or simply just fitting process preferences such as maxinum number of fitting loops allowed, or fitting method, or max fitting tolerance. While in the new JSON structure the users are free to adjust all of them, through this benchmarking process I would like acquire more understandings about how these pipeline might affect the quality of a fitting work.&lt;/p&gt;
+&lt;p&gt;In order to assess a fitting’s quality, I use the synthetic spectra that I generated on week 1. Although they are heavily convoluted with noises and offsets, since they are software-generated, we can know what are the experimental properties (such as &lt;code class="language-text"&gt;path_length&lt;/code&gt;, &lt;code class="language-text"&gt;slit&lt;/code&gt;, etc.). Meanwhile, regarding the experimental spectrum &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um&lt;/code&gt;, we are definitely not sure those parameters (in fact, we don’t even know whether it is LTE or non-LTE). So, I decided to test on 7 synthetic spectra:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO-1-1800-2300-cm-1-P3-t1500-v-r-mf0.1-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-500-1100-cm-1-P2-t900-v-r-mf0.5-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-500-3000-cm-1-P93-t740-v-r-mf0.96-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-3300-3700-cm-1-P0.005-t3000-v-r-mf0.01-p1-sl1.4nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-H2O-1-1000-2500-cm-1-P0.5-t1500-v-r-mf0.5-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-NH3-1-500-2000-cm-1-P10-t1000-v-r-mf0.01-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-O2-1-7500-8000-cm-1-P1.01325-t298.15-v-r-mf0.21-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For each spectra, I will modify the pipeline’s &lt;code class="language-text"&gt;method&lt;/code&gt; and &lt;code class="language-text"&gt;normalize&lt;/code&gt; properties, until the best possible fitting result is achieved - least fitting loops, and closest to the ground-truth (GT) temperature (this is why I prefer synthetic over experimental spectra, as I explained above). Here is the result:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="center"&gt;Spec No.&lt;/th&gt;
+&lt;th align="center"&gt;GT Temp&lt;/th&gt;
+&lt;th align="center"&gt;Start Temp&lt;/th&gt;
+&lt;th align="center"&gt;Best Temp&lt;/th&gt;
+&lt;th align="center"&gt;Method&lt;/th&gt;
+&lt;th align="center"&gt;Normalize&lt;/th&gt;
+&lt;th align="center"&gt;Diff&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;1&lt;/td&gt;
+&lt;td align="center"&gt;1500&lt;/td&gt;
+&lt;td align="center"&gt;1300&lt;/td&gt;
+&lt;td align="center"&gt;1468.97&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/1.png"&gt;1&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;2&lt;/td&gt;
+&lt;td align="center"&gt;900&lt;/td&gt;
+&lt;td align="center"&gt;1300&lt;/td&gt;
+&lt;td align="center"&gt;898.84&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/2.png"&gt;2&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;3&lt;/td&gt;
+&lt;td align="center"&gt;740&lt;/td&gt;
+&lt;td align="center"&gt;1000&lt;/td&gt;
+&lt;td align="center"&gt;~740&lt;/td&gt;
+&lt;td align="center"&gt;both&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/3.png"&gt;3&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;4&lt;/td&gt;
+&lt;td align="center"&gt;3000&lt;/td&gt;
+&lt;td align="center"&gt;2850&lt;/td&gt;
+&lt;td align="center"&gt;3003.52&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/4.png"&gt;4&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;5&lt;/td&gt;
+&lt;td align="center"&gt;1500&lt;/td&gt;
+&lt;td align="center"&gt;2000&lt;/td&gt;
+&lt;td align="center"&gt;1507.25&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;true&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/5.png"&gt;5&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;6&lt;/td&gt;
+&lt;td align="center"&gt;1000&lt;/td&gt;
+&lt;td align="center"&gt;2250&lt;/td&gt;
+&lt;td align="center"&gt;994.90&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/6.png"&gt;6&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;7&lt;/td&gt;
+&lt;td align="center"&gt;298.15&lt;/td&gt;
+&lt;td align="center"&gt;660&lt;/td&gt;
+&lt;td align="center"&gt;297.86&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/7.png"&gt;7&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As we can see from the table above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All spectra achieve near-perfect best fit results. This is because we have perfect ground-truth conditions. In real-life circumstances, such accurate ground-truth is virtually impossible to achieve, but this is the job of fitting users to measure and set them.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt; performs quite good in most case. This is quite surprising after the result from &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt;, but it can be explained as most likely we didn’t use the correct ground-truth conditions for it since we don’t know (seriously, who created that spectrum?). However, there is a small observation from me that, those cases where &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; lost agains &lt;code class="language-text"&gt;leastsq&lt;/code&gt; were primarily because of number of loops. Still, it’s a win for &lt;code class="language-text"&gt;leastsq&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Their neighbors, &lt;code class="language-text"&gt;least_squares&lt;/code&gt; and &lt;code class="language-text"&gt;bfgs&lt;/code&gt;, are completely underdogs. We don’t even need to mention other methods.&lt;/li&gt;
+&lt;li&gt;In nearly all the best cases, &lt;code class="language-text"&gt;normalize = false&lt;/code&gt; is set. This is quite explainable, the more originality the better.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3. Summary&lt;/h4&gt;
+&lt;p&gt;After all the benchmarking works above, I have decided to set the &lt;code class="language-text"&gt;leastsq&lt;/code&gt; as the default fitting method, in case users don’t state the method explicitly in JSON file. Later on, in the fitting tutorial, I will add some suggestions about using &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and trying to switch the &lt;code class="language-text"&gt;normalize&lt;/code&gt; in case their fitting work is not quite good.&lt;/p&gt;
+&lt;p&gt;Nevertheless, these benchmarks helped me gain more insights about the performance of my fitting module, and most importantly, let me experience the feeling of a spectroscopist trying to fit his spectra - playing around the parameters, adjusting parameters and praying for a good result to come. Quite a physically and mentally exhausting work to be honest, since whenever the result went wrong, I didn’t know whether the error came from ground-truth conditions, or from my fitting module. There have been days and nights I sat in front of my laptop adjusting the JSON files and codebase continuously. But finally, the benchmarking process for LTE spectra is good now, and I am quite confident in my fitting module. Now let’s move on to the non-LTE spectra!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A footage of me turning parameters up and down like a DJ" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/meme.jpg"&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220717_0000_tranhuunhathuy/</guid><pubDate>Sat, 16 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Benchmarking and performance analysis</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Radis app uses  useState  to populate data and maintain state; while this works well for small scale applications, as it becomes better over…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/3rdWeek"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_arunavabasu-03/</guid><pubDate>Sat, 09 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Fourth week - Intensive benchmarking process for LTE spectra</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;p&gt;As my fitting module has completed, now I am clear to start the benchmarking process. Initially, I planned to do it on 4 categories: large, small, LTE and non-LTE. But then, Mr. Erwan’s words helped me realize that my classification was somehow not ideal for this, as he said:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The first need is not fitting performance, its a good fitting interface they would work on every typical condition.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;p&gt;There’s some work at sunraster, specifically updating it to work with ndcube 2.0 (whose RC1 was released recently). That sounds like a fun project given that I’m now familiar with ndcube. In fact, that was a project I had considered applying for as part of GSoC but hadn’t. I’ll let you all know how that goes. Cheers for now, I’ll talk to you in the next one!&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=8c7c62861783" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210817_0956_adwaitbhope/</guid><pubDate>Tue, 17 Aug 2021 08:56:14 GMT</pubDate></item><item><title>Time to review my GSoC Project</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210816_1603_rashmiraj137/</link><dc:creator>Raj Rashmi</dc:creator><description>&lt;p&gt;With the end of the GSoC project, I will give this blog to summarise the JAX based optimization to analyze its applicability to enhance the loglikelihood calculation. The goal is to analyze, (i) the performance of different optimizers to evaluate the loglikelihood function, (ii) demonstrated the robustness of JAX to calculate gradients. And talk about the current code and corresponding improvement due to JAX.&lt;/p&gt;
-&lt;p&gt;The application of loglikelihood fitting to periodograms is discussed in [1]. Let us start with analyzing best-fit power spectrum (i) with different sets of optimizers namely: &lt;em&gt;minimize(method=’Nelder-Mead’, ’Powell’, ’CG’, ’BFGS’, ’Newton-CG’, ’L-BFGS-B’, ’TNC’, ’COBYLA’, ’SLSQP’, ’trust-constr’, ’dogleg’, ’trust-ncg’, ’trust-krylov’, ’trust-exact’). &lt;/em&gt;The problem setting shifts the start and test parameters to study the graph of best fit optimizer using different “methods” listed above. First, we will stick with the Powell optimizer and try to check what is the current sensitivity of the implementation.&lt;/p&gt;
-&lt;p&gt;Currently, we seek to find a solution to the problem when the optimization algorithm often gets stuck in local minima, terminate without meeting its formal success criteria, or fails due to any contributing factor. Possible ways are: (1) add more Lorentzian components, (2) reduce the amplitude, (3) start the optimization process with parameters very far away from the true parameters, (4) experiment with the different optimizers/ “methods” to investigate if there is more superior algorithm compared to Powell.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*oEfdtoL2Fa0XAbjmugMvnA.png"&gt;&lt;figcaption&gt;Reference: blog.gitguardian.com&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;So far the &lt;em&gt;Powell&lt;/em&gt; and &lt;em&gt;Nelder-Mead &lt;/em&gt;gives almost the same best-fit curve compared to other optimizers, surprisingly even better than &lt;em&gt;BFGS(which is a well-known &lt;/em&gt;numerical optimizer for an iterative method for solving unconstrained nonlinear optimization problems. This directs to more investigation with (1) and (2) and (3). Both (2) and (3) makes the algorithm fail with the current &lt;em&gt;scipy.optimize.minimize, &lt;/em&gt;and we can see the&lt;em&gt; &lt;/em&gt;graph as given below.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*1SA0BwGc48I8qRozxuK6CQ.png"&gt;&lt;/figure&gt;&lt;p&gt;I am still holding on to try &lt;a href="https://jax.readthedocs.io/en/latest/_autosummary/jax.scipy.optimize.minimize.html"&gt;jax.scipy.optimize.minimize&lt;/a&gt; instead of &lt;a href="https://jax.readthedocs.io/en/latest/_autosummary/jax.scipy.optimize.minimize.html"&gt;scipy.optimize.minimize&lt;/a&gt; and analyze the increment in robustness. Another way to enhance the current algorithm alongside experimenting with different optimisers is:&lt;/p&gt;
-&lt;ol&gt;&lt;li&gt;Use a different gradient finding method.&lt;/li&gt;&lt;li&gt;Speed up objective function.&lt;/li&gt;&lt;li&gt;Reduce the number of design variables.&lt;/li&gt;&lt;li&gt;Choose a better initial guess.&lt;/li&gt;&lt;li&gt;Use parallel processing.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;In my next blog, I will provide a more detailed explanation of current events. In this blog, I highlighted the emphasis of analysis.&lt;/p&gt;
-&lt;p&gt;References:&lt;/p&gt;
-&lt;p&gt;[1] Maximum likelihood fitting of X-ray power density spectra: Application to high-frequency quasi-periodic oscillations from the neutron star X-ray binary 4U1608-522. Didier Barret, Simon Vaughan. &lt;a href="https://arxiv.org/abs/1112.0535"&gt;https://arxiv.org/abs/1112.0535&lt;/a&gt;&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=c34297f2dc81" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210816_1603_rashmiraj137/</guid><pubDate>Mon, 16 Aug 2021 15:03:25 GMT</pubDate></item><item><title>Ah, the end?</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210816_0320_jeffreypaul15/</link><dc:creator>Jeffrey Paul</dc:creator><description>&lt;p&gt;From when I’ve started writing these blog posts, I’ve taken quite a liking to writing these blog posts (except for the one fortnight I missed). OpenAstronomy has helped me improve the way I express myself in a satirical manner. I’ve spent quite a bit of time trying to figure out what’s the plan for my future but let’s save that story for another day.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*Y0Rim-lsXAAtQbRuk6-37A.jpeg"&gt;&lt;figcaption&gt;Here’s picture of sun and its field lines to show that I’m working on astronomy related, but actually have no proper knowledge of how any of this works, cheers! 🍻&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;Here’s a bit of how my last week of “officially” working on Sunkit-Pyvista went :-&lt;/p&gt;
-&lt;ol&gt;&lt;li&gt;We put a pin on the animator as it didn’t make sense for us to work on something that isn’t of more value for the first release.&lt;/li&gt;&lt;li&gt;Pfsspy field lines now allow for a custom color function to be passed while plotting.&lt;/li&gt;&lt;li&gt;All main functionality is big-free (as far as I know) and can be used efficiently without having to worry about something failing.&lt;/li&gt;&lt;li&gt;The final boss with our little project is trying to get the documentation to render 3D plots correctly and this is being handled by the mentors which is a huge load off my head.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;That’s pretty much it I guess, these last few PRs mark the end of the so called “GSoC” period. What more have I left out? I’ve spoken about everything there is to be said, we’re nearing the end of this pretty interesting journey that I had embarked on. Other than a small bit of sadness, I’ve got nothing else to say. I’ve decided to continue working on Sunkit-Pyvista as being an open-sourced contributor is all about the community and I’m doing my part in working towards that (It’s not like I was planning on leaving either way though, this is almost a part of my daily routine).&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Here’s to Sunpy and the best mentors I’ve interacted with. 🍻&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=e9ce2f5de6dc" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210816_0320_jeffreypaul15/</guid><pubDate>Mon, 16 Aug 2021 02:20:04 GMT</pubDate></item><item><title>GSoC Post 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210815_1402_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hi! In the last weeks we have finished the Astrometry linear part programming. &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;/p&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;We added an option to solve for more pixel catalogs, which are a part of a field image. This is an important case in real world scenarios. The image below is a good illustration of this: we have a field and a lot of exposures that are used to build the final image.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image"&gt;&lt;img alt="https://archive.stsci.edu/prepds/xdf/images/xdf_buildup.png" src="https://archive.stsci.edu/prepds/xdf/images/xdf_buildup.png"&gt;&lt;figcaption&gt;Source: &lt;a href="https://archive.stsci.edu/prepds/xdf/" rel="noreferrer noopener" target="_blank"&gt;https://archive.stsci.edu/prepds/xdf/&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;Also, we are moving our code to Gnuastro, so it can be a Gnuastro program. To do this, we have to follow Gnuastro conventions, so everything can be organized. Luckily, it’s very well documented how to do it, as you can see &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/The-TEMPLATE-program.html#The-TEMPLATE-program" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/Mandatory-source-code-files.html" rel="noreferrer noopener" target="_blank"&gt;also here&lt;/a&gt;.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210815_1402_ndanzanello/</guid><pubDate>Sun, 15 Aug 2021 13:02:15 GMT</pubDate></item><item><title>astropy@GSoC Blog Post #6.5 - Week 10, Final Evaluations</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210814_2236_suyog7130/</link><dc:creator>Suyog Garg</dc:creator><description>&lt;p&gt; You know, 7's my lucky number.&lt;/p&gt;
-&lt;p&gt;And Happy Independence Day!&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210814_2236_suyog7130/</guid><pubDate>Sat, 14 Aug 2021 21:36:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Do not wasting time trying to determine a perfect threshold or categories.&lt;/p&gt;
+&lt;p&gt;Work on real-life examples. CO2 4.2 - 5 µm is one.&lt;/p&gt;
+&lt;p&gt;CO2 bandhead (the Single Temperature fit example) is another one.&lt;/p&gt;
+&lt;p&gt;Works on the improving the fits from these real-life examples,
+and - maybe - you’ll generalize to categories/classifications eventually.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To be honest, I have been thinking about changing my project timeline and objectives a little bit. Initially, I proposed the timeline in which I would spend 1 week for making the module, and 4 weeks to conduct benchmarking on 4 types of spectrum (large, small, LTE, non-LTE). But then, I encountered a lot of difficulties in conducting the fitting process, which significantly delays my fitting module to be completed in the end of week 3. Along with Mr. Erwan’s suggestions, after careful considerations, I have decided to reduce the category to only 2 groups of LTE and non-LTE spectra, and propose a new timeline based on that with my mentors, which successfully acquired their approvals. The new timeline is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Week 4 (this week): conduct benchmarking process on LTE spectra.&lt;/li&gt;
+&lt;li&gt;Week 5: conduct benchmarking process on non-LTE spectra.&lt;/li&gt;
+&lt;li&gt;Week 6: implement the fitting module and fitting models into RADIS codebase, finish any documentations, create a 101 tutorial, and prepare for first evaluation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For this new timeline, the last week is going to be the toughest time ever! But I will try my best to catch up with the deadlines once and for all. I must admit that after half the first phase, I realized that my expected timeline in my project proposal - derived from my initial understandings of RADIS and fitting - is quite not applicable. As Mr. Minou - one of my mentors, said:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Don’t worry about changing the objectives . Some difficulties usually come up only when the project begins and cannot
+be easily anticipated. New directions seem fine to me and you are on the right path.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As well as Mr. Erwan:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Just keep on progressing on the project as you do, reevaluating needs if needed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I have more confidence in keeping on with my plan. This new approach, hopefully, will allow me to finish implementing the fitting module into RADIS by the end of first phase. Quite an intensive experience for me but, let’s go anyway! So here are the benchmarking results for our LTE experimental spectra, in which I will focus on comparison between fitting methods, and between refinement pipelines.&lt;/p&gt;
+&lt;h4&gt;1. Fitting method benchmarking&lt;/h4&gt;
+&lt;p&gt;The ideal of benchmarking result is to test and assess under what conditions, such as fitting method, pipeline, refinement, etc., the fitting process can achieve a stable and robust result. Firstly, I want to test the fitting method and see which ones are the best to put into the module as the default method. As we use LMFIT.Minimizer, we have 23 fitting methods in total:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;: Levenberg-Marquardt (default).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;least_squares&lt;/code&gt;: Least-Squares minimization, using Trust Region Reflective method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;differential_evolution&lt;/code&gt;: differential evolution.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;brute&lt;/code&gt;: brute force method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;basinhopping&lt;/code&gt;: Basin-hopping method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;ampgo&lt;/code&gt;: Adaptive Memory Programming for Global Optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;nelder&lt;/code&gt;: Nelder-Mead.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;: Limited-memory Broyden–Fletcher–Goldfarb–Shanno (L-BFGS-B).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;powell&lt;/code&gt;: Powell’s method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;cg&lt;/code&gt;: Conjugate-Gradient.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;newton&lt;/code&gt;: Newton-Conjugate-Gradient.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;cobyla&lt;/code&gt;: Cobyla.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;bfgs&lt;/code&gt;: Broyden–Fletcher–Goldfarb–Shanno (BFGS).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;tnc&lt;/code&gt;: Truncated Newton.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-ncg&lt;/code&gt;: Newton-Conjugate-Gradient trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-exact&lt;/code&gt;: nearly exact trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-krylov&lt;/code&gt;: Newton’s Generalized Lanczos Trust-Region (GLTR).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-constr&lt;/code&gt;: trust-region for constrained optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;dogleg&lt;/code&gt;: Dog-leg trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;slsqp&lt;/code&gt;: Sequential Linear Squares Programming.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;emcee&lt;/code&gt;: Maximum likelihood via Monte-Carlo Markov Chain.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;shgo&lt;/code&gt;: Simplicial Homology Global Optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;dual_annealing&lt;/code&gt;: Dual Annealing optimization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this list, there are 5 methods - &lt;code class="language-text"&gt;newton&lt;/code&gt;, &lt;code class="language-text"&gt;trust-ncg&lt;/code&gt;, &lt;code class="language-text"&gt;trust_exact&lt;/code&gt;, &lt;code class="language-text"&gt;trust-krylov&lt;/code&gt; and &lt;code class="language-text"&gt;dogleg&lt;/code&gt; - that require Jacobian function to work, which adds more complexity into our fitting process and codebase, hence I remove them from the benchmark and never use them again. There are also &lt;code class="language-text"&gt;emcee&lt;/code&gt; method that, for some unknown reasons, the fitting procedure never stops even after passing the loop limit, thus I have to remove it. Now we have 17 methods left that are stable enough to compare. Additionally, I set the max number of fitting loops as 200, so this means that any method that have equal of higher than 200 loops means that they are most likely unable to stop. I will conduct benchmarking process on the &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt; first.&lt;/p&gt;
+&lt;p&gt;The result for this method-comparing benchmark can be found in &lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/43e71f48257a8a3d444d530c8859e77b/method_comparison.txt"&gt;this JSON file&lt;/a&gt;.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;Method&lt;/th&gt;
+&lt;th align="center"&gt;Last residual&lt;/th&gt;
+&lt;th align="center"&gt;Number of loops&lt;/th&gt;
+&lt;th align="center"&gt;Processing time (s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;leastsq&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042272&lt;/td&gt;
+&lt;td align="center"&gt;17&lt;/td&gt;
+&lt;td align="center"&gt;6.128568887710571&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;least_squares&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299046347&lt;/td&gt;
+&lt;td align="center"&gt;14&lt;/td&gt;
+&lt;td align="center"&gt;3.8792104721069336&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;differential_evolution&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042330&lt;/td&gt;
+&lt;td align="center"&gt;48&lt;/td&gt;
+&lt;td align="center"&gt;7.211840629577637&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;brute&lt;/td&gt;
+&lt;td align="center"&gt;0.0027847218345&lt;/td&gt;
+&lt;td align="center"&gt;20&lt;/td&gt;
+&lt;td align="center"&gt;3.13600492477417&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;basinhopping&lt;/td&gt;
+&lt;td align="center"&gt;0.0030471725482&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;31.650216579437256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;ampgo&lt;/td&gt;
+&lt;td align="center"&gt;0.0027301332094&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;36.60996413230896&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;nelder&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042330&lt;/td&gt;
+&lt;td align="center"&gt;48&lt;/td&gt;
+&lt;td align="center"&gt;7.532714605331421&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;lbfgsb&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299043815&lt;/td&gt;
+&lt;td align="center"&gt;12&lt;/td&gt;
+&lt;td align="center"&gt;1.8955962657928467&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;powell&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042271&lt;/td&gt;
+&lt;td align="center"&gt;38&lt;/td&gt;
+&lt;td align="center"&gt;6.310025691986084&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;cg&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299046922&lt;/td&gt;
+&lt;td align="center"&gt;34&lt;/td&gt;
+&lt;td align="center"&gt;5.223567724227905&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;cobyla&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299044752&lt;/td&gt;
+&lt;td align="center"&gt;22&lt;/td&gt;
+&lt;td align="center"&gt;3.028048515319824&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;bfgs&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042351&lt;/td&gt;
+&lt;td align="center"&gt;20&lt;/td&gt;
+&lt;td align="center"&gt;2.9560532569885254&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;tnc&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042284&lt;/td&gt;
+&lt;td align="center"&gt;36&lt;/td&gt;
+&lt;td align="center"&gt;5.905533313751221&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;trust-constr&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042271&lt;/td&gt;
+&lt;td align="center"&gt;16&lt;/td&gt;
+&lt;td align="center"&gt;2.3700413703918457&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;slsqp&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299969016&lt;/td&gt;
+&lt;td align="center"&gt;18&lt;/td&gt;
+&lt;td align="center"&gt;3.160074472427368&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;shgo&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042272&lt;/td&gt;
+&lt;td align="center"&gt;32&lt;/td&gt;
+&lt;td align="center"&gt;6.185185194015503&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;dual_annealing&lt;/td&gt;
+&lt;td align="center"&gt;0.0221619241989&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;32.40411591529846&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;(It is important to remember that this result might differ for each run, but rest assure the common trend is unchanged)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As you can see from the data above, we have &lt;code class="language-text"&gt;basinhopping&lt;/code&gt;, &lt;code class="language-text"&gt;ampgo&lt;/code&gt; and &lt;code class="language-text"&gt;dual_annealing&lt;/code&gt; jumping out of the loop limit of 200, and it’s totally not a good thing, which I would like to exclude them out for the sake of better visualization. Then, in order to compare the rest of 14 methods, I have a scatter plot below in which I focus on analyzing the &lt;code class="language-text"&gt;last_residual&lt;/code&gt; - indicator of accuracy - on the horizontal axis, and &lt;code class="language-text"&gt;loops&lt;/code&gt; - indicator of fitting iterations needed - on the vertical axis. As &lt;code class="language-text"&gt;time&lt;/code&gt; is heavily influenced by the computational capacity of each device, I don’t prioritize it than other two criteria in the result assessment, and thus it is indicated by color code.&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/41c56cdd9aa439841d66bb9a01dd543d/29114/result_plot.png" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="Scatter plot of the result." class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/41c56cdd9aa439841d66bb9a01dd543d/f058b/result_plot.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Scatter plot of the result."&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If we zoom in the best 8 cases marked by the red rectangle above:&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/b03e6b2a34c2ea21d9bc963c5d6e7acf/29114/result_zoomed.png" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="Best 8" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/b03e6b2a34c2ea21d9bc963c5d6e7acf/f058b/result_zoomed.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Best 8"&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the zoomed figure, the result is quite satisfying as I expected. When we talk about the most famous curve-fitting algorithms, we can mention either &lt;code class="language-text"&gt;leastsq&lt;/code&gt;/&lt;code class="language-text"&gt;least_squares&lt;/code&gt; or &lt;code class="language-text"&gt;bfgs&lt;/code&gt;/&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;, and now we can see them taking 4 out of top 5. Now let’s focus on the two competitors: &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and &lt;code class="language-text"&gt;least_squares&lt;/code&gt; and get some observations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; has a little lower residual and so a little bit better in accuracy than &lt;code class="language-text"&gt;least_squares&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Although approximately same fitting loops (12 and 14), the time required for &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; is 1.895596s, significantly lower than &lt;code class="language-text"&gt;least_squares&lt;/code&gt; of 3.879210s. We can also see this behavior in their neighbors: &lt;code class="language-text"&gt;bfgs&lt;/code&gt; (2.956053s) &amp;lt; &lt;code class="language-text"&gt;leastsq&lt;/code&gt; (6.128569s).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is explainable. While &lt;code class="language-text"&gt;least_squares&lt;/code&gt; simply calculating and minimizing the sum of the residuals of points from the comparative curves, &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; - Limited-memory BFGS uses a limited amount of computer memory to conduct &lt;a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm"&gt;Broyden-Fletcher-Goldfarb-Shanno algorithm&lt;/a&gt; for the minimization.&lt;/p&gt;
+&lt;p&gt;So for now, I have initial assumption that &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; performs slightly better than &lt;code class="language-text"&gt;leastsq&lt;/code&gt;. After conducting fitting process on other spectra, the &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and &lt;code class="language-text"&gt;leastsq&lt;/code&gt; are seem to be dominant in terms of speed (based on number of loops and time elapsed) and accuracy (this depends a little bit on pipeline combination, which will be addressed in next part) compared to other methods. However, more benchmarks are needed to confirm my initla assumption.&lt;/p&gt;
+&lt;h4&gt;2. Fitting pipeline comparison&lt;/h4&gt;
+&lt;p&gt;Next is the benchmarking process focusing on pipeline comparison. A fitting pipeline comprises of several options, from spectrum refinement methods such as which spectral quantity to take, whether applying normalization on both spectra or not, or simply just fitting process preferences such as maxinum number of fitting loops allowed, or fitting method, or max fitting tolerance. While in the new JSON structure the users are free to adjust all of them, through this benchmarking process I would like acquire more understandings about how these pipeline might affect the quality of a fitting work.&lt;/p&gt;
+&lt;p&gt;In order to assess a fitting’s quality, I use the synthetic spectra that I generated on week 1. Although they are heavily convoluted with noises and offsets, since they are software-generated, we can know what are the experimental properties (such as &lt;code class="language-text"&gt;path_length&lt;/code&gt;, &lt;code class="language-text"&gt;slit&lt;/code&gt;, etc.). Meanwhile, regarding the experimental spectrum &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um&lt;/code&gt;, we are definitely not sure those parameters (in fact, we don’t even know whether it is LTE or non-LTE). So, I decided to test on 7 synthetic spectra:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO-1-1800-2300-cm-1-P3-t1500-v-r-mf0.1-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-500-1100-cm-1-P2-t900-v-r-mf0.5-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-500-3000-cm-1-P93-t740-v-r-mf0.96-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-3300-3700-cm-1-P0.005-t3000-v-r-mf0.01-p1-sl1.4nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-H2O-1-1000-2500-cm-1-P0.5-t1500-v-r-mf0.5-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-NH3-1-500-2000-cm-1-P10-t1000-v-r-mf0.01-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-O2-1-7500-8000-cm-1-P1.01325-t298.15-v-r-mf0.21-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For each spectra, I will modify the pipeline’s &lt;code class="language-text"&gt;method&lt;/code&gt; and &lt;code class="language-text"&gt;normalize&lt;/code&gt; properties, until the best possible fitting result is achieved - least fitting loops, and closest to the ground-truth (GT) temperature (this is why I prefer synthetic over experimental spectra, as I explained above). Here is the result:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="center"&gt;Spec No.&lt;/th&gt;
+&lt;th align="center"&gt;GT Temp&lt;/th&gt;
+&lt;th align="center"&gt;Start Temp&lt;/th&gt;
+&lt;th align="center"&gt;Best Temp&lt;/th&gt;
+&lt;th align="center"&gt;Method&lt;/th&gt;
+&lt;th align="center"&gt;Normalize&lt;/th&gt;
+&lt;th align="center"&gt;Diff&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;1&lt;/td&gt;
+&lt;td align="center"&gt;1500&lt;/td&gt;
+&lt;td align="center"&gt;1300&lt;/td&gt;
+&lt;td align="center"&gt;1468.97&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/1.png"&gt;1&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;2&lt;/td&gt;
+&lt;td align="center"&gt;900&lt;/td&gt;
+&lt;td align="center"&gt;1300&lt;/td&gt;
+&lt;td align="center"&gt;898.84&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/2.png"&gt;2&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;3&lt;/td&gt;
+&lt;td align="center"&gt;740&lt;/td&gt;
+&lt;td align="center"&gt;1000&lt;/td&gt;
+&lt;td align="center"&gt;~740&lt;/td&gt;
+&lt;td align="center"&gt;both&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/3.png"&gt;3&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;4&lt;/td&gt;
+&lt;td align="center"&gt;3000&lt;/td&gt;
+&lt;td align="center"&gt;2850&lt;/td&gt;
+&lt;td align="center"&gt;3003.52&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/4.png"&gt;4&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;5&lt;/td&gt;
+&lt;td align="center"&gt;1500&lt;/td&gt;
+&lt;td align="center"&gt;2000&lt;/td&gt;
+&lt;td align="center"&gt;1507.25&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;true&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/5.png"&gt;5&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;6&lt;/td&gt;
+&lt;td align="center"&gt;1000&lt;/td&gt;
+&lt;td align="center"&gt;2250&lt;/td&gt;
+&lt;td align="center"&gt;994.90&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/6.png"&gt;6&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;7&lt;/td&gt;
+&lt;td align="center"&gt;298.15&lt;/td&gt;
+&lt;td align="center"&gt;660&lt;/td&gt;
+&lt;td align="center"&gt;297.86&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/7.png"&gt;7&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As we can see from the table above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All spectra achieve near-perfect best fit results. This is because we have perfect ground-truth conditions. In real-life circumstances, such accurate ground-truth is virtually impossible to achieve, but this is the job of fitting users to measure and set them.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt; performs quite good in most case. This is quite surprising after the result from &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt;, but it can be explained as most likely we didn’t use the correct ground-truth conditions for it since we don’t know (seriously, who created that spectrum?). However, there is a small observation from me that, those cases where &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; lost agains &lt;code class="language-text"&gt;leastsq&lt;/code&gt; were primarily because of number of loops. Still, it’s a win for &lt;code class="language-text"&gt;leastsq&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Their neighbors, &lt;code class="language-text"&gt;least_squares&lt;/code&gt; and &lt;code class="language-text"&gt;bfgs&lt;/code&gt;, are completely underdogs. We don’t even need to mention other methods.&lt;/li&gt;
+&lt;li&gt;In nearly all the best cases, &lt;code class="language-text"&gt;normalize = false&lt;/code&gt; is set. This is quite explainable, the more originality the better.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3. Summary&lt;/h4&gt;
+&lt;p&gt;After all the benchmarking works above, I have decided to set the &lt;code class="language-text"&gt;leastsq&lt;/code&gt; as the default fitting method, in case users don’t state the method explicitly in JSON file. Later on, in the fitting tutorial, I will add some suggestions about using &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and trying to switch the &lt;code class="language-text"&gt;normalize&lt;/code&gt; in case their fitting work is not quite good.&lt;/p&gt;
+&lt;p&gt;Nevertheless, these benchmarks helped me gain more insights about the performance of my fitting module, and most importantly, let me experience the feeling of a spectroscopist trying to fit his spectra - playing around the parameters, adjusting parameters and praying for a good result to come. Quite a physically and mentally exhausting work to be honest, since whenever the result went wrong, I didn’t know whether the error came from ground-truth conditions, or from my fitting module. There have been days and nights I sat in front of my laptop adjusting the JSON files and codebase continuously. But finally, the benchmarking process for LTE spectra is good now, and I am quite confident in my fitting module. Now let’s move on to the non-LTE spectra!&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/83691995f7e77035e5034ccbfb1a61ff/41099/meme.jpg" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="A footage of me turning parameters up and down like a DJ" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/83691995f7e77035e5034ccbfb1a61ff/41099/meme.jpg" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="A footage of me turning parameters up and down like a DJ"&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_tranhuunhathuy/</guid><pubDate>Sat, 09 Jul 2022 23:00:00 GMT</pubDate></item></channel></rss>

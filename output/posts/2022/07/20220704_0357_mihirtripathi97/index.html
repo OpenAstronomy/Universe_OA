@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC @ Stingray: Begining of the journey. blog #1 | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2022/07/20220704_0357_mihirtripathi97/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Mihirtripathi">
+<link rel="prev" href="../20220703_0000_tranhuunhathuy/" title="Third week - Finalizing fitting module after long days of struggling" type="text/html">
+<link rel="next" href="../20220709_0000_supriya1702/" title="Week 3 and Week 4" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSoC @ Stingray: Begining of the journey. blog #1">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2022/07/20220704_0357_mihirtripathi97/">
+<meta property="og:description" content="Hey there! It has been about 15 days since I had written my last blog. It is time for the next one. In this blog, I will write about my experience in GSoC so far. I want to tell you about how I select">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-07-04T03:57:22+01:00">
+<meta property="article:tag" content="stingray">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@akash5100" data-toggle="tooltip" data-placement="top" title="2022-07-18 05:37:22+01:00" style="color:rgb(255,0,0)">
+                    Akash
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@aman_p" data-toggle="tooltip" data-placement="top" title="2022-07-26 05:59:13+01:00">
+                    AMAN PANDEY
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://minimal-blog.lekoarts.de" data-toggle="tooltip" data-placement="top" title="2022-07-31 00:00:00+01:00">
+                    arunavabasu-03
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://jash_shah.github.io" data-toggle="tooltip" data-placement="top" title="2022-07-20 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Jash Shah
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@mihirtripathi97" data-toggle="tooltip" data-placement="top" title="2022-07-24 18:11:57+01:00" style="color:rgb(255,0,0)">
+                    Mihirtripathi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://minimal-blog.lekoarts.de" data-toggle="tooltip" data-placement="top" title="2022-07-23 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Supriya1702
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://https:" data-toggle="tooltip" data-placement="top" title="2022-07-17 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    TranHuuNhatHuy
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC @ Stingray: Begining of the journey. blog #1</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/mihirtripathi/">Mihirtripathi</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-07-04T03:57:22+01:00" itemprop="datePublished" title="2022-07-04 03:57">2022-07-04 03:57</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://medium.com/@mihirtripathi97/gsoc-stingray-begining-of-the-journey-blog-1-7ed5a47bec65?source=rss-7a017da41166------2">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>Hey there! It has been about 15 days since I had written my last blog. It is time for the next one. In this blog, I will write about my experience in GSoC so far. I want to tell you about how I selected my project, how I prepared my project proposal, and what did I do after getting selected.</p>
+<p><strong>How did I select the organization?</strong></p>
+<p>So, let’s start from the beginning! I started considering to apply in GSoC in late February. I first came to know about GSoC just a few months back. My knowledge about GSoC and open-source was quite limited. One of the first things that I did was to go through the <a href="https://summerofcode.withgoogle.com/">GSoC website</a> and learn more about the program. Being a beginner in the open-source community and also coming from a non-CS background I had no idea which organizations take part in GSoC and which of them would be most suitable for me. At this time, the mentoring organizations for GSoC”22 were not announced. I decided to check out mentoring organizations from past programs to get an idea. I wanted to work on a project that involve Physics or Astrophysics, and to my surprise, several such organizations did take part in previous programs.</p>
+<!-- TEASER_END -->
+<p>From this search, I got to know about <a href="https://openastronomy.org/">OpenAstronomy</a>. It is an umbrella organization of several open-source astronomy and astrophysics projects. From their <a href="https://openastronomy.org/gsoc/">GSoC webpage</a>, I came to know that they are applying to participate in GSoC”22. The webpage also contained guidelines for contributors, a list of project ideas for this year and for past years, and information about how to get in touch with mentors and communities of various member organizations. All these were quite informative and useful. I also checked out several other organizations as well. All of them had such information available online in various forms. A few days later the participating organizations were announced by GSoC and OpenAstronomy was one of them. By this time, as directed in contributor guidelines of both <a href="https://google.github.io/gsocguides/student/">GSoC</a> and <a href="https://openastronomy.org/gsoc/student_guidelines.html">OpenAstronomy</a>, I had introduced myself in chat channels and mailing lists of some organizations. I went through various project ideas proposed by these organizations and tried to find a project that aligned most with my interests. Being an astronomer, I wanted to work on an OpenAstronomy project and from the list of project ideas I liked the project called ‘Bexvar in Stingray’. So I decided to prepare a proposal for this project.</p>
+<p><strong>About the project</strong></p>
+<p>Let me tell you in brief about <a href="https://docs.stingray.science/index.html">Stingray</a> and ‘Bexvar’ first. Stingray is an open-source package for x-ray spectral timing written in python. It provides a number of tools to perform times series analysis and related tasks on astronomical light curves. In the case of faint x-ray sources, observed near the detection limits of telescopes, uncertainties in their light curves are dominated by Poissonian uncertainties. The Bayesian excess variance (Bexvar) method is useful to find variability intrinsic to sources from gappy light curves dominated by Poissonian uncertainties. It was developed by <a href="https://arxiv.org/abs/2106.14529">Buchner et al. (2021)</a>. The aim of the ‘Bexvar in Stingray’ project is to implement this method in Stingray, create test cases for the method based on real observational data and write appropriate documentation. I will write about the project in more detail in my next blog.</p>
+<p><strong>How did I make the proposal?</strong></p>
+<p>When I read about the project, my first instinct was to read the article by <a href="https://arxiv.org/abs/2106.14529">Buchner et al. (2021)</a> to know more about the method. After reading it I was convinced that I do want to work on implementing this method in Stingray. I started by introducing myself to the Stingray community through their slack channel. As per the <a href="https://openastronomy.org/gsoc/student_guidelines.html">guideline</a> by OpenAstronmy, one of the first things to do then was to make a PR in Stingray for the contribution period. For this, I went to the <a href="https://github.com/StingraySoftware/stingray">GitHub repository</a> of the core Stingray package. I went through the list of open issues and found issues labeled ‘good first issue’ and ‘GSoC’. I selected an issue that I thought was closely related to my project. The <a href="https://github.com/StingraySoftware/stingray/issues/592">issue</a> was about a bug in the CrossCorrelation class in stingray. The CrossCorrelation class of stingray has an internal method called time_shift. This provided the timeshift required between two lightcurves to get maximum cross-correlation between them. It was found that if two identical lightcurves are used then, the time_shift method should give zero as the answer irrespective of the length of the lightcurve. As the light curve will have maximum crosscorrelation with itself. However, the method did not give zero as an answer in the case of the light curve having an even number of time bins. I tried to solve this issue by changing how time_shift was calculated in the code. During this time I interacted with Prof. Matteo Bachetti, who is one of the mentors for the project. Before applying for GSoC, I had negligible experience in contributing to open-source. Matteo guided me a lot during this phase and finally, my <a href="https://github.com/StingraySoftware/stingray/pull/647">PR</a> was merged. To be honest this made me very happy! It was the first time when I actually made some contributions to open-source software. The next task was to prepare a proposal for the project. This was a long and tough process. I spent most of my time reading about the Bexvar method, trying to understand it, and figuring out how to write a proposal for its implementation. During this time I sent my draft proposals to Matteo, he guided me to make them better, I worked on his suggestion. This interaction also gave me a lot of insight into what is expected from a contributor. This entire experience of preparing a proposal for the project and taking suggestions from mentors was quite new to me, and I am really grateful that I had a chance to go through it.</p>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/680/1*YFXjL3Wc5EqBE9vaXPHNBQ.jpeg"></figure><p><strong>Community bonding period</strong></p>
+<p>After a month of submitting a proposal, the selected proposals were announced. To my surprise, my proposal was selected. I was over the moon, I was happy, I was excited and also a little bit worried. With the selection, the three-week-long community bonding period started. This period is dedicated for selected contributors to bond with community members, and mentors, interact with them and get themselves familiar with the codebase. This acts as a warm-up period before the actual coding period starts. The first important thing that happened during this period was the project kickoff meeting with my mentors Matteo and Daniela. This was the first time when I virtually met both of them. We discussed a bit about the project, our background, and current work, our expectations from each other, etc. We decided to meet every week virtually and stay in contact during the week via slack. This was a truly nice experience for me, both of them are quite supportive, they explained things to me nicely and most importantly made me feel welcome in the community and made sure that I was comfortable. In the following weeks, I spent my time studying the implementation of <a href="https://github.com/JohannesBuchner/bexvar">Bexvar</a> by Buchner et al. (2021), learning about Bayesian statistics, and also understanding Stingray’s code base. I also learned more about testing in python and by the end of the community bonding period, I was ready to start coding. I planned to get a basic model of the method ready in the first few weeks after the community bonding period. Overall the community bonding period was great, It really helped me get into the right mindset for the coding period and be prepared for it. I learned a lot about Stingray, Bayesian statistics, and my project during this time.</p>
+<p>A lot more is yet to be covered. Right now I am on the 3 rd week of the coding period. I will soon write about my project and my work in the coding period in detail in my next blog. It is time to wrap this one up for now. See you soon!</p>
+<img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=7ed5a47bec65" width="1">
+</div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/stingray/" rel="tag">stingray</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20220703_0000_tranhuunhathuy/" rel="prev" title="Third week - Finalizing fitting module after long days of struggling">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20220709_0000_supriya1702/" rel="next" title="Week 3 and Week 4">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

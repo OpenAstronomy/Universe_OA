@@ -1,562 +1,714 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 31 Dec 2021 06:33:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Chapter 5: Birds of a Feather</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_1424_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;p align="center"&gt;
-&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://anandkumar-blog.netlify.app/static/91ec1b99c3601cea5ada6089b36f443e/63868/Radis.png" rel="noopener" style="display: block;" target="_blank"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 08 Aug 2022 17:11:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Advanced options</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220731_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Impove default resolution of ploted spectrum In  wstep = “auto”  radis app gives slitly low res. for that reasons plotted  spectrum  is…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/6thweek/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220731_0000_arunavabasu-03/</guid><pubDate>Sat, 30 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Implementing React Hook Form</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;After analyzing the the benchmarks and taking with my mentors , we are decided to go with  React Hook Form  for it’s performace , low…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/4th&amp;amp;5thWeek/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_0000_arunavabasu-03/</guid><pubDate>Sat, 23 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Week 5 and Week 6</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220723_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Entering into the 5th week I created a PR  https://github.com/radis/radis/pull/492   to address the task to add, retrieve and store the…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-5-and-week-6"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220723_0000_supriya1702/</guid><pubDate>Fri, 22 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Fifth week - Major updates on literally everything, and non-LTE benchmarking</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220717_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;p&gt;&lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/b6a43fd435ed51da926a7346d2f66de9/JSON_sample.json"&gt;JSON sample&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;1. Fitting method benchmarking&lt;/h4&gt;
+&lt;p&gt;The ideal of benchmarking result is to test and assess under what conditions, such as fitting method, pipeline, refinement, etc., the fitting process can achieve a stable and robust result. Firstly, I want to test the fitting method and see which ones are the best to put into the module as the default method. As we use LMFIT.Minimizer, we have 23 fitting methods in total:&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;span class="gatsby-resp-image-background-image" style="padding-bottom: 100%; display: block;"&gt;&lt;/span&gt;
-&lt;img alt="Radis.png" class="gatsby-resp-image-image" src="https://anandkumar-blog.netlify.app/static/91ec1b99c3601cea5ada6089b36f443e/63868/Radis.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Radis.png"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;br&gt;
-&lt;/p&gt;
-&lt;p&gt;So &lt;code class="language-text"&gt;GSoC 2021&lt;/code&gt; has officially ended and I can say without a doubt that what a journey it was. I recently concluded with my GSoC project, the final PR got merged and I’m quite satisfied with the outcome. &lt;/p&gt;
-&lt;p&gt;Earlier we were able to find the time complexity of &lt;strong&gt;LBL&amp;gt;Voigt&lt;/strong&gt;, &lt;strong&gt;DIT&amp;gt;Voigt&lt;/strong&gt; and &lt;strong&gt;DIT&amp;gt;FFT&lt;/strong&gt; (Formely known as LDM&amp;gt;FFT). On a small test replacing &lt;code class="language-text"&gt;np.convolve&lt;/code&gt; with &lt;code class="language-text"&gt;scipy.signal.oaconvolve&lt;/code&gt;, we were able to achieve 2 to 30 times performance boost. So we re-ran the benchmarks and were able to confirm this fact.
-You can see the result at &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/"&gt;Benchmark Visualization GSoC 2021&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The above results proved that &lt;code class="language-text"&gt;DIT&amp;gt;Voigt&lt;/code&gt; performs better than &lt;code class="language-text"&gt;DIT&amp;gt;FFT&lt;/code&gt; in almost every case. So we decided to use &lt;code class="language-text"&gt;DIT&amp;gt;Voigt&lt;/code&gt; as the default setting in &lt;code class="language-text"&gt;Radis&lt;/code&gt;. &lt;/p&gt;
-&lt;p&gt;A &lt;strong&gt;predict_time()&lt;/strong&gt; function was added, which computes the predicted time for &lt;strong&gt;LBL&amp;gt;Voigt&lt;/strong&gt;, &lt;strong&gt;DIT&amp;gt;Voigt&lt;/strong&gt; and &lt;strong&gt;DIT&amp;gt;FFT&lt;/strong&gt; using the derived time complexity, and on &lt;code class="language-text"&gt;verbose&amp;gt;=2&lt;/code&gt; shows the user the predicted time.&lt;/p&gt;
-&lt;p&gt;Also we Bifurcated &lt;code class="language-text"&gt;broadening_max_width&lt;/code&gt; into 2 parameters:&lt;br&gt;
-•  &lt;strong&gt;Truncation:&lt;/strong&gt; Used in truncation of Voigt method.&lt;br&gt;
-•  &lt;strong&gt;neighbour_lines:&lt;/strong&gt; Increases Spectral range&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;So now users have a lot of flexibility. Based on Physics, the default value of &lt;strong&gt;truncation&lt;/strong&gt; is set to &lt;strong&gt;50cm-1&lt;/strong&gt; and the default value of &lt;strong&gt;neighbour_lines&lt;/strong&gt; is set to &lt;strong&gt;0 cm-1&lt;/strong&gt;. Apart from this, some minor improvements were done in the &lt;code class="language-text"&gt;Profiler class&lt;/code&gt; such as an improved algorithm is used to store data and now calculation time gets appended to the same key rather than overwriting it, which useful when we use &lt;code class="language-text"&gt;chunksize&lt;/code&gt; or DIT optimization for &lt;code class="language-text"&gt;Non_equilibrium&lt;/code&gt; conditions. &lt;/p&gt;
-&lt;p&gt;So overall the code has been optimized and a user can expect a performance boost upto &lt;strong&gt;40x&lt;/strong&gt; in worst scenarios. &lt;/p&gt;
-&lt;p&gt;You can find all my work during the GSoC period &lt;a href="https://github.com/radis/radis/projects/5"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;It was a great experience contributing to &lt;strong&gt;Radis&lt;/strong&gt; and I definitely have learned alot along the way. And a big thanks to the great mentors at Radis especially &lt;a href="https://github.com/erwanp"&gt;Erwan Pannier&lt;/a&gt; who guided me at every stage of the program. The road doesn’t end here as I will stick around the organisation and will always find ways to contribute to Radis. One last thanks to &lt;strong&gt;GSoC&lt;/strong&gt; for providing such a wonderful opportunity.&lt;/p&gt;
-&lt;p align="center"&gt;
-Till we meet again, keep &lt;b&gt;Swinging for the fences.&lt;/b&gt;
-&lt;br&gt;
-&lt;img alt="/08e70d471ee717d1624f04f21c586cd4/spidermanMM_traversal.gif" src="https://anandkumar-blog.netlify.app/08e70d471ee717d1624f04f21c586cd4/spidermanMM_traversal.gif" width="500"&gt;&lt;br&gt;
-&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_1424_anandxkumar/</guid><pubDate>Mon, 23 Aug 2021 13:24:32 GMT</pubDate></item><item><title>GSoC - 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;p&gt;&lt;img alt="Radis" src="https://gagan-aryan.netlify.app/images/gsoc-4/Radis.png"&gt;&lt;/p&gt;
-&lt;p&gt;Today is the last day of GSoC-21. The entire journey was a rollercoaster ride and I learnt a lot of new things along the way. I started out with hardly knowing any of the shortcomings of pandas and as we dug in, I was surprised to see so many loopholes it contains. This will be the final blogpost of my gsoc journey and I hope you like it.&lt;/p&gt;
-&lt;h3 id="pandas-and-vaex"&gt;Pandas and Vaex&lt;/h3&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;h4 id="why-do-people-use-pandas-"&gt;Why do people use Pandas ?&lt;/h4&gt;
-&lt;p&gt;Pandas is an open source Python package that is most widely used for data science/data analysis and machine learning tasks. It is built on top of another package named Numpy, which provides support for multi-dimensional arrays.&lt;/p&gt;
-&lt;p&gt;Pandas makes it simple to do many of the time consuming, repetitive tasks associated with working with data, including:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Data visualization&lt;/li&gt;
-&lt;li&gt;Statistical analysis&lt;/li&gt;
-&lt;li&gt;Data inspection&lt;/li&gt;
-&lt;li&gt;Loading and saving data&lt;/li&gt;
-&lt;li&gt;Data cleansing&lt;/li&gt;
-&lt;li&gt;Data fill&lt;/li&gt;
-&lt;li&gt;Data normalization&lt;/li&gt;
-&lt;li&gt;Merges and joins&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;: Levenberg-Marquardt (default).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;least_squares&lt;/code&gt;: Least-Squares minimization, using Trust Region Reflective method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;differential_evolution&lt;/code&gt;: differential evolution.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;brute&lt;/code&gt;: brute force method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;basinhopping&lt;/code&gt;: Basin-hopping method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;ampgo&lt;/code&gt;: Adaptive Memory Programming for Global Optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;nelder&lt;/code&gt;: Nelder-Mead.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;: Limited-memory Broyden–Fletcher–Goldfarb–Shanno (L-BFGS-B).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;powell&lt;/code&gt;: Powell’s method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;cg&lt;/code&gt;: Conjugate-Gradient.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;newton&lt;/code&gt;: Newton-Conjugate-Gradient.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;cobyla&lt;/code&gt;: Cobyla.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;bfgs&lt;/code&gt;: Broyden–Fletcher–Goldfarb–Shanno (BFGS).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;tnc&lt;/code&gt;: Truncated Newton.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-ncg&lt;/code&gt;: Newton-Conjugate-Gradient trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-exact&lt;/code&gt;: nearly exact trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-krylov&lt;/code&gt;: Newton’s Generalized Lanczos Trust-Region (GLTR).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-constr&lt;/code&gt;: trust-region for constrained optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;dogleg&lt;/code&gt;: Dog-leg trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;slsqp&lt;/code&gt;: Sequential Linear Squares Programming.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;emcee&lt;/code&gt;: Maximum likelihood via Monte-Carlo Markov Chain.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;shgo&lt;/code&gt;: Simplicial Homology Global Optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;dual_annealing&lt;/code&gt;: Dual Annealing optimization.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;As of the time I this blog was written pandas is arguably the most popular dataframe library that data scientists use. While pandas works smoothly while dealing with smaller data, it becomes very slow and inefficient when there are huge datasets.&lt;/p&gt;
-&lt;h4 id="why-use-vaex-"&gt;Why use Vaex ?&lt;/h4&gt;
-&lt;p&gt;Vaex is a python library that is closely similar to Pandas. Vaex is a library especially for lazy Out-of-Core DataFrames, helps to visualize and explore big tabular datasets. It is a high performance library and can solve many of the shortcomings of pandas. As the API is similar to pandas, users do not face difficulty in shifting.&lt;/p&gt;
-&lt;p&gt;Vaex is capable to calculate statistics such as mean, standard deviation etc, on an N-dimensional grid up to a billion (109109) objects/rows per second.&lt;/p&gt;
-&lt;h3 id="pandas-or-vaex-"&gt;Pandas or Vaex ?&lt;/h3&gt;
-&lt;p&gt;Here at Radis the underlying algorithm was not able to perform to its maximum capacity due to usage of pandas which consumes way too much of memory. So we tried to see how vaex can help improve the performance.&lt;/p&gt;
-&lt;p&gt;Below we are using &lt;a href="https://hitran.org/hitemp/"&gt;HITEMP-N2O Database&lt;/a&gt; for all checking the performance. It is to be noted that there is a difference between the pytables that pandas use and vaex friendly HDF5. The former is row-based whereas vaex friendly HDF5 files are column based.&lt;/p&gt;
-&lt;h4 id="loading-time"&gt;Loading time&lt;/h4&gt;
-&lt;p&gt;In the code below we -&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;load the the vaex HFD5 file and then convert it to pandas dataframe&lt;/li&gt;
-&lt;li&gt;directly load the pandas hdf5 file&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
-&lt;/span&gt;&lt;span class="lnt"&gt; 2
-&lt;/span&gt;&lt;span class="lnt"&gt; 3
-&lt;/span&gt;&lt;span class="lnt"&gt; 4
-&lt;/span&gt;&lt;span class="lnt"&gt; 5
-&lt;/span&gt;&lt;span class="lnt"&gt; 6
-&lt;/span&gt;&lt;span class="lnt"&gt; 7
-&lt;/span&gt;&lt;span class="lnt"&gt; 8
-&lt;/span&gt;&lt;span class="lnt"&gt; 9
-&lt;/span&gt;&lt;span class="lnt"&gt;10
-&lt;/span&gt;&lt;span class="lnt"&gt;11
-&lt;/span&gt;&lt;span class="lnt"&gt;12
-&lt;/span&gt;&lt;span class="lnt"&gt;13
-&lt;/span&gt;&lt;span class="lnt"&gt;14
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;vaex&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;7.833287477493286&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;28.142656087875366&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Clearly the first appraoch is almost 4 times faster than the second one.&lt;/p&gt;
-&lt;h4 id="load-specific-columns"&gt;Load specific columns&lt;/h4&gt;
-&lt;p&gt;As already stated, vaex hdf5 files are column based so loading only specific columns from vaex hdf5 file should be able give much better results than loading only specific columns in pandas. Lets check this and see the time taken to do both of these -&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
-&lt;/span&gt;&lt;span class="lnt"&gt; 2
-&lt;/span&gt;&lt;span class="lnt"&gt; 3
-&lt;/span&gt;&lt;span class="lnt"&gt; 4
-&lt;/span&gt;&lt;span class="lnt"&gt; 5
-&lt;/span&gt;&lt;span class="lnt"&gt; 6
-&lt;/span&gt;&lt;span class="lnt"&gt; 7
-&lt;/span&gt;&lt;span class="lnt"&gt; 8
-&lt;/span&gt;&lt;span class="lnt"&gt; 9
-&lt;/span&gt;&lt;span class="lnt"&gt;10
-&lt;/span&gt;&lt;span class="lnt"&gt;11
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;column_names&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"wav"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"int"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"El"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;0.1795198917388916&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"wav"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"int"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"El"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;22.85481858253479&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;In comparison, loading 4 out of 19 columns is about 70% as slow with Pandas.&lt;/p&gt;
-&lt;h4 id="load-specific-rows"&gt;Load specific rows&lt;/h4&gt;
-&lt;p&gt;To be fair to the pytables let’s try to load specific rows and check if pandas can now provide better performance with its row indexed HDF5s.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
-&lt;/span&gt;&lt;span class="lnt"&gt; 2
-&lt;/span&gt;&lt;span class="lnt"&gt; 3
-&lt;/span&gt;&lt;span class="lnt"&gt; 4
-&lt;/span&gt;&lt;span class="lnt"&gt; 5
-&lt;/span&gt;&lt;span class="lnt"&gt; 6
-&lt;/span&gt;&lt;span class="lnt"&gt; 7
-&lt;/span&gt;&lt;span class="lnt"&gt; 8
-&lt;/span&gt;&lt;span class="lnt"&gt; 9
-&lt;/span&gt;&lt;span class="lnt"&gt;10
-&lt;/span&gt;&lt;span class="lnt"&gt;11
-&lt;/span&gt;&lt;span class="lnt"&gt;12
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_hdf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.h5"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;where&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"iso==1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;30.680099725723267&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;t0&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vaex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"~/.radisdb/N2O-04_HITEMP2019.hdf5"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;select&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;iso&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df_pandas&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_pandas_df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;selection&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;t0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="mf"&gt;7.043155670166016&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;Even in this case vaex provides better performance. So the idea was to harness this memory efficiency of vaex for all the I/O operations on the dataset in Radis. In order to do this I have written down a HDF5 writer that fetches &lt;code&gt;bz2&lt;/code&gt; file and parses it into a column-major HDF5. The complete code to the HDF5 writer can be found &lt;a href="https://gist.github.com/gagan-aryan/8ed5ba1f69074bbc72d081c31d43fcbd"&gt;in this gist&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;That is it for GSoC21 from my side. Even though the second phase of my project got affected due to schools, I had an exciting summer as a whole. I am looking forward to be in touch with Radis and will try to contribute to it whenever I get a chance.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210823_0300_gagan-aryan/</guid><pubDate>Mon, 23 Aug 2021 02:00:06 GMT</pubDate></item><item><title>GSoC - 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210802_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;p&gt;Hello and welcome to the first blog of GSoC phase-2. Ever faced a time when there was way too much on the plate and you find it really hard to catch up on all the work? That is pretty much how the previous two weeks were for me. With the start of the oncampus internship drive, I was finding it really hard to give manage the project. Somehow I was able to make some progress but I am yet to complete the task.&lt;/p&gt;
-&lt;p&gt;I am basically trying to parse the &lt;code&gt;.bz2&lt;/code&gt; files of &lt;code&gt;HITEMP&lt;/code&gt; databases into HDF5 files in a Vaex friendly format. Currently &lt;code&gt;.bz2&lt;/code&gt; files are parsed into HDF5 files with the help of high level pandas functions. But as we already know pandas can be very memory consuming. So, I am trying to write to HDF5 files with &lt;code&gt;h5py&lt;/code&gt; library and produce HDF5 files that are vaex friendly (column based).&lt;/p&gt;
-&lt;p&gt;In order to do this, I am first converting &lt;code&gt;bz2&lt;/code&gt; files to &lt;code&gt;.csv&lt;/code&gt; upon download -&amp;gt; mapping the datatypes of each of the columns -&amp;gt; writing to a HDF5 file with &lt;code&gt;h5py&lt;/code&gt;. I am currently stuck at mapping the datatypes and also trying to make optimizations with respect to the chunksize.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;This blog is just a quick update on the things that are happening currently. Once the writing to a HDF5 files is completed, look out for a detailed tutorial on the same on towardsdatascience :)&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210802_0300_gagan-aryan/</guid><pubDate>Mon, 02 Aug 2021 02:00:06 GMT</pubDate></item><item><title>Chapter 4: The Other Side</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1424_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;p&gt;A new month has started and I have started to see the light at the end of the tunnel. Good Morning and welcome back. Phase 2 has been rolling and let us look at the new findings.&lt;/p&gt;
-&lt;p&gt;Earlier the complexity of Legacy method was determined. The complexity of LDM Voigt and LDM FFT was to be determined using similar approach. Upon executing several benchmarks based on Number of lines, Spectum range, wstep, broadening max width. Previously it was thought the complexity was: &lt;br&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;time(LDM_fft) ~ c2*Nlines + c3*(N_G*N_L + 1)*N_v*log(N_v) (where N_v =  Spectral Points)
-&lt;!-- TEASER_END --&gt;
-time(LDM_voigt) ~ c2*Nlines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation) (where N_truncation = broadening width / wstep)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;But in actual Re running all benchmarks for &lt;strong&gt;LDM&amp;gt;Voigt&lt;/strong&gt; and &lt;strong&gt;LDM&amp;gt;FFT&lt;/strong&gt; with a &lt;code class="language-text"&gt;broadening max width = 300 cm-1&lt;/code&gt;. All benchmarks and visualizations can be found &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/"&gt;here&lt;/a&gt; we were able to conclude the followings:&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;FFT:&lt;/strong&gt;&lt;br&gt;
-•  Complexity doesn’t depend on Nlines but rather wL x wG ; check this benchmark: &lt;a href="https://public.tableau.com/app/profile/anand.kumar4841/viz/LDMLinesvsCalculationTimeUpdatedCO2/Sheet1"&gt;link&lt;/a&gt;, it certainly looks like Complexity ∝ Nlines but its actually dependent on wL and wG, and gives same result on (wL x wG+ 1) x Spectral&lt;em&gt;Points x Log(Spectral&lt;/em&gt;Points).&lt;br&gt;
-•  Upon implementing multiple linear regression for &lt;strong&gt;c1 x Nlines + c2 x (wL x wG+ 1)*Spectral&lt;em&gt;Points x Log(Spectral&lt;/em&gt;Points)&lt;/strong&gt; gives &lt;code class="language-text"&gt;c1=2.65e-07&lt;/code&gt;, &lt;code class="language-text"&gt;c2=4.48256e-08&lt;/code&gt; but their &lt;code class="language-text"&gt;p value = 0.648 and 0.00001&lt;/code&gt;, and &lt;code class="language-text"&gt;p&amp;gt;0.05&lt;/code&gt; are insignificant, thus Nlines is insignificant for determining the complexity.&lt;br&gt;
-•  Since FFT is independent of broadening max width; benchmark: &lt;a href="https://public.tableau.com/app/profile/anand.kumar4841/viz/LDMVoigtandFFTBMW_NEW/Sheet1"&gt;link&lt;/a&gt;, so on comparing it Spectral point gives us same same time. Thus Spectral Point =  (wavenum max - wavenum max)/wstep instead of (wavenum maxcalc - wavenum min calc)/wstep&lt;br&gt;
-•  &lt;strong&gt;Overall complexity =  4.48256897e-08 x (wL x wG+ 1) x Spectral&lt;em&gt;Points(without BMW) x Log(Spectral&lt;/em&gt;Points(without BMW))&lt;/strong&gt;  &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/LDM/Complexity_FFT_Final/Complexity_FFT_Final.html"&gt;link&lt;/a&gt; (with the help of multple linear regression using sklearn; is almost accurate)&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Voigt:&lt;/strong&gt;&lt;br&gt;
-•  Similar to 1st point of FFT.&lt;br&gt;
-•  Upon doing multiple linear regression for &lt;strong&gt;c1 x N lines + c2 x (wL x wG + 1) x SpectralPoints x BMW xLog(SpectralPoints x (BMW) )&lt;/strong&gt; gives &lt;code class="language-text"&gt;c1=-1.9392e-06, c2=1.28256e-09&lt;/code&gt; but their &lt;code class="language-text"&gt;p value = 0.848 and 0.00001&lt;/code&gt;, and &lt;code class="language-text"&gt;p&amp;gt;0.05&lt;/code&gt; are insignificant, thus N&lt;em&gt;lines is insignificant for determining the complexity.&lt;br&gt;
-•  Calculation time is dependent `Broadening&lt;/em&gt;Max&lt;em&gt;width`, but upon inspections with Spectral Points, we have the exact same plot. So complexity is dependent only on Spectral Points but with broadening&lt;/em&gt;max&lt;em&gt;width i.e. wavenum&lt;/em&gt;calc, which causes the increase in computational time on increasing broadening&lt;em&gt;max&lt;/em&gt;width.&lt;br&gt;
-•  &lt;strong&gt;Overall complexity = 5.26795e-07 * (wL x wG+ 1)*Spectral Points x Log(Spectral Points)&lt;/strong&gt; &lt;a href="https://anandxkumar.github.io/Benchmark_Visualization_GSoC_2021/LDM/Complexity_Voigt_Final/Complexity_Voigt_Final.html"&gt;link&lt;/a&gt; (with the help of multple linear regression using sklearn; almost straight)&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Also:&lt;/strong&gt; From all the above plots, it really clear if going with broadening&lt;em&gt;max&lt;/em&gt;width=300cm-1 in wavespace, it will take alot more time than fft in all aspects.&lt;/p&gt;
-&lt;p&gt;But upon replacing &lt;code class="language-text"&gt;np.convolve&lt;/code&gt; with &lt;code class="language-text"&gt;scipy.signal.oaconvolve&lt;/code&gt;, we were able to achieve &lt;code class="language-text"&gt;2 to 30&lt;/code&gt; times performance boost. So it will be interesting to re run benchmarks with the latest piece of code and see which method performs better. Also some benchmarks will be added to ASV benchmark too to see how its performance changes over time.&lt;/p&gt;
-&lt;p&gt;Also profiler was modified to a tree like a stucture using &lt;code class="language-text"&gt;OrderedDict&lt;/code&gt; and &lt;code class="language-text"&gt;YAML&lt;/code&gt; has been used to print the profiler in a proper structued way using &lt;strong&gt;Spectrum.print_perf_profiler()&lt;/strong&gt; or &lt;strong&gt;SpectrumFactory.print_perf_profiler()&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;s = calc_spectrum(1900, 2300,         # cm-1
-molecule='CO',
-isotope='1,2,3',
-pressure=1.01325,   # bar
-Tvib=1000,          # K
-Trot=300,           # K
-mole_fraction=0.1,
-verbose=3,
-)
-s.print_perf_profile()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Gives the following output:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;&amp;gt;&amp;gt;&amp;gt; spectrum_calculation:
-&amp;gt;&amp;gt;&amp;gt;   applied_linestrength_cutoff: 0.0024361610412597656
-&amp;gt;&amp;gt;&amp;gt;   calc_emission_integral: 0.006468772888183594
-&amp;gt;&amp;gt;&amp;gt;   calc_hwhm: 0.006415128707885742
-&amp;gt;&amp;gt;&amp;gt;   calc_line_broadening:
-&amp;gt;&amp;gt;&amp;gt;     DLM_Distribute_lines: 0.0003898143768310547
-&amp;gt;&amp;gt;&amp;gt;     DLM_Initialized_vectors: 9.775161743164062e-06
-&amp;gt;&amp;gt;&amp;gt;     DLM_closest_matching_line: 0.0005028247833251953
-&amp;gt;&amp;gt;&amp;gt;     DLM_convolve: 0.029767990112304688
-&amp;gt;&amp;gt;&amp;gt;     precompute_DLM_lineshapes: 0.013132810592651367
-&amp;gt;&amp;gt;&amp;gt;     value: 0.07619166374206543
-&amp;gt;&amp;gt;&amp;gt;   calc_lineshift: 0.00074005126953125
-&amp;gt;&amp;gt;&amp;gt;   calc_noneq_population:
-&amp;gt;&amp;gt;&amp;gt;     part_function: 0.03405046463012695
-&amp;gt;&amp;gt;&amp;gt;     population: 0.005669832229614258
-&amp;gt;&amp;gt;&amp;gt;     value: 0.03983640670776367
-&amp;gt;&amp;gt;&amp;gt;   calc_other_spectral_quan: 0.002928495407104492
-&amp;gt;&amp;gt;&amp;gt;   calc_weight_trans: 0.008247852325439453
-&amp;gt;&amp;gt;&amp;gt;   check_line_databank: 0.0002810955047607422
-&amp;gt;&amp;gt;&amp;gt;   check_non_eq_param: 0.04109525680541992
-&amp;gt;&amp;gt;&amp;gt;   fetch_energy_5: 0.014983654022216797
-&amp;gt;&amp;gt;&amp;gt;   generate_spectrum_obj: 0.00032138824462890625
-&amp;gt;&amp;gt;&amp;gt;   generate_wavenumber_arrays: 0.0010433197021484375
-&amp;gt;&amp;gt;&amp;gt;   reinitialize:
-&amp;gt;&amp;gt;&amp;gt;     copy_database: 2.1457672119140625e-06
-&amp;gt;&amp;gt;&amp;gt;     memory_usage_warning: 0.0018389225006103516
-&amp;gt;&amp;gt;&amp;gt;     reset_population: 2.6226043701171875e-05
-&amp;gt;&amp;gt;&amp;gt;     value: 0.001964569091796875
-&amp;gt;&amp;gt;&amp;gt;   scaled_non_eq_linestrength:
-&amp;gt;&amp;gt;&amp;gt;     corrected_population_se: 0.002747774124145508
-&amp;gt;&amp;gt;&amp;gt;     map_part_func: 0.0010590553283691406
-&amp;gt;&amp;gt;&amp;gt;     value: 0.0038983821868896484
-&amp;gt;&amp;gt;&amp;gt;   value: 0.1904621124267578&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So at the end a productive week! Looking forward to conclude GSoC with a worthy ending :)&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1424_anandxkumar/</guid><pubDate>Sun, 01 Aug 2021 13:24:32 GMT</pubDate></item><item><title>Chapter 3: Midnight Sun</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210719_1645_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;p&gt;Phase 1 is over :) ! We are half way through the journey. Great learning experience so far. Let’s find out what I accomplished during the previous 2 weeks (since I believe you have been following me from the beginning ;)&lt;/p&gt;
-&lt;p&gt;Getting straight to the point, most of the time was spent on fixing bugs of the Profiler class and other Pull requests regarding documentation and gallery example. A new gallery example was added to demonstrate the working of &lt;code class="language-text"&gt;SpecDatabase&lt;/code&gt; and &lt;code class="language-text"&gt;init_database&lt;/code&gt; to help user to store all Spectrums in the form of a &lt;code class="language-text"&gt;.spec&lt;/code&gt; file and all input parameters in a &lt;code class="language-text"&gt;csv&lt;/code&gt; file under a folder. The same folder can be used to retrieve all Spectrums thus saving a lot of time and also no need to recompute all spectrums, so quite a handy feature. Radis has &lt;code class="language-text"&gt;plot_cond&lt;/code&gt; function to plot a 2D heat map based on the parameters in csv file for all spectrums. Creates some good looking and informative plots :) &lt;br&gt;-&amp;gt; &lt;a href="https://radis.readthedocs.io/en/latest/auto_examples/plot_SpecDatabase.html#sphx-glr-auto-examples-plot-specdatabase-py"&gt;Gallery Example&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;Back to the analysis part; for LDM we expected:&lt;br&gt;&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;time(LDM_fft) ~ c2*N_lines + c3*(N_G*N_L + 1)*N_v*log(N_v) (where N_v =  Spectral Points)
-time(LDM_voigt) ~ c2*N_lines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation) (where N_truncation = broadening width / wstep)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;For Legacy method I was able to prove that Calculation Time is independent of Spectral Range if we keep the N&lt;em&gt;lines and wstep constant but same is not for LDM voigt.&lt;br&gt;
-A straight up comparison between Legacy and LDM voigt for NO  keeping N&lt;/em&gt;lines and wstep constant and varying the Spectral range:
-&lt;a href="https://public.tableau.com/app/profile/anand.kumar4841/viz/LDMvsLegacyforSpectralRangeN_linesconstantandVoigtbroadening/Sheet1"&gt;Link&lt;/a&gt;&lt;br&gt;
-Here also for None optimization we are getting constant time for different spectral range but a linear dependency for LDM Voigt which will fail the assumption of&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;t_LDM_voigt ~ c2*N_lines + c3'*(N_G*N_L + 1)*N_truncation  *log(N_truncation  )
-but rather t_LDM_voigt ~ c2*N_lines + c3*(N_G*N_L + 1)*N_v*log(N_v)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;A New Discovery&lt;/h3&gt;
-&lt;p&gt;On generating spectrum for millions of lines, one unique observation was seen. The bottleneck step was no longer taking the most time. Max time was spent upon an unknown process. Upon deep analysis it was found a part of code was using &lt;code class="language-text"&gt;sys.getsizeof()&lt;/code&gt; to get the size of dataframe, and when the dataframe consisited of &lt;code class="language-text"&gt;object&lt;/code&gt; type columns with millions of lines, most of the time was spent on this step only.&lt;/p&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://anandkumar-blog.netlify.app/static/95eda74e349d883f4a1fcc85291a91cc/6af66/ldm.png" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="complexity.jpg" class="gatsby-resp-image-image" src="https://anandkumar-blog.netlify.app/static/95eda74e349d883f4a1fcc85291a91cc/f058b/ldm.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="complexity.jpg"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;We replaced it with &lt;code class="language-text"&gt;memory_usage(deep=False)&lt;/code&gt; with a different threshold which made computation almost &lt;strong&gt;2x&lt;/strong&gt; faster.&lt;/p&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://anandkumar-blog.netlify.app/static/28b1ad4d276fa9921520808bc6360002/87488/ba.png" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="complexity.jpg" class="gatsby-resp-image-image" src="https://anandkumar-blog.netlify.app/static/28b1ad4d276fa9921520808bc6360002/f058b/ba.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="complexity.jpg"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;So phase 1 is over,and phase 2 is going to begin which will mainly focus on optimizing the the existing LDM method with appropriate truncation and other possible areas!&lt;/p&gt;
-&lt;p&gt;See you on the other side of the sea ;)&lt;/p&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://anandkumar-blog.netlify.app/static/6c695ad1951b1c737cc12c701ffce0e4/2551b/other.jpg" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="complexity.jpg" class="gatsby-resp-image-image" src="https://anandkumar-blog.netlify.app/static/6c695ad1951b1c737cc12c701ffce0e4/828fb/other.jpg" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="complexity.jpg"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;br&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210719_1645_anandxkumar/</guid><pubDate>Mon, 19 Jul 2021 15:45:32 GMT</pubDate></item><item><title>GSoC - 2</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210719_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;p&gt;Welcome back !! So we are done with our first phase of the project and are shifting into the second one. I will be keeping this blog short since most of the details of the refactor have already been written in my previous post.&lt;/p&gt;
-&lt;p&gt;By the time I was writing my previous post I had a pretty decent idea of how I would be doing each of the refactors. We had already decided that we may not have to implement all of them because Vaex might render a few of those changes redundant.&lt;/p&gt;
-&lt;p&gt;I started out by writing a proof-of-concept to remove the column where partition function was added. Only the case of equilibrium molecules was handled here. The idea was to make use of pandas’ dictionary efficiently and remove the column. With the proof-of-concept we could conclude that not only did this approach reduce memory, but it also reduced CPU pressure by around 2x. For the lines of &lt;code&gt;HITEMP-CH4&lt;/code&gt; molecules for the waverange 2000-3000 previously the dataframe occupied 1.2 GB but with this method we could compress that to around 100 MB. &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Apart from this I wrote down another notebook that demostrated that we can radically improve memory usage by crunching the datatypes of the columns of &lt;code&gt;HITRAN/HITEMP&lt;/code&gt; molecules. The notebook just contains elementary operations to arrive at the right datatype for each of the column. We haven’t implemented this into the codebase yet because we still haven’t figured out what we will be doing with the missing lines. A problem I had already mentioned in my first post. &lt;sup id="fnref:2"&gt;&lt;a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:2"&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;I was somehow able to sneak my way into successfully completing GSoC phase one with feedback that has pumped me to do even better. I am looking forward to the second phase and hope to deliver.&lt;/p&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr&gt;
-&lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;&lt;a href="https://github.com/radis/radis-benchmark/blob/master/manual_benchmarks/test_Qgas.ipynb"&gt;Proof-of-Concept for Qgas&lt;/a&gt; &lt;a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:1"&gt;↩︎&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li id="fn:2"&gt;
-&lt;p&gt;&lt;a href="https://github.com/radis/radis-benchmark/pull/11"&gt;Proof-of-Concept for Datatype Crunching - WIP&lt;/a&gt; &lt;a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:2"&gt;↩︎&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210719_0300_gagan-aryan/</guid><pubDate>Mon, 19 Jul 2021 02:00:06 GMT</pubDate></item><item><title>Chapter 2: Survey Corps</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2340_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;p&gt;So its been around 4 weeks into the coding period, a lot of insights and progress so far!&lt;/p&gt;
-&lt;h3&gt;Profiler Class&lt;/h3&gt;
-&lt;p&gt;The good news is that the Profiler class has been successfully implemented in the develop branch and will be available to users by version &lt;code class="language-text"&gt;0.9.30&lt;/code&gt; .&lt;br&gt;
-&lt;!-- TEASER_END --&gt;
-Link : &lt;a href="https://github.com/radis/radis/pull/286"&gt;Profiler PR&lt;/a&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;Below is a simple example how all steps are printed based on the verbose level:&lt;br&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;wmin = 2000
-wmax = 3300
-wstep = 0.01
-T = 3000.0 #K
-p = 0.1 #bar
-broadening_max_width=10
-
-sf = SpectrumFactory(wavenum_min=wmin, wavenum_max=wmax,
-pressure=p,
-wstep=wstep,
-broadening_max_width=broadening_max_width,
-molecule="CO",
-cutoff=0, # 1e-27,
-verbose=3,
-)
-sf.load_databank('HITEMP-CO')
-s = sf.eq_spectrum(T)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Output:&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;... Scaling equilibrium linestrength
-... 0.01s - Scaled equilibrium linestrength
-... 0.00s - Calculated lineshift
-... 0.00s - Calculate broadening HWHM
-... Calculating line broadening (60869 lines: expect ~ 6.09s on 1 CPU)
-...... 0.16s - Precomputed DLM lineshapes (30)
-...... 0.00s - Initialized vectors
-...... 0.00s - Get closest matching line &amp;amp; fraction
-...... 0.02s - Distribute lines over DLM
-...... 1.95s - Convolve and sum on spectral range
-... 2.14s - Calculated line broadening
-... 0.01s - Calculated other spectral quantities
-... 2.21s - Spectrum calculated (before object generation)
-... 0.01s - Generated Spectrum object
-2.22s - Spectrum calculated&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Also we can access these steps and the time taken by them using &lt;code class="language-text"&gt;Spectrum.get_conditions()['profiler']&lt;/code&gt;. Also there is a parameter &lt;code class="language-text"&gt;SpectrumFactory.profiler.relative_time_percentage&lt;/code&gt; that stores the percentage of time taken by each steps at a particular verbose level, helpful seeing the most expensive steps in Spectrum calculation.&lt;br&gt;&lt;/p&gt;
-&lt;h3&gt;Legacy Method Complexity&lt;/h3&gt;
-&lt;p&gt;Several Spectrums were benchmarked against various parameters to see it’s correlation and derive its complexity. We used Profiler class with &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.lbl.loader.html#radis.lbl.loader.DatabankLoader.init_database"&gt;init_database()&lt;/a&gt; which stores all parameters of Spectrum along the Profiler in a &lt;code class="language-text"&gt;csv&lt;/code&gt; generated file; all spectrum info got added into the csv file  which could be used to do create visualizations to analyze the data. We used &lt;code class="language-text"&gt;Xexplorer&lt;/code&gt; library and &lt;code class="language-text"&gt;Tableau&lt;/code&gt;(a visual analytics platform) to create visualizations. A &lt;a href="https://github.com/anandxkumar/Benchmark_Visualization_GSoC_2021"&gt;github repository&lt;/a&gt; was created to store the Visualization along the CSV data file of each benchmark.&lt;/p&gt;
-&lt;p&gt;Following are the inference of the benchmarks for Legacy Method:&lt;/p&gt;
-&lt;b&gt;
-•  Calculation Time ∝ Number of lines&lt;br&gt;
-•  Calculation Time ∝ Broadening max width&lt;br&gt;
-•  Calculation Time ∝ 1/wstep&lt;br&gt;
-•  Calculation Time not dependent on Spectral Range&lt;br&gt;
-&lt;/b&gt;&lt;br&gt;
-&lt;p&gt;So complexity of Legacy method can be derived as: &lt;br&gt;
-&lt;strong&gt;&lt;code class="language-text"&gt;complexity = constant * Number of lines * Broadening Max Width / Wstep&lt;/code&gt;&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
-&lt;h3&gt;LDM Method Complexity&lt;/h3&gt;
-&lt;p&gt;Similar technique was used to benchmark LDM method. Now LDM uses 2 types of broadening method that are &lt;code class="language-text"&gt;voigt&lt;/code&gt; and &lt;code class="language-text"&gt;fft&lt;/code&gt;. &lt;code class="language-text"&gt;voigt&lt;/code&gt; uses truncation for calculating spectrum  in wavenmber space where as &lt;code class="language-text"&gt;fft&lt;/code&gt; calculates spectrum on entire spectral range in fourier space. So benchmarks were done on both methods to compare their performance against various parameters.&lt;/p&gt;
-&lt;p&gt;Spectrum were benchmarked against parameters like Spectral Range, Wstep, Spectral Points, Number of Lines and Broadening Max Width. Following are the inferences.&lt;/p&gt;
-&lt;p&gt;For &lt;code class="language-text"&gt;fft&lt;/code&gt;:&lt;br&gt;
-&lt;b&gt;
-• Calculation Time ∝ Spectral Points&lt;br&gt;
-• Calculation Time ∝ Number of Lines&lt;br&gt;
-&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;For &lt;code class="language-text"&gt;voigt&lt;/code&gt;:&lt;br&gt;
-&lt;b&gt;
-• Calculation Time ∝ Spectral Points&lt;br&gt;
-• Calculation Time ∝ Number of Lines&lt;br&gt;
-• Calculation Time ∝ Broadening Max Width&lt;br&gt;
-&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;For LDM we are expecting the following complexity:&lt;br&gt;
-&lt;strong&gt;&lt;code class="language-text"&gt;t_LDM_fft ~ c2*N_lines + c3*(N_G*N_L + 1)*N_v*log(N_v)&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;
-&lt;strong&gt;&lt;code class="language-text"&gt;t_LDM_voigt ~ c2*N_lines + c3'*(N_G*N_L + 1)*N_truncation*log(N_truncation)&lt;/code&gt;&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt; So the goal for the next 2 weeks will be to get the complexity of both &lt;code class="language-text"&gt;voigt&lt;/code&gt; and &lt;code class="language-text"&gt;fft&lt;/code&gt; method and see places for improving both methods and quite possibily create a &lt;code class="language-text"&gt;Hybrid&lt;/code&gt; method taking the best of both worlds. &lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_2340_anandxkumar/</guid><pubDate>Mon, 05 Jul 2021 22:40:32 GMT</pubDate></item><item><title>Chapter 1: First Flight</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210621_2240_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;p&gt;Hey! Missed me? I’m back with another blog, the first related to the Coding Period. Got some progress and interesting observation to share!&lt;/p&gt;
-&lt;h3&gt;Ready -&amp;gt; Set -&amp;gt; Code -&amp;gt; Analyze&lt;/h3&gt;
-&lt;p&gt;The first thing I did in the coding period, was analyse the problem and get a feasible approach to resolve it.&lt;br&gt;&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;&lt;strong&gt;Problem:&lt;/strong&gt; Find the complexity of the Legacy and LDM method.&lt;br&gt;
-&lt;strong&gt;Solution:&lt;/strong&gt; Run some benchmarks and find the bottleneck step.&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;First I chose the &lt;strong&gt;Legacy&lt;/strong&gt; method because if its simpler architecture. I ran some benchmarks varying the &lt;code class="language-text"&gt;spectral range&lt;/code&gt; of &lt;code class="language-text"&gt;OH&lt;/code&gt; and &lt;code class="language-text"&gt;CO2&lt;/code&gt; molecule to get similar number of lines. I kept parameters like &lt;code class="language-text"&gt;pressure&lt;/code&gt;, &lt;code class="language-text"&gt;temperature&lt;/code&gt;, &lt;code class="language-text"&gt;broadening_max_width&lt;/code&gt;, &lt;code class="language-text"&gt;wstep&lt;/code&gt;, etc constant to see the dependence of Legacy method on &lt;strong&gt;Spectral range&lt;/strong&gt;. &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;In order to get similar number of lines, I created a function which will take the &lt;strong&gt;Spectrum Factory&lt;/strong&gt; &lt;code class="language-text"&gt;dataframe&lt;/code&gt; and select the target number of lines. But the issue with Pandas dataframe is that when modify the dataframe there are chances that the metadata will get lost and we will no longer be able to do Spectrum calculation. To avoid this we have to drop the right number of lines with &lt;code class="language-text"&gt;inplace=True&lt;/code&gt;. So we will need to fix the number of lines and then we can proceed ahead with the benchmarking. Every parameter is the same except the Spectral Range.  Full code &lt;a href="https://gist.github.com/anandxkumar/cbe12f47170e1d71a82f4b246bd01dcc"&gt;here&lt;/a&gt;.&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;Earlier we assumed that the complexity of Legacy method is: &lt;br&gt;
-&lt;strong&gt;&lt;code class="language-text"&gt;Voigt Broadening = Broadening_max_width * spectral_range/math.pow(wstep,2) * N&lt;/code&gt;&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;Thus I was expecting to have different calculation time for both benchmarks. But to my surprise the computational times were almost equivalent! I re-ran each benchmarks &lt;strong&gt;100 times&lt;/strong&gt; just to be sure and more precise about it. Following were the observations:&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;In this list, there are 5 methods - &lt;code class="language-text"&gt;newton&lt;/code&gt;, &lt;code class="language-text"&gt;trust-ncg&lt;/code&gt;, &lt;code class="language-text"&gt;trust_exact&lt;/code&gt;, &lt;code class="language-text"&gt;trust-krylov&lt;/code&gt; and &lt;code class="language-text"&gt;dogleg&lt;/code&gt; - that require Jacobian function to work, which adds more complexity into our fitting process and codebase, hence I remove them from the benchmark and never use them again. There are also &lt;code class="language-text"&gt;emcee&lt;/code&gt; method that, for some unknown reasons, the fitting procedure never stops even after passing the loop limit, thus I have to remove it. Now we have 17 methods left that are stable enough to compare. Additionally, I set the max number of fitting loops as 200, so this means that any method that have equal of higher than 200 loops means that they are most likely unable to stop. I will conduct benchmarking process on the &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt; first.&lt;/p&gt;
+&lt;p&gt;The result for this method-comparing benchmark can be found in &lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/method_comparison.txt"&gt;this JSON file&lt;/a&gt;.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;Method&lt;/th&gt;
+&lt;th align="center"&gt;Last residual&lt;/th&gt;
+&lt;th align="center"&gt;Number of loops&lt;/th&gt;
+&lt;th align="center"&gt;Processing time (s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;leastsq&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042272&lt;/td&gt;
+&lt;td align="center"&gt;17&lt;/td&gt;
+&lt;td align="center"&gt;6.128568887710571&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;least_squares&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299046347&lt;/td&gt;
+&lt;td align="center"&gt;14&lt;/td&gt;
+&lt;td align="center"&gt;3.8792104721069336&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;differential_evolution&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042330&lt;/td&gt;
+&lt;td align="center"&gt;48&lt;/td&gt;
+&lt;td align="center"&gt;7.211840629577637&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;brute&lt;/td&gt;
+&lt;td align="center"&gt;0.0027847218345&lt;/td&gt;
+&lt;td align="center"&gt;20&lt;/td&gt;
+&lt;td align="center"&gt;3.13600492477417&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;basinhopping&lt;/td&gt;
+&lt;td align="center"&gt;0.0030471725482&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;31.650216579437256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;ampgo&lt;/td&gt;
+&lt;td align="center"&gt;0.0027301332094&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;36.60996413230896&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;nelder&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042330&lt;/td&gt;
+&lt;td align="center"&gt;48&lt;/td&gt;
+&lt;td align="center"&gt;7.532714605331421&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;lbfgsb&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299043815&lt;/td&gt;
+&lt;td align="center"&gt;12&lt;/td&gt;
+&lt;td align="center"&gt;1.8955962657928467&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;powell&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042271&lt;/td&gt;
+&lt;td align="center"&gt;38&lt;/td&gt;
+&lt;td align="center"&gt;6.310025691986084&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;cg&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299046922&lt;/td&gt;
+&lt;td align="center"&gt;34&lt;/td&gt;
+&lt;td align="center"&gt;5.223567724227905&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;cobyla&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299044752&lt;/td&gt;
+&lt;td align="center"&gt;22&lt;/td&gt;
+&lt;td align="center"&gt;3.028048515319824&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;bfgs&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042351&lt;/td&gt;
+&lt;td align="center"&gt;20&lt;/td&gt;
+&lt;td align="center"&gt;2.9560532569885254&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;tnc&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042284&lt;/td&gt;
+&lt;td align="center"&gt;36&lt;/td&gt;
+&lt;td align="center"&gt;5.905533313751221&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;trust-constr&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042271&lt;/td&gt;
+&lt;td align="center"&gt;16&lt;/td&gt;
+&lt;td align="center"&gt;2.3700413703918457&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;slsqp&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299969016&lt;/td&gt;
+&lt;td align="center"&gt;18&lt;/td&gt;
+&lt;td align="center"&gt;3.160074472427368&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;shgo&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042272&lt;/td&gt;
+&lt;td align="center"&gt;32&lt;/td&gt;
+&lt;td align="center"&gt;6.185185194015503&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;dual_annealing&lt;/td&gt;
+&lt;td align="center"&gt;0.0221619241989&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;32.40411591529846&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;(It is important to remember that this result might differ for each run, but rest assure the common trend is unchanged)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As you can see from the data above, we have &lt;code class="language-text"&gt;basinhopping&lt;/code&gt;, &lt;code class="language-text"&gt;ampgo&lt;/code&gt; and &lt;code class="language-text"&gt;dual_annealing&lt;/code&gt; jumping out of the loop limit of 200, and it’s totally not a good thing, which I would like to exclude them out for the sake of better visualization. Then, in order to compare the rest of 14 methods, I have a scatter plot below in which I focus on analyzing the &lt;code class="language-text"&gt;last_residual&lt;/code&gt; - indicator of accuracy - on the horizontal axis, and &lt;code class="language-text"&gt;loops&lt;/code&gt; - indicator of fitting iterations needed - on the vertical axis. As &lt;code class="language-text"&gt;time&lt;/code&gt; is heavily influenced by the computational capacity of each device, I don’t prioritize it than other two criteria in the result assessment, and thus it is indicated by color code.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Scatter plot of the result." src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/result_plot.png"&gt;&lt;/p&gt;
+&lt;p&gt;If we zoom in the best 8 cases marked by the red rectangle above:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Best 8" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/result_zoomed.png"&gt;&lt;/p&gt;
+&lt;p&gt;In the zoomed figure, the result is quite satisfying as I expected. When we talk about the most famous curve-fitting algorithms, we can mention either &lt;code class="language-text"&gt;leastsq&lt;/code&gt;/&lt;code class="language-text"&gt;least_squares&lt;/code&gt; or &lt;code class="language-text"&gt;bfgs&lt;/code&gt;/&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;, and now we can see them taking 4 out of top 5. Now let’s focus on the two competitors: &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and &lt;code class="language-text"&gt;least_squares&lt;/code&gt; and get some observations:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Number of lines - &lt;b&gt;{‘OH’: 28143, ‘CO’: 26778}&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;Total Calculation time(Avg) -  &lt;b&gt;{‘OH’: 4.4087, ‘CO’: 3.8404000000000003}&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;Total Voigt_Broadening TIME(Avg) - &lt;b&gt;{‘OH’: 3.1428814244270327, ‘CO’: 3.081623389720917}&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;spectral_range - &lt;b&gt;{‘OH’: 38010, ‘CO’: 8010}&lt;/b&gt;&lt;/li&gt;
-&lt;li&gt;Legacy_Scale - &lt;b&gt;{‘OH’: 4x10^14, ‘CO’: 8x10^13}&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; has a little lower residual and so a little bit better in accuracy than &lt;code class="language-text"&gt;least_squares&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Although approximately same fitting loops (12 and 14), the time required for &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; is 1.895596s, significantly lower than &lt;code class="language-text"&gt;least_squares&lt;/code&gt; of 3.879210s. We can also see this behavior in their neighbors: &lt;code class="language-text"&gt;bfgs&lt;/code&gt; (2.956053s) &amp;lt; &lt;code class="language-text"&gt;leastsq&lt;/code&gt; (6.128569s).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;There are some inference we can make from the above observation:&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A)&lt;/strong&gt; The bottleneck step(Voigt Broadening) loosely depends on &lt;code class="language-text"&gt;Spectral Range&lt;/code&gt;.&lt;br&gt;
-&lt;strong&gt;B)&lt;/strong&gt; The complexity of Voigt Broadening needs to be modified because there is a difference of order of &lt;strong&gt;~10&lt;/strong&gt; in the Legacy Scaled value of OH and CO2.&lt;br&gt;&lt;/p&gt;
-&lt;p align="center"&gt;
-&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://anandkumar-blog.netlify.app/static/d9b32b4e96e6cd9a91016a49ad940239/0b533/Blog2.png" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="padding-bottom: 100%; display: block;"&gt;&lt;/span&gt;
-&lt;img alt="Blog2" class="gatsby-resp-image-image" src="https://anandkumar-blog.netlify.app/static/d9b32b4e96e6cd9a91016a49ad940239/0b533/Blog2.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Blog2"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;br&gt;
-&lt;b&gt;Credits - Me :p&lt;/b&gt;&lt;br&gt;
-&lt;/p&gt;
-&lt;p&gt;So in order to do some analysis, we first need data of different steps in the broadening phase and conditions of various Spectrum which brings me to the &lt;strong&gt;Code&lt;/strong&gt; part in &lt;strong&gt;Coding Period.&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-&lt;h3&gt;Profiler Class&lt;/h3&gt;
-&lt;p&gt;The aim of this class is to replace all the print statements by a common &lt;code class="language-text"&gt;start&lt;/code&gt;, &lt;code class="language-text"&gt;stop&lt;/code&gt;, &lt;code class="language-text"&gt;_print&lt;/code&gt; method. Earlier each step computational time was done using &lt;code class="language-text"&gt;time()&lt;/code&gt; library. Now the whole codebase is being refactored with the Profiler class that will do all the work based on the &lt;code class="language-text"&gt;verbose&lt;/code&gt; level. In addition to this the biggest benefit is that each step will be stored in a dictionary with its computational time that will help me gather data to find which step is in actual bottleneck and further which part of the function is the most expensive time wise. A simple example is below:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Before:&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;if __debug__:
-t0 = time()
-..........
-..........
-if __debug__:
-t1 = time()
-.........
-.........
-if __debug__:
-if self.verbose &amp;gt;= 3:
-printg("... Initialized vectors in {0:.1f}s".format(t1 - t0))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;After:&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;self.profiler.start(
-key="init_vectors", verbose=3, details="Initialized vectors"
-)
-.........
-.........
-self.profiler.stop("init_vectors")&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So using a common key we can make it happen. This will be stored in the conditons of &lt;code class="language-text"&gt;Spectrum&lt;/code&gt; object in the &lt;code class="language-text"&gt;'profiler'&lt;/code&gt; key. All these Spectrums and their conditions can be exported using a &lt;a href="https://radis.readthedocs.io/en/latest/spectrum/spectrum.html#spectrum-database"&gt;SpecDatabase&lt;/a&gt;. This will create a csv file comprising of all the parameters of all Spectrums which will be useful in getting some insights.
--&amp;gt; &lt;a href="https://github.com/radis/radis/pull/286"&gt;PR LINK&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Digging in whiting_jit&lt;/h3&gt;
-&lt;p&gt;Based on several benchmarks, it is estimated that around &lt;strong&gt;70-80%&lt;/strong&gt; time is spent on calculating the broadening. The broadening part has the following hierarchy:&lt;br&gt;
-&lt;b&gt;&lt;/b&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;_calc_broadening()
--&amp;gt; _calc_lineshape()
--&amp;gt; _voigt_broadening()
--&amp;gt; _voigt_lineshape()
--&amp;gt; whiting_jit()&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;On close inspection we observed that &lt;strong&gt;80-90%&lt;/strong&gt; time is spent on &lt;code class="language-text"&gt;whiting_jit&lt;/code&gt; process. Going further down in &lt;code class="language-text"&gt;whiting_jit&lt;/code&gt;, &lt;strong&gt;60-80%&lt;/strong&gt; time is spent on &lt;strong&gt;lineshape calculation.&lt;/strong&gt; Below is the formula:&lt;br&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;lineshape = (
-(1 - wl_wv) * exp(-2.772 * w_wv_2)
-+ wl_wv * 1 / (1 + 4 * w_wv_2)
-# ... 2nd order correction
-+ 0.016 * (1 - wl_wv) * wl_wv * (exp(-0.4 * w_wv_225) - 10 / (10 + w_wv_225))
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The whole process can be divided into 4 parts:&lt;br&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;    part_1 =   (1 - wl_wv) * exp(-2.772 * w_wv_2)
-
-part_2 =    wl_wv * 1 / (1 + 4 * w_wv_2)
-
-# ... 2nd order correction
-part_3 =  0.016 * (1 - wl_wv) * wl_wv * exp(-0.4 * w_wv_225)
-
-part_4 =  - 10 / (10 + w_wv_225)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;The complexity of each part comes out: &lt;br&gt;
-&lt;b&gt;&lt;/b&gt;&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;    o1 = broadening__max_width * n_lines / wstep
-
-O(part_1) = n_lines * o1
-O(part_2) = n_lines * 4 * o1
-O(part_3) = (n_lines)**2 * o1
-O(part_4) = o1 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Running several benchmark showed us that &lt;strong&gt;part_3&lt;/strong&gt; takes the most time out of all steps. So clearly we can see that the complexity of Legacy method is not dependent on
-Spectral Range but rather &lt;code class="language-text"&gt;Number of Calculated Lines&lt;/code&gt;,&lt;code class="language-text"&gt;broadening__max_width&lt;/code&gt; and &lt;code class="language-text"&gt;wstep&lt;/code&gt;. It may seem that the complexity of Legacy method is:&lt;br&gt;&lt;/p&gt;
-&lt;p align="center"&gt;&lt;b&gt; n_lines^2 * broadening__max_width * n_lines / wstep&lt;/b&gt;&lt;/p&gt; &lt;br&gt;
-&lt;p&gt;But inorder to prove this we need more benchmarks and evidence to verify this and it may involve normalization of all steps in lineshape calculation!&lt;br&gt; &lt;/p&gt;
-&lt;p&gt;So the goal for the next 2 weeks is clear:&lt;br&gt;
-&lt;b&gt;i)&lt;/b&gt; Refactor the entire codebase with Profiler.&lt;br&gt;
-&lt;b&gt;ii)&lt;/b&gt; Find the complexity of &lt;strong&gt;Legacy Method&lt;/strong&gt; with the help of more benchmark and analysis.&lt;br&gt;
-&lt;b&gt;iii)&lt;/b&gt; Do the same for &lt;strong&gt;LDM Method&lt;/strong&gt;!&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;Ok I guess time’s up! See you after 2 weeks :)&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210621_2240_anandxkumar/</guid><pubDate>Mon, 21 Jun 2021 21:40:32 GMT</pubDate></item><item><title>GSoC - 1</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_0300_gagan-aryan/</link><dc:creator>Gagan Aryan</dc:creator><description>&lt;p&gt;This is the first blog that documents the coding period of my GSoC21 journey. I learnt a few interesting things in these two weeks, as I expected I would. So, let’s dive in and see if you knew few of these stuff I learnt.&lt;/p&gt;
-&lt;h3 id="starting-off-"&gt;Starting off !!!&lt;/h3&gt;
-&lt;p&gt;I started off by getting a brief idea of the scope of the changes that could be done to the dataframe. This was the task I had decided on for the first week. Whenever we are involved in a project that runs for a period of anywhere between 2-4 months it is important to have a timeline or a roadmap of sorts to be able to look back to. This doesn’t really have to be something rigid. We can chose to deviate from it and infact deviations are bound to happen due to multiple reasons. It can happen because of an unexpected bug in between, or because you came across some alternative that you did not consider at the start or simply because it is one of those projects that gives better insights as you dwell into it.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Every good GSoC proposal consists of a tentative timeline that depicts the work we plan on doing as the weeks progress. Here is the timeline I had submitted in my proposal.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Timeline1" src="https://gagan-aryan.netlify.app/images/gsoc-1/timeline1.png"&gt;&lt;br&gt;
-&lt;img alt="Timeline2" src="https://gagan-aryan.netlify.app/images/gsoc-1/timeline2.png"&gt;&lt;/p&gt;
-&lt;p&gt;So as per this I was supposed to finish off the refactors to the dataframe and also finish setting up the benchamarks. But I was unable to complete these. I had underestimated the work it would take to complete them. Nonetheless, I also did have some time to look up at the things I am supposed to do in the second half of the coding period.&lt;/p&gt;
-&lt;h3 id="memory-and-time-performance-benchmarks---tic-tok"&gt;Memory and Time performance benchmarks - Tic-Tok&lt;/h3&gt;
-&lt;p&gt;Before making any changes to the codebase Erwan suggested me to have the benchmarks setup. So what do I mean by this? To make sure that the changes I am making to the code are indeed reducing the memory consumption of the computations we use a few tools that help us track the memory consumption for various calculations as a function of git commits. There are multiple tools that help us do this. Radis already used a tool developed by &lt;a href="https://github.com/airspeed-velocity/asv"&gt;airspeed velocity&lt;/a&gt; to track the memory computions. I ran into a lot of troubles in setting these up and a lost a lot of valuable time in the process ultimately Erwan fixed it and I was able to run the benchmarks on my machine.&lt;/p&gt;
-&lt;p&gt;The benchmarks still seem to take a lot of time to run though and for them to be feasible to be used a tool through which I can check the performance regularly there are a few things I need to learn. I hope to pick these up in the next few days.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Performance" src="https://gagan-aryan.netlify.app/images/gsoc-1/brace-yourselves.png"&gt;&lt;/p&gt;
-&lt;p&gt;We are also trying to look at a few other alternatives that can be used instead of asv. I will update the you guys regarding this in the next blog post.&lt;/p&gt;
-&lt;h3 id="oh-pandas-here-i-deal-with-you-"&gt;Oh Pandas here I deal with you !&lt;/h3&gt;
-&lt;h4 id="lets-ditch-a-few-columns"&gt;Let’s ditch a few columns&lt;/h4&gt;
-&lt;p&gt;We can reduce the memory usage of pandas by using one really simple trick - avoid giving loading the columns that are not required for computation. Below I demostrate how just dropping a few columns can provide significant improvement in the memory consumption. I am using &lt;code&gt;HITEMP-CH4&lt;/code&gt; database for demonstration.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
-&lt;/span&gt;&lt;span class="lnt"&gt; 2
-&lt;/span&gt;&lt;span class="lnt"&gt; 3
-&lt;/span&gt;&lt;span class="lnt"&gt; 4
-&lt;/span&gt;&lt;span class="lnt"&gt; 5
-&lt;/span&gt;&lt;span class="lnt"&gt; 6
-&lt;/span&gt;&lt;span class="lnt"&gt; 7
-&lt;/span&gt;&lt;span class="lnt"&gt; 8
-&lt;/span&gt;&lt;span class="lnt"&gt; 9
-&lt;/span&gt;&lt;span class="lnt"&gt;10
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre class="chroma"&gt;&lt;code class="language-python"&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;radis.io.hitran&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;hit2df&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;hit2df&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"06_HITEMP2020_2000.0-2500.0.par"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"deep"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;30.5&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;drop&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s2"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"iso"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;inplace&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;verbose&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;memory_usage&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"deep"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="o"&gt;...&lt;/span&gt;
-&lt;span class="n"&gt;memory&lt;/span&gt; &lt;span class="n"&gt;usage&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;25.4&lt;/span&gt; &lt;span class="n"&gt;MB&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;The peak memory usage before dropping the columns was 30.5 MB and once I remove a few columns the peak memory usage becomes 25.4 MB. I have already implemented the dropping of id column and handled the case of single isotope as well by dropping the column and istead just storing the information of the isotope as a meta attribute. We have also finalised on the discarding of the other columns by considering the physics of these quantities. Let’s check out a few of them. Since I haven’t already implemented the optimisations that follow I will save the implementation details for the next blog.&lt;/p&gt;
-&lt;h4 id="einsteins-coeffecients-and-linestrengths"&gt;Einstein’s Coeffecients and Linestrengths&lt;/h4&gt;
-&lt;p&gt;There are four parameters of interest to describe the intensity of a line : Linestrength $(int)$, Einstein emission coefficient $(A)$ and Einstein absorption coefificent $(B_{lu})$, Einstein induced emission coefficient $(B_{ul})$. All of them are somehow linked to the Squared Transition Dipole Moment $(R)$. &lt;sup id="fnref:1"&gt;&lt;a class="footnote-ref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fn:1"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;$$ B_{lu}=10^{-36}\cdot\frac{8{\pi}^3}{3h^2} R_s^2 \cdot 10^{-7} $$&lt;br&gt;
-$$ B_{ul}=10^{-36}\cdot\frac{8{\pi}^3}{3h^2} \frac{gl}{gu} R_s^2 \cdot 10^{-7} $$&lt;br&gt;
-$$ A_{ul}=10^{-36}\cdot\frac{\frac{64{\pi}^4}{3h} {\nu}^3 gl}{gu} R_s^2 $$&lt;/p&gt;
-&lt;p&gt;So now the idea would be to drop the $int$ column and use $A_{ul}$ to calculate the value of $int$ from it. The reason to drop $int$ and not $A_{ul}$ some databases like &lt;code&gt;ExoMol&lt;/code&gt; databases only provide the value of $A_{ul}$.&lt;/p&gt;
-&lt;h4 id="concat-better"&gt;Concat better&lt;/h4&gt;
-&lt;p&gt;For anyone who wants concate multiple datafiles pandas tends to become useless as the memory scales up. I started out experimenting concat operations inorder to cluster the isotopes of each type, run computations on them and later concat them. But I later learnt that since this data is already in the form of a single dataframe, indexing is a better parameter to track the memory consumption. Nonetheless there are a few other places in Radis where we process multiple files and concat them, hence this experiment would help us decide how we can chose to replace the current approach with a better one. I tried out three methods. I was using some random dummy datafiles of around 780 MBs.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Normal &lt;code&gt;pandas.concat&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Concat with a doubly ended queue&lt;/li&gt;
-&lt;li&gt;Concat with parquet&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here are the results of each of these methods -&lt;/p&gt;
-&lt;div class="tab" id="cbbfde2b70afc7e2"&gt;
-&lt;div class="tab__links"&gt;
-&lt;button class="tab__link"&gt;pandas.concat&lt;/button&gt;
-&lt;button class="tab__link"&gt;deque&lt;/button&gt;
-&lt;button class="tab__link"&gt;parquet&lt;/button&gt;
-&lt;/div&gt;
-&lt;div class="tab__content" id="c6b1e010ed52c9f8"&gt;
-&lt;h4 id="pandasconcat"&gt;pandas.concat&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;CPU Time - 0:02:43.797588
-Peak Memory Usage - 4.1050 GB
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="tab__content" id="a412292f0cf68165"&gt;
-&lt;h4 id="pandasconcat-with-a-doubly-queue"&gt;pandas.concat with a doubly queue&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;CPU Time - 0:02:34.484612
-Peak Memory Usage - 3.7725 GB
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class="tab__content" id="c655ff276a8106d7"&gt;
-&lt;h4 id="concat-with-parquet"&gt;Concat with parquet&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;CPU Time - 0:01:37.984875
-Peak Memory Usage - 1.6829 GB
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Looking at the results, parquet seems like a really good option to me. But we will run for a few more examples and later check which one suits the best.&lt;/p&gt;
-&lt;h3 id="the-next-two-weeks"&gt;The next two weeks&lt;/h3&gt;
-&lt;p&gt;The project is making progress in all fronts. I feel I need to reorganize my thoughts a bit. My main work for now would be to complete the task list of &lt;a href="https://github.com/radis/radis/pull/287"&gt;this pr&lt;/a&gt;. And then look at other stuff.&lt;/p&gt;
-&lt;div class="footnotes"&gt;
-&lt;hr&gt;
+&lt;p&gt;This is explainable. While &lt;code class="language-text"&gt;least_squares&lt;/code&gt; simply calculating and minimizing the sum of the residuals of points from the comparative curves, &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; - Limited-memory BFGS uses a limited amount of computer memory to conduct &lt;a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm"&gt;Broyden-Fletcher-Goldfarb-Shanno algorithm&lt;/a&gt; for the minimization.&lt;/p&gt;
+&lt;p&gt;So for now, I have initial assumption that &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; performs slightly better than &lt;code class="language-text"&gt;leastsq&lt;/code&gt;. After conducting fitting process on other spectra, the &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and &lt;code class="language-text"&gt;leastsq&lt;/code&gt; are seem to be dominant in terms of speed (based on number of loops and time elapsed) and accuracy (this depends a little bit on pipeline combination, which will be addressed in next part) compared to other methods. However, more benchmarks are needed to confirm my initla assumption.&lt;/p&gt;
+&lt;h4&gt;2. Fitting pipeline comparison&lt;/h4&gt;
+&lt;p&gt;Next is the benchmarking process focusing on pipeline comparison. A fitting pipeline comprises of several options, from spectrum refinement methods such as which spectral quantity to take, whether applying normalization on both spectra or not, or simply just fitting process preferences such as maxinum number of fitting loops allowed, or fitting method, or max fitting tolerance. While in the new JSON structure the users are free to adjust all of them, through this benchmarking process I would like acquire more understandings about how these pipeline might affect the quality of a fitting work.&lt;/p&gt;
+&lt;p&gt;In order to assess a fitting’s quality, I use the synthetic spectra that I generated on week 1. Although they are heavily convoluted with noises and offsets, since they are software-generated, we can know what are the experimental properties (such as &lt;code class="language-text"&gt;path_length&lt;/code&gt;, &lt;code class="language-text"&gt;slit&lt;/code&gt;, etc.). Meanwhile, regarding the experimental spectrum &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um&lt;/code&gt;, we are definitely not sure those parameters (in fact, we don’t even know whether it is LTE or non-LTE). So, I decided to test on 7 synthetic spectra:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li id="fn:1"&gt;
-&lt;p&gt;&lt;a href="https://www.sciencedirect.com/science/article/pii/S0022407398000788?via%3Dihub"&gt;Rothmann Paper (Eqs.(A7), (A8), (A9)&lt;/a&gt; &lt;a class="footnote-backref" href="https://gagan-aryan.netlify.app/tags/gsoc21//index.xml#fnref:1"&gt;↩︎&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO-1-1800-2300-cm-1-P3-t1500-v-r-mf0.1-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-500-1100-cm-1-P2-t900-v-r-mf0.5-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-500-3000-cm-1-P93-t740-v-r-mf0.96-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-3300-3700-cm-1-P0.005-t3000-v-r-mf0.01-p1-sl1.4nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-H2O-1-1000-2500-cm-1-P0.5-t1500-v-r-mf0.5-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-NH3-1-500-2000-cm-1-P10-t1000-v-r-mf0.01-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-O2-1-7500-8000-cm-1-P1.01325-t298.15-v-r-mf0.21-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_0300_gagan-aryan/</guid><pubDate>Sun, 20 Jun 2021 02:00:06 GMT</pubDate></item><item><title>Chapter 0: Prologue</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210606_2240_anandxkumar/</link><dc:creator>anandxkumar</dc:creator><description>&lt;p&gt;Hi There and Namaste! This is going to be the second blog and first blog related to GSoC where I will be sharing my experience Community Bonding Period Experience with &lt;b&gt;Radis&lt;/b&gt;. Before moving ahead lets learn about GSoC and my perspective about it.&lt;/p&gt;
-&lt;h3&gt;Google Summer of Code&lt;/h3&gt;
-&lt;p&gt;GSoC or the way I like to say it &lt;strong&gt;(Great Summer Opportunity to Code ;)&lt;/strong&gt; is a program conducted and funded by Google to promote college students around the world to engage with Open Source Community and contribute to the organization for a tenure of 3 months. In the process, code is created and released for the world to see and use. But the main aim of GSoC is to promote students to stick to the organizations and help to grow the Open Source Community. This is a great initiative by Google that brings thousands of students every year and help them get an opportunity to peek into the world of open source development, learn new skills and also get compensated for the work, quite generously.&lt;/p&gt;
+&lt;p&gt;For each spectra, I will modify the pipeline’s &lt;code class="language-text"&gt;method&lt;/code&gt; and &lt;code class="language-text"&gt;normalize&lt;/code&gt; properties, until the best possible fitting result is achieved - least fitting loops, and closest to the ground-truth (GT) temperature (this is why I prefer synthetic over experimental spectra, as I explained above). Here is the result:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="center"&gt;Spec No.&lt;/th&gt;
+&lt;th align="center"&gt;GT Temp&lt;/th&gt;
+&lt;th align="center"&gt;Start Temp&lt;/th&gt;
+&lt;th align="center"&gt;Best Temp&lt;/th&gt;
+&lt;th align="center"&gt;Method&lt;/th&gt;
+&lt;th align="center"&gt;Normalize&lt;/th&gt;
+&lt;th align="center"&gt;Diff&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;1&lt;/td&gt;
+&lt;td align="center"&gt;1500&lt;/td&gt;
+&lt;td align="center"&gt;1300&lt;/td&gt;
+&lt;td align="center"&gt;1468.97&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/1.png"&gt;1&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;2&lt;/td&gt;
+&lt;td align="center"&gt;900&lt;/td&gt;
+&lt;td align="center"&gt;1300&lt;/td&gt;
+&lt;td align="center"&gt;898.84&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/2.png"&gt;2&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;3&lt;/td&gt;
+&lt;td align="center"&gt;740&lt;/td&gt;
+&lt;td align="center"&gt;1000&lt;/td&gt;
+&lt;td align="center"&gt;~740&lt;/td&gt;
+&lt;td align="center"&gt;both&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/3.png"&gt;3&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;4&lt;/td&gt;
+&lt;td align="center"&gt;3000&lt;/td&gt;
+&lt;td align="center"&gt;2850&lt;/td&gt;
+&lt;td align="center"&gt;3003.52&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/4.png"&gt;4&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;5&lt;/td&gt;
+&lt;td align="center"&gt;1500&lt;/td&gt;
+&lt;td align="center"&gt;2000&lt;/td&gt;
+&lt;td align="center"&gt;1507.25&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;true&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/5.png"&gt;5&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;6&lt;/td&gt;
+&lt;td align="center"&gt;1000&lt;/td&gt;
+&lt;td align="center"&gt;2250&lt;/td&gt;
+&lt;td align="center"&gt;994.90&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/6.png"&gt;6&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;7&lt;/td&gt;
+&lt;td align="center"&gt;298.15&lt;/td&gt;
+&lt;td align="center"&gt;660&lt;/td&gt;
+&lt;td align="center"&gt;297.86&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/7.png"&gt;7&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As we can see from the table above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All spectra achieve near-perfect best fit results. This is because we have perfect ground-truth conditions. In real-life circumstances, such accurate ground-truth is virtually impossible to achieve, but this is the job of fitting users to measure and set them.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt; performs quite good in most case. This is quite surprising after the result from &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt;, but it can be explained as most likely we didn’t use the correct ground-truth conditions for it since we don’t know (seriously, who created that spectrum?). However, there is a small observation from me that, those cases where &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; lost agains &lt;code class="language-text"&gt;leastsq&lt;/code&gt; were primarily because of number of loops. Still, it’s a win for &lt;code class="language-text"&gt;leastsq&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Their neighbors, &lt;code class="language-text"&gt;least_squares&lt;/code&gt; and &lt;code class="language-text"&gt;bfgs&lt;/code&gt;, are completely underdogs. We don’t even need to mention other methods.&lt;/li&gt;
+&lt;li&gt;In nearly all the best cases, &lt;code class="language-text"&gt;normalize = false&lt;/code&gt; is set. This is quite explainable, the more originality the better.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3. Summary&lt;/h4&gt;
+&lt;p&gt;After all the benchmarking works above, I have decided to set the &lt;code class="language-text"&gt;leastsq&lt;/code&gt; as the default fitting method, in case users don’t state the method explicitly in JSON file. Later on, in the fitting tutorial, I will add some suggestions about using &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and trying to switch the &lt;code class="language-text"&gt;normalize&lt;/code&gt; in case their fitting work is not quite good.&lt;/p&gt;
+&lt;p&gt;Nevertheless, these benchmarks helped me gain more insights about the performance of my fitting module, and most importantly, let me experience the feeling of a spectroscopist trying to fit his spectra - playing around the parameters, adjusting parameters and praying for a good result to come. Quite a physically and mentally exhausting work to be honest, since whenever the result went wrong, I didn’t know whether the error came from ground-truth conditions, or from my fitting module. There have been days and nights I sat in front of my laptop adjusting the JSON files and codebase continuously. But finally, the benchmarking process for LTE spectra is good now, and I am quite confident in my fitting module. Now let’s move on to the non-LTE spectra!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="A footage of me turning parameters up and down like a DJ" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/meme.jpg"&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220717_0000_tranhuunhathuy/</guid><pubDate>Sat, 16 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Benchmarking and performance analysis</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Radis app uses  useState  to populate data and maintain state; while this works well for small scale applications, as it becomes better over…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/3rdWeek"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_arunavabasu-03/</guid><pubDate>Sat, 09 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Fourth week - Intensive benchmarking process for LTE spectra</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;p&gt;As my fitting module has completed, now I am clear to start the benchmarking process. Initially, I planned to do it on 4 categories: large, small, LTE and non-LTE. But then, Mr. Erwan’s words helped me realize that my classification was somehow not ideal for this, as he said:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The first need is not fitting performance, its a good fitting interface they would work on every typical condition.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;p&gt;I remember during second year of my college, it was around end of March and my roommate was applying for GSoC and I was like what is this program? There I got to know about it but since the deadline was near I was afraid of doing all the stuffs in a week of time, so I didn’t apply for it. Fast forwarding to next year, I was prepared enough this time and I feel priviledged to be a part of GSoC as part of OpenAstronomy. &lt;/p&gt;
-&lt;h3&gt;My GSoC Project&lt;/h3&gt;
-&lt;p&gt;I’m part of &lt;b&gt;&lt;a href="https://github.com/radis/radis"&gt;Radis&lt;/a&gt;&lt;/b&gt; organization which is a sub-org of &lt;a href="https://github.com/OpenAstronomy"&gt;OpenAstronomy&lt;/a&gt;. Radis is a fast line-by-line code used to synthesize high-resolution infrared molecular
-spectra and a post-processing library to analyze spectral lines. It can synthesize absorption
-and emission spectrum for multiple molecular species at both equilibrium and
-non-equilibrium conditions.&lt;br&gt;
-Radis computes every spectral line (absorption/emission) from the molecule considering
-the effect of parameters like Temperature, Pressure. Due to these parameters, we don’t get
-a discrete line but rather a shape with a width. This is called line broadening and for any spectral synthesis code, this is the bottleneck step. Ok let us C what my GSoC project is all about! &lt;br&gt;&lt;/p&gt;
-&lt;p&gt;Radis has 2 methods to calculate the lineshape of lines.&lt;br&gt;
-● Legacy Method&lt;br&gt;
-● DLM Method&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;The goal of this project is to derive an equation comprising all parameters that affect the
-performance for calculating Voigt broadening by running several benchmarks for different
-parameters involved in the calculation of lineshapes to check their significance in
-computation time. Then we need to find the critical value for the derived equation (&lt;code class="language-text"&gt;Rc&lt;/code&gt;)
-which will tell us which optimization technique to select based on the computed &lt;code class="language-text"&gt;R&lt;/code&gt; value in
-&lt;b&gt;calc_spectrum()&lt;/b&gt;. An &lt;code class="language-text"&gt;optimization = "auto"&lt;/code&gt; will be added that will choose the best method based on the parameters provided.&lt;/p&gt;
-&lt;h3&gt;Community Bonding Period&lt;/h3&gt;
-&lt;p&gt;The first phase of GSoC is the &lt;b&gt;Community Bonding Period&lt;/b&gt; which is a 3 weeks long period. Its main aim is allow the student to get familiar with the community and the codebase. It serves as a warm-up period before the coding period. The first thing I did was that I went though the original Radis &lt;a href="https://www.sciencedirect.com/science/article/abs/pii/S0022407318305867?via%3Dihub"&gt;paper&lt;/a&gt; and also the DLM implementation &lt;a href="https://ui.adsabs.harvard.edu/abs/2021JQSRT.26107476V/abstract"&gt;paper&lt;/a&gt; because our project objective is based on these 2 implementations. It helped me understand the main purpose of RADIS, its architecture and the science behind different steps of both equilibrium and non-equilibrium spectrum, though I have to accept these papers are way too technical for me :p (Complex Spectroscopy related formulas).&lt;br&gt; I believed inorder to get myself ready for the coding period, I shall focus on solving some related issues to make me more familiar with the codebase.&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;In order to compute any spectrum we need to determine several parameters like: minimum-maximum wavenumber, molecule, Temperature of gas, mole fraction, wstep, etc.&lt;br&gt;
-&lt;code class="language-text"&gt;wstep&lt;/code&gt; determines the wavenumber grid’s resolution. Smaller the value, higher the resolution and vice-versa. By default radis uses &lt;code class="language-text"&gt;wstep=0.01&lt;/code&gt;. You can manually set the wstep value in &lt;b&gt;calc_spectrum()&lt;/b&gt; and &lt;strong&gt;SpectrumFactory&lt;/strong&gt;. To get more accurate result you can further reduce the value, and to increase the performance you can increase the value.&lt;/p&gt;
-&lt;p&gt;Based on wstep, it will determine the number of gridpoints per linewidth. To make sure that there are enough gridpoints, Radis will raise an &lt;strong&gt;Accuracy Warning&lt;/strong&gt;. If number of gridpoints are less than &lt;code class="language-text"&gt;GRIDPOINTS_PER_LINEWIDTH_WARN_THRESHOLD&lt;/code&gt; and raises an &lt;strong&gt;Accuracy Error&lt;/strong&gt; if number of gridpoints are less than &lt;code class="language-text"&gt;GRIDPOINTS_PER_LINEWIDTH_ERROR_THRESHOLD&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;So inorder to select the optimum value of &lt;code class="language-text"&gt;wstep&lt;/code&gt; I had to refactor the codebase such that we could compute the minimum FWHM (&lt;code class="language-text"&gt;min_width&lt;/code&gt;) value after calculating the HWHM of all lines and and set &lt;code class="language-text"&gt;wstep = min_width / GRIDPOINTS_PER_LINEWIDTH_WARN_THRESHOLD&lt;/code&gt;. All &lt;code class="language-text"&gt;wstep&lt;/code&gt; dependent parameters had to be refactored to make sure they are not being called before the calculating &lt;code class="language-text"&gt;min_width&lt;/code&gt;. At the end this feature was successfully merged in the develop branch of Radis and now users can use &lt;code class="language-text"&gt;wstep = "auto"&lt;/code&gt; to automatically get the optimal value of &lt;code class="language-text"&gt;wstep&lt;/code&gt;. This feature will be available from version &lt;b&gt;0.9.30&lt;/b&gt;. Here is the &lt;a href="https://github.com/radis/radis/pull/271"&gt;link&lt;/a&gt; of the merged PR.&lt;/p&gt;
-&lt;p&gt;In short, the Community Bonding Period has been great and I have learned alot about Radis during this time. In the next 2 weeks I will be focussing on building a benchmarking framework and run various benchmarks for both Legacy and DLM method and determine the most influential paramters for performance.&lt;/p&gt;
-&lt;p&gt;I’m very excited for the upcoming months. I know that this summer is going to be a life long experience and I’m really looking forward to do amazing things for the community and want to thank Google, OpenAstronomy, Radis and my mentors &lt;a href="https://github.com/erwanp"&gt;Erwan Pannier&lt;/a&gt;, &lt;a href="https://github.com/dcmvdbekerom"&gt;Dirk van den Bekerom&lt;/a&gt; and &lt;a href="https://github.com/pkj-m"&gt;Pankaj Mishra&lt;/a&gt; for this opportunity.
-I’m ready for this amazing adventure.&lt;/p&gt;
-&lt;p align="center"&gt;
-&lt;b&gt;LETS DO THIS&lt;/b&gt;&lt;br&gt;
-&lt;img src="https://anandkumar-blog.netlify.app/2b4e6a4b663f4bc49d559484b8dd37b1/Start.gif"&gt;&lt;br&gt;
-ps: Am a huge Spiderman Fan :p
-&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210606_2240_anandxkumar/</guid><pubDate>Sun, 06 Jun 2021 21:40:32 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Do not wasting time trying to determine a perfect threshold or categories.&lt;/p&gt;
+&lt;p&gt;Work on real-life examples. CO2 4.2 - 5 µm is one.&lt;/p&gt;
+&lt;p&gt;CO2 bandhead (the Single Temperature fit example) is another one.&lt;/p&gt;
+&lt;p&gt;Works on the improving the fits from these real-life examples,
+and - maybe - you’ll generalize to categories/classifications eventually.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To be honest, I have been thinking about changing my project timeline and objectives a little bit. Initially, I proposed the timeline in which I would spend 1 week for making the module, and 4 weeks to conduct benchmarking on 4 types of spectrum (large, small, LTE, non-LTE). But then, I encountered a lot of difficulties in conducting the fitting process, which significantly delays my fitting module to be completed in the end of week 3. Along with Mr. Erwan’s suggestions, after careful considerations, I have decided to reduce the category to only 2 groups of LTE and non-LTE spectra, and propose a new timeline based on that with my mentors, which successfully acquired their approvals. The new timeline is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Week 4 (this week): conduct benchmarking process on LTE spectra.&lt;/li&gt;
+&lt;li&gt;Week 5: conduct benchmarking process on non-LTE spectra.&lt;/li&gt;
+&lt;li&gt;Week 6: implement the fitting module and fitting models into RADIS codebase, finish any documentations, create a 101 tutorial, and prepare for first evaluation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For this new timeline, the last week is going to be the toughest time ever! But I will try my best to catch up with the deadlines once and for all. I must admit that after half the first phase, I realized that my expected timeline in my project proposal - derived from my initial understandings of RADIS and fitting - is quite not applicable. As Mr. Minou - one of my mentors, said:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Don’t worry about changing the objectives . Some difficulties usually come up only when the project begins and cannot
+be easily anticipated. New directions seem fine to me and you are on the right path.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As well as Mr. Erwan:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Just keep on progressing on the project as you do, reevaluating needs if needed.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I have more confidence in keeping on with my plan. This new approach, hopefully, will allow me to finish implementing the fitting module into RADIS by the end of first phase. Quite an intensive experience for me but, let’s go anyway! So here are the benchmarking results for our LTE experimental spectra, in which I will focus on comparison between fitting methods, and between refinement pipelines.&lt;/p&gt;
+&lt;h4&gt;1. Fitting method benchmarking&lt;/h4&gt;
+&lt;p&gt;The ideal of benchmarking result is to test and assess under what conditions, such as fitting method, pipeline, refinement, etc., the fitting process can achieve a stable and robust result. Firstly, I want to test the fitting method and see which ones are the best to put into the module as the default method. As we use LMFIT.Minimizer, we have 23 fitting methods in total:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;: Levenberg-Marquardt (default).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;least_squares&lt;/code&gt;: Least-Squares minimization, using Trust Region Reflective method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;differential_evolution&lt;/code&gt;: differential evolution.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;brute&lt;/code&gt;: brute force method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;basinhopping&lt;/code&gt;: Basin-hopping method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;ampgo&lt;/code&gt;: Adaptive Memory Programming for Global Optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;nelder&lt;/code&gt;: Nelder-Mead.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;: Limited-memory Broyden–Fletcher–Goldfarb–Shanno (L-BFGS-B).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;powell&lt;/code&gt;: Powell’s method.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;cg&lt;/code&gt;: Conjugate-Gradient.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;newton&lt;/code&gt;: Newton-Conjugate-Gradient.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;cobyla&lt;/code&gt;: Cobyla.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;bfgs&lt;/code&gt;: Broyden–Fletcher–Goldfarb–Shanno (BFGS).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;tnc&lt;/code&gt;: Truncated Newton.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-ncg&lt;/code&gt;: Newton-Conjugate-Gradient trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-exact&lt;/code&gt;: nearly exact trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-krylov&lt;/code&gt;: Newton’s Generalized Lanczos Trust-Region (GLTR).&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;trust-constr&lt;/code&gt;: trust-region for constrained optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;dogleg&lt;/code&gt;: Dog-leg trust-region.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;slsqp&lt;/code&gt;: Sequential Linear Squares Programming.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;emcee&lt;/code&gt;: Maximum likelihood via Monte-Carlo Markov Chain.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;shgo&lt;/code&gt;: Simplicial Homology Global Optimization.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;dual_annealing&lt;/code&gt;: Dual Annealing optimization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In this list, there are 5 methods - &lt;code class="language-text"&gt;newton&lt;/code&gt;, &lt;code class="language-text"&gt;trust-ncg&lt;/code&gt;, &lt;code class="language-text"&gt;trust_exact&lt;/code&gt;, &lt;code class="language-text"&gt;trust-krylov&lt;/code&gt; and &lt;code class="language-text"&gt;dogleg&lt;/code&gt; - that require Jacobian function to work, which adds more complexity into our fitting process and codebase, hence I remove them from the benchmark and never use them again. There are also &lt;code class="language-text"&gt;emcee&lt;/code&gt; method that, for some unknown reasons, the fitting procedure never stops even after passing the loop limit, thus I have to remove it. Now we have 17 methods left that are stable enough to compare. Additionally, I set the max number of fitting loops as 200, so this means that any method that have equal of higher than 200 loops means that they are most likely unable to stop. I will conduct benchmarking process on the &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt; first.&lt;/p&gt;
+&lt;p&gt;The result for this method-comparing benchmark can be found in &lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/43e71f48257a8a3d444d530c8859e77b/method_comparison.txt"&gt;this JSON file&lt;/a&gt;.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;Method&lt;/th&gt;
+&lt;th align="center"&gt;Last residual&lt;/th&gt;
+&lt;th align="center"&gt;Number of loops&lt;/th&gt;
+&lt;th align="center"&gt;Processing time (s)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;leastsq&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042272&lt;/td&gt;
+&lt;td align="center"&gt;17&lt;/td&gt;
+&lt;td align="center"&gt;6.128568887710571&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;least_squares&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299046347&lt;/td&gt;
+&lt;td align="center"&gt;14&lt;/td&gt;
+&lt;td align="center"&gt;3.8792104721069336&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;differential_evolution&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042330&lt;/td&gt;
+&lt;td align="center"&gt;48&lt;/td&gt;
+&lt;td align="center"&gt;7.211840629577637&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;brute&lt;/td&gt;
+&lt;td align="center"&gt;0.0027847218345&lt;/td&gt;
+&lt;td align="center"&gt;20&lt;/td&gt;
+&lt;td align="center"&gt;3.13600492477417&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;basinhopping&lt;/td&gt;
+&lt;td align="center"&gt;0.0030471725482&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;31.650216579437256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;ampgo&lt;/td&gt;
+&lt;td align="center"&gt;0.0027301332094&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;36.60996413230896&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;nelder&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042330&lt;/td&gt;
+&lt;td align="center"&gt;48&lt;/td&gt;
+&lt;td align="center"&gt;7.532714605331421&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;lbfgsb&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299043815&lt;/td&gt;
+&lt;td align="center"&gt;12&lt;/td&gt;
+&lt;td align="center"&gt;1.8955962657928467&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;powell&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042271&lt;/td&gt;
+&lt;td align="center"&gt;38&lt;/td&gt;
+&lt;td align="center"&gt;6.310025691986084&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;cg&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299046922&lt;/td&gt;
+&lt;td align="center"&gt;34&lt;/td&gt;
+&lt;td align="center"&gt;5.223567724227905&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;cobyla&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299044752&lt;/td&gt;
+&lt;td align="center"&gt;22&lt;/td&gt;
+&lt;td align="center"&gt;3.028048515319824&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;bfgs&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042351&lt;/td&gt;
+&lt;td align="center"&gt;20&lt;/td&gt;
+&lt;td align="center"&gt;2.9560532569885254&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;tnc&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042284&lt;/td&gt;
+&lt;td align="center"&gt;36&lt;/td&gt;
+&lt;td align="center"&gt;5.905533313751221&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;trust-constr&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042271&lt;/td&gt;
+&lt;td align="center"&gt;16&lt;/td&gt;
+&lt;td align="center"&gt;2.3700413703918457&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;slsqp&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299969016&lt;/td&gt;
+&lt;td align="center"&gt;18&lt;/td&gt;
+&lt;td align="center"&gt;3.160074472427368&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;shgo&lt;/td&gt;
+&lt;td align="center"&gt;0.0027299042272&lt;/td&gt;
+&lt;td align="center"&gt;32&lt;/td&gt;
+&lt;td align="center"&gt;6.185185194015503&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;dual_annealing&lt;/td&gt;
+&lt;td align="center"&gt;0.0221619241989&lt;/td&gt;
+&lt;td align="center"&gt;201&lt;/td&gt;
+&lt;td align="center"&gt;32.40411591529846&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;(It is important to remember that this result might differ for each run, but rest assure the common trend is unchanged)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;As you can see from the data above, we have &lt;code class="language-text"&gt;basinhopping&lt;/code&gt;, &lt;code class="language-text"&gt;ampgo&lt;/code&gt; and &lt;code class="language-text"&gt;dual_annealing&lt;/code&gt; jumping out of the loop limit of 200, and it’s totally not a good thing, which I would like to exclude them out for the sake of better visualization. Then, in order to compare the rest of 14 methods, I have a scatter plot below in which I focus on analyzing the &lt;code class="language-text"&gt;last_residual&lt;/code&gt; - indicator of accuracy - on the horizontal axis, and &lt;code class="language-text"&gt;loops&lt;/code&gt; - indicator of fitting iterations needed - on the vertical axis. As &lt;code class="language-text"&gt;time&lt;/code&gt; is heavily influenced by the computational capacity of each device, I don’t prioritize it than other two criteria in the result assessment, and thus it is indicated by color code.&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/41c56cdd9aa439841d66bb9a01dd543d/29114/result_plot.png" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="Scatter plot of the result." class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/41c56cdd9aa439841d66bb9a01dd543d/f058b/result_plot.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Scatter plot of the result."&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;If we zoom in the best 8 cases marked by the red rectangle above:&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/b03e6b2a34c2ea21d9bc963c5d6e7acf/29114/result_zoomed.png" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="Best 8" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/b03e6b2a34c2ea21d9bc963c5d6e7acf/f058b/result_zoomed.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Best 8"&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;In the zoomed figure, the result is quite satisfying as I expected. When we talk about the most famous curve-fitting algorithms, we can mention either &lt;code class="language-text"&gt;leastsq&lt;/code&gt;/&lt;code class="language-text"&gt;least_squares&lt;/code&gt; or &lt;code class="language-text"&gt;bfgs&lt;/code&gt;/&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;, and now we can see them taking 4 out of top 5. Now let’s focus on the two competitors: &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and &lt;code class="language-text"&gt;least_squares&lt;/code&gt; and get some observations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; has a little lower residual and so a little bit better in accuracy than &lt;code class="language-text"&gt;least_squares&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Although approximately same fitting loops (12 and 14), the time required for &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; is 1.895596s, significantly lower than &lt;code class="language-text"&gt;least_squares&lt;/code&gt; of 3.879210s. We can also see this behavior in their neighbors: &lt;code class="language-text"&gt;bfgs&lt;/code&gt; (2.956053s) &amp;lt; &lt;code class="language-text"&gt;leastsq&lt;/code&gt; (6.128569s).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is explainable. While &lt;code class="language-text"&gt;least_squares&lt;/code&gt; simply calculating and minimizing the sum of the residuals of points from the comparative curves, &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; - Limited-memory BFGS uses a limited amount of computer memory to conduct &lt;a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm"&gt;Broyden-Fletcher-Goldfarb-Shanno algorithm&lt;/a&gt; for the minimization.&lt;/p&gt;
+&lt;p&gt;So for now, I have initial assumption that &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; performs slightly better than &lt;code class="language-text"&gt;leastsq&lt;/code&gt;. After conducting fitting process on other spectra, the &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and &lt;code class="language-text"&gt;leastsq&lt;/code&gt; are seem to be dominant in terms of speed (based on number of loops and time elapsed) and accuracy (this depends a little bit on pipeline combination, which will be addressed in next part) compared to other methods. However, more benchmarks are needed to confirm my initla assumption.&lt;/p&gt;
+&lt;h4&gt;2. Fitting pipeline comparison&lt;/h4&gt;
+&lt;p&gt;Next is the benchmarking process focusing on pipeline comparison. A fitting pipeline comprises of several options, from spectrum refinement methods such as which spectral quantity to take, whether applying normalization on both spectra or not, or simply just fitting process preferences such as maxinum number of fitting loops allowed, or fitting method, or max fitting tolerance. While in the new JSON structure the users are free to adjust all of them, through this benchmarking process I would like acquire more understandings about how these pipeline might affect the quality of a fitting work.&lt;/p&gt;
+&lt;p&gt;In order to assess a fitting’s quality, I use the synthetic spectra that I generated on week 1. Although they are heavily convoluted with noises and offsets, since they are software-generated, we can know what are the experimental properties (such as &lt;code class="language-text"&gt;path_length&lt;/code&gt;, &lt;code class="language-text"&gt;slit&lt;/code&gt;, etc.). Meanwhile, regarding the experimental spectrum &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um&lt;/code&gt;, we are definitely not sure those parameters (in fact, we don’t even know whether it is LTE or non-LTE). So, I decided to test on 7 synthetic spectra:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO-1-1800-2300-cm-1-P3-t1500-v-r-mf0.1-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-500-1100-cm-1-P2-t900-v-r-mf0.5-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-500-3000-cm-1-P93-t740-v-r-mf0.96-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-CO2-1-3300-3700-cm-1-P0.005-t3000-v-r-mf0.01-p1-sl1.4nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-H2O-1-1000-2500-cm-1-P0.5-t1500-v-r-mf0.5-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-NH3-1-500-2000-cm-1-P10-t1000-v-r-mf0.01-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;synth-O2-1-7500-8000-cm-1-P1.01325-t298.15-v-r-mf0.21-p1-sl1nm.spec&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;For each spectra, I will modify the pipeline’s &lt;code class="language-text"&gt;method&lt;/code&gt; and &lt;code class="language-text"&gt;normalize&lt;/code&gt; properties, until the best possible fitting result is achieved - least fitting loops, and closest to the ground-truth (GT) temperature (this is why I prefer synthetic over experimental spectra, as I explained above). Here is the result:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="center"&gt;Spec No.&lt;/th&gt;
+&lt;th align="center"&gt;GT Temp&lt;/th&gt;
+&lt;th align="center"&gt;Start Temp&lt;/th&gt;
+&lt;th align="center"&gt;Best Temp&lt;/th&gt;
+&lt;th align="center"&gt;Method&lt;/th&gt;
+&lt;th align="center"&gt;Normalize&lt;/th&gt;
+&lt;th align="center"&gt;Diff&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;1&lt;/td&gt;
+&lt;td align="center"&gt;1500&lt;/td&gt;
+&lt;td align="center"&gt;1300&lt;/td&gt;
+&lt;td align="center"&gt;1468.97&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/1.png"&gt;1&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;2&lt;/td&gt;
+&lt;td align="center"&gt;900&lt;/td&gt;
+&lt;td align="center"&gt;1300&lt;/td&gt;
+&lt;td align="center"&gt;898.84&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;lbfgsb&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/2.png"&gt;2&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;3&lt;/td&gt;
+&lt;td align="center"&gt;740&lt;/td&gt;
+&lt;td align="center"&gt;1000&lt;/td&gt;
+&lt;td align="center"&gt;~740&lt;/td&gt;
+&lt;td align="center"&gt;both&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/3.png"&gt;3&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;4&lt;/td&gt;
+&lt;td align="center"&gt;3000&lt;/td&gt;
+&lt;td align="center"&gt;2850&lt;/td&gt;
+&lt;td align="center"&gt;3003.52&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/4.png"&gt;4&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;5&lt;/td&gt;
+&lt;td align="center"&gt;1500&lt;/td&gt;
+&lt;td align="center"&gt;2000&lt;/td&gt;
+&lt;td align="center"&gt;1507.25&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;true&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/5.png"&gt;5&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;6&lt;/td&gt;
+&lt;td align="center"&gt;1000&lt;/td&gt;
+&lt;td align="center"&gt;2250&lt;/td&gt;
+&lt;td align="center"&gt;994.90&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/6.png"&gt;6&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="center"&gt;7&lt;/td&gt;
+&lt;td align="center"&gt;298.15&lt;/td&gt;
+&lt;td align="center"&gt;660&lt;/td&gt;
+&lt;td align="center"&gt;297.86&lt;/td&gt;
+&lt;td align="center"&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt;&lt;/td&gt;
+&lt;td align="center"&gt;false&lt;/td&gt;
+&lt;td align="center"&gt;&lt;a href="https://raw.githubusercontent.com/TranHuuNhatHuy/my-2022-gsoc-journey/master/content/blog/5.%204th-week/7.png"&gt;7&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As we can see from the table above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;All spectra achieve near-perfect best fit results. This is because we have perfect ground-truth conditions. In real-life circumstances, such accurate ground-truth is virtually impossible to achieve, but this is the job of fitting users to measure and set them.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;leastsq&lt;/code&gt; performs quite good in most case. This is quite surprising after the result from &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt;, but it can be explained as most likely we didn’t use the correct ground-truth conditions for it since we don’t know (seriously, who created that spectrum?). However, there is a small observation from me that, those cases where &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; lost agains &lt;code class="language-text"&gt;leastsq&lt;/code&gt; were primarily because of number of loops. Still, it’s a win for &lt;code class="language-text"&gt;leastsq&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Their neighbors, &lt;code class="language-text"&gt;least_squares&lt;/code&gt; and &lt;code class="language-text"&gt;bfgs&lt;/code&gt;, are completely underdogs. We don’t even need to mention other methods.&lt;/li&gt;
+&lt;li&gt;In nearly all the best cases, &lt;code class="language-text"&gt;normalize = false&lt;/code&gt; is set. This is quite explainable, the more originality the better.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3. Summary&lt;/h4&gt;
+&lt;p&gt;After all the benchmarking works above, I have decided to set the &lt;code class="language-text"&gt;leastsq&lt;/code&gt; as the default fitting method, in case users don’t state the method explicitly in JSON file. Later on, in the fitting tutorial, I will add some suggestions about using &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; and trying to switch the &lt;code class="language-text"&gt;normalize&lt;/code&gt; in case their fitting work is not quite good.&lt;/p&gt;
+&lt;p&gt;Nevertheless, these benchmarks helped me gain more insights about the performance of my fitting module, and most importantly, let me experience the feeling of a spectroscopist trying to fit his spectra - playing around the parameters, adjusting parameters and praying for a good result to come. Quite a physically and mentally exhausting work to be honest, since whenever the result went wrong, I didn’t know whether the error came from ground-truth conditions, or from my fitting module. There have been days and nights I sat in front of my laptop adjusting the JSON files and codebase continuously. But finally, the benchmarking process for LTE spectra is good now, and I am quite confident in my fitting module. Now let’s move on to the non-LTE spectra!&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/83691995f7e77035e5034ccbfb1a61ff/41099/meme.jpg" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="A footage of me turning parameters up and down like a DJ" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/83691995f7e77035e5034ccbfb1a61ff/41099/meme.jpg" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="A footage of me turning parameters up and down like a DJ"&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_tranhuunhathuy/</guid><pubDate>Sat, 09 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Week 3 and Week 4</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220709_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;So, after looking into the hapi.py  and its functionalities I got to know that after passing extra parameters like 'gamma_CO2', 'n_CO2' for…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-3-and-week-4"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220709_0000_supriya1702/</guid><pubDate>Fri, 08 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Third week - Finalizing fitting module after long days of struggling</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220703_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;p&gt;To be honest, I started this week realizing I was far behind the deadline. After suffering a traumatizing fever which incapacitated me for one week, I had a fitting module which did not run correctly. Starting this week, the JSON parsing worked normally, but for some reasons the fitting process kept plummeting the &lt;code class="language-text"&gt;Tgas&lt;/code&gt; value either to very high or very low guesses, always out of the boundaries. What are they trying to seek? I don’t know. So, I have spent this third week trying my best to fix the fitting module and make it run normally:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;At first, I suspected this was a fault in the return of cost function, so I tried either &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.spectrum.compare.html#radis.spectrum.compare.get_diff"&gt;get_diff()&lt;/a&gt; or &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.spectrum.compare.html#radis.spectrum.compare.get_residual"&gt;get_residual()&lt;/a&gt;. The fitting process varied between the two approaches, but in the end the plummeting value prevailed.&lt;/li&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;li&gt;Then, I thought my synthetic spectra were faulty, so I decided to regenerate and restructure them all over again, and the problem was still there.&lt;/li&gt;
+&lt;li&gt;At this time I was still believing that the problem came from the difference between two spectra. So I tried my best to put the generation of two spectra as similar as possible, but still no progress.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It was around this point that I received some mind-blowing feedbacks from Mr. Erwan Pannier - one of my mentors:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do not wasting time trying to determine a perfect threshold or categories.&lt;/p&gt;
+&lt;p&gt;Work on real-life examples. CO2 4.2 - 5 µm is one.&lt;/p&gt;
+&lt;p&gt;CO2 bandhead (the Single Temperature fit example) is another one.&lt;/p&gt;
+&lt;p&gt;Works on the improving the fits from these real-life examples,
+and - maybe - you’ll generalize to categories/classifications eventually.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At some point, I tried to use &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.spectrum.spectrum.html#radis.spectrum.spectrum.Spectrum.normalize"&gt;normalize()&lt;/a&gt;. My idea is, since my current fitting target is temperature, the experimental and model spectra can be both normalized, as the spectrum lineshape is determined by the component temperatures. After normalizing, things worked perfectly out of my expectation!&lt;/p&gt;
+&lt;p&gt;And so, after one week of pure suffering and perseverance, I have finished the fitting module! So, there are 3 important parts of my fitting feature:&lt;/p&gt;
+&lt;h4&gt;1. Input JSON file&lt;/h4&gt;
+&lt;p&gt;A JSON file containing every information, from path to experimental spectrum file, to initial conditions - known parameters that will be used for calculating model spectra, and fit parameter(s) are also stated here. For example:&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-json"&gt;&lt;code class="language-json"&gt;&lt;span class="token punctuation"&gt;{&lt;/span&gt;
+&lt;span class="token property"&gt;"fileName"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"CO2_measured_spectrum_4-5um.spec"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"molecule"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"CO2"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"isotope"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"1,2"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"wmin"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;4167&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"wmax"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;4180&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"wunit"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"nm"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"pressure"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;1e-3&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"mole_fraction"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;1&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"path_length"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;10&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"slit"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"1.4 nm"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"fit"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token punctuation"&gt;{&lt;/span&gt;
+&lt;span class="token property"&gt;"Tgas"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;1100&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"bound_Tgas"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token punctuation"&gt;[&lt;/span&gt;&lt;span class="token number"&gt;300&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt; &lt;span class="token number"&gt;2000&lt;/span&gt;&lt;span class="token punctuation"&gt;]&lt;/span&gt;
+&lt;span class="token punctuation"&gt;}&lt;/span&gt;
+&lt;span class="token punctuation"&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see from the JSON file above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;fileName&lt;/code&gt; : path to the &lt;code class="language-text"&gt;.spec&lt;/code&gt; spectrum file from &lt;code class="language-text"&gt;./data/&lt;/code&gt;, will be changed when implementing to RADIS codebase. For now the format is &lt;code class="language-text"&gt;&amp;lt;spectrum-type&amp;gt;/spectrum/&amp;lt;name&amp;gt;.spec&lt;/code&gt;. For example: &lt;code class="language-text"&gt;large/spectrum/CO2_measured_spectrum_4-5um.spec&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Parameters from &lt;code class="language-text"&gt;molecule&lt;/code&gt; to &lt;code class="language-text"&gt;slit&lt;/code&gt; are used for calculating model spectrum later. &lt;code class="language-text"&gt;wmin&lt;/code&gt; and &lt;code class="language-text"&gt;wmax&lt;/code&gt; are used to determine the range of wavelength/wavenumber that will be cropped from original experimental spectrum.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-text"&gt;fit&lt;/code&gt; section contains fit parameters and their corresponding initial values or fitting bounds. In the example above, fit parameter &lt;code class="language-text"&gt;Tgas&lt;/code&gt; has initial value of 1100 and fitting bound [300, 2000].&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;2. Fitting module &lt;code class="language-text"&gt;fitting_module.py&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;Contains functions to load JSON file &lt;code class="language-text"&gt;get_JSON()&lt;/code&gt; and most importantly, &lt;code class="language-text"&gt;fit_spectrum()&lt;/code&gt; which receives only path of JSON file as input parameter, and will do all the fitting work for you.&lt;/p&gt;
+&lt;p&gt;Firstly, when being called, &lt;code class="language-text"&gt;fit_spectrum()&lt;/code&gt; will call and parse the input path to &lt;code class="language-text"&gt;get_JSON()&lt;/code&gt; which reads necessary information from the JSON file. These information are returned to &lt;code class="language-text"&gt;fit_spectrum()&lt;/code&gt;, which will try to retrieve experimental data. Then, it crops, normalizes, removes NaN values, and some other refinements. Next, the read information and refined experimental spectrum will be sent to fitting models for the fitting process, which is described below.&lt;/p&gt;
+&lt;h4&gt;3. Fitting models &lt;code class="language-text"&gt;model_LTE.py&lt;/code&gt; and &lt;code class="language-text"&gt;model_nonLTE.py&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;These 2 files contain &lt;code class="language-text"&gt;residual_LTE()&lt;/code&gt; - for LTE spectra, and &lt;code class="language-text"&gt;residual_NonLTE()&lt;/code&gt; - for non-LTE spectra (I haven’t developed this yet, will be done this week according to timeline), respectively. These functions receives refined experimental spectrum and initial conditions read from JSON file before, then calculate model spectrum, refine it, and return the residual/difference/cost between 2 spectra.&lt;/p&gt;
+&lt;h4&gt;4. Initial result when fitting &lt;code class="language-text"&gt;CO2_measured_spectrum_4-5um.spec&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;I tried to recreate the same fitting scenario as &lt;a href="https://radis.readthedocs.io/en/latest/auto_examples/plot_1T_fit.html#sphx-glr-auto-examples-plot-1t-fit-py"&gt;1-temp fit example&lt;/a&gt;. The result of my module seems promising, with only 17 iterations compared to 32 iterations in the example.&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;Succesfully finished the fitting process in 7.901483058929443s.
+[[Fit Statistics]]
+# fitting method   = leastsq
+# function evals   = 17
+# data points      = 1
+# variables        = 1
+chi-square         = 7.4524e-06
+reduced chi-square = 7.4524e-06
+Akaike info crit   = -9.80697750
+Bayesian info crit = -11.8069775
+[[Variables]]
+Tgas:  1459.11902 +/- 26872889.5 (1841720.19%) (init = 1100)
+e:\radis\radis\misc\warning.py:354: HighTemperatureWarning: HITRAN is valid for low temperatures (typically &amp;lt; 700 K). For higher temperatures you may need HITEMP or CDSD. See the 'databank=' parameter
+warnings.warn(WarningType(message))
+e:\radis\radis\misc\curve.py:241: UserWarning: Presence of NaN in curve_divide!
+Think about interpolation=2
+warnings.warn(&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/c1ca7b795588d0c7ddc1076fc8fce6b8/9e818/fitting_result.png" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="Comparison between normalized experimental spectrum and best fitted spectrum" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/c1ca7b795588d0c7ddc1076fc8fce6b8/f058b/fitting_result.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Comparison between normalized experimental spectrum and best fitted spectrum"&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;h4&gt;5. RADIS fitting process from user perspective in the future&lt;/h4&gt;
+&lt;p&gt;If being implemented, this fitting pipeline will benefit RADIS users, especially new users, in the future. Imagine you have a spectrum to be fitted. All you need to do next, is to fill the information into a JSON form, and then call &lt;code class="language-text"&gt;fit_spectrum(&amp;lt;path-to-JSON-file&amp;gt;)&lt;/code&gt; and let it do all the work. If you are not satisfied with the result, you can change the unknown information in the JSON, such as &lt;code class="language-text"&gt;slit&lt;/code&gt; and &lt;code class="language-text"&gt;path_length&lt;/code&gt;, and recall the function again, until you are satisfied.&lt;/p&gt;
+&lt;p&gt;This is way easier and much friendlier for RADIS users than dwelling into RADIS documentation to find out and learn how to use existing fitting pipeline.&lt;/p&gt;
+&lt;p&gt;For now, this user interface only allows LTE spectra to be fitted. But in the following weeks, more types will be implemented and covered along with results from benchmarking progress.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220703_0000_tranhuunhathuy/</guid><pubDate>Sat, 02 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Linting and MUI^5 support</title><link>http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;React 18 Migration Because Radis is currently using an outdated version of React, we have chosen to upgrade to React 18. Linting and type…&lt;/p&gt;
+&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/1stAnd2ndWeek"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_arunavabasu-03/</guid><pubDate>Sat, 25 Jun 2022 23:00:00 GMT</pubDate></item><item><title>Second week - Development of new fitting module</title><link>http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;p&gt;According to the project proposal, during the second week I am supposed to start the benchmarking process with a bunch of large-category synthentic spectra. Thus, I started to generate a bunch of large synthetic spectra.&lt;/p&gt;
+&lt;p&gt;Firstly, I create a &lt;a href="https://github.com/TranHuuNhatHuy/RADIS-Spectrum-Fitting-Benchmark/blob/main/data/synthetic_spectrum_generator.py"&gt;synthetic spectrum generator&lt;/a&gt;. This module is to synthesize various spectra for the benchmarking process based on 4 groups:&lt;/p&gt;
+&lt;ul&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;li&gt;Large and LTE spectra.&lt;/li&gt;
+&lt;li&gt;Large and non-LTE spectra.&lt;/li&gt;
+&lt;li&gt;Narrow and LTE spectra.&lt;/li&gt;
+&lt;li&gt;Narrow and non-LTE spectra.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Generated spectra are stored in &lt;code class="language-text"&gt;./data/&amp;lt;spectrum-type&amp;gt;/spectrum&lt;/code&gt; in RADIS .spec file, while their corresponding ground-truths are stored in &lt;code class="language-text"&gt;./data/&amp;lt;spectrum-type&amp;gt;/ground-truth&lt;/code&gt; in JSON format. For each spectrum type, after acquiring most stable fitting pipeline, the model, the algorithm and other specific settings will be stored as a model file in &lt;code class="language-text"&gt;./fitting-module/&amp;lt;spectrum-type&amp;gt;/model.py&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For example, I want to generate a synthetic LTE spectrum whose ground-truth as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Molecule: CO2.&lt;/li&gt;
+&lt;li&gt;HITRAN isotope ID: 1 (12C16O2).&lt;/li&gt;
+&lt;li&gt;Wavelength range: from 3300 cm-1 to 3700 cm-1.&lt;/li&gt;
+&lt;li&gt;Pressure: 0.005 bar.&lt;/li&gt;
+&lt;li&gt;Tgas: 3000 C.&lt;/li&gt;
+&lt;li&gt;Mole fraction: 0.01&lt;/li&gt;
+&lt;li&gt;Path length: 1 cm.&lt;/li&gt;
+&lt;li&gt;Experimental slit: 1.4 mm.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, the JSON generated and registered for this spectrum is going to be like this:&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-json"&gt;&lt;code class="language-json"&gt;&lt;span class="token punctuation"&gt;{&lt;/span&gt;
+&lt;span class="token property"&gt;"fileName"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"synth-CO2-1-3300-3700-cm-1-P0.005-t3000-v-r-mf0.01-p1-sl1.4nm.spec"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"molecule"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"CO2"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"isotope"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"1"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"wmin"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;3300&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"wmax"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;3700&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"wunit"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"cm-1"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"pressure"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;0.005&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"mole_fraction"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;0.01&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"path_length"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;1&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"slit"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"1.4 nm"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"fit"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token punctuation"&gt;{&lt;/span&gt;
+&lt;span class="token property"&gt;"Tgas"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token number"&gt;3000&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token property"&gt;"bound_Tgas"&lt;/span&gt;&lt;span class="token operator"&gt;:&lt;/span&gt; &lt;span class="token punctuation"&gt;[&lt;/span&gt;
+&lt;span class="token number"&gt;2500&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
+&lt;span class="token number"&gt;4000&lt;/span&gt;
+&lt;span class="token punctuation"&gt;]&lt;/span&gt;
+&lt;span class="token punctuation"&gt;}&lt;/span&gt;
+&lt;span class="token punctuation"&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see, the &lt;code class="language-text"&gt;fileName&lt;/code&gt; specifies &lt;code class="language-text"&gt;.spec&lt;/code&gt; file - the file which stores our experimental spectrum - in the data directory. Other parameters can be seen above. For the &lt;code class="language-text"&gt;fit&lt;/code&gt; group, it contains fit parameters, initial fitting value, and the fitting boundaries. For example, in the JSON file above, we fit the &lt;code class="language-text"&gt;Tgas&lt;/code&gt; parameter whose initial value is 3000 C, upper bound and lower bound are 2500 C and 4000 C respectively.&lt;/p&gt;
+&lt;p&gt;Then, for the given initial conditions, and initial &lt;code class="language-text"&gt;Tgas&lt;/code&gt; value, we have this RADIS-calculated spectrum:&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/0e9b5a48c6d76f32655c5fd59aa8797d/42de8/calculated.png" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="Calculated-from-ground-truth spectrum" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/0e9b5a48c6d76f32655c5fd59aa8797d/f058b/calculated.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Calculated-from-ground-truth spectrum"&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;To make it look like an experimental one, after applying slit and around 0.2 mm of offset, noises will be added with scale at 1% of max radiance value.&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-python"&gt;&lt;code class="language-python"&gt;s_wav&lt;span class="token punctuation"&gt;,&lt;/span&gt; s_val &lt;span class="token operator"&gt;=&lt;/span&gt; s&lt;span class="token punctuation"&gt;.&lt;/span&gt;get&lt;span class="token punctuation"&gt;(&lt;/span&gt;&lt;span class="token string"&gt;'radiance'&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;
+noise_scale &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token builtin"&gt;max&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;&lt;span class="token punctuation"&gt;[&lt;/span&gt;val &lt;span class="token keyword"&gt;for&lt;/span&gt; val &lt;span class="token keyword"&gt;in&lt;/span&gt; s_val &lt;span class="token keyword"&gt;if&lt;/span&gt; &lt;span class="token keyword"&gt;not&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;math&lt;span class="token punctuation"&gt;.&lt;/span&gt;isnan&lt;span class="token punctuation"&gt;(&lt;/span&gt;val&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;]&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt; &lt;span class="token operator"&gt;*&lt;/span&gt; &lt;span class="token number"&gt;0.005&lt;/span&gt; &lt;span class="token comment"&gt;# Prevent NaN&lt;/span&gt;
+s_val &lt;span class="token operator"&gt;+=&lt;/span&gt; np&lt;span class="token punctuation"&gt;.&lt;/span&gt;random&lt;span class="token punctuation"&gt;.&lt;/span&gt;normal&lt;span class="token punctuation"&gt;(&lt;/span&gt;size &lt;span class="token operator"&gt;=&lt;/span&gt; s_val&lt;span class="token punctuation"&gt;.&lt;/span&gt;size&lt;span class="token punctuation"&gt;,&lt;/span&gt; scale &lt;span class="token operator"&gt;=&lt;/span&gt; noise_scale&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, I reproduce dilatation by applying non-linear transformation, with scale 0.66% of deviation.&lt;/p&gt;
+&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-python"&gt;&lt;code class="language-python"&gt;wav_mean &lt;span class="token operator"&gt;=&lt;/span&gt; np&lt;span class="token punctuation"&gt;.&lt;/span&gt;mean&lt;span class="token punctuation"&gt;(&lt;/span&gt;&lt;span class="token punctuation"&gt;[&lt;/span&gt;wav &lt;span class="token keyword"&gt;for&lt;/span&gt; wav &lt;span class="token keyword"&gt;in&lt;/span&gt; s_wav &lt;span class="token keyword"&gt;if&lt;/span&gt; &lt;span class="token keyword"&gt;not&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;math&lt;span class="token punctuation"&gt;.&lt;/span&gt;isnan&lt;span class="token punctuation"&gt;(&lt;/span&gt;wav&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;]&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;
+s_wav &lt;span class="token operator"&gt;=&lt;/span&gt; wav_mean &lt;span class="token operator"&gt;+&lt;/span&gt; &lt;span class="token punctuation"&gt;(&lt;/span&gt;s_wav &lt;span class="token operator"&gt;-&lt;/span&gt; wav_mean&lt;span class="token punctuation"&gt;)&lt;/span&gt; &lt;span class="token operator"&gt;*&lt;/span&gt; &lt;span class="token number"&gt;1.0066&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally, the noise-added spectrum will be save as .spec file and its information will be stored as formatted JSON structure. The noise-added spectrum is like this:&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/fa599fd0903315d279158c0ca38a6a5b/20751/noise-added.png" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="Final product of generated synthetic spectrum" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/fa599fd0903315d279158c0ca38a6a5b/f058b/noise-added.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Final product of generated synthetic spectrum"&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;We can see the difference between these two spectra using &lt;code class="language-text"&gt;plot_diff()&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/51e2569008c18f1a2d54223ad885b2c8/5f7fb/compare.png" rel="noopener" style="display: block;" target="_blank"&gt;
+&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
+&lt;img alt="Difference result between two spectra. As you can see, the synth spectrum features both noise and dilatation effects." class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/51e2569008c18f1a2d54223ad885b2c8/f058b/compare.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Difference result between two spectra. As you can see, the synth spectrum features both noise and dilatation effects."&gt;
+&lt;/a&gt;
+&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;These files will later be used for benchmarking process to test multiple fitting pipelines, and more files will definitely be added later.&lt;/p&gt;
+&lt;p&gt;About the fitting module, now I am still stuck with the development of it. The development seems harder and requires more time than I expected. I will try my best to keep up with the deadlines.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_tranhuunhathuy/</guid><pubDate>Sat, 25 Jun 2022 23:00:00 GMT</pubDate></item></channel></rss>
