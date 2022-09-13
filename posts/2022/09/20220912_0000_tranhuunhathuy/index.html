@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Final Evaluation - A time to look back. | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2022/09/20220912_0000_tranhuunhathuy/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="TranHuuNhatHuy">
+<link rel="prev" href="../20220908_0520_akash5100/" title="Google Summer of Code 2022 —  Building, Testing, and Wrapping Helioviewer API in a Python package" type="text/html">
+<link rel="next" href="../20220912_1225_aman-pandey-afk/" title="GSoC Blog#4 (Final Submission)" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Final Evaluation - A time to look back.">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2022/09/20220912_0000_tranhuunhathuy/">
+<meta property="og:description" content="1. What I have done in OpenAstronomy and in RADIS
+Throughout 3 months with RADIS, I have successfully developed a new fitting module for spectrum fitting purposes. RADIS has its own fitting feature, a">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-09-12T00:00:00+01:00">
+<meta property="article:tag" content="radis">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@akash5100" data-toggle="tooltip" data-placement="top" title="2022-09-08 05:20:16+01:00">
+                    Akash
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@aman_p" data-toggle="tooltip" data-placement="top" title="2022-09-12 12:25:22+01:00">
+                    AMAN PANDEY
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://minimal-blog.lekoarts.de" data-toggle="tooltip" data-placement="top" title="2022-07-31 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    arunavabasu-03
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://jash_shah.github.io" data-toggle="tooltip" data-placement="top" title="2022-07-20 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Jash Shah
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://medium.com/@mihirtripathi97" data-toggle="tooltip" data-placement="top" title="2022-09-12 17:08:26+01:00">
+                    Mihirtripathi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://sagarchotalia.github.io" data-toggle="tooltip" data-placement="top" title="2022-08-10 10:30:40+01:00" style="color:rgb(255,0,0)">
+                    OpenAstronomy
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://minimal-blog.lekoarts.de" data-toggle="tooltip" data-placement="top" title="2022-09-03 00:00:00+01:00">
+                    Supriya1702
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://https:" data-toggle="tooltip" data-placement="top" title="2022-09-12 00:00:00+01:00">
+                    TranHuuNhatHuy
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-06-13 - 2022-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-07-01 - 2022-08-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-08-01 - 2022-09-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2022-09-01 - 2022-10-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-10-01 - 2022-11-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2022-11-01 - 2022-11-21">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Final Evaluation - A time to look back.</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/tranhuunhathuy/">TranHuuNhatHuy</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2022-09-12T00:00:00+01:00" itemprop="datePublished" title="2022-09-12 00:00">2022-09-12 00:00</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://https://gsoc2022tranhuunhathuy.gatsbyjs.io/11.%20final%20evaluation/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p><span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;">
+<a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/236320199c2c7323f80233362c6a584c/71b12/logoOA.png" rel="noopener" style="display: block;" target="_blank">
+<span class="gatsby-resp-image-background-image" style="display: block;"></span>
+<!-- TEASER_END -->
+<img alt="logo_OpenAstronomy" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/236320199c2c7323f80233362c6a584c/f058b/logoOA.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="logo_OpenAstronomy"></a>
+</span></p>
+<h4>1. What I have done in OpenAstronomy and in RADIS</h4>
+<p>Throughout 3 months with RADIS, I have successfully developed a new fitting module for spectrum fitting purposes. RADIS has its own fitting feature, as shown in <a href="https://radis.readthedocs.io/en/latest/auto_examples/plot_1T_fit.html#sphx-glr-auto-examples-plot-1t-fit-py">1-temperature fit example</a>, where you have to manually create the spectrum model, input the experimental spectrum and other ground-truths into numerous RADIS native functions, as well as adjust the fitting pipeline yourself.</p>
+<p>Now with the new fitting module released, all you have to do is to prepare a <code class="language-text">.spec</code> file containing your experimental spectrum, fill some JSON forms describing the ground-truth conditions just like how you fill your medical checkup paper, call the function <a href="https://radis.readthedocs.io/en/latest/source/radis.tools.new_fitting.html#radis.tools.new_fitting.fit_spectrum"><code class="language-text">fit_spectrum()</code></a> and let it do all the work! If you are not satisfied with the result, you can simply adjust the parameters in your JSON, such as <code class="language-text">slit</code> and <code class="language-text">path_length</code>, then recall the function again, until the results are satisfied.</p>
+<p>This is way easier and more convenient than dwelling into RADIS documentation to find out and learn how to use the current example, especially for new RADIS users. Various <a href="https://github.com/radis/radis/pull/522#issue-1365475821">benchmarking efforts</a> have shown that this new fitting module has performance advantages over the old version. This new fitting module aims to provide an end-to-end fitting experience, with minimum amount of RADIS knowledge needed.</p>
+<p>You can see an overview of my project here: <a href="https://github.com/radis/radis/projects/6">https://github.com/radis/radis/projects/6</a></p>
+<h4>2. GSoC, RADIS and a learning curve that has been fulfilled</h4>
+<p>Throughout my GSoC journey with RADIS and working as a contributor, I really enjoyed all the experience of developing and contributing a meaningful improvement to a grand community-based project. Furthermore, I used to be a Computer Science majored student back in Vietnam, but after coming to Japan, I have been learning engineering for more than 2 years, enough for me to miss the old time coding projects and grinding hackathons, the days when I was truly a “CS student”. GSoC truly granted me a precious chance to rekindle the interest I have long lost, with wonderous opportunities to learn from prestigious mentors, and a huge boost for my background to get back to the run.</p>
+<p>In addition, one of the most satisfying moments in this GSoC, is when I finally nailed a bug or issue after days (or even weeks, trust me) of debugging, using the last brain cell to figure out what is the reason. The longer the suffering, the greater the hype that comes afterward. I guess we as developers all share this kind of experience often, but for a guy who starts coding again after a long time like, the ecstasy is at least three-fold.</p>
+<p>Furthermore, I don’t know what other open-source projects are, but RADIS is an extremely well-developed one. They have code coverage, pre-commit check, automatic documentation, and an extensive library of well-structured classes and methods for multiple purposes. This is a level of professional development I have never seen before, and I am extremely eager to learn all of this, not only within the GSoC, but also for a much longer time. This project also helped me to gain significant knowledge and experience</p>
+<p>So, to sum up, I really enjoyed this GSoC, especially with RADIS mentors and community. Thank you so much, GSoC and RADIS, for all of these wonderous experiences.</p>
+<h4>3. Of course, there were hard times, but hey, “Hard times come again no more”</h4>
+<p>I believe the most challenging part of my GSoC 2022 experience, is during the development of my project itself. My project is “Spectrum Fitting Improvement”, in which I will implement a brand-new fitting method that uses a different module than the original method’s, and there are several challenges that I only discovered after joining the project.</p>
+<p>Firstly, the fitting process itself is totally a black box, where I implemented a spectrum, along with its ground-truth parameters, and hopefully the result comes as I expect. In the early days, there were weeks when I could not understand why the result went bad. The reasons could be faulty ground-truth data (original ground-truth parameters are incorrect), or the spectrum itself (mistakes during spectral variable extraction), a code bug, or even from the RADIS limitation itself (currently RADIS only uses air broadening coefficients, which is not suitable for experiments in other gases). All of these costed me huge time and efforts just trying to figure out the culprit, and those were the most anxious times.</p>
+<p>Secondly, there are several problems and bugs, or required implementations that can only be discovered during the last weeks of this GSoC, which makes these time tough and sour for me.</p>
+<p>Finally, my laptop was abruptly broken beyond repair during the middle of second phase, in which I had to wait for one week before the new laptop arrived and I could continue my work. Truly the darkest, most desperate days back then.</p>
+<p>Gradually the learning curve is flattened, but still, there were tough times. Thanks to GSoC, I could experience what would happen in a real project, where you have to anticipate and be ready to deal with all possible accidents and troubles, while keeping on a tight schedule. These will be precious experience for me and my career ahead.</p>
+<h4>4. A little tribute to my mentors</h4>
+<p>Firstly, I would like to say, thank you so much, my mentors - Mr. Erwan, Mr. Minou, Anand, Gagan, as well as other unofficial mentors such as Mr. Corentin - for all the time and efforts you have put through to guide us – some random annoying students always trying to bother you with questions throughout 4 months.</p>
+<p>You helped us a lot in understanding the RADIS codebase and overall structure, as well as various skills in developing a grand-scaled project like RADIS. Throughout this GSoC, I had opportunity to familiarize with code coverage, pre-commit check and linting, automatic documentation such as readthedocs, a bunch of GitHub tips, and most important, a sheer confidence of open-source project contributing, by jumping into the source code itself, understanding it slow and steady, then finally pushing commits. Before this April, all of these were very scary for me. But now, as I look back, they are just breezes to me. Now I can truly understand and feel the scope of GSoC – to encourage students to contribute to open-source projects. Thanks to you, this is a huge success to me.</p>
+<p>All of these could not be done without you entrusting us from the very beginning of selection process. From the very moment of you accepting us, we are here today, wrapping up what we have learned, finishing our projects, and carving our names into the list of RADIS contributors. These will be precious experience for me and my career ahead.</p>
+<h4>5. And finally, to someone reading this</h4>
+<p>Ayyo, to whoever reading this,</p>
+<p>I believe that you must be some next year’s GSoC applicants sneaking around and patiently preparing for the upcoming turn. If you are reading this, then firstly I would like to say thank you for reading all the way here.</p>
+<p>I have so many things to share you about all the experiences I had during this GSoC, about every moment in all aspects during these 3 months. But I’m afraid I might accidentally spoil your fun in near future, so I will only give some necessary advice, hope they might help you enjoy better in the next GSoC.</p>
+<p>Firstly, the actual time required to complete the project always LONGER than the initially planned time, so try your best to finish everything as soon as possible.</p>
+<p>Secondly, there might be times when you confront an extremely hard issue which takes you A LOT of time and you still cannot deal with it. When that time comes, explain to your mentors, and find a way, instead of gazing on the screen trying to solve it singlehandedly while wasting 1-2 weeks for that, like I did.</p>
+<p>This is also relevant to the above advice but, if you find yourself scared to tell your mentors about a challenge you are facing, please do not be afraid and just tell them. I used to be extremely afraid of asking my mentors because sometimes they were deadly serious (in a professional way), and thus I forced myself to solve an impossible task for 2 weeks before finally reaching out to them. Please do not be afraid and share with them anything, if you want to find a solution, if you want to change the current objectives, or whatever. Just ask!</p>
+<p>And finally, try to enjoy GSoC, I meant, every moment of it. It worths. Really.</p>
+<p>Good luck to become a GSoC member and successfully carve your name among contributors!</p>
+<p>September 12, 2022
+Tran Huu Nhat Huy</p>
+<p><span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;">
+<a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/4d7ee6f3d3a81c95e441a7cc5dcadb98/ac99c/me.jpg" rel="noopener" style="display: block;" target="_blank">
+<span class="gatsby-resp-image-background-image" style="display: block;"></span>
+<img alt="Me, among the peaks of Shizuoka, Japan." class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/4d7ee6f3d3a81c95e441a7cc5dcadb98/828fb/me.jpg" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Me, among the peaks of Shizuoka, Japan."></a>
+</span></p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20220908_0520_akash5100/" rel="prev" title="Google Summer of Code 2022 —  Building, Testing, and Wrapping Helioviewer API in a Python package">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20220912_1225_aman-pandey-afk/" rel="next" title="GSoC Blog#4 (Final Submission)">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2022         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
