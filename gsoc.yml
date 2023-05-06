@@ -1,3 +1,25 @@
+gsoc2023:
+  exitflynn:
+    rss_feed: 'https://exitflynn.github.io/blog/tags/gsoc/index.xml'
+    project: 'SunPy'
+  aritrasinha108:
+    rss_feed: "https://medium.com/feed/@aritrasinha002"
+    project: 'SunPy'
+  labeeb-7z:
+    rss_feed: "https://labeeb-7z.github.io/Blogs/feed.gsoc.xml"
+    project: 'gnuastro'
+  Gaurav17Joshi:
+    rss_feed: "https://gaurav17joshi.github.io/Blogs/feed.gsoc.xml"
+    project: 'stingray'
+  pupperemeritus:
+    rss_feed: "https://dev.to/feed/pupperemeritus"
+    project: 'stingray'
+  menasrac:
+    rss_feed: "https://medium.com/feed/@menasrac"
+    project: 'radis'
+  1someshverma:
+    rss_feed: "https://1someshverma.github.io/feed.xml"
+    project: 'radis'
 gsoc2022:
   akash5100:
     rss_feed: "https://medium.com/feed/@akash5100"
