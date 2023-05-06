@@ -1,3 +1,25 @@
+gsoc2023:
+  exitflynn:
+    rss_feed: #FIXME
+    project: 'SunPy'
+  aritrasinha108:
+    rss_feed: #FIXME
+    project: 'SunPy'
+  labeeb-7z:
+    rss_feed: #FIXME
+    project: 'gnuastro'
+  Gaurav17Joshi:
+    rss_feed: #FIXME
+    project: 'stingray'
+  pupperemeritus:
+    rss_feed: #FIXME
+    project: 'stingray'
+  menasrac:
+    rss_feed: #FIXME
+    project: 'radis'
+  1someshverma:
+    rss_feed: #FIXME
+    project: 'radis'
 gsoc2022:
   akash5100:
     rss_feed: "https://medium.com/feed/@akash5100"
