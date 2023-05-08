@@ -18,7 +18,7 @@ gsoc2023:
     rss_feed: #FIXME
     project: 'radis'
   1someshverma:
-    rss_feed: #FIXME
+    rss_feed: "https://1someshverma.github.io/feed.xml"
     project: 'radis'
 gsoc2022:
   akash5100:
