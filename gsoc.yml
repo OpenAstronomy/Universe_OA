@@ -9,7 +9,7 @@ gsoc2023:
     rss_feed: #FIXME
     project: 'gnuastro'
   Gaurav17Joshi:
-    rss_feed: #FIXME
+    rss_feed: "https://gaurav17joshi.github.io/Blogs/feed.gsoc.xml"
     project: 'stingray'
   pupperemeritus:
     rss_feed: #FIXME
