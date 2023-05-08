@@ -12,7 +12,7 @@ gsoc2023:
     rss_feed: "https://gaurav17joshi.github.io/Blogs/feed.gsoc.xml"
     project: 'stingray'
   pupperemeritus:
-    rss_feed: #FIXME
+    rss_feed: "https://dev.to/feed/pupperemeritus"
     project: 'stingray'
   menasrac:
     rss_feed: #FIXME
