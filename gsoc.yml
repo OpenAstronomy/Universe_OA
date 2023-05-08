@@ -15,7 +15,7 @@ gsoc2023:
     rss_feed: "https://dev.to/feed/pupperemeritus"
     project: 'stingray'
   menasrac:
-    rss_feed: #FIXME
+    rss_feed: "https://medium.com/feed/@menasrac"
     project: 'radis'
   1someshverma:
     rss_feed: "https://1someshverma.github.io/feed.xml"
