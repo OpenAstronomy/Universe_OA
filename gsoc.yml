@@ -1,6 +1,6 @@
 gsoc2023:
   exitflynn:
-    rss_feed: #FIXME
+    rss_feed: 'https://exitflynn.github.io/blog/tags/gsoc/index.xml'
     project: 'SunPy'
   aritrasinha108:
     rss_feed: #FIXME
