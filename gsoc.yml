@@ -6,7 +6,7 @@ gsoc2023:
     rss_feed: #FIXME
     project: 'SunPy'
   labeeb-7z:
-    rss_feed: #FIXME
+    rss_feed: "https://labeeb-7z.github.io/Blogs/feed.gsoc.xml"
     project: 'gnuastro'
   Gaurav17Joshi:
     rss_feed: "https://gaurav17joshi.github.io/Blogs/feed.gsoc.xml"
