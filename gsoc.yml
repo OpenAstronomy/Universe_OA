@@ -3,7 +3,7 @@ gsoc2023:
     rss_feed: 'https://exitflynn.github.io/blog/tags/gsoc/index.xml'
     project: 'SunPy'
   aritrasinha108:
-    rss_feed: #FIXME
+    rss_feed: "https://medium.com/feed/@aritrasinha002"
     project: 'SunPy'
   labeeb-7z:
     rss_feed: "https://labeeb-7z.github.io/Blogs/feed.gsoc.xml"
