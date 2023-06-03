@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-  # schedule:
-  #   - cron: "1 00 * * *"
+  schedule:
+    - cron: "1 00 * * *"
 jobs:
   download-posts:
     name: "Check for new posts, download them and re-publish"
