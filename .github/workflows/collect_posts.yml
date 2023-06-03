@@ -17,13 +17,13 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           cache: pip
       - run: pip install -r requirements.txt
       - name: grab posts
         run: python grab.py
       - name: Build and Deploy Nikola
-        uses: getnikola/nikola-action@v4
+        uses: getnikola/nikola-action@v8
         with:
           dry_run: false
       - name: check branch
