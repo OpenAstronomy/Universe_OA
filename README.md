@@ -18,18 +18,18 @@ To check all available commands::
 
 # Structure of this repository
 
-There are three branches: `master`, `run` and `gh-pages`.
+There are three branches: `main`, `run` and `gh-pages`.
 
-- `master` includes only commits made by people and not automatically.
+- `main` includes only commits made by people and not automatically.
 - `run` runs on Travis and updates the posts and everything
 - `gh-pages` is the built version of the page, also done automatically.
 
-We could keep `master` and `run` in the same branch but this makes it easier to
+We could keep `main` and `run` in the same branch but this makes it easier to
 search the commits that we care about.
 
 # Updates for a new season:
 
-1. Update `gsoc_times.yml` from `run` into `master`
+1. Update `gsoc_times.yml` from `run` into `main`
    ```
    git restore --source run gsoc_times.yml
    ```
@@ -53,10 +53,14 @@ search the commits that we care about.
 
 1. Create a PR and ask students to PR to that filling it in. As in: [2018](https://github.com/OpenAstronomy/Universe_OA/pull/8)
 
-1. copy the new config file into the `run` branch, for example with:
+1. squash merge that pull request into `main`.
+
+1. Locally, update `dates_post.yaml` with the new date ranges for this season and commit it to `main`
+
+1. copy the new config files into the `run` branch, for example with:
    ```bash
    git rebase --onto run <x> <z>
    ```
    where `<x>` is the commit before than `<y>` which is the one we want to copy
    (up to <z> included) to `run`.
-   Then push it and all should work.
+   Then push it `run` and all should work. And then push to `main`
