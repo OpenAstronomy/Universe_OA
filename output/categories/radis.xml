@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 21 Nov 2022 01:02:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Final Evaluation - A time to look back.</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 03 Jun 2023 19:12:21 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Utilising community bonding period Effectively!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230530_0000_1someshverma/</link><dc:creator>OpenAstronomy</dc:creator><description>&lt;p&gt;I started to contribute to RADIS from January’23 and whenever i needed help in some issue , mentors were quite helpful in providing revelant information to resolve that issue . And this thing helped me , to develop good bonding and understanding with the mentors .&lt;/p&gt;
+
+&lt;p&gt;So,I thought, i should use community bonding period more productively thus, i decided to work on project from 15 May .&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;In community bonding period i have done following things -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Read the RADIS and HITRAN Paper (selected parts)&lt;/li&gt;
+&lt;li&gt;Worked on Loading the dataframe in Vaex format (task of first week)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id="loading-dataframe-in-vaex-format"&gt;Loading Dataframe in Vaex format&lt;/h6&gt;
+&lt;p&gt;There are two main functions which are used load databank in RADIS
+These are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fetch_databank()&lt;/li&gt;
+&lt;li&gt;load_databank()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230530_0000_1someshverma/</guid><pubDate>Mon, 29 May 2023 23:00:00 GMT</pubDate></item><item><title>Getting selected for GSoC’23@RADIS!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230524_0000_1someshverma/</link><dc:creator>OpenAstronomy</dc:creator><description>&lt;p&gt;I am Somesh Verma,a third year undergrad at National Institute of Technology Hamirpur. I have been accepted as contributor to the OpenAstronomy  RADIS.&lt;/p&gt;
+
+&lt;h4 id="choosing-organisation"&gt;Choosing Organisation&lt;/h4&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I  chose OpenAstronomy as i have interest in astronomy right from my childhood and RADIS also aline with my interst and skills .I have also contributed to Libre Health App for Baby Care but then i shifted my focus  only to RADIS . By the end i had four merged pull request and I was working on the fifth issue.&lt;/p&gt;
+
+&lt;h4 id="contriutions-and-experience"&gt;Contriutions and Experience&lt;/h4&gt;
+&lt;p&gt;I started to contribute to RADIS from January’23 , initially i faced problem to set up the things and run the code . After one weel or so I fixed the issues and than I spent one week on understanding the codebase ,reading documentation and try examples. By now , i had developed a rough understanding of the code .&lt;/p&gt;
+
+&lt;p&gt;Then , I started to find issue over which i can work and started to work on the issues ,mentors have been quite helpful so far, whenever i got struck somewhere ,they helped in resolving the issue .&lt;/p&gt;
+
+&lt;p&gt;I am looking forward to have the great Learning experience this Summer with RADIS :)&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230524_0000_1someshverma/</guid><pubDate>Tue, 23 May 2023 23:00:00 GMT</pubDate></item><item><title>Blog GSoC project : Common API for large molecular database, RADIS.</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230508_1207_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;Blog GSoC project : Common API for large molecular database, RADIS.&lt;/h4&gt;&lt;p&gt;Hello, I’m Racim MENASRIA a French engineering student at CentraleSupelec. I m glad to take part in the 2023 GSoC programm to contribute to Radis, a fast line-by-line code for high-resolution infrared molecular spectra.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/200/0*GIeb_J5QTLrhtfNj"&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/250/0*bNLY4YMhDxf2yxek"&gt;&lt;/figure&gt;&lt;p&gt;This blog will be used to post my results, remarks, difficulties or annything I consider useful to document my work.&lt;/p&gt;
+&lt;p&gt;I’m looking forward to stard contributing :)&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=10c7a1c786e4" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230508_1207_menasrac/</guid><pubDate>Mon, 08 May 2023 11:07:08 GMT</pubDate></item><item><title>Final Evaluation - A time to look back.</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
 &lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/236320199c2c7323f80233362c6a584c/71b12/logoOA.png" rel="noopener" style="display: block;" target="_blank"&gt;
 &lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
 &lt;!-- TEASER_END --&gt;
@@ -113,132 +156,4 @@ I initially thought nothing of the error, and was convinced that my implementati
 &lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220901_1321_sagarchotalia/</guid><pubDate>Thu, 01 Sep 2022 12:21:34 GMT</pubDate></item><item><title>Officially Started. Unofficially...not so much.</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220901_1320_sagarchotalia/</link><dc:creator>sagarchotalia</dc:creator><description>&lt;p&gt;Let the Coding Begin! Chapter 2: Weeks 1 and 2 Dr. Erwan let us know about the community’s plan to conduct our projects in teams of two, based on our projects’ similarities.
 Thus a team between Arunava Basu and I, and a team between Tran Huu Nhat Huy and Supriya Kumari was formed.
 Unfortunately, I fell sick midway through week 1. I tried to tackle smaller issues, but couldn’t focus at all.
-&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220901_1320_sagarchotalia/</guid><pubDate>Thu, 01 Sep 2022 12:20:49 GMT</pubDate></item><item><title>2022 06 04 Chapter 0</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220901_1135_sagarchotalia/</link><dc:creator>sagarchotalia</dc:creator><description>&lt;p&gt;Chapter 0 Pre-GSoC Phase ??? - 20th May, 2022 I first started searching for organisations back in January. After extensive research, I found OpenAstronomy to be quite interesting and joined the Slack channel. I was looking at the sub-organisations in OpenAstronomy, and joined their individual Slack channels as well. It was around this time that I started looking at the issues of the sub-orgs. I was very new to open-source, hence even basic stuff like issuing PR’s and tackling simple good-first-issues was challenging.
-&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220901_1135_sagarchotalia/</guid><pubDate>Thu, 01 Sep 2022 10:35:45 GMT</pubDate></item><item><title>Week 9, 10 and 11 - The challenge, the calamity, the hope, and the salvation.</title><link>http://openastronomy.org/Universe_OA/posts/2022/08/20220828_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;h4&gt;1. The challenge&lt;/h4&gt;
-&lt;p&gt;After successfully dealing with Mr. Minou’s case, I got a message from another RADIS spectroscopic scientist - Mr. Corentin Grimaldi, a Ph.D. candidate of CentraleSupélec, Paris. He had several experimental spectra containing CO and CO2 at different temperatures and possibly in non-equillibrium. There were 3 spectra in total, and he also provided 3 Python scripts he used to fit them:&lt;/p&gt;
-&lt;ul&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;li&gt;&lt;code class="language-text"&gt;Fit_init_V2.py&lt;/code&gt; : the script for fitting initialization, which conducts all the basic functions such as normalization, crop, slit convolution &amp;amp; dispersion, residual calculation, etc.&lt;/li&gt;
-&lt;li&gt;&lt;code class="language-text"&gt;Optimize_find_min_2D_V2.py&lt;/code&gt; : the program that looks for optimum parameters such as &lt;code class="language-text"&gt;Trot&lt;/code&gt;, &lt;code class="language-text"&gt;Tvib&lt;/code&gt;, &lt;code class="language-text"&gt;molfrac&lt;/code&gt;, etc.&lt;/li&gt;
-&lt;li&gt;&lt;code class="language-text"&gt;fit_CO_1T_CO2_2T_cv_V2.py&lt;/code&gt; :  the master program that conducts main fitting job.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So there is one thing that I need to mention first: these spectra are quite challenging to fit. Not hard, but challenging. Both CO2 and CO overlap in this spectral region, and a lot of parameters are unknown: &lt;code class="language-text"&gt;Trot&lt;/code&gt;, &lt;code class="language-text"&gt;Tvib&lt;/code&gt;, &lt;code class="language-text"&gt;x_CO&lt;/code&gt; for CO and &lt;code class="language-text"&gt;Trot&lt;/code&gt;, &lt;code class="language-text"&gt;Tvib1&lt;/code&gt;, &lt;code class="language-text"&gt;Tvib2&lt;/code&gt;, &lt;code class="language-text"&gt;Tvib3&lt;/code&gt;, &lt;code class="language-text"&gt;x_CO2&lt;/code&gt; for CO2. Furthermore, unfortunately some cold CO2 and H2O absorb the incomming radiance and the mole fraction is also unknown, too. So basically, there are a lot of fit parameters we need to find, and they don’t really follow the normal spectrum calculation that RADIS offers.&lt;/p&gt;
-&lt;p&gt;Although Mr. Corentin provided a fitting pipeline for these cases, I still kinda doubt whether should I implement his very specific and exotic approach to my unified modules. After experiencing a lot of fitting scripts from various users in the community, I feel like although I can implement a common interface to support most of fitting cases, but definitely not all of them, since each experimental spectrum is suitable for a unique workflow. Mr. Corentin’s case and approach is just somewhat way too unique and completely different from mine. So basically, his approach is quite difficult to be generalized and implemented into a module aimed to serve general fitting cases.&lt;/p&gt;
-&lt;h4&gt;2. The calamity&lt;/h4&gt;
-&lt;p&gt;After spending the whole week 9 finding a solution for Mr. Corentin’s cases, at the beginning of week 10, all of sudden my MSI laptop - the 6-year buddy always accompanies me to all the coding contests and evreything - stopped working. The next day, the iPhone 11 I bought this February had its screen flickered intensively and thus unable to use. Within less than 48 hours, I, one of GSoC contributor, was cut off from the modern life! All the following days were desperate efforts trying to get my stuffs fixed but nothing worked, trying to communicate with the mentors, trying not to miss any important emails and news. Amidst the challenging second phase of GSoC, I was rendered useless for one week straight! I shudder recalling it, those dark and desperate days sitting in Japanese internet cafes to access the Internet, while extremely anxious about a future of failing GSoC.&lt;/p&gt;
-&lt;h4&gt;3. The hope&lt;/h4&gt;
-&lt;p&gt;After one week of despair, my new Macbook Air M1 finally arrived!&lt;/p&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/235c694787085f9f7595ef9772eb4744/0f98f/new_Mac.jpg" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="My new buddy!" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/235c694787085f9f7595ef9772eb4744/828fb/new_Mac.jpg" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="My new buddy!"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;Finally days and nights in extreme anxious of being unable to do anything while seeing my friends committing and pushing onto GitHub, have finally gone! Now I have my new Mac (with an exorbitant cost as Japanese Yen is dropping like my mental condition recently), and within the remaining days until the final evaluation, I will rush my best with all I have to deliver my module!&lt;/p&gt;
-&lt;h4&gt;4. The salvation&lt;/h4&gt;
-&lt;p&gt;After a long time of struggling, I finally received new experimental spectra from Mr. Corentin. He finally realized that those old cases were just too complicated, and now we have 4 simpler tests case with only CO, in the spectral range of 2000 nm to 2600 nm, non-equillibrium, not really absorbed:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/0_100cm%20Down%20Sampled%20-%2010cm_10pctCO2_1-wc-gw450-gr300-sl1500-acc5000-.spec"&gt;0_100cm%20Down%20Sampled%20-%2010cm_10pctCO2_1-wc-gw450-gr300-sl1500-acc5000-.spec&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/0_100cm%20Down%20Sampled%20-%2020cm_10pctCO2_1-wc-gw450-gr300-sl1500-acc5000-.spec"&gt;0_100cm%20Down%20Sampled%20-%2020cm_10pctCO2_1-wc-gw450-gr300-sl1500-acc5000-.spec&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/0_200cm%20Down%20Sampled%20-%2035cm_10pctCO2_1-wc-gw450-gr300-sl1500-acc5000-.spec"&gt;0_200cm%20Down%20Sampled%20-%2035cm_10pctCO2_1-wc-gw450-gr300-sl1500-acc5000-.spec&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/0_300cm%20Down%20Sampled%20-%2010cm_10pctCO2_1-wc-gw450-gr300-sl1500-acc5000-.spec"&gt;0_300cm%20Down%20Sampled%20-%2010cm_10pctCO2_1-wc-gw450-gr300-sl1500-acc5000-.spec&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Also, in these cases Mr. Corentin introduced a complex slit settings like this:&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-python"&gt;&lt;code class="language-python"&gt;&lt;span class="token keyword"&gt;def&lt;/span&gt; &lt;span class="token function"&gt;slit_dispersion&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;w&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;:&lt;/span&gt;
-phi &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token operator"&gt;-&lt;/span&gt;&lt;span class="token number"&gt;6.33&lt;/span&gt;
-f &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token number"&gt;750&lt;/span&gt;
-gr &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token number"&gt;300&lt;/span&gt;
-m &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token number"&gt;1&lt;/span&gt;
-phi &lt;span class="token operator"&gt;*=&lt;/span&gt; &lt;span class="token operator"&gt;-&lt;/span&gt; &lt;span class="token number"&gt;2&lt;/span&gt;&lt;span class="token operator"&gt;*&lt;/span&gt;np&lt;span class="token punctuation"&gt;.&lt;/span&gt;pi&lt;span class="token operator"&gt;/&lt;/span&gt;&lt;span class="token number"&gt;360&lt;/span&gt;
-d &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token number"&gt;1e-3&lt;/span&gt;&lt;span class="token operator"&gt;/&lt;/span&gt;gr
-disp &lt;span class="token operator"&gt;=&lt;/span&gt; w&lt;span class="token operator"&gt;/&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;&lt;span class="token number"&gt;2&lt;/span&gt;&lt;span class="token operator"&gt;*&lt;/span&gt;f&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token operator"&gt;*&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;&lt;span class="token operator"&gt;-&lt;/span&gt;np&lt;span class="token punctuation"&gt;.&lt;/span&gt;tan&lt;span class="token punctuation"&gt;(&lt;/span&gt;phi&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token operator"&gt;+&lt;/span&gt;np&lt;span class="token punctuation"&gt;.&lt;/span&gt;sqrt&lt;span class="token punctuation"&gt;(&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;&lt;span class="token number"&gt;2&lt;/span&gt;&lt;span class="token operator"&gt;*&lt;/span&gt;d&lt;span class="token operator"&gt;/&lt;/span&gt;m&lt;span class="token operator"&gt;/&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;w&lt;span class="token operator"&gt;*&lt;/span&gt;&lt;span class="token number"&gt;1e-9&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token operator"&gt;*&lt;/span&gt;np&lt;span class="token punctuation"&gt;.&lt;/span&gt;cos&lt;span class="token punctuation"&gt;(&lt;/span&gt;phi&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token operator"&gt;**&lt;/span&gt;&lt;span class="token number"&gt;2&lt;/span&gt;&lt;span class="token operator"&gt;-&lt;/span&gt;&lt;span class="token number"&gt;1&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;
-&lt;span class="token keyword"&gt;return&lt;/span&gt; disp  &lt;span class="token comment"&gt;# nm/mm&lt;/span&gt;
-
-&lt;span class="token keyword"&gt;def&lt;/span&gt; &lt;span class="token function"&gt;apply_my_slit&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;spectrum&lt;span class="token punctuation"&gt;,&lt;/span&gt; inplace&lt;span class="token operator"&gt;=&lt;/span&gt;&lt;span class="token boolean"&gt;False&lt;/span&gt;&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;:&lt;/span&gt;
-slit &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token number"&gt;1500&lt;/span&gt;  &lt;span class="token comment"&gt;# µm&lt;/span&gt;
-pitch &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token number"&gt;20&lt;/span&gt;   &lt;span class="token comment"&gt;# µm&lt;/span&gt;
-top_slit_um &lt;span class="token operator"&gt;=&lt;/span&gt; slit &lt;span class="token operator"&gt;-&lt;/span&gt; pitch   &lt;span class="token comment"&gt;# µm&lt;/span&gt;
-base_slit_um &lt;span class="token operator"&gt;=&lt;/span&gt; slit &lt;span class="token operator"&gt;+&lt;/span&gt; pitch  &lt;span class="token comment"&gt;# µm&lt;/span&gt;
-center_slit &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token number"&gt;5090&lt;/span&gt;
-dispersion &lt;span class="token operator"&gt;=&lt;/span&gt; slit_dispersion&lt;span class="token punctuation"&gt;(&lt;/span&gt;center_slit&lt;span class="token punctuation"&gt;)&lt;/span&gt;
-top_slit_nm &lt;span class="token operator"&gt;=&lt;/span&gt; top_slit_um&lt;span class="token operator"&gt;*&lt;/span&gt;&lt;span class="token number"&gt;1e-3&lt;/span&gt;&lt;span class="token operator"&gt;*&lt;/span&gt;dispersion
-base_slit_nm &lt;span class="token operator"&gt;=&lt;/span&gt; base_slit_um&lt;span class="token operator"&gt;*&lt;/span&gt;&lt;span class="token number"&gt;1e-3&lt;/span&gt;&lt;span class="token operator"&gt;*&lt;/span&gt;dispersion&lt;span class="token operator"&gt;*&lt;/span&gt;&lt;span class="token number"&gt;1.33&lt;/span&gt;
-&lt;span class="token keyword"&gt;return&lt;/span&gt; spectrum&lt;span class="token punctuation"&gt;.&lt;/span&gt;apply_slit&lt;span class="token punctuation"&gt;(&lt;/span&gt;&lt;span class="token punctuation"&gt;(&lt;/span&gt;top_slit_nm&lt;span class="token punctuation"&gt;,&lt;/span&gt; base_slit_nm&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt; center_wavespace&lt;span class="token operator"&gt;=&lt;/span&gt;center_slit&lt;span class="token punctuation"&gt;,&lt;/span&gt; unit&lt;span class="token operator"&gt;=&lt;/span&gt;&lt;span class="token string"&gt;'nm'&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt; shape&lt;span class="token operator"&gt;=&lt;/span&gt;&lt;span class="token string"&gt;'trapezoidal'&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt; slit_dispersion&lt;span class="token operator"&gt;=&lt;/span&gt;slit_dispersion&lt;span class="token punctuation"&gt;,&lt;/span&gt; inplace&lt;span class="token operator"&gt;=&lt;/span&gt;inplace&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Initially, my fitting module only allows &lt;code class="language-text"&gt;slit&lt;/code&gt; to be enter with the format of a slit value accompanied by slit unit. For example:&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-python"&gt;&lt;code class="language-python"&gt;experimental_conditions &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token punctuation"&gt;{&lt;/span&gt;
-&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;
-&lt;span class="token string"&gt;"slit"&lt;/span&gt; &lt;span class="token punctuation"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"-0.2 nm"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
-&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;
-&lt;span class="token punctuation"&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;To support Mr. Corentin’s input, from now I implement input of complex slit settings in compliance with &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.spectrum.spectrum.html#radis.spectrum.spectrum.Spectrum.apply_slit"&gt;apply_slit()&lt;/a&gt; function of RADIS. Advanced settings such like this can be inputted:&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-python"&gt;&lt;code class="language-python"&gt;experimental_conditions &lt;span class="token operator"&gt;=&lt;/span&gt; &lt;span class="token punctuation"&gt;{&lt;/span&gt;
-&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;
-&lt;span class="token string"&gt;"slit"&lt;/span&gt; &lt;span class="token punctuation"&gt;:&lt;/span&gt; &lt;span class="token punctuation"&gt;{&lt;/span&gt;
-&lt;span class="token string"&gt;"slit_function"&lt;/span&gt; &lt;span class="token punctuation"&gt;:&lt;/span&gt; &lt;span class="token punctuation"&gt;(&lt;/span&gt;top_slit_nm&lt;span class="token punctuation"&gt;,&lt;/span&gt; base_slit_nm&lt;span class="token punctuation"&gt;)&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
-&lt;span class="token string"&gt;"unit"&lt;/span&gt; &lt;span class="token punctuation"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;"nm"&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
-&lt;span class="token string"&gt;"shape"&lt;/span&gt; &lt;span class="token punctuation"&gt;:&lt;/span&gt; &lt;span class="token string"&gt;'trapezoidal'&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
-&lt;span class="token string"&gt;"center_wavespace"&lt;/span&gt; &lt;span class="token punctuation"&gt;:&lt;/span&gt; center_slit&lt;span class="token punctuation"&gt;,&lt;/span&gt;
-&lt;span class="token string"&gt;"slit_dispersion"&lt;/span&gt; &lt;span class="token punctuation"&gt;:&lt;/span&gt; slit_dispersion&lt;span class="token punctuation"&gt;,&lt;/span&gt;
-&lt;span class="token string"&gt;"inplace"&lt;/span&gt; &lt;span class="token punctuation"&gt;:&lt;/span&gt; &lt;span class="token boolean"&gt;False&lt;/span&gt;&lt;span class="token punctuation"&gt;,&lt;/span&gt;
-&lt;span class="token punctuation"&gt;}&lt;/span&gt;
-&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;&lt;span class="token punctuation"&gt;.&lt;/span&gt;
-&lt;span class="token punctuation"&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And so, I have acquired very good results:&lt;/p&gt;
-&lt;h5&gt;Spectrum 1:&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;Tvib:             5975.28759 (init = 6000)&lt;/li&gt;
-&lt;li&gt;Trot:             5751.19260 (init = 4000)&lt;/li&gt;
-&lt;li&gt;mole_fraction:    0.05501671 (init = 0.1)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/2385b33c685a75c2a93493ceed61841d/cca35/s1.png" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="Fit result of spectrum 1" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/2385b33c685a75c2a93493ceed61841d/f058b/s1.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Fit result of spectrum 1"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;/p&gt;
-&lt;h5&gt;Spectrum 2:&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;Tvib:             4547.43903 (init = 6000)&lt;/li&gt;
-&lt;li&gt;Trot:             4073.50694 (init = 4000)&lt;/li&gt;
-&lt;li&gt;mole_fraction:    0.05939918 (init = 0.1)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/345f41ef9109afb638a3aa9eedb6e4f4/cca35/s2.png" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="Fit result of spectrum 2" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/345f41ef9109afb638a3aa9eedb6e4f4/f058b/s2.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Fit result of spectrum 2"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;/p&gt;
-&lt;h5&gt;Spectrum 3:&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;Tvib:             2811.98218 (init = 6000)&lt;/li&gt;
-&lt;li&gt;Trot:             2915.36318 (init = 4000)&lt;/li&gt;
-&lt;li&gt;mole_fraction:    0.07739941 (init = 0.05)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/5b1fb36019eae53d82648d9fdf049153/cca35/s3.png" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="Fit result of spectrum 3" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/5b1fb36019eae53d82648d9fdf049153/f058b/s3.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Fit result of spectrum 3"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;/p&gt;
-&lt;h5&gt;Spectrum 4:&lt;/h5&gt;
-&lt;ul&gt;
-&lt;li&gt;Tvib:             4721.28892 (init = 6000)&lt;/li&gt;
-&lt;li&gt;Trot:             4728.52960 (init = 4000)&lt;/li&gt;
-&lt;li&gt;mole_fraction:    0.07008355 (init = 0.05)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/569114757da34f35d48661ef31830737/cca35/s4.png" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="Fit result of spectrum 4" class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/569114757da34f35d48661ef31830737/f058b/s4.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Fit result of spectrum 4"&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220828_0000_tranhuunhathuy/</guid><pubDate>Sat, 27 Aug 2022 23:00:00 GMT</pubDate></item><item><title>Unit Selection</title><link>http://openastronomy.org/Universe_OA/posts/2022/08/20220820_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Unit Selection Previously radis only supports the fixed arbitary units  cm-1(wavelength range) , bar(pressure) ..  , but now user can chose…&lt;/p&gt;
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://gsoc.arunavabasu.com/10-11/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220820_0000_arunavabasu-03/</guid><pubDate>Fri, 19 Aug 2022 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220901_1320_sagarchotalia/</guid><pubDate>Thu, 01 Sep 2022 12:20:49 GMT</pubDate></item></channel></rss>

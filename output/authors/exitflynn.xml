@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by exitflynn)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/exitflynn.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 03 Jun 2023 19:12:20 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>I Got Selected As A GSoC student at SunPy!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1158_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;h2 id="what-is-the-google-summer-of-code"&gt;What is The Google Summer of Code?
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#what-is-the-google-summer-of-code"&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;It is a program by Google for promoting students to contribute to open-source communities.
+It is also a  G R E A T  opportunity for us to work on projects with such big impact. I’m so glad I came to know about it. I loved that I could get this opportunity to work with
+Now one could argue that that’s the opportunity Open-Source provides in general, which is true. It’s difficult to admit but I did need that initial push, some motivating factor to &lt;em&gt;truly&lt;/em&gt; make the effort and get my hands wet with contributing to an open-source project. However it’s as they say, the beginning’s the hardest part and that once you start contributing it becomes so much more easy to keep going. I think they’ve done a great job at incentivising Open-Source contributions.&lt;/p&gt;
+&lt;h2 id="choosing-an-org"&gt;Choosing an Org
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#choosing-an-org"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;A lot of Organisations participate in GSoC. I had worked on a couple of #good-first-issues on a few projects before this period and had achieved that level of confidence where the language / tech-stack wasn’t the deciding factor for me anymore but it was now the project idea / the community.
+I &lt;strong&gt;love&lt;/strong&gt; Astronomy and feel quite strongly about it. I am super-curious about how I can use my skills / to-be skills in tech in the field of Astronomy, some sort of an intersection of the two would actually be one of the most meaningful and enjoyable work I could find for myself.
+Naturally, I looked into &lt;strong&gt;OpenAstronomy&lt;/strong&gt; as a GSoC org.
+I’ve seen a lot of people prioritising those organisations which make for nicer addition to a resume from a product-based tech companies pov and it indeed &lt;em&gt;is&lt;/em&gt; a very smart way to go about it to be honest but I decided that I didn’t want to miss this unique opportunity to work on something I had wanted to do since a long time.
+Under the sub-orgs for OpenAstronomy, I found &lt;strong&gt;SunPy&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id="first-experience-with-sunpy"&gt;First Experience with SunPy
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#first-experience-with-sunpy"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;Now, SunPy is a python library relating to solar physics. Though heliophysics wasn’t exactly something that I thought of when thinking of astrophysics or space-stuff, I was &lt;em&gt;really&lt;/em&gt; impressed by how active and supportive the community is. Besides, I found myself interested in the networking side of things more than the solar-physics stuff anyways as for now.&lt;/p&gt;
+&lt;p&gt;While first going through the issues I came across one which included &lt;a href="https://github.com/sunpy/sunpy/issues/6692"&gt;detecting gzipped files from more than just the extension&lt;/a&gt; (via file-signatures / magic-bytes). I love when my familairity with using linux-based systems comes into play during development and I felt the issue to be quite approachable. During the PR Review, I remember going through the documentation for python’s &lt;code&gt;gzip&lt;/code&gt; module to verify that it doesn’t need to decompress a whole gzipped file and that we could decompress just enough to get the first couple of bits which include the file-signature (since otherwise it’d mean way too much overhead for the solution to be practical) and information on that is &lt;em&gt;not&lt;/em&gt; as easily available on the web as I’d like.&lt;/p&gt;
+&lt;h2 id="subsequent-experience"&gt;Subsequent Experience
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#subsequent-experience"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;I kept on making code-contributions which I felt approachable for some parts of January and February. And then I got a bit busy due to some health-reasons and college and organsing OSDHack ‘23 (I’ll totally write a blog-post on that later, it was such a nice success). I was a bit apprehensive because I was also looking forward to participate in the Google Summer of Code as a SunPy contributor and I didn’t want to give off the wrong impression so I wrote a (not)brief text to &lt;a href="https://github.com/Nabobalis"&gt;Nabil&lt;/a&gt; who was super-supportive. When the proposal submission period came around, it wasn’t the most ideal process since I ended up having to make the proposal in the last 2 days. Thankfully again, the community is super responsive and I reached out to both Nabil and &lt;a href="https://github.com/wtbarnes"&gt;Will&lt;/a&gt; for some feedback on my proposal and they both replied immediately.&lt;/p&gt;
+&lt;h2 id="contributing-to-open-source-is-goated"&gt;Contributing to Open-Source is GOATed
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#contributing-to-open-source-is-goated"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;People in tech / software development should actually be talking about this so much more than they are. Some of the things that come to my mind right now are:&lt;/p&gt;
+&lt;h3 id="its-a-great-way-to-learn-stuff"&gt;It’s a great way to learn stuff
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#its-a-great-way-to-learn-stuff"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;&lt;p&gt;One of the main factors why I think people have a hard time contributing is that they think “I can’t contribute here because I don’t know nearly enough tech to do stuff”. The thing with being involved in this form of software development is that it gets you used to learning on the fly which is central to software development and doing well in any field, tbh.&lt;/p&gt;
+&lt;p&gt;Contributing to big open-source projects helped me gained TREMENDOUS self-confidence. I could look at any issue on any repo now, and never think that it’s un-doable. No matter what domain or what language the project is in, it’s only a question of how much time it’d take to get through the relevant documentation and concepts. This is certainly a long way from “I can’t do $#!+ in this codebase if my life depended on it, it scares me” and I’m very much glad I could have this experience.&lt;/p&gt;
+&lt;h3 id="the-best-practices-ever"&gt;The best practices ever
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#the-best-practices-ever"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;&lt;p&gt;You get to learn how to write well-tested, well-documented and maintainable Production-Ready code following the best software development practices.&lt;/p&gt;
+&lt;h3 id="you-get-to-choose-what-you-want-to-work-on"&gt;You get to choose what you &lt;em&gt;want&lt;/em&gt; to work on
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#you-get-to-choose-what-you-want-to-work-on"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;&lt;p&gt;YEP! And most of the communities would love to have you work on it, that’s such an exciting thing if you ask me.&lt;/p&gt;
+&lt;p&gt;(this post is a bit rough around the edges, I definitely want to add stuff to it but owing to my exams right now I’ll get to it at some later point of time, thanks for reading!)&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1158_exitflynn/</guid><pubDate>Sun, 21 May 2023 10:58:10 GMT</pubDate></item></channel></rss>
