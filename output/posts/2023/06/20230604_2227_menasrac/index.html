@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSOC Week 1 : A global overview of the RADIS API. | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Racim MENASRIA">
+<link rel="prev" href="../20230601_0311_pupperemeritus/" title="Community Bonding Period" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSOC Week 1 : A global overview of the RADIS API.">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/">
+<meta property="og:description" content="GSOC Week 1 : A global overview of the RADIS API.Since the point of my project is to implement new databases in the RADIS API and to reform it in other to make it common and stand alone, it seems impo">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-06-04T22:27:53+01:00">
+<meta property="article:tag" content="radis">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://exitflynn.github.io/blog/" data-toggle="tooltip" data-placement="top" title="2023-05-21 11:58:10+01:00" style="color:rgb(255,0,0)">
+                    exitflynn
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://jash_shah.github.io" data-toggle="tooltip" data-placement="top" title="2023-05-07 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Jash Shah
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-05-07 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Labib Asari
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://sagarchotalia.github.io" data-toggle="tooltip" data-placement="top" title="2023-05-30 00:00:00+01:00">
+                    OpenAstronomy
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-06-01 03:11:02+01:00">
+                    pupper emeritus
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@menasrac" data-toggle="tooltip" data-placement="top" title="2023-06-04 22:27:53+01:00">
+                    Racim MENASRIA
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSOC Week 1 : A global overview of the RADIS API.</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/racim-menasria/">Racim MENASRIA</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2023-06-04T22:27:53+01:00" itemprop="datePublished" title="2023-06-04 22:27">2023-06-04 22:27</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://medium.com/@menasrac/gsoc-week-1-a-global-overview-of-the-radis-api-fc58bc4e9979?source=rss-e63f6bf6735b------2">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <h4>GSOC Week 1 : A global overview of the RADIS API.</h4>
+<p>Since the point of my project is to implement new databases in the RADIS API and to reform it in other to make it common and stand alone, it seems important to understand how this API works.</p>
+<p>Thus, I have started my 12 weeks projects by reading carefully the API documentation available at <a href="https://radis.readthedocs.io/en/latest/source/radis.io.dbmanager.html">https://radis.readthedocs.io/en/latest/source/radis.io.dbmanager.html</a>. I will detail in this article what I consider the key points to understand how Radis works globally and aim to answer the following question : Whats are the steps to proceed in order to include a new database as Kurucz to RADIS ?</p>
+<p><strong>This page is a description of the different modules available in the RADIS library except the api one which will be discussed later.</strong></p>
+<!-- TEASER_END -->
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1017/1*UPlH0eBh97WoVpiEn_C7rQ.png"></figure><p>In particular, the radis.io package provided functionality for file management, downloading and analysis of different spectroscopic databases.</p>
+<p>To understand in detail how the RADIS API works and integrate a new database like Kurucz, here are the most important radis.io package sub-modules to explore :</p>
+<p><strong>dbmanager</strong> : This submodule used to contain the DatabaseManager class, which is the heart of database management in RADIS before it was moved to the api module. Understanding how this class is used to save, download, manipulate and interact with existing databases is essential. I will also need to understand how to add a new database by implementing the appropriate methods.</p>
+<p><strong>geisa, hitran or exomol : </strong>I have to study how GEISA, HITRAN or Exomol files are downloaded, saved and processed. Understanding how this databases are integrated will give me an idea of the structure and workflow needed to integrate a new database.</p>
+<h4>The DatabaseManager class</h4>
+<p>The DatabaseManager class aims to handle and manage files from various databases. It provides a generic framework for managing and caching files from different sources or databases.</p>
+<pre>class DatabaseManager(object):</pre>
+<p><strong>add_column(df, key, value)</strong>: This method allows to create a column with a key and a value specified in a DataFrame or a dictionary.</p>
+<p><strong>check_deprecated_files(local_files, auto_remove=True)</strong>: This method checks file metadata and removes deprecated ones. If auto_remove is set to True, deprecated files will be automatically removed. Otherwise, an error will be thrown.</p>
+<p><strong>clean_download_files()</strong>: This method cleans downloaded and unzipped files.</p>
+<p><strong>download_and_parse(urlnames, local_files)</strong>: This method downloads and parses files from the specified URLs and saves them locally.</p>
+<p><strong>fetch_filenames()</strong>: This method fetches the names of all files from the database, even if they haven’t been downloaded yet.</p>
+<p><strong>fetch_urlnames()</strong>: This method must be overridden in the DatabaseManager subclass. It should return a list of URLs corresponding to database files.</p>
+<p><strong>get_columns(local_file)</strong>: This method retrieves all the columns available in a database file using the get_columns function of the DataFileManager class.</p>
+<p><strong>load(local_files, columns=None, lower_bound=[], upper_bound=[], within=[], output=’pandas’):</strong> This method loads data from database files. You can specify which columns to load, lower and upper bounds for values in certain columns, and constraints for certain columns. You can also specify the output format, such as ‘pandas’, ‘vaex’ or ‘jax’.</p>
+<p><strong>plot(local_files, isotope, wavenum_min, wavenum_max):</strong> This method is a convenience function for plotting the linestrengths of the database.</p>
+<p><strong>register(dict_entries):</strong> This method registers dictionary entries for a specified database.</p>
+<p><strong>remove_local_files(local_files)</strong>: This method removes the specified local files.</p>
+<p><strong>rename_columns(df, rename_dict):</strong> This method renames the columns of a DataFrame using a dictionary of correspondence between the old column names and the new names.</p>
+<p><strong>register_database(databank_name, dict_entries, verbose): </strong>This method adds registered databases to the RADIS configuration file.</p>
+<h4>The radis.io.geisa module review : to get some ideas ?</h4>
+<p>The GEISADatabaseManager class is a subclass of DatabaseManager which is specifically designed to manage GEISA databases. It adds specific functionalities to the management of GEISA files and their integration into the RADIS API. It gives us an insight of what the implemenation of other databases as Kurucz should look like. However, every database has its own specificities that is why the methods may differ on some aspects though they are built on a same basis.</p>
+<p><strong>fetch_urlnames(): </strong>This method must be implemented to return a list of URLs corresponding to GEISA files in your database. These URLs will be used to download files from the GEISA website.</p>
+<p><strong>parse_to_local_file():</strong> This method is used to unpack GEISA files and save them locally. It also adds metadata to files.</p>
+<p><strong>register():</strong> This method registers the GEISA database in the RADIS configuration file. It ensures that the RADIS API recognizes and can access the database.</p>
+<p><strong>fetch_geisa():</strong> This GEISA specific method fetches GEISA files from the GEISA website, unpacks them and creates an HDF5 file containing all row data. It returns a Pandas DataFrame containing all rows.</p>
+<p><strong>columns_GEISA:</strong> It is a dictionary that defines the parsing order of columns in the GEISA2020 format. It specifies column names, data types, descriptions, and units.</p>
+<p><strong>engine:</strong> This is an optional parameter that allows to specify the memory mapping library to use for the GEISA database. By default, it uses the ‘default’ value specified in the RADIS configuration file.</p>
+<p><strong>verbose, chunksize, parallel:</strong> These are optional parameters to control the verbosity level of informational messages, the size of chunks for loading data and the use of parallel loading.</p>
+<p><strong>The fetch_geisa() </strong>method is an example of using the GEISADatabaseManager class to retrieve GEISA data for a specific molecule. This method downloads GEISA files from the GEISA website, unpacks them and saves them locally. It returns a Pandas DataFrame containing all rows from the GEISA database for the specified molecule.</p>
+<p>Before exploring the Kurucz database structure more in details, let is discuss the other modules of the RADIS API.</p>
+<h4><strong>The db module :</strong></h4>
+<p><strong>Definition of molecules:</strong> The db module allows to define the molecules used in the spectroscopic calculations. You can specify isotopes, molecular weights, chemical symbols, and other relevant molecular properties.</p>
+<p><strong>Spectroscopic constants: </strong>The db module stores the spectroscopic constants associated with each molecule, such as electronic transitions, energy levels, frequencies, absorption intensities, cross sections, etc.</p>
+<p><strong>Data Access</strong>: The db module provides methods and data structures to easily access information about molecules and spectroscopic constants.</p>
+<p><strong>Database extensions:</strong> The db module allows extending the functionalities of the database by adding new molecules, isotopes or spectroscopic constants. Here it is possible to add new data or integrate external databases to enrich the capabilities of RADIS.</p>
+<p><strong>Interoperability:</strong> The db module facilitates interoperability with other libraries and spectroscopic data formats. It allows to import and export spectroscopic data in different formats, such as HITRAN, HITEMP, GEISA, Kurucz, etc.</p>
+<h4>What about Exojax ?</h4>
+<p>Another open-source code, called EXOJAX, exchanged portions of code with RADIS until some parts of both codes became very similar. Currently, a database API is written in the RADIS code.</p>
+<p>Understanding how Radis and Exojax somehow partially merged will be useful to understand how to implement a new database.</p>
+<p><strong>May 2022 </strong>: an example of an Exojax-like syntax was added in the exomol.py file. This example introduces a new class called mdbExomol, which holds Jax arrays as attributes. This class is based on DataFrame loading and is designed to be a drop-in replacement for Exojax computations.</p>
+<pre>mport pathlib<br><br>import numpy as np<br><br>from radis.api.exomolapi import (<br>    MdbExomol,<br>    get_exomol_database_list,<br>    get_exomol_full_isotope_name,<br>)<br>from radis.db.classes import get_molecule_identifier<br><br><br>def fetch_exomol(<br>    molecule,<br>    database=None,<br>    local_databases=None,<br>    databank_name="EXOMOL-{molecule}",<br>    isotope="1",<br>    load_wavenum_min=None,<br>    load_wavenum_max=None,<br>    columns=None,<br>    cache=True,<br>    verbose=True,<br>    clean_cache_files=True,<br>    return_local_path=False,<br>    return_partition_function=False,<br>    engine="default",<br>    output="pandas",<br>    skip_optional_data=True,<br>):</pre>
+<p>Here is a description of each function parameter:</p>
+<p><strong>molecule</strong>: The name of the molecule for which we want to retrieve data.<br>database: The name of the specific ExoMol database to use. If the value is None or “default”, the recommended database will be used.<br>local_databases: The path to the local directory where the ExoMol database files will be stored.<br><strong>databank_name:</strong> The name to give to the ExoMol database.<br>isotope: The number of the specific isotope of the molecule for which you want to retrieve data.<br><strong>load_wavenum_min and load_wavenum_max:</strong> The minimum and maximum wavenumbers to load.<br><strong>columns: </strong>A list of specific columns to load from ExoMol files.<br><strong>cache:</strong> A boolean indicating whether files should be cached for later use.<br><strong>verbose:</strong> A boolean indicating whether informational messages should be displayed during the process.<br><strong>clean_cache_files:</strong> A boolean indicating whether cached files should be removed after use.<br><strong>return_local_path and return_partition_function:</strong> Booleans indicate whether local path to files and partition function should be returned in addition to data.</p>
+<p>The function starts by checking the settings and determining which ExoMol database to use. Next, it creates an MdbExomol object to manage the ExoMol database, downloading files as needed. The local files are then loaded into a DataFrame, with specific columns if needed. RADIS-specific manipulations are performed on the DataFrame, such as renaming columns and adding additional data. Eventually the DataFrame is returned, possibly with other information if selected.</p>
+<p>Then <a href="https://medium.com/u/1169335fca8">Erwan Pannier</a> added an Example of an Exojax-like syntax, creating a ``mdbExoMol` class holding jax arrays as Attributes (based on DataFrame loading), so it can be used as a drop-in replacement</p>
+<p>The example also shows how to : Compute an Exomol CH4 spectrum with Radis Load Exomol CH4 Jax arrays ready for an Exojax computation, by downloading the files to the .database local folder Load Exomol CH4 Jax arrays ready for an Exojax computation, by loading the files from the Radis’s database of (1) For 2. and 3., a local_databases= parameter allows to easily switch in between any local folder (to save on download &amp; caching times if comparing the two codes)</p>
+<p>Here is the code ( available on <a href="https://github.com/radis/radis/blob/e317c994451d3afa02b1fa63d90ae0eb546f36ed/radis/io/exomol.py#L925">radis/exomol.py at e317c994451d3afa02b1fa63d90ae0eb546f36ed · radis/radis (github.com)</a>)</p>
+<pre>   #%% RADIS-like Example<br>    # uses fetch_exomol() internally<br><br>    from radis import calc_spectrum<br><br>    s = calc_spectrum(<br>        wavelength_min=1.630e4,<br>        wavelength_max=1.6305e4,<br>        molecule="CH4",<br>        isotope="1",<br>        pressure=1.01325,  # bar<br>        Tgas=1000,  # K<br>        mole_fraction=0.1,<br>        path_length=1,  # cm<br>        # broadening_method="fft",  # @ dev: Doesn't work with 'voigt'<br>        databank=(<br>            "exomol",<br>            "YT10to10",<br>        ),  # Simply use 'exomol' for the recommended database<br>    )<br>    # s.apply_slit(1, "cm-1")  # simulate an experimental slit<br>    s.plot("xsection")<br><br>    # %% Exojax like Example<br><br>    class mdbExoMol:<br><br>        # hardcode attribute names, to prevent typos and the declaration of unwanted parameters<br>        __slots__ = [<br>            "Sij0",<br>            "logsij0",<br>            "nu_lines",<br>            "A",<br>            "elower",<br>            "eupper",<br>            "gupper",<br>            "jlower",<br>            "jupper",<br>        ]<br><br>        def __init__(<br>            self,<br>            molecule,<br>            path,<br>            nurange=[-np.inf, np.inf],<br>            crit=-np.inf,<br>            local_databases="~/exojax",<br>        ):<br>            """<br>            Parameters<br>            ----------<br>            molecule: molecule name<br>            path : local path, mirror of ExoMol path<br>            nurange : TYPE, optional<br>                DESCRIPTION. The default is [-np.inf, np.inf].<br>            crit : TYPE, optional<br>                DESCRIPTION. The default is -np.inf.<br><br>            Returns<br>            -------<br>            DataFrame<br><br>            Examples<br>            --------<br>            ::<br><br>                mdbCH4 = mdbExoMol("CH4", '.database/CH4/12C-1H4/YT10to10/', nus, crit=1.e-30)<br>                print(len(mdbCH4.nu_lines), "lines")<br>                mdbCH4.elower<br><br>            Available columns::<br><br>                [<br>                    "Sij0",<br>                    "logsij0",<br>                    "nu_lines",<br>                    "A",<br>                    "elower",<br>                    "eupper",<br>                    "gupper",<br>                    "jlower",<br>                    "jupper",<br>                ]<br><br>            """<br><br>            wavenum_min, wavenum_max = np.min(nurange), np.max(nurange)<br>            if wavenum_min == -np.inf:<br>                wavenum_min = None<br>            if wavenum_max == np.inf:<br>                wavenum_max = None<br><br>            # Set-up database, download files and set-up cache files if needed<br>            mdb = MdbExomol(<br>                path,<br>                molecule=molecule,<br>                local_databases=local_databases,<br>                nurange=[wavenum_min, wavenum_max],<br>            )<br><br>            # Get cache files to load :<br>            mgr = mdb.get_dframe_manager()<br>            local_files = [mgr.cache_file(f) for f in mdb.trans_file]<br><br>            # Load them:<br>            jdict = mdb.load(<br>                local_files,<br>                columns=[k for k in self.__slots__ if k not in ["logsij0"]],<br>                lower_bound=([("nu_lines", wavenum_min)] if wavenum_min else [])<br>                + ([("Sij0", mdb.crit)] if not np.isneginf(mdb.crit) else []),<br>                upper_bound=([("nu_lines", wavenum_max)] if wavenum_max else []),<br>                output="jax",<br>            )<br><br>            # set attributes, accessible as e.g:  mdb.nu_lines<br>            for k in jdict.keys():<br>                setattr(self, k, jdict[k])<br><br>    nus = np.linspace(1e7 / 1.630e4, 1e7 / 1.6305e4)<br><br>    # Download new ExoMol repo (in ~/exomol)<br>    mdbCH4 = mdbExoMol(<br>        "CH4",<br>        ".database/CH4/12C-1H4/YT10to10/",<br>        nus,<br>        crit=1.0e-30,<br>        local_databases=".",  # use local folder<br>    )<br><br>    print(len(mdbCH4.nu_lines), "lines")<br>    mdbCH4.elower<br><br>    # Or use RADIS's folder  (# by default ~/.radisdb/exomol)<br>    import radis<br><br>    mdbCH4_2 = mdbExoMol(<br>        "CH4",<br>        "CH4/12C-1H4/YT10to10/",<br>        nus,<br>        crit=1.0e-30,<br>        local_databases=pathlib.Path(radis.config["DEFAULT_DOWNLOAD_PATH"]) / "exomol",<br>    )<br>    # ... ready to run Jax calculations</pre>
+<p>The example added in the exomol.py file of RADIS demonstrates how to create an “mdbExoMol” class similar to Exojax, which uses jax arrays as attributes. This class allows loading ExoMol data as jax arrays, making them compatible with Exojax.</p>
+<p>The example illustrates how to calculate a CH4 spectrum using RADIS by utilizing the “mdbExoMol” class. It also shows how to load the jax arrays ready for use in an Exojax computation by downloading the files into a local “.database” folder. Additionally, the example demonstrates how to load the jax arrays from the RADIS database, enabling easy switching between different local databases by specifying the “local_databases” parameter.</p>
+<h4>Toward a common API ?</h4>
+<p><strong>Preliminary work in Radis #465</strong></p>
+<p>This preliminary work was done to prepare for a meeting between RADIS and ExoJax to discuss the implementation of a common API for database management.</p>
+<p><strong>The rationale behind this work is to maintain three layers of agnosticism to simplify the user experience:</strong></p>
+<p><strong>Users should not have to worry about the specific format of the input database,</strong> such as HITRAN 2012, HITRAN 2020, HITEMP, GEISA, ExoMol, Kuruz, NIST, etc. This allows for easy integration of new libraries and ensures that all codes can benefit from all available libraries.</p>
+<p><strong>Users should not have to be concerned about the format in which the data is stored on disk</strong>, whether it’s Vaex’s HDF5, Pandas’s HDF5, Feather, or other formats. This flexibility enables the switch to more performant libraries when they become available, such as PyArrow.</p>
+<p><strong>Users should have the freedom to choose the output format used in calculations</strong>, whether it’s Pandas’s DataFrame, Jax arrays, Vaex DataFrame, or others. This allows for data retrieval in the desired format for each code, such as Jax for ExoJax, Pandas for the current RADIS implementation, or Vaex for future fully-out-of-core RADIS for extreme databases.</p>
+<h4><strong>Radis state in May 2022</strong></h4>
+<p><strong>ExoJax </strong>has MdbExomol or MdbHIt . They are similar but don’t inherit from a common base ;<br><strong>RADIS 0.12 has a DatabaseManager</strong> to handle HITEMP 2020 / HITRAN 2020; the ExoMol support is done with a MdBMol taken from Exojax with no link with the DatabaseManager.<br>RADIS implemented a <strong>DataFileManager</strong> <strong>class</strong> to handle (Vaex’s HDF5; Pandas’s HDF5, Feather) ; DatabaseManager calls DataFileManager internally <br>Radis Exomol api update #464 added <strong>3 output : ’jax/vaex/pandas’</strong> to RADIS’s DatabaseManager</p>
+<p>Here Radis then suggest a code a demonstration :</p>
+<pre># Test ExoMol<br><br>import radis<br>radis.config["MEMORY_MAPPING_ENGINE"] = "vaex" # 👉👉👉  choose  "vaex", "pytables", "feather"<br><br>from radis.io.exomol import fetch_exomol<br><br>df = fetch_exomol("SiO", database="EBJT", isotope="1", load_wavenum_max=5000, <br>        output="pandas" # 👉👉👉 choose : "pandas", "vaex", "jax"<br>        )<br>print(df)<br><br></pre>
+<p>This code allows you to fetch ExoMol data for the SiO molecule from the specified database, control the output format, and print the resulting DataFrame.</p>
+<p>The <strong>MdbExomol class</strong> is a molecular database class specifically designed for ExoMol, which is a database of molecular line lists for exoplanet and other hot atmospheres. It is a subclass of the DatabaseManager class.</p>
+<p>The MdbExomol class has the following parameters:</p>
+<p><strong>path</strong>: The path for the ExoMol data directory or tag.<br>nurange: A wavenumber range list (in cm-1) or a wavenumber array.<br>margin: A margin for the wavenumber range (in cm-1).<br><strong>crit:</strong> The line strength lower limit for extraction.<br><strong>bkgdatm</strong>: The background atmosphere for broadening, e.g., H2, He.<br>broadf: If False, the default broadening parameters in the .def file are used.<br>Additionally, there are other parameters such as engine and skip_optional_data that control the memory mapping engine and the loading of optional data from the ExoMol definition file, respectively.</p>
+<p>The MdbExomol class provides methods to load and manage the ExoMol data files. It converts the trans/states files to feather or HDF5 format for efficient loading. The loaded data is stored in a DataFrame with columns such as nu_lines, Sij0, A, elower, gpp, jlower, and more. These columns contain information about line centers, line strengths, Einstein A coefficients, lower state energy, statistical weight, J_lower, and other relevant parameters.</p>
+<p>The class also provides examples of how to initialize the database, download the necessary files, and load the data. It references the original publications on ExoMol for more information.</p>
+<h5>Discussion between Radis and Exojax</h5>
+<p>The question of hosting the common API was addressed for the first time in discussion<strong> #257</strong>. It is suggested to create a new directory or module within Radis for the common API. However, it is noted that this may make development difficult if specific Radis features need to be integrated into the common API. A suggestion is made to create a separate module, such as “radis.api”, which would house the common API.</p>
+<p>A proposed structure was discussed, where the DatabaseManager class is considered the core common API. Subclasses, such as HitranManager and ExomolManager, inherited from DatabaseManager to provide the specific functionalities for the Hitran and Exomol databases, respectively.</p>
+<p>A suggestion was made to create a MdbHitran class (inheriting from HitranManager) and a MdbExomol class (inheriting from ExomolManager) for the ExoJAX API. These classes would have their own ExoJAX-specific methods, allowing ExoJAX to integrate with the common API.</p>
+<p>Radis and Exojax agreed that separating the functionalities into separate folders is a good approach to avoid conflicts between Radis-specific and ExoJAX-specific features. Additionally, they suggested to add tests to ensure that ExoJAX requirements were tested within Radis without causing any issues.</p>
+<p>It starts from the “radis.api” folder for the common API, which would be included within Radis. This approach would allow for the development of the common API while maintaining a close connection with Radis. Furthermore, the possibility of creating a new directory or module for an independent API in the future is considered, to allow the common API to become independent if needed.</p>
+<p>In summary, the conversation revolves around the hosting and structure of the common API between Radis and ExoJAX. It is decided to create a separate module, “radis.api”, for the common API while keeping the possibility of independent development in the future. Specific classes are proposed for ExoJAX, enabling the integration of ExoJAX into the common API. Measures are taken to separate Radis-specific and ExoJAX-specific functionalities and to test ExoJAX requirements within Radis.</p>
+<p><strong>After this discussion, a series of measures was implemented to Radis in PR # 480</strong></p>
+<p>The common functions shared between Exojax and Radis were moved to the <strong>“radis/api”</strong> directory, allowing for better organization and separation of concerns.<br>Parts of Hitran, Hitemp, CDSD, and GEISA <strong>that were common to both Exojax and Radis were also moved to the “radis/api”</strong> directory.<br>The Exomol files were combined and moved to the “radis/api” directory, and tests were fixed accordingly.<br>The io.tools module was moved to the “radis/api/tools” directory for better organization.<br>Links in the documentation and docstrings were renamed to reflect the changes in the code structure.<br>Some missing files were added, isort errors on CI were fixed, and unclosed HDF5 files were addressed.<br>The Exomol documentation was updated, and error messages were improved.<br>The set_broadenings function was made compatible with both vaex and pandas DataFrames.<br>Modifications were made to the set_broadening function, including assuming a dictionary as input for unknown DataFrames and redefining the function to store values in a DataFrame.<br>The MdbExomol instance now includes self.molmass.<br>The codebase was merged with the upstream “add/common-api” branch.<br>Some abspath problems were fixed, and error messages were improved.</p>
+<p><strong>In November 2022, the version 0.14 was released and the common API with Exojax was added to Radis.</strong></p>
+<p><strong>Review of the exomolapi.py code</strong></p>
+<p>This code is an API for accessing and using data from the ExoMol project. It includes a main class MdbExomol that allows downloading and accessing ExoMol files, as well as performing spectral calculations. The MdbExomol class provides methods for downloading files, creating PartFuncExoMol objects, and loading specific line data.</p>
+<p>The download function allows downloading ExoMol files from a specified URL and saving them locally. The to_partition_function_tabulator function generates a PartFuncExoMol object from the ExoMol-specific partition function data.</p>
+<p>The if __name__ == “__main__” section contains examples of using the MdbExomol class and other features of the API, including spectrum calculations using the RADIS library, and downloading and accessing ExoMol line data using the fetch_exomol function.</p>
+<p>Thus, the ExoMol API provides tools for downloading, manipulating, and utilizing spectroscopic data from the ExoMol project, including transition files, partition functions, and calculated spectra.</p>
+<h4>Conclusion : How should I proceed to add to Radis a new database as Kurucz ?</h4>
+<p>Regarding implementing Kurucz, the structure of the exomolapi.py code can serve as a model for building a similar API for Kurucz data. I may create a class similar to MdbExomol that handles downloading Kurucz files, accessing the relevant data (such as atomic and molecular line data, partition functions, etc.), and provides methods for spectral calculations and other functionalities specific to Kurucz. I will have to adapt and modify the existing code to suit the data format and organization of Kurucz data.<br>In order to do so, I will review the structure of the Kurucz database and make a quick report in a next post before starting the implementation.</p>
+<img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=fc58bc4e9979" width="1">
+</div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20230601_0311_pupperemeritus/" rel="prev" title="Community Bonding Period">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2023         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
