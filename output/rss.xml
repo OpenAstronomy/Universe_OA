@@ -1,5 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 08 Jun 2023 01:13:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSOC Week 1 : A global overview of the RADIS API.</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;GSOC Week 1 : A global overview of the RADIS API.&lt;/h4&gt;&lt;p&gt;Since the point of my project is to implement new databases in the RADIS API and to reform it in other to make it common and stand alone, it seems important to understand how this API works.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 09 Jun 2023 01:15:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 1 Progress Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;Week 1 has been quite eventful with me creating a Lomb Scargle Fourier Transform function and get a working class for Lomb Scargle Cross Spectrum and Power Spectrum.&lt;/p&gt;
+
+&lt;p&gt;I inherited my LS cross spectrum from the regular cross spectrum class. Had to rewrite the &lt;code&gt;constructor&lt;/code&gt;, &lt;code&gt;initial_checks&lt;/code&gt; , &lt;code&gt;make_crossspectrum&lt;/code&gt;, &lt;code&gt;_make_auxil_pds&lt;/code&gt; and &lt;code&gt;_initialize_empty&lt;/code&gt;. And also wrote a new &lt;code&gt;_ls_cross&lt;/code&gt; method which just returns the frequencies and cross spectra for given light curves and it is an internal function only to be used by the class.&lt;/p&gt;
+
+&lt;p&gt;The original slow implementation has been completed. I am still working on the fast version.&lt;/p&gt;
+
+&lt;p&gt;As this is not a project that can be completed in a bunch of small PRs, I will push to a single PR which will be merged after completion of the project. The following draft PR is the one to which I will be pushing to. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/stingray/pull/737/"&gt;https://github.com/StingraySoftware/stingray/pull/737/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;The following are the APIs for the classes&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Cross Spectrum
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Make a cross spectrum from an unevenly sampled light curve.
+You can also make an empty :class:`Crossspectrum` object to populate with your
+own Fourier-transformed data (this can sometimes be useful when making
+binned power spectra).
+
+Parameters
+----------
+data1: :class:`stingray.Lightcurve` or :class:`stingray.events.EventList`, optional, default ``None``
+The dataset for the first channel/band of interest.
+
+data2: :class:`stingray.Lightcurve` or :class:`stingray.events.EventList`, optional, default ``None``
+The dataset for the second, or "reference", band.
+
+norm: {``frac``, ``abs``, ``leahy``, ``none``}, default ``none``
+The normalization of the (real part of the) cross spectrum.
+
+power_type: string, optional, default ``real``
+Parameter to choose among complete, real part and magnitude of the cross spectrum.
+
+fullspec: boolean, optional, default ``False``
+If False, keep only the positive frequencies, or if True, keep all of them .
+
+Other Parameters
+----------------
+dt: float
+The time resolution of the light curve. Only needed when constructing
+light curves in the case where ``data1``, ``data2`` are
+:class:`EventList` objects
+
+skip_checks: bool
+Skip initial checks, for speed or other reasons (you need to trust your
+inputs!)
+
+min_freq : float
+Minimum frequency to take the Lomb-Scargle Fourier Transform
+
+max_freq: float
+Maximum frequency to take the Lomb-Scargle Fourier Transform
+
+df : float
+The time resolution of the light curve. Only needed where ``data1``, ``data2`` are
+
+method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the alloowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+Attributes
+----------
+freq: numpy.ndarray
+The array of mid-bin frequencies that the Fourier transform samples
+
+power: numpy.ndarray
+The array of cross spectra (complex numbers)
+
+power_err: numpy.ndarray
+The uncertainties of ``power``.
+An approximation for each bin given by ``power_err= power/sqrt(m)``.
+Where ``m`` is the number of power averaged in each bin (by frequency
+binning, or averaging more than one spectra). Note that for a single
+realization (``m=1``) the error is equal to the power.
+
+df: float
+The frequency resolution
+
+m: int
+The number of averaged cross-spectra amplitudes in each bin.
+
+n: int
+The number of data points/time bins in one segment of the light
+curves.
+
+k: array of int
+The rebinning scheme if the object has been rebinned otherwise is set to 1.
+
+nphots1: float
+The total number of photons in light curve 1
+
+nphots2: float
+The total number of photons in light curve 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;h3&gt;
+
+
+Power Spectrum
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Make a :class:`LombScarglePowerspectrum` (also called periodogram) from a unevenly sampled (binned)
+light curve. Periodograms can be normalized by either Leahy normalization,
+fractional rms normalization, absolute rms normalization, or not at all.
+
+You can also make an empty :class:`LombScarglePowerspectrum` object to populate with
+your own fourier-transformed data (this can sometimes be useful when making
+binned power spectra).
+
+Parameters
+----------
+data: :class:`stingray.lightcurve.Lightcurve` or :class:`stingray.events.EventList` object, optional, default ``None``
+The light curve data to be Fourier-transformed.
+
+norm: {"leahy" | "frac" | "abs" | "none" }, optional, default "frac"
+The normaliation of the power spectrum to be used. Options are
+"leahy", "frac", "abs" and "none", default is "frac".
+
+Other Parameters
+----------------
+dt: float
+The time resolution of the light curve. Only needed when constructing
+light curves in the case where ``data`` is a
+:class:`EventList` object
+
+skip_checks: bool
+Skip initial checks, for speed or other reasons (you need to trust your
+inputs!).
+
+min_freq : float
+Minimum frequency to take the Lomb-Scargle Fourier Transform
+
+max_freq: float
+Maximum frequency to take the Lomb-Scargle Fourier Transform
+
+df : float
+The time resolution of the light curve. Only needed where ``data`` is a :class`stingray.Eventlist` object
+
+method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the alloowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+Attributes
+----------
+norm: {"leahy" | "frac" | "abs" | "none" }
+The normalization of the power spectrum.
+
+freq: numpy.ndarray
+The array of mid-bin frequencies that the Fourier transform samples.
+
+power: numpy.ndarray
+The array of normalized squared absolute values of Fourier
+amplitudes.
+
+power_err: numpy.ndarray
+The uncertainties of ``power``.
+An approximation for each bin given by ``power_err= power/sqrt(m)``.
+Where ``m`` is the number of power averaged in each bin (by frequency
+binning, or averaging power spectra of segments of a light curve).
+Note that for a single realization (``m=1``) the error is equal to the
+power.
+
+df: float
+The frequency resolution.
+
+m: int
+The number of averaged powers in each bin.
+
+n: int
+The number of data points in the light curve.
+
+nphots: float
+The total number of photons in the light curve.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</guid><pubDate>Thu, 08 Jun 2023 06:29:01 GMT</pubDate></item><item><title>GSOC Week 1 : A global overview of the RADIS API.</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;GSOC Week 1 : A global overview of the RADIS API.&lt;/h4&gt;&lt;p&gt;Since the point of my project is to implement new databases in the RADIS API and to reform it in other to make it common and stand alone, it seems important to understand how this API works.&lt;/p&gt;
 &lt;p&gt;Thus, I have started my 12 weeks projects by reading carefully the API documentation available at &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.io.dbmanager.html"&gt;https://radis.readthedocs.io/en/latest/source/radis.io.dbmanager.html&lt;/a&gt;. I will detail in this article what I consider the key points to understand how Radis works globally and aim to answer the following question : Whats are the steps to proceed in order to include a new database as Kurucz to RADIS ?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;This page is a description of the different modules available in the RADIS library except the api one which will be discussed later.&lt;/strong&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -237,13 +441,4 @@ Under the sub-orgs for OpenAstronomy, I found &lt;strong&gt;SunPy&lt;/strong&gt;
 &lt;p&gt;I must also add that through all this, my mentors helped me a lot in my project proposal as well as my code submissions. I would not have been able to make it this for without their help, and their patience in helping out with my amateur mistakes.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
 &lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item><item><title>GSoC Blog Zero</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230506_2149_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;This is a test post to check the status of the blog and RSS feed. I am very excited to contribute to Stingray @ Open Astronomy this summer.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230506_2149_pupperemeritus/</guid><pubDate>Sat, 06 May 2023 20:49:25 GMT</pubDate></item><item><title>GSoC@Stingray: Final dash! blog#4</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_1708_mihirtripathi97/</link><dc:creator>Mihirtripathi</dc:creator><description>&lt;p&gt;Hey everyone,&lt;/p&gt;
-&lt;p&gt;It is the end of the coding period of GSoC”22. This is going to be my last blog about my project.&lt;/p&gt;
-&lt;p&gt;After successfully implementing the bexvar method in Stingray (this &lt;a href="https://github.com/StingraySoftware/stingray/pull/664"&gt;PR&lt;/a&gt;). I and my mentors decided that we can now work to add bexvar as a method to Stingra’s Lightcurve class. This was not a part of my original proposal. The bexvar() method takes lightcurve data in input parameters, so it made sense to provide this facility to users. Stingray’s Lightcurve class facilitates users to create Lightcurve objects and perform several operations useful for time series analysis on them.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;The Lightcurve object is created by providing two arrays ( time and counts) as input parameters. Along with these it also has several other optional parameters specifying relevant lightcurve data. Most of these parameters are also attributes of the Lightcurve class. We knew that the Lightcurve class does not have parameters like frac_exp (fractional exposer in each bin),bg_counts (background counts in each bin) and bg_ratio (background ratio in each bin) which are optional parameters of bexvar(). So to add bexvar() a method to theLightcurve class, we also included these parameters in theLightcurve class and declared them as its attributes. I started the work with this &lt;a href="https://github.com/StingraySoftware/stingray/pull/669"&gt;PR&lt;/a&gt;. However, just adding these parameters was not enough. The Lightcurve class provides some important filtering and sorting methods for Lightcurve objects. These methods did not support these optional parameters as they weren't there initially. It wouldn’t be so great if users create a Lightcurve object with all these parameters, then they may want to truncate the lightcurve or sort it or apply GTIs (Good time intervals) before calling bexvar() and the returned Lightcurve does not have these attributes. We worked on providing support for these new parameters in some of these methods.&lt;/p&gt;
-&lt;p&gt;In addition to that, the bexvar() method works on the light curves with uneven sampling. Which led us to also investigate if Stingray supports the creation of such lightcurve objects. We found that the support was not very great for such data. While there was no restriction for creating a Lightcurve class with the time resolution parameter dt being an array, many methods of the Lightcurve class did not extend support for such data. We started working on providing this support after that. This led to some serious bug fixing and restless nights but finally, we were able to reach at a point where all of the existing tests are passing.&lt;/p&gt;
-&lt;p&gt;Apart from this, I also created a jupiter notebook for a tutorial on the bexvar()method (see this &lt;a href="https://github.com/StingraySoftware/notebooks/pull/58"&gt;PR&lt;/a&gt;). This contains examples showcasing how to use the implemented method and also a section on the theoretical explanation of bexvar. This notebook will also be upgraded with examples of how to call bexvar() method implemented in the Lightcurve class once that work is completed.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/680/1*YFXjL3Wc5EqBE9vaXPHNBQ.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;With this final blog, my journey through &lt;a href="https://summerofcode.withgoogle.com/"&gt;GSoC”22&lt;/a&gt; comes to a happy end. You can check out my final report for this project containing rigorous details at this &lt;a href="https://mihirtripathi97.github.io/GSoC-22/"&gt;webpage&lt;/a&gt;. I will continue working with Stingray, I will continue contributing to OpenAstrnomy and other open source projects as well. I must say that GSoC has been really great it provided me the best opportunity for the beginning of my journey in the open source community. I would like to thank the &lt;a href="https://openastronomy.org/"&gt;OpenAstronomy&lt;/a&gt; organization for giving me this wonderful opportunity to contribute to open source projects for the Astrophysics community. This means a lot to me as I am one of the users of several projects of the member organizations.&lt;/p&gt;
-&lt;p&gt;I would like to thank both my mentors &lt;a href="https://github.com/matteobachetti"&gt;Matteo Bachetti&lt;/a&gt; and &lt;a href="https://github.com/dhuppenkothen"&gt;Daniela Huppenkothen&lt;/a&gt; for being extremely generous, supportive, and motivating mentors. I am truly grateful to have you both as my mentors.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1279d3b337e7" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_1708_mihirtripathi97/</guid><pubDate>Mon, 12 Sep 2022 16:08:26 GMT</pubDate></item></channel></rss>
+&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230506_2149_pupperemeritus/</guid><pubDate>Sat, 06 May 2023 20:49:25 GMT</pubDate></item></channel></rss>
