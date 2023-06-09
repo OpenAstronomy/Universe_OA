@@ -1,5 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 08 Jun 2023 01:13:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Community Bonding Period</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230601_0311_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 09 Jun 2023 01:15:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 1 Progress Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;Week 1 has been quite eventful with me creating a Lomb Scargle Fourier Transform function and get a working class for Lomb Scargle Cross Spectrum and Power Spectrum.&lt;/p&gt;
+
+&lt;p&gt;I inherited my LS cross spectrum from the regular cross spectrum class. Had to rewrite the &lt;code&gt;constructor&lt;/code&gt;, &lt;code&gt;initial_checks&lt;/code&gt; , &lt;code&gt;make_crossspectrum&lt;/code&gt;, &lt;code&gt;_make_auxil_pds&lt;/code&gt; and &lt;code&gt;_initialize_empty&lt;/code&gt;. And also wrote a new &lt;code&gt;_ls_cross&lt;/code&gt; method which just returns the frequencies and cross spectra for given light curves and it is an internal function only to be used by the class.&lt;/p&gt;
+
+&lt;p&gt;The original slow implementation has been completed. I am still working on the fast version.&lt;/p&gt;
+
+&lt;p&gt;As this is not a project that can be completed in a bunch of small PRs, I will push to a single PR which will be merged after completion of the project. The following draft PR is the one to which I will be pushing to. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/stingray/pull/737/"&gt;https://github.com/StingraySoftware/stingray/pull/737/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;The following are the APIs for the classes&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Cross Spectrum
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Make a cross spectrum from an unevenly sampled light curve.
+You can also make an empty :class:`Crossspectrum` object to populate with your
+own Fourier-transformed data (this can sometimes be useful when making
+binned power spectra).
+
+Parameters
+----------
+data1: :class:`stingray.Lightcurve` or :class:`stingray.events.EventList`, optional, default ``None``
+The dataset for the first channel/band of interest.
+
+data2: :class:`stingray.Lightcurve` or :class:`stingray.events.EventList`, optional, default ``None``
+The dataset for the second, or "reference", band.
+
+norm: {``frac``, ``abs``, ``leahy``, ``none``}, default ``none``
+The normalization of the (real part of the) cross spectrum.
+
+power_type: string, optional, default ``real``
+Parameter to choose among complete, real part and magnitude of the cross spectrum.
+
+fullspec: boolean, optional, default ``False``
+If False, keep only the positive frequencies, or if True, keep all of them .
+
+Other Parameters
+----------------
+dt: float
+The time resolution of the light curve. Only needed when constructing
+light curves in the case where ``data1``, ``data2`` are
+:class:`EventList` objects
+
+skip_checks: bool
+Skip initial checks, for speed or other reasons (you need to trust your
+inputs!)
+
+min_freq : float
+Minimum frequency to take the Lomb-Scargle Fourier Transform
+
+max_freq: float
+Maximum frequency to take the Lomb-Scargle Fourier Transform
+
+df : float
+The time resolution of the light curve. Only needed where ``data1``, ``data2`` are
+
+method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the alloowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+Attributes
+----------
+freq: numpy.ndarray
+The array of mid-bin frequencies that the Fourier transform samples
+
+power: numpy.ndarray
+The array of cross spectra (complex numbers)
+
+power_err: numpy.ndarray
+The uncertainties of ``power``.
+An approximation for each bin given by ``power_err= power/sqrt(m)``.
+Where ``m`` is the number of power averaged in each bin (by frequency
+binning, or averaging more than one spectra). Note that for a single
+realization (``m=1``) the error is equal to the power.
+
+df: float
+The frequency resolution
+
+m: int
+The number of averaged cross-spectra amplitudes in each bin.
+
+n: int
+The number of data points/time bins in one segment of the light
+curves.
+
+k: array of int
+The rebinning scheme if the object has been rebinned otherwise is set to 1.
+
+nphots1: float
+The total number of photons in light curve 1
+
+nphots2: float
+The total number of photons in light curve 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;h3&gt;
+
+
+Power Spectrum
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Make a :class:`LombScarglePowerspectrum` (also called periodogram) from a unevenly sampled (binned)
+light curve. Periodograms can be normalized by either Leahy normalization,
+fractional rms normalization, absolute rms normalization, or not at all.
+
+You can also make an empty :class:`LombScarglePowerspectrum` object to populate with
+your own fourier-transformed data (this can sometimes be useful when making
+binned power spectra).
+
+Parameters
+----------
+data: :class:`stingray.lightcurve.Lightcurve` or :class:`stingray.events.EventList` object, optional, default ``None``
+The light curve data to be Fourier-transformed.
+
+norm: {"leahy" | "frac" | "abs" | "none" }, optional, default "frac"
+The normaliation of the power spectrum to be used. Options are
+"leahy", "frac", "abs" and "none", default is "frac".
+
+Other Parameters
+----------------
+dt: float
+The time resolution of the light curve. Only needed when constructing
+light curves in the case where ``data`` is a
+:class:`EventList` object
+
+skip_checks: bool
+Skip initial checks, for speed or other reasons (you need to trust your
+inputs!).
+
+min_freq : float
+Minimum frequency to take the Lomb-Scargle Fourier Transform
+
+max_freq: float
+Maximum frequency to take the Lomb-Scargle Fourier Transform
+
+df : float
+The time resolution of the light curve. Only needed where ``data`` is a :class`stingray.Eventlist` object
+
+method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the alloowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+Attributes
+----------
+norm: {"leahy" | "frac" | "abs" | "none" }
+The normalization of the power spectrum.
+
+freq: numpy.ndarray
+The array of mid-bin frequencies that the Fourier transform samples.
+
+power: numpy.ndarray
+The array of normalized squared absolute values of Fourier
+amplitudes.
+
+power_err: numpy.ndarray
+The uncertainties of ``power``.
+An approximation for each bin given by ``power_err= power/sqrt(m)``.
+Where ``m`` is the number of power averaged in each bin (by frequency
+binning, or averaging power spectra of segments of a light curve).
+Note that for a single realization (``m=1``) the error is equal to the
+power.
+
+df: float
+The frequency resolution.
+
+m: int
+The number of averaged powers in each bin.
+
+n: int
+The number of data points in the light curve.
+
+nphots: float
+The total number of photons in the light curve.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</guid><pubDate>Thu, 08 Jun 2023 06:29:01 GMT</pubDate></item><item><title>Community Bonding Period</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230601_0311_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -114,16 +318,4 @@ Coding
 &lt;p&gt;In the next phase, I updated existing docstrings, added docstrings where it was missing, and worked on code formating. At this stage, the code was still failing in Stingray’s CI tests. The reason behind the failures was that the code uses an integrator &lt;a href="https://johannesbuchner.github.io/UltraNest/_modules/ultranest/integrator.html#ReactiveNestedSampler"&gt;&lt;strong&gt;ReactiveNestedSampler&lt;/strong&gt;&lt;/a&gt; from &lt;a href="https://arxiv.org/abs/2101.09604"&gt;UltraNest — a robust, general purpose Bayesian inference engine&lt;/a&gt;. UltraNest is not a required dependency for Stingray, hence CI tests were failing with import error. To resolve this, the import statement of UltraNest in bexvar.py needed to be moved inside a try-except statement. This would restrict the user from using bexvar.py if UltraNest is not installed. With this change, the code has passed the majority of CI tests.&lt;/p&gt;
 &lt;p&gt;The overall experience of the coding period so far has been good. During this period I learned a lot about the essentials of open-source programming. I am learning to think like a programmer. I learned how small improvements in code make it more general and versatile. I learned about the best practices to write code. I must say that all this time my mentors Matteo and Daniela have been quite supportive and helpful. They have patiently listened to my queries and doubts and have always helped me with them.&lt;/p&gt;
 &lt;p&gt;My code is running perfectly now, from this week onwards I will be focussing on writing tests for the code. Writing tests for a code is a completely new experience for me. I am looking forward to learn a lot about professional code testing in the following weeks. I will soon be back with a blog on my experience with testing. Till then take care! Goodbye!&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f24a03c00014" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_1811_mihirtripathi97/</guid><pubDate>Sun, 24 Jul 2022 17:11:57 GMT</pubDate></item><item><title>GSoC @ Stingray: Begining of the journey. blog #1</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220704_0357_mihirtripathi97/</link><dc:creator>Mihirtripathi</dc:creator><description>&lt;p&gt;Hey there! It has been about 15 days since I had written my last blog. It is time for the next one. In this blog, I will write about my experience in GSoC so far. I want to tell you about how I selected my project, how I prepared my project proposal, and what did I do after getting selected.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;How did I select the organization?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;So, let’s start from the beginning! I started considering to apply in GSoC in late February. I first came to know about GSoC just a few months back. My knowledge about GSoC and open-source was quite limited. One of the first things that I did was to go through the &lt;a href="https://summerofcode.withgoogle.com/"&gt;GSoC website&lt;/a&gt; and learn more about the program. Being a beginner in the open-source community and also coming from a non-CS background I had no idea which organizations take part in GSoC and which of them would be most suitable for me. At this time, the mentoring organizations for GSoC”22 were not announced. I decided to check out mentoring organizations from past programs to get an idea. I wanted to work on a project that involve Physics or Astrophysics, and to my surprise, several such organizations did take part in previous programs.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;From this search, I got to know about &lt;a href="https://openastronomy.org/"&gt;OpenAstronomy&lt;/a&gt;. It is an umbrella organization of several open-source astronomy and astrophysics projects. From their &lt;a href="https://openastronomy.org/gsoc/"&gt;GSoC webpage&lt;/a&gt;, I came to know that they are applying to participate in GSoC”22. The webpage also contained guidelines for contributors, a list of project ideas for this year and for past years, and information about how to get in touch with mentors and communities of various member organizations. All these were quite informative and useful. I also checked out several other organizations as well. All of them had such information available online in various forms. A few days later the participating organizations were announced by GSoC and OpenAstronomy was one of them. By this time, as directed in contributor guidelines of both &lt;a href="https://google.github.io/gsocguides/student/"&gt;GSoC&lt;/a&gt; and &lt;a href="https://openastronomy.org/gsoc/student_guidelines.html"&gt;OpenAstronomy&lt;/a&gt;, I had introduced myself in chat channels and mailing lists of some organizations. I went through various project ideas proposed by these organizations and tried to find a project that aligned most with my interests. Being an astronomer, I wanted to work on an OpenAstronomy project and from the list of project ideas I liked the project called ‘Bexvar in Stingray’. So I decided to prepare a proposal for this project.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;About the project&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Let me tell you in brief about &lt;a href="https://docs.stingray.science/index.html"&gt;Stingray&lt;/a&gt; and ‘Bexvar’ first. Stingray is an open-source package for x-ray spectral timing written in python. It provides a number of tools to perform times series analysis and related tasks on astronomical light curves. In the case of faint x-ray sources, observed near the detection limits of telescopes, uncertainties in their light curves are dominated by Poissonian uncertainties. The Bayesian excess variance (Bexvar) method is useful to find variability intrinsic to sources from gappy light curves dominated by Poissonian uncertainties. It was developed by &lt;a href="https://arxiv.org/abs/2106.14529"&gt;Buchner et al. (2021)&lt;/a&gt;. The aim of the ‘Bexvar in Stingray’ project is to implement this method in Stingray, create test cases for the method based on real observational data and write appropriate documentation. I will write about the project in more detail in my next blog.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;How did I make the proposal?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;When I read about the project, my first instinct was to read the article by &lt;a href="https://arxiv.org/abs/2106.14529"&gt;Buchner et al. (2021)&lt;/a&gt; to know more about the method. After reading it I was convinced that I do want to work on implementing this method in Stingray. I started by introducing myself to the Stingray community through their slack channel. As per the &lt;a href="https://openastronomy.org/gsoc/student_guidelines.html"&gt;guideline&lt;/a&gt; by OpenAstronmy, one of the first things to do then was to make a PR in Stingray for the contribution period. For this, I went to the &lt;a href="https://github.com/StingraySoftware/stingray"&gt;GitHub repository&lt;/a&gt; of the core Stingray package. I went through the list of open issues and found issues labeled ‘good first issue’ and ‘GSoC’. I selected an issue that I thought was closely related to my project. The &lt;a href="https://github.com/StingraySoftware/stingray/issues/592"&gt;issue&lt;/a&gt; was about a bug in the CrossCorrelation class in stingray. The CrossCorrelation class of stingray has an internal method called time_shift. This provided the timeshift required between two lightcurves to get maximum cross-correlation between them. It was found that if two identical lightcurves are used then, the time_shift method should give zero as the answer irrespective of the length of the lightcurve. As the light curve will have maximum crosscorrelation with itself. However, the method did not give zero as an answer in the case of the light curve having an even number of time bins. I tried to solve this issue by changing how time_shift was calculated in the code. During this time I interacted with Prof. Matteo Bachetti, who is one of the mentors for the project. Before applying for GSoC, I had negligible experience in contributing to open-source. Matteo guided me a lot during this phase and finally, my &lt;a href="https://github.com/StingraySoftware/stingray/pull/647"&gt;PR&lt;/a&gt; was merged. To be honest this made me very happy! It was the first time when I actually made some contributions to open-source software. The next task was to prepare a proposal for the project. This was a long and tough process. I spent most of my time reading about the Bexvar method, trying to understand it, and figuring out how to write a proposal for its implementation. During this time I sent my draft proposals to Matteo, he guided me to make them better, I worked on his suggestion. This interaction also gave me a lot of insight into what is expected from a contributor. This entire experience of preparing a proposal for the project and taking suggestions from mentors was quite new to me, and I am really grateful that I had a chance to go through it.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/680/1*YFXjL3Wc5EqBE9vaXPHNBQ.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;&lt;strong&gt;Community bonding period&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;After a month of submitting a proposal, the selected proposals were announced. To my surprise, my proposal was selected. I was over the moon, I was happy, I was excited and also a little bit worried. With the selection, the three-week-long community bonding period started. This period is dedicated for selected contributors to bond with community members, and mentors, interact with them and get themselves familiar with the codebase. This acts as a warm-up period before the actual coding period starts. The first important thing that happened during this period was the project kickoff meeting with my mentors Matteo and Daniela. This was the first time when I virtually met both of them. We discussed a bit about the project, our background, and current work, our expectations from each other, etc. We decided to meet every week virtually and stay in contact during the week via slack. This was a truly nice experience for me, both of them are quite supportive, they explained things to me nicely and most importantly made me feel welcome in the community and made sure that I was comfortable. In the following weeks, I spent my time studying the implementation of &lt;a href="https://github.com/JohannesBuchner/bexvar"&gt;Bexvar&lt;/a&gt; by Buchner et al. (2021), learning about Bayesian statistics, and also understanding Stingray’s code base. I also learned more about testing in python and by the end of the community bonding period, I was ready to start coding. I planned to get a basic model of the method ready in the first few weeks after the community bonding period. Overall the community bonding period was great, It really helped me get into the right mindset for the coding period and be prepared for it. I learned a lot about Stingray, Bayesian statistics, and my project during this time.&lt;/p&gt;
-&lt;p&gt;A lot more is yet to be covered. Right now I am on the 3 rd week of the coding period. I will soon write about my project and my work in the coding period in detail in my next blog. It is time to wrap this one up for now. See you soon!&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=7ed5a47bec65" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220704_0357_mihirtripathi97/</guid><pubDate>Mon, 04 Jul 2022 02:57:22 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f24a03c00014" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_1811_mihirtripathi97/</guid><pubDate>Sun, 24 Jul 2022 17:11:57 GMT</pubDate></item></channel></rss>

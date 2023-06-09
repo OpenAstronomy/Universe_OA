@@ -1,5 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2023)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2023.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 08 Jun 2023 01:13:45 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSOC Week 1 : A global overview of the RADIS API.</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;GSOC Week 1 : A global overview of the RADIS API.&lt;/h4&gt;&lt;p&gt;Since the point of my project is to implement new databases in the RADIS API and to reform it in other to make it common and stand alone, it seems important to understand how this API works.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2023)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2023.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 09 Jun 2023 01:15:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 1 Progress Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;Week 1 has been quite eventful with me creating a Lomb Scargle Fourier Transform function and get a working class for Lomb Scargle Cross Spectrum and Power Spectrum.&lt;/p&gt;
+
+&lt;p&gt;I inherited my LS cross spectrum from the regular cross spectrum class. Had to rewrite the &lt;code&gt;constructor&lt;/code&gt;, &lt;code&gt;initial_checks&lt;/code&gt; , &lt;code&gt;make_crossspectrum&lt;/code&gt;, &lt;code&gt;_make_auxil_pds&lt;/code&gt; and &lt;code&gt;_initialize_empty&lt;/code&gt;. And also wrote a new &lt;code&gt;_ls_cross&lt;/code&gt; method which just returns the frequencies and cross spectra for given light curves and it is an internal function only to be used by the class.&lt;/p&gt;
+
+&lt;p&gt;The original slow implementation has been completed. I am still working on the fast version.&lt;/p&gt;
+
+&lt;p&gt;As this is not a project that can be completed in a bunch of small PRs, I will push to a single PR which will be merged after completion of the project. The following draft PR is the one to which I will be pushing to. &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/stingray/pull/737/"&gt;https://github.com/StingraySoftware/stingray/pull/737/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;The following are the APIs for the classes&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Cross Spectrum
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Make a cross spectrum from an unevenly sampled light curve.
+You can also make an empty :class:`Crossspectrum` object to populate with your
+own Fourier-transformed data (this can sometimes be useful when making
+binned power spectra).
+
+Parameters
+----------
+data1: :class:`stingray.Lightcurve` or :class:`stingray.events.EventList`, optional, default ``None``
+The dataset for the first channel/band of interest.
+
+data2: :class:`stingray.Lightcurve` or :class:`stingray.events.EventList`, optional, default ``None``
+The dataset for the second, or "reference", band.
+
+norm: {``frac``, ``abs``, ``leahy``, ``none``}, default ``none``
+The normalization of the (real part of the) cross spectrum.
+
+power_type: string, optional, default ``real``
+Parameter to choose among complete, real part and magnitude of the cross spectrum.
+
+fullspec: boolean, optional, default ``False``
+If False, keep only the positive frequencies, or if True, keep all of them .
+
+Other Parameters
+----------------
+dt: float
+The time resolution of the light curve. Only needed when constructing
+light curves in the case where ``data1``, ``data2`` are
+:class:`EventList` objects
+
+skip_checks: bool
+Skip initial checks, for speed or other reasons (you need to trust your
+inputs!)
+
+min_freq : float
+Minimum frequency to take the Lomb-Scargle Fourier Transform
+
+max_freq: float
+Maximum frequency to take the Lomb-Scargle Fourier Transform
+
+df : float
+The time resolution of the light curve. Only needed where ``data1``, ``data2`` are
+
+method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the alloowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+Attributes
+----------
+freq: numpy.ndarray
+The array of mid-bin frequencies that the Fourier transform samples
+
+power: numpy.ndarray
+The array of cross spectra (complex numbers)
+
+power_err: numpy.ndarray
+The uncertainties of ``power``.
+An approximation for each bin given by ``power_err= power/sqrt(m)``.
+Where ``m`` is the number of power averaged in each bin (by frequency
+binning, or averaging more than one spectra). Note that for a single
+realization (``m=1``) the error is equal to the power.
+
+df: float
+The frequency resolution
+
+m: int
+The number of averaged cross-spectra amplitudes in each bin.
+
+n: int
+The number of data points/time bins in one segment of the light
+curves.
+
+k: array of int
+The rebinning scheme if the object has been rebinned otherwise is set to 1.
+
+nphots1: float
+The total number of photons in light curve 1
+
+nphots2: float
+The total number of photons in light curve 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;h3&gt;
+
+
+Power Spectrum
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Make a :class:`LombScarglePowerspectrum` (also called periodogram) from a unevenly sampled (binned)
+light curve. Periodograms can be normalized by either Leahy normalization,
+fractional rms normalization, absolute rms normalization, or not at all.
+
+You can also make an empty :class:`LombScarglePowerspectrum` object to populate with
+your own fourier-transformed data (this can sometimes be useful when making
+binned power spectra).
+
+Parameters
+----------
+data: :class:`stingray.lightcurve.Lightcurve` or :class:`stingray.events.EventList` object, optional, default ``None``
+The light curve data to be Fourier-transformed.
+
+norm: {"leahy" | "frac" | "abs" | "none" }, optional, default "frac"
+The normaliation of the power spectrum to be used. Options are
+"leahy", "frac", "abs" and "none", default is "frac".
+
+Other Parameters
+----------------
+dt: float
+The time resolution of the light curve. Only needed when constructing
+light curves in the case where ``data`` is a
+:class:`EventList` object
+
+skip_checks: bool
+Skip initial checks, for speed or other reasons (you need to trust your
+inputs!).
+
+min_freq : float
+Minimum frequency to take the Lomb-Scargle Fourier Transform
+
+max_freq: float
+Maximum frequency to take the Lomb-Scargle Fourier Transform
+
+df : float
+The time resolution of the light curve. Only needed where ``data`` is a :class`stingray.Eventlist` object
+
+method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the alloowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+Attributes
+----------
+norm: {"leahy" | "frac" | "abs" | "none" }
+The normalization of the power spectrum.
+
+freq: numpy.ndarray
+The array of mid-bin frequencies that the Fourier transform samples.
+
+power: numpy.ndarray
+The array of normalized squared absolute values of Fourier
+amplitudes.
+
+power_err: numpy.ndarray
+The uncertainties of ``power``.
+An approximation for each bin given by ``power_err= power/sqrt(m)``.
+Where ``m`` is the number of power averaged in each bin (by frequency
+binning, or averaging power spectra of segments of a light curve).
+Note that for a single realization (``m=1``) the error is equal to the
+power.
+
+df: float
+The frequency resolution.
+
+m: int
+The number of averaged powers in each bin.
+
+n: int
+The number of data points in the light curve.
+
+nphots: float
+The total number of photons in the light curve.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</guid><pubDate>Thu, 08 Jun 2023 06:29:01 GMT</pubDate></item><item><title>GSOC Week 1 : A global overview of the RADIS API.</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;GSOC Week 1 : A global overview of the RADIS API.&lt;/h4&gt;&lt;p&gt;Since the point of my project is to implement new databases in the RADIS API and to reform it in other to make it common and stand alone, it seems important to understand how this API works.&lt;/p&gt;
 &lt;p&gt;Thus, I have started my 12 weeks projects by reading carefully the API documentation available at &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.io.dbmanager.html"&gt;https://radis.readthedocs.io/en/latest/source/radis.io.dbmanager.html&lt;/a&gt;. I will detail in this article what I consider the key points to understand how Radis works globally and aim to answer the following question : Whats are the steps to proceed in order to include a new database as Kurucz to RADIS ?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;This page is a description of the different modules available in the RADIS library except the api one which will be discussed later.&lt;/strong&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
