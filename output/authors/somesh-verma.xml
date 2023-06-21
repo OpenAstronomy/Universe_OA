@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Somesh Verma)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/somesh-verma.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 15:52:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Utilising community bonding period Effectively!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230530_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I started to contribute to RADIS from January’23 and whenever i needed help in some issue , mentors were quite helpful in providing revelant information to resolve that issue . And this thing helped me , to develop good bonding and understanding with the mentors .&lt;/p&gt;
+
+&lt;p&gt;So,I thought, i should use community bonding period more productively thus, i decided to work on project from 15 May .&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;In community bonding period i have done following things -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Read the RADIS and HITRAN Paper (selected parts)&lt;/li&gt;
+&lt;li&gt;Worked on Loading the dataframe in Vaex format (task of first week)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id="loading-dataframe-in-vaex-format"&gt;Loading Dataframe in Vaex format&lt;/h6&gt;
+&lt;p&gt;There are two main functions which are used load databank in RADIS
+These are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fetch_databank()&lt;/li&gt;
+&lt;li&gt;load_databank()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;So,I thought, i should use community bonding period more productively thus, i decided to work on project from 15 May .&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;In community bonding period i have done following things -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Read the RADIS and HITRAN Paper (selected parts)&lt;/li&gt;
+&lt;li&gt;Worked on Loading the dataframe in Vaex format (task of first week)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id="loading-dataframe-in-vaex-format"&gt;Loading Dataframe in Vaex format&lt;/h6&gt;
+&lt;p&gt;There are two main functions which are used load databank in RADIS
+These are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fetch_databank()&lt;/li&gt;
+&lt;li&gt;load_databank()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;In community bonding period i have done following things -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Read the RADIS and HITRAN Paper (selected parts)&lt;/li&gt;
+&lt;li&gt;Worked on Loading the dataframe in Vaex format (task of first week)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id="loading-dataframe-in-vaex-format"&gt;Loading Dataframe in Vaex format&lt;/h6&gt;
+&lt;p&gt;There are two main functions which are used load databank in RADIS
+These are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fetch_databank()&lt;/li&gt;
+&lt;li&gt;load_databank()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Read the RADIS and HITRAN Paper (selected parts)&lt;/li&gt;
+&lt;li&gt;Worked on Loading the dataframe in Vaex format (task of first week)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h6 id="loading-dataframe-in-vaex-format"&gt;Loading Dataframe in Vaex format&lt;/h6&gt;
+&lt;p&gt;There are two main functions which are used load databank in RADIS
+These are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fetch_databank()&lt;/li&gt;
+&lt;li&gt;load_databank()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h6 id="loading-dataframe-in-vaex-format"&gt;Loading Dataframe in Vaex format&lt;/h6&gt;
+&lt;p&gt;There are two main functions which are used load databank in RADIS
+These are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fetch_databank()&lt;/li&gt;
+&lt;li&gt;load_databank()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;p&gt;There are two main functions which are used load databank in RADIS
+These are :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;fetch_databank()&lt;/li&gt;
+&lt;li&gt;load_databank()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;ul&gt;
+&lt;li&gt;fetch_databank()&lt;/li&gt;
+&lt;li&gt;load_databank()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230530_0000_1someshverma/</guid><pubDate>Mon, 29 May 2023 23:00:00 GMT</pubDate></item><item><title>Getting selected for GSoC’23@RADIS!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230524_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I am Somesh Verma,a third year undergrad at National Institute of Technology Hamirpur. I have been accepted as contributor to the OpenAstronomy  RADIS.&lt;/p&gt;
+
+&lt;h4 id="choosing-organisation"&gt;Choosing Organisation&lt;/h4&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I  chose OpenAstronomy as i have interest in astronomy right from my childhood and RADIS also aline with my interst and skills .I have also contributed to Libre Health App for Baby Care but then i shifted my focus  only to RADIS . By the end i had four merged pull request and I was working on the fifth issue.&lt;/p&gt;
+
+&lt;h4 id="contriutions-and-experience"&gt;Contriutions and Experience&lt;/h4&gt;
+&lt;p&gt;I started to contribute to RADIS from January’23 , initially i faced problem to set up the things and run the code . After one weel or so I fixed the issues and than I spent one week on understanding the codebase ,reading documentation and try examples. By now , i had developed a rough understanding of the code .&lt;/p&gt;
+
+&lt;p&gt;Then , I started to find issue over which i can work and started to work on the issues ,mentors have been quite helpful so far, whenever i got struck somewhere ,they helped in resolving the issue .&lt;/p&gt;
+
+&lt;p&gt;I am looking forward to have the great Learning experience this Summer with RADIS :)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h4 id="choosing-organisation"&gt;Choosing Organisation&lt;/h4&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I  chose OpenAstronomy as i have interest in astronomy right from my childhood and RADIS also aline with my interst and skills .I have also contributed to Libre Health App for Baby Care but then i shifted my focus  only to RADIS . By the end i had four merged pull request and I was working on the fifth issue.&lt;/p&gt;
+
+&lt;h4 id="contriutions-and-experience"&gt;Contriutions and Experience&lt;/h4&gt;
+&lt;p&gt;I started to contribute to RADIS from January’23 , initially i faced problem to set up the things and run the code . After one weel or so I fixed the issues and than I spent one week on understanding the codebase ,reading documentation and try examples. By now , i had developed a rough understanding of the code .&lt;/p&gt;
+
+&lt;p&gt;Then , I started to find issue over which i can work and started to work on the issues ,mentors have been quite helpful so far, whenever i got struck somewhere ,they helped in resolving the issue .&lt;/p&gt;
+
+&lt;p&gt;I am looking forward to have the great Learning experience this Summer with RADIS :)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I  chose OpenAstronomy as i have interest in astronomy right from my childhood and RADIS also aline with my interst and skills .I have also contributed to Libre Health App for Baby Care but then i shifted my focus  only to RADIS . By the end i had four merged pull request and I was working on the fifth issue.&lt;/p&gt;
+
+&lt;h4 id="contriutions-and-experience"&gt;Contriutions and Experience&lt;/h4&gt;
+&lt;p&gt;I started to contribute to RADIS from January’23 , initially i faced problem to set up the things and run the code . After one weel or so I fixed the issues and than I spent one week on understanding the codebase ,reading documentation and try examples. By now , i had developed a rough understanding of the code .&lt;/p&gt;
+
+&lt;p&gt;Then , I started to find issue over which i can work and started to work on the issues ,mentors have been quite helpful so far, whenever i got struck somewhere ,they helped in resolving the issue .&lt;/p&gt;
+
+&lt;p&gt;I am looking forward to have the great Learning experience this Summer with RADIS :)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h4 id="contriutions-and-experience"&gt;Contriutions and Experience&lt;/h4&gt;
+&lt;p&gt;I started to contribute to RADIS from January’23 , initially i faced problem to set up the things and run the code . After one weel or so I fixed the issues and than I spent one week on understanding the codebase ,reading documentation and try examples. By now , i had developed a rough understanding of the code .&lt;/p&gt;
+
+&lt;p&gt;Then , I started to find issue over which i can work and started to work on the issues ,mentors have been quite helpful so far, whenever i got struck somewhere ,they helped in resolving the issue .&lt;/p&gt;
+
+&lt;p&gt;I am looking forward to have the great Learning experience this Summer with RADIS :)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;p&gt;I started to contribute to RADIS from January’23 , initially i faced problem to set up the things and run the code . After one weel or so I fixed the issues and than I spent one week on understanding the codebase ,reading documentation and try examples. By now , i had developed a rough understanding of the code .&lt;/p&gt;
+
+&lt;p&gt;Then , I started to find issue over which i can work and started to work on the issues ,mentors have been quite helpful so far, whenever i got struck somewhere ,they helped in resolving the issue .&lt;/p&gt;
+
+&lt;p&gt;I am looking forward to have the great Learning experience this Summer with RADIS :)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Then , I started to find issue over which i can work and started to work on the issues ,mentors have been quite helpful so far, whenever i got struck somewhere ,they helped in resolving the issue .&lt;/p&gt;
+
+&lt;p&gt;I am looking forward to have the great Learning experience this Summer with RADIS :)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;I am looking forward to have the great Learning experience this Summer with RADIS :)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230524_0000_1someshverma/</guid><pubDate>Tue, 23 May 2023 23:00:00 GMT</pubDate></item></channel></rss>

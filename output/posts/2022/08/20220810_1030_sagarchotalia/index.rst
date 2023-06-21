@@ -2,7 +2,7 @@
 .. slug:
 .. date: 2022-08-10 10:30:40 
 .. tags: radis
-.. author: 
+.. author: sagarchotalia
 .. link: https://sagarchotalia.github.io/Blog/jekyll/update/2022/08/10/welcome-to-jekyll.html
 .. description:
 .. category: gsoc2022

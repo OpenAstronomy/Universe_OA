@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about JuliaAstro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/juliaastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 16 Jun 2023 01:10:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 11 &amp; 12: Last two weeks of GSoC</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200830_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-whats-the-progress-what-did-you-do-in-last-2-weeks"&gt;&lt;em&gt;Hey Sid! What’s the progress? What did you do in last 2 weeks?&lt;/em&gt;&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about JuliaAstro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/juliaastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 15:52:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 11 &amp; 12: Last two weeks of GSoC</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200830_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-whats-the-progress-what-did-you-do-in-last-2-weeks"&gt;&lt;em&gt;Hey Sid! What’s the progress? What did you do in last 2 weeks?&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;The work was completed on time! I spent the last two weeks coding up the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;ccds&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;. With these, one can apply a function on the desired object (i.e. ccd or array or filename) and can also save it to FITS file. There are various options available for saving, like the prefix name of the saved file, suffix name of saved file and also the location at which to save, check out the repo for more info!&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -76,7 +76,1155 @@
 
 &lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200830_1113_siddharthlal25/</guid><pubDate>Sun, 30 Aug 2020 10:13:56 GMT</pubDate></item><item><title>Week 9 &amp; 10: Beginning of the last month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200818_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-lets-get-to-the-point-directly-did-your-previous-pr-get-merged"&gt;&lt;em&gt;Hey Sid! Let’s get to the point directly, did your previous PR get merged?&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;The work was completed on time! I spent the last two weeks coding up the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;ccds&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;. With these, one can apply a function on the desired object (i.e. ccd or array or filename) and can also save it to FITS file. There are various options available for saving, like the prefix name of the saved file, suffix name of saved file and also the location at which to save, check out the repo for more info!&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="awesome-can-you-show-some-work-samples"&gt;&lt;em&gt;Awesome, Can you show some work samples?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Sure, here it is!&lt;/p&gt;
+
+&lt;p&gt;This is a bias frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes overscan subtraction followed by trimming the overscan region, it turns out to be:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="awesome-can-you-show-some-work-samples"&gt;&lt;em&gt;Awesome, Can you show some work samples?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Sure, here it is!&lt;/p&gt;
+
+&lt;p&gt;This is a bias frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes overscan subtraction followed by trimming the overscan region, it turns out to be:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Sure, here it is!&lt;/p&gt;
+
+&lt;p&gt;This is a bias frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes overscan subtraction followed by trimming the overscan region, it turns out to be:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;This is a bias frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes overscan subtraction followed by trimming the overscan region, it turns out to be:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes overscan subtraction followed by trimming the overscan region, it turns out to be:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;When the frame undergoes overscan subtraction followed by trimming the overscan region, it turns out to be:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Several bias frames after overscan subtraction and trimming are stacked together and combined, this is the master bias frame used for subsequent processing of images. This is how it looks:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/bias/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Next comes the processing of flat frames, this is a &lt;em&gt;dome flat r&lt;/em&gt; frame as captured:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;When the frame undergoes bias subtraction (by &lt;em&gt;master_bias&lt;/em&gt;) followed by overscan subtraction and trimming, it looks something like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Several &lt;em&gt;dome_flat_r&lt;/em&gt; frames are stacked together and combined by mean, this results in:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master frame) of &lt;em&gt;dome_flat_i&lt;/em&gt; and &lt;em&gt;dome_flat_z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/dome_flat/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Now comes the most interesting part, processing of science. The raw image of scienc looks like (this one is &lt;em&gt;NEP2581-r&lt;/em&gt;):&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/sample.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;This frame when undergoes bias subtraction, overscan subtraction, trimming and flat correction (by the corresponding flat frame), looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/processed.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Finally these frames are stacked and combined by mean, so the final processed image looks like:&lt;/p&gt;
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/r/master.png"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Similarly, below are processed and combined frames (i.e. master_frame) of &lt;em&gt;NEP2581-i&lt;/em&gt; and &lt;em&gt;NEP2581-z&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;&lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/i/master.png" width="390" height="260" style="float:left"&gt; &lt;img src="https://raw.githubusercontent.com/siddharthlal25/blog/master/_images/science/z/master.png" width="390" height="260" style="float:right"&gt;&lt;/p&gt;
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="thats-awesome-so-what-are-your-future-plans-about-the-package"&gt;&lt;em&gt;That’s awesome! So what are your future plans about the package?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;There are some more advanced algorithms (i.e. cosmic ray detection, part of my future goals) left to be implemented, I have my next 2 weeks completed packed, so will implement these after the next two weeks!&lt;/p&gt;
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;At the end, I would like to thank my mentors for being so kind and cooperative, thanks for guiding me at every step of this project! This project wouldn’t be possible without you guys, thanks a lot!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200830_1113_siddharthlal25/</guid><pubDate>Sun, 30 Aug 2020 10:13:56 GMT</pubDate></item><item><title>Week 9 &amp; 10: Beginning of the last month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/08/20200818_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-lets-get-to-the-point-directly-did-your-previous-pr-get-merged"&gt;&lt;em&gt;Hey Sid! Let’s get to the point directly, did your previous PR get merged?&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;Yes! The PR which involved creation of new data structure for &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s got merged, the code is up and running now!&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -95,7 +1243,109 @@
 
 &lt;p&gt;Stay tuned to know more!&lt;/p&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200818_1113_siddharthlal25/</guid><pubDate>Tue, 18 Aug 2020 10:13:56 GMT</pubDate></item><item><title>Week 7 &amp; 8: The end of second month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/07/20200729_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-how-was-the-second-month"&gt;&lt;em&gt;Hey Sid, how was the second month?&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Yes! The PR which involved creation of new data structure for &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s got merged, the code is up and running now!&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="great-tell-us-whats-the-next-pr-all-about"&gt;&lt;em&gt;Great, tell us what’s the next PR all about&lt;/em&gt;?&lt;/h3&gt;
+
+&lt;p&gt;After creating the data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; and making it compatible with all methods in &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/31"&gt;#31&lt;/a&gt;, I went back to my closed PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/30"&gt;#30&lt;/a&gt; to take the code and make it compatible with &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;. &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/30"&gt;#30&lt;/a&gt; consists of code that enables a user to apply function on a collection of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s and then save them in new &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files. Now, the new PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; enables the same functionalities but with &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;s. This PR is in it’s last stages of review and will get merged soon!&lt;/p&gt;
+
+&lt;h3 id="hmmm-that-sounds-interesting-have-you-prepared-some-examples-to-show-the-code-in-action"&gt;&lt;em&gt;Hmmm, that sounds interesting, have you prepared some examples to show the code in action?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Not yet, but don’t worry, I have started working on proper usage guidelines and examples, will put it up soon!&lt;/p&gt;
+
+&lt;h3 id="cool-tell-us-about-your-future-plans"&gt;&lt;em&gt;Cool! Tell us about your future plans?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, my primary goal is to get PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; merged, after this I will put up some basic examples for complete reduction process. Following all this, I will push a new release and keep working on stretch goals!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="great-tell-us-whats-the-next-pr-all-about"&gt;&lt;em&gt;Great, tell us what’s the next PR all about&lt;/em&gt;?&lt;/h3&gt;
+
+&lt;p&gt;After creating the data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; and making it compatible with all methods in &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/31"&gt;#31&lt;/a&gt;, I went back to my closed PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/30"&gt;#30&lt;/a&gt; to take the code and make it compatible with &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;. &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/30"&gt;#30&lt;/a&gt; consists of code that enables a user to apply function on a collection of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s and then save them in new &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files. Now, the new PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; enables the same functionalities but with &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;s. This PR is in it’s last stages of review and will get merged soon!&lt;/p&gt;
+
+&lt;h3 id="hmmm-that-sounds-interesting-have-you-prepared-some-examples-to-show-the-code-in-action"&gt;&lt;em&gt;Hmmm, that sounds interesting, have you prepared some examples to show the code in action?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Not yet, but don’t worry, I have started working on proper usage guidelines and examples, will put it up soon!&lt;/p&gt;
+
+&lt;h3 id="cool-tell-us-about-your-future-plans"&gt;&lt;em&gt;Cool! Tell us about your future plans?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, my primary goal is to get PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; merged, after this I will put up some basic examples for complete reduction process. Following all this, I will push a new release and keep working on stretch goals!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;After creating the data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; and making it compatible with all methods in &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/31"&gt;#31&lt;/a&gt;, I went back to my closed PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/30"&gt;#30&lt;/a&gt; to take the code and make it compatible with &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;. &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/30"&gt;#30&lt;/a&gt; consists of code that enables a user to apply function on a collection of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s and then save them in new &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files. Now, the new PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; enables the same functionalities but with &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;s. This PR is in it’s last stages of review and will get merged soon!&lt;/p&gt;
+
+&lt;h3 id="hmmm-that-sounds-interesting-have-you-prepared-some-examples-to-show-the-code-in-action"&gt;&lt;em&gt;Hmmm, that sounds interesting, have you prepared some examples to show the code in action?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Not yet, but don’t worry, I have started working on proper usage guidelines and examples, will put it up soon!&lt;/p&gt;
+
+&lt;h3 id="cool-tell-us-about-your-future-plans"&gt;&lt;em&gt;Cool! Tell us about your future plans?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, my primary goal is to get PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; merged, after this I will put up some basic examples for complete reduction process. Following all this, I will push a new release and keep working on stretch goals!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="hmmm-that-sounds-interesting-have-you-prepared-some-examples-to-show-the-code-in-action"&gt;&lt;em&gt;Hmmm, that sounds interesting, have you prepared some examples to show the code in action?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Not yet, but don’t worry, I have started working on proper usage guidelines and examples, will put it up soon!&lt;/p&gt;
+
+&lt;h3 id="cool-tell-us-about-your-future-plans"&gt;&lt;em&gt;Cool! Tell us about your future plans?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, my primary goal is to get PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; merged, after this I will put up some basic examples for complete reduction process. Following all this, I will push a new release and keep working on stretch goals!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Not yet, but don’t worry, I have started working on proper usage guidelines and examples, will put it up soon!&lt;/p&gt;
+
+&lt;h3 id="cool-tell-us-about-your-future-plans"&gt;&lt;em&gt;Cool! Tell us about your future plans?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, my primary goal is to get PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; merged, after this I will put up some basic examples for complete reduction process. Following all this, I will push a new release and keep working on stretch goals!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="cool-tell-us-about-your-future-plans"&gt;&lt;em&gt;Cool! Tell us about your future plans?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, my primary goal is to get PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; merged, after this I will put up some basic examples for complete reduction process. Following all this, I will push a new release and keep working on stretch goals!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Currently, my primary goal is to get PR &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/pull/33"&gt;#33&lt;/a&gt; merged, after this I will put up some basic examples for complete reduction process. Following all this, I will push a new release and keep working on stretch goals!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/08/20200818_1113_siddharthlal25/</guid><pubDate>Tue, 18 Aug 2020 10:13:56 GMT</pubDate></item><item><title>Week 7 &amp; 8: The end of second month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/07/20200729_1113_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-how-was-the-second-month"&gt;&lt;em&gt;Hey Sid, how was the second month?&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;Awesome, lot’s of new learning experiences!&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -114,7 +1364,109 @@
 
 &lt;p&gt;Stay tuned to know more!&lt;/p&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/07/20200729_1113_siddharthlal25/</guid><pubDate>Wed, 29 Jul 2020 10:13:56 GMT</pubDate></item><item><title>Week 5 &amp; 6: The second month begins!</title><link>http://openastronomy.org/Universe_OA/posts/2020/07/20200713_0044_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-did-you-pass-your-first-evaluations"&gt;&lt;em&gt;Hey Sid, did you pass your first evaluations?&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Awesome, lot’s of new learning experiences!&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="so-tell-us-about-your-progress-in-the-last-two-weeks"&gt;&lt;em&gt;So, tell us about your progress in the last two weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;These two weeks went on designing the new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; for storing &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;, this was primarily done to make accessing data and header files easier, and secondly, to tackle the file closing issue that was encountered. Let me explain the file issue in brief:&lt;/p&gt;
+
+&lt;p&gt;Suppose a user uses &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; at a location and gets a list of all &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, now by using the generator methods one can collect all &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; listed in the data frame obtained from &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt;, but once the generator is executed and used for collecting the &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s, the generator closes the open file handles from which &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s were accessed, this subsequently leads to error while accessing the collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s since its source &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file were closed after the execution of generator. So, to tackle this we introduced &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; which couples the data and header together in memory and can be accessed even if the filehandles get closed.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; is based on &lt;code class="language-plaintext highlighter-rouge"&gt;AbstractArray&lt;/code&gt; interface which leads to a lot of code being reused with a bit of modification in the function signature.&lt;/p&gt;
+
+&lt;h3 id="hmmm-so-what-next"&gt;&lt;em&gt;Hmmm, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I will be copying the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; from the previously closed PR, which would probably take a day or two. With some minor modifications, it would be good to go to the main code. After this, one can easily see the code in action! Next, I will also be implementing some macros for getting values from header of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; using keys directly in a method. After all this, we can bump up the version!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="so-tell-us-about-your-progress-in-the-last-two-weeks"&gt;&lt;em&gt;So, tell us about your progress in the last two weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;These two weeks went on designing the new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; for storing &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;, this was primarily done to make accessing data and header files easier, and secondly, to tackle the file closing issue that was encountered. Let me explain the file issue in brief:&lt;/p&gt;
+
+&lt;p&gt;Suppose a user uses &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; at a location and gets a list of all &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, now by using the generator methods one can collect all &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; listed in the data frame obtained from &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt;, but once the generator is executed and used for collecting the &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s, the generator closes the open file handles from which &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s were accessed, this subsequently leads to error while accessing the collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s since its source &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file were closed after the execution of generator. So, to tackle this we introduced &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; which couples the data and header together in memory and can be accessed even if the filehandles get closed.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; is based on &lt;code class="language-plaintext highlighter-rouge"&gt;AbstractArray&lt;/code&gt; interface which leads to a lot of code being reused with a bit of modification in the function signature.&lt;/p&gt;
+
+&lt;h3 id="hmmm-so-what-next"&gt;&lt;em&gt;Hmmm, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I will be copying the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; from the previously closed PR, which would probably take a day or two. With some minor modifications, it would be good to go to the main code. After this, one can easily see the code in action! Next, I will also be implementing some macros for getting values from header of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; using keys directly in a method. After all this, we can bump up the version!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;These two weeks went on designing the new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; for storing &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;, this was primarily done to make accessing data and header files easier, and secondly, to tackle the file closing issue that was encountered. Let me explain the file issue in brief:&lt;/p&gt;
+
+&lt;p&gt;Suppose a user uses &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; at a location and gets a list of all &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, now by using the generator methods one can collect all &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; listed in the data frame obtained from &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt;, but once the generator is executed and used for collecting the &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s, the generator closes the open file handles from which &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s were accessed, this subsequently leads to error while accessing the collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s since its source &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file were closed after the execution of generator. So, to tackle this we introduced &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; which couples the data and header together in memory and can be accessed even if the filehandles get closed.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; is based on &lt;code class="language-plaintext highlighter-rouge"&gt;AbstractArray&lt;/code&gt; interface which leads to a lot of code being reused with a bit of modification in the function signature.&lt;/p&gt;
+
+&lt;h3 id="hmmm-so-what-next"&gt;&lt;em&gt;Hmmm, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I will be copying the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; from the previously closed PR, which would probably take a day or two. With some minor modifications, it would be good to go to the main code. After this, one can easily see the code in action! Next, I will also be implementing some macros for getting values from header of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; using keys directly in a method. After all this, we can bump up the version!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Suppose a user uses &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; at a location and gets a list of all &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, now by using the generator methods one can collect all &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; listed in the data frame obtained from &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt;, but once the generator is executed and used for collecting the &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s, the generator closes the open file handles from which &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s were accessed, this subsequently leads to error while accessing the collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s since its source &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file were closed after the execution of generator. So, to tackle this we introduced &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; which couples the data and header together in memory and can be accessed even if the filehandles get closed.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; is based on &lt;code class="language-plaintext highlighter-rouge"&gt;AbstractArray&lt;/code&gt; interface which leads to a lot of code being reused with a bit of modification in the function signature.&lt;/p&gt;
+
+&lt;h3 id="hmmm-so-what-next"&gt;&lt;em&gt;Hmmm, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I will be copying the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; from the previously closed PR, which would probably take a day or two. With some minor modifications, it would be good to go to the main code. After this, one can easily see the code in action! Next, I will also be implementing some macros for getting values from header of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; using keys directly in a method. After all this, we can bump up the version!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;The &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt; is based on &lt;code class="language-plaintext highlighter-rouge"&gt;AbstractArray&lt;/code&gt; interface which leads to a lot of code being reused with a bit of modification in the function signature.&lt;/p&gt;
+
+&lt;h3 id="hmmm-so-what-next"&gt;&lt;em&gt;Hmmm, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I will be copying the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; from the previously closed PR, which would probably take a day or two. With some minor modifications, it would be good to go to the main code. After this, one can easily see the code in action! Next, I will also be implementing some macros for getting values from header of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; using keys directly in a method. After all this, we can bump up the version!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="hmmm-so-what-next"&gt;&lt;em&gt;Hmmm, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I will be copying the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; from the previously closed PR, which would probably take a day or two. With some minor modifications, it would be good to go to the main code. After this, one can easily see the code in action! Next, I will also be implementing some macros for getting values from header of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; using keys directly in a method. After all this, we can bump up the version!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;I will be copying the saving versions of &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; from the previously closed PR, which would probably take a day or two. With some minor modifications, it would be good to go to the main code. After this, one can easily see the code in action! Next, I will also be implementing some macros for getting values from header of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; using keys directly in a method. After all this, we can bump up the version!&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/07/20200729_1113_siddharthlal25/</guid><pubDate>Wed, 29 Jul 2020 10:13:56 GMT</pubDate></item><item><title>Week 5 &amp; 6: The second month begins!</title><link>http://openastronomy.org/Universe_OA/posts/2020/07/20200713_0044_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-did-you-pass-your-first-evaluations"&gt;&lt;em&gt;Hey Sid, did you pass your first evaluations?&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;The results of the first evaluation was declared on the 4th of July and yes, I successfully completed my first evaluation!&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -131,7 +1483,90 @@
 
 &lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/07/20200713_0044_siddharthlal25/</guid><pubDate>Sun, 12 Jul 2020 23:44:56 GMT</pubDate></item><item><title>Week 3 &amp; 4: The end of first month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/06/20200628_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-you-mentioned-about-releasing-the-package-in-the-previous-post-did-you-go-for-the-release"&gt;&lt;em&gt;Hey Sid, you mentioned about releasing the package in the previous post, did you go for the release?&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;The results of the first evaluation was declared on the 4th of July and yes, I successfully completed my first evaluation!&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="how-was-your-experience-till-now"&gt;&lt;em&gt;How was your experience till now?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;It seems as if I started working yesterday, but reality is one and a half months are complete. The experience of working on this project was awesome, all thanks to my mentors.&lt;/p&gt;
+
+&lt;h3 id="so-what-are-the-updates-of-these-two-weeks"&gt;&lt;em&gt;So, what are the updates of these two weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I have been a bit puzzled in designing the end-user interface of the package, I was working on the issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt; during which Miles figured out that use of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; is not good, since it is not operable upon once the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file is closed. So, we won’t be able to operate on some collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s via iteration, since their respective &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files would have been closed after iteration.&lt;/p&gt;
+
+&lt;h3 id="hmmm-that-seems-like-a-problem-so-what-next"&gt;&lt;em&gt;Hmmm, that seems like a problem, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="how-was-your-experience-till-now"&gt;&lt;em&gt;How was your experience till now?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;It seems as if I started working yesterday, but reality is one and a half months are complete. The experience of working on this project was awesome, all thanks to my mentors.&lt;/p&gt;
+
+&lt;h3 id="so-what-are-the-updates-of-these-two-weeks"&gt;&lt;em&gt;So, what are the updates of these two weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I have been a bit puzzled in designing the end-user interface of the package, I was working on the issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt; during which Miles figured out that use of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; is not good, since it is not operable upon once the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file is closed. So, we won’t be able to operate on some collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s via iteration, since their respective &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files would have been closed after iteration.&lt;/p&gt;
+
+&lt;h3 id="hmmm-that-seems-like-a-problem-so-what-next"&gt;&lt;em&gt;Hmmm, that seems like a problem, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;It seems as if I started working yesterday, but reality is one and a half months are complete. The experience of working on this project was awesome, all thanks to my mentors.&lt;/p&gt;
+
+&lt;h3 id="so-what-are-the-updates-of-these-two-weeks"&gt;&lt;em&gt;So, what are the updates of these two weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I have been a bit puzzled in designing the end-user interface of the package, I was working on the issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt; during which Miles figured out that use of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; is not good, since it is not operable upon once the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file is closed. So, we won’t be able to operate on some collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s via iteration, since their respective &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files would have been closed after iteration.&lt;/p&gt;
+
+&lt;h3 id="hmmm-that-seems-like-a-problem-so-what-next"&gt;&lt;em&gt;Hmmm, that seems like a problem, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="so-what-are-the-updates-of-these-two-weeks"&gt;&lt;em&gt;So, what are the updates of these two weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I have been a bit puzzled in designing the end-user interface of the package, I was working on the issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt; during which Miles figured out that use of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; is not good, since it is not operable upon once the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file is closed. So, we won’t be able to operate on some collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s via iteration, since their respective &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files would have been closed after iteration.&lt;/p&gt;
+
+&lt;h3 id="hmmm-that-seems-like-a-problem-so-what-next"&gt;&lt;em&gt;Hmmm, that seems like a problem, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;I have been a bit puzzled in designing the end-user interface of the package, I was working on the issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt; during which Miles figured out that use of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; is not good, since it is not operable upon once the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file is closed. So, we won’t be able to operate on some collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s via iteration, since their respective &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files would have been closed after iteration.&lt;/p&gt;
+
+&lt;h3 id="hmmm-that-seems-like-a-problem-so-what-next"&gt;&lt;em&gt;Hmmm, that seems like a problem, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="hmmm-that-seems-like-a-problem-so-what-next"&gt;&lt;em&gt;Hmmm, that seems like a problem, so what next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/07/20200713_0044_siddharthlal25/</guid><pubDate>Sun, 12 Jul 2020 23:44:56 GMT</pubDate></item><item><title>Week 3 &amp; 4: The end of first month!</title><link>http://openastronomy.org/Universe_OA/posts/2020/06/20200628_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-you-mentioned-about-releasing-the-package-in-the-previous-post-did-you-go-for-the-release"&gt;&lt;em&gt;Hey Sid, you mentioned about releasing the package in the previous post, did you go for the release?&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;Yes, I wrote the interface for &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt; function with FITS files and finally released &lt;em&gt;version-0.2.0&lt;/em&gt;, come check it! (&lt;a href="https://github.com/JuliaAstro/CCDReduction.jl"&gt;CCDReduction.jl&lt;/a&gt;)&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -156,7 +1591,153 @@ end
 
 &lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/06/20200628_1804_siddharthlal25/</guid><pubDate>Sun, 28 Jun 2020 17:04:56 GMT</pubDate></item><item><title>Week 1 &amp; 2: Coding Officially Begins!</title><link>http://openastronomy.org/Universe_OA/posts/2020/06/20200615_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-did-the-coding-period-officially-begin"&gt;&lt;em&gt;Hey Sid, did the coding period officially begin?&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Yes, I wrote the interface for &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt; function with FITS files and finally released &lt;em&gt;version-0.2.0&lt;/em&gt;, come check it! (&lt;a href="https://github.com/JuliaAstro/CCDReduction.jl"&gt;CCDReduction.jl&lt;/a&gt;)&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="so-how-were-the-weeks-3--4"&gt;&lt;em&gt;So, how were the weeks 3 &amp;amp; 4?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p align="center"&gt; &lt;img src="https://beta.techcrunch.com/wp-content/uploads/2010/10/awesome.jpg"&gt; &lt;/p&gt;
+
+&lt;p&gt;These two weeks were quite interesting! After packing all the basic functionalties in the package, &lt;em&gt;version-0.2.0&lt;/em&gt; was released, the next problem to be tackled was collecting and listing all relevant files from a directory. So, to solve this &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; was created, it takes a path, searches it recursively (if the user wants) for FITS files with ImageHDUs, list them together and return them in a data frame. It has some advanced functionalities as well, check the &lt;a href="https://juliaastro.github.io/CCDReduction.jl/dev/api/#CCDReduction.fitscollection-Tuple%7BString%7D"&gt;documentation&lt;/a&gt; to know more!&lt;/p&gt;
+
+&lt;p&gt;Next, we created generators for filenames, image arrays, and ImageHDUs which works something like this:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# listing all FITS files present at some location with ImageHDUs
+df = fitscollection(“location_of_some_fits_files”)
+for arr in arrays(df)
+# arr is the array representation of images present in entries of the data frame
+# (i.e. array of ImageHDU's image data)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The generators created were &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt;, and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;. &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; generates the path of the file, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; generates the array representation of images in ImageHDU and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt; generates ImageHDU of FITS files. These generators work on output of &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; i.e. a data frame returned by the function. All these generators were written using &lt;a href="https://github.com/BenLauwens/ResumableFunctions.jl"&gt;ResumableFunctions.jl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="so-how-were-the-weeks-3--4"&gt;&lt;em&gt;So, how were the weeks 3 &amp;amp; 4?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p align="center"&gt; &lt;img src="https://beta.techcrunch.com/wp-content/uploads/2010/10/awesome.jpg"&gt; &lt;/p&gt;
+
+&lt;p&gt;These two weeks were quite interesting! After packing all the basic functionalties in the package, &lt;em&gt;version-0.2.0&lt;/em&gt; was released, the next problem to be tackled was collecting and listing all relevant files from a directory. So, to solve this &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; was created, it takes a path, searches it recursively (if the user wants) for FITS files with ImageHDUs, list them together and return them in a data frame. It has some advanced functionalities as well, check the &lt;a href="https://juliaastro.github.io/CCDReduction.jl/dev/api/#CCDReduction.fitscollection-Tuple%7BString%7D"&gt;documentation&lt;/a&gt; to know more!&lt;/p&gt;
+
+&lt;p&gt;Next, we created generators for filenames, image arrays, and ImageHDUs which works something like this:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# listing all FITS files present at some location with ImageHDUs
+df = fitscollection(“location_of_some_fits_files”)
+for arr in arrays(df)
+# arr is the array representation of images present in entries of the data frame
+# (i.e. array of ImageHDU's image data)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The generators created were &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt;, and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;. &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; generates the path of the file, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; generates the array representation of images in ImageHDU and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt; generates ImageHDU of FITS files. These generators work on output of &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; i.e. a data frame returned by the function. All these generators were written using &lt;a href="https://github.com/BenLauwens/ResumableFunctions.jl"&gt;ResumableFunctions.jl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p align="center"&gt; &lt;img src="https://beta.techcrunch.com/wp-content/uploads/2010/10/awesome.jpg"&gt; &lt;/p&gt;
+
+&lt;p&gt;These two weeks were quite interesting! After packing all the basic functionalties in the package, &lt;em&gt;version-0.2.0&lt;/em&gt; was released, the next problem to be tackled was collecting and listing all relevant files from a directory. So, to solve this &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; was created, it takes a path, searches it recursively (if the user wants) for FITS files with ImageHDUs, list them together and return them in a data frame. It has some advanced functionalities as well, check the &lt;a href="https://juliaastro.github.io/CCDReduction.jl/dev/api/#CCDReduction.fitscollection-Tuple%7BString%7D"&gt;documentation&lt;/a&gt; to know more!&lt;/p&gt;
+
+&lt;p&gt;Next, we created generators for filenames, image arrays, and ImageHDUs which works something like this:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# listing all FITS files present at some location with ImageHDUs
+df = fitscollection(“location_of_some_fits_files”)
+for arr in arrays(df)
+# arr is the array representation of images present in entries of the data frame
+# (i.e. array of ImageHDU's image data)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The generators created were &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt;, and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;. &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; generates the path of the file, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; generates the array representation of images in ImageHDU and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt; generates ImageHDU of FITS files. These generators work on output of &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; i.e. a data frame returned by the function. All these generators were written using &lt;a href="https://github.com/BenLauwens/ResumableFunctions.jl"&gt;ResumableFunctions.jl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;These two weeks were quite interesting! After packing all the basic functionalties in the package, &lt;em&gt;version-0.2.0&lt;/em&gt; was released, the next problem to be tackled was collecting and listing all relevant files from a directory. So, to solve this &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; was created, it takes a path, searches it recursively (if the user wants) for FITS files with ImageHDUs, list them together and return them in a data frame. It has some advanced functionalities as well, check the &lt;a href="https://juliaastro.github.io/CCDReduction.jl/dev/api/#CCDReduction.fitscollection-Tuple%7BString%7D"&gt;documentation&lt;/a&gt; to know more!&lt;/p&gt;
+
+&lt;p&gt;Next, we created generators for filenames, image arrays, and ImageHDUs which works something like this:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# listing all FITS files present at some location with ImageHDUs
+df = fitscollection(“location_of_some_fits_files”)
+for arr in arrays(df)
+# arr is the array representation of images present in entries of the data frame
+# (i.e. array of ImageHDU's image data)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The generators created were &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt;, and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;. &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; generates the path of the file, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; generates the array representation of images in ImageHDU and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt; generates ImageHDU of FITS files. These generators work on output of &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; i.e. a data frame returned by the function. All these generators were written using &lt;a href="https://github.com/BenLauwens/ResumableFunctions.jl"&gt;ResumableFunctions.jl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Next, we created generators for filenames, image arrays, and ImageHDUs which works something like this:&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# listing all FITS files present at some location with ImageHDUs
+df = fitscollection(“location_of_some_fits_files”)
+for arr in arrays(df)
+# arr is the array representation of images present in entries of the data frame
+# (i.e. array of ImageHDU's image data)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The generators created were &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt;, and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;. &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; generates the path of the file, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; generates the array representation of images in ImageHDU and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt; generates ImageHDU of FITS files. These generators work on output of &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; i.e. a data frame returned by the function. All these generators were written using &lt;a href="https://github.com/BenLauwens/ResumableFunctions.jl"&gt;ResumableFunctions.jl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# listing all FITS files present at some location with ImageHDUs
+df = fitscollection(“location_of_some_fits_files”)
+for arr in arrays(df)
+# arr is the array representation of images present in entries of the data frame
+# (i.e. array of ImageHDU's image data)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The generators created were &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt;, and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;. &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; generates the path of the file, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; generates the array representation of images in ImageHDU and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt; generates ImageHDU of FITS files. These generators work on output of &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; i.e. a data frame returned by the function. All these generators were written using &lt;a href="https://github.com/BenLauwens/ResumableFunctions.jl"&gt;ResumableFunctions.jl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;p&gt;The generators created were &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt;, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt;, and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt;. &lt;code class="language-plaintext highlighter-rouge"&gt;filenames&lt;/code&gt; generates the path of the file, &lt;code class="language-plaintext highlighter-rouge"&gt;arrays&lt;/code&gt; generates the array representation of images in ImageHDU and &lt;code class="language-plaintext highlighter-rouge"&gt;images&lt;/code&gt; generates ImageHDU of FITS files. These generators work on output of &lt;code class="language-plaintext highlighter-rouge"&gt;fitscollection&lt;/code&gt; i.e. a data frame returned by the function. All these generators were written using &lt;a href="https://github.com/BenLauwens/ResumableFunctions.jl"&gt;ResumableFunctions.jl&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting! What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Currently, I am working on issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt;, once this gets done, there will be a big release! Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/06/20200628_1804_siddharthlal25/</guid><pubDate>Sun, 28 Jun 2020 17:04:56 GMT</pubDate></item><item><title>Week 1 &amp; 2: Coding Officially Begins!</title><link>http://openastronomy.org/Universe_OA/posts/2020/06/20200615_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-did-the-coding-period-officially-begin"&gt;&lt;em&gt;Hey Sid, did the coding period officially begin?&lt;/em&gt;&lt;/h3&gt;
 
 &lt;p&gt;The community bonding period ended by the end of last month and the coding period officially began, I started to work on basic structure of the package and setting up the (not so user-friendly, PS: from astronomer’s perspective) interface for the image reduction methods.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -187,7 +1768,265 @@ end
 
 &lt;p&gt;Stay tuned to know more!&lt;/p&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/06/20200615_1804_siddharthlal25/</guid><pubDate>Mon, 15 Jun 2020 17:04:56 GMT</pubDate></item><item><title>Community Bonding Period-GSoC20</title><link>http://openastronomy.org/Universe_OA/posts/2020/05/20200530_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;p&gt;It was around 11:30 in the night on 4th of May, the Google servers glitched for a second or so but then I could see my project on the Org’s list.&lt;/p&gt;
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;The community bonding period ended by the end of last month and the coding period officially began, I started to work on basic structure of the package and setting up the (not so user-friendly, PS: from astronomer’s perspective) interface for the image reduction methods.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="hey-what-did-you-build-in-these-two-weeks"&gt;&lt;em&gt;Hey, what did you build in these two weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I have set up the basic methods required for processing of astronomical images, let me explain it to you one by one:&lt;/p&gt;
+
+&lt;p&gt;The first method implemented was &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_bias&lt;/code&gt;, this de-biases the image with the help of a bias frame, it has a mutating version as well which de-biases the image in place.&lt;/p&gt;
+
+&lt;p&gt;Next comes &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_overscan&lt;/code&gt;, every CCD plate has some region which is unexposed to light and this is called overscan region. For pre-processing average of this region has to be obtained (there are models as well, that can fit into this region PS: model part has to be implemented later) and then subtracted from the whole image. It also has a mutating variant clubbed together.&lt;/p&gt;
+
+&lt;p&gt;Next in line was &lt;code class="language-plaintext highlighter-rouge"&gt;flat_correct&lt;/code&gt;, this method removes the effect of variations in pixel to pixel sensitivity of detectors and by distortions in the optical path. The interesting point I learned while implementing this is fused broadcasting, believe me Julia keeps on blowing my mind with its speed and succinct syntaxes.&lt;/p&gt;
+
+&lt;p&gt;Next, I implemented some basic functionalities for modifying the image sizes i.e. &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt;. They are not much different but they are different, let me explain! Trimming is instructing the computer to remove some parts from the image, whereas cropping is instructing the computer to keep a certain part in the image (Yes, that’s the difference!). Sound’s pretty similar, right? The implementations were not that similar, &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; was a bit tricky as compared to &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; (check out the source code to find the difference). These functions are inherently non-mutating type, but I have also implemented a version of &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; as &lt;code class="language-plaintext highlighter-rouge"&gt;cropview&lt;/code&gt;, this returns the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; of the passed array. Mutating the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; will mutate the initial frame passed, an analogous version for &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; here is &lt;code class="language-plaintext highlighter-rouge"&gt;trimview&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next in line was the function &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt;, it basically takes a variable number of frames, stacks them together, and then finally combines them using medians (users can also have their custom combining functions).&lt;/p&gt;
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="hey-what-did-you-build-in-these-two-weeks"&gt;&lt;em&gt;Hey, what did you build in these two weeks?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;I have set up the basic methods required for processing of astronomical images, let me explain it to you one by one:&lt;/p&gt;
+
+&lt;p&gt;The first method implemented was &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_bias&lt;/code&gt;, this de-biases the image with the help of a bias frame, it has a mutating version as well which de-biases the image in place.&lt;/p&gt;
+
+&lt;p&gt;Next comes &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_overscan&lt;/code&gt;, every CCD plate has some region which is unexposed to light and this is called overscan region. For pre-processing average of this region has to be obtained (there are models as well, that can fit into this region PS: model part has to be implemented later) and then subtracted from the whole image. It also has a mutating variant clubbed together.&lt;/p&gt;
+
+&lt;p&gt;Next in line was &lt;code class="language-plaintext highlighter-rouge"&gt;flat_correct&lt;/code&gt;, this method removes the effect of variations in pixel to pixel sensitivity of detectors and by distortions in the optical path. The interesting point I learned while implementing this is fused broadcasting, believe me Julia keeps on blowing my mind with its speed and succinct syntaxes.&lt;/p&gt;
+
+&lt;p&gt;Next, I implemented some basic functionalities for modifying the image sizes i.e. &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt;. They are not much different but they are different, let me explain! Trimming is instructing the computer to remove some parts from the image, whereas cropping is instructing the computer to keep a certain part in the image (Yes, that’s the difference!). Sound’s pretty similar, right? The implementations were not that similar, &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; was a bit tricky as compared to &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; (check out the source code to find the difference). These functions are inherently non-mutating type, but I have also implemented a version of &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; as &lt;code class="language-plaintext highlighter-rouge"&gt;cropview&lt;/code&gt;, this returns the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; of the passed array. Mutating the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; will mutate the initial frame passed, an analogous version for &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; here is &lt;code class="language-plaintext highlighter-rouge"&gt;trimview&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next in line was the function &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt;, it basically takes a variable number of frames, stacks them together, and then finally combines them using medians (users can also have their custom combining functions).&lt;/p&gt;
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;I have set up the basic methods required for processing of astronomical images, let me explain it to you one by one:&lt;/p&gt;
+
+&lt;p&gt;The first method implemented was &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_bias&lt;/code&gt;, this de-biases the image with the help of a bias frame, it has a mutating version as well which de-biases the image in place.&lt;/p&gt;
+
+&lt;p&gt;Next comes &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_overscan&lt;/code&gt;, every CCD plate has some region which is unexposed to light and this is called overscan region. For pre-processing average of this region has to be obtained (there are models as well, that can fit into this region PS: model part has to be implemented later) and then subtracted from the whole image. It also has a mutating variant clubbed together.&lt;/p&gt;
+
+&lt;p&gt;Next in line was &lt;code class="language-plaintext highlighter-rouge"&gt;flat_correct&lt;/code&gt;, this method removes the effect of variations in pixel to pixel sensitivity of detectors and by distortions in the optical path. The interesting point I learned while implementing this is fused broadcasting, believe me Julia keeps on blowing my mind with its speed and succinct syntaxes.&lt;/p&gt;
+
+&lt;p&gt;Next, I implemented some basic functionalities for modifying the image sizes i.e. &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt;. They are not much different but they are different, let me explain! Trimming is instructing the computer to remove some parts from the image, whereas cropping is instructing the computer to keep a certain part in the image (Yes, that’s the difference!). Sound’s pretty similar, right? The implementations were not that similar, &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; was a bit tricky as compared to &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; (check out the source code to find the difference). These functions are inherently non-mutating type, but I have also implemented a version of &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; as &lt;code class="language-plaintext highlighter-rouge"&gt;cropview&lt;/code&gt;, this returns the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; of the passed array. Mutating the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; will mutate the initial frame passed, an analogous version for &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; here is &lt;code class="language-plaintext highlighter-rouge"&gt;trimview&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next in line was the function &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt;, it basically takes a variable number of frames, stacks them together, and then finally combines them using medians (users can also have their custom combining functions).&lt;/p&gt;
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;The first method implemented was &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_bias&lt;/code&gt;, this de-biases the image with the help of a bias frame, it has a mutating version as well which de-biases the image in place.&lt;/p&gt;
+
+&lt;p&gt;Next comes &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_overscan&lt;/code&gt;, every CCD plate has some region which is unexposed to light and this is called overscan region. For pre-processing average of this region has to be obtained (there are models as well, that can fit into this region PS: model part has to be implemented later) and then subtracted from the whole image. It also has a mutating variant clubbed together.&lt;/p&gt;
+
+&lt;p&gt;Next in line was &lt;code class="language-plaintext highlighter-rouge"&gt;flat_correct&lt;/code&gt;, this method removes the effect of variations in pixel to pixel sensitivity of detectors and by distortions in the optical path. The interesting point I learned while implementing this is fused broadcasting, believe me Julia keeps on blowing my mind with its speed and succinct syntaxes.&lt;/p&gt;
+
+&lt;p&gt;Next, I implemented some basic functionalities for modifying the image sizes i.e. &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt;. They are not much different but they are different, let me explain! Trimming is instructing the computer to remove some parts from the image, whereas cropping is instructing the computer to keep a certain part in the image (Yes, that’s the difference!). Sound’s pretty similar, right? The implementations were not that similar, &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; was a bit tricky as compared to &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; (check out the source code to find the difference). These functions are inherently non-mutating type, but I have also implemented a version of &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; as &lt;code class="language-plaintext highlighter-rouge"&gt;cropview&lt;/code&gt;, this returns the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; of the passed array. Mutating the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; will mutate the initial frame passed, an analogous version for &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; here is &lt;code class="language-plaintext highlighter-rouge"&gt;trimview&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next in line was the function &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt;, it basically takes a variable number of frames, stacks them together, and then finally combines them using medians (users can also have their custom combining functions).&lt;/p&gt;
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Next comes &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_overscan&lt;/code&gt;, every CCD plate has some region which is unexposed to light and this is called overscan region. For pre-processing average of this region has to be obtained (there are models as well, that can fit into this region PS: model part has to be implemented later) and then subtracted from the whole image. It also has a mutating variant clubbed together.&lt;/p&gt;
+
+&lt;p&gt;Next in line was &lt;code class="language-plaintext highlighter-rouge"&gt;flat_correct&lt;/code&gt;, this method removes the effect of variations in pixel to pixel sensitivity of detectors and by distortions in the optical path. The interesting point I learned while implementing this is fused broadcasting, believe me Julia keeps on blowing my mind with its speed and succinct syntaxes.&lt;/p&gt;
+
+&lt;p&gt;Next, I implemented some basic functionalities for modifying the image sizes i.e. &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt;. They are not much different but they are different, let me explain! Trimming is instructing the computer to remove some parts from the image, whereas cropping is instructing the computer to keep a certain part in the image (Yes, that’s the difference!). Sound’s pretty similar, right? The implementations were not that similar, &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; was a bit tricky as compared to &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; (check out the source code to find the difference). These functions are inherently non-mutating type, but I have also implemented a version of &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; as &lt;code class="language-plaintext highlighter-rouge"&gt;cropview&lt;/code&gt;, this returns the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; of the passed array. Mutating the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; will mutate the initial frame passed, an analogous version for &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; here is &lt;code class="language-plaintext highlighter-rouge"&gt;trimview&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next in line was the function &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt;, it basically takes a variable number of frames, stacks them together, and then finally combines them using medians (users can also have their custom combining functions).&lt;/p&gt;
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Next in line was &lt;code class="language-plaintext highlighter-rouge"&gt;flat_correct&lt;/code&gt;, this method removes the effect of variations in pixel to pixel sensitivity of detectors and by distortions in the optical path. The interesting point I learned while implementing this is fused broadcasting, believe me Julia keeps on blowing my mind with its speed and succinct syntaxes.&lt;/p&gt;
+
+&lt;p&gt;Next, I implemented some basic functionalities for modifying the image sizes i.e. &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt;. They are not much different but they are different, let me explain! Trimming is instructing the computer to remove some parts from the image, whereas cropping is instructing the computer to keep a certain part in the image (Yes, that’s the difference!). Sound’s pretty similar, right? The implementations were not that similar, &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; was a bit tricky as compared to &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; (check out the source code to find the difference). These functions are inherently non-mutating type, but I have also implemented a version of &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; as &lt;code class="language-plaintext highlighter-rouge"&gt;cropview&lt;/code&gt;, this returns the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; of the passed array. Mutating the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; will mutate the initial frame passed, an analogous version for &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; here is &lt;code class="language-plaintext highlighter-rouge"&gt;trimview&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next in line was the function &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt;, it basically takes a variable number of frames, stacks them together, and then finally combines them using medians (users can also have their custom combining functions).&lt;/p&gt;
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Next, I implemented some basic functionalities for modifying the image sizes i.e. &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt;. They are not much different but they are different, let me explain! Trimming is instructing the computer to remove some parts from the image, whereas cropping is instructing the computer to keep a certain part in the image (Yes, that’s the difference!). Sound’s pretty similar, right? The implementations were not that similar, &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; was a bit tricky as compared to &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; (check out the source code to find the difference). These functions are inherently non-mutating type, but I have also implemented a version of &lt;code class="language-plaintext highlighter-rouge"&gt;crop&lt;/code&gt; as &lt;code class="language-plaintext highlighter-rouge"&gt;cropview&lt;/code&gt;, this returns the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; of the passed array. Mutating the &lt;code class="language-plaintext highlighter-rouge"&gt;view&lt;/code&gt; will mutate the initial frame passed, an analogous version for &lt;code class="language-plaintext highlighter-rouge"&gt;trim&lt;/code&gt; here is &lt;code class="language-plaintext highlighter-rouge"&gt;trimview&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next in line was the function &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt;, it basically takes a variable number of frames, stacks them together, and then finally combines them using medians (users can also have their custom combining functions).&lt;/p&gt;
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Next in line was the function &lt;code class="language-plaintext highlighter-rouge"&gt;combine&lt;/code&gt;, it basically takes a variable number of frames, stacks them together, and then finally combines them using medians (users can also have their custom combining functions).&lt;/p&gt;
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Okay, this one is last, &lt;code class="language-plaintext highlighter-rouge"&gt;subtract_dark&lt;/code&gt;, a way to reduce image noise in photographs shot with long exposure times, at high ISO sensor sensitivity, or at high temperatures. It takes advantage of the fact that two components of image noise, dark current and fixed-pattern noise, are the same from shot to shot. This function also has a mutating version clubbed along with it.&lt;/p&gt;
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="hmmm-interesting-whats-next"&gt;&lt;em&gt;Hmmm, interesting… What’s next?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Wait, it’s not yet over! I have also implemented these functions to interface directly with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files and &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; (an element of the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files), putting it simply, a user can load the data (stored in &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; format) directly from the disk and then can play with all these functions!&lt;/p&gt;
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;h3 id="okay-cool-so-whats-next-do-you-still-have-something-in-the-pipeline"&gt;&lt;em&gt;Okay, cool! So what’s next? Do you still have something in the pipeline?&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Yes, the combine function still needs to be interfaced with &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files, and once done, I will go for a release of the package. The next steps would be user-friendly processing pipelines, iterator reductions, and lot’s of documentation to be packed up together with the package.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Stay tuned to know more!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/06/20200615_1804_siddharthlal25/</guid><pubDate>Mon, 15 Jun 2020 17:04:56 GMT</pubDate></item><item><title>Community Bonding Period-GSoC20</title><link>http://openastronomy.org/Universe_OA/posts/2020/05/20200530_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;p&gt;It was around 11:30 in the night on 4th of May, the Google servers glitched for a second or so but then I could see my project on the Org’s list.&lt;/p&gt;
 
 &lt;p&gt;Finally, I got selected for GSoC 2020 after around two months of involvement with the JuliaAstro community. Before my selection, I had primarily contributed to &lt;a href="https://github.com/JuliaAstro/Photometry.jl"&gt;Photometry.jl&lt;/a&gt; and &lt;a href="https://github.com/JuliaAstro/DustExtinction.jl"&gt;DustExtinction.jl&lt;/a&gt;, both were a part of the JuliaAstro community!&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -202,17 +2041,96 @@ end
 
 &lt;p&gt;Stay tuned for my upcoming blogs to know more about the project!&lt;/p&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/05/20200530_1804_siddharthlal25/</guid><pubDate>Sat, 30 May 2020 17:04:56 GMT</pubDate></item><item><title>The story behing GSoC!</title><link>http://openastronomy.org/Universe_OA/posts/2020/05/20200514_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;p&gt;Hola amigos! Welcome to my first blog of an upcoming series of blogs where I will be trying to chronicle my journey this year as an open source contributor to JuliaAstro under the Google Summer of Code program!&lt;/p&gt;
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Finally, I got selected for GSoC 2020 after around two months of involvement with the JuliaAstro community. Before my selection, I had primarily contributed to &lt;a href="https://github.com/JuliaAstro/Photometry.jl"&gt;Photometry.jl&lt;/a&gt; and &lt;a href="https://github.com/JuliaAstro/DustExtinction.jl"&gt;DustExtinction.jl&lt;/a&gt;, both were a part of the JuliaAstro community!&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;The next step was the community bonding phase, in this phase, I got my development setup more robust (I updated my OS, updated Atom, and also Juno). I also sharpened my Julia skills and learned the art of succinct documentation in this period. I went through the codebase of the repositories available in this community to get a flavor of Julia and it’s usage for making things work!&lt;/p&gt;
+
+&lt;p&gt;Since I was under lockdown back in my hometown, I got quite bored and decided to start contributing towards the project. I set up the basic framework of the package and added a few basic skeletal functions after discussions about it with the mentors.&lt;/p&gt;
+
+&lt;p&gt;At last, I would like to thank Miles, Mosè, and Yash for their guidance and prompt responses to all my dumb queries, it wouldn’t have been possible for me to start contributing without their guidance and help. A big shout-out to you guys! Thank you so much!&lt;/p&gt;
+
+&lt;p&gt;Oh! I forget to mention my project, this summers I will be developing a package for reduction of astronomical images in Julia.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for my upcoming blogs to know more about the project!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;The next step was the community bonding phase, in this phase, I got my development setup more robust (I updated my OS, updated Atom, and also Juno). I also sharpened my Julia skills and learned the art of succinct documentation in this period. I went through the codebase of the repositories available in this community to get a flavor of Julia and it’s usage for making things work!&lt;/p&gt;
+
+&lt;p&gt;Since I was under lockdown back in my hometown, I got quite bored and decided to start contributing towards the project. I set up the basic framework of the package and added a few basic skeletal functions after discussions about it with the mentors.&lt;/p&gt;
+
+&lt;p&gt;At last, I would like to thank Miles, Mosè, and Yash for their guidance and prompt responses to all my dumb queries, it wouldn’t have been possible for me to start contributing without their guidance and help. A big shout-out to you guys! Thank you so much!&lt;/p&gt;
+
+&lt;p&gt;Oh! I forget to mention my project, this summers I will be developing a package for reduction of astronomical images in Julia.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for my upcoming blogs to know more about the project!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Since I was under lockdown back in my hometown, I got quite bored and decided to start contributing towards the project. I set up the basic framework of the package and added a few basic skeletal functions after discussions about it with the mentors.&lt;/p&gt;
+
+&lt;p&gt;At last, I would like to thank Miles, Mosè, and Yash for their guidance and prompt responses to all my dumb queries, it wouldn’t have been possible for me to start contributing without their guidance and help. A big shout-out to you guys! Thank you so much!&lt;/p&gt;
+
+&lt;p&gt;Oh! I forget to mention my project, this summers I will be developing a package for reduction of astronomical images in Julia.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for my upcoming blogs to know more about the project!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;At last, I would like to thank Miles, Mosè, and Yash for their guidance and prompt responses to all my dumb queries, it wouldn’t have been possible for me to start contributing without their guidance and help. A big shout-out to you guys! Thank you so much!&lt;/p&gt;
+
+&lt;p&gt;Oh! I forget to mention my project, this summers I will be developing a package for reduction of astronomical images in Julia.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for my upcoming blogs to know more about the project!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Oh! I forget to mention my project, this summers I will be developing a package for reduction of astronomical images in Julia.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for my upcoming blogs to know more about the project!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Stay tuned for my upcoming blogs to know more about the project!&lt;/p&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/05/20200530_1804_siddharthlal25/</guid><pubDate>Sat, 30 May 2020 17:04:56 GMT</pubDate></item><item><title>The story behing GSoC!</title><link>http://openastronomy.org/Universe_OA/posts/2020/05/20200514_1804_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;p&gt;Hola amigos! Welcome to my first blog of an upcoming series of blogs where I will be trying to chronicle my journey this year as an open source contributor to JuliaAstro under the Google Summer of Code program!&lt;/p&gt;
 
 &lt;p&gt;Stay tuned!&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/05/20200514_1804_siddharthlal25/</guid><pubDate>Thu, 14 May 2020 17:04:56 GMT</pubDate></item><item><title>Final Report GSoC'19: The curtain Falls</title><link>http://openastronomy.org/Universe_OA/posts/2019/08/20190823_0000_aquatiko/</link><dc:creator>aquatiko</dc:creator><description>&lt;p&gt;With over 2K+ lines of code, 3 repositories and countless discussions, Google Summer of Code 19 with OpenAstronomy (JuliaAstro) came to an end. The following is an attempt to summarize it in words (without the hard parts).
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;-sl&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/05/20200514_1804_siddharthlal25/</guid><pubDate>Thu, 14 May 2020 17:04:56 GMT</pubDate></item><item><title>Final Report GSoC'19: The curtain Falls</title><link>http://openastronomy.org/Universe_OA/posts/2019/08/20190823_0000_aquatiko/</link><dc:creator>aquatiko</dc:creator><description>&lt;p&gt;With over 2K+ lines of code, 3 repositories and countless discussions, Google Summer of Code 19 with OpenAstronomy (JuliaAstro) came to an end. The following is an attempt to summarize it in words (without the hard parts).
 Merged Pull Requests Reproject.jl: SLOC -&amp;gt; 586
-(Reprojects (a type of image c &lt;a class="reference external" href="https://aquatiko.github.io/blog/2019-08/final-report-gsoc19-the-curtain-falls/"&gt;...READ MORE...&lt;/a&gt;&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2019/08/20190823_0000_aquatiko/</guid><pubDate>Thu, 22 Aug 2019 23:00:00 GMT</pubDate></item><item><title>Week 9-10 at JuliaAstro</title><link>http://openastronomy.org/Universe_OA/posts/2019/08/20190810_0000_aquatiko/</link><dc:creator>aquatiko</dc:creator><description>&lt;p&gt;List of Milestones achieved  Interpolator tweak #6
+(Reprojects (a type of image c &lt;a class="reference external" href="https://aquatiko.github.io/blog/2019-08/final-report-gsoc19-the-curtain-falls/"&gt;...READ MORE...&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2019/08/20190823_0000_aquatiko/</guid><pubDate>Thu, 22 Aug 2019 23:00:00 GMT</pubDate></item><item><title>Week 9-10 at JuliaAstro</title><link>http://openastronomy.org/Universe_OA/posts/2019/08/20190810_0000_aquatiko/</link><dc:creator>aquatiko</dc:creator><description>&lt;p&gt;List of Milestones achieved  Interpolator tweak #6
 Multi File Support #21
 ccd2rbg function #15
 data matrix and WCSTransform tuple type parser #7
 Support for RGB #22
 Basic UI panel for AstroImages #3
-Interpolator tweak #6 This patch to Reproject.jl was due to some realizations I had upon Mosè  &lt;a class="reference external" href="https://aquatiko.github.io/blog/2019-08/week-9-10-at-juliaastro/"&gt;...READ MORE...&lt;/a&gt;&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2019/08/20190810_0000_aquatiko/</guid><pubDate>Fri, 09 Aug 2019 23:00:00 GMT</pubDate></item></channel></rss>
+Interpolator tweak #6 This patch to Reproject.jl was due to some realizations I had upon Mosè  &lt;a class="reference external" href="https://aquatiko.github.io/blog/2019-08/week-9-10-at-juliaastro/"&gt;...READ MORE...&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2019/08/20190810_0000_aquatiko/</guid><pubDate>Fri, 09 Aug 2019 23:00:00 GMT</pubDate></item></channel></rss>

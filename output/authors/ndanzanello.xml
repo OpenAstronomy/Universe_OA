@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by ndanzanello)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/ndanzanello.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 16 Jun 2023 01:10:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Post 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210815_1402_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hi! In the last weeks we have finished the Astrometry linear part programming. &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by ndanzanello)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/ndanzanello.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 15:52:17 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Post 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210815_1402_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hi! In the last weeks we have finished the Astrometry linear part programming. &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;/p&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -12,7 +12,36 @@
 
 
 
-&lt;p&gt;Also, we are moving our code to Gnuastro, so it can be a Gnuastro program. To do this, we have to follow Gnuastro conventions, so everything can be organized. Luckily, it’s very well documented how to do it, as you can see &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/The-TEMPLATE-program.html#The-TEMPLATE-program" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/Mandatory-source-code-files.html" rel="noreferrer noopener" target="_blank"&gt;also here&lt;/a&gt;.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210815_1402_ndanzanello/</guid><pubDate>Sun, 15 Aug 2021 13:02:15 GMT</pubDate></item><item><title>GSoC Post 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1244_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hi! In my last post I mentioned that we would start calculating the distortions contained in the image. But we followed a different path! As the linear part was ready, we first worked on making some plots (scatter plots with side histograms of the difference in pixel scale of the celestial coordinates measured with the WCS we find and the celestial coordinates given as input) and drawing some quads to visualize it. This part was done using LaTeX and TikZ, a wonderful tool to produce graphics!&lt;/p&gt;
+&lt;p&gt;Also, we are moving our code to Gnuastro, so it can be a Gnuastro program. To do this, we have to follow Gnuastro conventions, so everything can be organized. Luckily, it’s very well documented how to do it, as you can see &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/The-TEMPLATE-program.html#The-TEMPLATE-program" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/Mandatory-source-code-files.html" rel="noreferrer noopener" target="_blank"&gt;also here&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;We added an option to solve for more pixel catalogs, which are a part of a field image. This is an important case in real world scenarios. The image below is a good illustration of this: we have a field and a lot of exposures that are used to build the final image.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image"&gt;&lt;img alt="https://archive.stsci.edu/prepds/xdf/images/xdf_buildup.png" src="https://archive.stsci.edu/prepds/xdf/images/xdf_buildup.png"&gt;&lt;figcaption&gt;Source: &lt;a href="https://archive.stsci.edu/prepds/xdf/" rel="noreferrer noopener" target="_blank"&gt;https://archive.stsci.edu/prepds/xdf/&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Also, we are moving our code to Gnuastro, so it can be a Gnuastro program. To do this, we have to follow Gnuastro conventions, so everything can be organized. Luckily, it’s very well documented how to do it, as you can see &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/The-TEMPLATE-program.html#The-TEMPLATE-program" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/Mandatory-source-code-files.html" rel="noreferrer noopener" target="_blank"&gt;also here&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;figure class="wp-block-image"&gt;&lt;img alt="https://archive.stsci.edu/prepds/xdf/images/xdf_buildup.png" src="https://archive.stsci.edu/prepds/xdf/images/xdf_buildup.png"&gt;&lt;figcaption&gt;Source: &lt;a href="https://archive.stsci.edu/prepds/xdf/" rel="noreferrer noopener" target="_blank"&gt;https://archive.stsci.edu/prepds/xdf/&lt;/a&gt;&lt;/figcaption&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;Also, we are moving our code to Gnuastro, so it can be a Gnuastro program. To do this, we have to follow Gnuastro conventions, so everything can be organized. Luckily, it’s very well documented how to do it, as you can see &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/The-TEMPLATE-program.html#The-TEMPLATE-program" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/Mandatory-source-code-files.html" rel="noreferrer noopener" target="_blank"&gt;also here&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;p&gt;Also, we are moving our code to Gnuastro, so it can be a Gnuastro program. To do this, we have to follow Gnuastro conventions, so everything can be organized. Luckily, it’s very well documented how to do it, as you can see &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/The-TEMPLATE-program.html#The-TEMPLATE-program" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/Mandatory-source-code-files.html" rel="noreferrer noopener" target="_blank"&gt;also here&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210815_1402_ndanzanello/</guid><pubDate>Sun, 15 Aug 2021 13:02:15 GMT</pubDate></item><item><title>GSoC Post 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1244_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hi! In my last post I mentioned that we would start calculating the distortions contained in the image. But we followed a different path! As the linear part was ready, we first worked on making some plots (scatter plots with side histograms of the difference in pixel scale of the celestial coordinates measured with the WCS we find and the celestial coordinates given as input) and drawing some quads to visualize it. This part was done using LaTeX and TikZ, a wonderful tool to produce graphics!&lt;/p&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -21,7 +50,23 @@
 
 
 
-&lt;p&gt;After that, we started to evaluate our results, and some changes were made: in statistics, for example, instead of getting direct the median, we use sigma clipping (a technique that removes outliers), allowing a better result. We also compared our results with one well established software: Astrometry.net. We’re getting pretty good results, but our running time was way bigger than the Astrometry.net one. So, we started working on that, and we have some ways to decrease our running time, such as making an only geo-hash search on the kdtree before the search containing the magnitude hashes. This reduces the dimentionality, which degrades the performance the higher it is. Other solution is to divide the celestial catalog in tiles, decreasing the number of total quads that we have to evaluate. Also, we can reduce the number of stars that we use to make quads. With these approaches, our running time got way better! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1244_ndanzanello/</guid><pubDate>Sun, 01 Aug 2021 11:44:53 GMT</pubDate></item><item><title>GSoC Post 2</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_1417_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hi! In the previous post I mentioned that the matching part between the quads was done. Following that, the past 2 weeks were devoted to:&lt;/p&gt;
+&lt;p&gt;After that, we started to evaluate our results, and some changes were made: in statistics, for example, instead of getting direct the median, we use sigma clipping (a technique that removes outliers), allowing a better result. We also compared our results with one well established software: Astrometry.net. We’re getting pretty good results, but our running time was way bigger than the Astrometry.net one. So, we started working on that, and we have some ways to decrease our running time, such as making an only geo-hash search on the kdtree before the search containing the magnitude hashes. This reduces the dimentionality, which degrades the performance the higher it is. Other solution is to divide the celestial catalog in tiles, decreasing the number of total quads that we have to evaluate. Also, we can reduce the number of stars that we use to make quads. With these approaches, our running time got way better! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;div class="wp-block-image"&gt;&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-73" src="https://ndanzanello.files.wordpress.com/2021/08/image.png?w=342"&gt;&lt;figcaption&gt;Example of a quad drawn using TikZ. The black points are the stars of the catalog.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
+
+
+
+&lt;p&gt;After that, we started to evaluate our results, and some changes were made: in statistics, for example, instead of getting direct the median, we use sigma clipping (a technique that removes outliers), allowing a better result. We also compared our results with one well established software: Astrometry.net. We’re getting pretty good results, but our running time was way bigger than the Astrometry.net one. So, we started working on that, and we have some ways to decrease our running time, such as making an only geo-hash search on the kdtree before the search containing the magnitude hashes. This reduces the dimentionality, which degrades the performance the higher it is. Other solution is to divide the celestial catalog in tiles, decreasing the number of total quads that we have to evaluate. Also, we can reduce the number of stars that we use to make quads. With these approaches, our running time got way better! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;p&gt;After that, we started to evaluate our results, and some changes were made: in statistics, for example, instead of getting direct the median, we use sigma clipping (a technique that removes outliers), allowing a better result. We also compared our results with one well established software: Astrometry.net. We’re getting pretty good results, but our running time was way bigger than the Astrometry.net one. So, we started working on that, and we have some ways to decrease our running time, such as making an only geo-hash search on the kdtree before the search containing the magnitude hashes. This reduces the dimentionality, which degrades the performance the higher it is. Other solution is to divide the celestial catalog in tiles, decreasing the number of total quads that we have to evaluate. Also, we can reduce the number of stars that we use to make quads. With these approaches, our running time got way better! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1244_ndanzanello/</guid><pubDate>Sun, 01 Aug 2021 11:44:53 GMT</pubDate></item><item><title>GSoC Post 2</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_1417_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hi! In the previous post I mentioned that the matching part between the quads was done. Following that, the past 2 weeks were devoted to:&lt;/p&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -35,6 +80,51 @@
 
 
 &lt;p&gt;So now we have to start dealing with some distortions too! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;ul&gt;&lt;li&gt;first get the theta (rotation) and scale values related to each quad. To do this, we use a linear transformation between the pixel coordinates and the projection plane coordinates (that come from the celestial ones);&lt;/li&gt;&lt;li&gt;use some statistics in the thetas and scales above to get the parameters of the wcs (world coordinate system). Also, we have to decide where the reference point is. To do this, we use the A vertex that is closer to the median of all A vertices from the matched quads;&lt;/li&gt;&lt;li&gt;after the parameters of the wcs are ready, we write them into a fits file.&lt;/li&gt;&lt;/ul&gt;
+
+
+
+&lt;p&gt;Basically, this would make this part over. But we noticed a problem that needed a debug: we were finding few matches. In examples with fainter stars, we wouldn’t even get one match. So, to solve this, we had to change the way we were making the quads, because we were not considering all the possible quads combinations of the stars we selected. After that, we could go, for example, from ten of thousands of quads to millions of quads! This also improves a lot the statistics that we need to do.&lt;/p&gt;
+
+
+
+&lt;p&gt;So now we have to start dealing with some distortions too! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;p&gt;Basically, this would make this part over. But we noticed a problem that needed a debug: we were finding few matches. In examples with fainter stars, we wouldn’t even get one match. So, to solve this, we had to change the way we were making the quads, because we were not considering all the possible quads combinations of the stars we selected. After that, we could go, for example, from ten of thousands of quads to millions of quads! This also improves a lot the statistics that we need to do.&lt;/p&gt;
+
+
+
+&lt;p&gt;So now we have to start dealing with some distortions too! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;p&gt;So now we have to start dealing with some distortions too! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
 
 
 
@@ -60,6 +150,121 @@
 
 
 &lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;The first thing we needed to fix was the vertices found on each catalog. It’s very important that all the vertices are labeled the same. First, we label the A and B vertices as the most separated ones. In the query catalog it’s just the Euclidean distance between the points, but on the reference catalog we have to use the angular distance between the points to get the same vertices. Prior to that, it was also using the Euclidean distance to the vertices on the reference catalog, so it would give different most separated A and B for the two catalogs.&lt;br&gt;After that, we have to choose the C and D vertices. First we label randomly the two remaining vertices as C and D and then we compare the ACB and ADB angles that are less than 180 degrees and choose C to be the one that has the lesser angle.&lt;/p&gt;
+
+
+
+&lt;p&gt;Now, we have the A, B, C and D vertices to be the same when dealing with the same quads and we have to compute their hashes. The hashes were calculated using Cx = (c1-a1)/(b1-a1), where a1, b1 and c1 are the coordinates along the axis 1. Now we have the problem related to the rotations: the distance between the points is the same, but the distance along each axis is not the same! So the Cx would be different for different axis. The same would happen for Cy, Dx and Dy.&lt;/p&gt;
+
+
+
+&lt;p&gt;To solve this, first we transform the celestial coordinates of the reference catalog into projection plane coordinates (TAN projection) using the midpoint of AB as the coordinates of the native pole.&lt;br&gt; We proceed defining new two axis (x and y, where the hashes will be calculated) using the A-B vector as a 45 degrees line contained in these axis. Then, we project the C-A and D-A vectors in these axis and get the hashes.&lt;/p&gt;
+
+
+
+&lt;p&gt;The image below show an overview of the steps explained above.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;p&gt;Now, we have the A, B, C and D vertices to be the same when dealing with the same quads and we have to compute their hashes. The hashes were calculated using Cx = (c1-a1)/(b1-a1), where a1, b1 and c1 are the coordinates along the axis 1. Now we have the problem related to the rotations: the distance between the points is the same, but the distance along each axis is not the same! So the Cx would be different for different axis. The same would happen for Cy, Dx and Dy.&lt;/p&gt;
+
+
+
+&lt;p&gt;To solve this, first we transform the celestial coordinates of the reference catalog into projection plane coordinates (TAN projection) using the midpoint of AB as the coordinates of the native pole.&lt;br&gt; We proceed defining new two axis (x and y, where the hashes will be calculated) using the A-B vector as a 45 degrees line contained in these axis. Then, we project the C-A and D-A vectors in these axis and get the hashes.&lt;/p&gt;
+
+
+
+&lt;p&gt;The image below show an overview of the steps explained above.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;p&gt;To solve this, first we transform the celestial coordinates of the reference catalog into projection plane coordinates (TAN projection) using the midpoint of AB as the coordinates of the native pole.&lt;br&gt; We proceed defining new two axis (x and y, where the hashes will be calculated) using the A-B vector as a 45 degrees line contained in these axis. Then, we project the C-A and D-A vectors in these axis and get the hashes.&lt;/p&gt;
+
+
+
+&lt;p&gt;The image below show an overview of the steps explained above.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;p&gt;The image below show an overview of the steps explained above.&lt;/p&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;
+
+
+
+&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
 
 
 

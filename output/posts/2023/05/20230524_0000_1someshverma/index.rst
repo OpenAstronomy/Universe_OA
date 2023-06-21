@@ -2,7 +2,7 @@
 .. slug:
 .. date: 2023-05-24 00:00:00 
 .. tags: radis
-.. author: 
+.. author: Somesh Verma
 .. link: https://1someshverma.github.io/gettingSelectedForGSoC/
 .. description:
 .. category: gsoc2023
