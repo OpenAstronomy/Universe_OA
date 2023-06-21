@@ -2,7 +2,7 @@
 .. slug:
 .. date: 2023-05-07 00:00:00 
 .. tags: stingray
-.. author: Jash Shah
+.. author: Gaurav Joshi
 .. link: https://Gaurav17Joshi.github.io/Blogs/2023/05/07/First-File.html
 .. description:
 .. category: gsoc2023

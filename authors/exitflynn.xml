@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by exitflynn)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/exitflynn.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 16 Jun 2023 01:10:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>I Got Selected As A GSoC student at SunPy!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1158_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;h2 id="what-is-the-google-summer-of-code"&gt;What is The Google Summer of Code?
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by exitflynn)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/exitflynn.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 16:17:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Getting Selected As A GSoC student at SunPy</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1258_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;h2 id="what-is-the-google-summer-of-code"&gt;What is The Google Summer of Code?
 &lt;span&gt;
 &lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#what-is-the-google-summer-of-code"&gt;
 &lt;!-- TEASER_END --&gt;
@@ -7,7 +7,7 @@
 &lt;/a&gt;
 &lt;/span&gt;
 &lt;/h2&gt;&lt;p&gt;It is a program by Google for promoting students to contribute to open-source communities.
-It is also a  G R E A T  opportunity for us to work on projects with such big impact. I’m so glad I came to know about it. I loved that I could get this opportunity to work with
+It is also a  G R E A T  opportunity for us to work on projects with such big impact. I’m so glad I came to know about it. I loved that I could get this opportunity to work with people involved in developing software that is used by many.
 Now one could argue that that’s the opportunity Open-Source provides in general, which is true. It’s difficult to admit but I did need that initial push, some motivating factor to &lt;em&gt;truly&lt;/em&gt; make the effort and get my hands wet with contributing to an open-source project. However it’s as they say, the beginning’s the hardest part and that once you start contributing it becomes so much more easy to keep going. I think they’ve done a great job at incentivising Open-Source contributions.&lt;/p&gt;
 &lt;h2 id="choosing-an-org"&gt;Choosing an Org
 &lt;span&gt;
@@ -64,4 +64,4 @@ Under the sub-orgs for OpenAstronomy, I found &lt;strong&gt;SunPy&lt;/strong&gt;
 &lt;/a&gt;
 &lt;/span&gt;
 &lt;/h3&gt;&lt;p&gt;YEP! And most of the communities would love to have you work on it, that’s such an exciting thing if you ask me.&lt;/p&gt;
-&lt;p&gt;(this post is a bit rough around the edges, I definitely want to add stuff to it but owing to my exams right now I’ll get to it at some later point of time, thanks for reading!)&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1158_exitflynn/</guid><pubDate>Sun, 21 May 2023 10:58:10 GMT</pubDate></item></channel></rss>
+&lt;p&gt;(this post is a bit rough around the edges, I definitely want to add stuff to it but owing to my exams right now I’ll get to it at some later point of time, thanks for reading!)&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1258_exitflynn/</guid><pubDate>Sun, 21 May 2023 11:58:10 GMT</pubDate></item></channel></rss>

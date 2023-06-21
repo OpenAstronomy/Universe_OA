@@ -1,6 +1,6 @@
-.. title: I Got Selected As A GSoC student at SunPy!
+.. title: Getting Selected As A GSoC student at SunPy
 .. slug:
-.. date: 2023-05-21 11:58:10 
+.. date: 2023-05-21 12:58:10 
 .. tags: SunPy
 .. author: exitflynn
 .. link: https://exitflynn.github.io/blog/posts/gsoc-acceptance-speech/
@@ -18,7 +18,7 @@
     </a>
     </span>
     </h1><p>It is a program by Google for promoting students to contribute to open-source communities.
-    It is also a  G R E A T  opportunity for us to work on projects with such big impact. I&rsquo;m so glad I came to know about it. I loved that I could get this opportunity to work with
+    It is also a  G R E A T  opportunity for us to work on projects with such big impact. I&rsquo;m so glad I came to know about it. I loved that I could get this opportunity to work with people involved in developing software that is used by many.
     Now one could argue that that&rsquo;s the opportunity Open-Source provides in general, which is true. It&rsquo;s difficult to admit but I did need that initial push, some motivating factor to <em>truly</em> make the effort and get my hands wet with contributing to an open-source project. However it&rsquo;s as they say, the beginning&rsquo;s the hardest part and that once you start contributing it becomes so much more easy to keep going. I think they&rsquo;ve done a great job at incentivising Open-Source contributions.</p>
     <h1 id="choosing-an-org">Choosing an Org
     <span>

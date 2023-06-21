@@ -2,7 +2,7 @@
 .. slug:
 .. date: 2023-05-30 00:00:00 
 .. tags: radis
-.. author: 
+.. author: Somesh Verma
 .. link: https://1someshverma.github.io/UtilisingCommunityPeriod/
 .. description:
 .. category: gsoc2023
