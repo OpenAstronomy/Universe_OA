@@ -50,6 +50,9 @@ def remove_indent(text):
 
 def html2rst_allign_post(text):
     lines = text.splitlines()
+    if not text:
+        raise ValueError("Empty post!")
+
     if len(lines) < 2:
         lines = '\n'.join(lines).replace("br>", "newline>\n").replace("/p>", "/pline>\n").splitlines()
         lines = [x.replace("newline>", "br>").replace("/pline>","/p>") for x in lines]
@@ -82,7 +85,13 @@ def grab_student(last_date, rss_url, project, student, season):
             except KeyError:
                 html = "html" in item['summary_detail']['type']
                 content  = item['summary']
-            fullcontent = html2rst_allign_post(content) if html else strip_tags(content)
+            try:
+                fullcontent = html2rst_allign_post(content) if html else strip_tags(content)
+            except ValueError as e:
+                # post contains no text
+                dates.pop() # removing the last added date for the empty post
+                print("#################### Empty post!")
+                continue
 
             with open(os.path.join(directory, filename), 'w') as post:
                 # some posts have an empty title, taking the first 30 characters.
