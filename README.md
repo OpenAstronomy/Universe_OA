@@ -63,3 +63,14 @@ search the commits that we care about.
    where `<x>` is the commit before than `<y>` which is the one we want to copy
    (up to <z> included) to `run`.
    Then push it `run` and all should work. And then push to `main`
+
+# Debug it locally
+
+- remove all the output:
+  ```bash
+  rm -rf .doit.db.* && rm -rf cache && nikola clean && nikola forget && rm -rf __pycache__ && rm -rf output
+  ```
+- run the grab if needed (modifying the gsoc_times) and build.
+- To debug the plugin, add `doit.tools.set_trace()` instead of breakpoint to get pdb working.
+
+
