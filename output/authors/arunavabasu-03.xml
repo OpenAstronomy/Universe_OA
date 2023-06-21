@@ -1,64 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by arunavabasu-03)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/arunavabasu-03.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 15:52:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Final Blog</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220903_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Final Evaluation In this phase , i am preety much focusing to add the test files for frontend and backend and also setup the pipeline to run…&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by arunavabasu-03)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/arunavabasu-03.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 16:17:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Final Blog</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220903_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Final Evaluation In this phase , i am preety much focusing to add the test files for frontend and backend and also setup the pipeline to run…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://gsoc.arunavabasu.com/12/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://gsoc.arunavabasu.com/12/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220903_0000_arunavabasu-03/</guid><pubDate>Fri, 02 Sep 2022 23:00:00 GMT</pubDate></item><item><title>Unit Selection</title><link>http://openastronomy.org/Universe_OA/posts/2022/08/20220820_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Unit Selection Previously radis only supports the fixed arbitary units  cm-1(wavelength range) , bar(pressure) ..  , but now user can chose…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://gsoc.arunavabasu.com/10-11/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://gsoc.arunavabasu.com/10-11/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220820_0000_arunavabasu-03/</guid><pubDate>Fri, 19 Aug 2022 23:00:00 GMT</pubDate></item><item><title>Adding hitemap databank</title><link>http://openastronomy.org/Universe_OA/posts/2022/08/20220816_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;hitemap integration Previously radis app is supported two databanks to load the spectrum . Now we are implemented  hitemap
 on the interface…&lt;/p&gt;&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://gsoc.arunavabasu.com/9/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://gsoc.arunavabasu.com/9/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220816_0000_arunavabasu-03/</guid><pubDate>Mon, 15 Aug 2022 23:00:00 GMT</pubDate></item><item><title>Advanced options</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220731_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Impove default resolution of ploted spectrum In  wstep = “auto”  radis app gives slitly low res. for that reasons plotted  spectrum  is…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/6thweek/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/6thweek/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220731_0000_arunavabasu-03/</guid><pubDate>Sat, 30 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Implementing React Hook Form</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;After analyzing the the benchmarks and taking with my mentors , we are decided to go with  React Hook Form  for it’s performace , low…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/4th&amp;amp;5thWeek/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/4th&amp;amp;5thWeek/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220724_0000_arunavabasu-03/</guid><pubDate>Sat, 23 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Benchmarking and performance analysis</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Radis app uses  useState  to populate data and maintain state; while this works well for small scale applications, as it becomes better over…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/3rdWeek"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/3rdWeek"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220710_0000_arunavabasu-03/</guid><pubDate>Sat, 09 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Linting and MUI^5 support</title><link>http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;React 18 Migration Because Radis is currently using an outdated version of React, we have chosen to upgrade to React 18. Linting and type…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/1stAnd2ndWeek"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/1stAnd2ndWeek"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/06/20220626_0000_arunavabasu-03/</guid><pubDate>Sat, 25 Jun 2022 23:00:00 GMT</pubDate></item><item><title>Community Bonding Period</title><link>http://openastronomy.org/Universe_OA/posts/2022/06/20220612_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Really, don't believe it; it almost seems miraculous. But hey !! I get chosen. My mentors and fellow contributors are congratulating me…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/community-bonding-period/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/community-bonding-period/"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/06/20220612_0000_arunavabasu-03/</guid><pubDate>Sat, 11 Jun 2022 23:00:00 GMT</pubDate></item><item><title>Pre Gsoc</title><link>http://openastronomy.org/Universe_OA/posts/2022/05/20220520_0000_arunavabasu-03/</link><dc:creator>arunavabasu-03</dc:creator><description>&lt;p&gt;Hello everyone and welcome to my pre-GSOC adventure blog. I hope you will find it interesting. What I recall at the moment is that I was…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/pre-gsoc"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/pre-gsoc"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/05/20220520_0000_arunavabasu-03/</guid><pubDate>Thu, 19 May 2022 23:00:00 GMT</pubDate></item></channel></rss>

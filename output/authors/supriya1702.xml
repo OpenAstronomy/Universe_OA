@@ -1,64 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Supriya1702)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/supriya1702.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 15:52:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>week 11 and week 12</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220903_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Now since fetching of extra columns which includes broadening coeffcients was completed I had to pull the the fetch_hitran_update changes…&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Supriya1702)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/supriya1702.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 16:17:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>week 11 and week 12</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220903_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Now since fetching of extra columns which includes broadening coeffcients was completed I had to pull the the fetch_hitran_update changes…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-11-and-week-12"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-11-and-week-12"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220903_0000_supriya1702/</guid><pubDate>Fri, 02 Sep 2022 23:00:00 GMT</pubDate></item><item><title>week 9 and week 10</title><link>http://openastronomy.org/Universe_OA/posts/2022/08/20220820_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Dr. Erwan and Mr. Anand (my mentors) suggested since my Non-Air Diluent project was getting large I should first create a separate PR for…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-9-and-week-10"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-9-and-week-10"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220820_0000_supriya1702/</guid><pubDate>Fri, 19 Aug 2022 23:00:00 GMT</pubDate></item><item><title>week 9 and week 10</title><link>http://openastronomy.org/Universe_OA/posts/2022/08/20220816_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Dr. Erwan and Mr. Anand (my mentors) suggested since my Non-Air Diluent project was getting large I should first create a separate PR for…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-9-and-week-10"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-9-and-week-10"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220816_0000_supriya1702/</guid><pubDate>Mon, 15 Aug 2022 23:00:00 GMT</pubDate></item><item><title>week 7 and week 8 (Mid-Term Evaluation!)</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220730_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Now, this week was the Mid-Term Evaluation week and I was totally nervous about it. I knew that I had put alot of efforts and time into the…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-7-and-week-8-mid-term-evaluation"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-7-and-week-8-mid-term-evaluation"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220730_0000_supriya1702/</guid><pubDate>Fri, 29 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Week 5 and Week 6</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220723_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Entering into the 5th week I created a PR  https://github.com/radis/radis/pull/492   to address the task to add, retrieve and store the…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-5-and-week-6"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-5-and-week-6"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220723_0000_supriya1702/</guid><pubDate>Fri, 22 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Week 3 and Week 4</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220709_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;So, after looking into the hapi.py  and its functionalities I got to know that after passing extra parameters like 'gamma_CO2', 'n_CO2' for…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-3-and-week-4"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/week-3-and-week-4"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220709_0000_supriya1702/</guid><pubDate>Fri, 08 Jul 2022 23:00:00 GMT</pubDate></item><item><title>Coding Begins - week 1 and week 2</title><link>http://openastronomy.org/Universe_OA/posts/2022/06/20220625_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;The coding period begins! Now, it's time for us contributors to pull up our socks and dive into coding.
 Firstly, my task for Non-Air Diluent…&lt;/p&gt;&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/coding-begins-week-1-and-week-2"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/coding-begins-week-1-and-week-2"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/06/20220625_0000_supriya1702/</guid><pubDate>Fri, 24 Jun 2022 23:00:00 GMT</pubDate></item><item><title>Community Bonding Period</title><link>http://openastronomy.org/Universe_OA/posts/2022/06/20220611_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;Hello! This is going to be the second blog and first blog related to GSoC where I will be sharing my experience Community Bonding Period…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/community-bonding-period"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/community-bonding-period"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/06/20220611_0000_supriya1702/</guid><pubDate>Fri, 10 Jun 2022 23:00:00 GMT</pubDate></item><item><title>A new Journey!</title><link>http://openastronomy.org/Universe_OA/posts/2022/06/20220601_0000_supriya1702/</link><dc:creator>Supriya1702</dc:creator><description>&lt;p&gt;GSOC Blog This is going to be a series of blogs where I will cover my Summer Journey with Radis organization as a part of Google Summer of…&lt;/p&gt;
 &lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/a-new-journey"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-
-&lt;div style="margin-top: 50px; font-style: italic;"&gt;&lt;strong&gt;&lt;a href="https://minimal-blog.lekoarts.de/a-new-journey"&gt;Keep reading&lt;/a&gt;.&lt;/strong&gt;&lt;/div&gt;&lt;br&gt; &lt;br&gt;
-&lt;!-- TEASER_END --&gt;&lt;/body&gt;&lt;/html&gt;
-&lt;br&gt; &lt;br&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/06/20220601_0000_supriya1702/</guid><pubDate>Tue, 31 May 2022 23:00:00 GMT</pubDate></item></channel></rss>
