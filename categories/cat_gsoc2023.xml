@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2023)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2023.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 16:17:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Implementation of the Kurucz database to Radis</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230617_2033_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;As planed in my last article, I started my project by adding a first database to Radis : Kurucz.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2023)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2023.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 22 Jun 2023 01:12:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Creating a new Data Structure for pyGnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230620_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/gnuastro.html"&gt;GnuAstro&lt;/a&gt; is a powerful and comprehensive library designed to handle various data formats(FITS/TIFF/TXT and more) and perform a wide range of operations, all while maintaining consistency across its entire codebase.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;This is done by representing all the data (acquired via input or created internally), regardless of its type, in a single data structure which encompasses the core data as well as metadata. This greatly assists in mainting uniformity.
+Internally all the data is represented in the form of a C struct : &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt;
+The following image describes how it keeps the core data as well as metadata :
+&lt;img alt="Code-Block1" src="https://labeeb-7z.github.io/Blogs/img/posts/creating-data-structure/gal_data_t.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;Explaining each attribute of this structure will require a seperate post of itself :). Instead I’ll focus on the main topic here : Since Im creating a python package for Gnuastro, and the &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; is at the heart of this library, How do I represent this complex type in Python?!&lt;/p&gt;
+
+&lt;p&gt;Normally we use Classes to define new and complex data types in Python, but hey.. I’m wrapping a C library in Python using the Python-C API. This means I write my wrappers in C!&lt;/p&gt;
+
+&lt;p&gt;So the question comes down to how do I create a new type in Python using C language?&lt;/p&gt;
+
+&lt;h3 id="creating-new-data-types-in-python-without-classes-and-objects"&gt;Creating New Data Types in Python Without Classes and Objects&lt;/h3&gt;
+
+&lt;p&gt;Before I continue, I’ve to appreciate &lt;a href="https://numpy.org/"&gt;Numpy&lt;/a&gt; for the incredible peice of software it is, the more I understand it, the more it amazes me.&lt;/p&gt;
+
+&lt;p&gt;C is not an Object Oriented Programming Language, but Python is.&lt;/p&gt;
+
+&lt;p&gt;In case you didn’t know the most common implementation of Python (the one you most probably have) is written in C! It’s called CPython.&lt;/p&gt;
+
+&lt;p&gt;This raises an obvious question, how does Python implement its whole OOP paradigm in C?&lt;/p&gt;
+
+&lt;p&gt;This question also answers our question of how to represent &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; in Python, because essentially they’re looking for the same thing.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;PyObject&lt;/code&gt; is the answer! To the Python interpreter(written in C) all the data types(built in as well as user defined) are of this type!&lt;/p&gt;
+
+&lt;p&gt;and what is this &lt;code class="language-plaintext highlighter-rouge"&gt;PyObject&lt;/code&gt;? Its a simple struct in C.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230620_0000_labeeb-7z/</guid><pubDate>Mon, 19 Jun 2023 23:00:00 GMT</pubDate></item><item><title>Implementation of the Kurucz database to Radis</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230617_2033_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;As planed in my last article, I started my project by adding a first database to Radis : Kurucz.&lt;/p&gt;
 &lt;p&gt;I based my work on a existing class developed in Exojax. I reviewed the associated methods that allowed to download the data from the database, store it in numpy arrays and extract the key information from it for further calculation.&lt;/p&gt;
 &lt;p&gt;By running a few examples on Exojax, I got familiar with the structure and nature of the data and key functions.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -221,7 +251,51 @@ nphots: float
 The total number of photons in the light curve.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</guid><pubDate>Thu, 08 Jun 2023 06:29:01 GMT</pubDate></item><item><title>GSOC Week 1 : A global overview of the RADIS API.</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;GSOC Week 1 : A global overview of the RADIS API.&lt;/h4&gt;&lt;p&gt;Since the point of my project is to implement new databases in the RADIS API and to reform it in other to make it common and stand alone, it seems important to understand how this API works.&lt;/p&gt;
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</guid><pubDate>Thu, 08 Jun 2023 06:29:01 GMT</pubDate></item><item><title>GSoC - its finally here</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230605_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
+&lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;h3 id="what-is-my-project-about"&gt;What is my project about?&lt;/h3&gt;
+
+&lt;p&gt;It has 2 main components :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a Python Library for Gnuastro
+&lt;ul&gt;
+&lt;li&gt;Design an error handling mechanism for Gnuastro&lt;/li&gt;
+&lt;li&gt;Design corresponding data structures of Gnuastro in Python&lt;/li&gt;
+&lt;li&gt;Write wrapper functions to be used in python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Add CUDA support in Gnuastro
+&lt;ul&gt;
+&lt;li&gt;Integrate CUDA with Gnuastro’s build system&lt;/li&gt;
+&lt;li&gt;Write GPU kernels for compute heavy and parallelizable operations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="what-have-i-completed-till-now"&gt;What have I completed till now?&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;On the Python Library Part :
+&lt;ul&gt;
+&lt;li&gt;Gnuastro now has an error handling mechanism!&lt;/li&gt;
+&lt;li&gt;Added error handling in Python package for the 2 existing modules.&lt;/li&gt;
+&lt;li&gt;Defined error types for each corresponding error type in C library.&lt;/li&gt;
+&lt;li&gt;Implemented Python wrappers for 2 of the C library modules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;On the CUDA support part :
+&lt;ul&gt;
+&lt;li&gt;Gnuastro can now build with cuda! this means it already supports GPU computations.&lt;/li&gt;
+&lt;li&gt;Added docs for installing, configuring, and testing CUDA&lt;/li&gt;
+&lt;li&gt;Added test CUDA kernels and demo programs to test them.&lt;/li&gt;
+&lt;li&gt;Implementing CUDA kernel for Convolution operation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;##&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230605_0000_labeeb-7z/</guid><pubDate>Sun, 04 Jun 2023 23:00:00 GMT</pubDate></item><item><title>GSOC Week 1 : A global overview of the RADIS API.</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;GSOC Week 1 : A global overview of the RADIS API.&lt;/h4&gt;&lt;p&gt;Since the point of my project is to implement new databases in the RADIS API and to reform it in other to make it common and stand alone, it seems important to understand how this API works.&lt;/p&gt;
 &lt;p&gt;Thus, I have started my 12 weeks projects by reading carefully the API documentation available at &lt;a href="https://radis.readthedocs.io/en/latest/source/radis.io.dbmanager.html"&gt;https://radis.readthedocs.io/en/latest/source/radis.io.dbmanager.html&lt;/a&gt;. I will detail in this article what I consider the key points to understand how Radis works globally and aim to answer the following question : Whats are the steps to proceed in order to include a new database as Kurucz to RADIS ?&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;This page is a description of the different modules available in the RADIS library except the api one which will be discussed later.&lt;/strong&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -298,7 +372,31 @@ The total number of photons in the light curve.
 &lt;p&gt;The if __name__ == “__main__” section contains examples of using the MdbExomol class and other features of the API, including spectrum calculations using the RADIS library, and downloading and accessing ExoMol line data using the fetch_exomol function.&lt;/p&gt;
 &lt;p&gt;Thus, the ExoMol API provides tools for downloading, manipulating, and utilizing spectroscopic data from the ExoMol project, including transition files, partition functions, and calculated spectra.&lt;/p&gt;
 &lt;h4&gt;Conclusion : How should I proceed to add to Radis a new database as Kurucz ?&lt;/h4&gt;&lt;p&gt;Regarding implementing Kurucz, the structure of the exomolapi.py code can serve as a model for building a similar API for Kurucz data. I may create a class similar to MdbExomol that handles downloading Kurucz files, accessing the relevant data (such as atomic and molecular line data, partition functions, etc.), and provides methods for spectral calculations and other functionalities specific to Kurucz. I will have to adapt and modify the existing code to suit the data format and organization of Kurucz data.&lt;br&gt;In order to do so, I will review the structure of the Kurucz database and make a quick report in a next post before starting the implementation.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=fc58bc4e9979" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</guid><pubDate>Sun, 04 Jun 2023 21:27:53 GMT</pubDate></item><item><title>Community Bonding Period</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230601_0311_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=fc58bc4e9979" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</guid><pubDate>Sun, 04 Jun 2023 21:27:53 GMT</pubDate></item><item><title>GSoC - Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230602_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="what-is-the-community-bonding-period"&gt;What is the Community Bonding Period?&lt;/h3&gt;
+&lt;p&gt;The community bonding period is the 3 weeks between GSoC student acceptance and the start of coding date. This is a vital time to engage with your GSoC contributor and set them up for success. In this time, I got in touch with my two mentors as well as my fellow Gsocers. We made plans for our project with my mentor describing some important aspects of it. The feature that I am implimenting is a GP interface for QPO oscillations, but it is useful for many other astronomical timeseries anaylsis so we discussed how it should be both flexible for the user, as well as automate all the complicated stuff.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I studied the various python packages, that would be used, and also created a proof of concept code for the feature.&lt;/p&gt;
+
+&lt;h3 id="packages-used"&gt;Packages used&lt;/h3&gt;
+&lt;p&gt;In this project, I will be using many differnent packages, hense I worked with them to understand their features in this CB period.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Jax: Jax is an open-source Python library designed to facilitate high-performance numerical computing and automatic differentiation. It provides a combination of functional programming concepts and powerful array operations, making it well-suited for machine learning and scientific computing tasks. Jax can be understood as numpy on accelerators, with three important features, Jax.grad, Jax.jit and Jax.vamp.
+Jax.grad is used to calculate automatic derivatives of complex functions.
+Jax.jit is used to compile the code on XLA using the jaxpr language.
+Jax.vmap is used to wrap functions for batches without explicitly doing so.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;With its strong integration with NumPy and compatibility with modern hardware accelerators, Jax has become a popular choice among researchers and practitioners in the machine learning community.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;TinyGP: TinyGP is a Python package aimed at providing a lightweight and user-friendly framework for Gaussian Processes (GPs). TinyGP offers essential functionalities for modeling and inference with GPs, including covariance functions, hyperparameter optimization, and predictive uncertainty estimation. The package is written in jax and well integrated with various optimisation libraries.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Numpyro: NumPyro is a powerful probabilistic programming library built on top of NumPy, JAX, and Pyro. It combines the ease of use and familiar syntax of NumPy with the flexibility and automatic differentiation capabilities of JAX to enable efficient and scalable Bayesian inference. NumPyro provides a wide range of probabilistic models, inference algorithms, and tools for model specification, allowing users to express complex probabilistic models and perform inference tasks such as Markov chain Monte Carlo (MCMC) and variational inference.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230602_0000_gaurav17joshi/</guid><pubDate>Thu, 01 Jun 2023 23:00:00 GMT</pubDate></item><item><title>Community Bonding Period</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230601_0311_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -442,20 +540,4 @@ Under the sub-orgs for OpenAstronomy, I found &lt;strong&gt;SunPy&lt;/strong&gt;
 &lt;/a&gt;
 &lt;/span&gt;
 &lt;/h3&gt;&lt;p&gt;YEP! And most of the communities would love to have you work on it, that’s such an exciting thing if you ask me.&lt;/p&gt;
-&lt;p&gt;(this post is a bit rough around the edges, I definitely want to add stuff to it but owing to my exams right now I’ll get to it at some later point of time, thanks for reading!)&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1258_exitflynn/</guid><pubDate>Sun, 21 May 2023 11:58:10 GMT</pubDate></item><item><title>Blog GSoC project : Common API for large molecular database, RADIS.</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230508_1207_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;Blog GSoC project : Common API for large molecular database, RADIS.&lt;/h4&gt;&lt;p&gt;Hello, I’m Racim MENASRIA a French engineering student at CentraleSupelec. I m glad to take part in the 2023 GSoC programm to contribute to Radis, a fast line-by-line code for high-resolution infrared molecular spectra.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/200/0*GIeb_J5QTLrhtfNj"&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/250/0*bNLY4YMhDxf2yxek"&gt;&lt;/figure&gt;&lt;p&gt;This blog will be used to post my results, remarks, difficulties or annything I consider useful to document my work.&lt;/p&gt;
-&lt;p&gt;I’m looking forward to stard contributing :)&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=10c7a1c786e4" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230508_1207_menasrac/</guid><pubDate>Mon, 08 May 2023 11:07:08 GMT</pubDate></item><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
-&lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
-
-&lt;!-- TEASER_END --&gt;
-&lt;h3 id="why-gsoc-for-me"&gt;Why GSOC for me?&lt;/h3&gt;
-&lt;p&gt;Computer Science and Mathematics are two fields that I find to be most interesting. I first heard of Gsoc, when I was still finding my feet in the vast world of programming and computing. I was instantly sold to the idea of working for an organisation, and writing research code over summer. When I was searching for organisations and their project, I stumbled upon Open Astronomy, and in particular the project &lt;a href="https://openastronomy.org/gsoc/gsoc2023/#/projects?project=searching_for_quasi-periodic_oscillations_with_gaussian_processes"&gt;Searching for Quasi-Periodic Oscillations with Gaussian Processes&lt;/a&gt;, for the Stingray Library. The QPO project was an exceptional opportunity that aligned perfectly with my interests and aspirations. Utilizing the Gaussian Process, a sophisticated and effective mathematical tool for regression and classification problems, the project analyzed astronomical data from some of the universe’s most extreme sources, including quasars and neutron stars - areas of particular interest to me. Given my programming expertise, the project’s requirements were an ideal match, and I was eager to undertake it as a learning experience. Over the course of a month, I worked diligently to secure the project, confident that it was the ideal fit for my skillset and passion.&lt;/p&gt;
-
-&lt;h3 id="my-contribution-experience"&gt;My contribution experience&lt;/h3&gt;
-&lt;p&gt;My learnings from Gsoc began even before the project started. I had never worked on an open source package and the experience of making pull requests and getting them merged was very enriching.&lt;/p&gt;
-
-&lt;p&gt;I must also add that through all this, my mentors helped me a lot in my project proposal as well as my code submissions. I would not have been able to make it this for without their help, and their patience in helping out with my amateur mistakes.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
-&lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;(this post is a bit rough around the edges, I definitely want to add stuff to it but owing to my exams right now I’ll get to it at some later point of time, thanks for reading!)&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1258_exitflynn/</guid><pubDate>Sun, 21 May 2023 11:58:10 GMT</pubDate></item></channel></rss>
