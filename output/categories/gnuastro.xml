@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gnuastro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/gnuastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 16:17:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gnuastro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/gnuastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 22 Jun 2023 01:12:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Creating a new Data Structure for pyGnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230620_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/gnuastro.html"&gt;GnuAstro&lt;/a&gt; is a powerful and comprehensive library designed to handle various data formats(FITS/TIFF/TXT and more) and perform a wide range of operations, all while maintaining consistency across its entire codebase.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;This is done by representing all the data (acquired via input or created internally), regardless of its type, in a single data structure which encompasses the core data as well as metadata. This greatly assists in mainting uniformity.
+Internally all the data is represented in the form of a C struct : &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt;
+The following image describes how it keeps the core data as well as metadata :
+&lt;img alt="Code-Block1" src="https://labeeb-7z.github.io/Blogs/img/posts/creating-data-structure/gal_data_t.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;Explaining each attribute of this structure will require a seperate post of itself :). Instead I’ll focus on the main topic here : Since Im creating a python package for Gnuastro, and the &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; is at the heart of this library, How do I represent this complex type in Python?!&lt;/p&gt;
+
+&lt;p&gt;Normally we use Classes to define new and complex data types in Python, but hey.. I’m wrapping a C library in Python using the Python-C API. This means I write my wrappers in C!&lt;/p&gt;
+
+&lt;p&gt;So the question comes down to how do I create a new type in Python using C language?&lt;/p&gt;
+
+&lt;h3 id="creating-new-data-types-in-python-without-classes-and-objects"&gt;Creating New Data Types in Python Without Classes and Objects&lt;/h3&gt;
+
+&lt;p&gt;Before I continue, I’ve to appreciate &lt;a href="https://numpy.org/"&gt;Numpy&lt;/a&gt; for the incredible peice of software it is, the more I understand it, the more it amazes me.&lt;/p&gt;
+
+&lt;p&gt;C is not an Object Oriented Programming Language, but Python is.&lt;/p&gt;
+
+&lt;p&gt;In case you didn’t know the most common implementation of Python (the one you most probably have) is written in C! It’s called CPython.&lt;/p&gt;
+
+&lt;p&gt;This raises an obvious question, how does Python implement its whole OOP paradigm in C?&lt;/p&gt;
+
+&lt;p&gt;This question also answers our question of how to represent &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; in Python, because essentially they’re looking for the same thing.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;PyObject&lt;/code&gt; is the answer! To the Python interpreter(written in C) all the data types(built in as well as user defined) are of this type!&lt;/p&gt;
+
+&lt;p&gt;and what is this &lt;code class="language-plaintext highlighter-rouge"&gt;PyObject&lt;/code&gt;? Its a simple struct in C.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230620_0000_labeeb-7z/</guid><pubDate>Mon, 19 Jun 2023 23:00:00 GMT</pubDate></item><item><title>GSoC - its finally here</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230605_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
+&lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;h3 id="what-is-my-project-about"&gt;What is my project about?&lt;/h3&gt;
+
+&lt;p&gt;It has 2 main components :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a Python Library for Gnuastro
+&lt;ul&gt;
+&lt;li&gt;Design an error handling mechanism for Gnuastro&lt;/li&gt;
+&lt;li&gt;Design corresponding data structures of Gnuastro in Python&lt;/li&gt;
+&lt;li&gt;Write wrapper functions to be used in python&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Add CUDA support in Gnuastro
+&lt;ul&gt;
+&lt;li&gt;Integrate CUDA with Gnuastro’s build system&lt;/li&gt;
+&lt;li&gt;Write GPU kernels for compute heavy and parallelizable operations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="what-have-i-completed-till-now"&gt;What have I completed till now?&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;On the Python Library Part :
+&lt;ul&gt;
+&lt;li&gt;Gnuastro now has an error handling mechanism!&lt;/li&gt;
+&lt;li&gt;Added error handling in Python package for the 2 existing modules.&lt;/li&gt;
+&lt;li&gt;Defined error types for each corresponding error type in C library.&lt;/li&gt;
+&lt;li&gt;Implemented Python wrappers for 2 of the C library modules&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;On the CUDA support part :
+&lt;ul&gt;
+&lt;li&gt;Gnuastro can now build with cuda! this means it already supports GPU computations.&lt;/li&gt;
+&lt;li&gt;Added docs for installing, configuring, and testing CUDA&lt;/li&gt;
+&lt;li&gt;Added test CUDA kernels and demo programs to test them.&lt;/li&gt;
+&lt;li&gt;Implementing CUDA kernel for Convolution operation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;##&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230605_0000_labeeb-7z/</guid><pubDate>Sun, 04 Jun 2023 23:00:00 GMT</pubDate></item><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
 &lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item><item><title>My GSoC Journey - Part 4</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</link><dc:creator>Jash Shah</dc:creator><description>&lt;p&gt;&lt;em&gt;Writing the extension modules and Python wrappers for a package is one thing, but a step that is often overlooked is making a build system that complies with the rest of your program, ensures the correct installation based on your dependencies and also is portable enough to be distributable.&lt;/em&gt;&lt;/p&gt;
 
@@ -225,33 +299,4 @@ The proposal submission deadline in GSoC 22’ was &lt;strong&gt;19th April&lt;/
 
 
 
-&lt;p&gt;&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_1417_ndanzanello/</guid><pubDate>Mon, 05 Jul 2021 13:17:22 GMT</pubDate></item><item><title>GSoC Post 1</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_1617_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hey there. I am working on the Astrometry project from Gnuastro and I will explain below the first things that I have been doing.&lt;br&gt;&lt;br&gt;Basically, we have two catalogs: one is the query catalog, which we want to find its wcs, and the reference catalog, that gives some stars positions in celestial coordinates. We begin finding “quads”, a group of 4 stars, on both catalogs. This part was already done, but the matching part between the quads needed some fixes.&lt;/p&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;The first thing we needed to fix was the vertices found on each catalog. It’s very important that all the vertices are labeled the same. First, we label the A and B vertices as the most separated ones. In the query catalog it’s just the Euclidean distance between the points, but on the reference catalog we have to use the angular distance between the points to get the same vertices. Prior to that, it was also using the Euclidean distance to the vertices on the reference catalog, so it would give different most separated A and B for the two catalogs.&lt;br&gt;After that, we have to choose the C and D vertices. First we label randomly the two remaining vertices as C and D and then we compare the ACB and ADB angles that are less than 180 degrees and choose C to be the one that has the lesser angle.&lt;/p&gt;
-
-
-
-&lt;p&gt;Now, we have the A, B, C and D vertices to be the same when dealing with the same quads and we have to compute their hashes. The hashes were calculated using Cx = (c1-a1)/(b1-a1), where a1, b1 and c1 are the coordinates along the axis 1. Now we have the problem related to the rotations: the distance between the points is the same, but the distance along each axis is not the same! So the Cx would be different for different axis. The same would happen for Cy, Dx and Dy.&lt;/p&gt;
-
-
-
-&lt;p&gt;To solve this, first we transform the celestial coordinates of the reference catalog into projection plane coordinates (TAN projection) using the midpoint of AB as the coordinates of the native pole.&lt;br&gt; We proceed defining new two axis (x and y, where the hashes will be calculated) using the A-B vector as a 45 degrees line contained in these axis. Then, we project the C-A and D-A vectors in these axis and get the hashes.&lt;/p&gt;
-
-
-
-&lt;p&gt;The image below show an overview of the steps explained above.&lt;/p&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-56" src="https://ndanzanello.files.wordpress.com/2021/06/match_overview.png?w=1024"&gt;&lt;/figure&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;
-
-
-
-&lt;p&gt;&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210620_1617_ndanzanello/</guid><pubDate>Sun, 20 Jun 2021 15:17:45 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210705_1417_ndanzanello/</guid><pubDate>Mon, 05 Jul 2021 13:17:22 GMT</pubDate></item></channel></rss>

@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Gaurav Joshi)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/gaurav-joshi.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 21 Jun 2023 16:17:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Gaurav Joshi)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/gaurav-joshi.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 22 Jun 2023 01:12:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC - Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230602_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="what-is-the-community-bonding-period"&gt;What is the Community Bonding Period?&lt;/h3&gt;
+&lt;p&gt;The community bonding period is the 3 weeks between GSoC student acceptance and the start of coding date. This is a vital time to engage with your GSoC contributor and set them up for success. In this time, I got in touch with my two mentors as well as my fellow Gsocers. We made plans for our project with my mentor describing some important aspects of it. The feature that I am implimenting is a GP interface for QPO oscillations, but it is useful for many other astronomical timeseries anaylsis so we discussed how it should be both flexible for the user, as well as automate all the complicated stuff.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I studied the various python packages, that would be used, and also created a proof of concept code for the feature.&lt;/p&gt;
+
+&lt;h3 id="packages-used"&gt;Packages used&lt;/h3&gt;
+&lt;p&gt;In this project, I will be using many differnent packages, hense I worked with them to understand their features in this CB period.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Jax: Jax is an open-source Python library designed to facilitate high-performance numerical computing and automatic differentiation. It provides a combination of functional programming concepts and powerful array operations, making it well-suited for machine learning and scientific computing tasks. Jax can be understood as numpy on accelerators, with three important features, Jax.grad, Jax.jit and Jax.vamp.
+Jax.grad is used to calculate automatic derivatives of complex functions.
+Jax.jit is used to compile the code on XLA using the jaxpr language.
+Jax.vmap is used to wrap functions for batches without explicitly doing so.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;With its strong integration with NumPy and compatibility with modern hardware accelerators, Jax has become a popular choice among researchers and practitioners in the machine learning community.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;TinyGP: TinyGP is a Python package aimed at providing a lightweight and user-friendly framework for Gaussian Processes (GPs). TinyGP offers essential functionalities for modeling and inference with GPs, including covariance functions, hyperparameter optimization, and predictive uncertainty estimation. The package is written in jax and well integrated with various optimisation libraries.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Numpyro: NumPyro is a powerful probabilistic programming library built on top of NumPy, JAX, and Pyro. It combines the ease of use and familiar syntax of NumPy with the flexibility and automatic differentiation capabilities of JAX to enable efficient and scalable Bayesian inference. NumPyro provides a wide range of probabilistic models, inference algorithms, and tools for model specification, allowing users to express complex probabilistic models and perform inference tasks such as Markov chain Monte Carlo (MCMC) and variational inference.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230602_0000_gaurav17joshi/</guid><pubDate>Thu, 01 Jun 2023 23:00:00 GMT</pubDate></item><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
 &lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
 
 &lt;!-- TEASER_END --&gt;
