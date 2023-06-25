@@ -1,5 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Somesh Verma)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/somesh-verma.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 24 Jun 2023 01:18:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Utilising community bonding period Effectively!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230530_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I started to contribute to RADIS from January’23 and whenever i needed help in some issue , mentors were quite helpful in providing revelant information to resolve that issue . And this thing helped me , to develop good bonding and understanding with the mentors .&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Somesh Verma)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/somesh-verma.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 25 Jun 2023 01:25:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Comparing memory performance of Vaex and Pandas</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;After completing all the changes to compute Spectrum using Vaex , I compared the memory used during the execution of the program . I used tracemalloc to compute memory uses to compute Spectrum .&lt;/p&gt;
+
+&lt;h4 id="computing-the-spectrum"&gt;Computing the spectrum&lt;/h4&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Following code is used , and memory maximum memory used during the execution of this code is recorded for Vaex and Pandas&lt;/p&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;
+from radis import calc_spectrum
+import tracemalloc
+tracemalloc.start()
+
+s, factory_s = calc_spectrum(1800, 2500,         # cm-1
+molecule='H2O',
+isotope='1,2,3',
+pressure=1.01325,   # bar
+Tgas=700,           # K
+mole_fraction=0.1,
+path_length=1,      # cm
+databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
+wstep='auto',
+use_cached=False,
+engine='pandas',
+return_factory=True,
+)
+
+s.apply_slit(0.5, 'nm')       # simulate an experimental slit
+s.plot('radiance')
+
+print(tracemalloc.get_traced_memory())
+tracemalloc.stop()
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id="results"&gt;Results&lt;/h4&gt;
+
+&lt;p&gt;It can be seen from the graph below that Vaex takes very less memory space in comparison to Pandas.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/vaexcomparison.png"&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0000_1someshverma/</guid><pubDate>Fri, 23 Jun 2023 23:00:00 GMT</pubDate></item><item><title>Refactoring code for calculating Spectrum Using Vaex dataframe</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230616_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;After the community bonding period , I continued refactoring the code for vaex .
+I have the following the things in this period&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;ul&gt;
+&lt;li&gt;Test cases for fetch_databank() and load_databank() functions&lt;/li&gt;
+&lt;li&gt;Replaced the portion of code which is different for Vaex as compared with Pandas&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="test-cases-for-loading-dataframe-in-vaex-dataframe-format"&gt;Test Cases for loading dataframe in Vaex dataframe format&lt;/h4&gt;
+
+&lt;p&gt;Test Cases are written to test the following :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Number of columns are same in both Vaex dataframe and Pandas dataframe&lt;/li&gt;
+&lt;li&gt;Number of lines in same in both the dataframe&lt;/li&gt;
+&lt;li&gt;Compared the value of some of the column with corresponding the column value&lt;/li&gt;
+&lt;li&gt;Calculated the spectrum of CO molecule under equilibrium and compared both the spectrum are the same&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One of the test case added is following , I have simply fetched dataframe in Vaex dataframe format and pandas , then compared the if the above conditions are satisfied are not .&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;def test_df_from_vaex_and_pandas():
+from radis.lbl import SpectrumFactory
+
+sf = SpectrumFactory(
+2284,
+2300,
+wstep=0.001,  # cm-1
+pressure=20 * 1e-3,  # bar
+cutoff=0,
+path_length=0.1,
+mole_fraction=400e-6,
+molecule="CO",
+isotope="1,2",
+medium="vacuum",
+truncation=5,
+verbose=0,
+)
+sf.engine = 'vaex'
+sf.warnings["MissingSelfBroadeningWarning"] = "ignore"
+# Testing Hitran
+sf.fetch_databank("hitran", memory_mapping_engine='vaex', output='pandas', load_columns="all")
+df_pandas = sf.df0
+
+sf.fetch_databank("hitran", memory_mapping_engine='vaex', output='vaex', load_columns="all")
+df_vaex = sf.df0
+
+assert df_vaex[0][0] == df_pandas.iloc[0]["wav"]
+
+columns_vaex = df_vaex.column_names
+columns_pandas = df_pandas.column
+comparison = (df_vaex.column_names == df_pandas.columns)
+
+assert comparison.all()
+
+# Testing Hitemp
+sf.fetch_databank("hitemp", memory_mapping_engine='vaex', output='pandas', load_columns="all")
+df_pandas = sf.df0
+
+sf.fetch_databank("hitemp", memory_mapping_engine='vaex', output='vaex', load_columns="all")
+df_vaex = sf.df0
+
+assert df_vaex[0][0] == df_pandas.iloc[0]["wav"]
+
+columns_vaex = df_vaex.column_names
+columns_pandas = df_pandas.column
+comparison = (df_vaex.column_names == df_pandas.columns)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id="refactoring-the-code-to-calculate-the-spectrum-using-vaex-dataframe"&gt;Refactoring the code to calculate the Spectrum using Vaex dataframe&lt;/h4&gt;
+
+&lt;p&gt;To calculate the spectrum using the Vaex dataframe ,I had to made changes to the following&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;radis/api/hitranapi.py&lt;/li&gt;
+&lt;li&gt;radis/api/cdsdapi.py&lt;/li&gt;
+&lt;li&gt;radis/api/hdf5.py&lt;/li&gt;
+&lt;li&gt;radis/api/cache_files.py&lt;/li&gt;
+&lt;li&gt;radis/api/tools.py&lt;/li&gt;
+&lt;li&gt;radis/io/exomol.py&lt;/li&gt;
+&lt;li&gt;radis/io/geisa.py&lt;/li&gt;
+&lt;li&gt;radis/io/hitran.py&lt;/li&gt;
+&lt;li&gt;radis/io/query.py&lt;/li&gt;
+&lt;li&gt;radis/lbl/base.py&lt;/li&gt;
+&lt;li&gt;radis/lbl/broadening.py&lt;/li&gt;
+&lt;li&gt;radis/lbl/calc.py&lt;/li&gt;
+&lt;li&gt;radis/lbl/loader.py&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are all files which are involved in calculating the Spectrum of molecule(s) ,from loading to calculating . I have only refactord the part that is required to Equilibrium Calculations .I kept the previous implementation of Pandas and just added code for Vaex .&lt;/p&gt;
+
+&lt;p&gt;For loading the main changes are done in hitranapi.py for parsing the molecules and i also had to spend a lot time on it to find the equivalent operations functions in Vaex as in Pandas .
+Finally , i was able to resolve the issue and below is final code that worked for me .&lt;/p&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;def _parse_HITRAN_class1(df, verbose=True,dataframe_type="pandas"):
+r"""Diatomic molecules: CO, HF, HCl, HBr, HI, N2, NO+
+
+
+Parameters
+----------
+df: pandas Dataframe
+lines read from a HITRAN-like database
+
+
+Notes
+-----
+HITRAN syntax [1]_ :
+
+&amp;gt;&amp;gt;&amp;gt;       v
+&amp;gt;&amp;gt;&amp;gt;  13x I2
+
+References
+----------
+
+.. [1] `Table 3 of Rothman et al. HITRAN 2004 &amp;lt;https://www.cfa.harvard.edu/hitran/Download/HITRAN04paper.pdf&amp;gt;`__
+
+
+"""
+
+if dataframe_type == "vaex":
+# 1. Parse
+
+extracted_values = df['globu'].str.extract_regex(pattern = r"[ ]{13}(?P&amp;lt;vu&amp;gt;[\d ]{2})")
+df['vu'] = extracted_values.apply(lambda x : x.get('globu'))
+df['vu'] = df.evaluate(df['vu'])
+
+extracted_values = df['globl'].str.extract_regex(pattern = r"[ ]{13}(?P&amp;lt;vl&amp;gt;[\d ]{2})")
+df['vl'] = extracted_values.get(df['globl'])
+df['vl'] = df.evauate(df['vl'])
+
+# 2. Convert to numeric
+cast_to_int64_with_missing_values(df, ["vu" ,"vl"], dataframe_type=dataframe_type)
+
+# 3. Clean
+del df["globu"]
+del df["globl"]
+
+return df
+elif dataframe_type == "pandas":
+# 1. Parse
+dgu = df["globu"].astype(str).str.extract(r"[ ]{13}(?P&amp;lt;vu&amp;gt;[\d ]{2})", expand=True)
+dgl = df["globl"].astype(str).str.extract(r"[ ]{13}(?P&amp;lt;vl&amp;gt;[\d ]{2})", expand=True)
+
+# 2. Convert to numeric
+cast_to_int64_with_missing_values(dgu, ["vu"],dataframe_type=dataframe_type)
+cast_to_int64_with_missing_values(dgl, ["vl"],dataframe_type=dataframe_type)
+
+# 3. Clean
+del df["globu"]
+del df["globl"]
+
+return pd.concat([df, dgu, dgl], axis=1)
+else:
+raise NotImplementedError(dataframe_type)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For other part of the code , i added an additional parameter self.dataframe_type and whenever operations are different for vaex and pandas ,I used it to execute the part of code for the respective dataframe type as whether it is Vaex or Pandas .&lt;/p&gt;
+
+&lt;p&gt;#####Spectrum using Vaex and Pandas&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Code used&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
+
+s, factory_s = calc_spectrum(1800, 2500,         # cm-1
+molecule='H2O',
+isotope='1,2,3',
+pressure=1.01325,   # bar
+Tgas=700,           # K
+mole_fraction=0.1,
+path_length=1,      # cm
+databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
+wstep='auto',
+use_cached=False,
+engine='vaex',
+return_factory=True,
+)
+
+s.apply_slit(0.5, 'nm')       # simulate an experimental slit
+s.plot('radiance')
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h6 id="using-vaex"&gt;Using Vaex&lt;/h6&gt;
+&lt;p&gt;&lt;img alt="spectrum using vaex" src="https://1someshverma.github.io/images/specturm-using-vaex.png"&gt;&lt;/p&gt;
+
+&lt;h6 id="using-pandas"&gt;Using Pandas&lt;/h6&gt;
+&lt;p&gt;As i also kept the Pandas implementation , spectrum calculated using that is&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="spectrum using pandas" src="https://1someshverma.github.io/images/specturm-using-vaex.png"&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230616_0000_1someshverma/</guid><pubDate>Thu, 15 Jun 2023 23:00:00 GMT</pubDate></item><item><title>Utilising community bonding period Effectively!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230530_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I started to contribute to RADIS from January’23 and whenever i needed help in some issue , mentors were quite helpful in providing revelant information to resolve that issue . And this thing helped me , to develop good bonding and understanding with the mentors .&lt;/p&gt;
 
 &lt;p&gt;So,I thought, i should use community bonding period more productively thus, i decided to work on project from 15 May .&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;

@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by exitflynn)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/exitflynn.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 24 Jun 2023 01:18:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Getting Selected As A GSoC student at SunPy</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1258_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;h2 id="what-is-the-google-summer-of-code"&gt;What is The Google Summer of Code?
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by exitflynn)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/exitflynn.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 25 Jun 2023 01:25:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Into the Summer of Code</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;I had my end-semester exams during the Community Bonding Period and the real-early part of the Coding Period. However, my mentors were super-accomodating.
+I spent a few days on plans with friends before bidding goodbye for the summers, travelling home and relaxing a bit.&lt;/p&gt;
+&lt;h3 id="the-talk"&gt;The Talk
+&lt;!-- TEASER_END --&gt;
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#the-talk"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;&lt;p&gt;This was also the time when IIT BHU reached out to me for a talk as part of a collab between their Astronomy and Open-Source clubs about Astronomy in tech and OSS. This was a  g r e a t  experience! I’ve always wanted to improve at public-speaking stuff and to finally pull off a satisfactory talk was a great experience. Also Prayash was a great host.&lt;/p&gt;
+&lt;h3 id="beginning-with-the-project"&gt;Beginning with the Project
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#beginning-with-the-project"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;&lt;p&gt;My mentor, Nabil, had asked me to start by writing tests for the scraper, even if they may not return a -ve)for all the URLs it doesn’t support now.
+Looking closely though, all the issues were due to limitations of the way regex is implemented for inputting URLs, i.e. since one of the main goals of the project was to remove regex and use parse instead, these tests would have proven to be quite redundant. I asked my mentors and understandably so, Nabil said that he doesn’t want me working on code that I might have to remove soon enough and said I can proceed to the rest of the rewrite.&lt;/p&gt;
+&lt;p&gt;After that, I began reading up on what Metaclasses, Abstract Base Classes (ABCs), etc are, their advantages and how they can be implemented in python to decide which would be better for the purpose of the project. However, at this point I wasn’t really maintaining good communication with my mentors. When they asked me for any updates and then inquired about why I had been reading up on ABCs and such, they clarified that I should be able to improve the scraper without going that route.&lt;/p&gt;
+&lt;p&gt;Had to take a couple of days off in between for unavoidable reasons.&lt;/p&gt;
+&lt;p&gt;After that I took some calls with my mentors, clarifying details and trying to work things through together as I figured out what I should do next.
+All the scraper // dataretriever clients require two strings, &lt;code&gt;baseurl&lt;/code&gt; and &lt;code&gt;pattern&lt;/code&gt; and I figure out a way to merge them somehow.
+I looked into just what role the two of them had and found that &lt;code&gt;pattern&lt;/code&gt; was used only to parse data.
+For example, When writing scraper clients, we require a baseurl and a pattern, an example from the NOAA Client:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;baseurl &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; &lt;span style="color: #e6db74;"&gt;r&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;'ftp://ftp.ngdc.noaa.gov/STP/swpc_products/daily_reports/solar_region_summaries/%Y/%m/%Y%m&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;%d&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;SRS.txt'&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;pattern &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; &lt;span style="color: #e6db74;"&gt;'&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{year:4d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{month:2d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{year:4d}{month:2d}{day:2d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;SRS.txt'&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Instead of passing both, we should be able to merge them into just one since the pattern string is conveying information that is already available in the baseurl.&lt;/p&gt;
+&lt;p&gt;I figured it should be possible to transform &lt;code&gt;baseurl&lt;/code&gt; to &lt;code&gt;pattern&lt;/code&gt; and generate &lt;code&gt;pattern&lt;/code&gt; that way but halfway through I realised that it’d not be possible. However we should be able to convert a full &lt;code&gt;pattern&lt;/code&gt; to it’s &lt;code&gt;baseurl&lt;/code&gt; formatted counterpart.&lt;/p&gt;
+&lt;p&gt;I remember writing out loud what I thought as I approached that problem:&lt;/p&gt;
+&lt;h3 id="rubber-ducky-microblogging"&gt;rubber ducky microblogging?
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#rubber-ducky-microblogging"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;&lt;p&gt;now how do we include this transformation in our code?
+we have mainly two places / files of concern.
+&lt;code&gt;dataretriever/client.py&lt;/code&gt; and &lt;code&gt;scraper.py&lt;/code&gt;
+at this point there are a couple of ways to go about it that come to my mind, all of them would however can be categorised as:
+a) include the transformation in dr/client.py
+b) include it in scraper.py&lt;/p&gt;
+&lt;p&gt;before i get ahead of myself, it’s better to arrive at a concrete decision here, if that’s possible, to avoid having too much of overhead.&lt;/p&gt;
+&lt;p&gt;case a:
+pattern transforms in client and is then sent to scraper. this means the scraper still operates on strftime baseurl.
+and when we want to call the parse function, instead of sending pattern as we do now, we can just send the original new format&lt;/p&gt;
+&lt;p&gt;case b:
+pass the new format to scraper. scraper converts it into strftime to use in all of its functions, and&lt;/p&gt;
+&lt;p&gt;the second approach makes more sense, yeah.&lt;/p&gt;
+&lt;p&gt;NOW
+what’d be a nice way to incorporate this transform in the scraper file?&lt;/p&gt;
+&lt;p&gt;So there have to be Two strings/patterns, throughout this codebase.
+the strftime kind and the parse kind.
+what we input is the parse kind (since we can convert this to strftime, and the other way around wasn’t possible)&lt;/p&gt;
+&lt;p&gt;how to incorporate both strings? make them both private members of the Scraper class?&lt;/p&gt;
+&lt;p&gt;some functions will be changed as a result of this&lt;/p&gt;
+&lt;p&gt;like _URL_followsPattern&lt;/p&gt;
+&lt;p&gt;okay so the plan of action is:
+go add a transform function, call it in init
+we’ll have a variable for the time_pattern, update pattern -&amp;gt; time_pattern wherever applicable.
+rewrite using parse wherever applicable&lt;/p&gt;
+&lt;p&gt;but this would take away from having a standard system and we’ll be defining our own set of names to name variables as.&lt;/p&gt;
+&lt;p&gt;also a future plan can be to check for redundant functions / moving code.&lt;/p&gt;
+&lt;h3 id="in-conclusion"&gt;in conclusion
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#in-conclusion"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h3&gt;&lt;p&gt;So as of right now, I’ve been working on &lt;a href="https://github.com/sunpy/sunpy/issues/7073"&gt;#7073&lt;/a&gt; and &lt;a href="https://github.com/sunpy/sunpy/pull/7077"&gt;PR #7077&lt;/a&gt;, more details on this issue and my proposed solution can be found in the issue description.&lt;/p&gt;
+&lt;p&gt;This’ll be all for now, will be posting more in the future.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/</guid><pubDate>Sat, 24 Jun 2023 00:33:30 GMT</pubDate></item><item><title>Getting Selected As A GSoC student at SunPy</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230521_1258_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;h2 id="what-is-the-google-summer-of-code"&gt;What is The Google Summer of Code?
 &lt;span&gt;
 &lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#what-is-the-google-summer-of-code"&gt;
 &lt;!-- TEASER_END --&gt;
