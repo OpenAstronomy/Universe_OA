@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Into the Summer of Code | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="exitflynn">
+<link rel="prev" href="../20230624_0000_1someshverma/" title="Comparing memory performance of Vaex and Pandas" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Into the Summer of Code">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/">
+<meta property="og:description" content="I had my end-semester exams during the Community Bonding Period and the real-early part of the Coding Period. However, my mentors were super-accomodating.
+I spent a few days on plans with friends befo">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-06-24T01:33:30+01:00">
+<meta property="article:tag" content="SunPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://exitflynn.github.io/blog/" data-toggle="tooltip" data-placement="top" title="2023-06-24 01:33:30+01:00">
+                    exitflynn
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-06-14 00:00:00+01:00">
+                    Gaurav Joshi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-06-20 00:00:00+01:00">
+                    Labib Asari
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-06-08 07:29:01+01:00" style="color:rgb(255,0,0)">
+                    pupper emeritus
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@menasrac" data-toggle="tooltip" data-placement="top" title="2023-06-17 20:33:30+01:00">
+                    Racim MENASRIA
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://1someshverma.github.io" data-toggle="tooltip" data-placement="top" title="2023-06-24 00:00:00+01:00">
+                    Somesh Verma
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Into the Summer of Code</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/exitflynn/">exitflynn</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2023-06-24T01:33:30+01:00" itemprop="datePublished" title="2023-06-24 01:33">2023-06-24 01:33</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://exitflynn.github.io/blog/posts/gsoc-began/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>I had my end-semester exams during the Community Bonding Period and the real-early part of the Coding Period. However, my mentors were super-accomodating.
+I spent a few days on plans with friends before bidding goodbye for the summers, travelling home and relaxing a bit.</p>
+<h3 id="the-talk">The Talk
+<!-- TEASER_END -->
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#the-talk">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h3>
+<p>This was also the time when IIT BHU reached out to me for a talk as part of a collab between their Astronomy and Open-Source clubs about Astronomy in tech and OSS. This was a  g r e a t  experience! I’ve always wanted to improve at public-speaking stuff and to finally pull off a satisfactory talk was a great experience. Also Prayash was a great host.</p>
+<h3 id="beginning-with-the-project">Beginning with the Project
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#beginning-with-the-project">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h3>
+<p>My mentor, Nabil, had asked me to start by writing tests for the scraper, even if they may not return a -ve)for all the URLs it doesn’t support now.
+Looking closely though, all the issues were due to limitations of the way regex is implemented for inputting URLs, i.e. since one of the main goals of the project was to remove regex and use parse instead, these tests would have proven to be quite redundant. I asked my mentors and understandably so, Nabil said that he doesn’t want me working on code that I might have to remove soon enough and said I can proceed to the rest of the rewrite.</p>
+<p>After that, I began reading up on what Metaclasses, Abstract Base Classes (ABCs), etc are, their advantages and how they can be implemented in python to decide which would be better for the purpose of the project. However, at this point I wasn’t really maintaining good communication with my mentors. When they asked me for any updates and then inquired about why I had been reading up on ABCs and such, they clarified that I should be able to improve the scraper without going that route.</p>
+<p>Had to take a couple of days off in between for unavoidable reasons.</p>
+<p>After that I took some calls with my mentors, clarifying details and trying to work things through together as I figured out what I should do next.
+All the scraper // dataretriever clients require two strings, <code>baseurl</code> and <code>pattern</code> and I figure out a way to merge them somehow.
+I looked into just what role the two of them had and found that <code>pattern</code> was used only to parse data.
+For example, When writing scraper clients, we require a baseurl and a pattern, an example from the NOAA Client:</p>
+<div class="highlight"><pre tabindex="0"><code class="language-python"><span style="display: flex;"><span>baseurl <span style="color: #f92672;">=</span> <span style="color: #e6db74;">r</span><span style="color: #e6db74;">'ftp://ftp.ngdc.noaa.gov/STP/swpc_products/daily_reports/solar_region_summaries/%Y/%m/%Y%m</span><span style="color: #e6db74;">%d</span><span style="color: #e6db74;">SRS.txt'</span>
+</span></span><span style="display: flex;"><span>pattern <span style="color: #f92672;">=</span> <span style="color: #e6db74;">'</span><span style="color: #e6db74;">{}</span><span style="color: #e6db74;">/</span><span style="color: #e6db74;">{year:4d}</span><span style="color: #e6db74;">/</span><span style="color: #e6db74;">{month:2d}</span><span style="color: #e6db74;">/</span><span style="color: #e6db74;">{year:4d}{month:2d}{day:2d}</span><span style="color: #e6db74;">SRS.txt'</span>
+</span></span></code></pre></div>
+<p>Instead of passing both, we should be able to merge them into just one since the pattern string is conveying information that is already available in the baseurl.</p>
+<p>I figured it should be possible to transform <code>baseurl</code> to <code>pattern</code> and generate <code>pattern</code> that way but halfway through I realised that it’d not be possible. However we should be able to convert a full <code>pattern</code> to it’s <code>baseurl</code> formatted counterpart.</p>
+<p>I remember writing out loud what I thought as I approached that problem:</p>
+<h3 id="rubber-ducky-microblogging">rubber ducky microblogging?
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#rubber-ducky-microblogging">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h3>
+<p>now how do we include this transformation in our code?
+we have mainly two places / files of concern.
+<code>dataretriever/client.py</code> and <code>scraper.py</code>
+at this point there are a couple of ways to go about it that come to my mind, all of them would however can be categorised as:
+a) include the transformation in dr/client.py
+b) include it in scraper.py</p>
+<p>before i get ahead of myself, it’s better to arrive at a concrete decision here, if that’s possible, to avoid having too much of overhead.</p>
+<p>case a:
+pattern transforms in client and is then sent to scraper. this means the scraper still operates on strftime baseurl.
+and when we want to call the parse function, instead of sending pattern as we do now, we can just send the original new format</p>
+<p>case b:
+pass the new format to scraper. scraper converts it into strftime to use in all of its functions, and</p>
+<p>the second approach makes more sense, yeah.</p>
+<p>NOW
+what’d be a nice way to incorporate this transform in the scraper file?</p>
+<p>So there have to be Two strings/patterns, throughout this codebase.
+the strftime kind and the parse kind.
+what we input is the parse kind (since we can convert this to strftime, and the other way around wasn’t possible)</p>
+<p>how to incorporate both strings? make them both private members of the Scraper class?</p>
+<p>some functions will be changed as a result of this</p>
+<p>like _URL_followsPattern</p>
+<p>okay so the plan of action is:
+go add a transform function, call it in init
+we’ll have a variable for the time_pattern, update pattern -&gt; time_pattern wherever applicable.
+rewrite using parse wherever applicable</p>
+<p>but this would take away from having a standard system and we’ll be defining our own set of names to name variables as.</p>
+<p>also a future plan can be to check for redundant functions / moving code.</p>
+<h3 id="in-conclusion">in conclusion
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#in-conclusion">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h3>
+<p>So as of right now, I’ve been working on <a href="https://github.com/sunpy/sunpy/issues/7073">#7073</a> and <a href="https://github.com/sunpy/sunpy/pull/7077">PR #7077</a>, more details on this issue and my proposed solution can be found in the issue description.</p>
+<p>This’ll be all for now, will be posting more in the future.</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20230624_0000_1someshverma/" rel="prev" title="Comparing memory performance of Vaex and Pandas">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2023         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
