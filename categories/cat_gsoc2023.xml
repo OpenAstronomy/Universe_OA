@@ -1,5 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2023)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2023.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 25 Jun 2023 01:25:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Into the Summer of Code</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;I had my end-semester exams during the Community Bonding Period and the real-early part of the Coding Period. However, my mentors were super-accomodating.
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2023)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2023.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 26 Jun 2023 01:20:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;These weeks I refactored the &lt;code&gt;LombScargleCrossspectrum&lt;/code&gt; and &lt;code&gt;LombScarglePowerspectrum&lt;/code&gt; classes to accommodate the fast algorithm which went smoothly.&lt;br&gt;
+However when it comes to the fast algorithm. I had tunnel vision and unconsciously made the &lt;code&gt;lsft_fast&lt;/code&gt; function compute the power spectrum instead of the fourier transform. Right now I am working towards isolating the algorithm to compute the fourier transform using the Press and Rybicki optimizations(&lt;a href="https://ui.adsabs.harvard.edu/abs/1989ApJ...338..277P/abstract"&gt;https://ui.adsabs.harvard.edu/abs/1989ApJ...338..277P/abstract&lt;/a&gt;).&lt;/p&gt;
+&lt;h2&gt;
+
+
+Challenges Faced
+&lt;/h2&gt;
+
+&lt;p&gt;Integrating the optimization to the existing slow algorithm is giving me a bit of trouble. I'm still figuring out how to add the optimizations. If this is done, I can move onto making the time lag, phase lag functions and then onto testing and documentation.&lt;/p&gt;
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;Added the following parameters to both the classes in order to accommodate choice between the fast and slow algorithm.&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the allowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+oversampling : float, optional, default: 5
+Interpolation Oversampling Factor (for the fast algorithm)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;For full code refer &lt;a href="https://github.com/StingraySoftware/stingray/pull/737"&gt;https://github.com/StingraySoftware/stingray/pull/737&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Most important part of the process is the Lomb Scargle Fourier Transform.&lt;br&gt;
+The wrapper class is trivial, they only wrap the fast and slow lomb scargle fourier transform functions.&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Results using the slow algorithm
+&lt;/h2&gt;
+
+&lt;h3&gt;
+
+
+On synthetic data
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rand = np.random.default_rng(42)
+n = 100
+t = np.sort(rand.random(n)) * n
+y = np.cos(2 * np.pi * 5 * t) + 0.01 * rand.standard_normal(n)
+y -= np.min(y)
+lc1 = Lightcurve(t, y, err_dist="poisson")
+y2 = np.cos(2 * np.pi * 5.0 * (t)) + 0.01 * rand.standard_normal(n)
+y2 -= np.min(y2)
+lc2 = Lightcurve(t, y2, err_dist="poisson")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--48Z7wHCy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xgf4z7yaxi81aoxj9dkx.png"&gt;&lt;img alt="Image description" height="827" src="https://res.cloudinary.com/practicaldev/image/fetch/s--48Z7wHCy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xgf4z7yaxi81aoxj9dkx.png" width="800"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+On real data
+&lt;/h3&gt;
+
+&lt;h4&gt;
+
+
+The lightcurve
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href="https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03//1200120106/xti/event_cl/ni1200120106_0mpu7_cl.evt.gz"&gt;https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03//1200120106/xti/event_cl/ni1200120106_0mpu7_cl.evt.gz&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--2qWoGIUP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3dz8zsjk2ika71ytlkx.png"&gt;&lt;img alt="Image description" height="431" src="https://res.cloudinary.com/practicaldev/image/fetch/s--2qWoGIUP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3dz8zsjk2ika71ytlkx.png" width="574"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--F7NDO8dr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/167buf3woin2hplbo89r.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--F7NDO8dr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/167buf3woin2hplbo89r.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</guid><pubDate>Sun, 25 Jun 2023 15:15:57 GMT</pubDate></item><item><title>Into the Summer of Code</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;I had my end-semester exams during the Community Bonding Period and the real-early part of the Coding Period. However, my mentors were super-accomodating.
 I spent a few days on plans with friends before bidding goodbye for the summers, travelling home and relaxing a bit.&lt;/p&gt;
 &lt;h3 id="the-talk"&gt;The Talk
 &lt;!-- TEASER_END --&gt;
@@ -773,28 +865,4 @@ The total number of photons in the light curve.
 &lt;p&gt;The if __name__ == “__main__” section contains examples of using the MdbExomol class and other features of the API, including spectrum calculations using the RADIS library, and downloading and accessing ExoMol line data using the fetch_exomol function.&lt;/p&gt;
 &lt;p&gt;Thus, the ExoMol API provides tools for downloading, manipulating, and utilizing spectroscopic data from the ExoMol project, including transition files, partition functions, and calculated spectra.&lt;/p&gt;
 &lt;h4&gt;Conclusion : How should I proceed to add to Radis a new database as Kurucz ?&lt;/h4&gt;&lt;p&gt;Regarding implementing Kurucz, the structure of the exomolapi.py code can serve as a model for building a similar API for Kurucz data. I may create a class similar to MdbExomol that handles downloading Kurucz files, accessing the relevant data (such as atomic and molecular line data, partition functions, etc.), and provides methods for spectral calculations and other functionalities specific to Kurucz. I will have to adapt and modify the existing code to suit the data format and organization of Kurucz data.&lt;br&gt;In order to do so, I will review the structure of the Kurucz database and make a quick report in a next post before starting the implementation.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=fc58bc4e9979" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</guid><pubDate>Sun, 04 Jun 2023 21:27:53 GMT</pubDate></item><item><title>GSoC - Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230602_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="what-is-the-community-bonding-period"&gt;What is the Community Bonding Period?&lt;/h3&gt;
-&lt;p&gt;The community bonding period is the 3 weeks between GSoC student acceptance and the start of coding date. This is a vital time to engage with your GSoC contributor and set them up for success. In this time, I got in touch with my two mentors as well as my fellow Gsocers. We made plans for our project with my mentor describing some important aspects of it. The feature that I am implimenting is a GP interface for QPO oscillations, but it is useful for many other astronomical timeseries anaylsis so we discussed how it should be both flexible for the user, as well as automate all the complicated stuff.&lt;/p&gt;
-
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;I studied the various python packages, that would be used, and also created a proof of concept code for the feature.&lt;/p&gt;
-
-&lt;h3 id="packages-used"&gt;Packages used&lt;/h3&gt;
-&lt;p&gt;In this project, I will be using many differnent packages, hense I worked with them to understand their features in this CB period.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Jax: Jax is an open-source Python library designed to facilitate high-performance numerical computing and automatic differentiation. It provides a combination of functional programming concepts and powerful array operations, making it well-suited for machine learning and scientific computing tasks. Jax can be understood as numpy on accelerators, with three important features, Jax.grad, Jax.jit and Jax.vamp.
-Jax.grad is used to calculate automatic derivatives of complex functions.
-Jax.jit is used to compile the code on XLA using the jaxpr language.
-Jax.vmap is used to wrap functions for batches without explicitly doing so.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;With its strong integration with NumPy and compatibility with modern hardware accelerators, Jax has become a popular choice among researchers and practitioners in the machine learning community.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;TinyGP: TinyGP is a Python package aimed at providing a lightweight and user-friendly framework for Gaussian Processes (GPs). TinyGP offers essential functionalities for modeling and inference with GPs, including covariance functions, hyperparameter optimization, and predictive uncertainty estimation. The package is written in jax and well integrated with various optimisation libraries.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Numpyro: NumPyro is a powerful probabilistic programming library built on top of NumPy, JAX, and Pyro. It combines the ease of use and familiar syntax of NumPy with the flexibility and automatic differentiation capabilities of JAX to enable efficient and scalable Bayesian inference. NumPyro provides a wide range of probabilistic models, inference algorithms, and tools for model specification, allowing users to express complex probabilistic models and perform inference tasks such as Markov chain Monte Carlo (MCMC) and variational inference.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230602_0000_gaurav17joshi/</guid><pubDate>Thu, 01 Jun 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=fc58bc4e9979" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</guid><pubDate>Sun, 04 Jun 2023 21:27:53 GMT</pubDate></item></channel></rss>

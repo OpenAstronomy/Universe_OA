@@ -1,5 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by pupper emeritus)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/pupper-emeritus.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 25 Jun 2023 01:25:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 1 Progress Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by pupper emeritus)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/pupper-emeritus.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 26 Jun 2023 01:20:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;These weeks I refactored the &lt;code&gt;LombScargleCrossspectrum&lt;/code&gt; and &lt;code&gt;LombScarglePowerspectrum&lt;/code&gt; classes to accommodate the fast algorithm which went smoothly.&lt;br&gt;
+However when it comes to the fast algorithm. I had tunnel vision and unconsciously made the &lt;code&gt;lsft_fast&lt;/code&gt; function compute the power spectrum instead of the fourier transform. Right now I am working towards isolating the algorithm to compute the fourier transform using the Press and Rybicki optimizations(&lt;a href="https://ui.adsabs.harvard.edu/abs/1989ApJ...338..277P/abstract"&gt;https://ui.adsabs.harvard.edu/abs/1989ApJ...338..277P/abstract&lt;/a&gt;).&lt;/p&gt;
+&lt;h2&gt;
+
+
+Challenges Faced
+&lt;/h2&gt;
+
+&lt;p&gt;Integrating the optimization to the existing slow algorithm is giving me a bit of trouble. I'm still figuring out how to add the optimizations. If this is done, I can move onto making the time lag, phase lag functions and then onto testing and documentation.&lt;/p&gt;
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;Added the following parameters to both the classes in order to accommodate choice between the fast and slow algorithm.&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the allowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+oversampling : float, optional, default: 5
+Interpolation Oversampling Factor (for the fast algorithm)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;For full code refer &lt;a href="https://github.com/StingraySoftware/stingray/pull/737"&gt;https://github.com/StingraySoftware/stingray/pull/737&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Most important part of the process is the Lomb Scargle Fourier Transform.&lt;br&gt;
+The wrapper class is trivial, they only wrap the fast and slow lomb scargle fourier transform functions.&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Results using the slow algorithm
+&lt;/h2&gt;
+
+&lt;h3&gt;
+
+
+On synthetic data
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rand = np.random.default_rng(42)
+n = 100
+t = np.sort(rand.random(n)) * n
+y = np.cos(2 * np.pi * 5 * t) + 0.01 * rand.standard_normal(n)
+y -= np.min(y)
+lc1 = Lightcurve(t, y, err_dist="poisson")
+y2 = np.cos(2 * np.pi * 5.0 * (t)) + 0.01 * rand.standard_normal(n)
+y2 -= np.min(y2)
+lc2 = Lightcurve(t, y2, err_dist="poisson")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--48Z7wHCy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xgf4z7yaxi81aoxj9dkx.png"&gt;&lt;img alt="Image description" height="827" src="https://res.cloudinary.com/practicaldev/image/fetch/s--48Z7wHCy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xgf4z7yaxi81aoxj9dkx.png" width="800"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+On real data
+&lt;/h3&gt;
+
+&lt;h4&gt;
+
+
+The lightcurve
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href="https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03//1200120106/xti/event_cl/ni1200120106_0mpu7_cl.evt.gz"&gt;https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03//1200120106/xti/event_cl/ni1200120106_0mpu7_cl.evt.gz&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--2qWoGIUP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3dz8zsjk2ika71ytlkx.png"&gt;&lt;img alt="Image description" height="431" src="https://res.cloudinary.com/practicaldev/image/fetch/s--2qWoGIUP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3dz8zsjk2ika71ytlkx.png" width="574"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--F7NDO8dr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/167buf3woin2hplbo89r.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--F7NDO8dr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/167buf3woin2hplbo89r.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</guid><pubDate>Sun, 25 Jun 2023 15:15:57 GMT</pubDate></item><item><title>GSoC Week 1 Progress Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
 
 
 &lt;!-- TEASER_END --&gt;

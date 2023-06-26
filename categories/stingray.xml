@@ -1,5 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 25 Jun 2023 01:25:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC - Week 1-2</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230614_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="my-adventure-with-the-implementation"&gt;My adventure with the implementation&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 26 Jun 2023 01:20:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;These weeks I refactored the &lt;code&gt;LombScargleCrossspectrum&lt;/code&gt; and &lt;code&gt;LombScarglePowerspectrum&lt;/code&gt; classes to accommodate the fast algorithm which went smoothly.&lt;br&gt;
+However when it comes to the fast algorithm. I had tunnel vision and unconsciously made the &lt;code&gt;lsft_fast&lt;/code&gt; function compute the power spectrum instead of the fourier transform. Right now I am working towards isolating the algorithm to compute the fourier transform using the Press and Rybicki optimizations(&lt;a href="https://ui.adsabs.harvard.edu/abs/1989ApJ...338..277P/abstract"&gt;https://ui.adsabs.harvard.edu/abs/1989ApJ...338..277P/abstract&lt;/a&gt;).&lt;/p&gt;
+&lt;h2&gt;
+
+
+Challenges Faced
+&lt;/h2&gt;
+
+&lt;p&gt;Integrating the optimization to the existing slow algorithm is giving me a bit of trouble. I'm still figuring out how to add the optimizations. If this is done, I can move onto making the time lag, phase lag functions and then onto testing and documentation.&lt;/p&gt;
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;Added the following parameters to both the classes in order to accommodate choice between the fast and slow algorithm.&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;method : str
+The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
+and `slow` are the allowed values. Default is `fast`. fast uses the optimized Press
+and Rybicki O(n*log(n))
+
+oversampling : float, optional, default: 5
+Interpolation Oversampling Factor (for the fast algorithm)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;For full code refer &lt;a href="https://github.com/StingraySoftware/stingray/pull/737"&gt;https://github.com/StingraySoftware/stingray/pull/737&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Most important part of the process is the Lomb Scargle Fourier Transform.&lt;br&gt;
+The wrapper class is trivial, they only wrap the fast and slow lomb scargle fourier transform functions.&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Results using the slow algorithm
+&lt;/h2&gt;
+
+&lt;h3&gt;
+
+
+On synthetic data
+&lt;/h3&gt;
+
+
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rand = np.random.default_rng(42)
+n = 100
+t = np.sort(rand.random(n)) * n
+y = np.cos(2 * np.pi * 5 * t) + 0.01 * rand.standard_normal(n)
+y -= np.min(y)
+lc1 = Lightcurve(t, y, err_dist="poisson")
+y2 = np.cos(2 * np.pi * 5.0 * (t)) + 0.01 * rand.standard_normal(n)
+y2 -= np.min(y2)
+lc2 = Lightcurve(t, y2, err_dist="poisson")
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--48Z7wHCy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xgf4z7yaxi81aoxj9dkx.png"&gt;&lt;img alt="Image description" height="827" src="https://res.cloudinary.com/practicaldev/image/fetch/s--48Z7wHCy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xgf4z7yaxi81aoxj9dkx.png" width="800"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+On real data
+&lt;/h3&gt;
+
+&lt;h4&gt;
+
+
+The lightcurve
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href="https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03//1200120106/xti/event_cl/ni1200120106_0mpu7_cl.evt.gz"&gt;https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03//1200120106/xti/event_cl/ni1200120106_0mpu7_cl.evt.gz&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--2qWoGIUP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3dz8zsjk2ika71ytlkx.png"&gt;&lt;img alt="Image description" height="431" src="https://res.cloudinary.com/practicaldev/image/fetch/s--2qWoGIUP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3dz8zsjk2ika71ytlkx.png" width="574"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--F7NDO8dr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/167buf3woin2hplbo89r.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--F7NDO8dr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/167buf3woin2hplbo89r.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</guid><pubDate>Sun, 25 Jun 2023 15:15:57 GMT</pubDate></item><item><title>GSoC - Week 1-2</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230614_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="my-adventure-with-the-implementation"&gt;My adventure with the implementation&lt;/h3&gt;
 &lt;p&gt;While taking on this project, the thing I was most excited was that I would be getting to write rearch code (Code to be used by researchers in their work all over). With advent of large data from multiple telescopes and computational speed , Gaussian Processes are fast becoming the go to choice for astrophichal modelling.&lt;/p&gt;
 
 &lt;!-- TEASER_END --&gt;
@@ -421,10 +513,4 @@ Coding
 &lt;p&gt;As the bexvar() aims to provide the posterior distribution of log(Sigma_\{count rate}) the elements as individuals do not matter but the shape of their histogram provides the posterior distribution. Therefore we decided to test the results with some statistical parameters derived from the generated samples which quantify the distribution.&lt;/p&gt;
 &lt;p&gt;The problems that I faced while designing the third type of test, helped me find and resolve multiple unseen issues with the code. It took me more time than I expected to complete the testing phase. However, I am glad to announce that the all tests are now passing successfully. Additionally, I also passed the mid-term evaluations! Phew!&lt;/p&gt;
 &lt;p&gt;At end of the testing phase, The &lt;a href="https://github.com/StingraySoftware/stingray/pull/664"&gt;PR&lt;/a&gt; was ready to be merged, after a few minor updates in the docstrings it was merged! Yaay! The work is not yet done though. Next, I am working to add a method to Stingray’s lightcurve class. In addition to this, I will be creating a tutorial page for using the bexvar and will also make some more improvements in the code if time permits.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=9d1572ac43ef" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220826_1631_mihirtripathi97/</guid><pubDate>Fri, 26 Aug 2022 15:31:33 GMT</pubDate></item><item><title>GSoC Blog #3</title><link>http://openastronomy.org/Universe_OA/posts/2022/08/20220820_0702_aman-pandey-afk/</link><dc:creator>AMAN PANDEY</dc:creator><description>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/680/1*dfjiDfMcY8h9eEOySAnxbA.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;Mid Evaluations are over, and I’m glad to be back at work. As the base functionality is done now, I am on to provide user APIs to create cross spectra and periodograms from actual astronomical data easily.&lt;/p&gt;
-&lt;p&gt;I was busy the first week after the mid-term due to intern season at my campus, so that I couldn’t contribute much. Afterward, I started by understanding different functionalities related to photon count events next week. The plan was to:&lt;/p&gt;
-&lt;ol&gt;&lt;li&gt;Read the photon count data from different file formats and get the essential information like time, GTIs, PI channels, etc.&lt;/li&gt;&lt;li&gt;Create EventList struct and handle different methods like sorting, joining, filtering, and simulating these data.&lt;/li&gt;&lt;li&gt;Test these methods by appropriately re-binning, creating periodograms, and plotting the data.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;There was also modification in the git workflow as the documentation branch was based on the gti one, which now has its parent main.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;For the 3rd week, I have worked on the EventList APIs and the data reading part. Its currently implemented for the FITS extension, but I will expand to other formats like HDF5 or ECSV. I have also studied LightCurve structure and implemented a to and from conversion with EventLists, although its methods are needed to be worked upon.&lt;/p&gt;
-&lt;p&gt;In the coming weeks, I aim to create extensive tests, debug these methods, and optimize them in Julia. After these are done, other features like coherence and time lags will also be necessary. The period will &lt;em&gt;end&lt;/em&gt; with documentation and refactoring of already existing codes, and &lt;em&gt;if&lt;/em&gt; I get time, I will work on variability vs. energy spectrum.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=350c7b7dad61" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220820_0702_aman-pandey-afk/</guid><pubDate>Sat, 20 Aug 2022 06:02:40 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=9d1572ac43ef" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220826_1631_mihirtripathi97/</guid><pubDate>Fri, 26 Aug 2022 15:31:33 GMT</pubDate></item></channel></rss>
