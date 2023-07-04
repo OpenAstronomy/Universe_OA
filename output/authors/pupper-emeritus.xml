@@ -1,5 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by pupper emeritus)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/pupper-emeritus.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 03 Jul 2023 01:21:14 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by pupper emeritus)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/pupper-emeritus.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 04 Jul 2023 01:19:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;This week I successfully finished implementing the fast algorithm. Now my &lt;code&gt;LombScargleCrossspectrum&lt;/code&gt; and &lt;code&gt;LombScarglePowerspectrum&lt;/code&gt; are that much closer to completion. Only things left to sort out/implement are time lags and phase lag functions and checking the phase of the output.&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;Testing on the following synthetic data has been conducted to compare the outputs with the existing cross spectrum and power spectrum for evenly spaced data first then checking the outputs of the lomb scargle variants on unevenly sampled data&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rand = np.random.default_rng(42)
+n = 1000
+t = np.linspace(0, 10, n)
+y = np.sin(2 * np.pi * 3.0 * t) + 0.1 * rand.standard_normal(n)
+y2 = np.sin(2 * np.pi * 3.0 * t) + 0.1 * rand.standard_normal(n)
+y -= np.min(y)
+y2 -= np.min(y2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+&lt;h3&gt;
+
+
+The Cross spectra for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--HDSGExDP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ldcxxcpq760ym5yph7jv.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--HDSGExDP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ldcxxcpq760ym5yph7jv.png" width="558"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The time lags for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;As it is evident the time lags need work.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--5_uNnIpc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sknrib3nkos5tcnojlng.png"&gt;&lt;img alt="Image description" height="413" src="https://res.cloudinary.com/practicaldev/image/fetch/s--5_uNnIpc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sknrib3nkos5tcnojlng.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The power spectra for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;One quirk is that the power spectrum class is returning the power spectrum with a negative sign. This is a known bug. The values otherwise are within margin of error.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--njHhZDEY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vtf835ktnxo9dn83iy55.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--njHhZDEY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vtf835ktnxo9dn83iy55.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The Lomb Scargle cross spectrum and power spectrum when data is unevenly sampled
+&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;t = np.sort(rand.random(n))*10&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The cross spectrum
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--LeUsZL3d--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bzddaq7u9naiskry0x7i.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--LeUsZL3d--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bzddaq7u9naiskry0x7i.png" width="558"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The power spectrum
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--mFs4vcWd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yfz6sav17mw51yas49he.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--mFs4vcWd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yfz6sav17mw51yas49he.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The time lags
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--bAp6Nw-1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qkyr5to5lbkxm2s2xbi9.png"&gt;&lt;img alt="Image description" height="413" src="https://res.cloudinary.com/practicaldev/image/fetch/s--bAp6Nw-1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qkyr5to5lbkxm2s2xbi9.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;They are off here too. Which will be fixed in the coming week.&lt;/p&gt;
+
+&lt;p&gt;For exhaustive testing code refer&lt;br&gt;
+&lt;/p&gt;
+&lt;div class="ltag_gist-liquid-tag"&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</guid><pubDate>Mon, 03 Jul 2023 18:17:26 GMT</pubDate></item><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
 
 
 &lt;!-- TEASER_END --&gt;

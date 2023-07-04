@@ -1,5 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 03 Jul 2023 01:21:14 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 04 Jul 2023 01:19:27 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;This week I successfully finished implementing the fast algorithm. Now my &lt;code&gt;LombScargleCrossspectrum&lt;/code&gt; and &lt;code&gt;LombScarglePowerspectrum&lt;/code&gt; are that much closer to completion. Only things left to sort out/implement are time lags and phase lag functions and checking the phase of the output.&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;Testing on the following synthetic data has been conducted to compare the outputs with the existing cross spectrum and power spectrum for evenly spaced data first then checking the outputs of the lomb scargle variants on unevenly sampled data&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rand = np.random.default_rng(42)
+n = 1000
+t = np.linspace(0, 10, n)
+y = np.sin(2 * np.pi * 3.0 * t) + 0.1 * rand.standard_normal(n)
+y2 = np.sin(2 * np.pi * 3.0 * t) + 0.1 * rand.standard_normal(n)
+y -= np.min(y)
+y2 -= np.min(y2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+&lt;h3&gt;
+
+
+The Cross spectra for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--HDSGExDP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ldcxxcpq760ym5yph7jv.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--HDSGExDP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ldcxxcpq760ym5yph7jv.png" width="558"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The time lags for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;As it is evident the time lags need work.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--5_uNnIpc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sknrib3nkos5tcnojlng.png"&gt;&lt;img alt="Image description" height="413" src="https://res.cloudinary.com/practicaldev/image/fetch/s--5_uNnIpc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sknrib3nkos5tcnojlng.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The power spectra for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;One quirk is that the power spectrum class is returning the power spectrum with a negative sign. This is a known bug. The values otherwise are within margin of error.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--njHhZDEY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vtf835ktnxo9dn83iy55.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--njHhZDEY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vtf835ktnxo9dn83iy55.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The Lomb Scargle cross spectrum and power spectrum when data is unevenly sampled
+&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;t = np.sort(rand.random(n))*10&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The cross spectrum
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--LeUsZL3d--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bzddaq7u9naiskry0x7i.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--LeUsZL3d--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bzddaq7u9naiskry0x7i.png" width="558"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The power spectrum
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--mFs4vcWd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yfz6sav17mw51yas49he.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--mFs4vcWd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yfz6sav17mw51yas49he.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The time lags
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--bAp6Nw-1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qkyr5to5lbkxm2s2xbi9.png"&gt;&lt;img alt="Image description" height="413" src="https://res.cloudinary.com/practicaldev/image/fetch/s--bAp6Nw-1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qkyr5to5lbkxm2s2xbi9.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;They are off here too. Which will be fixed in the coming week.&lt;/p&gt;
+
+&lt;p&gt;For exhaustive testing code refer&lt;br&gt;
+&lt;/p&gt;
+&lt;div class="ltag_gist-liquid-tag"&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</guid><pubDate>Mon, 03 Jul 2023 18:17:26 GMT</pubDate></item><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -502,15 +592,4 @@ Coding
 &lt;p&gt;As a whole, this project was exciting to me. I can safely say that I lacked experience in many parts, but my mentors were fantastic, and I had some great discussions with them. The essential power of Julia is how it handles memory and compiles the code as required (JIT), and with this in focus, the project can still grow to various extents.&lt;/p&gt;
 &lt;p&gt;For example, good use of type systems in the Fourier methods, a clearer way to use generators (the resumable functions), and user APIs for Cross and Power Spectra would be the first thing this package needs working on. After this, we can implement other features like Bi-Spectra and Var-Energy Spectra. In the end, one can see how powerful Julia can be if programmed correctly. Below is the runtime for reading the same files in Python and Julia (Julia is doing almost 40 times faster). This order of speed boost is still an excellent achievement for Julia while keeping all the important arrays and metadata from the file in a struct.&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/925/1*p-F3ErLlJtjTA4fSQSqeJw.png"&gt;&lt;figcaption&gt;Python Code&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/633/1*hyOqX2j2UxQ59IxKwxej4w.png"&gt;&lt;figcaption&gt;Julia Code&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;With this, I end this blog and this awesome GSoC program, with a hope to keep contributing to this and other open source projects and learning new things. Great thanks to my mentors, Open Astronomy and Google for providing this opportunity.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/736/0*eGlGa84zNsGaMHL0.jpg"&gt;&lt;figcaption&gt;Source: Pinterest&lt;/figcaption&gt;&lt;/figure&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1c27a20f13a2" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_1225_aman-pandey-afk/</guid><pubDate>Mon, 12 Sep 2022 11:25:22 GMT</pubDate></item><item><title>GSoC @ Stingray: Testing Testing Testing …</title><link>http://openastronomy.org/Universe_OA/posts/2022/08/20220826_1631_mihirtripathi97/</link><dc:creator>Mihirtripathi</dc:creator><description>&lt;h4&gt;GSoC @ Stingray: Testing Testing Testing …&lt;/h4&gt;&lt;p&gt;After getting the code for bexvar in working condition, the next task in front of me was to test the code. As I mentioned in the last blog I was completely new to software testing. This meant a lot of new things to learn.&lt;/p&gt;
-&lt;p&gt;In this blog, I am going to write about my experience with testing. This was one of the best learning experiences of my GSoC journey so far. With the help of my mentors, I arrived at the conclusion that primarily there are three kinds of tests that would be needed for bexvar.&lt;/p&gt;
-&lt;p&gt;(1) Unit tests to check if various components of my code provide the correct outputs individually.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;(2) Some functional tests to check if the entire bexvar() function works properly and gives the desired output.&lt;/p&gt;
-&lt;p&gt;(3) Some other tests to check if proper warnings and errors are raised in the case of bad inputs.&lt;/p&gt;
-&lt;p&gt;I started with the unit tests. Creating the unit tests for internal functions was comparatively easy. Two of the three internal functions provided deterministic outputs. All that was needed for testing them was to calculate the desired output and compare it with the output from the code.&lt;/p&gt;
-&lt;p&gt;One of the major problems arose while designing functional tests. The bexvar() function returns an array that contains the samples of the log of the bexvar (i.e. log(\sigma_{count rate})). These samples are proportional to the posterior distribution of log(\sigma_\{count rate}). These samples are generated by an MCMC generator and therefore the elements and the number of elements of the output array are different after each run for the same data. This makes testing the result more difficult as the elements of the array could not be compared with a predetermined result.&lt;/p&gt;
-&lt;p&gt;As the bexvar() aims to provide the posterior distribution of log(Sigma_\{count rate}) the elements as individuals do not matter but the shape of their histogram provides the posterior distribution. Therefore we decided to test the results with some statistical parameters derived from the generated samples which quantify the distribution.&lt;/p&gt;
-&lt;p&gt;The problems that I faced while designing the third type of test, helped me find and resolve multiple unseen issues with the code. It took me more time than I expected to complete the testing phase. However, I am glad to announce that the all tests are now passing successfully. Additionally, I also passed the mid-term evaluations! Phew!&lt;/p&gt;
-&lt;p&gt;At end of the testing phase, The &lt;a href="https://github.com/StingraySoftware/stingray/pull/664"&gt;PR&lt;/a&gt; was ready to be merged, after a few minor updates in the docstrings it was merged! Yaay! The work is not yet done though. Next, I am working to add a method to Stingray’s lightcurve class. In addition to this, I will be creating a tutorial page for using the bexvar and will also make some more improvements in the code if time permits.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=9d1572ac43ef" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/08/20220826_1631_mihirtripathi97/</guid><pubDate>Fri, 26 Aug 2022 15:31:33 GMT</pubDate></item></channel></rss>
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/736/0*eGlGa84zNsGaMHL0.jpg"&gt;&lt;figcaption&gt;Source: Pinterest&lt;/figcaption&gt;&lt;/figure&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1c27a20f13a2" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_1225_aman-pandey-afk/</guid><pubDate>Mon, 12 Sep 2022 11:25:22 GMT</pubDate></item></channel></rss>

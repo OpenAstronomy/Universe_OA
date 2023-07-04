@@ -1,5 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 03 Jul 2023 01:21:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Setting Up for the Kurucz PR and transitioning to the TheoReTS</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230702_1407_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;This week was not the most enjoyable phase of the project so far, as I had to exert considerable effort to fix failing tests before opening a pull request.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 04 Jul 2023 01:19:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h2&gt;
+
+&lt;p&gt;This week I successfully finished implementing the fast algorithm. Now my &lt;code&gt;LombScargleCrossspectrum&lt;/code&gt; and &lt;code&gt;LombScarglePowerspectrum&lt;/code&gt; are that much closer to completion. Only things left to sort out/implement are time lags and phase lag functions and checking the phase of the output.&lt;/p&gt;
+
+&lt;h2&gt;
+
+
+Details
+&lt;/h2&gt;
+
+&lt;p&gt;Testing on the following synthetic data has been conducted to compare the outputs with the existing cross spectrum and power spectrum for evenly spaced data first then checking the outputs of the lomb scargle variants on unevenly sampled data&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rand = np.random.default_rng(42)
+n = 1000
+t = np.linspace(0, 10, n)
+y = np.sin(2 * np.pi * 3.0 * t) + 0.1 * rand.standard_normal(n)
+y2 = np.sin(2 * np.pi * 3.0 * t) + 0.1 * rand.standard_normal(n)
+y -= np.min(y)
+y2 -= np.min(y2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+&lt;h3&gt;
+
+
+The Cross spectra for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--HDSGExDP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ldcxxcpq760ym5yph7jv.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--HDSGExDP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ldcxxcpq760ym5yph7jv.png" width="558"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The time lags for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;As it is evident the time lags need work.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--5_uNnIpc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sknrib3nkos5tcnojlng.png"&gt;&lt;img alt="Image description" height="413" src="https://res.cloudinary.com/practicaldev/image/fetch/s--5_uNnIpc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sknrib3nkos5tcnojlng.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The power spectra for evenly sampled data
+&lt;/h3&gt;
+
+&lt;p&gt;One quirk is that the power spectrum class is returning the power spectrum with a negative sign. This is a known bug. The values otherwise are within margin of error.&lt;/p&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--njHhZDEY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vtf835ktnxo9dn83iy55.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--njHhZDEY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vtf835ktnxo9dn83iy55.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;
+
+
+The Lomb Scargle cross spectrum and power spectrum when data is unevenly sampled
+&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;t = np.sort(rand.random(n))*10&lt;/code&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The cross spectrum
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--LeUsZL3d--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bzddaq7u9naiskry0x7i.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--LeUsZL3d--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bzddaq7u9naiskry0x7i.png" width="558"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The power spectrum
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--mFs4vcWd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yfz6sav17mw51yas49he.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--mFs4vcWd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yfz6sav17mw51yas49he.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;
+
+
+The time lags
+&lt;/h4&gt;
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--bAp6Nw-1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qkyr5to5lbkxm2s2xbi9.png"&gt;&lt;img alt="Image description" height="413" src="https://res.cloudinary.com/practicaldev/image/fetch/s--bAp6Nw-1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qkyr5to5lbkxm2s2xbi9.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;They are off here too. Which will be fixed in the coming week.&lt;/p&gt;
+
+&lt;p&gt;For exhaustive testing code refer&lt;br&gt;
+&lt;/p&gt;
+&lt;div class="ltag_gist-liquid-tag"&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</guid><pubDate>Mon, 03 Jul 2023 18:17:26 GMT</pubDate></item><item><title>Setting Up for the Kurucz PR and transitioning to the TheoReTS</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230702_1407_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;This week was not the most enjoyable phase of the project so far, as I had to exert considerable effort to fix failing tests before opening a pull request.&lt;/p&gt;
 &lt;p&gt;Once I ensured that the initial tests passed, I wrote my own tests to confirm that the new AdB Kurucz class didn’t interfere with any part of the existing code. At this point, I encountered a primary issue. I hadn’t noticed that one of the methods I had adapted from ExoJAX was still reading a file which necessitated an ExoJAX package dependency. This caused the build to fail on GitHub due to one of the tests in my kurucz_test.py file failing.&lt;/p&gt;
 &lt;p&gt;Since there’s a conflict related to the JAX installation on Windows, I couldn’t add it to the requirements file. Doing so would create a conflict for every Windows user installing Radis. Consequently, I had to write a program to extract the data from this package and store a copy of it in a local file called pfdat.txt. This enabled the problematic function to read from the local copy instead of the ExoJAX file. This solution successfully rectified the problem, and now my PR passes the tests and is awaiting review before merging.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -749,48 +839,4 @@ nphots: float
 The total number of photons in the light curve.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</guid><pubDate>Thu, 08 Jun 2023 06:29:01 GMT</pubDate></item><item><title>GSoC - its finally here</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230605_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
-&lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
-
-&lt;!-- TEASER_END --&gt;
-&lt;h3 id="what-is-my-project-about"&gt;What is my project about?&lt;/h3&gt;
-
-&lt;p&gt;It has 2 main components :&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Create a Python Library for Gnuastro
-&lt;ul&gt;
-&lt;li&gt;Design an error handling mechanism for Gnuastro&lt;/li&gt;
-&lt;li&gt;Design corresponding data structures of Gnuastro in Python&lt;/li&gt;
-&lt;li&gt;Write wrapper functions to be used in python&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Add CUDA support in Gnuastro
-&lt;ul&gt;
-&lt;li&gt;Integrate CUDA with Gnuastro’s build system&lt;/li&gt;
-&lt;li&gt;Write GPU kernels for compute heavy and parallelizable operations.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id="what-have-i-completed-till-now"&gt;What have I completed till now?&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;On the Python Library Part :
-&lt;ul&gt;
-&lt;li&gt;Gnuastro now has an error handling mechanism!&lt;/li&gt;
-&lt;li&gt;Added error handling in Python package for the 2 existing modules.&lt;/li&gt;
-&lt;li&gt;Defined error types for each corresponding error type in C library.&lt;/li&gt;
-&lt;li&gt;Implemented Python wrappers for 2 of the C library modules&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;On the CUDA support part :
-&lt;ul&gt;
-&lt;li&gt;Gnuastro can now build with cuda! this means it already supports GPU computations.&lt;/li&gt;
-&lt;li&gt;Added docs for installing, configuring, and testing CUDA&lt;/li&gt;
-&lt;li&gt;Added test CUDA kernels and demo programs to test them.&lt;/li&gt;
-&lt;li&gt;Implementing CUDA kernel for Convolution operation.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;##&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230605_0000_labeeb-7z/</guid><pubDate>Sun, 04 Jun 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</guid><pubDate>Thu, 08 Jun 2023 06:29:01 GMT</pubDate></item></channel></rss>
