@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 05 Jul 2023 01:20:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 06 Jul 2023 01:21:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -94,7 +94,86 @@ The time lags
 &lt;p&gt;Since there’s a conflict related to the JAX installation on Windows, I couldn’t add it to the requirements file. Doing so would create a conflict for every Windows user installing Radis. Consequently, I had to write a program to extract the data from this package and store a copy of it in a local file called pfdat.txt. This enabled the problematic function to read from the local copy instead of the ExoJAX file. This solution successfully rectified the problem, and now my PR passes the tests and is awaiting review before merging.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 &lt;p&gt;The next step is to transition to the TheoReTS as planned. According to the TheoReTS website, it is an information system for theoretical spectra based on variational predictions from molecular potential energy and dipole moment surfaces. It is jointly developed by the PMT team of GSMA (Reims), Tomsk University, and IAO Acad Sci. Russia. As a result, it provides two access points, one French and the other Russian. However, I noticed that the access to the French website (&lt;a href="http://theorets.univ-reims.fr/"&gt;http://theorets.univ-reims.fr/&lt;/a&gt;) is currently unavailable, preventing me from visualizing the data. This is an issue I should discuss with my mentors.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=d9643c0269aa" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230702_1407_menasrac/</guid><pubDate>Sun, 02 Jul 2023 13:07:42 GMT</pubDate></item><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=d9643c0269aa" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230702_1407_menasrac/</guid><pubDate>Sun, 02 Jul 2023 13:07:42 GMT</pubDate></item><item><title>Scraper Things</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;Most of the week was spent rewriting the Scraper functions to go with the new parse-pattern and then looking for edge cases in the new implementations, fixing bugs and updating tests.&lt;/p&gt;
+&lt;h2 id="catching-up"&gt;{{Catching up}}
+&lt;span&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#catching-up"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;In the scraper, while trying to merge &lt;code&gt;baseurl&lt;/code&gt; (an strftime formatted pattern i.e.&lt;code&gt; %Y%m&lt;/code&gt; etc) and &lt;code&gt;pattern&lt;/code&gt; (parse formatted pattern i.e. &lt;code&gt;{year:4d}{month:2d}&lt;/code&gt; etc), I faced two choices, we could either:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Make the input all parse-style formatted. generate the datetime-compatible string from here wherever it is required, however the problem i was running into here is parse-stuff like &lt;code&gt;{year:2d}&lt;/code&gt; will collide with &lt;code&gt;{instrument}&lt;/code&gt; like placeholders on which we mean to call &lt;code&gt;.format(**kwargs)&lt;/code&gt; on. All the ways I could think of pulling it off included adding a large no. of lines of code in the really early part of &lt;code&gt;__init__()&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Make the input all datetime formatted and generate the parse pattern from here. The problem with this is there are edge-cases when sometimes users define variables like &lt;code&gt;{Level:1d}&lt;/code&gt; which we have no way of knowing beforehand. One way to go about this could’ve been that we tell the user to define a pattern string in addition to baseurl whenever they have any new variables like that.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;We ended up going with the first. My mentor, &lt;a href="https://github.com/Nabobalis"&gt;Nabil&lt;/a&gt; introduced me to how there’s a prevalence of using double-curly brackets in places where we need to escape / use them with single curly brackets, and sure enough, the &lt;code&gt;parse&lt;/code&gt; module supports that. So that took care of the problem there, I was mostly a bit concerned that I’ll have to go back to the second way even though I had started with it before pivoting to the first one.&lt;/p&gt;
+&lt;h2 id="communication"&gt;Communication
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#communication"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;Nabil pointed out that we weren’t being very good at communicating and that has a negative effect on the project which lead me to change how I was approaching it.&lt;/p&gt;
+&lt;p&gt;A lot of times I was debugging things by including print statements here and there, and since my project now involves changing API it had me updating tests and a lot of these times the problem would just be in my understanding on how to convert the patterns and just how the new input should look like. Previously, I would only send a message on the matrix room when I had a question. And most of the times I’d still hold out hope for solving something by myself when I have the strength to pick it up later. But it also makes sense because there’d be no way to differentiate that from me not doing anything. Also around 75% of the time I’ve drafted out questions, I found out an answer along the way. From now on I realise instead of just asking questions, I should think of it as a logging / progress-updating activity first which sounds obvious in hindsight.&lt;/p&gt;
+&lt;h2 id="to-regex-or-not-to-regex"&gt;To regex or not to regex
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#to-regex-or-not-to-regex"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;The next part where I was stuck at was in converting a pattern that involved custom placeholders like &lt;code&gt;{{CAR_ROT:4d}}&lt;/code&gt; or &lt;code&gt;{{:3d}}&lt;/code&gt; to their regex counterparts like  &lt;code&gt;(\d){3}&lt;/code&gt;, &lt;code&gt;(\d){16}&lt;/code&gt; etc without using like a l o t of regex, any less complex method than using a conversion function etc. However, after a quick conversation with the mentors and I realised that I had been mistakenly assuming that strftime required regex patterns. Earlier I thought that regex would no longer be part of the end-user experience but still somehow exist in the codebase but this is when I realised that we can entirely do away with it.&lt;/p&gt;
+&lt;h2 id="rewrite-then-remove-"&gt;Rewrite then Remove? 💀
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#rewrite-then-remove-"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;I also realised that the &lt;code&gt;_extractDateURL()&lt;/code&gt; function was made redundant &lt;em&gt;after&lt;/em&gt; rewriting it since I found out later that it was only called at one place and that part of the code was no longer required thanks to the existence of a parse-pattern. That’s a nice message to keep in mind for the future.&lt;/p&gt;
+&lt;h2 id="modern-day-cain"&gt;Modern Day Cain
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#modern-day-cain"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;Another question I encountered was if we could assume that any {year:2d} or %y type 2-digit year xx to be interpreted to be in the 21st century like 20xx or not.&lt;/p&gt;
+&lt;h2 id="issue-found"&gt;Issue found
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#issue-found"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;I also found this bug in the codebase:
+In the current &lt;code&gt;scraper._check_timerange()&lt;/code&gt;, it takes the simpler way &lt;code&gt;if&lt;/code&gt; we provide it with an extractor // parse-pattern and a more complex way if we don’t, however as it is implemented right now&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;&lt;span style="color: #f92672;"&gt;from&lt;/span&gt; sunpy.net.scraper &lt;span style="color: #f92672;"&gt;import&lt;/span&gt; Scraper
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;&lt;span style="color: #f92672;"&gt;from&lt;/span&gt; sunpy.time &lt;span style="color: #f92672;"&gt;import&lt;/span&gt; TimeRange
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;s &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; Scraper(&lt;span style="color: #e6db74;"&gt;'%Y.fits'&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;s&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;_check_timerange(&lt;span style="color: #e6db74;"&gt;'2014.fits'&lt;/span&gt;, TimeRange(&lt;span style="color: #e6db74;"&gt;"2015-01-01"&lt;/span&gt;, &lt;span style="color: #e6db74;"&gt;"2015-01-02"&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;would return True and it is intended that way in the tests but if we passed it an extractor // parse pattern&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;s&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;extractor &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; &lt;span style="color: #e6db74;"&gt;"&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{year:4d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;.fits"&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;s&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;_check_timerange(&lt;span style="color: #e6db74;"&gt;'2014.fits'&lt;/span&gt;, TimeRange(&lt;span style="color: #e6db74;"&gt;"2015-01-01"&lt;/span&gt;, &lt;span style="color: #e6db74;"&gt;"2015-01-02"&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;it’d return False.&lt;/p&gt;
+&lt;h2 id="inclusivity-is-important"&gt;Inclusivity is important
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#inclusivity-is-important"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;Failing tests required me to inqure if we want closed-intervals in the package or open, which concluded with closed. I also found other instances in the codebase where we endorse closed intervals.&lt;/p&gt;
+&lt;h2 id="future-steps"&gt;Future steps
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#future-steps"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;Cover why the rest of tests are breaking and fix em.
+Ask for review once everything works.
+Try to come up with a way to write parse-patterns so as the length remains less by trying to minimize repeated values.
+Also fix my Hugo setup before the night -_-&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</guid><pubDate>Fri, 30 Jun 2023 00:33:30 GMT</pubDate></item><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -635,208 +714,4 @@ Using the tinygp library to make the gaussian process and sample out some lightc
 
 &lt;p&gt;For this project, the jax backend requires that we also use tfpd to make our priors, and as I had to use some joint priors I explored the library.&lt;/p&gt;
 
-&lt;p&gt;The joint priors could not be integrated with jaxns sampling, as multi-parameter priors lacked quantiles, but it was time well spent, as I was able to see a powerful library which had almost all kinds of priors and inferencing techniques under the sky, while supporting its own implementaions of NUTS and MCMC sampling.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230614_0000_gaurav17joshi/</guid><pubDate>Tue, 13 Jun 2023 23:00:00 GMT</pubDate></item><item><title>GSoC Week 1 Progress Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-Brief
-&lt;/h2&gt;
-
-&lt;p&gt;Week 1 has been quite eventful with me creating a Lomb Scargle Fourier Transform function and get a working class for Lomb Scargle Cross Spectrum and Power Spectrum.&lt;/p&gt;
-
-&lt;p&gt;I inherited my LS cross spectrum from the regular cross spectrum class. Had to rewrite the &lt;code&gt;constructor&lt;/code&gt;, &lt;code&gt;initial_checks&lt;/code&gt; , &lt;code&gt;make_crossspectrum&lt;/code&gt;, &lt;code&gt;_make_auxil_pds&lt;/code&gt; and &lt;code&gt;_initialize_empty&lt;/code&gt;. And also wrote a new &lt;code&gt;_ls_cross&lt;/code&gt; method which just returns the frequencies and cross spectra for given light curves and it is an internal function only to be used by the class.&lt;/p&gt;
-
-&lt;p&gt;The original slow implementation has been completed. I am still working on the fast version.&lt;/p&gt;
-
-&lt;p&gt;As this is not a project that can be completed in a bunch of small PRs, I will push to a single PR which will be merged after completion of the project. The following draft PR is the one to which I will be pushing to. &lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/stingray/pull/737/"&gt;https://github.com/StingraySoftware/stingray/pull/737/&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;
-
-
-Details
-&lt;/h2&gt;
-
-&lt;p&gt;The following are the APIs for the classes&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-Cross Spectrum
-&lt;/h3&gt;
-
-
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Make a cross spectrum from an unevenly sampled light curve.
-You can also make an empty :class:`Crossspectrum` object to populate with your
-own Fourier-transformed data (this can sometimes be useful when making
-binned power spectra).
-
-Parameters
-----------
-data1: :class:`stingray.Lightcurve` or :class:`stingray.events.EventList`, optional, default ``None``
-The dataset for the first channel/band of interest.
-
-data2: :class:`stingray.Lightcurve` or :class:`stingray.events.EventList`, optional, default ``None``
-The dataset for the second, or "reference", band.
-
-norm: {``frac``, ``abs``, ``leahy``, ``none``}, default ``none``
-The normalization of the (real part of the) cross spectrum.
-
-power_type: string, optional, default ``real``
-Parameter to choose among complete, real part and magnitude of the cross spectrum.
-
-fullspec: boolean, optional, default ``False``
-If False, keep only the positive frequencies, or if True, keep all of them .
-
-Other Parameters
-----------------
-dt: float
-The time resolution of the light curve. Only needed when constructing
-light curves in the case where ``data1``, ``data2`` are
-:class:`EventList` objects
-
-skip_checks: bool
-Skip initial checks, for speed or other reasons (you need to trust your
-inputs!)
-
-min_freq : float
-Minimum frequency to take the Lomb-Scargle Fourier Transform
-
-max_freq: float
-Maximum frequency to take the Lomb-Scargle Fourier Transform
-
-df : float
-The time resolution of the light curve. Only needed where ``data1``, ``data2`` are
-
-method : str
-The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
-and `slow` are the alloowed values. Default is `fast`. fast uses the optimized Press
-and Rybicki O(n*log(n))
-
-Attributes
-----------
-freq: numpy.ndarray
-The array of mid-bin frequencies that the Fourier transform samples
-
-power: numpy.ndarray
-The array of cross spectra (complex numbers)
-
-power_err: numpy.ndarray
-The uncertainties of ``power``.
-An approximation for each bin given by ``power_err= power/sqrt(m)``.
-Where ``m`` is the number of power averaged in each bin (by frequency
-binning, or averaging more than one spectra). Note that for a single
-realization (``m=1``) the error is equal to the power.
-
-df: float
-The frequency resolution
-
-m: int
-The number of averaged cross-spectra amplitudes in each bin.
-
-n: int
-The number of data points/time bins in one segment of the light
-curves.
-
-k: array of int
-The rebinning scheme if the object has been rebinned otherwise is set to 1.
-
-nphots1: float
-The total number of photons in light curve 1
-
-nphots2: float
-The total number of photons in light curve 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;h3&gt;
-
-
-Power Spectrum
-&lt;/h3&gt;
-
-
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Make a :class:`LombScarglePowerspectrum` (also called periodogram) from a unevenly sampled (binned)
-light curve. Periodograms can be normalized by either Leahy normalization,
-fractional rms normalization, absolute rms normalization, or not at all.
-
-You can also make an empty :class:`LombScarglePowerspectrum` object to populate with
-your own fourier-transformed data (this can sometimes be useful when making
-binned power spectra).
-
-Parameters
-----------
-data: :class:`stingray.lightcurve.Lightcurve` or :class:`stingray.events.EventList` object, optional, default ``None``
-The light curve data to be Fourier-transformed.
-
-norm: {"leahy" | "frac" | "abs" | "none" }, optional, default "frac"
-The normaliation of the power spectrum to be used. Options are
-"leahy", "frac", "abs" and "none", default is "frac".
-
-Other Parameters
-----------------
-dt: float
-The time resolution of the light curve. Only needed when constructing
-light curves in the case where ``data`` is a
-:class:`EventList` object
-
-skip_checks: bool
-Skip initial checks, for speed or other reasons (you need to trust your
-inputs!).
-
-min_freq : float
-Minimum frequency to take the Lomb-Scargle Fourier Transform
-
-max_freq: float
-Maximum frequency to take the Lomb-Scargle Fourier Transform
-
-df : float
-The time resolution of the light curve. Only needed where ``data`` is a :class`stingray.Eventlist` object
-
-method : str
-The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
-and `slow` are the alloowed values. Default is `fast`. fast uses the optimized Press
-and Rybicki O(n*log(n))
-
-Attributes
-----------
-norm: {"leahy" | "frac" | "abs" | "none" }
-The normalization of the power spectrum.
-
-freq: numpy.ndarray
-The array of mid-bin frequencies that the Fourier transform samples.
-
-power: numpy.ndarray
-The array of normalized squared absolute values of Fourier
-amplitudes.
-
-power_err: numpy.ndarray
-The uncertainties of ``power``.
-An approximation for each bin given by ``power_err= power/sqrt(m)``.
-Where ``m`` is the number of power averaged in each bin (by frequency
-binning, or averaging power spectra of segments of a light curve).
-Note that for a single realization (``m=1``) the error is equal to the
-power.
-
-df: float
-The frequency resolution.
-
-m: int
-The number of averaged powers in each bin.
-
-n: int
-The number of data points in the light curve.
-
-nphots: float
-The total number of photons in the light curve.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230608_0729_pupperemeritus/</guid><pubDate>Thu, 08 Jun 2023 06:29:01 GMT</pubDate></item></channel></rss>
+&lt;p&gt;The joint priors could not be integrated with jaxns sampling, as multi-parameter priors lacked quantiles, but it was time well spent, as I was able to see a powerful library which had almost all kinds of priors and inferencing techniques under the sky, while supporting its own implementaions of NUTS and MCMC sampling.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230614_0000_gaurav17joshi/</guid><pubDate>Tue, 13 Jun 2023 23:00:00 GMT</pubDate></item></channel></rss>
