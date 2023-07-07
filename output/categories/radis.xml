@@ -1,5 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 06 Jul 2023 01:21:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Setting Up for the Kurucz PR and transitioning to the TheoReTS</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230702_1407_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;This week was not the most enjoyable phase of the project so far, as I had to exert considerable effort to fix failing tests before opening a pull request.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 07 Jul 2023 01:21:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Improving time efficiency of Vaex Implementation</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230706_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;Though Vaex reduced memory use by RADIS to compute specturm but it is slow for smaller databank and in our case when the number of lines in the databank is very less . The slow performance of Vaex for smaller dataframes is due to three main reasons for our implementation of RADIS&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;li&gt;First vaex is optimized for larger databank and doesn’t focus that much for smaller dataframe .&lt;/li&gt;
+&lt;li&gt;Vaex uses virtual columns to reduce memory and only compute the virutal column when it is required it saves memory space but in case when virtual column
+is required multiple times then it is computed multiple times and it costs time . For Pandas it only compute the column only once and saves it for further calculations and in-memory compute of Pandas are faster than Vaex for smaller dataframes.&lt;/li&gt;
+&lt;li&gt;Vaex is based on Apache Arrow and uses Expression class for column while for Pandas which stores column as numpy no conversion is required to use library functions of numpy but for vaex some operations require explict conversion to numpy array and it costs time.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Apart from this there was issue it the implementation of vaex which are now optimized by better alternatives.
+Intially the time graph for Vaex and Pandas in terms of time comparison was as given below-&lt;/p&gt;
+
+&lt;p&gt;Total Time  which is the sum of loading time and computation time for calculating spectrum .
+Plot of Total Time vs Number of lines Graph&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/earlierTotal.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;Computation time , it is time required to compute the spectrum using Vaex or Implementation
+Plot of Compuation Time vs Number of lines Graph&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/earlierCom.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;##Optimizations&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Calculating Sum&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;At first we were computing the sum as&lt;/p&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt; error = df[b].S.sum() / df.S.sum() * 100
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;but later changed it to&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;error_cutoff = df[b].sum(df[b].S) / df.sum(df.S) * 100
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The time taken to calculate 25 spectra decreased from 6.0 s to 5.4 s&lt;/p&gt;
+
+&lt;p&gt;Code used was&lt;/p&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
+import time
+
+t0 = time.time()
+for i in range(25):
+s = calc_spectrum(2000, 2010,         # cm-1
+molecule='CO',
+isotope='1,2,3',
+pressure=1.01325,   # bar
+Tgas=1000,
+mole_fraction=0.1,
+databank='hitemp',  # or 'hitemp'
+diluent = "air",
+verbose = 0,
+engine = "vaex"
+)
+t1 = time.time()
+print(t1 -t0)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Not using df.extract()
+After masking some of the rows, that is filtering some of the rows based on some conditions . Then I was using df.extract(), later i found it was using a lot of time .So i commented that and refactored code to work without it .
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;df = df.extract() # later commented it .
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Improvements after this was quite impressive as i found out running below codes&lt;/p&gt;
+
+&lt;p&gt;It reduced calculation time for the code below by 10 seconds&lt;/p&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
+
+import time
+t0=time.time()
+
+s = calc_spectrum(1500, 2500,         # cm-1
+molecule='H2O',
+isotope='1,2,3',
+pressure=1.01325,   # bar
+Tgas=700,           # K
+mole_fraction=0.1,
+wstep='auto',
+path_length=1,      # cm
+databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
+engine='vaex',
+)
+
+s.apply_slit(0.5, 'nm')       # simulate an experimental slit
+
+t1=time.time()
+
+print('Time taken : '+str(t1 - t0))
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And reduced 0.5 seconds calculation time for the code&lt;/p&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
+import time
+t0=time.time()
+s = calc_spectrum(2000, 2010,         # cm-1
+molecule='CO',
+isotope='1,2,3',
+pressure=1.01325,   # bar
+Tgas=1000,
+mole_fraction=0.1,
+databank='hitran',  # or 'hitemp'
+diluent = "air",
+verbose = 3,
+engine = "vaex"
+)
+t1=time.time()
+
+
+print('Time taken : '+str(t1-t0))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After all of this updated time graph were as below
+&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/updatedCom.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/updatedTotal.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;I significant improvement can be observed from it .&lt;/p&gt;
+
+&lt;p&gt;Now to smaller time performance of smaller dataframe , I converted the vaex dataframes to pandas for smaller databases. And overall improvemets are as&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Memory performance is improved for all dataframes.&lt;/li&gt;
+&lt;li&gt;Time performance is same for smaller dataframes , and for larger dataframes time performance of vaex is quite better than Pandas.&lt;/li&gt;
+&lt;/ul&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230706_0000_1someshverma/</guid><pubDate>Wed, 05 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Setting Up for the Kurucz PR and transitioning to the TheoReTS</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230702_1407_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;This week was not the most enjoyable phase of the project so far, as I had to exert considerable effort to fix failing tests before opening a pull request.&lt;/p&gt;
 &lt;p&gt;Once I ensured that the initial tests passed, I wrote my own tests to confirm that the new AdB Kurucz class didn’t interfere with any part of the existing code. At this point, I encountered a primary issue. I hadn’t noticed that one of the methods I had adapted from ExoJAX was still reading a file which necessitated an ExoJAX package dependency. This caused the build to fail on GitHub due to one of the tests in my kurucz_test.py file failing.&lt;/p&gt;
 &lt;p&gt;Since there’s a conflict related to the JAX installation on Windows, I couldn’t add it to the requirements file. Doing so would create a conflict for every Windows user installing Radis. Consequently, I had to write a program to extract the data from this package and store a copy of it in a local file called pfdat.txt. This enabled the problematic function to read from the local copy instead of the ExoJAX file. This solution successfully rectified the problem, and now my PR passes the tests and is awaiting review before merging.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -413,65 +544,4 @@ Tran Huu Nhat Huy&lt;/p&gt;
 &lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
 &lt;img alt="Me, among the peaks of Shizuoka, Japan." class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/4d7ee6f3d3a81c95e441a7cc5dcadb98/828fb/me.jpg" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Me, among the peaks of Shizuoka, Japan."&gt;
 &lt;/a&gt;
-&lt;/span&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_0000_tranhuunhathuy/</guid><pubDate>Sun, 11 Sep 2022 23:00:00 GMT</pubDate></item><item><title>Week 12 - Final implementation into RADIS, along with a plethora of illustrative examples.</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220905_0000_tranhuunhathuy/</link><dc:creator>TranHuuNhatHuy</dc:creator><description>&lt;h4&gt;1. Implementation of modules into RADIS&lt;/h4&gt;
-&lt;p&gt;Finally, after being approved by Mr. Erwan, I can implement all of my modules, developed separately in my repo &lt;a href="https://github.com/TranHuuNhatHuy/RADIS-Spectrum-Fitting-Benchmark"&gt;RADIS-Spectrum-Fitting-Benchmark&lt;/a&gt;, into RADIS codebase. The implementation features &lt;a href="https://github.com/radis/radis/blob/develop/radis/tools/new_fitting.py"&gt;&lt;code class="language-text"&gt;new_fitting.py&lt;/code&gt;&lt;/a&gt;, the new fitting module that stores all the fitting functions and associated models, whose performance confirmed after a bunch of user-testing cases.&lt;/p&gt;
-&lt;h4&gt;2. Accompanied illustrative examples&lt;/h4&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;They are gallery examples that are added into &lt;code class="language-text"&gt;radis/examples&lt;/code&gt;, serving as illustrative scripts for my new fitting module:&lt;/p&gt;
-&lt;h5&gt;(i) &lt;code class="language-text"&gt;plot_newfitting_Tgas.py&lt;/code&gt;&lt;/h5&gt;
-&lt;p&gt;The most basic example of how to use new fitting module, including the formats and so on.&lt;/p&gt;
-&lt;h5&gt;(ii) &lt;code class="language-text"&gt;plot_newfitting_Trot-Tvib-molfrac.py&lt;/code&gt;&lt;/h5&gt;
-&lt;p&gt;The real-life fitting case provided by Mr. Corentin, featuring non-LTE CO spectrum in which we will fit &lt;code class="language-text"&gt;Trot&lt;/code&gt;, &lt;code class="language-text"&gt;Tvib&lt;/code&gt; and &lt;code class="language-text"&gt;mole_fraction&lt;/code&gt;.&lt;/p&gt;
-&lt;h5&gt;(iii) &lt;code class="language-text"&gt;plot_newfitting_Tgas-molfrac.py&lt;/code&gt;&lt;/h5&gt;
-&lt;p&gt;Mr. Minou’s user-testing case of CO absorbance spectrum near 2011 cm-1. This case features spectrum extraction from a &lt;code class="language-text"&gt;.mat&lt;/code&gt; MATLAB file. Originally, this file was 1.2 MB, quite large to be added to RADIS. Thus, I removed all fields unnecessary for spectrum generation, and now it only has around 400 kB left.&lt;/p&gt;
-&lt;h5&gt;(iv) &lt;code class="language-text"&gt;plot_newfitting_comparison_oldnew.py&lt;/code&gt;&lt;/h5&gt;
-&lt;p&gt;Performance comparison example between &lt;a href="https://radis.readthedocs.io/en/latest/auto_examples/plot_1T_fit.html#sphx-glr-auto-examples-plot-1t-fit-py"&gt;current 1-temperature fitting&lt;/a&gt; and my new fitting module, under exactly the same ground-truths and settings. The benchmark result shows that, under exactly the same conditions, the new best fitted value differ 0.45% from the old one (1464.1 K from the old 1457.5 K). New fitting module requires half as many iterations as the old one and hence faster, with much smaller residual. In detail:&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;====================  PERFORMANCE COMPARISON BETWEEN 2 FITTING METHODS  ====================
-
-1. LAST RESIDUAL
-
-- Old 1T fitting example:       0.002730027027336094
-- New fitting module:           0.0005174179496843629
-
-2. NUMBER OF FITTING LOOPS
-
-- Old 1T fitting example:       32 loops
-- New fitting module:           16 loops
-
-3. TOTAL TIME TAKEN (s)
-
-- Old 1T fitting example:       4.881942987442017 s
-- New fitting module:           2.7344970703125 s
-
-==========================================================================================&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;I’m not sure this superiority will persist in all cases, but even so, I believe the value of my module still lies in its practical and easy to use/apply.&lt;/p&gt;
-&lt;h5&gt;(v) &lt;code class="language-text"&gt;plot_newfitting_comparison_methods.py&lt;/code&gt;&lt;/h5&gt;
-&lt;p&gt;A benchmarking example which compares performance between different &lt;a href="https://lmfit.github.io/lmfit-py/fitting.html#choosing-different-fitting-methods"&gt;LMFIT fitting algorithms&lt;/a&gt;. It measures their last residual (for accuracy evaluation) and number of iterations (for robustness evaluation). The benchmark result shows that, under exactly the same conditions, &lt;code class="language-text"&gt;leastsq&lt;/code&gt; and &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; work best, with &lt;code class="language-text"&gt;leastsq&lt;/code&gt; good at accuracy, while &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; good at speed (and theoretically, memory requirement). Thus, I set &lt;code class="language-text"&gt;leastsq&lt;/code&gt; as default method for the module, but also encourage users to switch to &lt;code class="language-text"&gt;lbfgsb&lt;/code&gt; in case things turn sour.&lt;/p&gt;
-&lt;div class="gatsby-highlight"&gt;&lt;pre class="language-text"&gt;&lt;code class="language-text"&gt;======================== BENCHMARKING RESULT ========================
-
-||           METHOD          ||          RESIDUAL         || LOOPS ||
-||---------------------------||---------------------------||-------||
-|| leastsq                   || 1.4739494411950239e-07    || 24    ||
-|| least_squares             || 1.2170348021620847e-05    || 1     ||
-|| differential_evolution    || 1.4739855740762716e-07    || 151   ||
-|| brute                     || 1.2287258962300115e-06    || 20    ||
-|| basinhopping              || 7.930954059631543e-06     || 151   ||
-|| ampgo                     || 4.105104127826488e-07     || 151   ||
-|| nelder                    || 1.4739942144030064e-07    || 30    ||
-|| lbfgsb                    || 1.4739494411955646e-07    || 28    ||
-|| powell                    || 1.473949441200994e-07     || 43    ||
-|| cg                        || 1.4776331905574135e-07    || 30    ||
-|| cobyla                    || 1.1524288718226295e-05    || 21    ||
-|| bfgs                      || 1.4776331905574135e-07    || 30    ||
-|| tnc                       || 1.4740393115424221e-07    || 28    ||
-|| trust-constr              || 1.4739494411948182e-07    || 26    ||
-|| slsqp                     || 1.2170348021620847e-05    || 2     ||
-|| shgo                      || 1.0507694502308952e-05    || 5     ||
-|| dual_annealing            || 1.5455930218501237e-05    || 151   ||
-||---------------------------||---------------------------||-------||&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;span class="gatsby-resp-image-wrapper" style="display: block; margin-left: auto; margin-right: auto;"&gt;
-&lt;a class="gatsby-resp-image-link" href="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/dc95cb63a4457b8bb0d3d58fca7b8bbe/2bf90/method_compare_result.png" rel="noopener" style="display: block;" target="_blank"&gt;
-&lt;span class="gatsby-resp-image-background-image" style="display: block;"&gt;&lt;/span&gt;
-&lt;img alt="Method benchmarking result." class="gatsby-resp-image-image" src="https://gsoc2022tranhuunhathuy.gatsbyjs.io/static/dc95cb63a4457b8bb0d3d58fca7b8bbe/f058b/method_compare_result.png" style="width: 100%; height: 100%; margin: 0; vertical-align: middle;" title="Method benchmarking result."&gt;
-&lt;/a&gt;
-&lt;/span&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220905_0000_tranhuunhathuy/</guid><pubDate>Sun, 04 Sep 2022 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;/span&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_0000_tranhuunhathuy/</guid><pubDate>Sun, 11 Sep 2022 23:00:00 GMT</pubDate></item></channel></rss>
