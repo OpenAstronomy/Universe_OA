@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPUs and Convolutions in Gnuastro | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2023/07/20230704_0000_labeeb-7z/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Labib Asari">
+<link rel="prev" href="../20230703_1917_pupperemeritus/" title="GSoC Week 4 Update" type="text/html">
+<link rel="next" href="../20230706_0000_1someshverma/" title="Improving time efficiency of Vaex Implementation" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GPUs and Convolutions in Gnuastro">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2023/07/20230704_0000_labeeb-7z/">
+<meta property="og:description" content="Background
+
+This is an overview of what I’ve been upto for the past 2 weeks. Doesn’t go into much technical details and the actual code but just walks through the general idea.
+
+
+Convolution  is a fun">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-07-04T00:00:00+01:00">
+<meta property="article:tag" content="gnuastro">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://exitflynn.github.io/blog/" data-toggle="tooltip" data-placement="top" title="2023-06-30 01:33:30+01:00">
+                    exitflynn
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-06-14 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Gaurav Joshi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-07-04 00:00:00+01:00">
+                    Labib Asari
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-07-03 19:17:26+01:00">
+                    pupper emeritus
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@menasrac" data-toggle="tooltip" data-placement="top" title="2023-07-02 14:07:42+01:00">
+                    Racim MENASRIA
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://1someshverma.github.io" data-toggle="tooltip" data-placement="top" title="2023-07-06 00:00:00+01:00">
+                    Somesh Verma
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GPUs and Convolutions in Gnuastro</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/labib-asari/">Labib Asari</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2023-07-04T00:00:00+01:00" itemprop="datePublished" title="2023-07-04 00:00">2023-07-04 00:00</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://labeeb-7z.github.io/Blogs/2023/07/04/GPUs-and-Convolution.html">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <h3 id="background">Background</h3>
+
+<p>This is an overview of what I’ve been upto for the past 2 weeks. Doesn’t go into much technical details and the actual code but just walks through the general idea.</p>
+<!-- TEASER_END -->
+
+<p><a href="https://en.wikipedia.org/wiki/Convolution">Convolution</a>  is a fundamental operation in various domains, such as image processing, signal processing, and deep learning. It is an important module in Gnuastro and is also used as a subroutine in other modules.</p>
+
+<p>Convolutional operations can be broken down into smaller tasks, such as applying the kernel to different portions of the input data. By utilizing multiple threads, each thread can independently process a subset of the input, reducing the overall execution time. This parallelization technique is particularly effective when dealing with large input tensors or performing multiple convolutions simultaneously.</p>
+
+<p>While traditional CPUs (Central Processing Units) excel at performing a wide range of tasks, they are not specifically designed for heavy parallel computations like convolutions. On the other hand, GPUs (Graphics Processing Units) are highly optimized for parallel processing, making them ideal for accelerating convolutional operations.</p>
+
+<h3 id="gpus-vs-cpus-architecture">GPUs vs CPUs Architecture</h3>
+<p><img alt="Architecture difference" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/architecture.png"></p>
+
+<h4 id="cores-and-parallelism-">Cores and Parallelism :</h4>
+<p>CPUs have fewer, more powerful cores optimized for sequential processing, while GPUs have thousands of smaller cores designed for parallel processing. This parallelism allows GPUs to perform computations on multiple data elements simultaneously, leading to significant speedup in parallelizable tasks like graphics rendering and deep learning.</p>
+
+<h4 id="memory-hierarchy-">Memory Hierarchy :</h4>
+<p>CPUs typically have larger caches and more advanced memory management units (MMUs), focusing on low-latency operations and complex branch prediction. GPUs, prioritize high memory bandwidth and utilize smaller caches to efficiently handle large amounts of data simultaneously, crucial for tasks like image processing and scientific simulations.</p>
+
+<h4 id="emphasis-">Emphasis :</h4>
+<p>CPUs are designed with an emphasis on executing single threads - very fast. GPUs are designed with an emphasis on executing on executing multiple threads.</p>
+
+<h3 id="programming-model">Programming Model</h3>
+<p>For Programming GPUs, several frameworks (high level APIs) are available</p>
+
+<ul>
+<li>CUDA - developed by NVIDIA for its GPUs.</li>
+<li>OpenCL - Open Source, Cross Platform parallel programming standard for diverse accelerators.</li>
+<li>HIP - developed by AMD, portable.</li>
+<li>and many more….</li>
+</ul>
+<h3 id="cuda">CUDA</h3>
+
+<h4 id="the-cuda-platform-consists-of-a-programming-language-a-compiler-and-a-runtime-library">The CUDA platform consists of a programming language, a compiler, and a runtime library.</h4>
+
+<ul>
+<li>
+<code class="language-plaintext highlighter-rouge">Programming Language</code> - Based on C, has extensions to write code for GPU.</li>
+<li>
+<code class="language-plaintext highlighter-rouge">Compiler</code> - Based on clang, offloads host code to system compiler and translates device code into binary code that can be executed on the GPU.</li>
+<li>
+<code class="language-plaintext highlighter-rouge">Runtime Library</code> - Provides the necessary functions and tools to manage the execution of the code on the GPU (interacts with the driver).</li>
+</ul>
+<p>Note : When we have multiple devices(GPUs, FPGAs, etc) on a single system, which can execute tasks apart from the main CPU, they’re generally referred to as <code class="language-plaintext highlighter-rouge">device</code> whereas the main CPU is referred to as <code class="language-plaintext highlighter-rouge">host</code>.</p>
+
+<h3 id="cuda-programs">CUDA Programs</h3>
+
+<p>CUDA programs consists of normal host code along with some <code class="language-plaintext highlighter-rouge">kernels</code>.
+Kernels are like other functions, but when you call a kernel, they’re executed N times parallely by N different CUDA threads, as opposed to only once like normal functions. They’re defined using the <code class="language-plaintext highlighter-rouge">__global__</code> keyword.</p>
+
+<p>Eg :
+<img alt="kernel example" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/kernel.png"></p>
+
+<p>Normally, we put the above piece of code inside a loop, so all elements are covered.</p>
+
+<p>With GPUs, there’s no need for loops - for N elements, we launch N threads each of which add 1 element at the same time!</p>
+
+<h3 id="cuda-execution-configuration">CUDA Execution Configuration</h3>
+
+<p>Can we launch an arbitrary large number of threads?
+Technically No</p>
+<ul>
+<li>The maximum allowed threads depend on your GPUs compute capability.</li>
+<li>But generally it’s so large, it always covers all your elements</li>
+<li>For Compute Capability &gt; 3.0
+<ul>
+<li>Max Number of threads : (2^31)<em>(2^16)</em>(2^16)<em>(2</em>10) = 2^42!</li>
+</ul>
+</li>
+</ul>
+<h4 id="threads-and-blocks-">Threads and Blocks :</h4>
+
+<p><img alt="Threads and Blocks" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/config.png"></p>
+
+<ul>
+<li>All threads are organized into groups called - Block.</li>
+<li>All blocks are organized into groups called - Grid.</li>
+</ul>
+<p>Blocks and Grids could be a 1D, 2D or 3D structures.</p>
+
+<p>When calling a GPU kernel, we specify the structure of each block, number of blocks, and number of threads/block - This is called the Execution Configuration.</p>
+
+<p>Example :
+<img alt="Launching a kernel example" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/launch-kernel.png"></p>
+
+<p>The above code Launches
+32<em>32</em>1 = 1024 blocks
+Each having 16<em>16 = 256 threads
+Total no. of threads = 1024</em>256.</p>
+
+<h3 id="cuda-memory-hierarchy">CUDA Memory Hierarchy</h3>
+
+<p><img alt="Memory Hierarchy" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/memory.png">
+CUDA threads may access data from multiple memory spaces during their execution as illustrated above.</p>
+<ul>
+<li>
+<p>Local memory for each thread.</p>
+</li>
+<li>
+<p>Shared memory b/w all threads of same block.</p>
+</li>
+<li>
+<p>Global memory b/w all blocks.</p>
+</li>
+</ul>
+<h3 id="cuda-hardware-abstraction">CUDA Hardware abstraction</h3>
+<p><img alt="Hardware Abstraction" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/hardware.png"></p>
+
+<p>The entire GPU is divided into several Streaming MultiProcessors (SMs). They have different architecture than a typical CPU core. Each SM has several CUDA cores, which are the actual processing units.</p>
+
+<p>It is designed with SIMT/SIMD philosophy, which allow execution of multiple threads concurrently on them. One Block is executed at a time on a single SM.</p>
+
+<h3 id="cuda-developing-workflow">CUDA Developing Workflow</h3>
+<p><img alt="Workflow" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/workflow.png"></p>
+
+<h3 id="results-of-convolution-on-gpu-for-gnuastro">Results of Convolution on GPU for Gnuastro</h3>
+
+<p>All tests were performed on a system with the following specifications:</p>
+
+<p>CPU :</p>
+
+<ul>
+<li>Intel(R) Core(TM) i5-9300HF CPU @ 2.40GHz</li>
+<li>Thread(s) per core:  2</li>
+<li>Core(s) per socket:  4</li>
+<li>Socket(s):           1</li>
+<li>CPU max MHz:         4100.0000</li>
+<li>CPU min MHz:         800.0000</li>
+</ul>
+<p>GPU :</p>
+
+<ul>
+<li>NVIDIA GeForce GTX 1650</li>
+<li>Turing Architecture</li>
+<li>Driver Version:      535.54.03</li>
+<li>CUDA Version:        12.2</li>
+<li>VRAM :               4GB</li>
+<li>Compute Capability : 7.5</li>
+</ul>
+<p>The input image was a 10k x 20k FITS file with 32-bit floating point values. The kernel was a 3x3 matrix with 32-bit floating point values.</p>
+
+<h4 id="cpu-multi-threaded">CPU Multi-threaded</h4>
+
+<p><img alt="CPU" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/cpu-result.png"></p>
+
+<h4 id="gpu">GPU</h4>
+
+<p><img alt="GPU" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/gpu-result.png"></p>
+
+<p>The overall speedups seems to only be 6X but this also counts the time taken to transfer the data from CPU to GPU and back. If we only consider the time taken to perform the convolution, the speedup is around ~700X!.</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/gnuastro/" rel="tag">gnuastro</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20230703_1917_pupperemeritus/" rel="prev" title="GSoC Week 4 Update">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20230706_0000_1someshverma/" rel="next" title="Improving time efficiency of Vaex Implementation">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2023         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

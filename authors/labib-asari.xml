@@ -1,5 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Labib Asari)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/labib-asari.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 12 Jul 2023 01:18:12 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Creating a new Data Structure for pyGnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230620_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Labib Asari)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/labib-asari.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 13 Jul 2023 01:21:42 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GPUs and Convolutions in Gnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230704_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;This is an overview of what I’ve been upto for the past 2 weeks. Doesn’t go into much technical details and the actual code but just walks through the general idea.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Convolution"&gt;Convolution&lt;/a&gt;  is a fundamental operation in various domains, such as image processing, signal processing, and deep learning. It is an important module in Gnuastro and is also used as a subroutine in other modules.&lt;/p&gt;
+
+&lt;p&gt;Convolutional operations can be broken down into smaller tasks, such as applying the kernel to different portions of the input data. By utilizing multiple threads, each thread can independently process a subset of the input, reducing the overall execution time. This parallelization technique is particularly effective when dealing with large input tensors or performing multiple convolutions simultaneously.&lt;/p&gt;
+
+&lt;p&gt;While traditional CPUs (Central Processing Units) excel at performing a wide range of tasks, they are not specifically designed for heavy parallel computations like convolutions. On the other hand, GPUs (Graphics Processing Units) are highly optimized for parallel processing, making them ideal for accelerating convolutional operations.&lt;/p&gt;
+
+&lt;h3 id="gpus-vs-cpus-architecture"&gt;GPUs vs CPUs Architecture&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Architecture difference" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/architecture.png"&gt;&lt;/p&gt;
+
+&lt;h4 id="cores-and-parallelism-"&gt;Cores and Parallelism :&lt;/h4&gt;
+&lt;p&gt;CPUs have fewer, more powerful cores optimized for sequential processing, while GPUs have thousands of smaller cores designed for parallel processing. This parallelism allows GPUs to perform computations on multiple data elements simultaneously, leading to significant speedup in parallelizable tasks like graphics rendering and deep learning.&lt;/p&gt;
+
+&lt;h4 id="memory-hierarchy-"&gt;Memory Hierarchy :&lt;/h4&gt;
+&lt;p&gt;CPUs typically have larger caches and more advanced memory management units (MMUs), focusing on low-latency operations and complex branch prediction. GPUs, prioritize high memory bandwidth and utilize smaller caches to efficiently handle large amounts of data simultaneously, crucial for tasks like image processing and scientific simulations.&lt;/p&gt;
+
+&lt;h4 id="emphasis-"&gt;Emphasis :&lt;/h4&gt;
+&lt;p&gt;CPUs are designed with an emphasis on executing single threads - very fast. GPUs are designed with an emphasis on executing on executing multiple threads.&lt;/p&gt;
+
+&lt;h3 id="programming-model"&gt;Programming Model&lt;/h3&gt;
+&lt;p&gt;For Programming GPUs, several frameworks (high level APIs) are available&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CUDA - developed by NVIDIA for its GPUs.&lt;/li&gt;
+&lt;li&gt;OpenCL - Open Source, Cross Platform parallel programming standard for diverse accelerators.&lt;/li&gt;
+&lt;li&gt;HIP - developed by AMD, portable.&lt;/li&gt;
+&lt;li&gt;and many more….&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="cuda"&gt;CUDA&lt;/h3&gt;
+
+&lt;h4 id="the-cuda-platform-consists-of-a-programming-language-a-compiler-and-a-runtime-library"&gt;The CUDA platform consists of a programming language, a compiler, and a runtime library.&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;Programming Language&lt;/code&gt; - Based on C, has extensions to write code for GPU.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;Compiler&lt;/code&gt; - Based on clang, offloads host code to system compiler and translates device code into binary code that can be executed on the GPU.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;Runtime Library&lt;/code&gt; - Provides the necessary functions and tools to manage the execution of the code on the GPU (interacts with the driver).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note : When we have multiple devices(GPUs, FPGAs, etc) on a single system, which can execute tasks apart from the main CPU, they’re generally referred to as &lt;code class="language-plaintext highlighter-rouge"&gt;device&lt;/code&gt; whereas the main CPU is referred to as &lt;code class="language-plaintext highlighter-rouge"&gt;host&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id="cuda-programs"&gt;CUDA Programs&lt;/h3&gt;
+
+&lt;p&gt;CUDA programs consists of normal host code along with some &lt;code class="language-plaintext highlighter-rouge"&gt;kernels&lt;/code&gt;.
+Kernels are like other functions, but when you call a kernel, they’re executed N times parallely by N different CUDA threads, as opposed to only once like normal functions. They’re defined using the &lt;code class="language-plaintext highlighter-rouge"&gt;__global__&lt;/code&gt; keyword.&lt;/p&gt;
+
+&lt;p&gt;Eg :
+&lt;img alt="kernel example" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/kernel.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;Normally, we put the above piece of code inside a loop, so all elements are covered.&lt;/p&gt;
+
+&lt;p&gt;With GPUs, there’s no need for loops - for N elements, we launch N threads each of which add 1 element at the same time!&lt;/p&gt;
+
+&lt;h3 id="cuda-execution-configuration"&gt;CUDA Execution Configuration&lt;/h3&gt;
+
+&lt;p&gt;Can we launch an arbitrary large number of threads?
+Technically No&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The maximum allowed threads depend on your GPUs compute capability.&lt;/li&gt;
+&lt;li&gt;But generally it’s so large, it always covers all your elements&lt;/li&gt;
+&lt;li&gt;For Compute Capability &amp;gt; 3.0
+&lt;ul&gt;
+&lt;li&gt;Max Number of threads : (2^31)&lt;em&gt;(2^16)&lt;/em&gt;(2^16)&lt;em&gt;(2&lt;/em&gt;10) = 2^42!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="threads-and-blocks-"&gt;Threads and Blocks :&lt;/h4&gt;
+
+&lt;p&gt;&lt;img alt="Threads and Blocks" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/config.png"&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;All threads are organized into groups called - Block.&lt;/li&gt;
+&lt;li&gt;All blocks are organized into groups called - Grid.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Blocks and Grids could be a 1D, 2D or 3D structures.&lt;/p&gt;
+
+&lt;p&gt;When calling a GPU kernel, we specify the structure of each block, number of blocks, and number of threads/block - This is called the Execution Configuration.&lt;/p&gt;
+
+&lt;p&gt;Example :
+&lt;img alt="Launching a kernel example" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/launch-kernel.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;The above code Launches
+32&lt;em&gt;32&lt;/em&gt;1 = 1024 blocks
+Each having 16&lt;em&gt;16 = 256 threads
+Total no. of threads = 1024&lt;/em&gt;256.&lt;/p&gt;
+
+&lt;h3 id="cuda-memory-hierarchy"&gt;CUDA Memory Hierarchy&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt="Memory Hierarchy" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/memory.png"&gt;
+CUDA threads may access data from multiple memory spaces during their execution as illustrated above.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Local memory for each thread.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Shared memory b/w all threads of same block.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Global memory b/w all blocks.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="cuda-hardware-abstraction"&gt;CUDA Hardware abstraction&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Hardware Abstraction" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/hardware.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;The entire GPU is divided into several Streaming MultiProcessors (SMs). They have different architecture than a typical CPU core. Each SM has several CUDA cores, which are the actual processing units.&lt;/p&gt;
+
+&lt;p&gt;It is designed with SIMT/SIMD philosophy, which allow execution of multiple threads concurrently on them. One Block is executed at a time on a single SM.&lt;/p&gt;
+
+&lt;h3 id="cuda-developing-workflow"&gt;CUDA Developing Workflow&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Workflow" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/workflow.png"&gt;&lt;/p&gt;
+
+&lt;h3 id="results-of-convolution-on-gpu-for-gnuastro"&gt;Results of Convolution on GPU for Gnuastro&lt;/h3&gt;
+
+&lt;p&gt;All tests were performed on a system with the following specifications:&lt;/p&gt;
+
+&lt;p&gt;CPU :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Intel(R) Core(TM) i5-9300HF CPU @ 2.40GHz&lt;/li&gt;
+&lt;li&gt;Thread(s) per core:  2&lt;/li&gt;
+&lt;li&gt;Core(s) per socket:  4&lt;/li&gt;
+&lt;li&gt;Socket(s):           1&lt;/li&gt;
+&lt;li&gt;CPU max MHz:         4100.0000&lt;/li&gt;
+&lt;li&gt;CPU min MHz:         800.0000&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;GPU :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;NVIDIA GeForce GTX 1650&lt;/li&gt;
+&lt;li&gt;Turing Architecture&lt;/li&gt;
+&lt;li&gt;Driver Version:      535.54.03&lt;/li&gt;
+&lt;li&gt;CUDA Version:        12.2&lt;/li&gt;
+&lt;li&gt;VRAM :               4GB&lt;/li&gt;
+&lt;li&gt;Compute Capability : 7.5&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The input image was a 10k x 20k FITS file with 32-bit floating point values. The kernel was a 3x3 matrix with 32-bit floating point values.&lt;/p&gt;
+
+&lt;h4 id="cpu-multi-threaded"&gt;CPU Multi-threaded&lt;/h4&gt;
+
+&lt;p&gt;&lt;img alt="CPU" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/cpu-result.png"&gt;&lt;/p&gt;
+
+&lt;h4 id="gpu"&gt;GPU&lt;/h4&gt;
+
+&lt;p&gt;&lt;img alt="GPU" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/gpu-result.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;The overall speedups seems to only be 6X but this also counts the time taken to transfer the data from CPU to GPU and back. If we only consider the time taken to perform the convolution, the speedup is around ~700X!.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230704_0000_labeeb-7z/</guid><pubDate>Mon, 03 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Creating a new Data Structure for pyGnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230620_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/gnuastro.html"&gt;GnuAstro&lt;/a&gt; is a powerful and comprehensive library designed to handle various data formats(FITS/TIFF/TXT and more) and perform a wide range of operations, all while maintaining consistency across its entire codebase.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
