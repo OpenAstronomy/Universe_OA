@@ -1,5 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 13 Jul 2023 01:21:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 14 Jul 2023 01:20:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC - Week 5-6</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230711_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="making-a-demo"&gt;Making a Demo&lt;/h3&gt;
+&lt;p&gt;I had recently made some changes to my GP and GPResult class on the advice of my mentors and I realised that I am not making the tool keeping the user in mind.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;See, in contemporary data analysis, Gaussian Processes GP’s are very useful to fit and extrapolate the data. If we have some data points, we can use any suitable kernel function and a 0 mean and we will get a nicely fitting GP, which will also allow us to know function values at new points with error bars. But this is not what the users need in astronomy. They do not usually need to extrapolate the data to get values at new points, rather, they want to make a compare models with different charachteristics, signals, and identify which signal is present in the time series.&lt;/p&gt;
+
+&lt;p&gt;Thus making the demo notebook gave me an extrinsic view of the problem, and it made me change the arrangement of a lot of classes and functions in the code.&lt;/p&gt;
+
+&lt;h3 id="new-implimenatations"&gt;New implimenatations&lt;/h3&gt;
+
+&lt;h4 id="gpr-class"&gt;GPR class&lt;/h4&gt;
+&lt;p&gt;The big new implimentation that I made, was to entirely change the feature from having a GP class for data fitting and a GPResult class for bayesian inference to just the GPResult class for inferencing and plotting.&lt;/p&gt;
+
+&lt;p&gt;I changed the tool to just a GPResult class, that takes a suitable prior and log likelihood function samples out the posterior parameters. This also has a lot of new plotting features which are helpul to visualise the posterior parameter.&lt;/p&gt;
+
+&lt;div class="language-python highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;GPResult&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="s"&gt;"""
+Makes a GPResult object which takes in a Stingray.Lightcurve and samples parameters of a model
+(Gaussian Process) based on the given prior and log_likelihood function.
+"""&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Lc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Lightcurve&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Lc&lt;/span&gt;
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Lc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;counts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Lc&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;counts&lt;/span&gt;
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;sample&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prior_model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;likelihood_model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="s"&gt;""" Makes a Jaxns nested sampler over the Gaussian Process, given the
+prior and likelihood model """&lt;/span&gt;
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;prior_model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;prior_model&lt;/span&gt;
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;likelihood_model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;likelihood_model&lt;/span&gt;
+
+&lt;span class="n"&gt;NSmodel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prior_model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;prior_model&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;log_likelihood&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;likelihood_model&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;NSmodel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sanity_check&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PRNGKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Exact_ns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ExactNestedSampler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;NSmodel&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;num_live_points&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;500&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_samples&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;1e4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Termination_reason&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;State&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Exact_ns&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PRNGKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;42&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;term_cond&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;TerminationCondition&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;live_evidence_frac&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;1e-4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Exact_ns&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_results&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;State&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Termination_reason&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Simulation Complete"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_evidence&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="s"&gt;""" Returns the log evidence of the model """&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;print_summary&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="s"&gt;""" Prints a summary table for the model parameters """&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And many other plotting functions like&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;plot_diagnostics&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;plot_cornerplot&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;get_parameters_name&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;get_max_posterior_parameters&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;get_max_likelihood_parameters&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;posterior_plot&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;weighted_posterior_plot&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;corner_plot&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="get-prior-function"&gt;Get Prior function&lt;/h4&gt;
+&lt;p&gt;Earlier the &lt;code class="language-plaintext highlighter-rouge"&gt;get_prior&lt;/code&gt; function was a big function which took in your kernel and mean type, and gave you the prior function, but I had to write a separate function for each comibination making it a gignantic function of unecessary repeated code, also the prior ranges and distribution types (uniform, cauchy etc) was fixed according to what I had hard-coded without any way to change it. If someon wanted to implement a prior with even a small change, it was not possible.&lt;/p&gt;
+
+&lt;p&gt;So My mentor suggested making the function, such that the user inputs the tensorflow priors based on their needs, and we just make a jaxns prior for it. This led to the new code:-&lt;/p&gt;
+
+&lt;div class="language-python highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_prior&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prior_dict&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="s"&gt;"""
+A prior generator function based on given values
+"""&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;prior_model&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="n"&gt;prior_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;params_list&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prior_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;tfpd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Distribution&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="n"&gt;parameter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;Prior&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prior_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;parameter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;yield&lt;/span&gt; &lt;span class="n"&gt;prior_dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;prior_list&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parameter&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;prior_list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;prior_model&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id="get-likelihood-function"&gt;Get likelihood function:&lt;/h4&gt;
+&lt;p&gt;Similarly I changed the likelihood functin so that it takes a parmeter array, and the kernel, mean type and gives us a log_likelihood function which calculates and gets the likelihood of the data being fitted for the parameters.&lt;/p&gt;
+
+&lt;div class="language-python highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_likelihood&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kernel_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mean_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="s"&gt;"""
+A likelihood generator function based on given values
+"""&lt;/span&gt;
+&lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="n"&gt;jit&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;likelihood_model&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="nb"&gt;dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;params&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params_list&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;params&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;kernel&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_kernel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kernel_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;kernel_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kernel_params&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;mean&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mean_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;mean_type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mean_params&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;gp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GaussianProcess&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kernel&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;"Times"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;mean_value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;"Times"&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;gp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log_probability&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;"counts"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;likelihood_model&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id="jit-issues"&gt;Jit issues&lt;/h4&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230711_0000_gaurav17joshi/</guid><pubDate>Mon, 10 Jul 2023 23:00:00 GMT</pubDate></item><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -573,23 +693,4 @@ Coding
 &lt;p&gt;Apart from this, I also created a jupiter notebook for a tutorial on the bexvar()method (see this &lt;a href="https://github.com/StingraySoftware/notebooks/pull/58"&gt;PR&lt;/a&gt;). This contains examples showcasing how to use the implemented method and also a section on the theoretical explanation of bexvar. This notebook will also be upgraded with examples of how to call bexvar() method implemented in the Lightcurve class once that work is completed.&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/680/1*YFXjL3Wc5EqBE9vaXPHNBQ.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;With this final blog, my journey through &lt;a href="https://summerofcode.withgoogle.com/"&gt;GSoC”22&lt;/a&gt; comes to a happy end. You can check out my final report for this project containing rigorous details at this &lt;a href="https://mihirtripathi97.github.io/GSoC-22/"&gt;webpage&lt;/a&gt;. I will continue working with Stingray, I will continue contributing to OpenAstrnomy and other open source projects as well. I must say that GSoC has been really great it provided me the best opportunity for the beginning of my journey in the open source community. I would like to thank the &lt;a href="https://openastronomy.org/"&gt;OpenAstronomy&lt;/a&gt; organization for giving me this wonderful opportunity to contribute to open source projects for the Astrophysics community. This means a lot to me as I am one of the users of several projects of the member organizations.&lt;/p&gt;
 &lt;p&gt;I would like to thank both my mentors &lt;a href="https://github.com/matteobachetti"&gt;Matteo Bachetti&lt;/a&gt; and &lt;a href="https://github.com/dhuppenkothen"&gt;Daniela Huppenkothen&lt;/a&gt; for being extremely generous, supportive, and motivating mentors. I am truly grateful to have you both as my mentors.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1279d3b337e7" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_1708_mihirtripathi97/</guid><pubDate>Mon, 12 Sep 2022 16:08:26 GMT</pubDate></item><item><title>GSoC Blog#4 (Final Submission)</title><link>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_1225_aman-pandey-afk/</link><dc:creator>AMAN PANDEY</dc:creator><description>&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/680/1*dfjiDfMcY8h9eEOySAnxbA.jpeg"&gt;&lt;/figure&gt;&lt;p&gt;It’s the end of GSoC 2022; man, it was a great experience! Starting with aimless contributions brought me to a project which united my two passions: programming and astrophysics. The three-month journey and the community bonding period were excellent learning experiences.&lt;/p&gt;
-&lt;p&gt;From learning a new and robust language like Julia to using Unit Testing for real-world data, I learned a lot about programming. This period also tested my git skills (as open source is one of the best ways to get your hands dirty in it) as I resolved merge conflicts, changed branch heads whenever required, and always kept an eye on the log history. My whole project is presented here in terms of git commits and some explanation of what these are doing. In the end, I will point out what’s next from here, and I hope Stingray will grow up to become a beloved package like many others in the Julia Community.&lt;/p&gt;
-&lt;p&gt;I did the project in 5PRs (three merged and two open to review), which are listed below:&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/1"&gt;&lt;em&gt;Implement Workflow&lt;/em&gt;&lt;/a&gt;&lt;em&gt; (Merged)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/2"&gt;&lt;em&gt;Add Fourier methods and tests&lt;/em&gt;&lt;/a&gt;&lt;em&gt; (Merged)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/3"&gt;&lt;em&gt;Implement GTI Reading and Handling&lt;/em&gt;&lt;/a&gt;&lt;em&gt; (Merged)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/7"&gt;&lt;em&gt;Implement EventList&lt;/em&gt;&lt;/a&gt;&lt;em&gt; (Open)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/9"&gt;&lt;em&gt;Documentation&lt;/em&gt;&lt;/a&gt;&lt;em&gt; (Open)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;I also documented this journey in four other blogs: &lt;a href="https://medium.com/@aman_p/gsoc-blog-0-8f65bf844cd8"&gt;Blog0&lt;/a&gt;, &lt;a href="https://medium.com/@aman_p/gsoc-blog-1-cc0c0995d56e"&gt;Blog1&lt;/a&gt;, &lt;a href="https://medium.com/@aman_p/gsoc-blog-2-63d283e1a60b"&gt;Blog2&lt;/a&gt;, &lt;a href="https://medium.com/@aman_p/gsoc-blog-3-350c7b7dad61"&gt;and Blog3&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Further Explanation:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Starting a package from scratch can look like a behemoth task; you can confuse which methods to begin with, what the architecture will be, and how I will ensure continuous testing. Fortunately, my mentors were very helpful, and in the community bonding period itself, I initialized a basic package with the help of PkgTemplate.jl with integrated CIs.&lt;/p&gt;
-&lt;p&gt;My mentor &lt;a href="https://github.com/matteobachetti"&gt;&lt;strong&gt;Matteo&lt;/strong&gt;&lt;/a&gt; suggested I go on to implement Fourier methods first as they are the primary thing required to create power and cross-spectra from an array. I started on with it, and the PR was a great lesson both in terms of how much code I needed to port with passing tests and how idiomatic I had to keep it to discover the full power of Julia. My initial code was pretty pythonic, and my other mentor, &lt;a href="https://github.com/giordano"&gt;&lt;strong&gt;Mosè&lt;/strong&gt;&lt;/a&gt;, gave much good advice on how to fix them and keep the code readable. Still, due to the sheer amount of code and tests I needed to write, the code is currently non-idiomatic for a few functions, and I hope to make them efficient in the future.&lt;/p&gt;
-&lt;p&gt;After this, I needed a working tool to handle GTIs; trust me; this was the best part of the project. I was having fun with different interval operations I needed to implement, looking at them from different angles and maintaining the code’s sanctity. The tests passed, and I had pretty idiomatic code written there with handling file reading (HDF5 and FITS) for some tests, which helped me in the future.&lt;/p&gt;
-&lt;p&gt;After the mid-evals, I got somewhat busy due to tests and college courses. After the first week, I started contributing again by considering different ways to represent photon arrival and count data. Using structs and methods for them (including extending Base functions when required) was the way to go, and after half of the second phase, I managed to get a PR on these things though the code is still in review. One can now plot the LightCurves, read data from a FITS file and use the Fourier methods to get the power and cross-spectra and perform operations on the related GTIs. But how?&lt;/p&gt;
-&lt;p&gt;In the final week, my focus was to provide documentation on the functions mentioned, taking help from the Python package and changing it as required, especially as the markdowns are different for both languages’ docstrings. I followed it with writing a user guide, although it is still incomplete in the current PR, and I hope to get it done well by the end of this month (working outside of GSoC :).&lt;/p&gt;
-&lt;p&gt;As a whole, this project was exciting to me. I can safely say that I lacked experience in many parts, but my mentors were fantastic, and I had some great discussions with them. The essential power of Julia is how it handles memory and compiles the code as required (JIT), and with this in focus, the project can still grow to various extents.&lt;/p&gt;
-&lt;p&gt;For example, good use of type systems in the Fourier methods, a clearer way to use generators (the resumable functions), and user APIs for Cross and Power Spectra would be the first thing this package needs working on. After this, we can implement other features like Bi-Spectra and Var-Energy Spectra. In the end, one can see how powerful Julia can be if programmed correctly. Below is the runtime for reading the same files in Python and Julia (Julia is doing almost 40 times faster). This order of speed boost is still an excellent achievement for Julia while keeping all the important arrays and metadata from the file in a struct.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/925/1*p-F3ErLlJtjTA4fSQSqeJw.png"&gt;&lt;figcaption&gt;Python Code&lt;/figcaption&gt;&lt;/figure&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/633/1*hyOqX2j2UxQ59IxKwxej4w.png"&gt;&lt;figcaption&gt;Julia Code&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;With this, I end this blog and this awesome GSoC program, with a hope to keep contributing to this and other open source projects and learning new things. Great thanks to my mentors, Open Astronomy and Google for providing this opportunity.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/736/0*eGlGa84zNsGaMHL0.jpg"&gt;&lt;figcaption&gt;Source: Pinterest&lt;/figcaption&gt;&lt;/figure&gt;&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1c27a20f13a2" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_1225_aman-pandey-afk/</guid><pubDate>Mon, 12 Sep 2022 11:25:22 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=1279d3b337e7" width="1"&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2022/09/20220912_1708_mihirtripathi97/</guid><pubDate>Mon, 12 Sep 2022 16:08:26 GMT</pubDate></item></channel></rss>
