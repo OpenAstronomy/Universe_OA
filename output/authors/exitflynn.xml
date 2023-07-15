@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by exitflynn)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/exitflynn.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 14 Jul 2023 01:20:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Scraper Things</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;Most of the week was spent rewriting the Scraper functions to go with the new parse-pattern and then looking for edge cases in the new implementations, fixing bugs and updating tests.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by exitflynn)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/exitflynn.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 15 Jul 2023 01:19:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Wild Wild Tests</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230714_0533_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;h2 id="fool-proofing-the-rewrite"&gt;Fool-Proofing the Rewrite
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#fool-proofing-the-rewrite"&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;After the last post, I mostly kept working on fixing the other failing tests and rewriting the tests to go with the newer pattern.&lt;/p&gt;
+&lt;h2 id="not-all-failing-tests-are-built-same"&gt;Not All Failing Tests are Built Same
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#not-all-failing-tests-are-built-same"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;I managed to take care of them in a couple of days, except the &lt;code&gt;sunpy/net/tests/test_scraper.py::testFilesRange_sameDirectory_local&lt;/code&gt; which proved to be a tough one to figure out. After discussing it a bit, I was able to figure it out, the error was caused because of a very unique flow of things which I think would be interesting to mention. I found out the test was failing because in the &lt;code&gt;_localfilelist()&lt;/code&gt; function, we update the pattern class variable, call different functions on it and then fix it back at the end. Though once I realised this, I was able to spot that I needed to update the second pattern as well in a similar way and I discussed different approaches to do this with the mentors but the flow in the function was a very fun and intuitive way to do things that stood out to me for reason and I just wanted to make a note of it to look back on :P.&lt;/p&gt;
+&lt;p&gt;I also discussed my doubt relating to trying to shorten parse patterns by avoiding repetitions somehow but we came to the conclusion that we don’t really need to do that, if a pattern has repetitions in it then the user’s got to repeat stuff!&lt;/p&gt;
+&lt;h2 id="was-that-it"&gt;Was that it?
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#was-that-it"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;Now once all the scraper tests were passing, I thought the PR should be ready for review. I informed my mentors for the same. The PR received some suggestions, which I discussed and implemented according to the code review.&lt;/p&gt;
+&lt;h2 id="the-plot-twist"&gt;The Plot Twist
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#the-plot-twist"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;For a few days, I remained under the impression that I had mostly rewritten the Scraper in a way that it works and only have to wait for suggestions from the code review. Nabil, Alasdair and I discussed that in the meanwhile I could look into which functions I can remove and move out of the Scraper. However, a plot twist unlike any other was still awaiting me and the realisation came when Nabil asked me if I had run the remote-tests yet. I had been running the &lt;code&gt;test-scraper.py&lt;/code&gt; tests so far, even the remote ones so my response was a vehement yes. When he mentioned that some were still failing, I remembered I was still to fix the examples in the documentation and once I had fixed the doctests it’d be passing. However at this point I was beginning to see the &lt;em&gt;real&lt;/em&gt; issue, so far I had only been fixing the tests limited to the scraper and NOT the rest of the codebase.&lt;/p&gt;
+&lt;h2 id="a-whole-new-world"&gt;A Whole New World
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#a-whole-new-world"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;I ran the tests to be greeted with very polite &lt;code&gt;105 failing tests&lt;/code&gt;. I informed this to my mentors and have begun working on fixing all the parts of the codebases which indirectly depend on this class. So far I’ve been encountering functions that may / may not have possibly gone redundant and am now exploring and considering which reducing functions, or removing them while fixing tests.&lt;/p&gt;
+&lt;h2 id="next-steps"&gt;Next Steps
+&lt;span&gt;
+&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#next-steps"&gt;
+&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
+&lt;/a&gt;
+&lt;/span&gt;
+&lt;/h2&gt;&lt;p&gt;I’ll keep on working on these new tests, while analysing both the scraper and related parts of the codebase outside for functions to rewrite, remove and/or move at the same time.
+I also realised we’ll be needing new documentation about how to write the new parse-style patterns.&lt;/p&gt;
+&lt;p&gt;That is all so far, until next time!&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230714_0533_exitflynn/</guid><pubDate>Fri, 14 Jul 2023 04:33:30 GMT</pubDate></item><item><title>Scraper Things</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;Most of the week was spent rewriting the Scraper functions to go with the new parse-pattern and then looking for edge cases in the new implementations, fixing bugs and updating tests.&lt;/p&gt;
 &lt;h2 id="catching-up"&gt;{{Catching up}}
 &lt;span&gt;
 &lt;!-- TEASER_END --&gt;

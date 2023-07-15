@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wild Wild Tests | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2023/07/20230714_0533_exitflynn/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="exitflynn">
+<link rel="prev" href="../20230711_0000_gaurav17joshi/" title="GSoC - Week 5-6" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Wild Wild Tests">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2023/07/20230714_0533_exitflynn/">
+<meta property="og:description" content="Fool-Proofing the Rewrite
+
+
+
+
+
+
+After the last post, I mostly kept working on fixing the other failing tests and rewriting the tests to go with the newer pattern.
+Not All Failing Tests are Built Same
+">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-07-14T05:33:30+01:00">
+<meta property="article:tag" content="SunPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://exitflynn.github.io/blog/" data-toggle="tooltip" data-placement="top" title="2023-07-14 05:33:30+01:00">
+                    exitflynn
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-07-11 00:00:00+01:00">
+                    Gaurav Joshi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-07-04 00:00:00+01:00">
+                    Labib Asari
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-07-03 19:17:26+01:00">
+                    pupper emeritus
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@menasrac" data-toggle="tooltip" data-placement="top" title="2023-07-02 14:07:42+01:00">
+                    Racim MENASRIA
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://1someshverma.github.io" data-toggle="tooltip" data-placement="top" title="2023-07-06 00:00:00+01:00">
+                    Somesh Verma
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Wild Wild Tests</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/exitflynn/">exitflynn</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2023-07-14T05:33:30+01:00" itemprop="datePublished" title="2023-07-14 05:33">2023-07-14 05:33</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://exitflynn.github.io/blog/posts/gsoc-post-the-fourth/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <h2 id="fool-proofing-the-rewrite">Fool-Proofing the Rewrite
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#fool-proofing-the-rewrite">
+<!-- TEASER_END -->
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h2>
+<p>After the last post, I mostly kept working on fixing the other failing tests and rewriting the tests to go with the newer pattern.</p>
+<h2 id="not-all-failing-tests-are-built-same">Not All Failing Tests are Built Same
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#not-all-failing-tests-are-built-same">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h2>
+<p>I managed to take care of them in a couple of days, except the <code>sunpy/net/tests/test_scraper.py::testFilesRange_sameDirectory_local</code> which proved to be a tough one to figure out. After discussing it a bit, I was able to figure it out, the error was caused because of a very unique flow of things which I think would be interesting to mention. I found out the test was failing because in the <code>_localfilelist()</code> function, we update the pattern class variable, call different functions on it and then fix it back at the end. Though once I realised this, I was able to spot that I needed to update the second pattern as well in a similar way and I discussed different approaches to do this with the mentors but the flow in the function was a very fun and intuitive way to do things that stood out to me for reason and I just wanted to make a note of it to look back on :P.</p>
+<p>I also discussed my doubt relating to trying to shorten parse patterns by avoiding repetitions somehow but we came to the conclusion that we don’t really need to do that, if a pattern has repetitions in it then the user’s got to repeat stuff!</p>
+<h2 id="was-that-it">Was that it?
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#was-that-it">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h2>
+<p>Now once all the scraper tests were passing, I thought the PR should be ready for review. I informed my mentors for the same. The PR received some suggestions, which I discussed and implemented according to the code review.</p>
+<h2 id="the-plot-twist">The Plot Twist
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#the-plot-twist">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h2>
+<p>For a few days, I remained under the impression that I had mostly rewritten the Scraper in a way that it works and only have to wait for suggestions from the code review. Nabil, Alasdair and I discussed that in the meanwhile I could look into which functions I can remove and move out of the Scraper. However, a plot twist unlike any other was still awaiting me and the realisation came when Nabil asked me if I had run the remote-tests yet. I had been running the <code>test-scraper.py</code> tests so far, even the remote ones so my response was a vehement yes. When he mentioned that some were still failing, I remembered I was still to fix the examples in the documentation and once I had fixed the doctests it’d be passing. However at this point I was beginning to see the <em>real</em> issue, so far I had only been fixing the tests limited to the scraper and NOT the rest of the codebase.</p>
+<h2 id="a-whole-new-world">A Whole New World
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#a-whole-new-world">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h2>
+<p>I ran the tests to be greeted with very polite <code>105 failing tests</code>. I informed this to my mentors and have begun working on fixing all the parts of the codebases which indirectly depend on this class. So far I’ve been encountering functions that may / may not have possibly gone redundant and am now exploring and considering which reducing functions, or removing them while fixing tests.</p>
+<h2 id="next-steps">Next Steps
+<span>
+<a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#next-steps">
+<svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"></path></path></svg></a>
+</span>
+</h2>
+<p>I’ll keep on working on these new tests, while analysing both the scraper and related parts of the codebase outside for functions to rewrite, remove and/or move at the same time.
+I also realised we’ll be needing new documentation about how to write the new parse-style patterns.</p>
+<p>That is all so far, until next time!</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20230711_0000_gaurav17joshi/" rel="prev" title="GSoC - Week 5-6">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2023         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
