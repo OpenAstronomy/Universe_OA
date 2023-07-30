@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2023)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2023.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 29 Jul 2023 01:03:19 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Refactoring for Non-equilibrium Calculations</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230725_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I passed the midterm evaluation, Next i have to refactor part of code in vaex which is used in non-equilibrium calculations.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2023)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2023.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 30 Jul 2023 01:05:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Adapting Kurucz to SpectrumFactory and what is next ?</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230729_2343_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;h4&gt;&lt;strong&gt;Adapting Kurucz to SpectrumFactory and what is next ?&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;After my first pull request I received some feedback.&lt;br&gt;Optional and major changes were requested. The most important changes were that my code should &lt;strong&gt;better integrate the existing Radis code&lt;/strong&gt;. Indeed, though I added a new database with Kurucz, its API remained distinct which is something which will make Radis progress toward a common API.&lt;/p&gt;
+&lt;p&gt;Another key remark was that my code didn’t take into account the &lt;strong&gt;Broadening effects&lt;/strong&gt; that modify the lineshapes.&lt;br&gt;This is why I had a Team meeeting with my mentors to discuss the physics behind the code. It helped me a lot to understand what was expected.&lt;/p&gt;
+&lt;p&gt;After this I worked on adding broadening and merging the new AdB Kurucz with SpectrumFactory. In order to do so, I worked on an example which allows to plot a spectrum using the Kurucz atomic data and &lt;strong&gt;SpectrumFactory.&lt;/strong&gt; My first attempt was to use one of the existing Radis formats for databanks named &lt;strong&gt;hdf5-radisdb&lt;/strong&gt; since I worked with hdf5 files in my Class.&lt;br&gt;This attempt happened to be too difficult because the formats were made for molecules and too many columns of my dataframe were different from the expected columns.&lt;br&gt;This is why I eventually decided to add &lt;strong&gt;a new format named “kurucz” &lt;/strong&gt;to the load_databank method which allows to load the kurucz data with the proper form.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Then, I worked on the &lt;strong&gt;eq_spectrum&lt;/strong&gt; method to adjust it to this newformat.&lt;br&gt;I added some methods and adapted methods from Exojax to handle linestrength computation, broadening,convolution,pressure layers and create a Spectrum Object. It took me a lot of efforts and I modified many files as Broadening.py, Base.by,Factory.py or loader.py.&lt;br&gt;However, the results of the Spectrum I obtained were not convincing and some parameters and units didn’t fit properly.&lt;/p&gt;
+&lt;p&gt;Moreover, by the time I wrote this spectrocopy code, I fell behind in my project, that’s why we organized a long meeting with one of my supervisors in order to take stock, we adjusted the objectives of the project.&lt;/p&gt;
+&lt;h4&gt;We gave up the last one about adding the CIA database and agreed on the following timeline :&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;finishing with SpectrumFactory for Kurucz ASAP&lt;/li&gt;&lt;li&gt;Moving to NIST&lt;/li&gt;&lt;li&gt;Then working on the DatabaseManager Class architecture and adapting to AdB and MdB manager subclasses&lt;/li&gt;&lt;li&gt;Moving to the TheoreTS ( it will require to reach people in Reims to fix the db that I still cannot access).&lt;/li&gt;&lt;li&gt;Working on developing an example during the last week to show what applications the atomic spectra physics brings.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We also noticed that I had written my Spectrum Factory example from the beginning rather than using the existing radis methods which is why I lost time and it was unaccurate. However, the meeting brought me the right guidelines and working on this code allowed me to getting a better understanding of the architecture and adapting the example to the existing structure of the code should be easier now. We also discussed about a few existing codes which could be a could starting point for adding NIST to Kurucz.&lt;/p&gt;
+&lt;h4&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;The next weeeks will take me a lot of time and effort to complete the objectives but in the end, I am happy that we had this meeting because it unblocked me when I was kinda stuck with Kurucz for a while.&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=d3453292daf1" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230729_2343_menasrac/</guid><pubDate>Sat, 29 Jul 2023 22:43:53 GMT</pubDate></item><item><title>GSoC - Week 7-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="testing-features"&gt;Testing features&lt;/h3&gt;
+
+&lt;p&gt;This week I refined my testing features for the code, and made the completed doctests.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;In my project, I was using 4 different kinds of dependencies, and none had been previously used by stingray, so I had to make some changes to the code structure to accomodate those exceptions.&lt;/p&gt;
+
+&lt;p&gt;I also made updated and improved a lot of docstrings and added some doctests, which was a new experience. My &lt;code class="language-plaintext highlighter-rouge"&gt;get_prior&lt;/code&gt; doctest looked like:-&lt;/p&gt;
+
+&lt;div class="language-python highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;can_sample&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;     &lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;skip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Jaxns not installed. Cannot make jaxns specific prior."&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;tfp_available&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;     &lt;span class="n"&gt;pytest&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;skip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Tensorflow probability required to make priors."&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;params_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_gp_params&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"RN"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"gaussian"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Make&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;prior&lt;/span&gt; &lt;span class="n"&gt;dictionary&lt;/span&gt; &lt;span class="n"&gt;using&lt;/span&gt; &lt;span class="n"&gt;tensorflow_probability&lt;/span&gt; &lt;span class="n"&gt;distributions&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;prior_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;    &lt;span class="s"&gt;"A"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tfpd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;low&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;1e-1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;high&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;2e+2&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;    &lt;span class="s"&gt;"t0"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tfpd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;low&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;high&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;    &lt;span class="s"&gt;"sig"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tfpd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;low&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;high&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;    &lt;span class="s"&gt;"arn"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tfpd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;low&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;high&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;),&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;    &lt;span class="s"&gt;"crn"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;tfpd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Uniform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;low&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;jnp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;high&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;jnp&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;prior_model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_prior&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;params_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prior_dict&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id="jax-issues"&gt;Jax Issues&lt;/h3&gt;
+
+&lt;p&gt;This week I also made a lot of futile tries in resolving an error in jax. As good and fast a library it is (I am yet to use some mindblowing features like pytrees), it has one limitation (or design decision), is that we cannot use not fixed sized arrays inside a jit function.&lt;/p&gt;
+
+&lt;p&gt;In my project, one important issue that we wanted to tackle was the non stationarity of pulsar timeseries. The method to take this into account was to use a window over the data, ie only in the window we will asume a qpo and get its log likelihood and outside we will assume white noise outside. The problem in it was that jax jit functions wants to before handedly know the type and size of all its arrays and data structres, hense there was no way to create a window over the time-series.&lt;/p&gt;
+
+&lt;p&gt;This while frustrating, also is a proof that code is often used in ways very different than intended or there are issues that we not taken into account when these important design desisions were made. (Though at no fault of the Jax library as before hand knowing the array shapes is crucial for fast parallel code)&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_gaurav17joshi/</guid><pubDate>Thu, 27 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Refactoring for Non-equilibrium Calculations</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230725_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I passed the midterm evaluation, Next i have to refactor part of code in vaex which is used in non-equilibrium calculations.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230725_0000_1someshverma/</guid><pubDate>Mon, 24 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Wild Wild Tests</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230714_0533_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;h2 id="fool-proofing-the-rewrite"&gt;Fool-Proofing the Rewrite
 &lt;span&gt;
 &lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#fool-proofing-the-rewrite"&gt;
@@ -624,165 +663,4 @@ In the current &lt;code&gt;scraper._check_timerange()&lt;/code&gt;, it takes the
 &lt;/h2&gt;&lt;p&gt;Cover why the rest of tests are breaking and fix em.
 Ask for review once everything works.
 Try to come up with a way to write parse-patterns so as the length remains less by trying to minimize repeated values.
-Also fix my Hugo setup before the night -_-&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</guid><pubDate>Fri, 30 Jun 2023 00:33:30 GMT</pubDate></item><item><title>GSoC Week 2-3 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-Brief
-&lt;/h2&gt;
-
-&lt;p&gt;These weeks I refactored the &lt;code&gt;LombScargleCrossspectrum&lt;/code&gt; and &lt;code&gt;LombScarglePowerspectrum&lt;/code&gt; classes to accommodate the fast algorithm which went smoothly.&lt;br&gt;
-However when it comes to the fast algorithm. I had tunnel vision and unconsciously made the &lt;code&gt;lsft_fast&lt;/code&gt; function compute the power spectrum instead of the fourier transform. Right now I am working towards isolating the algorithm to compute the fourier transform using the Press and Rybicki optimizations(&lt;a href="https://ui.adsabs.harvard.edu/abs/1989ApJ...338..277P/abstract"&gt;https://ui.adsabs.harvard.edu/abs/1989ApJ...338..277P/abstract&lt;/a&gt;).&lt;/p&gt;
-&lt;h2&gt;
-
-
-Challenges Faced
-&lt;/h2&gt;
-
-&lt;p&gt;Integrating the optimization to the existing slow algorithm is giving me a bit of trouble. I'm still figuring out how to add the optimizations. If this is done, I can move onto making the time lag, phase lag functions and then onto testing and documentation.&lt;/p&gt;
-&lt;h2&gt;
-
-
-Details
-&lt;/h2&gt;
-
-&lt;p&gt;Added the following parameters to both the classes in order to accommodate choice between the fast and slow algorithm.&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;method : str
-The method to be used by the Lomb-Scargle Fourier Transformation function. `fast`
-and `slow` are the allowed values. Default is `fast`. fast uses the optimized Press
-and Rybicki O(n*log(n))
-
-oversampling : float, optional, default: 5
-Interpolation Oversampling Factor (for the fast algorithm)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;For full code refer &lt;a href="https://github.com/StingraySoftware/stingray/pull/737"&gt;https://github.com/StingraySoftware/stingray/pull/737&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Most important part of the process is the Lomb Scargle Fourier Transform.&lt;br&gt;
-The wrapper class is trivial, they only wrap the fast and slow lomb scargle fourier transform functions.&lt;/p&gt;
-
-&lt;h2&gt;
-
-
-Results using the slow algorithm
-&lt;/h2&gt;
-
-&lt;h3&gt;
-
-
-On synthetic data
-&lt;/h3&gt;
-
-
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rand = np.random.default_rng(42)
-n = 100
-t = np.sort(rand.random(n)) * n
-y = np.cos(2 * np.pi * 5 * t) + 0.01 * rand.standard_normal(n)
-y -= np.min(y)
-lc1 = Lightcurve(t, y, err_dist="poisson")
-y2 = np.cos(2 * np.pi * 5.0 * (t)) + 0.01 * rand.standard_normal(n)
-y2 -= np.min(y2)
-lc2 = Lightcurve(t, y2, err_dist="poisson")
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--48Z7wHCy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xgf4z7yaxi81aoxj9dkx.png"&gt;&lt;img alt="Image description" height="827" src="https://res.cloudinary.com/practicaldev/image/fetch/s--48Z7wHCy--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xgf4z7yaxi81aoxj9dkx.png" width="800"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-On real data
-&lt;/h3&gt;
-
-&lt;h4&gt;
-
-
-The lightcurve
-&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href="https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03//1200120106/xti/event_cl/ni1200120106_0mpu7_cl.evt.gz"&gt;https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03//1200120106/xti/event_cl/ni1200120106_0mpu7_cl.evt.gz&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--2qWoGIUP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3dz8zsjk2ika71ytlkx.png"&gt;&lt;img alt="Image description" height="431" src="https://res.cloudinary.com/practicaldev/image/fetch/s--2qWoGIUP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w3dz8zsjk2ika71ytlkx.png" width="574"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--F7NDO8dr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/167buf3woin2hplbo89r.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--F7NDO8dr--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/167buf3woin2hplbo89r.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230625_1615_pupperemeritus/</guid><pubDate>Sun, 25 Jun 2023 15:15:57 GMT</pubDate></item><item><title>Into the Summer of Code</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;I had my end-semester exams during the Community Bonding Period and the real-early part of the Coding Period. However, my mentors were super-accomodating.
-I spent a few days on plans with friends before bidding goodbye for the summers, travelling home and relaxing a bit.&lt;/p&gt;
-&lt;h3 id="the-talk"&gt;The Talk
-&lt;!-- TEASER_END --&gt;
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#the-talk"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h3&gt;&lt;p&gt;This was also the time when IIT BHU reached out to me for a talk as part of a collab between their Astronomy and Open-Source clubs about Astronomy in tech and OSS. This was a  g r e a t  experience! I’ve always wanted to improve at public-speaking stuff and to finally pull off a satisfactory talk was a great experience. Also Prayash was a great host.&lt;/p&gt;
-&lt;h3 id="beginning-with-the-project"&gt;Beginning with the Project
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#beginning-with-the-project"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h3&gt;&lt;p&gt;My mentor, Nabil, had asked me to start by writing tests for the scraper, even if they may not return a -ve)for all the URLs it doesn’t support now.
-Looking closely though, all the issues were due to limitations of the way regex is implemented for inputting URLs, i.e. since one of the main goals of the project was to remove regex and use parse instead, these tests would have proven to be quite redundant. I asked my mentors and understandably so, Nabil said that he doesn’t want me working on code that I might have to remove soon enough and said I can proceed to the rest of the rewrite.&lt;/p&gt;
-&lt;p&gt;After that, I began reading up on what Metaclasses, Abstract Base Classes (ABCs), etc are, their advantages and how they can be implemented in python to decide which would be better for the purpose of the project. However, at this point I wasn’t really maintaining good communication with my mentors. When they asked me for any updates and then inquired about why I had been reading up on ABCs and such, they clarified that I should be able to improve the scraper without going that route.&lt;/p&gt;
-&lt;p&gt;Had to take a couple of days off in between for unavoidable reasons.&lt;/p&gt;
-&lt;p&gt;After that I took some calls with my mentors, clarifying details and trying to work things through together as I figured out what I should do next.
-All the scraper // dataretriever clients require two strings, &lt;code&gt;baseurl&lt;/code&gt; and &lt;code&gt;pattern&lt;/code&gt; and I figure out a way to merge them somehow.
-I looked into just what role the two of them had and found that &lt;code&gt;pattern&lt;/code&gt; was used only to parse data.
-For example, When writing scraper clients, we require a baseurl and a pattern, an example from the NOAA Client:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;baseurl &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; &lt;span style="color: #e6db74;"&gt;r&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;'ftp://ftp.ngdc.noaa.gov/STP/swpc_products/daily_reports/solar_region_summaries/%Y/%m/%Y%m&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;%d&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;SRS.txt'&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;pattern &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; &lt;span style="color: #e6db74;"&gt;'&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{year:4d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{month:2d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{year:4d}{month:2d}{day:2d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;SRS.txt'&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Instead of passing both, we should be able to merge them into just one since the pattern string is conveying information that is already available in the baseurl.&lt;/p&gt;
-&lt;p&gt;I figured it should be possible to transform &lt;code&gt;baseurl&lt;/code&gt; to &lt;code&gt;pattern&lt;/code&gt; and generate &lt;code&gt;pattern&lt;/code&gt; that way but halfway through I realised that it’d not be possible. However we should be able to convert a full &lt;code&gt;pattern&lt;/code&gt; to it’s &lt;code&gt;baseurl&lt;/code&gt; formatted counterpart.&lt;/p&gt;
-&lt;p&gt;I remember writing out loud what I thought as I approached that problem:&lt;/p&gt;
-&lt;h3 id="rubber-ducky-microblogging"&gt;rubber ducky microblogging?
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#rubber-ducky-microblogging"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h3&gt;&lt;p&gt;now how do we include this transformation in our code?
-we have mainly two places / files of concern.
-&lt;code&gt;dataretriever/client.py&lt;/code&gt; and &lt;code&gt;scraper.py&lt;/code&gt;
-at this point there are a couple of ways to go about it that come to my mind, all of them would however can be categorised as:
-a) include the transformation in dr/client.py
-b) include it in scraper.py&lt;/p&gt;
-&lt;p&gt;before i get ahead of myself, it’s better to arrive at a concrete decision here, if that’s possible, to avoid having too much of overhead.&lt;/p&gt;
-&lt;p&gt;case a:
-pattern transforms in client and is then sent to scraper. this means the scraper still operates on strftime baseurl.
-and when we want to call the parse function, instead of sending pattern as we do now, we can just send the original new format&lt;/p&gt;
-&lt;p&gt;case b:
-pass the new format to scraper. scraper converts it into strftime to use in all of its functions, and&lt;/p&gt;
-&lt;p&gt;the second approach makes more sense, yeah.&lt;/p&gt;
-&lt;p&gt;NOW
-what’d be a nice way to incorporate this transform in the scraper file?&lt;/p&gt;
-&lt;p&gt;So there have to be Two strings/patterns, throughout this codebase.
-the strftime kind and the parse kind.
-what we input is the parse kind (since we can convert this to strftime, and the other way around wasn’t possible)&lt;/p&gt;
-&lt;p&gt;how to incorporate both strings? make them both private members of the Scraper class?&lt;/p&gt;
-&lt;p&gt;some functions will be changed as a result of this&lt;/p&gt;
-&lt;p&gt;like _URL_followsPattern&lt;/p&gt;
-&lt;p&gt;okay so the plan of action is:
-go add a transform function, call it in init
-we’ll have a variable for the time_pattern, update pattern -&amp;gt; time_pattern wherever applicable.
-rewrite using parse wherever applicable&lt;/p&gt;
-&lt;p&gt;but this would take away from having a standard system and we’ll be defining our own set of names to name variables as.&lt;/p&gt;
-&lt;p&gt;also a future plan can be to check for redundant functions / moving code.&lt;/p&gt;
-&lt;h3 id="in-conclusion"&gt;in conclusion
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#in-conclusion"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h3&gt;&lt;p&gt;So as of right now, I’ve been working on &lt;a href="https://github.com/sunpy/sunpy/issues/7073"&gt;#7073&lt;/a&gt; and &lt;a href="https://github.com/sunpy/sunpy/pull/7077"&gt;PR #7077&lt;/a&gt;, more details on this issue and my proposed solution can be found in the issue description.&lt;/p&gt;
-&lt;p&gt;This’ll be all for now, will be posting more in the future.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/</guid><pubDate>Sat, 24 Jun 2023 00:33:30 GMT</pubDate></item></channel></rss>
+Also fix my Hugo setup before the night -_-&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</guid><pubDate>Fri, 30 Jun 2023 00:33:30 GMT</pubDate></item></channel></rss>
