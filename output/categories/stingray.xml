@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 30 Jul 2023 01:05:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC - Week 7-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="testing-features"&gt;Testing features&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 31 Jul 2023 01:05:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 5-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230730_0735_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h3&gt;
+
+&lt;p&gt;I have worked on creating unit tests for the Lomb Scargle Cross Spectrum class, cross verifying the algorithm by comparing with the papers and fixed typos in docstrings. Apologies for the delay. Had my exams.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Details
+&lt;/h3&gt;
+
+&lt;p&gt;I have noticed a few faults in both the fast and the slow algorithms. I have gone back to the drawing board and tried to address those issues by following the papers as closely as possible. All the changes are visible in the following draft pull request.&lt;br&gt;
+&lt;a href="https://github.com/StingraySoftware/stingray/pull/737"&gt;https://github.com/StingraySoftware/stingray/pull/737&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;After the fixing, the fast and the slow algorithm have started giving very similar outputs. I am starting to suspect that the time lags might be broken in the algorithms themselves. It is starting to get a little suspicious when different methods are giving very similar results and they are still not what that is expected. Last time around the fast and slow algorithms have given different results. After cross verifying with the papers, The results from both have fast and slow algorithms converged.&lt;/p&gt;
+
+&lt;p&gt;To keep the project sailing along while I wait for confirmation that this is an issue with the implementation or the algorithm , I have decided to work on writing unit tests for the various classes and methods. Furthermore I also worked on fixing the docstrings.&lt;/p&gt;
+
+
+&lt;div class="ltag_gist-liquid-tag"&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230730_0735_pupperemeritus/</guid><pubDate>Sun, 30 Jul 2023 06:35:19 GMT</pubDate></item><item><title>GSoC - Week 7-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="testing-features"&gt;Testing features&lt;/h3&gt;
 
 &lt;p&gt;This week I refined my testing features for the code, and made the completed doctests.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -714,5 +739,4 @@ Coding
 &lt;h3 id="my-contribution-experience"&gt;My contribution experience&lt;/h3&gt;
 &lt;p&gt;My learnings from Gsoc began even before the project started. I had never worked on an open source package and the experience of making pull requests and getting them merged was very enriching.&lt;/p&gt;
 
-&lt;p&gt;I must also add that through all this, my mentors helped me a lot in my project proposal as well as my code submissions. I would not have been able to make it this for without their help, and their patience in helping out with my amateur mistakes.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item><item><title>GSoC Blog Zero</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230506_2149_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;This is a test post to check the status of the blog and RSS feed. I am very excited to contribute to Stingray @ Open Astronomy this summer.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230506_2149_pupperemeritus/</guid><pubDate>Sat, 06 May 2023 20:49:25 GMT</pubDate></item></channel></rss>
+&lt;p&gt;I must also add that through all this, my mentors helped me a lot in my project proposal as well as my code submissions. I would not have been able to make it this for without their help, and their patience in helping out with my amateur mistakes.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item></channel></rss>

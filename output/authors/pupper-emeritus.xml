@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by pupper emeritus)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/pupper-emeritus.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 30 Jul 2023 01:05:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by pupper emeritus)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/pupper-emeritus.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 31 Jul 2023 01:05:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 5-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230730_0735_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+Brief
+&lt;/h3&gt;
+
+&lt;p&gt;I have worked on creating unit tests for the Lomb Scargle Cross Spectrum class, cross verifying the algorithm by comparing with the papers and fixed typos in docstrings. Apologies for the delay. Had my exams.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Details
+&lt;/h3&gt;
+
+&lt;p&gt;I have noticed a few faults in both the fast and the slow algorithms. I have gone back to the drawing board and tried to address those issues by following the papers as closely as possible. All the changes are visible in the following draft pull request.&lt;br&gt;
+&lt;a href="https://github.com/StingraySoftware/stingray/pull/737"&gt;https://github.com/StingraySoftware/stingray/pull/737&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;After the fixing, the fast and the slow algorithm have started giving very similar outputs. I am starting to suspect that the time lags might be broken in the algorithms themselves. It is starting to get a little suspicious when different methods are giving very similar results and they are still not what that is expected. Last time around the fast and slow algorithms have given different results. After cross verifying with the papers, The results from both have fast and slow algorithms converged.&lt;/p&gt;
+
+&lt;p&gt;To keep the project sailing along while I wait for confirmation that this is an issue with the implementation or the algorithm , I have decided to work on writing unit tests for the various classes and methods. Furthermore I also worked on fixing the docstrings.&lt;/p&gt;
+
+
+&lt;div class="ltag_gist-liquid-tag"&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230730_0735_pupperemeritus/</guid><pubDate>Sun, 30 Jul 2023 06:35:19 GMT</pubDate></item><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
 
 
 &lt;!-- TEASER_END --&gt;
