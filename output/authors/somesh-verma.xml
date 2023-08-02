@@ -1,5 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Somesh Verma)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/somesh-verma.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 01 Aug 2023 01:10:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Refactoring for Non-equilibrium Calculations</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230725_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I passed the midterm evaluation, Next i have to refactor part of code in vaex which is used in non-equilibrium calculations.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Somesh Verma)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/somesh-verma.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 02 Aug 2023 01:01:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Writing Test Cases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;For testing specturm produce using vaex and pandas for non-equilibrium calculations are same , the code similar to equilibrium calculations is used&lt;/p&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
+&lt;!-- TEASER_END --&gt;
+
+import time
+t0=time.time()
+
+s, factory_s = calc_spectrum(1800, 1820,         # cm-1
+molecule='CO',
+isotope='1',
+pressure=1.01325,   # bar
+Tgas=700,           # K
+Tvib=710,
+Trot=710,
+mole_fraction=0.1,
+wstep='auto',
+path_length=1,      # cm
+databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
+optimization=None,
+engine='vaex',
+verbose=3,
+return_factory=True,
+)
+
+s.apply_slit(0.5, 'nm')       # simulate an experimental slit
+
+t1=time.time()
+print('Time taken : '+str(t1 - t0))
+
+t0=time.time()
+
+s1, factory_s1 = calc_spectrum(1800, 1820,         # cm-1
+molecule='CO',
+isotope='1',
+pressure=1.01325,   # bar
+Tgas=700,           # K
+Tvib=710,
+Trot=710,
+mole_fraction=0.1,
+wstep='auto',
+path_length=1,      # cm
+databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
+engine='pandas',
+verbose=3,
+return_factory=True,
+)
+
+s.apply_slit(0.5, 'nm')       # simulate an experimental slit
+
+t1=time.time()
+print(s.get("absorbance"))
+s.plot('radiance_noslit')
+print('Time taken : '+str(t1 - t0))
+
+import numpy as np
+print(np.allclose(s.get("absorbance"), s1.get("absorbance")))
+
+for column in factory_s1.df1.columns:
+assert np.all(factory_s1.df1[column] == factory_s.df1[column].to_numpy())
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I will add more test cases .&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</guid><pubDate>Mon, 31 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Refactoring for Non-equilibrium Calculations</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230725_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I passed the midterm evaluation, Next i have to refactor part of code in vaex which is used in non-equilibrium calculations.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230725_0000_1someshverma/</guid><pubDate>Mon, 24 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Improving time efficiency of Vaex Implementation</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230706_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;Though Vaex reduced memory use by RADIS to compute specturm but it is slow for smaller databank and in our case when the number of lines in the databank is very less . The slow performance of Vaex for smaller dataframes is due to three main reasons for our implementation of RADIS&lt;/p&gt;
 
 &lt;ul&gt;
