@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 02 Aug 2023 01:01:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Writing Test Cases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;For testing specturm produce using vaex and pandas for non-equilibrium calculations are same , the code similar to equilibrium calculations is used&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 03 Aug 2023 01:03:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Writing Test Cases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;For testing specturm produce using vaex and pandas for non-equilibrium calculations are same , the code similar to equilibrium calculations is used&lt;/p&gt;
 
 &lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
 &lt;!-- TEASER_END --&gt;
@@ -94,7 +94,15 @@ Details
 &lt;p&gt;Moreover, by the time I wrote this spectrocopy code, I fell behind in my project, that’s why we organized a long meeting with one of my supervisors in order to take stock, we adjusted the objectives of the project.&lt;/p&gt;
 &lt;h4&gt;We gave up the last one about adding the CIA database and agreed on the following timeline :&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;finishing with SpectrumFactory for Kurucz ASAP&lt;/li&gt;&lt;li&gt;Moving to NIST&lt;/li&gt;&lt;li&gt;Then working on the DatabaseManager Class architecture and adapting to AdB and MdB manager subclasses&lt;/li&gt;&lt;li&gt;Moving to the TheoreTS ( it will require to reach people in Reims to fix the db that I still cannot access).&lt;/li&gt;&lt;li&gt;Working on developing an example during the last week to show what applications the atomic spectra physics brings.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;We also noticed that I had written my Spectrum Factory example from the beginning rather than using the existing radis methods which is why I lost time and it was unaccurate. However, the meeting brought me the right guidelines and working on this code allowed me to getting a better understanding of the architecture and adapting the example to the existing structure of the code should be easier now. We also discussed about a few existing codes which could be a could starting point for adding NIST to Kurucz.&lt;/p&gt;
 &lt;h4&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;The next weeeks will take me a lot of time and effort to complete the objectives but in the end, I am happy that we had this meeting because it unblocked me when I was kinda stuck with Kurucz for a while.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=d3453292daf1" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230729_2343_menasrac/</guid><pubDate>Sat, 29 Jul 2023 22:43:53 GMT</pubDate></item><item><title>GSoC - Week 7-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="testing-features"&gt;Testing features&lt;/h3&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=d3453292daf1" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230729_2343_menasrac/</guid><pubDate>Sat, 29 Jul 2023 22:43:53 GMT</pubDate></item><item><title>Across the Summer of Code</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230729_0533_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;I spent the most part of my time since last blog-post working on the failing tests.
+The most complex client to fix and the most complex client in general, the GOES Client, needed to be changed a bit. The problem that arose there was mainly because of how we earlier had the liberty of parsing out any variable given down in the pattern since that string would never be used to act as a url but since we also want it to do the job of the baseurl, we can’t have any to-be-determined value in the base parts. Since the client involved calling a helper function that returned the data for specific values of those variables, I had to modify the code to obtain those values from that part instead of extracting it again from the URL (since we put it there in the URL string in the first place).
+Another issue was implementing a system for dealing with cases where there’s no numerical representation for the month in the file’s URL, i.e. in the &lt;code&gt;%B&lt;/code&gt; or &lt;code&gt;%b&lt;/code&gt; datetime formats cases.
+&lt;!-- TEASER_END --&gt;
+Aside from that, I added tests to cover the newer parts of the codebase that I added.
+I also added documentation about writing the new patterns.&lt;/p&gt;
+&lt;p&gt;I made changes as per the PR reviews and now, finally, with all tests (remote or otherwise) passing, and the documentation updated, the scraper rewrite draft PR is ready for review!&lt;/p&gt;
+&lt;p&gt;I had a meeting with Nabil to discuss what I have to get done where I also showed him one of my fav pasttime activities, browsing open cameras using Shodan and also discussed about some general career advice.&lt;/p&gt;
+&lt;p&gt;While everyone has a look at the changes, Nabil guided me about moving on to “moving-the-code” part of the project now, which I’ll be doing by branching off from my current branch, the scraper rewrite one, and then making a PR to it since it builds on top of those changes and it’ll take a while and some reviews for it to merge into main. This way the mentors can review the PR and suggest changes while I work on it.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230729_0533_exitflynn/</guid><pubDate>Sat, 29 Jul 2023 04:33:30 GMT</pubDate></item><item><title>GSoC - Week 7-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="testing-features"&gt;Testing features&lt;/h3&gt;
 
 &lt;p&gt;This week I refined my testing features for the code, and made the completed doctests.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -576,94 +584,4 @@ CUDA threads may access data from multiple memory spaces during their execution 
 
 &lt;p&gt;&lt;img alt="GPU" src="https://labeeb-7z.github.io/Blogs/img/posts/gpus/gpu-result.png"&gt;&lt;/p&gt;
 
-&lt;p&gt;The overall speedups seems to only be 6X but this also counts the time taken to transfer the data from CPU to GPU and back. If we only consider the time taken to perform the convolution, the speedup is around ~700X!.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230704_0000_labeeb-7z/</guid><pubDate>Mon, 03 Jul 2023 23:00:00 GMT</pubDate></item><item><title>GSoC Week 4 Update</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h2&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-Brief
-&lt;/h2&gt;
-
-&lt;p&gt;This week I successfully finished implementing the fast algorithm. Now my &lt;code&gt;LombScargleCrossspectrum&lt;/code&gt; and &lt;code&gt;LombScarglePowerspectrum&lt;/code&gt; are that much closer to completion. Only things left to sort out/implement are time lags and phase lag functions and checking the phase of the output.&lt;/p&gt;
-
-&lt;h2&gt;
-
-
-Details
-&lt;/h2&gt;
-
-&lt;p&gt;Testing on the following synthetic data has been conducted to compare the outputs with the existing cross spectrum and power spectrum for evenly spaced data first then checking the outputs of the lomb scargle variants on unevenly sampled data&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rand = np.random.default_rng(42)
-n = 1000
-t = np.linspace(0, 10, n)
-y = np.sin(2 * np.pi * 3.0 * t) + 0.1 * rand.standard_normal(n)
-y2 = np.sin(2 * np.pi * 3.0 * t) + 0.1 * rand.standard_normal(n)
-y -= np.min(y)
-y2 -= np.min(y2)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-&lt;h3&gt;
-
-
-The Cross spectra for evenly sampled data
-&lt;/h3&gt;
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--HDSGExDP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ldcxxcpq760ym5yph7jv.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--HDSGExDP--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ldcxxcpq760ym5yph7jv.png" width="558"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;
-
-
-The time lags for evenly sampled data
-&lt;/h3&gt;
-
-&lt;p&gt;As it is evident the time lags need work.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--5_uNnIpc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sknrib3nkos5tcnojlng.png"&gt;&lt;img alt="Image description" height="413" src="https://res.cloudinary.com/practicaldev/image/fetch/s--5_uNnIpc--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sknrib3nkos5tcnojlng.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;
-
-
-The power spectra for evenly sampled data
-&lt;/h3&gt;
-
-&lt;p&gt;One quirk is that the power spectrum class is returning the power spectrum with a negative sign. This is a known bug. The values otherwise are within margin of error.&lt;/p&gt;
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--njHhZDEY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vtf835ktnxo9dn83iy55.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--njHhZDEY--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vtf835ktnxo9dn83iy55.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;
-
-
-The Lomb Scargle cross spectrum and power spectrum when data is unevenly sampled
-&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;t = np.sort(rand.random(n))*10&lt;/code&gt;&lt;/p&gt;
-&lt;h4&gt;
-
-
-The cross spectrum
-&lt;/h4&gt;
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--LeUsZL3d--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bzddaq7u9naiskry0x7i.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--LeUsZL3d--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/bzddaq7u9naiskry0x7i.png" width="558"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h4&gt;
-
-
-The power spectrum
-&lt;/h4&gt;
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--mFs4vcWd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yfz6sav17mw51yas49he.png"&gt;&lt;img alt="Image description" height="417" src="https://res.cloudinary.com/practicaldev/image/fetch/s--mFs4vcWd--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yfz6sav17mw51yas49he.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h4&gt;
-
-
-The time lags
-&lt;/h4&gt;
-
-&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--bAp6Nw-1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qkyr5to5lbkxm2s2xbi9.png"&gt;&lt;img alt="Image description" height="413" src="https://res.cloudinary.com/practicaldev/image/fetch/s--bAp6Nw-1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qkyr5to5lbkxm2s2xbi9.png" width="559"&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;They are off here too. Which will be fixed in the coming week.&lt;/p&gt;
-
-&lt;p&gt;For exhaustive testing code refer&lt;br&gt;
-&lt;/p&gt;
-&lt;div class="ltag_gist-liquid-tag"&gt;
-
-&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230703_1917_pupperemeritus/</guid><pubDate>Mon, 03 Jul 2023 18:17:26 GMT</pubDate></item></channel></rss>
+&lt;p&gt;The overall speedups seems to only be 6X but this also counts the time taken to transfer the data from CPU to GPU and back. If we only consider the time taken to perform the convolution, the speedup is around ~700X!.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230704_0000_labeeb-7z/</guid><pubDate>Mon, 03 Jul 2023 23:00:00 GMT</pubDate></item></channel></rss>
