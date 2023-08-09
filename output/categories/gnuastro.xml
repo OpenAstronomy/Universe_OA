@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gnuastro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/gnuastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 08 Aug 2023 01:02:14 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GPUs and Convolutions in Gnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230704_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gnuastro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/gnuastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 09 Aug 2023 01:04:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Moving towards OpenCL</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;So far, all my work on GPUs has been using CUDA. But CUDA is proprietary to NVIDIA and only works on NVIDIA GPUs. So, I’ve been working on moving the code to OpenCL, which is an open standard for parallel programming on heterogeneous systems.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="opencl"&gt;OpenCL&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://www.khronos.org/opencl/"&gt;OpenCL&lt;/a&gt;(Open Computing Language) is an open standard for cross-platform, parallel programming of diverse accelerators(CPUs, GPUs, FPGAs, etc) found in supercomputers, cloud servers, personal computers, mobile devices and embedded platforms.
+Note the 2 key points -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;open standard&lt;/code&gt; : this means that the specification and documentation of the technology are publicly available and can be accessed by anyone.&lt;/li&gt;
+&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;cross-platform&lt;/code&gt; : this means that it can run on multiple operating systems and hardware architectures without requiring major modifications to the code.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This makes OpenCL a very attractive option for developers who want to write code that can run on a wide range of devices. From Gnuastro’s perspective, this means that we can write code that can run on multiple GPU manufactureres, as well as CPUs and other accelerators. Our GPU kernels will be portable to any system, regardless of its configuration!&lt;/p&gt;
+
+&lt;p&gt;Next point to consider is OpenCL is a &lt;code class="language-plaintext highlighter-rouge"&gt;standard&lt;/code&gt;. It is different from CUDA in this regard. CUDA is a framework, whereas OpenCL is a standard. What does this mean?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The OpenCL standard refers to the specification and guidelines set forth by the Khronos Group which is responsible for developing and maintaining the standard. The OpenCL standard defines the API, data types, functions, and programming model that developers must follow when writing code for OpenCL. It is a formal document that ensures uniformity and compatibility across different OpenCL implementations.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;OpenCL is not an open-source library! It basically defines how the library should behave(big simplification!).&lt;/p&gt;
+
+&lt;p&gt;So what can we do with the standard alone? Not much! We need an &lt;code class="language-plaintext highlighter-rouge"&gt;implementation of the standard&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This also reminds me of the question I once had - What do you need to create a new programming language?
+My first guess was a compiler! My thought process was if a program(compiler in this case) can understand my High level language and convert it to corresponding machine code, then I can write programs in that high level language for any task!
+So all I’d need is a compiler for that language.
+Its close, but not totally accurate.&lt;/p&gt;
+
+&lt;p&gt;You dont actually need a compiler for a new programming language. You ONLY need a &lt;code class="language-plaintext highlighter-rouge"&gt;specification&lt;/code&gt; for it. The specification will define the syntax and semantics(rules) of the language.
+You only need a compiler when you want to run programs using your language!(what good is a language if you cant run programs using it? haha)&lt;/p&gt;
+
+&lt;p&gt;Similaraly OpenCL defines a set of rules which specify how it will behave. But to use OpenCL we need an implementation of this standard.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OpenCL implementations are software packages developed by hardware manufactureres that provide the necessary drivers and runtime libraries for running OpenCL applications on their specific hardware. Each hardware vendor is responsible for creating their own OpenCL implementation that conforms to the OpenCL standard. This means that each implementation may have its own unique features and quirks, but they all adhere to the same standard.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are many different implementations available for it! (find the full list &lt;a href="https://www.khronos.org/conformance/adopters/conformant-products/opencl"&gt;here&lt;/a&gt; or &lt;a href="https://www.iwocl.org/resources/opencl-implementations/"&gt;here&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Basically each of the hardware manfacturers provide an implementation of the OpenCL standard for their hardware. This implementation is usually provided as a framework. Depending on what hardware you have on your system, you can choose the corresponding framework to use.&lt;/p&gt;
+
+&lt;h3 id="how-does-opencl-work"&gt;How does OpenCL work?&lt;/h3&gt;
+
+&lt;p&gt;Here’s waht a typical OpenCL system looks like :&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="opencl-sytem" src="https://labeeb-7z.github.io/Blogs/img/posts/opencl/opencl-system.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;OpenCL programs consist of two parts: host code and device code. The host code is written in C or C++ and runs on the host, while the device code is written in OpenCL C and runs on the device. The host code is responsible for setting up the OpenCL environment, creating the context, compiling the device code, and executing the kernels on the device.&lt;/p&gt;
+
+&lt;p&gt;The device code is compiled at runtime by the host code. This means that the host code must be compiled first, and then the device code can be compiled. The host code is compiled using a standard C/C++ compiler, while the device code is compiled using the OpenCL compiler. The OpenCL compiler is provided by the OpenCL implementation and is responsible for compiling the device code into binary code that can be executed on the device.&lt;/p&gt;
+
+&lt;p&gt;How does the OpenCL library interact with the hardware? Its made possible through OpenCL-ICD.&lt;/p&gt;
+
+&lt;p&gt;OpenCL ICD stands for OpenCL Installable Client Driver. It is a component of the OpenCL&lt;/p&gt;
+
+&lt;p&gt;It enables multiple manufacturers OpenCL drivers to coexist on a single system. Instead of having a single monolithic OpenCL driver, an ICD allows different manufactureres (e.g., NVIDIA, AMD, Intel) to provide their own separate OpenCL implementation as dynamically loadable libraries. This means that developers can select the appropriate OpenCL driver at runtime without needing to modify their applications.&lt;/p&gt;
+
+&lt;p&gt;The ICD mechanism is crucial for achieving portability and flexibility in developing applications using computational power of various devices from different manufacturers.&lt;/p&gt;
+
+&lt;h3 id="opencl-programming-model"&gt;OpenCL Programming Model&lt;/h3&gt;
+
+&lt;p&gt;The Programming Model of OpenCL is very similar to CUDA which I covered in my previous post. However CUDA has a lot of abstraction since it has its own runtime library which communicates with the driver.
+In OpenCL there’s direct communication with the drivers and the host code is responsible for setting up the environment so its a bit more lower level than CUDA.&lt;/p&gt;
+
+&lt;p&gt;Some of the key terms in OpenCL are :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Work Item: Basic unit of work on a compute device&lt;/li&gt;
+&lt;li&gt;Kernel: The code that runs on a work item (Basically a C function)&lt;/li&gt;
+&lt;li&gt;Program: Collection of kernels and other functions&lt;/li&gt;
+&lt;li&gt;Context: The environment where work-items execute (Devices, their memories and command queues)&lt;/li&gt;
+&lt;li&gt;Command Queue: Queue used by the host to submit work (kernels, memory copies) to the device.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ll cover the programming aspect of OpenCL in more detail in my next post.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_labeeb-7z/</guid><pubDate>Thu, 27 Jul 2023 23:00:00 GMT</pubDate></item><item><title>GPUs and Convolutions in Gnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230704_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
 
 &lt;p&gt;This is an overview of what I’ve been upto for the past 2 weeks. Doesn’t go into much technical details and the actual code but just walks through the general idea.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -427,13 +503,4 @@ The proposal submission deadline in GSoC 22’ was &lt;strong&gt;19th April&lt;/
 
 
 
-&lt;p&gt;Also, we are moving our code to Gnuastro, so it can be a Gnuastro program. To do this, we have to follow Gnuastro conventions, so everything can be organized. Luckily, it’s very well documented how to do it, as you can see &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/The-TEMPLATE-program.html#The-TEMPLATE-program" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/Mandatory-source-code-files.html" rel="noreferrer noopener" target="_blank"&gt;also here&lt;/a&gt;.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210815_1402_ndanzanello/</guid><pubDate>Sun, 15 Aug 2021 13:02:15 GMT</pubDate></item><item><title>GSoC Post 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1244_ndanzanello/</link><dc:creator>ndanzanello</dc:creator><description>&lt;p&gt;Hi! In my last post I mentioned that we would start calculating the distortions contained in the image. But we followed a different path! As the linear part was ready, we first worked on making some plots (scatter plots with side histograms of the difference in pixel scale of the celestial coordinates measured with the WCS we find and the celestial coordinates given as input) and drawing some quads to visualize it. This part was done using LaTeX and TikZ, a wonderful tool to produce graphics!&lt;/p&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-
-&lt;div class="wp-block-image"&gt;&lt;figure class="aligncenter size-large"&gt;&lt;img alt="" class="wp-image-73" src="https://ndanzanello.files.wordpress.com/2021/08/image.png?w=342"&gt;&lt;figcaption&gt;Example of a quad drawn using TikZ. The black points are the stars of the catalog.&lt;/figcaption&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-
-&lt;p&gt;After that, we started to evaluate our results, and some changes were made: in statistics, for example, instead of getting direct the median, we use sigma clipping (a technique that removes outliers), allowing a better result. We also compared our results with one well established software: Astrometry.net. We’re getting pretty good results, but our running time was way bigger than the Astrometry.net one. So, we started working on that, and we have some ways to decrease our running time, such as making an only geo-hash search on the kdtree before the search containing the magnitude hashes. This reduces the dimentionality, which degrades the performance the higher it is. Other solution is to divide the celestial catalog in tiles, decreasing the number of total quads that we have to evaluate. Also, we can reduce the number of stars that we use to make quads. With these approaches, our running time got way better! &lt;img alt="🙂" class="wp-smiley" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/72x72/1f642.png" style="height: 1em;"&gt;&lt;br&gt;&lt;br&gt;&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210801_1244_ndanzanello/</guid><pubDate>Sun, 01 Aug 2021 11:44:53 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Also, we are moving our code to Gnuastro, so it can be a Gnuastro program. To do this, we have to follow Gnuastro conventions, so everything can be organized. Luckily, it’s very well documented how to do it, as you can see &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/The-TEMPLATE-program.html#The-TEMPLATE-program" rel="noreferrer noopener" target="_blank"&gt;here&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/gnuastro/manual/html_node/Mandatory-source-code-files.html" rel="noreferrer noopener" target="_blank"&gt;also here&lt;/a&gt;.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2021/08/20210815_1402_ndanzanello/</guid><pubDate>Sun, 15 Aug 2021 13:02:15 GMT</pubDate></item></channel></rss>
