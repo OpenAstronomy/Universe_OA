@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 11 Aug 2023 00:52:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Writing Test Cases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;For testing specturm produce using vaex and pandas for non-equilibrium calculations are same , the code similar to equilibrium calculations is used&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 12 Aug 2023 00:51:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Progress on Kurucz and NIST databases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;Since the last article, I received a lot of feedback and comments about the Kurucz PR.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/952/1*iyB8Ya_dKD5OIkQ8gbcovg.png"&gt;&lt;/figure&gt;&lt;p&gt;Here is and example of a Fe_I spectrum I can obtain with these conditions.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*alxgHx0L0Bg54hyUcp8h0Q.png"&gt;&lt;/figure&gt;&lt;h4&gt;The main remarks where that :&lt;/h4&gt;&lt;p&gt;I needed to adjust the code to make it more general and user friendly. I introduced a specie argument to SpectrumFactory and calc_spectrum to replace atom and molecule and gather them under a same name.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I made sure to respect the Radis structure by mooving files where I needed to and adding a new Partfunc class for Kurucz. &lt;br&gt;Then I added a few tests and removed old tests that were not needed any longer.&lt;/p&gt;
+&lt;p&gt;I also cleaned my PR : removed all the unused methods from the Kurucz API,added references, moved hardcoded arrays to proper files.&lt;/p&gt;
+&lt;p&gt;We asked the Exojax team for more help about the broadening parameters. For the moment, there are some approximations and placeholders about the airbrd (air broadening which is required in the Radis format) by computing it thanks to the Kurucz parameters.&lt;br&gt;A simplified version of the broadening allows to plot spectra for now but there are still values to adjust for the various species.&lt;/p&gt;
+&lt;p&gt;I also started to work on the NIST database by fixing a parsers developed last year. Though I can plot NIST spectra for some wavelength, there still are issues particularly about the FWHM to deal with.&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=e955d61c1591" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</guid><pubDate>Fri, 11 Aug 2023 16:23:24 GMT</pubDate></item><item><title>Writing Test Cases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;For testing specturm produce using vaex and pandas for non-equilibrium calculations are same , the code similar to equilibrium calculations is used&lt;/p&gt;
 
 &lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
 &lt;!-- TEASER_END --&gt;
@@ -529,32 +537,4 @@ s.plot('radiance')
 &lt;p&gt;The if __name__ == “__main__” section contains examples of using the MdbExomol class and other features of the API, including spectrum calculations using the RADIS library, and downloading and accessing ExoMol line data using the fetch_exomol function.&lt;/p&gt;
 &lt;p&gt;Thus, the ExoMol API provides tools for downloading, manipulating, and utilizing spectroscopic data from the ExoMol project, including transition files, partition functions, and calculated spectra.&lt;/p&gt;
 &lt;h4&gt;Conclusion : How should I proceed to add to Radis a new database as Kurucz ?&lt;/h4&gt;&lt;p&gt;Regarding implementing Kurucz, the structure of the exomolapi.py code can serve as a model for building a similar API for Kurucz data. I may create a class similar to MdbExomol that handles downloading Kurucz files, accessing the relevant data (such as atomic and molecular line data, partition functions, etc.), and provides methods for spectral calculations and other functionalities specific to Kurucz. I will have to adapt and modify the existing code to suit the data format and organization of Kurucz data.&lt;br&gt;In order to do so, I will review the structure of the Kurucz database and make a quick report in a next post before starting the implementation.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=fc58bc4e9979" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</guid><pubDate>Sun, 04 Jun 2023 21:27:53 GMT</pubDate></item><item><title>Utilising community bonding period Effectively!</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230530_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I started to contribute to RADIS from January’23 and whenever i needed help in some issue , mentors were quite helpful in providing revelant information to resolve that issue . And this thing helped me , to develop good bonding and understanding with the mentors .&lt;/p&gt;
-
-&lt;p&gt;So,I thought, i should use community bonding period more productively thus, i decided to work on project from 15 May .&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;In community bonding period i have done following things -&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Read the RADIS and HITRAN Paper (selected parts)&lt;/li&gt;
-&lt;li&gt;Worked on Loading the dataframe in Vaex format (task of first week)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h6 id="loading-dataframe-in-vaex-format"&gt;Loading Dataframe in Vaex format&lt;/h6&gt;
-&lt;p&gt;There are two main functions which are used load databank in RADIS
-These are :&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;fetch_databank()&lt;/li&gt;
-&lt;li&gt;load_databank()&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;fetch_databank() : It is used to load databank from standard databank like HITRAN,HITEMP,EXOMOL,GEISA by fetching it from their respective APIs, then parsing and processing them.&lt;/p&gt;
-
-&lt;p&gt;load_databank() : It is used to load databank from the local file or to load databank from user defined databank .&lt;/p&gt;
-
-&lt;p&gt;Upto now, i have worked on fetch_databank() function to load dataframe in Vaex format , some of the things were already implemented while at other points i needed to write code specifically for vaex dataframe format.&lt;/p&gt;
-
-&lt;p&gt;Similarly, for load_databank() function , the hurdle was to parse it in vaex dataframe format as virual columns which are used in vaex dataframe to reduce memory use , it was throwing error . After trying many i finally found a fix for it .&lt;/p&gt;
-
-&lt;p&gt;Now, I have made necessary changes to these two functions to load dataframe in Vaex format. Next week i will be working on writing test cases for these.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230530_0000_1someshverma/</guid><pubDate>Mon, 29 May 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=fc58bc4e9979" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230604_2227_menasrac/</guid><pubDate>Sun, 04 Jun 2023 21:27:53 GMT</pubDate></item></channel></rss>

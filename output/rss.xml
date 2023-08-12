@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 11 Aug 2023 00:52:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Writing Test Cases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;For testing specturm produce using vaex and pandas for non-equilibrium calculations are same , the code similar to equilibrium calculations is used&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 12 Aug 2023 00:51:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Progress on Kurucz and NIST databases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;Since the last article, I received a lot of feedback and comments about the Kurucz PR.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/952/1*iyB8Ya_dKD5OIkQ8gbcovg.png"&gt;&lt;/figure&gt;&lt;p&gt;Here is and example of a Fe_I spectrum I can obtain with these conditions.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*alxgHx0L0Bg54hyUcp8h0Q.png"&gt;&lt;/figure&gt;&lt;h4&gt;The main remarks where that :&lt;/h4&gt;&lt;p&gt;I needed to adjust the code to make it more general and user friendly. I introduced a specie argument to SpectrumFactory and calc_spectrum to replace atom and molecule and gather them under a same name.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;I made sure to respect the Radis structure by mooving files where I needed to and adding a new Partfunc class for Kurucz. &lt;br&gt;Then I added a few tests and removed old tests that were not needed any longer.&lt;/p&gt;
+&lt;p&gt;I also cleaned my PR : removed all the unused methods from the Kurucz API,added references, moved hardcoded arrays to proper files.&lt;/p&gt;
+&lt;p&gt;We asked the Exojax team for more help about the broadening parameters. For the moment, there are some approximations and placeholders about the airbrd (air broadening which is required in the Radis format) by computing it thanks to the Kurucz parameters.&lt;br&gt;A simplified version of the broadening allows to plot spectra for now but there are still values to adjust for the various species.&lt;/p&gt;
+&lt;p&gt;I also started to work on the NIST database by fixing a parsers developed last year. Though I can plot NIST spectra for some wavelength, there still are issues particularly about the FWHM to deal with.&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=e955d61c1591" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</guid><pubDate>Fri, 11 Aug 2023 16:23:24 GMT</pubDate></item><item><title>Writing Test Cases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;For testing specturm produce using vaex and pandas for non-equilibrium calculations are same , the code similar to equilibrium calculations is used&lt;/p&gt;
 
 &lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
 &lt;!-- TEASER_END --&gt;
@@ -375,135 +383,4 @@ A likelihood generator function based on given values
 &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;likelihood_model&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h4 id="jit-issues"&gt;Jit issues&lt;/h4&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230711_0000_gaurav17joshi/</guid><pubDate>Mon, 10 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Improving time efficiency of Vaex Implementation</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230706_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;Though Vaex reduced memory use by RADIS to compute specturm but it is slow for smaller databank and in our case when the number of lines in the databank is very less . The slow performance of Vaex for smaller dataframes is due to three main reasons for our implementation of RADIS&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;li&gt;First vaex is optimized for larger databank and doesn’t focus that much for smaller dataframe .&lt;/li&gt;
-&lt;li&gt;Vaex uses virtual columns to reduce memory and only compute the virutal column when it is required it saves memory space but in case when virtual column
-is required multiple times then it is computed multiple times and it costs time . For Pandas it only compute the column only once and saves it for further calculations and in-memory compute of Pandas are faster than Vaex for smaller dataframes.&lt;/li&gt;
-&lt;li&gt;Vaex is based on Apache Arrow and uses Expression class for column while for Pandas which stores column as numpy no conversion is required to use library functions of numpy but for vaex some operations require explict conversion to numpy array and it costs time.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Apart from this there was issue it the implementation of vaex which are now optimized by better alternatives.
-Intially the time graph for Vaex and Pandas in terms of time comparison was as given below-&lt;/p&gt;
-
-&lt;p&gt;Total Time  which is the sum of loading time and computation time for calculating spectrum .
-Plot of Total Time vs Number of lines Graph&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/earlierTotal.png"&gt;&lt;/p&gt;
-
-&lt;p&gt;Computation time , it is time required to compute the spectrum using Vaex or Implementation
-Plot of Compuation Time vs Number of lines Graph&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/earlierCom.png"&gt;&lt;/p&gt;
-
-&lt;p&gt;##Optimizations&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Calculating Sum&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;At first we were computing the sum as&lt;/p&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt; error = df[b].S.sum() / df.S.sum() * 100
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;but later changed it to&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;error_cutoff = df[b].sum(df[b].S) / df.sum(df.S) * 100
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The time taken to calculate 25 spectra decreased from 6.0 s to 5.4 s&lt;/p&gt;
-
-&lt;p&gt;Code used was&lt;/p&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
-import time
-
-t0 = time.time()
-for i in range(25):
-s = calc_spectrum(2000, 2010,         # cm-1
-molecule='CO',
-isotope='1,2,3',
-pressure=1.01325,   # bar
-Tgas=1000,
-mole_fraction=0.1,
-databank='hitemp',  # or 'hitemp'
-diluent = "air",
-verbose = 0,
-engine = "vaex"
-)
-t1 = time.time()
-print(t1 -t0)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Not using df.extract()
-After masking some of the rows, that is filtering some of the rows based on some conditions . Then I was using df.extract(), later i found it was using a lot of time .So i commented that and refactored code to work without it .
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;df = df.extract() # later commented it .
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Improvements after this was quite impressive as i found out running below codes&lt;/p&gt;
-
-&lt;p&gt;It reduced calculation time for the code below by 10 seconds&lt;/p&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
-
-import time
-t0=time.time()
-
-s = calc_spectrum(1500, 2500,         # cm-1
-molecule='H2O',
-isotope='1,2,3',
-pressure=1.01325,   # bar
-Tgas=700,           # K
-mole_fraction=0.1,
-wstep='auto',
-path_length=1,      # cm
-databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
-engine='vaex',
-)
-
-s.apply_slit(0.5, 'nm')       # simulate an experimental slit
-
-t1=time.time()
-
-print('Time taken : '+str(t1 - t0))
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;And reduced 0.5 seconds calculation time for the code&lt;/p&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
-import time
-t0=time.time()
-s = calc_spectrum(2000, 2010,         # cm-1
-molecule='CO',
-isotope='1,2,3',
-pressure=1.01325,   # bar
-Tgas=1000,
-mole_fraction=0.1,
-databank='hitran',  # or 'hitemp'
-diluent = "air",
-verbose = 3,
-engine = "vaex"
-)
-t1=time.time()
-
-
-print('Time taken : '+str(t1-t0))
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;After all of this updated time graph were as below
-&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/updatedCom.png"&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/updatedTotal.png"&gt;&lt;/p&gt;
-
-&lt;p&gt;I significant improvement can be observed from it .&lt;/p&gt;
-
-&lt;p&gt;Now to smaller time performance of smaller dataframe , I converted the vaex dataframes to pandas for smaller databases. And overall improvemets are as&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Memory performance is improved for all dataframes.&lt;/li&gt;
-&lt;li&gt;Time performance is same for smaller dataframes , and for larger dataframes time performance of vaex is quite better than Pandas.&lt;/li&gt;
-&lt;/ul&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230706_0000_1someshverma/</guid><pubDate>Wed, 05 Jul 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;h4 id="jit-issues"&gt;Jit issues&lt;/h4&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230711_0000_gaurav17joshi/</guid><pubDate>Mon, 10 Jul 2023 23:00:00 GMT</pubDate></item></channel></rss>
