@@ -12,7 +12,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/">
 <link rel="next" href="index-47.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2023/08/20230811_1723_menasrac/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2023/08/20230813_1023_pupperemeritus/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -86,7 +86,7 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">❌</span></span>
                 </li>
 <li>
-                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-07-30 07:35:19+01:00">
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-08-13 10:23:47+01:00">
                     pupper emeritus
                    </a>
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">❌</span></span>
@@ -112,7 +112,25 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/08/20230811_1723_menasrac/" class="u-url">Progress on Kurucz and NIST databases</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/08/20230813_1023_pupperemeritus/" class="u-url">GSoC Week 9-10</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/pupper-emeritus/">pupper emeritus</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2023/08/20230813_1023_pupperemeritus/" rel="bookmark">
+            <time class="published dt-published" datetime="2023-08-13T10:23:47+01:00" itemprop="datePublished" title="2023-08-13 10:23">2023-08-13 10:23</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. <br>
+The LSFT also is highly sensitive to the time intervals that are input to it. I have found some more clues as to how to make it even better. I will expound upon this further within 2 weeks since my final exams are going on and I have limited time.</p>
+
+<p class="more"><a href="posts/2023/08/20230813_1023_pupperemeritus/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/08/20230811_1723_menasrac/" class="u-url">Progress on Kurucz and NIST databases</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/racim-menasria/">Racim MENASRIA</a>
@@ -274,24 +292,6 @@ Another issue was implementing a system for dealing with cases where there’s n
 <a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#fool-proofing-the-rewrite">
 <p class="more"><a href="posts/2023/07/20230714_0533_exitflynn/">Read more…</a></p></a></span>
 </h2>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230711_0000_gaurav17joshi/" class="u-url">GSoC - Week 5-6</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/gaurav-joshi/">Gaurav Joshi</a>
-            </span></p>
-            <p class="dateline">
-            <a href="posts/2023/07/20230711_0000_gaurav17joshi/" rel="bookmark">
-            <time class="published dt-published" datetime="2023-07-11T00:00:00+01:00" itemprop="datePublished" title="2023-07-11 00:00">2023-07-11 00:00</time></a>
-            </p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<h3 id="making-a-demo">Making a Demo</h3>
-<p>I had recently made some changes to my GP and GPResult class on the advice of my mentors and I realised that I am not making the tool keeping the user in mind.</p>
-
-<p class="more"><a href="posts/2023/07/20230711_0000_gaurav17joshi/">Read more…</a></p>
-</div>
     </div>
     </article>
 </div>

@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 13 Aug 2023 00:56:23 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 5-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230730_0735_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 14 Aug 2023 00:54:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 9-10</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. &lt;br&gt;
+The LSFT also is highly sensitive to the time intervals that are input to it. I have found some more clues as to how to make it even better. I will expound upon this further within 2 weeks since my final exams are going on and I have limited time.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Minimum Working Code Example&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;def data_func(time, freq=1.2324235252):
+return  2 * np.sin(2 * np.pi * time * freq)
+
+t0 = 0
+t1 = 100
+dt = 0.1
+
+np.random.seed(43)
+time_uniform = np.arange(t0, t1, dt)
+time_nonuniform = np.sort(np.random.uniform(t0, t1, time_uniform.size))
+
+npft = np.fft.fft(data_func(time_uniform))
+npfreqs = np.fft.fftfreq(npft.size, dt)
+npft = npft[npfreqs&amp;gt;=0]
+npfreqs = npfreqs[npfreqs&amp;gt;=0]
+lsfreqs = np.linspace(np.min(npfreqs), np.max(npfreqs), npfreqs.size * 8)
+lsfreqs = lsfreqs[lsfreqs&amp;gt;=0]
+np.random.seed(43)
+lsft_slow_arr = lsft_slow(data_func(time_nonuniform), time_nonuniform, lsfreqs,sign=-1, fullspec=False)
+lsft_fast_arr = lsft_fast(data_func(time_nonuniform), time_nonuniform, lsfreqs,sign=-1, fullspec=False,oversampling=10)
+plt.plot(time_nonuniform,lsft_slow_inv(lsft_slow_arr,freqs=time_nonuniform, t=lsfreqs).real ,alpha=0.5,label="Slow")
+plt.plot(time_nonuniform,lsft_fast_inv(lsft_fast_arr,freqs=time_nonuniform, t=lsfreqs).real,alpha=0.5,label="Fast")
+plt.plot(time_nonuniform,data_func(time_nonuniform),label="Original Data")
+plt.legend()
+plt.xlim(0,10)
+plt.ylim(-3,3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--v8B0QIbQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/g10l11a0u36xzhtkq5n5.png"&gt;&lt;img alt="Image description" height="418" src="https://res.cloudinary.com/practicaldev/image/fetch/s--v8B0QIbQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/g10l11a0u36xzhtkq5n5.png" width="555"&gt;&lt;/a&gt;&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</guid><pubDate>Sun, 13 Aug 2023 09:23:47 GMT</pubDate></item><item><title>GSoC Week 5-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230730_0735_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -729,14 +769,4 @@ Codebase familiarity
 Coding
 &lt;/h3&gt;
 
-&lt;p&gt;I had already started a few days early and went ahead and implemented the Lomb-Scargle Fourier Transform which will be the backbone of the power spectrum and cross spectrum. 2 days into the coding period and I also have started coding up the wrapper classes. It turns out to be a very tangled process in order to get every small nook and cranny of the class to work. But I have seemed to get the hang of it.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230601_0311_pupperemeritus/</guid><pubDate>Thu, 01 Jun 2023 02:11:02 GMT</pubDate></item><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</link><dc:creator>Gaurav Joshi</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
-&lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
-
-&lt;!-- TEASER_END --&gt;
-&lt;h3 id="why-gsoc-for-me"&gt;Why GSOC for me?&lt;/h3&gt;
-&lt;p&gt;Computer Science and Mathematics are two fields that I find to be most interesting. I first heard of Gsoc, when I was still finding my feet in the vast world of programming and computing. I was instantly sold to the idea of working for an organisation, and writing research code over summer. When I was searching for organisations and their project, I stumbled upon Open Astronomy, and in particular the project &lt;a href="https://openastronomy.org/gsoc/gsoc2023/#/projects?project=searching_for_quasi-periodic_oscillations_with_gaussian_processes"&gt;Searching for Quasi-Periodic Oscillations with Gaussian Processes&lt;/a&gt;, for the Stingray Library. The QPO project was an exceptional opportunity that aligned perfectly with my interests and aspirations. Utilizing the Gaussian Process, a sophisticated and effective mathematical tool for regression and classification problems, the project analyzed astronomical data from some of the universe’s most extreme sources, including quasars and neutron stars - areas of particular interest to me. Given my programming expertise, the project’s requirements were an ideal match, and I was eager to undertake it as a learning experience. Over the course of a month, I worked diligently to secure the project, confident that it was the ideal fit for my skillset and passion.&lt;/p&gt;
-
-&lt;h3 id="my-contribution-experience"&gt;My contribution experience&lt;/h3&gt;
-&lt;p&gt;My learnings from Gsoc began even before the project started. I had never worked on an open source package and the experience of making pull requests and getting them merged was very enriching.&lt;/p&gt;
-
-&lt;p&gt;I must also add that through all this, my mentors helped me a lot in my project proposal as well as my code submissions. I would not have been able to make it this for without their help, and their patience in helping out with my amateur mistakes.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_gaurav17joshi/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;I had already started a few days early and went ahead and implemented the Lomb-Scargle Fourier Transform which will be the backbone of the power spectrum and cross spectrum. 2 days into the coding period and I also have started coding up the wrapper classes. It turns out to be a very tangled process in order to get every small nook and cranny of the class to work. But I have seemed to get the hang of it.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230601_0311_pupperemeritus/</guid><pubDate>Thu, 01 Jun 2023 02:11:02 GMT</pubDate></item></channel></rss>

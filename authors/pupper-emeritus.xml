@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by pupper emeritus)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/pupper-emeritus.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 13 Aug 2023 00:56:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 5-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230730_0735_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by pupper emeritus)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/pupper-emeritus.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 14 Aug 2023 00:54:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 9-10</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. &lt;br&gt;
+The LSFT also is highly sensitive to the time intervals that are input to it. I have found some more clues as to how to make it even better. I will expound upon this further within 2 weeks since my final exams are going on and I have limited time.&lt;/p&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Minimum Working Code Example&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;def data_func(time, freq=1.2324235252):
+return  2 * np.sin(2 * np.pi * time * freq)
+
+t0 = 0
+t1 = 100
+dt = 0.1
+
+np.random.seed(43)
+time_uniform = np.arange(t0, t1, dt)
+time_nonuniform = np.sort(np.random.uniform(t0, t1, time_uniform.size))
+
+npft = np.fft.fft(data_func(time_uniform))
+npfreqs = np.fft.fftfreq(npft.size, dt)
+npft = npft[npfreqs&amp;gt;=0]
+npfreqs = npfreqs[npfreqs&amp;gt;=0]
+lsfreqs = np.linspace(np.min(npfreqs), np.max(npfreqs), npfreqs.size * 8)
+lsfreqs = lsfreqs[lsfreqs&amp;gt;=0]
+np.random.seed(43)
+lsft_slow_arr = lsft_slow(data_func(time_nonuniform), time_nonuniform, lsfreqs,sign=-1, fullspec=False)
+lsft_fast_arr = lsft_fast(data_func(time_nonuniform), time_nonuniform, lsfreqs,sign=-1, fullspec=False,oversampling=10)
+plt.plot(time_nonuniform,lsft_slow_inv(lsft_slow_arr,freqs=time_nonuniform, t=lsfreqs).real ,alpha=0.5,label="Slow")
+plt.plot(time_nonuniform,lsft_fast_inv(lsft_fast_arr,freqs=time_nonuniform, t=lsfreqs).real,alpha=0.5,label="Fast")
+plt.plot(time_nonuniform,data_func(time_nonuniform),label="Original Data")
+plt.legend()
+plt.xlim(0,10)
+plt.ylim(-3,3)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--v8B0QIbQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/g10l11a0u36xzhtkq5n5.png"&gt;&lt;img alt="Image description" height="418" src="https://res.cloudinary.com/practicaldev/image/fetch/s--v8B0QIbQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/g10l11a0u36xzhtkq5n5.png" width="555"&gt;&lt;/a&gt;&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</guid><pubDate>Sun, 13 Aug 2023 09:23:47 GMT</pubDate></item><item><title>GSoC Week 5-8</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230730_0735_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
 
 
 &lt;!-- TEASER_END --&gt;
