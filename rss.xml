@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 23 Aug 2023 00:53:15 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 9-10</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. &lt;br&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 24 Aug 2023 00:53:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 9-10</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. &lt;br&gt;
 The LSFT also is highly sensitive to the time intervals that are input to it. I have found some more clues as to how to make it even better. I will expound upon this further within 2 weeks since my final exams are going on and I have limited time.&lt;/p&gt;
 
 &lt;!-- TEASER_END --&gt;
@@ -41,7 +41,96 @@ plt.ylim(-3,3)
 
 &lt;p&gt;&lt;a class="article-body-image-wrapper" href="https://res.cloudinary.com/practicaldev/image/fetch/s--v8B0QIbQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/g10l11a0u36xzhtkq5n5.png"&gt;&lt;img alt="Image description" height="418" src="https://res.cloudinary.com/practicaldev/image/fetch/s--v8B0QIbQ--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/g10l11a0u36xzhtkq5n5.png" width="555"&gt;&lt;/a&gt;&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</guid><pubDate>Sun, 13 Aug 2023 09:23:47 GMT</pubDate></item><item><title>Docs and Marty and the Moving Around of Code and Tests</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0533_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;Since the last post, I worked on the moving-the-code task. Me, Nabil and Alasdair got on a call to discuss what should go where and I ended up creating a &lt;code&gt;scraper_utils.py&lt;/code&gt; file to complement the &lt;code&gt;scraper.py&lt;/code&gt; file. The other options were moving the functions to &lt;code&gt;.util.net&lt;/code&gt; or inside the &lt;code&gt;scraper.py&lt;/code&gt; file but outside the &lt;code&gt;Scraper&lt;/code&gt; class. After I moved the tests as well, I wrote new tests, increased test coverage and renamed some functions which were previously named in the JavaScript-style CamelCase.
 I also added and extended doc-strings to some functions which could use some updating and made fixes as asked in Code-Reviews.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0533_exitflynn/</guid><pubDate>Sat, 12 Aug 2023 04:33:30 GMT</pubDate></item><item><title>Progress on Kurucz and NIST databases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;Since the last article, I received a lot of feedback and comments about the Kurucz PR.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0533_exitflynn/</guid><pubDate>Sat, 12 Aug 2023 04:33:30 GMT</pubDate></item><item><title>Integrating OpenCL with Gnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;In the last post, I discussed what is OpenCL and why we chose to integrate it with Gnuastro. In this post, I’ll be discussing the actual implementation and the challenges I faced.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h3 id="programming-in-opencl"&gt;Programming in OpenCL&lt;/h3&gt;
+
+&lt;p&gt;The OpenCL 3.0 standard has done a great job of simplifying the programming model. The OpenCL 3.0 API is a header-only library that provides a modern, object-oriented interface to the OpenCL runtime. It is designed to be easy to use and provides a abstraction of the OpenCL runtime, making it easier to write portable code across different OpenCL implementations. We still have to communicate with the driver (unlike CUDA) at a low level, but this becomes a mandatory step when we want to run our code on different hardware (CUDA always expects an NVIDIA device).&lt;/p&gt;
+
+&lt;p&gt;Here’s a general overview of steps to be followed when writing an using OpenCL :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Check for available Platforms&lt;/strong&gt; : A platform is a collection of OpenCL devices. A platform can be a CPU, GPU, or an FPGA (Remember OpenCL can work with any platform!). This is done specifically to identify which OpenCL implementation will be used during runtime. We can query the system for available platforms using the &lt;code class="language-plaintext highlighter-rouge"&gt;clGetPlatformIDs&lt;/code&gt; function. This function returns a list of platforms available on the system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Check for available devices&lt;/strong&gt; : A device is a physical device that can execute OpenCL kernels. A device can be a CPU, GPU, or an FPGA. We can query the system for available devices using the &lt;code class="language-plaintext highlighter-rouge"&gt;clGetDeviceIDs&lt;/code&gt; function. This function returns a list of devices available on the system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Create a context&lt;/strong&gt; : A context is a container for all the OpenCL objects. It is used to manage the memory, command queues, and other OpenCL objects. It is created by passing a list of devices to the constructor. Since OpenCL can work with multiple devices, we can create a context with multiple devices. This is useful when we want to run our code on multiple devices at the same time.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Create a command queue&lt;/strong&gt; : A command queue is used to queue up commands for the device to execute. The command queue is used to give commands to the device. The device executes the commands in the order they are received. The commands can be kernel execution, memory transfer, or any other OpenCL command. We can also create multiple command queues. This is useful when we want to run to multiple commands. Command queues in OpenCL are asynchronous by default. This means that the commands are queued up and the control is returned to the host. The host can then continue with other tasks. We can also create a synchronous command queue. This means that the commands are queued up and the control is returned to the host only when the commands are executed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Load the Kernel&lt;/strong&gt; : A kernel is a function that is executed on the device. It is written as per the &lt;code class="language-plaintext highlighter-rouge"&gt;C99 standard&lt;/code&gt;. We can load the kernel from a file or we can write the kernel inline. To maintain portablitiy, OpenCL kernels are generally compiled at runtime using &lt;code class="language-plaintext highlighter-rouge"&gt;clBuildProgram&lt;/code&gt;. We can also compile the kernel offline. This is useful when we want to compile the kernel for a specific device.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Copy Data to device memory&lt;/strong&gt; : All the data used in kernel, must be on the device memory. So we have to copy the data from the host to the device memory. We can do this using the &lt;code class="language-plaintext highlighter-rouge"&gt;clCreateBuffer&lt;/code&gt; function. This function creates a buffer on the device memory. We can then copy the data from the host to the device using the &lt;code class="language-plaintext highlighter-rouge"&gt;clEnqueueWriteBuffer&lt;/code&gt; function. This function copies the data from the host to the device.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Launch the kernel&lt;/strong&gt; : We can launch the kernel by passing the kernel object to the command queue. We have to set the arguments for the kernel seperately, using the &lt;code class="language-plaintext highlighter-rouge"&gt;clSetKernelArg&lt;/code&gt; function. We can also set the global and local work size. The global work size is the total number of work items that will be executed. The local work size is the number of work items that will be executed in a work group. The global work size should be a multiple of the local work size. If the global work size is not a multiple of the local work size, then the global work size is rounded up to the next multiple of the local work size.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Read the output&lt;/strong&gt; : We can read the output from the device using the &lt;code class="language-plaintext highlighter-rouge"&gt;clEnqueueReadBuffer&lt;/code&gt; function. This function copies the data from the device to the host.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="implementation"&gt;Implementation&lt;/h3&gt;
+
+&lt;p&gt;Among all the steps mentioned above, everything up till loading the kernel is common to all the programs that’ll be using OpenCL. So we defined a &lt;code class="language-plaintext highlighter-rouge"&gt;gpu_utils&lt;/code&gt; module which is responsible for querying for the available platforms and devices, creating the context and command queue, loading and compiling the kernel. The only external data it requires is the path to the kernel file. This is provided as an input.
+It also provides utility functions to copy specific data types to and from device memory.&lt;/p&gt;
+
+&lt;p&gt;There’ll be 2 types of OpenCL program in Gnuastro :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Programs using OpenCL to speed-up existing operations inside Gnuastro.&lt;/li&gt;
+&lt;li&gt;User defined OpenCL kernels, responsible for performing a custom task.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id="programs-using-opencl-to-speed-up-existing-operations-inside-gnuastro"&gt;Programs using OpenCL to speed-up existing operations inside Gnuastro&lt;/h4&gt;
+
+&lt;p&gt;These programs will be using OpenCL to speed-up existing operations inside Gnuastro. For example, we can use OpenCL to speed-up the &lt;code class="language-plaintext highlighter-rouge"&gt;astconvolve&lt;/code&gt; operation by passing an extra &lt;code class="language-plaintext highlighter-rouge"&gt;--gpu&lt;/code&gt;. For these programs, the OpenCL kernels will be part of the Gnuastro Library.&lt;/p&gt;
+
+&lt;p&gt;The general flow of the program then becomes :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The user passes the input data for a specific operation, and also choses the local and global work size.&lt;/li&gt;
+&lt;li&gt;The program then initializes the device using &lt;code class="language-plaintext highlighter-rouge"&gt;gpu_utils&lt;/code&gt; module by providing the kernel file from the library, which does everything and returns a &lt;code class="language-plaintext highlighter-rouge"&gt;cl_kernel&lt;/code&gt; (which is essentially the compiled kernel).&lt;/li&gt;
+&lt;li&gt;Data transfer from CPU to device (GPU) is done using the functions provided by &lt;code class="language-plaintext highlighter-rouge"&gt;gpu_utils&lt;/code&gt; module.&lt;/li&gt;
+&lt;li&gt;The kernel is launched using with the provided global and local work size.&lt;/li&gt;
+&lt;li&gt;Data is copied back to CPU memory and returned to the user.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="user-defined-opencl-kernels-responsible-for-performing-a-custom-task"&gt;User defined OpenCL kernels, responsible for performing a custom task&lt;/h4&gt;
+
+&lt;p&gt;These programs will be using OpenCL to perform a custom task. For example, we can use OpenCL to perform a custom convolution operation by passing a custom kernel. For these programs, the OpenCL kernels will be provided by the user. The exact design details yet to be determined for this.&lt;/p&gt;
+
+&lt;h3 id="results"&gt;Results&lt;/h3&gt;
+&lt;p&gt;Input image is 10,000 x 20,000 random image with normal distribution.
+Kernel is 7 x 7 standard convolution kernel.
+CPU : Intel(R) Core(TM) i5-9300HF CPU @ 2.40GHz
+GPU : NVIDIA GeForce GTX 1650&lt;/p&gt;
+
+&lt;p&gt;Convolution using existing convolution in Gnuastro :&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Convolution using existing convolution in Gnuastro" src="https://labeeb-7z.github.io/Blogs/img/posts/opencl-imp/conv_cpu.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;Convolution on OpenCL :&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Convolution on OpenCL" src="https://labeeb-7z.github.io/Blogs/img/posts/opencl-imp/conv_gpu.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;Result&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Result" src="https://labeeb-7z.github.io/Blogs/img/posts/opencl-imp/res.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;The speed up for convolution operation is specifically ranges from 300-500x, but for the entire operation its around 3-5x due to the overhead of copying data to and from the device. Overcoming this is a big and important challenge!&lt;/p&gt;
+
+&lt;h3 id="challenges"&gt;Challenges&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;No &lt;code class="language-plaintext highlighter-rouge"&gt;GAL_DATA_T&lt;/code&gt; inside OpenCL kernel!&lt;/strong&gt; : Inside OpenCL, &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; is the primary object used to represent memory objects such as buffers and images. It is used to allocate memory on the device. Regardless of where the data is coming from on device (arrays, structs, etc), it’s all converted into a &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; object when copied to the device.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However inside Gnuastro, the core data structure is &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; which is essentially just a C struct.&lt;/p&gt;
+
+&lt;p&gt;Why is this a problem? Well the raw data of the input image/table is not contained inside the &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt;. It merely consists a pointer to that data! So wehn we copy the &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; to device, the raw data(which is huge) is not copied. (It lives on the CPU memory, and hence cant use CPU pointers on GPU memory).&lt;/p&gt;
+
+&lt;p&gt;What about copying the raw data seperately on the GPU memory, and then replacing the pointer inside &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; with a pointer which has the address on the GPU memory? Well, this is not possible either. Why? See, when we are on CPU, we’ve a good &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; struct which is a single big object with ‘sub-objects’(one of which is the pointer). But on GPU, we’ve a &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; which is an object, but unlike structs, it cant have sub-objects!&lt;/p&gt;
+
+&lt;p&gt;How do we solve this? Currently all the required pointers inside &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; are passed as seperate arguments to the kernel. After a careful study of the internal implementation of the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; object, we’ll see if we can directly pass the &lt;code class="language-plaintext highlighter-rouge"&gt;gal_data_t&lt;/code&gt; to the kernel.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Data Transfer Overhead&lt;/strong&gt; : As mentioned multiple times, for using GPUs, we must copy data to and from the GPU memory. Astronomical datasets are huge, and copying them for each operation is a big overhead! Infact the data transfer overhead is so huge, that the actual operation is much faster than the data transfer. Adding more to that, its not just faster, its much much faster! So much so that around 95% of the time is spent in copying data to and from the GPU memory. It reduces performance by ~100x! It can’t continue this way!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One solution we’ve figured is, when the External data is loaded for the first time in the program, we load it on the GPU memory instead of the CPU memory. This way, for each subsequent operation, we dont have to copy the data from CPU to GPU memory. After all the operations are done, we’ll copy the result back to CPU memory and save it to the disk. This will avoid almost all the Data Transfer overhead.&lt;/p&gt;
+
+&lt;p&gt;This is about the same approach used by Machine Learning Libraries such as Tensorflow. Basically during initialization, it occupies all the GPU memory it can, and keeps it occupied. All the operations, their results and the subsequent operations are done on the GPU memory itself.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0000_labeeb-7z/</guid><pubDate>Fri, 11 Aug 2023 23:00:00 GMT</pubDate></item><item><title>Progress on Kurucz and NIST databases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;Since the last article, I received a lot of feedback and comments about the Kurucz PR.&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/952/1*iyB8Ya_dKD5OIkQ8gbcovg.png"&gt;&lt;/figure&gt;&lt;p&gt;Here is and example of a Fe_I spectrum I can obtain with these conditions.&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*alxgHx0L0Bg54hyUcp8h0Q.png"&gt;&lt;/figure&gt;&lt;h4&gt;The main remarks where that :&lt;/h4&gt;&lt;p&gt;I needed to adjust the code to make it more general and user friendly. I introduced a specie argument to SpectrumFactory and calc_spectrum to replace atom and molecule and gather them under a same name.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -259,5 +348,4 @@ In OpenCL there’s direct communication with the drivers and the host code is r
 &lt;li&gt;Command Queue: Queue used by the host to submit work (kernels, memory copies) to the device.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I’ll cover the programming aspect of OpenCL in more detail in my next post.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_labeeb-7z/</guid><pubDate>Thu, 27 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Refactoring for Non-equilibrium Calculations</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230725_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I passed the midterm evaluation, Next i have to refactor part of code in vaex which is used in non-equilibrium calculations.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230725_0000_1someshverma/</guid><pubDate>Mon, 24 Jul 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;I’ll cover the programming aspect of OpenCL in more detail in my next post.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_labeeb-7z/</guid><pubDate>Thu, 27 Jul 2023 23:00:00 GMT</pubDate></item></channel></rss>
