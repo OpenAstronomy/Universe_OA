@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark Tests | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2023/08/20230825_0000_1someshverma/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Somesh Verma">
+<link rel="prev" href="../20230813_1023_pupperemeritus/" title="GSoC Week 9-10" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Benchmark Tests">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2023/08/20230825_0000_1someshverma/">
+<meta property="og:description" content="I have finished the refactoring the code for vaex and also writtten test cases to compare the spectrum calculated using pandas with the dataframe calculated using vaex dataframe . Also, Various spectr">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2023-08-25T00:00:00+01:00">
+<meta property="article:tag" content="radis">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://exitflynn.github.io/blog/" data-toggle="tooltip" data-placement="top" title="2023-08-12 05:33:30+01:00">
+                    exitflynn
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">✅</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-07-28 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Gaurav Joshi
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">❌</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://Gaurav17Joshi.github.io" data-toggle="tooltip" data-placement="top" title="2023-08-12 00:00:00+01:00">
+                    Labib Asari
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">✅</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-08-13 10:23:47+01:00">
+                    pupper emeritus
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">❌</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@menasrac" data-toggle="tooltip" data-placement="top" title="2023-08-11 17:23:24+01:00">
+                    Racim MENASRIA
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">✅</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://1someshverma.github.io" data-toggle="tooltip" data-placement="top" title="2023-08-25 00:00:00+01:00">
+                    Somesh Verma
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">✅</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Benchmark Tests</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/somesh-verma/">Somesh Verma</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2023-08-25T00:00:00+01:00" itemprop="datePublished" title="2023-08-25 00:00">2023-08-25 00:00</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://1someshverma.github.io/AddingBenchMarkTest/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>I have finished the refactoring the code for vaex and also writtten test cases to compare the spectrum calculated using pandas with the dataframe calculated using vaex dataframe . Also, Various spectroscopic quantities as absorbance , emissitivity is also compared for the both the dataframams.
+Also, there was many issues that was raised by the maintainers and I have resolved almost all of these , and commented on the other issues to discuss the problem and discuss some possible solution .Issues raised by the maintainers was mainly related to make changes more matainable and easy to understand and simple programming logic is preferred inplace of using some complex code without explaining that in detail.
+Also , the issue was to ensure a light test suite , that is test cases which takes less resources and time . Initialy , I didn’t focused on this thing and focused on testing the code and changes more elaborately by writing the test cases that cover many areas of code .</p>
+<!-- TEASER_END -->
+
+<p>But, later as told by maintainer I have refacatored the changes and made the changes more light and test cases more light .It helped to reduce the time required test the new commit as excecution time of the test cases were reduced.
+After, all this another thing was to add benchmark test to compare the memory use by vaex and pandas and also compare the execution time used by both these engines.</p>
+
+<p>Benchmark Test added to compare time taken by code is :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def compare_vaex_pandas_time():
+"""
+Compares the time performance of pandas and Vaex and generates a plot. This scripts takes several minutes to run.
+This results shoud shown that vaex and pandas provide similar performances in term if speed.
+Returns
+-------
+None.
+"""
+time_list, timeC_list, lines_list = [], [], []
+time_list_va, timeC_list_va, lines_list_va = [], [], []
+wmin = 1000
+steps = 5
+wmax_arr = np.geomspace(10, 1000, steps)
+
+initial_engine = config[
+"DATAFRAME_ENGINE"
+]  # To make sure dataframe engine not changed after running this test
+pb = ProgressBar(N=2 * steps)
+for i, engine in enumerate(["vaex", "pandas"]):
+config["DATAFRAME_ENGINE"] = engine
+for j, w_range in enumerate(wmax_arr):
+t0 = time.time()
+s = calc_spectrum(
+wmin,
+wmin + w_range,  # cm-1
+molecule="H2O",
+isotope="1,2,3",
+pressure=1.01325,  # bar
+Tgas=1000,
+mole_fraction=0.1,
+databank="hitemp",  # or 'hitemp'
+wstep="auto",
+cutoff=1e-28,
+verbose=0,
+)
+t1 = time.time()
+if engine == "vaex":
+timeC_list_va.append(s.conditions["calculation_time"])
+lines_list_va.append(s.conditions["lines_calculated"])
+time_list_va.append(t1 - t0)
+# lines_list_va.append(s.conditions['lines_calculated']+s.conditions['lines_cutoff'])
+else:
+timeC_list.append(s.conditions["calculation_time"])
+lines_list.append(s.conditions["lines_calculated"])
+time_list.append(t1 - t0)
+# lines_list.append(s.conditions['lines_calculated']+s.conditions['lines_cutoff'])
+pb.update(i * steps + (j + 1))
+plt.figure()
+plt.plot(lines_list, time_list, "k", label="pandas total")
+plt.plot(lines_list, timeC_list, "k--", label="pandas computation")
+plt.plot(lines_list_va, time_list_va, "r", label="vaex total")
+plt.plot(lines_list_va, timeC_list_va, "r--", label="vaex computation")
+plt.ylabel("Time [s]")
+plt.xlabel("Number of lines")
+plt.legend()
+
+config["DATAFRAME_ENGINE"] = initial_engine
+</code></pre></div></div>
+<p><img alt="Vaex Comparison Time" src="https://1someshverma.github.io/images/timeComparison.png"></p>
+
+<p>while Graph for Memory use and code are :
+<img alt="Vaex Comparison" src="https://1someshverma.github.io/images/vaexcomparison.png"></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Compare the memory performance of Pandas and Vaex
+def compare_pandas_vs_vaex_memory():
+"""
+Compare memory usage of `engine="vaex"` and `engine="pandas"` in calc_spectrum.
+Expected behavior is "vaex" using much less memory. This function takes tens of seconds to run.
+Returns
+-------
+None.
+"""
+
+import tracemalloc
+
+initial_engine = config[
+"DATAFRAME_ENGINE"
+]  # To make sure dataframe engine not changed after running this test
+for engine in ["pandas", "vaex"]:
+config["DATAFRAME_ENGINE"] = engine
+tracemalloc.start()
+s = calc_spectrum(
+1000,
+1500,  # cm-1
+molecule="H2O",
+isotope="1,2,3",
+pressure=1.01325,  # bar
+Tgas=1000,  # K
+mole_fraction=0.1,
+wstep="auto",
+databank="hitemp",  # or 'hitemp', 'geisa', 'exomol'
+verbose=0,
+)
+snapshot = tracemalloc.take_snapshot()
+memory = tracemalloc.get_traced_memory()
+tracemalloc.stop()
+
+# Some raw outputs
+print("\n******** Engine = {} ***********".format(engine))
+print(
+"Peak, current = {:.1e}, {:.1e} for {:} lines calculated".format(
+*memory, s.conditions["lines_calculated"]
+)
+)
+
+# More sophisticated
+print("*** List of biggest objects ***")
+top_stats = snapshot.statistics("lineno")
+for rank, stat in enumerate(top_stats[:3]):
+print("#{}".format(rank + 1))
+print(stat)
+
+# Clear for next engine in the loop
+tracemalloc.clear_traces()
+
+config["DATAFRAME_ENGINE"] = initial_engine
+
+</code></pre></div></div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20230813_1023_pupperemeritus/" rel="prev" title="GSoC Week 9-10">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2023         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

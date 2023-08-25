@@ -1,5 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 24 Aug 2023 00:53:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 9-10</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. &lt;br&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 25 Aug 2023 00:54:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Benchmark Tests</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230825_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I have finished the refactoring the code for vaex and also writtten test cases to compare the spectrum calculated using pandas with the dataframe calculated using vaex dataframe . Also, Various spectroscopic quantities as absorbance , emissitivity is also compared for the both the dataframams.
+Also, there was many issues that was raised by the maintainers and I have resolved almost all of these , and commented on the other issues to discuss the problem and discuss some possible solution .Issues raised by the maintainers was mainly related to make changes more matainable and easy to understand and simple programming logic is preferred inplace of using some complex code without explaining that in detail.
+Also , the issue was to ensure a light test suite , that is test cases which takes less resources and time . Initialy , I didn’t focused on this thing and focused on testing the code and changes more elaborately by writing the test cases that cover many areas of code .&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;But, later as told by maintainer I have refacatored the changes and made the changes more light and test cases more light .It helped to reduce the time required test the new commit as excecution time of the test cases were reduced.
+After, all this another thing was to add benchmark test to compare the memory use by vaex and pandas and also compare the execution time used by both these engines.&lt;/p&gt;
+
+&lt;p&gt;Benchmark Test added to compare time taken by code is :&lt;/p&gt;
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;def compare_vaex_pandas_time():
+"""
+Compares the time performance of pandas and Vaex and generates a plot. This scripts takes several minutes to run.
+This results shoud shown that vaex and pandas provide similar performances in term if speed.
+Returns
+-------
+None.
+"""
+time_list, timeC_list, lines_list = [], [], []
+time_list_va, timeC_list_va, lines_list_va = [], [], []
+wmin = 1000
+steps = 5
+wmax_arr = np.geomspace(10, 1000, steps)
+
+initial_engine = config[
+"DATAFRAME_ENGINE"
+]  # To make sure dataframe engine not changed after running this test
+pb = ProgressBar(N=2 * steps)
+for i, engine in enumerate(["vaex", "pandas"]):
+config["DATAFRAME_ENGINE"] = engine
+for j, w_range in enumerate(wmax_arr):
+t0 = time.time()
+s = calc_spectrum(
+wmin,
+wmin + w_range,  # cm-1
+molecule="H2O",
+isotope="1,2,3",
+pressure=1.01325,  # bar
+Tgas=1000,
+mole_fraction=0.1,
+databank="hitemp",  # or 'hitemp'
+wstep="auto",
+cutoff=1e-28,
+verbose=0,
+)
+t1 = time.time()
+if engine == "vaex":
+timeC_list_va.append(s.conditions["calculation_time"])
+lines_list_va.append(s.conditions["lines_calculated"])
+time_list_va.append(t1 - t0)
+# lines_list_va.append(s.conditions['lines_calculated']+s.conditions['lines_cutoff'])
+else:
+timeC_list.append(s.conditions["calculation_time"])
+lines_list.append(s.conditions["lines_calculated"])
+time_list.append(t1 - t0)
+# lines_list.append(s.conditions['lines_calculated']+s.conditions['lines_cutoff'])
+pb.update(i * steps + (j + 1))
+plt.figure()
+plt.plot(lines_list, time_list, "k", label="pandas total")
+plt.plot(lines_list, timeC_list, "k--", label="pandas computation")
+plt.plot(lines_list_va, time_list_va, "r", label="vaex total")
+plt.plot(lines_list_va, timeC_list_va, "r--", label="vaex computation")
+plt.ylabel("Time [s]")
+plt.xlabel("Number of lines")
+plt.legend()
+
+config["DATAFRAME_ENGINE"] = initial_engine
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img alt="Vaex Comparison Time" src="https://1someshverma.github.io/images/timeComparison.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;while Graph for Memory use and code are :
+&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/vaexcomparison.png"&gt;&lt;/p&gt;
+
+&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# Compare the memory performance of Pandas and Vaex
+def compare_pandas_vs_vaex_memory():
+"""
+Compare memory usage of `engine="vaex"` and `engine="pandas"` in calc_spectrum.
+Expected behavior is "vaex" using much less memory. This function takes tens of seconds to run.
+Returns
+-------
+None.
+"""
+
+import tracemalloc
+
+initial_engine = config[
+"DATAFRAME_ENGINE"
+]  # To make sure dataframe engine not changed after running this test
+for engine in ["pandas", "vaex"]:
+config["DATAFRAME_ENGINE"] = engine
+tracemalloc.start()
+s = calc_spectrum(
+1000,
+1500,  # cm-1
+molecule="H2O",
+isotope="1,2,3",
+pressure=1.01325,  # bar
+Tgas=1000,  # K
+mole_fraction=0.1,
+wstep="auto",
+databank="hitemp",  # or 'hitemp', 'geisa', 'exomol'
+verbose=0,
+)
+snapshot = tracemalloc.take_snapshot()
+memory = tracemalloc.get_traced_memory()
+tracemalloc.stop()
+
+# Some raw outputs
+print("\n******** Engine = {} ***********".format(engine))
+print(
+"Peak, current = {:.1e}, {:.1e} for {:} lines calculated".format(
+*memory, s.conditions["lines_calculated"]
+)
+)
+
+# More sophisticated
+print("*** List of biggest objects ***")
+top_stats = snapshot.statistics("lineno")
+for rank, stat in enumerate(top_stats[:3]):
+print("#{}".format(rank + 1))
+print(stat)
+
+# Clear for next engine in the loop
+tracemalloc.clear_traces()
+
+config["DATAFRAME_ENGINE"] = initial_engine
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230825_0000_1someshverma/</guid><pubDate>Thu, 24 Aug 2023 23:00:00 GMT</pubDate></item><item><title>GSoC Week 9-10</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. &lt;br&gt;
 The LSFT also is highly sensitive to the time intervals that are input to it. I have found some more clues as to how to make it even better. I will expound upon this further within 2 weeks since my final exams are going on and I have limited time.&lt;/p&gt;
 
 &lt;!-- TEASER_END --&gt;
@@ -272,80 +398,4 @@ I also added documentation about writing the new patterns.&lt;/p&gt;
 
 &lt;p&gt;In my project, one important issue that we wanted to tackle was the non stationarity of pulsar timeseries. The method to take this into account was to use a window over the data, ie only in the window we will asume a qpo and get its log likelihood and outside we will assume white noise outside. The problem in it was that jax jit functions wants to before handedly know the type and size of all its arrays and data structres, hense there was no way to create a window over the time-series.&lt;/p&gt;
 
-&lt;p&gt;This while frustrating, also is a proof that code is often used in ways very different than intended or there are issues that we not taken into account when these important design desisions were made. (Though at no fault of the Jax library as before hand knowing the array shapes is crucial for fast parallel code)&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_gaurav17joshi/</guid><pubDate>Thu, 27 Jul 2023 23:00:00 GMT</pubDate></item><item><title>Moving towards OpenCL</title><link>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
-
-&lt;p&gt;So far, all my work on GPUs has been using CUDA. But CUDA is proprietary to NVIDIA and only works on NVIDIA GPUs. So, I’ve been working on moving the code to OpenCL, which is an open standard for parallel programming on heterogeneous systems.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;h3 id="opencl"&gt;OpenCL&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href="https://www.khronos.org/opencl/"&gt;OpenCL&lt;/a&gt;(Open Computing Language) is an open standard for cross-platform, parallel programming of diverse accelerators(CPUs, GPUs, FPGAs, etc) found in supercomputers, cloud servers, personal computers, mobile devices and embedded platforms.
-Note the 2 key points -&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;open standard&lt;/code&gt; : this means that the specification and documentation of the technology are publicly available and can be accessed by anyone.&lt;/li&gt;
-&lt;li&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;cross-platform&lt;/code&gt; : this means that it can run on multiple operating systems and hardware architectures without requiring major modifications to the code.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This makes OpenCL a very attractive option for developers who want to write code that can run on a wide range of devices. From Gnuastro’s perspective, this means that we can write code that can run on multiple GPU manufactureres, as well as CPUs and other accelerators. Our GPU kernels will be portable to any system, regardless of its configuration!&lt;/p&gt;
-
-&lt;p&gt;Next point to consider is OpenCL is a &lt;code class="language-plaintext highlighter-rouge"&gt;standard&lt;/code&gt;. It is different from CUDA in this regard. CUDA is a framework, whereas OpenCL is a standard. What does this mean?&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The OpenCL standard refers to the specification and guidelines set forth by the Khronos Group which is responsible for developing and maintaining the standard. The OpenCL standard defines the API, data types, functions, and programming model that developers must follow when writing code for OpenCL. It is a formal document that ensures uniformity and compatibility across different OpenCL implementations.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;OpenCL is not an open-source library! It basically defines how the library should behave(big simplification!).&lt;/p&gt;
-
-&lt;p&gt;So what can we do with the standard alone? Not much! We need an &lt;code class="language-plaintext highlighter-rouge"&gt;implementation of the standard&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This also reminds me of the question I once had - What do you need to create a new programming language?
-My first guess was a compiler! My thought process was if a program(compiler in this case) can understand my High level language and convert it to corresponding machine code, then I can write programs in that high level language for any task!
-So all I’d need is a compiler for that language.
-Its close, but not totally accurate.&lt;/p&gt;
-
-&lt;p&gt;You dont actually need a compiler for a new programming language. You ONLY need a &lt;code class="language-plaintext highlighter-rouge"&gt;specification&lt;/code&gt; for it. The specification will define the syntax and semantics(rules) of the language.
-You only need a compiler when you want to run programs using your language!(what good is a language if you cant run programs using it? haha)&lt;/p&gt;
-
-&lt;p&gt;Similaraly OpenCL defines a set of rules which specify how it will behave. But to use OpenCL we need an implementation of this standard.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;OpenCL implementations are software packages developed by hardware manufactureres that provide the necessary drivers and runtime libraries for running OpenCL applications on their specific hardware. Each hardware vendor is responsible for creating their own OpenCL implementation that conforms to the OpenCL standard. This means that each implementation may have its own unique features and quirks, but they all adhere to the same standard.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;There are many different implementations available for it! (find the full list &lt;a href="https://www.khronos.org/conformance/adopters/conformant-products/opencl"&gt;here&lt;/a&gt; or &lt;a href="https://www.iwocl.org/resources/opencl-implementations/"&gt;here&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;Basically each of the hardware manfacturers provide an implementation of the OpenCL standard for their hardware. This implementation is usually provided as a framework. Depending on what hardware you have on your system, you can choose the corresponding framework to use.&lt;/p&gt;
-
-&lt;h3 id="how-does-opencl-work"&gt;How does OpenCL work?&lt;/h3&gt;
-
-&lt;p&gt;Here’s waht a typical OpenCL system looks like :&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="opencl-sytem" src="https://labeeb-7z.github.io/Blogs/img/posts/opencl/opencl-system.png"&gt;&lt;/p&gt;
-
-&lt;p&gt;OpenCL programs consist of two parts: host code and device code. The host code is written in C or C++ and runs on the host, while the device code is written in OpenCL C and runs on the device. The host code is responsible for setting up the OpenCL environment, creating the context, compiling the device code, and executing the kernels on the device.&lt;/p&gt;
-
-&lt;p&gt;The device code is compiled at runtime by the host code. This means that the host code must be compiled first, and then the device code can be compiled. The host code is compiled using a standard C/C++ compiler, while the device code is compiled using the OpenCL compiler. The OpenCL compiler is provided by the OpenCL implementation and is responsible for compiling the device code into binary code that can be executed on the device.&lt;/p&gt;
-
-&lt;p&gt;How does the OpenCL library interact with the hardware? Its made possible through OpenCL-ICD.&lt;/p&gt;
-
-&lt;p&gt;OpenCL ICD stands for OpenCL Installable Client Driver. It is a component of the OpenCL&lt;/p&gt;
-
-&lt;p&gt;It enables multiple manufacturers OpenCL drivers to coexist on a single system. Instead of having a single monolithic OpenCL driver, an ICD allows different manufactureres (e.g., NVIDIA, AMD, Intel) to provide their own separate OpenCL implementation as dynamically loadable libraries. This means that developers can select the appropriate OpenCL driver at runtime without needing to modify their applications.&lt;/p&gt;
-
-&lt;p&gt;The ICD mechanism is crucial for achieving portability and flexibility in developing applications using computational power of various devices from different manufacturers.&lt;/p&gt;
-
-&lt;h3 id="opencl-programming-model"&gt;OpenCL Programming Model&lt;/h3&gt;
-
-&lt;p&gt;The Programming Model of OpenCL is very similar to CUDA which I covered in my previous post. However CUDA has a lot of abstraction since it has its own runtime library which communicates with the driver.
-In OpenCL there’s direct communication with the drivers and the host code is responsible for setting up the environment so its a bit more lower level than CUDA.&lt;/p&gt;
-
-&lt;p&gt;Some of the key terms in OpenCL are :&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Work Item: Basic unit of work on a compute device&lt;/li&gt;
-&lt;li&gt;Kernel: The code that runs on a work item (Basically a C function)&lt;/li&gt;
-&lt;li&gt;Program: Collection of kernels and other functions&lt;/li&gt;
-&lt;li&gt;Context: The environment where work-items execute (Devices, their memories and command queues)&lt;/li&gt;
-&lt;li&gt;Command Queue: Queue used by the host to submit work (kernels, memory copies) to the device.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I’ll cover the programming aspect of OpenCL in more detail in my next post.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_labeeb-7z/</guid><pubDate>Thu, 27 Jul 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;This while frustrating, also is a proof that code is often used in ways very different than intended or there are issues that we not taken into account when these important design desisions were made. (Though at no fault of the Jax library as before hand knowing the array shapes is crucial for fast parallel code)&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230728_0000_gaurav17joshi/</guid><pubDate>Thu, 27 Jul 2023 23:00:00 GMT</pubDate></item></channel></rss>
