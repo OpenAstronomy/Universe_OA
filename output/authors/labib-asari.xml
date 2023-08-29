@@ -1,5 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Labib Asari)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/labib-asari.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 28 Aug 2023 00:55:42 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Integrating OpenCL with Gnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Labib Asari)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/labib-asari.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 29 Aug 2023 00:55:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Final GSoC Report</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230822_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;p&gt;I will be discussing the goals of my GSoC project, how I spent my time and what I learned during this period. I will also be discussing the future of my project and what I plan to do next.&lt;/p&gt;
+
+&lt;h2 id="goals-of-my-gsoc"&gt;Goals of my GSoC&lt;/h2&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;The &lt;a href="https://openastronomy.org/gsoc/gsoc2023/#/projects?project=gnuastro_library_in_python"&gt;original&lt;/a&gt; Google Summer of Code project this was year was to :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Redisgn the &lt;code class="language-plaintext highlighter-rouge"&gt;error handling&lt;/code&gt; inside Gnuastro C library.&lt;/li&gt;
+&lt;li&gt;Adding wrappers for Gnuastro library functions in &lt;code class="language-plaintext highlighter-rouge"&gt;pyGnuastro&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Prior to GSoC, my experience mostly consisted of Deep Learning and Computer Vision. I had a good high-level understanding of how GPUs were leveraged for the compute intensive tasks in various libraries and frameworks in these domains. I had started exploring the lower-level abstractions over GPUs using the CUDA framework.&lt;/p&gt;
+
+&lt;p&gt;In the early weeks of February, I delivered a &lt;a href="https://docs.google.com/presentation/d/1texW2MQJqjdbtPCuLULqXf8-1GuIrub4bJh_b_EffS4/edit?usp=sharing"&gt;presentation&lt;/a&gt; to the Gnuastro development team. The point of this presentation was a proposal outlining the integration of GPU support into Gnuastro — an idea borrowed from the Machine Learning world but with huge advancement potential in the feild of Astronomy. Both of these domains process huge amounts of data. Both of these domains are characterized by the processing of substantial volumes of data.&lt;/p&gt;
+
+&lt;p&gt;My mentor &lt;a href="https://akhlaghi.org/"&gt;Mohammad Akhlaghi&lt;/a&gt; was very supportive of this idea and gave me the go ahead to start working on it.&lt;/p&gt;
+
+&lt;p&gt;And so, we had a 3rd goal for this GSoC project :&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Adding GPU support to Gnuastro.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id="work-done-throughout-the-gsoc"&gt;Work Done Throughout the GSoC&lt;/h3&gt;
+
+&lt;h4 id="error-handling"&gt;Error Handling&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Need&lt;/strong&gt; : All of Gnuastro’s library functions  performed error handling using &lt;code class="language-plaintext highlighter-rouge"&gt;error(EXIT_FAILURE, ....)&lt;/code&gt;; thus exiting the program whenever an error was encountered with a detailed error message. This wasn’t a problem for the Gnuastro programs however for other callers like pyGnuastro, this is problematic as it exits from the entire Python environment.&lt;/p&gt;
+
+&lt;p&gt;The new error handling mechanism defines a module &lt;code class="language-plaintext highlighter-rouge"&gt;error.h&lt;/code&gt;  new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;gal_error_t&lt;/code&gt;. The exact contents of this structure have gone through multiple iterations but the final one is :&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="gal_error_t" src="https://labeeb-7z.github.io/Blogs/img/posts/final/gal_error.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;The user should define a &lt;code class="language-plaintext highlighter-rouge"&gt;gal_error_t&lt;/code&gt; before the function call and pass it as an argument to the function(every function in Gnuastro will have an extra argument now).&lt;/p&gt;
+
+&lt;p&gt;During the function execution, if any error occurs, it will populate the &lt;code class="language-plaintext highlighter-rouge"&gt;gal_error_t&lt;/code&gt; with the error message and the error code. The user can then check the error code and the error message to determine what went wrong.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="new_error_handling" src="https://labeeb-7z.github.io/Blogs/img/posts/final/error_handling.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;Corresponding functions are added in &lt;code class="language-plaintext highlighter-rouge"&gt;error.h&lt;/code&gt; for writing and managing the structure. Some methods are also provided for Python interface.&lt;/p&gt;
+
+&lt;p&gt;After the module was finished, Mohammad implemented the new error mechanism inside the &lt;code class="language-plaintext highlighter-rouge"&gt;cosmology.c&lt;/code&gt; module, and then I used it to update the corresponding cosmology module in pyGnuastro. This solved the main the problem of python environment exiting on any error, instead errors were being reported inside the python shell.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="python_error" src="https://labeeb-7z.github.io/Blogs/img/posts/final/py-error.png"&gt;&lt;/p&gt;
+
+&lt;p&gt;This completed setting-up the low level infrastructure for the new error handling mechanism. This can be now used by other modules of Gnuastro to update what happens when an error occurs. Implementing the high level error function calls, deciding the exact error type and defining what message should be shown, would be best done by the original authors of the modules.&lt;/p&gt;
+
+&lt;p&gt;The new error handling mechanism currently lives at the &lt;a href="https://gitlab.com/makhlaghi/gnuastro-dev/-/tree/error"&gt;Gnuastro repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id="pygnuastro"&gt;pyGnuastro&lt;/h4&gt;
+
+&lt;p&gt;Apart from implementing the new error handling mechanism in existing modules of pyGnuastro, I worked on 2 major things&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Implemented speclines module in pyGnuastro&lt;/strong&gt; : this is a simple module without any complex data structures. I tried this first when I was learning about the C-Python API. It gave me a good grasp of how and what’s going on in the existing pyGnuastro implementation.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GAL_DATA_T for Python&lt;/strong&gt; :  The core data structure of Gnuastro - gal_data_t is a C struct. Any external data is represented using this structure. It was crucuial to had a similar structure in Python. Previously Jash had worked on loading and saving fits file made use of the Numpy-C API to to convert the raw data inside the gal_data_t to a Numpy array. This was an extremely clever and efficient idea, however it skipped all the other details inside gal_data_t. We had to find a way to represent the entire gal_data_t in Python. The normal way to create a new data structure in Python would be to create a new class. However, the wrappers are written in C language and we don’t get access to the Python interpreter. I took some more inspiration from Numpy on how they &lt;a href="https://numpy.org/doc/stable/reference/c-api/index.html"&gt;created a new Python&lt;/a&gt; - their core data structure : &lt;code class="language-plaintext highlighter-rouge"&gt;numpy.ndarray&lt;/code&gt; - using the C-Python API. I then discovered the API allows us to &lt;a href="https://docs.python.org/3/extending/newtypes_tutorial.html"&gt;define custom objects&lt;/a&gt; which may be used a data type for the Python interpreter. I learnt and used them to have a corresponding &lt;code class="language-plaintext highlighter-rouge"&gt;pygnuastro.data&lt;/code&gt; for pyGnuastro. It basically acted as a new data type in python similar to &lt;code class="language-plaintext highlighter-rouge"&gt;numpy.ndarray&lt;/code&gt;, had other details of gal_data_t.After this we had details of gal_data_t in python but we were missing on Jash’s idea of utilizing Numpy in pyGnuastro. I spent some time to make sure we can still utilize numpy’s speed inside pyGnuastro, The C-Python API is versatile and it allows having complex objects as sub-objects to other objects. Eventually we had the array(raw data) being represented as a &lt;code class="language-plaintext highlighter-rouge"&gt;numpy.ndarray&lt;/code&gt;! This meant we had both the speed of numpy and the details of gal_data_t in pyGnuastro’s &lt;code class="language-plaintext highlighter-rouge"&gt;pygnuastro.data&lt;/code&gt;. This was a major milestone in pyGnuastro.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="pyGnuastro.data" src="https://labeeb-7z.github.io/Blogs/img/posts/final/python-type.jpg"&gt;&lt;/p&gt;
+
+&lt;h4 id="gpus-in-gnuastro"&gt;GPUs in Gnuastro&lt;/h4&gt;
+
+&lt;p&gt;Gnuastro is an astronomical data analysis and manipulation library. Astronomical data is usually very large in size, and thus computationally intensive. If the operations performed on this data are parallelizable, then GPUs can significantly speed up the processing.&lt;/p&gt;
+
+&lt;p&gt;I started my work on GPUs right after Mohammad approved my initial idea. Here’s a summary/story of all the work done for GPU support :&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Learning about build systems&lt;/strong&gt; : After GPU support idea was accepted, my mentor suggested we should first setup the build system so CUDA modules can be integrated smoothly in the future. Gnuastro uses &lt;a href="https://en.wikipedia.org/wiki/GNU_Autotools"&gt;Autotools&lt;/a&gt; for its build system. I started by learning about &lt;a href="https://www.gnu.org/software/autoconf/"&gt;autoconf&lt;/a&gt;, &lt;a href="https://www.gnu.org/software/automake/"&gt;automake&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/libtool/"&gt;libtool&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Linking Gnuastro with CUDA runtime&lt;/strong&gt; : CUDA SDK provides a &lt;a href="https://nvidia.github.io/cuda-python/module/cudart.html"&gt;runtime library - &lt;code class="language-plaintext highlighter-rouge"&gt;cudart&lt;/code&gt;&lt;/a&gt; which the necessay component to initiate communication with the GPU drivers. The runtime library is distributed as both a static and shared object file. This made things easier as we could link the runtime library statically with the Gnuastro library, making &lt;code class="language-plaintext highlighter-rouge"&gt;cudart&lt;/code&gt; part of Gnuastro. I modified the configure script to link the runtime library statically with Gnuastro. This was also the time I learnt extensively about how low level system libraries are built, linked and distributed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Struggling with Libtool&lt;/strong&gt; : I then tried to implement some simple matrix functions in CUDA and integrate them with Gnuastro.  CUDA source code is compiled by &lt;code class="language-plaintext highlighter-rouge"&gt;nvcc&lt;/code&gt; compiler. However during linking, libtool assumes that all source files are compiled by &lt;code class="language-plaintext highlighter-rouge"&gt;gcc&lt;/code&gt;. It ignored all the CUDA source files. After writing dedicated rules for CUDA source compilation in the Makefile, the CUDA source was getting compiled, but not being linked to the Gnuastro. Libtool only links files having a corresponding libtool object(.lo files) and they’re created by libtool for each source file handled by it(which in our case were gcc compiled files).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AutoMake developers rescuing us&lt;/strong&gt; : After trying and struggling with libtool for a few days, my mentor suggested that I contact the AutoMake developers to seek some help. I &lt;a href="https://lists.gnu.org/archive/html/automake/2023-03/msg00036.html"&gt;mailed&lt;/a&gt; them a &lt;a href="https://github.com/labeeb-7z/cuda-gnu/tree/main/shared-library"&gt;small demonstration&lt;/a&gt; of what I was trying to do and waited for there response. After a few days, I received a reply from them. The fix was actually simple, automake had special variables(&lt;code class="language-plaintext highlighter-rouge"&gt;LD_ADD&lt;/code&gt;) which directly communicates with the GNU linker (ld) and I just had to add CUDA object files to this variable. It worked and we finally had a working CUDA module in Gnuastro which used GPU for execution!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;It was around 1st week of April now, I made my final proposal submission and had fingers crossed for getting selected in GSoC.&lt;/p&gt;
+
+&lt;p&gt;As mentioned in the GSoC proposal, we had to first focus on the Error handling and Python wrappers, so I started working on these two goals (I was also indeed selected for GSoC in the meantime!).&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Convolutions on GPU&lt;/strong&gt; : After getting back to working with GPUs in around June-July, I started with implementing the convolution function in CUDA. Convolution is a direct operation as well as a subroutine to other operations in Gnuastro.
+The results of CUDA convolution were remarkable. We got upto 400x speed up on convolution operation! My mentor then suggested me since the speedup is very significant, I should prioritise getting more of GPU work done.
+Read more about Convolution on GPU in my blog &lt;a href="https://labeeb-7z.github.io/Blogs/2023/07/03/GPUs-and-Convolution.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Adapting OpenCL&lt;/strong&gt; : CUDA is a proprietary framework by Nvidia. It only works on Nvidia GPUs. We wanted to make Gnuastro GPU support available to all users, irrespective of the GPU they have. This is where OpenCL comes in. OpenCL is an open standard for parallel programming of heterogeneous systems. It is supported by all major GPU vendors. I started learning about OpenCL and how it works at a low level. I also started learning about the OpenCL C99 programming standard. Read more about starting with OpenCL in my blog &lt;a href="https://labeeb-7z.github.io/Blogs/2023/07/28/Towards-OpenCL.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Integrating OpenCL&lt;/strong&gt; : OpenCL was initially hard to learn, but I managed to integrate that with Gnuastro right before my GSoC’s official timeline was about to end! I have a pretty detailed blog on the the entire integration process &lt;a href="https://labeeb-7z.github.io/Blogs/2023/08/12/Integrating-OpenCL.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Same code on CPU and GPU&lt;/strong&gt; : After we had success with OpenCL, my mentor recommended we should try executing the &lt;code class="language-plaintext highlighter-rouge"&gt;exact&lt;/code&gt; same code on CPU and GPU - to show the concept of executing same instructions both processors and seeing the speed-up on GPUs. This was never done in the field of Astronomy so it’d have been a great demonstration. This was quite challenging as GPUs are programmed with different frameworks and have some extra components in code for management. Usually in Machine Learning frameworks, the GPU and CPU modules are generally written seperately(Infact Tensorflow used to have different package altogether for GPU until 2.0)
+However the good part is, most of the GPU frameworks are derived from C/C++ language and have  . I spent my last week of GSoC trying to implement the core logic in a Macro which will be shared by both OpenCL kernels and C library and had success, this can be accessed here.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Future&lt;/strong&gt; : The future of this project is very bright. I have set up the bare-bone GPU integration already, I’ll continue to add GPU modules building upon it.. We have a working OpenCL integration. We have a working CUDA integration. We have a working CPU-GPU code sharing. I mentioned certain challenges we are currently facing in my &lt;a href="https://labeeb-7z.github.io/Blogs/2023/08/12/Integrating-OpenCL.html"&gt;opencl_integration&lt;/a&gt; blog. I’ll continue to figure out a solution for them and adding support for further modules on GPU.&lt;/p&gt;
+
+&lt;h3 id="acknowledgements"&gt;Acknowledgements&lt;/h3&gt;
+
+&lt;p&gt;GSoC has been a great learning experience for me. I’m extremely grateful to everyone who was part of this journey.&lt;/p&gt;
+
+&lt;p&gt;I would like to thank my mentor &lt;a href="https://akhlaghi.org/"&gt;Mohammad Akhlaghi&lt;/a&gt; for his constant support and guidance throughout the project. He has been very patient right from the beginning, beleived in me when I did not have a clear idea on how I’d approach all the goals. He allowed me work on my pace, explore and learn things as needed and has always pulled me out of the rabbit hole whenever I got stuck. Everytime I join a meeting with him, I learn something new. I’m very grateful to him for giving me this opportunity to work on this project.&lt;/p&gt;
+
+&lt;p&gt;I am Graciously thankful to Jash Shah for introducing me to the Gnuastro development team and walking me through the existing work on error handling and pyGnuastro. It provided me a huge boost was extremely valuable. He’s always been attentive to my small queries and has supported me through multiple challenges. In general, Im very grateful to have him as a mentor and freind.&lt;/p&gt;
+
+&lt;p&gt;I would also like to thank the Gnuastro development team for their support and feedback throughout the project. Its been such a wonderful time working with them. I have learnt a ton from attending Pedram’s work on adding Sql to Gnuastro, Fathma’s work on Tiff files and Curl library, Faezeh’s work on implementing Convolutional Neural Networks in Gnuastro.
+They’ve always been crucial in providing feedback and suggestions on my work. I’m very grateful to them for their support.
+I am genuinely grateful for the opportunity to collaborate with such a talented and committed group, and I look forward to work and grow with them in the future.&lt;/p&gt;
+
+&lt;p&gt;I would also like to thank the Google Summer of Code team for taking the wonderful initiative and giving me this opportunity to work on this project.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230822_0000_labeeb-7z/</guid><pubDate>Mon, 21 Aug 2023 23:00:00 GMT</pubDate></item><item><title>Integrating OpenCL with Gnuastro</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="background"&gt;Background&lt;/h3&gt;
 
 &lt;p&gt;In the last post, I discussed what is OpenCL and why we chose to integrate it with Gnuastro. In this post, I’ll be discussing the actual implementation and the challenges I faced.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
