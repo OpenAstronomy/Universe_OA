@@ -87,7 +87,7 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">✅</span></span>
                 </li>
 <li>
-                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-08-13 10:23:47+01:00" style="color:rgb(255,0,0)">
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-08-31 20:38:33+01:00">
                     pupper emeritus
                    </a>
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">❌</span></span>
@@ -113,7 +113,26 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230728_0000_gaurav17joshi/" class="u-url">GSoC - Week 7-8</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230729_0533_exitflynn/" class="u-url">Across the Summer of Code</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/exitflynn/">exitflynn</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2023/07/20230729_0533_exitflynn/" rel="bookmark">
+            <time class="published dt-published" datetime="2023-07-29T05:33:30+01:00" itemprop="datePublished" title="2023-07-29 05:33">2023-07-29 05:33</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>I spent the most part of my time since last blog-post working on the failing tests.
+The most complex client to fix and the most complex client in general, the GOES Client, needed to be changed a bit. The problem that arose there was mainly because of how we earlier had the liberty of parsing out any variable given down in the pattern since that string would never be used to act as a url but since we also want it to do the job of the baseurl, we can’t have any to-be-determined value in the base parts. Since the client involved calling a helper function that returned the data for specific values of those variables, I had to modify the code to obtain those values from that part instead of extracting it again from the URL (since we put it there in the URL string in the first place).
+Another issue was implementing a system for dealing with cases where there’s no numerical representation for the month in the file’s URL, i.e. in the <code>%B</code> or <code>%b</code> datetime formats cases.
+</p>
+<p class="more"><a href="posts/2023/07/20230729_0533_exitflynn/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230728_0000_gaurav17joshi/" class="u-url">GSoC - Week 7-8</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/gaurav-joshi/">Gaurav Joshi</a>

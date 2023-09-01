@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 31 Aug 2023 00:54:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 9-10</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. &lt;br&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about stingray)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/stingray.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 01 Sep 2023 00:57:47 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC Week 11-13</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230831_2038_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;I am reaching the final stages of my project well ahead of the schedule.&lt;/p&gt;
+
+&lt;p&gt;Both the Crosspectrum and Powerspectrum classes, the Lomb Scargle Fourier Transform and Basic Documentation have been completed. Tests are almost done too&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;I have double checked with Matteo that the results are consistent using multiple examples and they are close to expected results.&lt;/p&gt;
+
+&lt;p&gt;The following are the documentation notebooks on how to use the classes.&lt;/p&gt;
+
+
+&lt;div class="ltag_gist-liquid-tag"&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;div class="ltag_gist-liquid-tag"&gt;
+
+&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230831_2038_pupperemeritus/</guid><pubDate>Thu, 31 Aug 2023 19:38:33 GMT</pubDate></item><item><title>GSoC Week 9-10</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230813_1023_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;p&gt;Big progress on the front of algorithm working. Turns out there wasn't that much of a problem in the algorithm. I just had to subtract the mean from the data before taking the fourier transform. The Lomb Scargle seems to work on data that has mean subtracted from it. Furthermore they dont seem to work that well or at all in full spectrum. &lt;br&gt;
 The LSFT also is highly sensitive to the time intervals that are input to it. I have found some more clues as to how to make it even better. I will expound upon this further within 2 weeks since my final exams are going on and I have limited time.&lt;/p&gt;
 
 &lt;!-- TEASER_END --&gt;
@@ -729,44 +747,4 @@ Jax.vmap is used to wrap functions for batches without explicitly doing so.&lt;/
 &lt;li&gt;
 &lt;p&gt;Numpyro: NumPyro is a powerful probabilistic programming library built on top of NumPy, JAX, and Pyro. It combines the ease of use and familiar syntax of NumPy with the flexibility and automatic differentiation capabilities of JAX to enable efficient and scalable Bayesian inference. NumPyro provides a wide range of probabilistic models, inference algorithms, and tools for model specification, allowing users to express complex probabilistic models and perform inference tasks such as Markov chain Monte Carlo (MCMC) and variational inference.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230602_0000_gaurav17joshi/</guid><pubDate>Thu, 01 Jun 2023 23:00:00 GMT</pubDate></item><item><title>Community Bonding Period</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230601_0311_pupperemeritus/</link><dc:creator>pupper emeritus</dc:creator><description>&lt;h3&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-Brief
-&lt;/h3&gt;
-
-&lt;p&gt;Hello everyone this is Sri Guru Datta P.(pupperemeritus). I am extremely excited to get started with my GSoC journey. It has been a dream come true for me.&lt;/p&gt;
-
-&lt;p&gt;Most of the progress in these weeks has been done on the fronts of&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Re-adjusting the proposed schedule : Re-evaluating and taking a closer look at requirements&lt;/li&gt;
-&lt;li&gt;Gathering more information required to implement : Been provided reference implementation in MATLAB by Dr. Jeff Scargle himself. And validating the plan and research done during the period of creating the project proposal.&lt;/li&gt;
-&lt;li&gt;Had weekly meets to break the ice and communicate more directly through weekly meets with mentors.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3&gt;
-
-
-Environment setup
-&lt;/h3&gt;
-
-&lt;p&gt;I had already completed my environment setup earlier in order to make pull requests to stingray. I just followed the documentation.&lt;br&gt;
-&lt;a href="https://docs.stingray.science/install.html"&gt;https://docs.stingray.science/install.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-Codebase familiarity
-&lt;/h3&gt;
-
-&lt;p&gt;I already had a bit of familiarity with powerspectrum, crossspectrum and bexvar modules as I had worked on various pull requests on them. My mentor advised me to look into multitaper, which I did. It gave me a few ideas on how I could implement this project.&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-Coding
-&lt;/h3&gt;
-
-&lt;p&gt;I had already started a few days early and went ahead and implemented the Lomb-Scargle Fourier Transform which will be the backbone of the power spectrum and cross spectrum. 2 days into the coding period and I also have started coding up the wrapper classes. It turns out to be a very tangled process in order to get every small nook and cranny of the class to work. But I have seemed to get the hang of it.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230601_0311_pupperemeritus/</guid><pubDate>Thu, 01 Jun 2023 02:11:02 GMT</pubDate></item></channel></rss>
+&lt;/ol&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230602_0000_gaurav17joshi/</guid><pubDate>Thu, 01 Jun 2023 23:00:00 GMT</pubDate></item></channel></rss>

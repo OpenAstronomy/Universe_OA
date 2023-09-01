@@ -12,7 +12,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/">
 <link rel="next" href="index-47.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2023/08/20230825_0000_1someshverma/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2023/08/20230831_2038_pupperemeritus/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -86,7 +86,7 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">✅</span></span>
                 </li>
 <li>
-                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-08-13 10:23:47+01:00" style="color:rgb(255,0,0)">
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://dev.to/pupperemeritus" data-toggle="tooltip" data-placement="top" title="2023-08-31 20:38:33+01:00">
                     pupper emeritus
                    </a>
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-05-29 - 2023-06-12">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-12 - 2023-06-26">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-06-26 - 2023-07-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-03 - 2023-07-17">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-17 - 2023-07-31">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2023-07-31 - 2023-08-13">❌</span></span>
@@ -112,7 +112,25 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/08/20230825_0000_1someshverma/" class="u-url">Benchmark Tests</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/08/20230831_2038_pupperemeritus/" class="u-url">GSoC Week 11-13</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/pupper-emeritus/">pupper emeritus</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2023/08/20230831_2038_pupperemeritus/" rel="bookmark">
+            <time class="published dt-published" datetime="2023-08-31T20:38:33+01:00" itemprop="datePublished" title="2023-08-31 20:38">2023-08-31 20:38</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<p>I am reaching the final stages of my project well ahead of the schedule.</p>
+
+<p>Both the Crosspectrum and Powerspectrum classes, the Lomb Scargle Fourier Transform and Basic Documentation have been completed. Tests are almost done too</p>
+<p class="more"><a href="posts/2023/08/20230831_2038_pupperemeritus/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/08/20230825_0000_1someshverma/" class="u-url">Benchmark Tests</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/somesh-verma/">Somesh Verma</a>
@@ -274,25 +292,6 @@ I also added and extended doc-strings to some functions which could use some upd
 <p>Another key remark was that my code didn’t take into account the <strong>Broadening effects</strong> that modify the lineshapes.<br>This is why I had a Team meeeting with my mentors to discuss the physics behind the code. It helped me a lot to understand what was expected.</p>
 <p>After this I worked on adding broadening and merging the new AdB Kurucz with SpectrumFactory. In order to do so, I worked on an example which allows to plot a spectrum using the Kurucz atomic data and <strong>SpectrumFactory.</strong> My first attempt was to use one of the existing Radis formats for databanks named <strong>hdf5-radisdb</strong> since I worked with hdf5 files in my Class.<br>This attempt happened to be too difficult because the formats were made for molecules and too many columns of my dataframe were different from the expected columns.<br>This is why I eventually decided to add <strong>a new format named “kurucz” </strong>to the load_databank method which allows to load the kurucz data with the proper form.</p>
 <p class="more"><a href="posts/2023/07/20230729_2343_menasrac/">Read more…</a></p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230729_0533_exitflynn/" class="u-url">Across the Summer of Code</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/exitflynn/">exitflynn</a>
-            </span></p>
-            <p class="dateline">
-            <a href="posts/2023/07/20230729_0533_exitflynn/" rel="bookmark">
-            <time class="published dt-published" datetime="2023-07-29T05:33:30+01:00" itemprop="datePublished" title="2023-07-29 05:33">2023-07-29 05:33</time></a>
-            </p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<p>I spent the most part of my time since last blog-post working on the failing tests.
-The most complex client to fix and the most complex client in general, the GOES Client, needed to be changed a bit. The problem that arose there was mainly because of how we earlier had the liberty of parsing out any variable given down in the pattern since that string would never be used to act as a url but since we also want it to do the job of the baseurl, we can’t have any to-be-determined value in the base parts. Since the client involved calling a helper function that returned the data for specific values of those variables, I had to modify the code to obtain those values from that part instead of extracting it again from the URL (since we put it there in the URL string in the first place).
-Another issue was implementing a system for dealing with cases where there’s no numerical representation for the month in the file’s URL, i.e. in the <code>%B</code> or <code>%b</code> datetime formats cases.
-</p>
-<p class="more"><a href="posts/2023/07/20230729_0533_exitflynn/">Read more…</a></p>
 </div>
     </div>
     </article>
