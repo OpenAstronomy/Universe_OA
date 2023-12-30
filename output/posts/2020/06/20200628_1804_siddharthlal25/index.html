@@ -141,7 +141,7 @@ bg-dark
 
 <p align="center"> <img src="https://beta.techcrunch.com/wp-content/uploads/2010/10/awesome.jpg"></p>
 
-<p>These two weeks were quite interesting! After packing all the basic functionalties in the package, <em>version-0.2.0</em> was released, the next problem to be tackled was collecting and listing all relevant files from a directory. So, to solve this <code class="language-plaintext highlighter-rouge">fitscollection</code> was created, it takes a path, searches it recursively (if the user wants) for FITS files with ImageHDUs, list them together and return them in a data frame. It has some advanced functionalities as well, check the <a href="https://juliaastro.github.io/CCDReduction.jl/dev/api/#CCDReduction.fitscollection-Tuple%7BString%7D">documentation</a> to know more!</p>
+<p>These two weeks were quite interesting! After packing all the basic functionalties in the package, <em>version-0.2.0</em> was released, the next problem to be tackled was collecting and listing all relevant files from a directory. So, to solve this <code class="language-plaintext highlighter-rouge">fitscollection</code> was created, it takes a path, searches it recursively (if the user wants) for FITS files with ImageHDUs, list them together and return them in a data frame. It has some advanced functionalities as well, check the <a href="https://juliaastro.github.io/CCDReduction.jl/dev/api/#CCDReduction.fitscollection-Tuple{String}">documentation</a> to know more!</p>
 
 <p>Next, we created generators for filenames, image arrays, and ImageHDUs which works something like this:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># listing all FITS files present at some location with ImageHDUs
