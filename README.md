@@ -1,32 +1,49 @@
-This folder contains the source used to generate a static site using Nikola.
 
-Installation and documentation at https://getnikola.com/
+# Universe OA
 
-Configuration file for the site is ``conf.py``.
+This is the blog aggregator of the Open Astronomy community. For now it's only been used
+for SoC programmes (GSoC/SoCiS).
 
-To build the site::
-
-    nikola build
-
-To see it::
-
-    nikola serve -b
-
-To check all available commands::
-
-    nikola help
-# Structure of this repository
+## Structure of this repository
 
 There are three branches: `main`, `run` and `gh-pages`.
 
 - `main` includes only commits made by people and not automatically.
-- `run` runs on Travis and updates the posts and everything
+- `run` runs on GH actions and updates the posts and everything
 - `gh-pages` is the built version of the page, also done automatically.
 
 We could keep `main` and `run` in the same branch but this makes it easier to
 search the commits that we care about.
 
-# Updates for a new season:
+
+## Blog engine
+
+This blog aggregator is generated as a static site using [Nikola](https://getnikola.com/).
+
+The configuration file for the site is ``conf.py``. Refer to [Nikola's documentation](https://getnikola.com/documentation.html) for details on how to use it.
+
+### The blog aggregator
+
+The blog aggregator is controlled by two files: `gsoc.yml` and `gsoc_times.yml` and executed by `grab.py` script.
+
+- `gsoc.yml` keeps a list of all the gsoc editions, the gsoc participants, their rss feed and the organisation they are working for.
+- `gsoc_times.yml` keeps a key-value record of the date from the last contribution for each participant.
+- `grab.py` reads from the files above and updates them after a new blog entry has been found. 
+   The entry is downloaded and added as an entry in the aggregator.
+
+### The Contributors tracker
+
+A little widget is shown in the top of the website to track the blog posts of each participant.
+With our SoC rules, we require one post every fortnight.
+
+The widget is created using a Nikola plugin.
+Its source is under `plugins/sidebar/sidebar.py`.
+It uses the logos and dates set in `organisations.yml` and `dates_posts.yml` load through the `conf.py`.
+
+The plugin looks whether there are posts in the ranges between the dates provided, and places a symbol for each of the GSoC participants.
+
+
+# Updates for a new SoC season:
 
 1. Update `gsoc_times.yml` from `run` into `main`
    ```
@@ -38,8 +55,7 @@ search the commits that we care about.
    ```yaml
    gsocYYYY:
      gh_student_a:
-       rss_feed: "
-       rss_fed: "rss-url" # TODO (add blog with gsoc tag)
+       rss_feed: "rss-url" # TODO (add blog with gsoc tag)
        project: 'suborg' # TODO (add project as named on ..)
    ```
    Then, once completed that file you can run this snippet to fill `gsoc_times.yml`
