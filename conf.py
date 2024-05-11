@@ -1173,9 +1173,9 @@ GLOBAL_CONTEXT_FILLER = []
 try:
     import yaml
 
-    with open("organisations.yaml") as forgs:
+    with open("organisations.yml") as forgs:
         LOGOS = yaml.load(forgs, Loader=yaml.SafeLoader)
-    with open("dates_posts.yaml") as fdates:
+    with open("dates_posts.yml") as fdates:
         DATES = yaml.load(fdates, Loader=yaml.SafeLoader)
 
 except ImportError:
