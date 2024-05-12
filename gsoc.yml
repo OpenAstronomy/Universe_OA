@@ -1,3 +1,28 @@
+gsoc2024:
+  ahmedhosssam:
+    rss_feed: ''
+    project: 'SunPy'
+  code29563:
+    rss_feed: ''
+    project: 'radis'
+  DeadSpheroid:
+    rss_feed: ''
+    project: 'gnuastro'
+  Deus1704:
+    rss_feed: ''
+    project: 'SunPy'
+  kartikmandar:
+    rss_feed: ''
+    project: 'stingray'
+  lucasmg18:
+    rss_feed: 'https://lucasmartingarciagsoc24openastronomy.blogspot.com/feeds/posts/default'
+    project: 'irsa-fornax'
+  NucleonGodX:
+    rss_feed: ''
+    project: 'SunPy'
+  ViciousEagle03:
+    rss_feed: ''
+    project: 'SunPy'
 gsoc2023:
   exitflynn:
     rss_feed: 'https://exitflynn.github.io/blog/tags/gsoc/index.xml'
