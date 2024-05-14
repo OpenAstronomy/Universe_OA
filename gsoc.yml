@@ -9,7 +9,7 @@ gsoc2024:
     rss_feed: ''
     project: 'gnuastro'
   Deus1704:
-    rss_feed: ''
+    rss_feed: 'https://deus1704.vercel.app/rss.xml'
     project: 'SunPy'
   kartikmandar:
     rss_feed: ''
