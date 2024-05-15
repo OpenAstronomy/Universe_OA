@@ -3,7 +3,7 @@ gsoc2024:
     rss_feed: 'https://dev.to/feed/ahmedhosssam/'
     project: 'SunPy'
   code29563:
-    rss_feed: ''
+    rss_feed: 'https://code29563.github.io/feed.xml'
     project: 'radis'
   DeadSpheroid:
     rss_feed: ''
