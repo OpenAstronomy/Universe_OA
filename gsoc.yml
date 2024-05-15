@@ -18,7 +18,7 @@ gsoc2024:
     rss_feed: 'https://lucasmartingarciagsoc24openastronomy.blogspot.com/feeds/posts/default'
     project: 'irsa-fornax'
   NucleonGodX:
-    rss_feed: ''
+    rss_feed: 'https://medium.com/feed/@manitsingh018'
     project: 'SunPy'
   ViciousEagle03:
     rss_feed: ''
