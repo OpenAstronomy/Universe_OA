@@ -6,7 +6,7 @@ gsoc2024:
     rss_feed: ''
     project: 'radis'
   DeadSpheroid:
-    rss_feed: ''
+    rss_feed: 'https://deadspheroid.github.io/my-blog/feed.xml'
     project: 'gnuastro'
   Deus1704:
     rss_feed: 'https://deus1704.vercel.app/rss.xml'
