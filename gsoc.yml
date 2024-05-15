@@ -12,7 +12,7 @@ gsoc2024:
     rss_feed: 'https://deus1704.vercel.app/rss.xml'
     project: 'SunPy'
   kartikmandar:
-    rss_feed: ''
+    rss_feed: 'https://gsoc2024.kartikmandar.com/feeds/posts/default?alt=rss'
     project: 'stingray'
   lucasmg18:
     rss_feed: 'https://lucasmartingarciagsoc24openastronomy.blogspot.com/feeds/posts/default'
