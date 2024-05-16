@@ -21,7 +21,7 @@ gsoc2024:
     rss_feed: 'https://medium.com/feed/@manitsingh018'
     project: 'SunPy'
   ViciousEagle03:
-    rss_feed: ''
+    rss_feed: 'https://viciouseagle03.github.io/index.xml'
     project: 'SunPy'
 gsoc2023:
   exitflynn:
