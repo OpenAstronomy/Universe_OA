@@ -11,7 +11,7 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/index-47.html">
-<link rel="prev" href="." type="text/html">
+<link rel="prev" href="index-48.html" type="text/html">
 <link rel="next" href="index-46.html" type="text/html">
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]-->
 </head>
@@ -64,7 +64,45 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230729_0533_exitflynn/" class="u-url">Across the Summer of Code</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230730_0735_pupperemeritus/" class="u-url">GSoC Week 5-8</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/pupper-emeritus/">pupper emeritus</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2023/07/20230730_0735_pupperemeritus/" rel="bookmark">
+            <time class="published dt-published" datetime="2023-07-30T07:35:19+01:00" itemprop="datePublished" title="2023-07-30 07:35">2023-07-30 07:35</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<h3>
+
+
+</h3>
+<p class="more"><a href="posts/2023/07/20230730_0735_pupperemeritus/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230729_2343_menasrac/" class="u-url">Adapting Kurucz to SpectrumFactory and what is next ?</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/racim-menasria/">Racim MENASRIA</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2023/07/20230729_2343_menasrac/" rel="bookmark">
+            <time class="published dt-published" datetime="2023-07-29T23:43:53+01:00" itemprop="datePublished" title="2023-07-29 23:43">2023-07-29 23:43</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<h4><strong>Adapting Kurucz to SpectrumFactory and what is next ?</strong></h4>
+<p>After my first pull request I received some feedback.<br>Optional and major changes were requested. The most important changes were that my code should <strong>better integrate the existing Radis code</strong>. Indeed, though I added a new database with Kurucz, its API remained distinct which is something which will make Radis progress toward a common API.</p>
+<p>Another key remark was that my code didn’t take into account the <strong>Broadening effects</strong> that modify the lineshapes.<br>This is why I had a Team meeeting with my mentors to discuss the physics behind the code. It helped me a lot to understand what was expected.</p>
+<p>After this I worked on adding broadening and merging the new AdB Kurucz with SpectrumFactory. In order to do so, I worked on an example which allows to plot a spectrum using the Kurucz atomic data and <strong>SpectrumFactory.</strong> My first attempt was to use one of the existing Radis formats for databanks named <strong>hdf5-radisdb</strong> since I worked with hdf5 files in my Class.<br>This attempt happened to be too difficult because the formats were made for molecules and too many columns of my dataframe were different from the expected columns.<br>This is why I eventually decided to add <strong>a new format named “kurucz” </strong>to the load_databank method which allows to load the kurucz data with the proper form.</p>
+<p class="more"><a href="posts/2023/07/20230729_2343_menasrac/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2023/07/20230729_0533_exitflynn/" class="u-url">Across the Summer of Code</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/exitflynn/">exitflynn</a>
@@ -209,7 +247,7 @@ Another issue was implementing a system for dealing with cases where there’s n
 </div>
 
         <ul class="pager postindexpager clearfix">
-<li class="previous"><a href="." rel="prev">Newer posts</a></li>
+<li class="previous"><a href="index-48.html" rel="prev">Newer posts</a></li>
             <li class="next"><a href="index-46.html" rel="next">Older posts</a></li>
         </ul>
 <!--End of body content--><footer id="footer">
