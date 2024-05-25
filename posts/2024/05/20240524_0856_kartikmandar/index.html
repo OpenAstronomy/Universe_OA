@@ -4,21 +4,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Things are moving good.... | Universe OpenAstronomy</title>
+<title>The problems in venv | Universe OpenAstronomy</title>
 <link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
-<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2024/05/20240522_0626_kartikmandar/">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2024/05/20240524_0856_kartikmandar/">
 <!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Kartik Mandar">
-<link rel="prev" href="../20240516_1347_viciouseagle03/" title="Venturing Forward : Test Post" type="text/html">
-<link rel="next" href="../20240524_0856_kartikmandar/" title="The problems in venv" type="text/html">
+<link rel="prev" href="../20240522_0626_kartikmandar/" title="Things are moving good...." type="text/html">
 <meta property="og:site_name" content="Universe OpenAstronomy">
-<meta property="og:title" content="Things are moving good....">
-<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2024/05/20240522_0626_kartikmandar/">
-<meta property="og:description" content="So it's been a week of meeting and discovering the idea of the project. I have done some reading to know what science is going behind stingray. Now comes the part of implementation. How do you connect">
+<meta property="og:title" content="The problems in venv">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2024/05/20240524_0856_kartikmandar/">
+<meta property="og:description" content="So earlier during pre-gsoc period I had setup my environment in base itself and then just a few weeks back I shifted to python venv as the Hendrics dependencies were clashing with Stingray's. After se">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2024-05-22T06:26:00+01:00">
+<meta property="article:published_time" content="2024-05-24T08:56:00+01:00">
 <meta property="article:tag" content="stingray">
 </head>
 <body>
@@ -64,7 +63,7 @@ bg-dark
         
         
         
-<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Things are moving good....</a></h1>
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">The problems in venv</a></h1>
 
         <div class="metadata">
             <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
@@ -72,16 +71,17 @@ bg-dark
             </span></p>
             <p class="dateline">
             <a href="." rel="bookmark">
-            <time class="published dt-published" datetime="2024-05-22T06:26:00+01:00" itemprop="datePublished" title="2024-05-22 06:26">2024-05-22 06:26</time></a>
+            <time class="published dt-published" datetime="2024-05-24T08:56:00+01:00" itemprop="datePublished" title="2024-05-24 08:56">2024-05-24 08:56</time></a>
             </p>
             
 
-                    <p class="linkline"><a href="https://gsoc2024.kartikmandar.com/2024/05/things-are-moving-good.html">Original site</a></p>
+                    <p class="linkline"><a href="https://gsoc2024.kartikmandar.com/2024/05/the-problems-in-venv.html">Original site</a></p>
         </div>
         
 
     </header><div class="e-content entry-content" itemprop="articleBody text">
-    <p> So it's been a week of meeting and discovering the idea of the project. I have done some reading to know what science is going behind stingray. Now comes the part of implementation. How do you connect everything in a dashboard and make it fluid and interactive. Of course there are tool and libraries for this, but the main question is how do you make this sustainable?<br><br>Holoviz is one of the options I am considering to go with!! Let's see how it goes.</p>
+    <p> So earlier during pre-gsoc period I had setup my environment in base itself and then just a few weeks back I shifted to python venv as the Hendrics dependencies were clashing with Stingray's. <br>After setting up the venv specifically for stingray so that I can test it's functions and API, I went on to explore the different libraries to plot the data we are generating. Holoviz seemed a good option and installation was a breeze but these packages were specifically in conda. As a result I was not able to access the packages from the venv at all, as it had its own conda environment to run from. Now I thought why not make a docker and work in base from there. </p>
+<p>But I came to the conclusion that it's an overkill solution and would be too much of a hassle. Later on,  I went on to make a fresh conda environment for stingray too and currently am in this process.</p>
 <!-- TEASER_END -->
     </div>
     <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
@@ -89,10 +89,7 @@ bg-dark
         </ul>
 <ul class="pager hidden-print">
 <li class="previous">
-                <a href="../20240516_1347_viciouseagle03/" rel="prev" title="Venturing Forward : Test Post">Previous post</a>
-            </li>
-            <li class="next">
-                <a href="../20240524_0856_kartikmandar/" rel="next" title="The problems in venv">Next post</a>
+                <a href="../20240522_0626_kartikmandar/" rel="prev" title="Things are moving good....">Previous post</a>
             </li>
         </ul></nav></aside></article><!--End of body content--><footer id="footer">
             Contents © 2024         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
