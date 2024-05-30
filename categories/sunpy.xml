@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 29 May 2024 01:03:45 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Good start for the project</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 30 May 2024 01:00:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Good start for the project</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;h3&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -183,7 +183,134 @@ Because the units set by `coord1_unit` or `coord2_unit` are incompatible with th
 &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nc"&gt;PolygonSkyRegion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</guid><pubDate>Mon, 27 May 2024 12:23:44 GMT</pubDate></item><item><title>Venturing Forward : Test Post</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_1347_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;Stay posted for future updates :).
+&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</guid><pubDate>Mon, 27 May 2024 12:23:44 GMT</pubDate></item><item><title>Blog 0: The First Two Weeks</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240525_0000_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;p&gt;/*@jsxRuntime automatic @jsxImportSource react*/
+const {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];
+const {useMDXComponents: _provideComponents} = arguments[0];
+&lt;!-- TEASER_END --&gt;
+function _createMdxContent(props) {
+const _components = Object.assign({
+hr: "hr",
+h2: "h2",
+a: "a",
+span: "span",
+ul: "ul",
+li: "li",
+code: "code"
+}, _provideComponents(), props.components);
+return _jsxs(_Fragment, {
+children: [_jsx(_components.hr, {}), "\n", _jsxs(_components.h2, {
+id: "title-blog-0-the-first-two-weeksdate-2024-05-25featured-description-a-summary-of-activities-completed-in-the-two-weeks-leading-up-to-the-start-of-the-coding-period",
+children: ["title: 'Blog 0: The First Two Weeks'\ndate: '2024-05-25'\nfeatured: ''\ndescription: 'A summary of activities completed in the two weeks leading up to the start of the coding period.'", _jsx(_components.a, {
+"aria-hidden": "true",
+tabIndex: "-1",
+href: "#title-blog-0-the-first-two-weeksdate-2024-05-25featured-description-a-summary-of-activities-completed-in-the-two-weeks-leading-up-to-the-start-of-the-coding-period",
+children: _jsx(_components.span, {
+className: "icon icon-link"
+})
+})]
+}), "\n", _jsxs(_components.h2, {
+id: "table-of-contents",
+children: ["Table of Contents", _jsx(_components.a, {
+"aria-hidden": "true",
+tabIndex: "-1",
+href: "#table-of-contents",
+children: _jsx(_components.span, {
+className: "icon icon-link"
+})
+})]
+}), "\n", _jsxs(_components.ul, {
+children: ["\n", _jsxs(_components.li, {
+children: ["\n", _jsx("a", {
+href: "#draft_pr",
+style: {
+textDecoration: 'none'
+},
+children: "Wrapping up the draft pull request"
+}), "\n"]
+}), "\n", _jsxs(_components.li, {
+children: ["\n", _jsx("a", {
+href: "#issue1",
+style: {
+textDecoration: 'none'
+},
+children: "Incorporating suggestions for STARA &amp;amp; its examples"
+}), "\n"]
+}), "\n", _jsxs(_components.li, {
+children: ["\n", _jsx("a", {
+href: "#fix_doc_fails",
+style: {
+textDecoration: 'none'
+},
+children: "Fixing the doc failures"
+}), "\n"]
+}), "\n", _jsxs(_components.li, {
+children: ["\n", _jsx("a", {
+href: "#first_meet",
+style: {
+textDecoration: 'none'
+},
+children: "First Meet with Mentors"
+}), "\n"]
+}), "\n"]
+}), "\n", _jsx("p", {
+children: "After completing my end-semester exams, I was overwhelmed by the outstanding tasks that I had let accumulate over time.\nIn order to address those, I tried resolving dependencies and package issues of the previous environments of\nsunpy &amp;amp; sunkit-image but, ultimately gave up and initialised a new environment. After discussions with mentors, the project priorities were clarified, allowing me to efficiently plan &amp;amp; complete my tasks during the community bonding period. What follows is the detailed account of all the tasks completed during these two weeks."
+}), "\n", _jsx("h2", {
+id: "issue1",
+children: "Incorporating suggestions for Sunspot Tracking and Recognition Algorithm (STARA)"
+}), "\n", _jsx("p", {
+children: "Incorporated suggestions and made several changes to the STARA example. Attempted to create a mock HMI continuum data with an artificial \"sunspot\" at a chosen location with a certain radius. But it did not meet the exact requirements of the STARA, hence no regions could be identified. The written mock hmi map are demonstrated below,"
+}), "\n", _jsxs("figure", {
+style: {
+display: 'flex',
+flexDirection: 'row',
+alignItems: 'center'
+},
+children: [_jsx("img", {
+src: "/images/mock_wo.png",
+width: "400",
+height: "400",
+style: {
+margin: '0 auto'
+}
+}), _jsx("img", {
+src: "/images/mock_withspot.png",
+width: "400",
+height: "400",
+style: {
+margin: '0 auto'
+}
+})]
+}), "\n", _jsxs("p", {
+children: ["Discussed alternative approaches with mentor Nabil regarding the mock HMI map. According to his suggestion I tried the HMI continuum test data present in ", _jsx(_components.code, {
+children: "sunpy/data/test"
+}), " directory, but it had some issues with the WCS hence STARA couldn't properly find the sunspot regions."]
+}), "\n", _jsx("h2", {
+id: "draft_pr",
+children: "Wrapping up the draft pull request"
+}), "\n", "\n", "\n", _jsx("p", {
+children: "I began working on the transformation of a vector field some time ago but encountered challenges in validating the approach. Using Astropy for the transformation confirmed the accuracy of the function I wrote. The next step is to seek feedback from mentors and the SunPy community. But I still feel a need to test this more rigorously which can validate that this would work with different frames too. I studied about different frames provided by the SPICE toolkit and tried to match the sunpy frames and the SPICE frames and have confirmed that the fucntion works with the static frames."
+}), "\n", _jsx("h2", {
+id: "fix_doc_fails",
+children: "Fixing the doc failures"
+}), "\n", "\n", "\n", _jsx("p", {
+children: "Two out of my three open pull requests encountered documentation failures due to incorrect referencing of functions or modules, or example galleries. After studying the conventions of Sphinx and SunPy, I resolved these issues. Additionally, I discovered how to set up GitHub CI actions on my forks. "
+}), "\n", _jsx("h2", {
+id: "first_meet",
+children: "First Meet with Mentors"
+}), "\n", "\n", "\n", _jsx("p", {
+children: "In our initial meeting, my mentor Will provided a brief overview of the purpose of sunkit-image, emphasizing its primary function: coalignment. He explained the fundamental concepts of coalignment, user expectations, and desired functionalities of the new API. We also reviewed the current coalignment API's shortcomings. We agreed that an improved API was necessary and discussed my proposed structure for this enhancement. We also drafted a plan for the entire rethinking and redesigning the new api over the span of 4 weeks"
+})]
+});
+}
+function MDXContent(props = {}) {
+const {wrapper: MDXLayout} = Object.assign({}, _provideComponents(), props.components);
+return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
+children: _jsx(_createMdxContent, props)
+})) : _createMdxContent(props);
+}
+return {
+default: MDXContent
+};&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240525_0000_deus1704/</guid><pubDate>Fri, 24 May 2024 23:00:00 GMT</pubDate></item><item><title>Venturing Forward : Test Post</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_1347_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;Stay posted for future updates :).
 &lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_1347_viciouseagle03/</guid><pubDate>Thu, 16 May 2024 12:47:06 GMT</pubDate></item><item><title>About Me</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_0000_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;I am a second-year undergraduate student at the Indian Institute of Technology, Roorkee, majoring in Mathematics and Computing.
 How is the blog made? The blog is created using Hugo, a static site generator, and it’s styled with the hugo-paper theme.
 Contact Information Reach me at piyushsharma04321@gmail.com
@@ -323,73 +450,4 @@ In the current &lt;code&gt;scraper._check_timerange()&lt;/code&gt;, it takes the
 &lt;/h2&gt;&lt;p&gt;Cover why the rest of tests are breaking and fix em.
 Ask for review once everything works.
 Try to come up with a way to write parse-patterns so as the length remains less by trying to minimize repeated values.
-Also fix my Hugo setup before the night -_-&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</guid><pubDate>Fri, 30 Jun 2023 00:33:30 GMT</pubDate></item><item><title>Into the Summer of Code</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;I had my end-semester exams during the Community Bonding Period and the real-early part of the Coding Period. However, my mentors were super-accomodating.
-I spent a few days on plans with friends before bidding goodbye for the summers, travelling home and relaxing a bit.&lt;/p&gt;
-&lt;h3 id="the-talk"&gt;The Talk
-&lt;!-- TEASER_END --&gt;
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#the-talk"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h3&gt;&lt;p&gt;This was also the time when IIT BHU reached out to me for a talk as part of a collab between their Astronomy and Open-Source clubs about Astronomy in tech and OSS. This was a  g r e a t  experience! I’ve always wanted to improve at public-speaking stuff and to finally pull off a satisfactory talk was a great experience. Also Prayash was a great host.&lt;/p&gt;
-&lt;h3 id="beginning-with-the-project"&gt;Beginning with the Project
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#beginning-with-the-project"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h3&gt;&lt;p&gt;My mentor, Nabil, had asked me to start by writing tests for the scraper, even if they may not return a -ve)for all the URLs it doesn’t support now.
-Looking closely though, all the issues were due to limitations of the way regex is implemented for inputting URLs, i.e. since one of the main goals of the project was to remove regex and use parse instead, these tests would have proven to be quite redundant. I asked my mentors and understandably so, Nabil said that he doesn’t want me working on code that I might have to remove soon enough and said I can proceed to the rest of the rewrite.&lt;/p&gt;
-&lt;p&gt;After that, I began reading up on what Metaclasses, Abstract Base Classes (ABCs), etc are, their advantages and how they can be implemented in python to decide which would be better for the purpose of the project. However, at this point I wasn’t really maintaining good communication with my mentors. When they asked me for any updates and then inquired about why I had been reading up on ABCs and such, they clarified that I should be able to improve the scraper without going that route.&lt;/p&gt;
-&lt;p&gt;Had to take a couple of days off in between for unavoidable reasons.&lt;/p&gt;
-&lt;p&gt;After that I took some calls with my mentors, clarifying details and trying to work things through together as I figured out what I should do next.
-All the scraper // dataretriever clients require two strings, &lt;code&gt;baseurl&lt;/code&gt; and &lt;code&gt;pattern&lt;/code&gt; and I figure out a way to merge them somehow.
-I looked into just what role the two of them had and found that &lt;code&gt;pattern&lt;/code&gt; was used only to parse data.
-For example, When writing scraper clients, we require a baseurl and a pattern, an example from the NOAA Client:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;baseurl &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; &lt;span style="color: #e6db74;"&gt;r&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;'ftp://ftp.ngdc.noaa.gov/STP/swpc_products/daily_reports/solar_region_summaries/%Y/%m/%Y%m&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;%d&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;SRS.txt'&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;pattern &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; &lt;span style="color: #e6db74;"&gt;'&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{year:4d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{month:2d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;/&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{year:4d}{month:2d}{day:2d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;SRS.txt'&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Instead of passing both, we should be able to merge them into just one since the pattern string is conveying information that is already available in the baseurl.&lt;/p&gt;
-&lt;p&gt;I figured it should be possible to transform &lt;code&gt;baseurl&lt;/code&gt; to &lt;code&gt;pattern&lt;/code&gt; and generate &lt;code&gt;pattern&lt;/code&gt; that way but halfway through I realised that it’d not be possible. However we should be able to convert a full &lt;code&gt;pattern&lt;/code&gt; to it’s &lt;code&gt;baseurl&lt;/code&gt; formatted counterpart.&lt;/p&gt;
-&lt;p&gt;I remember writing out loud what I thought as I approached that problem:&lt;/p&gt;
-&lt;h3 id="rubber-ducky-microblogging"&gt;rubber ducky microblogging?
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#rubber-ducky-microblogging"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h3&gt;&lt;p&gt;now how do we include this transformation in our code?
-we have mainly two places / files of concern.
-&lt;code&gt;dataretriever/client.py&lt;/code&gt; and &lt;code&gt;scraper.py&lt;/code&gt;
-at this point there are a couple of ways to go about it that come to my mind, all of them would however can be categorised as:
-a) include the transformation in dr/client.py
-b) include it in scraper.py&lt;/p&gt;
-&lt;p&gt;before i get ahead of myself, it’s better to arrive at a concrete decision here, if that’s possible, to avoid having too much of overhead.&lt;/p&gt;
-&lt;p&gt;case a:
-pattern transforms in client and is then sent to scraper. this means the scraper still operates on strftime baseurl.
-and when we want to call the parse function, instead of sending pattern as we do now, we can just send the original new format&lt;/p&gt;
-&lt;p&gt;case b:
-pass the new format to scraper. scraper converts it into strftime to use in all of its functions, and&lt;/p&gt;
-&lt;p&gt;the second approach makes more sense, yeah.&lt;/p&gt;
-&lt;p&gt;NOW
-what’d be a nice way to incorporate this transform in the scraper file?&lt;/p&gt;
-&lt;p&gt;So there have to be Two strings/patterns, throughout this codebase.
-the strftime kind and the parse kind.
-what we input is the parse kind (since we can convert this to strftime, and the other way around wasn’t possible)&lt;/p&gt;
-&lt;p&gt;how to incorporate both strings? make them both private members of the Scraper class?&lt;/p&gt;
-&lt;p&gt;some functions will be changed as a result of this&lt;/p&gt;
-&lt;p&gt;like _URL_followsPattern&lt;/p&gt;
-&lt;p&gt;okay so the plan of action is:
-go add a transform function, call it in init
-we’ll have a variable for the time_pattern, update pattern -&amp;gt; time_pattern wherever applicable.
-rewrite using parse wherever applicable&lt;/p&gt;
-&lt;p&gt;but this would take away from having a standard system and we’ll be defining our own set of names to name variables as.&lt;/p&gt;
-&lt;p&gt;also a future plan can be to check for redundant functions / moving code.&lt;/p&gt;
-&lt;h3 id="in-conclusion"&gt;in conclusion
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#in-conclusion"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h3&gt;&lt;p&gt;So as of right now, I’ve been working on &lt;a href="https://github.com/sunpy/sunpy/issues/7073"&gt;#7073&lt;/a&gt; and &lt;a href="https://github.com/sunpy/sunpy/pull/7077"&gt;PR #7077&lt;/a&gt;, more details on this issue and my proposed solution can be found in the issue description.&lt;/p&gt;
-&lt;p&gt;This’ll be all for now, will be posting more in the future.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0133_exitflynn/</guid><pubDate>Sat, 24 Jun 2023 00:33:30 GMT</pubDate></item></channel></rss>
+Also fix my Hugo setup before the night -_-&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</guid><pubDate>Fri, 30 Jun 2023 00:33:30 GMT</pubDate></item></channel></rss>

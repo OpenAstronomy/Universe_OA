@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 29 May 2024 01:03:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>First official day of GSOC</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240528_1120_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So 27th May was the first official day of GSOC when coding begins. I know I could have done more preparation but I am not too sad with the results. I was able to show my mentors a basic beginning of the layout. I am using the holoviz ecosystem to make the dashboard. The base is panel itself. &lt;br&gt;&lt;br&gt;I went through many of the tutorials and came to realise it is quite suitable to what we need from the dashboard. &lt;br&gt;&lt;br&gt;Doing this project is not say for example an extremely challenging or difficult problem/job. It's mostly a problem of consistency working on smaller issues and try to get hold of the bigger picture and be consistent in doing your work.&lt;br&gt;&lt;br&gt;I am excited to strive for the best and fulfil not only my mentors expectations but my own expectations with myself. &lt;br&gt; &lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 30 May 2024 01:00:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>First official day of GSOC</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240528_1120_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So 27th May was the first official day of GSOC when coding begins. I know I could have done more preparation but I am not too sad with the results. I was able to show my mentors a basic beginning of the layout. I am using the holoviz ecosystem to make the dashboard. The base is panel itself. &lt;br&gt;&lt;br&gt;I went through many of the tutorials and came to realise it is quite suitable to what we need from the dashboard. &lt;br&gt;&lt;br&gt;Doing this project is not say for example an extremely challenging or difficult problem/job. It's mostly a problem of consistency working on smaller issues and try to get hold of the bigger picture and be consistent in doing your work.&lt;br&gt;&lt;br&gt;I am excited to strive for the best and fulfil not only my mentors expectations but my own expectations with myself. &lt;br&gt; &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240528_1120_kartikmandar/</guid><pubDate>Tue, 28 May 2024 10:20:00 GMT</pubDate></item><item><title>Good start for the project</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;h3&gt;
 
 
@@ -185,7 +185,134 @@ Because the units set by `coord1_unit` or `coord2_unit` are incompatible with th
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</guid><pubDate>Mon, 27 May 2024 12:23:44 GMT</pubDate></item><item><title>Finally the env issue is resolved</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240526_0702_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; It was a frustrating experience, don't know what is wrong with conda and pip, they are like the wife and mistress who can't live together. But after a lot of tinkering I was just able to balance the environment with the perfect blend of dependencies. I can freely test out holoviz now.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240526_0702_kartikmandar/</guid><pubDate>Sun, 26 May 2024 06:02:00 GMT</pubDate></item><item><title>The problems in venv</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240524_0856_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So earlier during pre-gsoc period I had setup my environment in base itself and then just a few weeks back I shifted to python venv as the Hendrics dependencies were clashing with Stingray's. &lt;br&gt;After setting up the venv specifically for stingray so that I can test it's functions and API, I went on to explore the different libraries to plot the data we are generating. Holoviz seemed a good option and installation was a breeze but these packages were specifically in conda. As a result I was not able to access the packages from the venv at all, as it had its own conda environment to run from. Now I thought why not make a docker and work in base from there. &lt;/p&gt;
+&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240526_0702_kartikmandar/</guid><pubDate>Sun, 26 May 2024 06:02:00 GMT</pubDate></item><item><title>Blog 0: The First Two Weeks</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240525_0000_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;p&gt;/*@jsxRuntime automatic @jsxImportSource react*/
+const {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];
+const {useMDXComponents: _provideComponents} = arguments[0];
+&lt;!-- TEASER_END --&gt;
+function _createMdxContent(props) {
+const _components = Object.assign({
+hr: "hr",
+h2: "h2",
+a: "a",
+span: "span",
+ul: "ul",
+li: "li",
+code: "code"
+}, _provideComponents(), props.components);
+return _jsxs(_Fragment, {
+children: [_jsx(_components.hr, {}), "\n", _jsxs(_components.h2, {
+id: "title-blog-0-the-first-two-weeksdate-2024-05-25featured-description-a-summary-of-activities-completed-in-the-two-weeks-leading-up-to-the-start-of-the-coding-period",
+children: ["title: 'Blog 0: The First Two Weeks'\ndate: '2024-05-25'\nfeatured: ''\ndescription: 'A summary of activities completed in the two weeks leading up to the start of the coding period.'", _jsx(_components.a, {
+"aria-hidden": "true",
+tabIndex: "-1",
+href: "#title-blog-0-the-first-two-weeksdate-2024-05-25featured-description-a-summary-of-activities-completed-in-the-two-weeks-leading-up-to-the-start-of-the-coding-period",
+children: _jsx(_components.span, {
+className: "icon icon-link"
+})
+})]
+}), "\n", _jsxs(_components.h2, {
+id: "table-of-contents",
+children: ["Table of Contents", _jsx(_components.a, {
+"aria-hidden": "true",
+tabIndex: "-1",
+href: "#table-of-contents",
+children: _jsx(_components.span, {
+className: "icon icon-link"
+})
+})]
+}), "\n", _jsxs(_components.ul, {
+children: ["\n", _jsxs(_components.li, {
+children: ["\n", _jsx("a", {
+href: "#draft_pr",
+style: {
+textDecoration: 'none'
+},
+children: "Wrapping up the draft pull request"
+}), "\n"]
+}), "\n", _jsxs(_components.li, {
+children: ["\n", _jsx("a", {
+href: "#issue1",
+style: {
+textDecoration: 'none'
+},
+children: "Incorporating suggestions for STARA &amp;amp; its examples"
+}), "\n"]
+}), "\n", _jsxs(_components.li, {
+children: ["\n", _jsx("a", {
+href: "#fix_doc_fails",
+style: {
+textDecoration: 'none'
+},
+children: "Fixing the doc failures"
+}), "\n"]
+}), "\n", _jsxs(_components.li, {
+children: ["\n", _jsx("a", {
+href: "#first_meet",
+style: {
+textDecoration: 'none'
+},
+children: "First Meet with Mentors"
+}), "\n"]
+}), "\n"]
+}), "\n", _jsx("p", {
+children: "After completing my end-semester exams, I was overwhelmed by the outstanding tasks that I had let accumulate over time.\nIn order to address those, I tried resolving dependencies and package issues of the previous environments of\nsunpy &amp;amp; sunkit-image but, ultimately gave up and initialised a new environment. After discussions with mentors, the project priorities were clarified, allowing me to efficiently plan &amp;amp; complete my tasks during the community bonding period. What follows is the detailed account of all the tasks completed during these two weeks."
+}), "\n", _jsx("h2", {
+id: "issue1",
+children: "Incorporating suggestions for Sunspot Tracking and Recognition Algorithm (STARA)"
+}), "\n", _jsx("p", {
+children: "Incorporated suggestions and made several changes to the STARA example. Attempted to create a mock HMI continuum data with an artificial \"sunspot\" at a chosen location with a certain radius. But it did not meet the exact requirements of the STARA, hence no regions could be identified. The written mock hmi map are demonstrated below,"
+}), "\n", _jsxs("figure", {
+style: {
+display: 'flex',
+flexDirection: 'row',
+alignItems: 'center'
+},
+children: [_jsx("img", {
+src: "/images/mock_wo.png",
+width: "400",
+height: "400",
+style: {
+margin: '0 auto'
+}
+}), _jsx("img", {
+src: "/images/mock_withspot.png",
+width: "400",
+height: "400",
+style: {
+margin: '0 auto'
+}
+})]
+}), "\n", _jsxs("p", {
+children: ["Discussed alternative approaches with mentor Nabil regarding the mock HMI map. According to his suggestion I tried the HMI continuum test data present in ", _jsx(_components.code, {
+children: "sunpy/data/test"
+}), " directory, but it had some issues with the WCS hence STARA couldn't properly find the sunspot regions."]
+}), "\n", _jsx("h2", {
+id: "draft_pr",
+children: "Wrapping up the draft pull request"
+}), "\n", "\n", "\n", _jsx("p", {
+children: "I began working on the transformation of a vector field some time ago but encountered challenges in validating the approach. Using Astropy for the transformation confirmed the accuracy of the function I wrote. The next step is to seek feedback from mentors and the SunPy community. But I still feel a need to test this more rigorously which can validate that this would work with different frames too. I studied about different frames provided by the SPICE toolkit and tried to match the sunpy frames and the SPICE frames and have confirmed that the fucntion works with the static frames."
+}), "\n", _jsx("h2", {
+id: "fix_doc_fails",
+children: "Fixing the doc failures"
+}), "\n", "\n", "\n", _jsx("p", {
+children: "Two out of my three open pull requests encountered documentation failures due to incorrect referencing of functions or modules, or example galleries. After studying the conventions of Sphinx and SunPy, I resolved these issues. Additionally, I discovered how to set up GitHub CI actions on my forks. "
+}), "\n", _jsx("h2", {
+id: "first_meet",
+children: "First Meet with Mentors"
+}), "\n", "\n", "\n", _jsx("p", {
+children: "In our initial meeting, my mentor Will provided a brief overview of the purpose of sunkit-image, emphasizing its primary function: coalignment. He explained the fundamental concepts of coalignment, user expectations, and desired functionalities of the new API. We also reviewed the current coalignment API's shortcomings. We agreed that an improved API was necessary and discussed my proposed structure for this enhancement. We also drafted a plan for the entire rethinking and redesigning the new api over the span of 4 weeks"
+})]
+});
+}
+function MDXContent(props = {}) {
+const {wrapper: MDXLayout} = Object.assign({}, _provideComponents(), props.components);
+return MDXLayout ? _jsx(MDXLayout, Object.assign({}, props, {
+children: _jsx(_createMdxContent, props)
+})) : _createMdxContent(props);
+}
+return {
+default: MDXContent
+};&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240525_0000_deus1704/</guid><pubDate>Fri, 24 May 2024 23:00:00 GMT</pubDate></item><item><title>The problems in venv</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240524_0856_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So earlier during pre-gsoc period I had setup my environment in base itself and then just a few weeks back I shifted to python venv as the Hendrics dependencies were clashing with Stingray's. &lt;br&gt;After setting up the venv specifically for stingray so that I can test it's functions and API, I went on to explore the different libraries to plot the data we are generating. Holoviz seemed a good option and installation was a breeze but these packages were specifically in conda. As a result I was not able to access the packages from the venv at all, as it had its own conda environment to run from. Now I thought why not make a docker and work in base from there. &lt;/p&gt;
 &lt;p&gt;But I came to the conclusion that it's an overkill solution and would be too much of a hassle. Later on,  I went on to make a fresh conda environment for stingray too and currently am in this process.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240524_0856_kartikmandar/</guid><pubDate>Fri, 24 May 2024 07:56:00 GMT</pubDate></item><item><title>Things are moving good....</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240522_0626_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So it's been a week of meeting and discovering the idea of the project. I have done some reading to know what science is going behind stingray. Now comes the part of implementation. How do you connect everything in a dashboard and make it fluid and interactive. Of course there are tool and libraries for this, but the main question is how do you make this sustainable?&lt;br&gt;&lt;br&gt;Holoviz is one of the options I am considering to go with!! Let's see how it goes.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240522_0626_kartikmandar/</guid><pubDate>Wed, 22 May 2024 05:26:00 GMT</pubDate></item><item><title>Venturing Forward : Test Post</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_1347_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;Stay posted for future updates :).
@@ -197,5 +324,4 @@ Contact Information Reach me at piyushsharma04321@gmail.com
 &lt;p&gt;So I had to go to a hospital and get some blood tests done because I went to some online consultation. For anyone reading this. Don't use practo man..&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 &lt;p&gt;Moving on my weekend was quite unproductive but I am much better today and will do my best to stay healthy from now on.&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240514_0724_kartikmandar/</guid><pubDate>Tue, 14 May 2024 06:24:00 GMT</pubDate></item><item><title>The trial post</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240514_0000_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;p&gt;To code or debug that is the question
-&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240514_0000_deus1704/</guid><pubDate>Mon, 13 May 2024 23:00:00 GMT</pubDate></item><item><title>Test</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240512_2019_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;This is a test post to see if RSS works.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240512_2019_ahmedhosssam/</guid><pubDate>Sun, 12 May 2024 19:19:12 GMT</pubDate></item></channel></rss>
+&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240514_0000_deus1704/</guid><pubDate>Mon, 13 May 2024 23:00:00 GMT</pubDate></item></channel></rss>
