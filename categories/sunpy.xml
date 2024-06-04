@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 03 Jun 2024 01:01:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Good start for the project</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 04 Jun 2024 01:01:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A Great Start to GSoC with SunPy</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240602_0915_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;p&gt;Hello, everyone! My name is Manit Singh, and I’m thrilled to share my journey as a participant in Google Summer of Code (GSoC) with SunPy. Getting selected for this prestigious program has been a significant milestone in my career, and I am excited to contribute to the Enhancing SOAR Metadata project.&lt;/p&gt;
+&lt;h4&gt;Community Bonding Period&lt;/h4&gt;&lt;h4&gt;Introduction to the Community Bonding Period&lt;/h4&gt;&lt;p&gt;The community bonding period was an essential phase where I got to know my mentors, understand the project’s goals in-depth, and prepare for the coding period.&lt;/p&gt;
+&lt;h4&gt;Meetings and Discussions&lt;/h4&gt;&lt;p&gt;During this period, I had several meetings and discussions with my mentors and community members. These interactions were crucial for:&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;ul&gt;&lt;li&gt;Understanding the Project Goals: The project aims to increase the scope of SOAR data in sunpy-soar.&lt;/li&gt;&lt;li&gt;Clarifying Initial Approaches: My initial approach was to implement wavelength and detector first, and then discuss the implementation of the next set of metadata.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;From these initial discussions, we concluded that the Detector should be implemented first, after creating methods to support the joining of instrument and data tables (i.e., v_&amp;lt;instrument&amp;gt;_&amp;lt;ll/sc&amp;gt;_fits and v_&amp;lt;ll/sc&amp;gt;_data_item).&lt;/p&gt;
+&lt;h4&gt;First Coding Week: Implementing the Detector in the SOAR Project&lt;/h4&gt;&lt;h4&gt;Objectives&lt;/h4&gt;&lt;p&gt;The primary objective for the first week was to add methods to support querying data involving instrument and data tables both and implement the detector component in the SOAR project. Although the detector is part of the SOAR product, my mentors suggested that there are many people who might still want to query over the detector.&lt;/p&gt;
+&lt;h4&gt;Implementation Details&lt;/h4&gt;&lt;p&gt;As discussed in the meetings held during the community bonding period, I worked on constructing methods to enable joining two different tables. Initially, it all looked very messy, but with time and refactoring, a quite simple join constructing method was created.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Implementing Detector: Similar to how other metadata in the sunpy.net attribute system was implemented, I implemented the Detector. The only major difference was taking data from two tables and joining them.&lt;/li&gt;&lt;li&gt;Testing: I added tests to ensure that the construct method designed for joining tables could give the desired query outputs and that the detector was working fine for instruments with multiple dimensional data. (which depends on the dimensional index).&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;Challenges and Solutions&lt;/h4&gt;&lt;h5&gt;Different Dimension Index for instruments:&lt;/h5&gt;&lt;p&gt;Instruments collect a wide variety of data types that can be multidimensional. For example, for SPICE, there are 4 dimensions, resulting in 4 similar rows of data, one for each dimension. This could be confusing for the user unless the dimension index is also shown in a column. For the STIX instrument, there are 0 dimensions, meaning it does not have any detector column in its instrument fits table. For other remote sensing instruments, there are 2 dimensions.&lt;/p&gt;
+&lt;p&gt;Solution:&lt;/p&gt;
+&lt;pre&gt;# As there are no dimensions in STIX, the dimension index need not be included in the query for STIX.&lt;br&gt;if "stx" not in instrument_table:&lt;br&gt;# To avoid duplicate rows in the output table, the dimension index is set to 1.&lt;br&gt;final_query += "h2.dimension_index='1'+AND+"&lt;/pre&gt;&lt;p&gt;In the construct methods of the ADQL query I added dimension_index to be taken 1 by default for all instruments other than STIX, this results in no repetition of data.&lt;br&gt;For STIX instrument, since there are no dimension it just works simply okay without taking any dimension in the join query constructed after construct methods&lt;/p&gt;
+&lt;h4&gt;Outcomes&lt;/h4&gt;&lt;p&gt;code:&lt;/p&gt;
+&lt;pre&gt;instrument = a.Instrument("METIS")&lt;br&gt;time = a.Time("2022-06-02 0:00","2022-06-02 1:00")&lt;br&gt;level = a.Level(2)&lt;br&gt;detector=a.Detector("VLD")&lt;/pre&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ek6niIkxBvp0a6AqSrAivw.png"&gt;&lt;/figure&gt;&lt;p&gt;By the end of the first week, the detector component was successfully implemented in sunpy-soar. The pull request is currently awaiting review from all the mentors to ensure any discrepancies in the implementation are addressed and to gather additional insights. :)&lt;/p&gt;
+&lt;h4&gt;Conclusion&lt;/h4&gt;&lt;p&gt;The journey so far has been incredibly enriching. The support from my mentors and the community has been invaluable. I am looking forward to the upcoming weeks and continuing to contribute to the SOAR project.&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=c0fa3bca6157" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240602_0915_nucleongodx/</guid><pubDate>Sun, 02 Jun 2024 08:15:15 GMT</pubDate></item><item><title>Good start for the project</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;h3&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -371,83 +384,4 @@ I also added documentation about writing the new patterns.&lt;/p&gt;
 &lt;/span&gt;
 &lt;/h2&gt;&lt;p&gt;I’ll keep on working on these new tests, while analysing both the scraper and related parts of the codebase outside for functions to rewrite, remove and/or move at the same time.
 I also realised we’ll be needing new documentation about how to write the new parse-style patterns.&lt;/p&gt;
-&lt;p&gt;That is all so far, until next time!&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230714_0533_exitflynn/</guid><pubDate>Fri, 14 Jul 2023 04:33:30 GMT</pubDate></item><item><title>Scraper Things</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;Most of the week was spent rewriting the Scraper functions to go with the new parse-pattern and then looking for edge cases in the new implementations, fixing bugs and updating tests.&lt;/p&gt;
-&lt;h2 id="catching-up"&gt;{{Catching up}}
-&lt;span&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#catching-up"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;In the scraper, while trying to merge &lt;code&gt;baseurl&lt;/code&gt; (an strftime formatted pattern i.e.&lt;code&gt; %Y%m&lt;/code&gt; etc) and &lt;code&gt;pattern&lt;/code&gt; (parse formatted pattern i.e. &lt;code&gt;{year:4d}{month:2d}&lt;/code&gt; etc), I faced two choices, we could either:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Make the input all parse-style formatted. generate the datetime-compatible string from here wherever it is required, however the problem i was running into here is parse-stuff like &lt;code&gt;{year:2d}&lt;/code&gt; will collide with &lt;code&gt;{instrument}&lt;/code&gt; like placeholders on which we mean to call &lt;code&gt;.format(**kwargs)&lt;/code&gt; on. All the ways I could think of pulling it off included adding a large no. of lines of code in the really early part of &lt;code&gt;__init__()&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Make the input all datetime formatted and generate the parse pattern from here. The problem with this is there are edge-cases when sometimes users define variables like &lt;code&gt;{Level:1d}&lt;/code&gt; which we have no way of knowing beforehand. One way to go about this could’ve been that we tell the user to define a pattern string in addition to baseurl whenever they have any new variables like that.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;We ended up going with the first. My mentor, &lt;a href="https://github.com/Nabobalis"&gt;Nabil&lt;/a&gt; introduced me to how there’s a prevalence of using double-curly brackets in places where we need to escape / use them with single curly brackets, and sure enough, the &lt;code&gt;parse&lt;/code&gt; module supports that. So that took care of the problem there, I was mostly a bit concerned that I’ll have to go back to the second way even though I had started with it before pivoting to the first one.&lt;/p&gt;
-&lt;h2 id="communication"&gt;Communication
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#communication"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;Nabil pointed out that we weren’t being very good at communicating and that has a negative effect on the project which lead me to change how I was approaching it.&lt;/p&gt;
-&lt;p&gt;A lot of times I was debugging things by including print statements here and there, and since my project now involves changing API it had me updating tests and a lot of these times the problem would just be in my understanding on how to convert the patterns and just how the new input should look like. Previously, I would only send a message on the matrix room when I had a question. And most of the times I’d still hold out hope for solving something by myself when I have the strength to pick it up later. But it also makes sense because there’d be no way to differentiate that from me not doing anything. Also around 75% of the time I’ve drafted out questions, I found out an answer along the way. From now on I realise instead of just asking questions, I should think of it as a logging / progress-updating activity first which sounds obvious in hindsight.&lt;/p&gt;
-&lt;h2 id="to-regex-or-not-to-regex"&gt;To regex or not to regex
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#to-regex-or-not-to-regex"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;The next part where I was stuck at was in converting a pattern that involved custom placeholders like &lt;code&gt;{{CAR_ROT:4d}}&lt;/code&gt; or &lt;code&gt;{{:3d}}&lt;/code&gt; to their regex counterparts like  &lt;code&gt;(\d){3}&lt;/code&gt;, &lt;code&gt;(\d){16}&lt;/code&gt; etc without using like a l o t of regex, any less complex method than using a conversion function etc. However, after a quick conversation with the mentors and I realised that I had been mistakenly assuming that strftime required regex patterns. Earlier I thought that regex would no longer be part of the end-user experience but still somehow exist in the codebase but this is when I realised that we can entirely do away with it.&lt;/p&gt;
-&lt;h2 id="rewrite-then-remove-"&gt;Rewrite then Remove? 💀
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#rewrite-then-remove-"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;I also realised that the &lt;code&gt;_extractDateURL()&lt;/code&gt; function was made redundant &lt;em&gt;after&lt;/em&gt; rewriting it since I found out later that it was only called at one place and that part of the code was no longer required thanks to the existence of a parse-pattern. That’s a nice message to keep in mind for the future.&lt;/p&gt;
-&lt;h2 id="modern-day-cain"&gt;Modern Day Cain
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#modern-day-cain"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;Another question I encountered was if we could assume that any {year:2d} or %y type 2-digit year xx to be interpreted to be in the 21st century like 20xx or not.&lt;/p&gt;
-&lt;h2 id="issue-found"&gt;Issue found
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#issue-found"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;I also found this bug in the codebase:
-In the current &lt;code&gt;scraper._check_timerange()&lt;/code&gt;, it takes the simpler way &lt;code&gt;if&lt;/code&gt; we provide it with an extractor // parse-pattern and a more complex way if we don’t, however as it is implemented right now&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;&lt;span style="color: #f92672;"&gt;from&lt;/span&gt; sunpy.net.scraper &lt;span style="color: #f92672;"&gt;import&lt;/span&gt; Scraper
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;&lt;span style="color: #f92672;"&gt;from&lt;/span&gt; sunpy.time &lt;span style="color: #f92672;"&gt;import&lt;/span&gt; TimeRange
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;s &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; Scraper(&lt;span style="color: #e6db74;"&gt;'%Y.fits'&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;s&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;_check_timerange(&lt;span style="color: #e6db74;"&gt;'2014.fits'&lt;/span&gt;, TimeRange(&lt;span style="color: #e6db74;"&gt;"2015-01-01"&lt;/span&gt;, &lt;span style="color: #e6db74;"&gt;"2015-01-02"&lt;/span&gt;))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;would return True and it is intended that way in the tests but if we passed it an extractor // parse pattern&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;s&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;extractor &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; &lt;span style="color: #e6db74;"&gt;"&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;{year:4d}&lt;/span&gt;&lt;span style="color: #e6db74;"&gt;.fits"&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;s&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;_check_timerange(&lt;span style="color: #e6db74;"&gt;'2014.fits'&lt;/span&gt;, TimeRange(&lt;span style="color: #e6db74;"&gt;"2015-01-01"&lt;/span&gt;, &lt;span style="color: #e6db74;"&gt;"2015-01-02"&lt;/span&gt;))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;it’d return False.&lt;/p&gt;
-&lt;h2 id="inclusivity-is-important"&gt;Inclusivity is important
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#inclusivity-is-important"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;Failing tests required me to inqure if we want closed-intervals in the package or open, which concluded with closed. I also found other instances in the codebase where we endorse closed intervals.&lt;/p&gt;
-&lt;h2 id="future-steps"&gt;Future steps
-&lt;span&gt;
-&lt;a href="https://exitflynn.github.io/blog/tags/gsoc/index.xml#future-steps"&gt;
-&lt;svg height="100%" viewbox="0 0 28 23" width="19" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"&gt;&lt;/path&gt;&lt;/path&gt;&lt;/svg&gt;
-&lt;/a&gt;
-&lt;/span&gt;
-&lt;/h2&gt;&lt;p&gt;Cover why the rest of tests are breaking and fix em.
-Ask for review once everything works.
-Try to come up with a way to write parse-patterns so as the length remains less by trying to minimize repeated values.
-Also fix my Hugo setup before the night -_-&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230630_0133_exitflynn/</guid><pubDate>Fri, 30 Jun 2023 00:33:30 GMT</pubDate></item></channel></rss>
+&lt;p&gt;That is all so far, until next time!&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230714_0533_exitflynn/</guid><pubDate>Fri, 14 Jul 2023 04:33:30 GMT</pubDate></item></channel></rss>
