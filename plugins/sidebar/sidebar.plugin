@@ -1,3 +1,6 @@
+[Nikola]
+PluginCategory = ConfigPlugin
+
 [Core]
 Name = sidebar
 Module = sidebar
