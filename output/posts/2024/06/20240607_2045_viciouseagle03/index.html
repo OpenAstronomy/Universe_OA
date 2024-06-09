@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Community Bonding and Week 01 Progress | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2024/06/20240607_2045_viciouseagle03/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="ViciousEagle03">
+<link rel="prev" href="../20240607_1649_kartikmandar/" title="Correcting my schedule" type="text/html">
+<link rel="next" href="../20240609_0000_deadspheroid/" title="OpenCL, meet the Gnuastro Build System" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Community Bonding and Week 01 Progress">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2024/06/20240607_2045_viciouseagle03/">
+<meta property="og:description" content="This post documents the planning of the project, my learnings during the community bonding period, and the tasks I completed in my first week.
+Community Bonding Period
+After the euphoria of being acce">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-06-07T20:45:27+01:00">
+<meta property="article:tag" content="SunPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://dev.to/ahmedhosssam" data-toggle="tooltip" data-placement="top" title="2024-05-27 13:23:44+01:00">
+                    Ahmed Hossam
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://deadspheroid.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-09 00:00:00+01:00">
+                    DeadSpheroid
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://deus1704.vercel.app" data-toggle="tooltip" data-placement="top" title="2024-05-25 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Deus1704
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://gsoc2024.kartikmandar.com" data-toggle="tooltip" data-placement="top" title="2024-06-07 16:49:00+01:00">
+                    Kartik Mandar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@manitsingh018" data-toggle="tooltip" data-placement="top" title="2024-06-02 09:15:15+01:00">
+                    Manit Singh
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://viciouseagle03.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-07 20:45:27+01:00">
+                    ViciousEagle03
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Community Bonding and Week 01 Progress</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/viciouseagle03/">ViciousEagle03</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2024-06-07T20:45:27+01:00" itemprop="datePublished" title="2024-06-07 20:45">2024-06-07 20:45</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://viciouseagle03.github.io/post/community-bonding-and-week-01/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>This post documents the planning of the project, my learnings during the community bonding period, and the tasks I completed in my first week.</p>
+<h3 id="community-bonding-period">Community Bonding Period</h3>
+<p>After the euphoria of being accepted into GSoC faded, it was time for setting up my workspace and diving back into the codebase after a month. Planning out the project was key, and meeting with my mentors was a big part of that. I was excited for this chat because the mentors had been super helpful and easy to reach during the proposal stage.</p>
+<!-- TEASER_END -->
+<h3 id="setting-the-stage-mentor-meet-up-and-project-planning">Setting the Stage: Mentor Meet-Up and Project Planning</h3>
+<p>During the meet-up, we discussed about the best approach to kick-start the development process. It was mostly the mentors discussing about the possible roadmap and as they outlined the project roadmap, I listened carefully, taking notes on important discussions. One of the key decision was to set up clear communication channels and workflows to make sure we all stay on the same page and to ensure I do not vary off of the project or get stuck in a deadend.</p>
+<p>Additionally, we agreed to use GitHub projects for project management, making it easier to keep track of tasks and monitor progress. You can check out the GitHub project here: <a href="https://github.com/orgs/sunpy/projects/12/views/1"><strong>Github Project</strong></a></p>
+<p>Apart from discussing the project proceedings, I was also tasked with setting up a blog website to document my GSoC journey and share updates with the community. I decided to use Hugo to create the blog website and deployed it through GitHub pages. Additionally, I was asked to share the RSS feed of my blog to ensure that project updates are easily accessible to everyone.</p>
+<p><img alt="" src="https://viciouseagle03.github.io/images/tasks.png"></p>
+<hr>
+<h2 id="week-01-first-coding-week">Week [01]: First Coding Week</h2>
+<h3 id="a-brief-overview-about-my-project">A brief overview about my project</h3>
+<p>My projects aims to enable the storage and retrieval of NDCube objects using the ASDF file format. Currently, ndcube lacks native support for saving NDCube objects to files and loading them back, limiting its usability. To address this, the project will implement convertors and schema definitions for NDCube objects and related classes ensuring robust serialization and deserialiazation. The first phase of my project requires the complete imlementation of serialization of an <strong>ndcube.NDCube</strong> object when <code>.data</code> is a numpy array and <code>.wcs</code> is a <strong>gwcs.WCS object</strong>.</p>
+<h3 id="the-prototype">The Prototype</h3>
+<p>In our meeting, we discussed the initial steps, which centered around laying the groundwork for serialization support for the NDCube object, particularly focusing on establishing basic functionality. This included implementing the convertor class, registering the convertors as ASDF extensions, and ensuring they were readily available via entry points. Getting a good grasp of the whole serialization process took some dedicated reading through the ASDF docs 🧐.</p>
+<ul>
+<li>
+<p>Convertor Class: I implemented the convertor class, including the <code>to_yaml_tree</code> and <code>from_yaml_tree</code> methods. The former converts NDCube object attributes into a single node object suitable for serialization. Now, here’s the super cool part the <code>.wcs</code> attribute of the NDCube object, being a complex object, is accommodated within the node, as the node is permitted to contain nested complex objects.
+<em>Viola!</em> , so I was able to leverage the existing convertor for GWCS objects which made the process somewhat less complicated. The latter method is exactly the opposite, it accepts a single node object from parsed YAML and returns the corresponding NDCube object.</p>
+</li>
+<li>
+<p>Schema and Manifests: The Schema was designed to validate the presence, and the datatype of the validator properties for the NDCube object. The manifest was implemented for acheiving the resource mapping of the schema.</p>
+</li>
+<li>
+<p>ASDF Integration: In entry_point.py, I’ve implemented get_resource_mapping to retrieve mappings for schema and manifest files, required for ASDF file validation and identifying NDCube objects and the get_extension is implemented to retrieve extensions , here the extension through which the ndcube convertor was registered</p>
+</li>
+</ul>
+<h3 id="code-demonstration">Code Demonstration</h3>
+<h4 id="ndcube-initialised-with-gwcswcs-object-as-its-wcs-attribute">NDCube initialised with gwcs.WCS object as its ‘.wcs’ attribute</h4>
+<blockquote>
+</blockquote>
+<pre><code>import numpy as np
+import asdf
+from astropy.time import Time
+from ndcube import NDCube
+from ndcube.extra_coords import QuantityTableCoordinate, TimeTableCoordinate
+import astropy.units as u
+
+
+energy = np.arange(10) * u.keV
+time = Time('2020-01-01 00:00:00') + np.arange(10) * u.s
+energy_coord = QuantityTableCoordinate(energy, names='energy', physical_types='em.energy')
+time_coord = TimeTableCoordinate(time, names='time', physical_types='time')
+
+# Initialize the GWCS object
+wcs = (time_coord &amp; energy_coord).wcs
+data = np.random.rand(len(time), len(energy))
+
+# Initialize the NDCube
+ndcube = NDCube(data, wcs=wcs)
+
+with asdf.AsdfFile() as af:
+af.tree['ndcube'] = ndcube
+af.write_to('ndcube.asdf')
+</code></pre>
+<h4 id="serialized-asdf-file">Serialized ASDF File</h4>
+<pre tabindex="0"><code>#ASDF 1.0.0
+#ASDF_STANDARD 1.5.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/
+--- !core/asdf-1.1.0
+asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
+name: asdf, version: 3.0.1}
+history:
+extensions:
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://asdf-format.org/core/extensions/core-1.5.0
+software: !core/software-1.0.0 {name: asdf, version: 3.0.1}
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://sunpy.org/extensions/ndcube-0.1.0
+software: !core/software-1.0.0 {name: ndcube, version: 2.3.dev224+g04409b5.d20240605}
+- !core/extension_metadata-1.0.0
+extension_class: asdf_astropy._manifest.CompoundManifestExtension
+extension_uri: asdf://astropy.org/core/extensions/core-1.5.0
+software: !core/software-1.0.0 {name: asdf-astropy, version: 0.5.0}
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://asdf-format.org/transform/extensions/transform-1.5.0
+software: !core/software-1.0.0 {name: asdf-astropy, version: 0.5.0}
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://asdf-format.org/astronomy/gwcs/extensions/gwcs-1.2.0
+software: !core/software-1.0.0 {name: gwcs, version: 0.20.0}
+ndcube: &amp;id001 !&lt;tag:sunpy.org:ndcube/ndcube/NDCube-0.1.0&gt;
+data: !core/ndarray-1.0.0
+source: 0
+datatype: float64
+byteorder: little
+shape: [10, 10]
+extra_coords: !&lt;tag:sunpy.org:ndcube/extra_coords/extra_coords/ExtraCoords-0.1.0&gt;
+dropped_tables: []
+ndcube: *id001
+wcs: !&lt;tag:stsci.edu:gwcs/wcs-1.2.0&gt;
+name: ''
+pixel_shape: null
+steps:
+- !&lt;tag:stsci.edu:gwcs/step-1.1.0&gt;
+frame: !&lt;tag:stsci.edu:gwcs/frame-1.0.0&gt;
+axes_names: ['', '']
+axes_order: [0, 1]
+axes_type: [PIXEL, PIXEL]
+axis_physical_types: ['custom:PIXEL', 'custom:PIXEL']
+name: PixelFrame
+naxes: 2
+unit: [!unit/unit-1.0.0 pixel, !unit/unit-1.0.0 pixel]
+transform: !transform/concatenate-1.2.0
+forward:
+- !transform/tabular-1.2.0
+bounds_error: false
+fill_value: .nan
+inputs: [x]
+lookup_table: !unit/quantity-1.1.0
+unit: !unit/unit-1.0.0 s
+value: !core/ndarray-1.0.0
+source: 1
+datatype: float64
+byteorder: little
+shape: [10]
+method: linear
+outputs: [y]
+points:
+- !unit/quantity-1.1.0
+unit: !unit/unit-1.0.0 pixel
+value: !core/ndarray-1.0.0
+source: 2
+datatype: float64
+byteorder: little
+shape: [10]
+- !transform/tabular-1.2.0
+bounds_error: false
+fill_value: .nan
+inputs: [x]
+lookup_table: !unit/quantity-1.1.0
+unit: !unit/unit-1.0.0 keV
+value: !core/ndarray-1.0.0
+source: 3
+datatype: float64
+byteorder: little
+shape: [10]
+method: linear
+outputs: [y]
+points:
+- !unit/quantity-1.1.0
+unit: !unit/unit-1.0.0 pixel
+value: !core/ndarray-1.0.0
+source: 4
+datatype: float64
+byteorder: little
+shape: [10]
+inputs: [x0, x1]
+outputs: [y0, y1]
+- !&lt;tag:stsci.edu:gwcs/step-1.1.0&gt;
+frame: !&lt;tag:stsci.edu:gwcs/composite_frame-1.0.0&gt;
+frames:
+- !&lt;tag:stsci.edu:gwcs/temporal_frame-1.0.0&gt;
+axes_names: [time]
+axes_order: [0]
+axis_physical_types: [time]
+name: TemporalFrame
+reference_frame: !time/time-1.1.0 2020-01-01 00:00:00.000
+unit: [!unit/unit-1.0.0 s]
+- !&lt;tag:stsci.edu:gwcs/frame-1.0.0&gt;
+axes_names: [energy]
+axes_order: [1]
+axes_type: [CUSTOM]
+axis_physical_types: [em.energy]
+name: CoordinateFrame
+naxes: 1
+unit: [!unit/unit-1.0.0 keV]
+name: CompositeFrame
+transform: null
+...
+�BLK0 [TY*ߝ��R�4p}Q����?��#���?ȩȏ��?���#��?��ҩ��?*B��y�?ʱ�tv��?������?�fEp�X�?k1^}��?=���A�?�]����?
+�֜���?���H�?��)9�?{juoPW�?p�:����?0�T9��?w�A��?pWݫ  %�?�K#)cB�?�uv����?V‹����?���^�.�?��2���?���eQ�?^߁}���?�$6mwp�?�&amp;�"��?N�;�[�?4�؅J3�?
+����?=&gt;��ܨ?��#%�?J6F=s��?E��}.�?°���
+�?����Qa�?;��0�?vM���?q��ǖ'�?�&lt;5��?G]�X�?��.���?��ɐ?�?j��G�L�?&lt;��&amp;��?��q];I?�̱���?X�Dt�v�?Pҧ���?0�=�E��?����?O&gt;&gt;tGj?D.���#�?p�N����?,$�V)��?j��xƦ�?�v�h�?�"�
+�p�?7S�0�?���ۢ`�?8YI�yְ?"E��o��?J�G�8�?�W�����?����ـ�?t���o�?sg���?h�Ȝ���?�)�=g�?e/B/�?�2�;�?�~�xT��?s�S���?t�|1.��?�n��ʳ?��/�؛�?jd����?�oB���?Lz09��?�����?��ga��?`������?���kW��?���P7�?�|�F@�?Oq���?d���$�?&gt;�e�~�?�t�(�?�Ԓ���?&lt;�P����?���a�?�Q΢���?����?Ѳ�#[[�?� �^�X�?jC�����?�mJA��?�BLK0PPP?�N��{I�?N"F98��?`������? @�     @h�����@ @������@x�����@"@�BLK0PPP�����Z
+�η~�ZH�?@@@@@@ @"@�BLK0PPP�����Z
+�η~�ZH�?@@@@@@ @"@�BLK0PPP�����Z
+�η~�ZH�?@@@@@@ @"@#ASDF BLOCK INDEX
+%YAML 1.1
+---
+- 4304
+- 5158
+- 5292
+- 5426
+- 5560
+...
+</code></pre>
+<h3 id="gsoc-week-one-reflections">GSoC Week One: Reflections</h3>
+<p>My first week with GSoC has been a thrilling ride, full of learning and growth. The support from the community has been incredible. Looking forward to what lies ahead!🚀</p>
+<blockquote>
+<p>Perseverance is not a long race; it is many short races one after the other.</p>
+</blockquote>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20240607_1649_kartikmandar/" rel="prev" title="Correcting my schedule">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20240609_0000_deadspheroid/" rel="next" title="OpenCL, meet the Gnuastro Build System">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2024         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
