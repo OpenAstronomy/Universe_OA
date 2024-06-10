@@ -1,5 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gnuastro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/gnuastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 09 Jun 2024 01:06:31 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0000_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;&lt;span class="dropcap"&gt;I&lt;/span&gt;n this post, I hope to summarize the work done so far towards my GSoC project in integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gnuastro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/gnuastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 10 Jun 2024 01:03:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to summarize the work done so far towards my GSoC project for integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
+
+&lt;h2 id="what-is-opencl"&gt;What is OpenCL?&lt;/h2&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Logo" src="https://deadspheroid.github.io/my-blog/assets/img/opencl-logo.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.khronos.org/opencl/"&gt;Open Computing Language&lt;/a&gt;&lt;/strong&gt; is a framework for writing programs that execute across &lt;strong&gt;heterogenous&lt;/strong&gt; platforms. In simpler terms, OpenCL provides a standard interface for programmers to execute the &lt;strong&gt;same&lt;/strong&gt; code across &lt;strong&gt;multiple&lt;/strong&gt; devices, be it a CPU or a GPU or &lt;strong&gt;any&lt;/strong&gt; other accelerator.&lt;/p&gt;
+
+&lt;p&gt;It comprises of the OpenCL standard which is maintained by &lt;a href="https://www.khronos.org/opencl/"&gt;Khronos&lt;/a&gt;, and implemented by the various hardware &lt;strong&gt;manufacturers&lt;/strong&gt; and by the &lt;strong&gt;open source community&lt;/strong&gt; across a wide variety of devices.&lt;/p&gt;
+
+&lt;p&gt;Most modern devices all support OpenCL in some format or the other. &lt;strong&gt;Intel/Nvidia&lt;/strong&gt; for example provide their own &lt;strong&gt;propietary&lt;/strong&gt; implementations. On the other hand, &lt;strong&gt;POCL&lt;/strong&gt; an &lt;strong&gt;open source&lt;/strong&gt; project provides implementations for those that dont have actively maintained propietary ones, like &lt;strong&gt;AMD&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id="why-opencl"&gt;Why OpenCL?&lt;/h2&gt;
+
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL versus CUDA" src="https://deadspheroid.github.io/my-blog/assets/img/cl-cuda.jpeg" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Unlike certain &lt;strong&gt;propietary&lt;/strong&gt; frameworks &lt;em&gt;cough&lt;/em&gt; &lt;a href="https://developer.nvidia.com/about-cuda"&gt;CUDA&lt;/a&gt; &lt;em&gt;cough&lt;/em&gt;, OpenCL is not constrained to any particular &lt;strong&gt;manufacturer&lt;/strong&gt;. You can target &lt;strong&gt;any GPU/CPU&lt;/strong&gt; as long as you get the OpenCL implementation for that device. This is made easy thanks to projects like &lt;a href="https://portablecl.org/"&gt;POCL&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The performance of &lt;strong&gt;CUDA versus OpenCL&lt;/strong&gt; is heavily debated and leans towards CUDA for Nvidia hardware, but the difference depends on the use case and isn’t too much of a concern as compared to the way they are used.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;downside&lt;/strong&gt; of OpenCL is the &lt;strong&gt;smaller&lt;/strong&gt; community and the lack of many &lt;strong&gt;modern features&lt;/strong&gt; that CUDA brings.&lt;/p&gt;
+
+&lt;blockquote&gt;
+The inner workings of OpenCL, how I managed to set it up, how the OpenCL C API works is another long story and is deserving of its own post.
+&lt;/blockquote&gt;
+
+&lt;h2 id="kickoff-with-gnuastro"&gt;Kickoff with Gnuastro&lt;/h2&gt;
+
+&lt;p&gt;The first goal for the project was to figure out a way to &lt;strong&gt;integrate&lt;/strong&gt; OpenCL with the Gnuastro build system.&lt;/p&gt;
+
+&lt;p&gt;Gnuastro like many other free software uses the &lt;strong&gt;GNU Build System&lt;/strong&gt; also called &lt;a href="https://www.gnu.org/software/automake/faq/autotools-faq.html"&gt;GNU Autotools&lt;/a&gt;&lt;/p&gt;
+
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="GNU Autotools" src="https://deadspheroid.github.io/my-blog/assets/img/gnu-logo.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;three&lt;/strong&gt; major components of Autotools are:&lt;/p&gt;
+
+&lt;h4 id="autoconf"&gt;Autoconf&lt;/h4&gt;
+&lt;p&gt;At the heart of Autotools, we have &lt;a href="https://www.gnu.org/software/autoconf/"&gt;Autoconf&lt;/a&gt;, which generates a &lt;strong&gt;single&lt;/strong&gt; &lt;code class="language-plaintext highlighter-rouge"&gt;configure&lt;/code&gt; &lt;strong&gt;script&lt;/strong&gt; from a &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;This &lt;code class="language-plaintext highlighter-rouge"&gt;configure&lt;/code&gt; script scans the &lt;strong&gt;environment&lt;/strong&gt; for various files and &lt;strong&gt;libraries&lt;/strong&gt;, specific versions of them, the &lt;strong&gt;hardware&lt;/strong&gt; being used, and more. Then, it &lt;strong&gt;configures&lt;/strong&gt; the build of the project in certain ways enabling/disabling certain parts depending on what was found and what wasnt.&lt;/p&gt;
+
+&lt;p&gt;In this way, the &lt;strong&gt;portability&lt;/strong&gt; of any project can be ensured by simply distributing the &lt;strong&gt;configure&lt;/strong&gt; script, along with the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.in&lt;/code&gt;s.&lt;/p&gt;
+
+&lt;h4 id="automake"&gt;Automake&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://www.gnu.org/software/automake/"&gt;Automake&lt;/a&gt; makes use of information found by &lt;code class="language-plaintext highlighter-rouge"&gt;configure&lt;/code&gt; and &lt;strong&gt;generates&lt;/strong&gt; the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile&lt;/code&gt;s necessary to &lt;strong&gt;build&lt;/strong&gt; the project.&lt;/p&gt;
+
+&lt;p&gt;To be more precise, it &lt;strong&gt;parses&lt;/strong&gt; &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt;s into &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.in&lt;/code&gt;s which are in turn &lt;strong&gt;parsed&lt;/strong&gt; by &lt;code class="language-plaintext highlighter-rouge"&gt;configure&lt;/code&gt; to produce the final &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile&lt;/code&gt;s. Automake also performs &lt;strong&gt;automatic dependency tracking&lt;/strong&gt;, so that recompilling isn’t done unless &lt;strong&gt;required&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;All you have to do, is specify the &lt;strong&gt;name&lt;/strong&gt; and each of the &lt;strong&gt;sources&lt;/strong&gt; involved in the library/binary, and Automake does the rest.&lt;/p&gt;
+
+&lt;h4 id="libtool"&gt;Libtool&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://www.gnu.org/software/libtool/"&gt;Libtool&lt;/a&gt; is responsible for abstracting the &lt;strong&gt;library&lt;/strong&gt; creation process, since different platforms handle static/dynamic libraries &lt;strong&gt;differently&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+I mainly worked with Automake and Autoconf during integration and didn't really touch Libtool.
+&lt;/blockquote&gt;
+
+&lt;h2 id="stepping-into-integration"&gt;Stepping into Integration&lt;/h2&gt;
+
+&lt;h4 id="inside-configureac"&gt;Inside &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;Without getting into detail, when checking for the &lt;strong&gt;presence&lt;/strong&gt; of OpenCL, it suffices to check for &lt;code class="language-plaintext highlighter-rouge"&gt;libOpenCL.so&lt;/code&gt; and the &lt;code class="language-plaintext highlighter-rouge"&gt;CL.h&lt;/code&gt; header file.&lt;/p&gt;
+
+&lt;p&gt;That is, Gnuastro should be able to &lt;strong&gt;include&lt;/strong&gt; the OpenCL header file to use its C API, and then later &lt;strong&gt;link&lt;/strong&gt; against the OpenCL library.&lt;/p&gt;
+
+&lt;p&gt;Luckily for us, &lt;a href="https://www.gnu.org/software/gnulib/"&gt;Gnulib&lt;/a&gt; provides a simple &lt;code class="language-plaintext highlighter-rouge"&gt;AC_LIB_HAVE_LINKFLAGS&lt;/code&gt; &lt;a href="https://www.gnu.org/software/gnulib/manual/html_node/Searching-for-Libraries.html"&gt;macro&lt;/a&gt; which takes as input, a library &lt;strong&gt;name&lt;/strong&gt; and a &lt;strong&gt;test code&lt;/strong&gt; and tries to find the &lt;strong&gt;library&lt;/strong&gt; and &lt;strong&gt;compile/link&lt;/strong&gt; the test code.&lt;/p&gt;
+
+&lt;p&gt;Upon successfully executing, it &lt;strong&gt;sets certain variables&lt;/strong&gt;, so we can modify further building on the basis of &lt;strong&gt;finding OpenCL&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="language-bash highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;AC_LIB_HAVE_LINKFLAGS&lt;span class="o"&gt;([&lt;/span&gt;OpenCL], &lt;span class="o"&gt;[]&lt;/span&gt;, &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="c"&gt;#include &amp;lt;CL/cl.h&amp;gt;])&lt;/span&gt;
+AS_IF&lt;span class="o"&gt;([&lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt; &lt;span class="s2"&gt;"x&lt;/span&gt;&lt;span class="nv"&gt;$LIBOPENCL&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; x],
+&lt;span class="o"&gt;[&lt;/span&gt;
+&lt;span class="k"&gt;if &lt;/span&gt;successfull ...
+&lt;span class="o"&gt;]&lt;/span&gt;,
+&lt;span class="o"&gt;[&lt;/span&gt;
+&lt;span class="nv"&gt;LIBS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$LIBOPENCL&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$LIBS&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="nv"&gt;has_ocl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;if &lt;/span&gt;unsuccessfull ...
+&lt;span class="o"&gt;])&lt;/span&gt;
+AM_CONDITIONAL&lt;span class="o"&gt;([&lt;/span&gt;COND_HASOPENCL], &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt; &lt;span class="s2"&gt;"x&lt;/span&gt;&lt;span class="nv"&gt;$has_ocl&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"x1"&lt;/span&gt;&lt;span class="o"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;After making these modifications to &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt;, we can now &lt;strong&gt;test&lt;/strong&gt; whether OpenCL was found inside the various &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt;s and accordingly change the &lt;strong&gt;build&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h4 id="inside-makefileam"&gt;Inside &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;Now, we can use the &lt;strong&gt;variable&lt;/strong&gt; we set previously in &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt; and either include or exclude the OpenCL modules from being compiled and included in the &lt;strong&gt;library&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class="language-bash highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="k"&gt;if &lt;/span&gt;COND_HASOPENCL
+&lt;span class="si"&gt;$(&lt;/span&gt;info &lt;span class="s2"&gt;"Found OpenCL"&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;
+MAYBE_CL &lt;span class="o"&gt;=&lt;/span&gt; cl_utils.c
+MAYBE_CL_H &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="si"&gt;$(&lt;/span&gt;headersdir&lt;span class="si"&gt;)&lt;/span&gt;/cl_utils.h
+MAYBE_CONVOLVE_CL &lt;span class="o"&gt;=&lt;/span&gt; cl_convolve.c
+&lt;span class="k"&gt;else&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;info &lt;span class="s2"&gt;"What is Opencl?"&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;
+endif
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="language-bash highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;libgnuastro_la_SOURCES &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;MAYBE_NUMPY_C&lt;span class="si"&gt;)&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;MAYBE_WCSDISTORTION&lt;span class="si"&gt;)&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;MAYBE_CL&lt;span class="si"&gt;)&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;MAYBE_CONVOLVE_CL&lt;span class="si"&gt;)&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+arithmetic.c &lt;span class="se"&gt;\&lt;/span&gt;
+arithmetic-and.c &lt;span class="se"&gt;\&lt;/span&gt;
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Additionally, we need to &lt;strong&gt;save&lt;/strong&gt; this variable in Gnuastro’s &lt;code class="language-plaintext highlighter-rouge"&gt;config.h&lt;/code&gt; file for later use to &lt;strong&gt;prevent&lt;/strong&gt; other modules from mistakenly including the OpenCL ones incase OpenCL was &lt;strong&gt;not compiled&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id="checking-for-build-system-yes"&gt;checking for build system… yes&lt;/h2&gt;
+&lt;p&gt;Now when someone builds Gnuastro, if OpenCL is &lt;strong&gt;present&lt;/strong&gt; on their system, then the OpenCL relevant files are &lt;strong&gt;compiled and included in the library&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, if OpenCL is &lt;strong&gt;absent&lt;/strong&gt;, then the library is &lt;strong&gt;built as normal&lt;/strong&gt;, as if OpenCL never existed.&lt;/p&gt;
+
+&lt;p&gt;Finally, we can get started with the &lt;strong&gt;actual&lt;/strong&gt; OpenCl part and we’ll have a look at Image Convolution(astconvolve) in the next post…&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/</guid><pubDate>Sat, 08 Jun 2024 23:45:00 GMT</pubDate></item><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0000_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;&lt;span class="dropcap"&gt;I&lt;/span&gt;n this post, I hope to summarize the work done so far towards my GSoC project in integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0000_deadspheroid/</guid><pubDate>Sat, 08 Jun 2024 23:00:00 GMT</pubDate></item><item><title>Final GSoC Report</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230822_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;p&gt;I will be discussing the goals of my GSoC project, how I spent my time and what I learned during this period. I will also be discussing the future of my project and what I plan to do next.&lt;/p&gt;
 
 &lt;h2 id="goals-of-my-gsoc"&gt;Goals of my GSoC&lt;/h2&gt;
@@ -606,33 +721,4 @@ make install
 &lt;p&gt;This is because, Python packages are generally installed at a local level, in the &lt;code class="language-plaintext highlighter-rouge"&gt;/usr/local&lt;/code&gt; directory. However, if you call &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; with &lt;code class="language-plaintext highlighter-rouge"&gt;sudo&lt;/code&gt; then it installs the packages in the root directory. To sove this, we use&lt;/p&gt;
 &lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;sudo -u "$SUDO_USER pip install Gnuastro,whl
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;which basically runs the pip command as the user who called sudo. This will ensure that your package gets installed in the local directory instead of root!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</guid><pubDate>Tue, 19 Jul 2022 23:00:00 GMT</pubDate></item><item><title>My GSoC Journey - Part 3</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220701_0000_jash-shah/</link><dc:creator>Jash Shah</dc:creator><description>&lt;h3 id="coding-begins"&gt;Coding Begins!&lt;/h3&gt;
-&lt;p&gt;So, now that I got to know the Gnuastro community a bit and had discussed the plan of attack with my mentor it was time to start with the actual coding.&lt;/p&gt;
-
-&lt;!-- TEASER_END --&gt;
-&lt;h4 id="week-1"&gt;Week 1&lt;/h4&gt;
-&lt;p&gt;As planned, I started with the building the extension module for &lt;a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/manual/html_node/CosmicCalculator.html"&gt;Cosmic Calculator&lt;/a&gt;(cosmiccal) library. A simple Python extension Module should be structed as:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Code-Block1" src="https://jash-shah.github.io/Blogs/img/posts/gsoc-coding-begins/code-block-1.png"&gt;&lt;/p&gt;
-
-&lt;p&gt;The cosmical library was chosen as a starting point because it contained only 6 functions and solely dealt with &lt;em&gt;doubles, ints, and floats&lt;/em&gt;. Consequently, there wasn’t yet a requirement for a NumPy Converter. It was pretty straight forward to create wrappers for these functions by following the aforementioned structure. The &lt;code class="language-plaintext highlighter-rouge"&gt;setup.py&lt;/code&gt; script for building and installing these modules was created at the following stage. For this, I followed the &lt;a href="https://docs.python.org/3/extending/building.html#building"&gt;Python Extension documentation’s&lt;/a&gt; advice and utilised &lt;a href="https://docs.python.org/3/distutils/apiref.html"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;distutils&lt;/code&gt;&lt;/a&gt;, which offers two crucial functions:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://docs.python.org/3/distutils/apiref.html#distutils.core.Extension"&gt;&lt;u&gt;distutils.core.Extension&lt;/u&gt;&lt;/a&gt; which is used to describe a &lt;code class="language-plaintext highlighter-rouge"&gt;C/C++&lt;/code&gt; extension.&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://docs.python.org/3/distutils/apiref.html#distutils.core.setup"&gt;&lt;u&gt;distutils.core.setup&lt;/u&gt;&lt;/a&gt; the frontman in actually building and compiling the modules.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img alt="Code-Block2" src="https://jash-shah.github.io/Blogs/img/posts/gsoc-coding-begins/code-block-2.png"&gt;&lt;/p&gt;
-
-&lt;p&gt;After this, the commands to build and install these modules were simply:&lt;/p&gt;
-&lt;div class="language-bash highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;python3 setup.py build
-python3 setup.py &lt;span class="nb"&gt;install&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id="week-2"&gt;Week 2&lt;/h4&gt;
-&lt;p&gt;At our subsequent meeting, my mentor confirmed my work, and we both agreed that the next step should be to write the NumPy converter so that this may be &lt;em&gt;expanded&lt;/em&gt; to include the other library modules as well.&lt;/p&gt;
-
-&lt;p&gt;Week 2 was a little light on work because I was out of town for a few days. However, the most of my reading time was devoted to learning about the &lt;code class="language-plaintext highlighter-rouge"&gt;NumPy C-API&lt;/code&gt; and how it connected with the &lt;code class="language-plaintext highlighter-rouge"&gt;Python C-API&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;I discovered that a NumPy array’s primary container object was the &lt;a href="https://numpy.org/doc/stable/reference/c-api/types-and-structures.html#c.PyArrayObject"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;PyArrayObject&lt;/code&gt;&lt;/a&gt;, and its &lt;code class="language-plaintext highlighter-rouge"&gt;PyTypeObject&lt;/code&gt; was the &lt;a href="https://numpy.org/doc/stable/reference/c-api/types-and-structures.html#c.PyArray_Type"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;PyArray_Type&lt;/code&gt;&lt;/a&gt;. Therefore, in order for any &lt;code class="language-plaintext highlighter-rouge"&gt;PyObject&lt;/code&gt; to be regarded as a NumPy Array, it has to fulfil these two requirements.&lt;/p&gt;
-
-&lt;p&gt;The API itself offered &lt;a href="https://numpy.org/doc/stable/reference/c-api/array.html#creating-arrays"&gt;functions&lt;/a&gt; that allowed any generic array type data container to be converted into &lt;code class="language-plaintext highlighter-rouge"&gt;PyArray_Type&lt;/code&gt; or one of its subclasses. For creating the converter, I would always turn to these!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220701_0000_jash-shah/</guid><pubDate>Thu, 30 Jun 2022 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;which basically runs the pip command as the user who called sudo. This will ensure that your package gets installed in the local directory instead of root!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</guid><pubDate>Tue, 19 Jul 2022 23:00:00 GMT</pubDate></item></channel></rss>

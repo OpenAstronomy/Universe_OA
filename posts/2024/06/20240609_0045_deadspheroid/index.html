@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenCL, meet the Gnuastro Build System | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="DeadSpheroid">
+<link rel="prev" href="../20240609_0000_deadspheroid/" title="OpenCL, meet the Gnuastro Build System" type="text/html">
+<link rel="next" href="../20240609_1208_lucasmg18/" title="Starting the Project" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="OpenCL, meet the Gnuastro Build System">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/">
+<meta property="og:description" content="In this post, I hope to summarize the work done so far towards my GSoC project for integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.
+
+What is OpenCL?
+
+
+
+
+">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-06-09T00:45:00+01:00">
+<meta property="article:tag" content="gnuastro">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://dev.to/ahmedhosssam" data-toggle="tooltip" data-placement="top" title="2024-05-27 13:23:44+01:00">
+                    Ahmed Hossam
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://deadspheroid.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-09 00:45:00+01:00">
+                    DeadSpheroid
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://deus1704.vercel.app" data-toggle="tooltip" data-placement="top" title="2024-05-25 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    Deus1704
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://gsoc2024.kartikmandar.com" data-toggle="tooltip" data-placement="top" title="2024-06-09 17:08:00+01:00">
+                    Kartik Mandar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/fornax-navo.png?size=40" height="16" width="16"><a href="https://lucasmartingarciagsoc24openastronomy.blogspot.com" data-toggle="tooltip" data-placement="top" title="2024-06-09 12:08:00+01:00">
+                    Lucas Martin Garcia
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@manitsingh018" data-toggle="tooltip" data-placement="top" title="2024-06-02 09:15:15+01:00">
+                    Manit Singh
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://viciouseagle03.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-07 20:45:27+01:00">
+                    ViciousEagle03
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">OpenCL, meet the Gnuastro Build System</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/deadspheroid/">DeadSpheroid</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2024-06-09T00:45:00+01:00" itemprop="datePublished" title="2024-06-09 00:45">2024-06-09 00:45</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://deadspheroid.github.io/my-blog/post/GettingStarted/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p class="intro">In this post, I hope to summarize the work done so far towards my GSoC project for integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.</p>
+
+<h2 id="what-is-opencl">What is OpenCL?</h2>
+<!-- TEASER_END -->
+<p align="center" width="100%">
+<img alt="OpenCL Logo" src="https://deadspheroid.github.io/my-blog/assets/img/opencl-logo.png" style="margin-bottom: 0; margin-top: 24px;"></p>
+<p><strong><a href="https://www.khronos.org/opencl/">Open Computing Language</a></strong> is a framework for writing programs that execute across <strong>heterogenous</strong> platforms. In simpler terms, OpenCL provides a standard interface for programmers to execute the <strong>same</strong> code across <strong>multiple</strong> devices, be it a CPU or a GPU or <strong>any</strong> other accelerator.</p>
+
+<p>It comprises of the OpenCL standard which is maintained by <a href="https://www.khronos.org/opencl/">Khronos</a>, and implemented by the various hardware <strong>manufacturers</strong> and by the <strong>open source community</strong> across a wide variety of devices.</p>
+
+<p>Most modern devices all support OpenCL in some format or the other. <strong>Intel/Nvidia</strong> for example provide their own <strong>propietary</strong> implementations. On the other hand, <strong>POCL</strong> an <strong>open source</strong> project provides implementations for those that dont have actively maintained propietary ones, like <strong>AMD</strong>.</p>
+
+<h2 id="why-opencl">Why OpenCL?</h2>
+
+<p align="center" width="100%">
+<img alt="OpenCL versus CUDA" src="https://deadspheroid.github.io/my-blog/assets/img/cl-cuda.jpeg" style="margin-bottom: 0; margin-top: 24px;"></p>
+
+<p>Unlike certain <strong>propietary</strong> frameworks <em>cough</em> <a href="https://developer.nvidia.com/about-cuda">CUDA</a> <em>cough</em>, OpenCL is not constrained to any particular <strong>manufacturer</strong>. You can target <strong>any GPU/CPU</strong> as long as you get the OpenCL implementation for that device. This is made easy thanks to projects like <a href="https://portablecl.org/">POCL</a>.</p>
+
+<p>The performance of <strong>CUDA versus OpenCL</strong> is heavily debated and leans towards CUDA for Nvidia hardware, but the difference depends on the use case and isn’t too much of a concern as compared to the way they are used.</p>
+
+<p>The <strong>downside</strong> of OpenCL is the <strong>smaller</strong> community and the lack of many <strong>modern features</strong> that CUDA brings.</p>
+
+<blockquote>
+The inner workings of OpenCL, how I managed to set it up, how the OpenCL C API works is another long story and is deserving of its own post.
+</blockquote>
+
+<h2 id="kickoff-with-gnuastro">Kickoff with Gnuastro</h2>
+
+<p>The first goal for the project was to figure out a way to <strong>integrate</strong> OpenCL with the Gnuastro build system.</p>
+
+<p>Gnuastro like many other free software uses the <strong>GNU Build System</strong> also called <a href="https://www.gnu.org/software/automake/faq/autotools-faq.html">GNU Autotools</a></p>
+
+<p align="center" width="100%">
+<img alt="GNU Autotools" src="https://deadspheroid.github.io/my-blog/assets/img/gnu-logo.png" style="margin-bottom: 0; margin-top: 24px;"></p>
+
+<p>The <strong>three</strong> major components of Autotools are:</p>
+
+<h4 id="autoconf">Autoconf</h4>
+<p>At the heart of Autotools, we have <a href="https://www.gnu.org/software/autoconf/">Autoconf</a>, which generates a <strong>single</strong> <code class="language-plaintext highlighter-rouge">configure</code> <strong>script</strong> from a <code class="language-plaintext highlighter-rouge">configure.ac</code> file.</p>
+
+<p>This <code class="language-plaintext highlighter-rouge">configure</code> script scans the <strong>environment</strong> for various files and <strong>libraries</strong>, specific versions of them, the <strong>hardware</strong> being used, and more. Then, it <strong>configures</strong> the build of the project in certain ways enabling/disabling certain parts depending on what was found and what wasnt.</p>
+
+<p>In this way, the <strong>portability</strong> of any project can be ensured by simply distributing the <strong>configure</strong> script, along with the <code class="language-plaintext highlighter-rouge">Makefile.in</code>s.</p>
+
+<h4 id="automake">Automake</h4>
+<p><a href="https://www.gnu.org/software/automake/">Automake</a> makes use of information found by <code class="language-plaintext highlighter-rouge">configure</code> and <strong>generates</strong> the <code class="language-plaintext highlighter-rouge">Makefile</code>s necessary to <strong>build</strong> the project.</p>
+
+<p>To be more precise, it <strong>parses</strong> <code class="language-plaintext highlighter-rouge">Makefile.am</code>s into <code class="language-plaintext highlighter-rouge">Makefile.in</code>s which are in turn <strong>parsed</strong> by <code class="language-plaintext highlighter-rouge">configure</code> to produce the final <code class="language-plaintext highlighter-rouge">Makefile</code>s. Automake also performs <strong>automatic dependency tracking</strong>, so that recompilling isn’t done unless <strong>required</strong>.</p>
+
+<p>All you have to do, is specify the <strong>name</strong> and each of the <strong>sources</strong> involved in the library/binary, and Automake does the rest.</p>
+
+<h4 id="libtool">Libtool</h4>
+<p><a href="https://www.gnu.org/software/libtool/">Libtool</a> is responsible for abstracting the <strong>library</strong> creation process, since different platforms handle static/dynamic libraries <strong>differently</strong>.</p>
+
+<blockquote>
+I mainly worked with Automake and Autoconf during integration and didn't really touch Libtool.
+</blockquote>
+
+<h2 id="stepping-into-integration">Stepping into Integration</h2>
+
+<h4 id="inside-configureac">Inside <code class="language-plaintext highlighter-rouge">configure.ac</code>
+</h4>
+<p>Without getting into detail, when checking for the <strong>presence</strong> of OpenCL, it suffices to check for <code class="language-plaintext highlighter-rouge">libOpenCL.so</code> and the <code class="language-plaintext highlighter-rouge">CL.h</code> header file.</p>
+
+<p>That is, Gnuastro should be able to <strong>include</strong> the OpenCL header file to use its C API, and then later <strong>link</strong> against the OpenCL library.</p>
+
+<p>Luckily for us, <a href="https://www.gnu.org/software/gnulib/">Gnulib</a> provides a simple <code class="language-plaintext highlighter-rouge">AC_LIB_HAVE_LINKFLAGS</code> <a href="https://www.gnu.org/software/gnulib/manual/html_node/Searching-for-Libraries.html">macro</a> which takes as input, a library <strong>name</strong> and a <strong>test code</strong> and tries to find the <strong>library</strong> and <strong>compile/link</strong> the test code.</p>
+
+<p>Upon successfully executing, it <strong>sets certain variables</strong>, so we can modify further building on the basis of <strong>finding OpenCL</strong>.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AC_LIB_HAVE_LINKFLAGS<span class="o">([</span>OpenCL], <span class="o">[]</span>, <span class="o">[</span><span class="c">#include &lt;CL/cl.h&gt;])</span>
+AS_IF<span class="o">([</span><span class="nb">test</span> <span class="s2">"x</span><span class="nv">$LIBOPENCL</span><span class="s2">"</span> <span class="o">=</span> x],
+<span class="o">[</span>
+<span class="k">if </span>successfull ...
+<span class="o">]</span>,
+<span class="o">[</span>
+<span class="nv">LIBS</span><span class="o">=</span><span class="s2">"</span><span class="nv">$LIBOPENCL</span><span class="s2"> </span><span class="nv">$LIBS</span><span class="s2">"</span>
+<span class="nv">has_ocl</span><span class="o">=</span>1<span class="p">;</span>
+<span class="k">if </span>unsuccessfull ...
+<span class="o">])</span>
+AM_CONDITIONAL<span class="o">([</span>COND_HASOPENCL], <span class="o">[</span><span class="nb">test</span> <span class="s2">"x</span><span class="nv">$has_ocl</span><span class="s2">"</span> <span class="o">=</span> <span class="s2">"x1"</span><span class="o">])</span>
+</code></pre></div></div>
+<p>After making these modifications to <code class="language-plaintext highlighter-rouge">configure.ac</code>, we can now <strong>test</strong> whether OpenCL was found inside the various <code class="language-plaintext highlighter-rouge">Makefile.am</code>s and accordingly change the <strong>build</strong>.</p>
+
+<h4 id="inside-makefileam">Inside <code class="language-plaintext highlighter-rouge">Makefile.am</code>
+</h4>
+<p>Now, we can use the <strong>variable</strong> we set previously in <code class="language-plaintext highlighter-rouge">configure.ac</code> and either include or exclude the OpenCL modules from being compiled and included in the <strong>library</strong>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span>COND_HASOPENCL
+<span class="si">$(</span>info <span class="s2">"Found OpenCL"</span><span class="si">)</span>
+MAYBE_CL <span class="o">=</span> cl_utils.c
+MAYBE_CL_H <span class="o">=</span> <span class="si">$(</span>headersdir<span class="si">)</span>/cl_utils.h
+MAYBE_CONVOLVE_CL <span class="o">=</span> cl_convolve.c
+<span class="k">else</span>
+<span class="si">$(</span>info <span class="s2">"What is Opencl?"</span><span class="si">)</span>
+endif
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>libgnuastro_la_SOURCES <span class="o">=</span> <span class="se">\</span>
+<span class="si">$(</span>MAYBE_NUMPY_C<span class="si">)</span> <span class="se">\</span>
+<span class="si">$(</span>MAYBE_WCSDISTORTION<span class="si">)</span> <span class="se">\</span>
+<span class="si">$(</span>MAYBE_CL<span class="si">)</span> <span class="se">\</span>
+<span class="si">$(</span>MAYBE_CONVOLVE_CL<span class="si">)</span> <span class="se">\</span>
+arithmetic.c <span class="se">\</span>
+arithmetic-and.c <span class="se">\</span>
+...
+</code></pre></div></div>
+
+<p>Additionally, we need to <strong>save</strong> this variable in Gnuastro’s <code class="language-plaintext highlighter-rouge">config.h</code> file for later use to <strong>prevent</strong> other modules from mistakenly including the OpenCL ones incase OpenCL was <strong>not compiled</strong>.</p>
+
+<h2 id="checking-for-build-system-yes">checking for build system… yes</h2>
+<p>Now when someone builds Gnuastro, if OpenCL is <strong>present</strong> on their system, then the OpenCL relevant files are <strong>compiled and included in the library</strong>.</p>
+
+<p>On the other hand, if OpenCL is <strong>absent</strong>, then the library is <strong>built as normal</strong>, as if OpenCL never existed.</p>
+
+<p>Finally, we can get started with the <strong>actual</strong> OpenCl part and we’ll have a look at Image Convolution(astconvolve) in the next post…</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/gnuastro/" rel="tag">gnuastro</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20240609_0000_deadspheroid/" rel="prev" title="OpenCL, meet the Gnuastro Build System">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20240609_1208_lucasmg18/" rel="next" title="Starting the Project">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2024         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
