@@ -1,5 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 09 Jun 2024 01:06:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0000_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;&lt;span class="dropcap"&gt;I&lt;/span&gt;n this post, I hope to summarize the work done so far towards my GSoC project in integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 10 Jun 2024 01:03:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Not having sleep since a few days</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_1708_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; I have not been sleeping well since a few day and have been working all night. I am trying to sleep early today. &lt;/p&gt;
+&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_1708_kartikmandar/</guid><pubDate>Sun, 09 Jun 2024 16:08:00 GMT</pubDate></item><item><title>Starting the Project</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_1208_lucasmg18/</link><dc:creator>Lucas Martin Garcia</dc:creator><description>&lt;p&gt;We are excited to start this project at the intersection of artificial intelligence and astronomy hosted by the Google Summer of Code (GSoC) program and work with the incredible team at OpenAstronomy. This project, which focuses on leveraging advanced data processing and deep learning models to enhance astronomical research, represents a unique opportunity to bridge the gap between data science and astronomy.&lt;/p&gt;
+&lt;p&gt;I am eager to contribute my skills and enthusiasm aiming to tackle the complexities of diverse astronomical datasets. Working with the dedicated professionals at OpenAstronomy, I am confident that we will make significant strides in advancing the field and promoting the principles of open science and collaboration.&lt;/p&gt;
+&lt;p&gt;Together, we will push the boundaries of what is possible in astronomical research, paving the way for new discoveries and fostering a more inclusive and accessible scientific community. I look forward to the exciting journey ahead and the work we will accomplish as a team.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQc7ZKtKEemrWEqavXXHEAD2JI6FI89n0TRIHmKscmvPuhtD8IvbbfAD0sK86EUXohESyvP4IaxNsaqm9ef_KAWMpEGeOsSt3KtIjOg5ba7UDW_b6QvOgDgtDfQ-Er03Jug0j75PrF8f8Dec0EhdJEOqrM6Er2RnSV52f-QGz7kg1AlaIhq_Xy7IzLQceh/s1000/logo%202.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="40" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQc7ZKtKEemrWEqavXXHEAD2JI6FI89n0TRIHmKscmvPuhtD8IvbbfAD0sK86EUXohESyvP4IaxNsaqm9ef_KAWMpEGeOsSt3KtIjOg5ba7UDW_b6QvOgDgtDfQ-Er03Jug0j75PrF8f8Dec0EhdJEOqrM6Er2RnSV52f-QGz7kg1AlaIhq_Xy7IzLQceh/s320/logo%202.png" width="320"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/a/AVvXsEh53ytB8I6bARNOlCFfADd99BWyQIbg4C6QfWBNFnmvInwwADbdYQUkzRcmeKV8kfzJY_wvtZRBvx62ng6miFSeaq2gSfrYM9IaMEHhPmwlhsiuIy7lF5TR7GkdRQMmXb3RcvVIU1KYt1hfMXgmtrdIJ4B2H_SdGQNJRgGWcwOjczkrSoLpK26u2M8GPci7" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="" height="154" src="https://blogger.googleusercontent.com/img/a/AVvXsEh53ytB8I6bARNOlCFfADd99BWyQIbg4C6QfWBNFnmvInwwADbdYQUkzRcmeKV8kfzJY_wvtZRBvx62ng6miFSeaq2gSfrYM9IaMEHhPmwlhsiuIy7lF5TR7GkdRQMmXb3RcvVIU1KYt1hfMXgmtrdIJ4B2H_SdGQNJRgGWcwOjczkrSoLpK26u2M8GPci7" width="320"&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;span style="color: #0000ee;"&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;span style="color: #0000ee;"&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;p&gt;&lt;/p&gt;</description><category>irsa-fornax</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_1208_lucasmg18/</guid><pubDate>Sun, 09 Jun 2024 11:08:00 GMT</pubDate></item><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to summarize the work done so far towards my GSoC project for integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
+
+&lt;h2 id="what-is-opencl"&gt;What is OpenCL?&lt;/h2&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Logo" src="https://deadspheroid.github.io/my-blog/assets/img/opencl-logo.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href="https://www.khronos.org/opencl/"&gt;Open Computing Language&lt;/a&gt;&lt;/strong&gt; is a framework for writing programs that execute across &lt;strong&gt;heterogenous&lt;/strong&gt; platforms. In simpler terms, OpenCL provides a standard interface for programmers to execute the &lt;strong&gt;same&lt;/strong&gt; code across &lt;strong&gt;multiple&lt;/strong&gt; devices, be it a CPU or a GPU or &lt;strong&gt;any&lt;/strong&gt; other accelerator.&lt;/p&gt;
+
+&lt;p&gt;It comprises of the OpenCL standard which is maintained by &lt;a href="https://www.khronos.org/opencl/"&gt;Khronos&lt;/a&gt;, and implemented by the various hardware &lt;strong&gt;manufacturers&lt;/strong&gt; and by the &lt;strong&gt;open source community&lt;/strong&gt; across a wide variety of devices.&lt;/p&gt;
+
+&lt;p&gt;Most modern devices all support OpenCL in some format or the other. &lt;strong&gt;Intel/Nvidia&lt;/strong&gt; for example provide their own &lt;strong&gt;propietary&lt;/strong&gt; implementations. On the other hand, &lt;strong&gt;POCL&lt;/strong&gt; an &lt;strong&gt;open source&lt;/strong&gt; project provides implementations for those that dont have actively maintained propietary ones, like &lt;strong&gt;AMD&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id="why-opencl"&gt;Why OpenCL?&lt;/h2&gt;
+
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL versus CUDA" src="https://deadspheroid.github.io/my-blog/assets/img/cl-cuda.jpeg" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Unlike certain &lt;strong&gt;propietary&lt;/strong&gt; frameworks &lt;em&gt;cough&lt;/em&gt; &lt;a href="https://developer.nvidia.com/about-cuda"&gt;CUDA&lt;/a&gt; &lt;em&gt;cough&lt;/em&gt;, OpenCL is not constrained to any particular &lt;strong&gt;manufacturer&lt;/strong&gt;. You can target &lt;strong&gt;any GPU/CPU&lt;/strong&gt; as long as you get the OpenCL implementation for that device. This is made easy thanks to projects like &lt;a href="https://portablecl.org/"&gt;POCL&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The performance of &lt;strong&gt;CUDA versus OpenCL&lt;/strong&gt; is heavily debated and leans towards CUDA for Nvidia hardware, but the difference depends on the use case and isn’t too much of a concern as compared to the way they are used.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;downside&lt;/strong&gt; of OpenCL is the &lt;strong&gt;smaller&lt;/strong&gt; community and the lack of many &lt;strong&gt;modern features&lt;/strong&gt; that CUDA brings.&lt;/p&gt;
+
+&lt;blockquote&gt;
+The inner workings of OpenCL, how I managed to set it up, how the OpenCL C API works is another long story and is deserving of its own post.
+&lt;/blockquote&gt;
+
+&lt;h2 id="kickoff-with-gnuastro"&gt;Kickoff with Gnuastro&lt;/h2&gt;
+
+&lt;p&gt;The first goal for the project was to figure out a way to &lt;strong&gt;integrate&lt;/strong&gt; OpenCL with the Gnuastro build system.&lt;/p&gt;
+
+&lt;p&gt;Gnuastro like many other free software uses the &lt;strong&gt;GNU Build System&lt;/strong&gt; also called &lt;a href="https://www.gnu.org/software/automake/faq/autotools-faq.html"&gt;GNU Autotools&lt;/a&gt;&lt;/p&gt;
+
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="GNU Autotools" src="https://deadspheroid.github.io/my-blog/assets/img/gnu-logo.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;three&lt;/strong&gt; major components of Autotools are:&lt;/p&gt;
+
+&lt;h4 id="autoconf"&gt;Autoconf&lt;/h4&gt;
+&lt;p&gt;At the heart of Autotools, we have &lt;a href="https://www.gnu.org/software/autoconf/"&gt;Autoconf&lt;/a&gt;, which generates a &lt;strong&gt;single&lt;/strong&gt; &lt;code class="language-plaintext highlighter-rouge"&gt;configure&lt;/code&gt; &lt;strong&gt;script&lt;/strong&gt; from a &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;This &lt;code class="language-plaintext highlighter-rouge"&gt;configure&lt;/code&gt; script scans the &lt;strong&gt;environment&lt;/strong&gt; for various files and &lt;strong&gt;libraries&lt;/strong&gt;, specific versions of them, the &lt;strong&gt;hardware&lt;/strong&gt; being used, and more. Then, it &lt;strong&gt;configures&lt;/strong&gt; the build of the project in certain ways enabling/disabling certain parts depending on what was found and what wasnt.&lt;/p&gt;
+
+&lt;p&gt;In this way, the &lt;strong&gt;portability&lt;/strong&gt; of any project can be ensured by simply distributing the &lt;strong&gt;configure&lt;/strong&gt; script, along with the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.in&lt;/code&gt;s.&lt;/p&gt;
+
+&lt;h4 id="automake"&gt;Automake&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://www.gnu.org/software/automake/"&gt;Automake&lt;/a&gt; makes use of information found by &lt;code class="language-plaintext highlighter-rouge"&gt;configure&lt;/code&gt; and &lt;strong&gt;generates&lt;/strong&gt; the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile&lt;/code&gt;s necessary to &lt;strong&gt;build&lt;/strong&gt; the project.&lt;/p&gt;
+
+&lt;p&gt;To be more precise, it &lt;strong&gt;parses&lt;/strong&gt; &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt;s into &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.in&lt;/code&gt;s which are in turn &lt;strong&gt;parsed&lt;/strong&gt; by &lt;code class="language-plaintext highlighter-rouge"&gt;configure&lt;/code&gt; to produce the final &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile&lt;/code&gt;s. Automake also performs &lt;strong&gt;automatic dependency tracking&lt;/strong&gt;, so that recompilling isn’t done unless &lt;strong&gt;required&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;All you have to do, is specify the &lt;strong&gt;name&lt;/strong&gt; and each of the &lt;strong&gt;sources&lt;/strong&gt; involved in the library/binary, and Automake does the rest.&lt;/p&gt;
+
+&lt;h4 id="libtool"&gt;Libtool&lt;/h4&gt;
+&lt;p&gt;&lt;a href="https://www.gnu.org/software/libtool/"&gt;Libtool&lt;/a&gt; is responsible for abstracting the &lt;strong&gt;library&lt;/strong&gt; creation process, since different platforms handle static/dynamic libraries &lt;strong&gt;differently&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+I mainly worked with Automake and Autoconf during integration and didn't really touch Libtool.
+&lt;/blockquote&gt;
+
+&lt;h2 id="stepping-into-integration"&gt;Stepping into Integration&lt;/h2&gt;
+
+&lt;h4 id="inside-configureac"&gt;Inside &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;Without getting into detail, when checking for the &lt;strong&gt;presence&lt;/strong&gt; of OpenCL, it suffices to check for &lt;code class="language-plaintext highlighter-rouge"&gt;libOpenCL.so&lt;/code&gt; and the &lt;code class="language-plaintext highlighter-rouge"&gt;CL.h&lt;/code&gt; header file.&lt;/p&gt;
+
+&lt;p&gt;That is, Gnuastro should be able to &lt;strong&gt;include&lt;/strong&gt; the OpenCL header file to use its C API, and then later &lt;strong&gt;link&lt;/strong&gt; against the OpenCL library.&lt;/p&gt;
+
+&lt;p&gt;Luckily for us, &lt;a href="https://www.gnu.org/software/gnulib/"&gt;Gnulib&lt;/a&gt; provides a simple &lt;code class="language-plaintext highlighter-rouge"&gt;AC_LIB_HAVE_LINKFLAGS&lt;/code&gt; &lt;a href="https://www.gnu.org/software/gnulib/manual/html_node/Searching-for-Libraries.html"&gt;macro&lt;/a&gt; which takes as input, a library &lt;strong&gt;name&lt;/strong&gt; and a &lt;strong&gt;test code&lt;/strong&gt; and tries to find the &lt;strong&gt;library&lt;/strong&gt; and &lt;strong&gt;compile/link&lt;/strong&gt; the test code.&lt;/p&gt;
+
+&lt;p&gt;Upon successfully executing, it &lt;strong&gt;sets certain variables&lt;/strong&gt;, so we can modify further building on the basis of &lt;strong&gt;finding OpenCL&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="language-bash highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;AC_LIB_HAVE_LINKFLAGS&lt;span class="o"&gt;([&lt;/span&gt;OpenCL], &lt;span class="o"&gt;[]&lt;/span&gt;, &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="c"&gt;#include &amp;lt;CL/cl.h&amp;gt;])&lt;/span&gt;
+AS_IF&lt;span class="o"&gt;([&lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt; &lt;span class="s2"&gt;"x&lt;/span&gt;&lt;span class="nv"&gt;$LIBOPENCL&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; x],
+&lt;span class="o"&gt;[&lt;/span&gt;
+&lt;span class="k"&gt;if &lt;/span&gt;successfull ...
+&lt;span class="o"&gt;]&lt;/span&gt;,
+&lt;span class="o"&gt;[&lt;/span&gt;
+&lt;span class="nv"&gt;LIBS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$LIBOPENCL&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="nv"&gt;$LIBS&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="nv"&gt;has_ocl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;1&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;if &lt;/span&gt;unsuccessfull ...
+&lt;span class="o"&gt;])&lt;/span&gt;
+AM_CONDITIONAL&lt;span class="o"&gt;([&lt;/span&gt;COND_HASOPENCL], &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;test&lt;/span&gt; &lt;span class="s2"&gt;"x&lt;/span&gt;&lt;span class="nv"&gt;$has_ocl&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"x1"&lt;/span&gt;&lt;span class="o"&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;After making these modifications to &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt;, we can now &lt;strong&gt;test&lt;/strong&gt; whether OpenCL was found inside the various &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt;s and accordingly change the &lt;strong&gt;build&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h4 id="inside-makefileam"&gt;Inside &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;Now, we can use the &lt;strong&gt;variable&lt;/strong&gt; we set previously in &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt; and either include or exclude the OpenCL modules from being compiled and included in the &lt;strong&gt;library&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class="language-bash highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;&lt;span class="k"&gt;if &lt;/span&gt;COND_HASOPENCL
+&lt;span class="si"&gt;$(&lt;/span&gt;info &lt;span class="s2"&gt;"Found OpenCL"&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;
+MAYBE_CL &lt;span class="o"&gt;=&lt;/span&gt; cl_utils.c
+MAYBE_CL_H &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="si"&gt;$(&lt;/span&gt;headersdir&lt;span class="si"&gt;)&lt;/span&gt;/cl_utils.h
+MAYBE_CONVOLVE_CL &lt;span class="o"&gt;=&lt;/span&gt; cl_convolve.c
+&lt;span class="k"&gt;else&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;info &lt;span class="s2"&gt;"What is Opencl?"&lt;/span&gt;&lt;span class="si"&gt;)&lt;/span&gt;
+endif
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="language-bash highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;libgnuastro_la_SOURCES &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;MAYBE_NUMPY_C&lt;span class="si"&gt;)&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;MAYBE_WCSDISTORTION&lt;span class="si"&gt;)&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;MAYBE_CL&lt;span class="si"&gt;)&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+&lt;span class="si"&gt;$(&lt;/span&gt;MAYBE_CONVOLVE_CL&lt;span class="si"&gt;)&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+arithmetic.c &lt;span class="se"&gt;\&lt;/span&gt;
+arithmetic-and.c &lt;span class="se"&gt;\&lt;/span&gt;
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Additionally, we need to &lt;strong&gt;save&lt;/strong&gt; this variable in Gnuastro’s &lt;code class="language-plaintext highlighter-rouge"&gt;config.h&lt;/code&gt; file for later use to &lt;strong&gt;prevent&lt;/strong&gt; other modules from mistakenly including the OpenCL ones incase OpenCL was &lt;strong&gt;not compiled&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id="checking-for-build-system-yes"&gt;checking for build system… yes&lt;/h2&gt;
+&lt;p&gt;Now when someone builds Gnuastro, if OpenCL is &lt;strong&gt;present&lt;/strong&gt; on their system, then the OpenCL relevant files are &lt;strong&gt;compiled and included in the library&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, if OpenCL is &lt;strong&gt;absent&lt;/strong&gt;, then the library is &lt;strong&gt;built as normal&lt;/strong&gt;, as if OpenCL never existed.&lt;/p&gt;
+
+&lt;p&gt;Finally, we can get started with the &lt;strong&gt;actual&lt;/strong&gt; OpenCl part and we’ll have a look at Image Convolution(astconvolve) in the next post…&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/</guid><pubDate>Sat, 08 Jun 2024 23:45:00 GMT</pubDate></item><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0000_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;&lt;span class="dropcap"&gt;I&lt;/span&gt;n this post, I hope to summarize the work done so far towards my GSoC project in integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0000_deadspheroid/</guid><pubDate>Sat, 08 Jun 2024 23:00:00 GMT</pubDate></item><item><title>Community Bonding and Week 01 Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240607_2045_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;This post documents the planning of the project, my learnings during the community bonding period, and the tasks I completed in my first week.&lt;/p&gt;
 &lt;h3 id="community-bonding-period"&gt;Community Bonding Period&lt;/h3&gt;
 &lt;p&gt;After the euphoria of being accepted into GSoC faded, it was time for setting up my workspace and diving back into the codebase after a month. Planning out the project was key, and meeting with my mentors was a big part of that. I was excited for this chat because the mentors had been super helpful and easy to reach during the proposal stage.&lt;/p&gt;
@@ -238,190 +359,4 @@ The challenge lies in managing the relationship between the array elements data 
 &lt;h4&gt;Outcomes&lt;/h4&gt;&lt;p&gt;code:&lt;/p&gt;
 &lt;pre&gt;instrument = a.Instrument("METIS")&lt;br&gt;time = a.Time("2022-06-02 0:00","2022-06-02 1:00")&lt;br&gt;level = a.Level(2)&lt;br&gt;detector=a.Detector("VLD")&lt;/pre&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*ek6niIkxBvp0a6AqSrAivw.png"&gt;&lt;/figure&gt;&lt;p&gt;By the end of the first week, the detector component was successfully implemented in sunpy-soar. The pull request is currently awaiting review from all the mentors to ensure any discrepancies in the implementation are addressed and to gather additional insights. :)&lt;/p&gt;
 &lt;h4&gt;Conclusion&lt;/h4&gt;&lt;p&gt;The journey so far has been incredibly enriching. The support from my mentors and the community has been invaluable. I am looking forward to the upcoming weeks and continuing to contribute to the SOAR project.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=c0fa3bca6157" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240602_0915_nucleongodx/</guid><pubDate>Sun, 02 Jun 2024 08:15:15 GMT</pubDate></item><item><title>Running 3cm a day.</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240531_1813_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt;Programming a big project is like eating a 20 inch pizza by yourself. If you think you can have it all in one day, you are wrong. Even if you are eating just one grain of that pizza per day, it still counts. I am not saying that you should work less, I am saying one should aspire to work everyday no matter how less or more it is. Because some days you just, just can't do what you had planned to. In those days you can't just go on a disheartening streak and go on a bad spiral. You just gotta believe that in the long run you will get it done. It's very easy to say this, but man doing one thing everyday when you are not able to see much progress is hard. fucking hard. &lt;br&gt;&lt;br&gt;Maybe I will reach the end, I am certainly hoping too and I want everyone else to be hopeful too.
-&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240531_1813_kartikmandar/</guid><pubDate>Fri, 31 May 2024 17:13:00 GMT</pubDate></item><item><title>First official day of GSOC</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240528_1120_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So 27th May was the first official day of GSOC when coding begins. I know I could have done more preparation but I am not too sad with the results. I was able to show my mentors a basic beginning of the layout. I am using the holoviz ecosystem to make the dashboard. The base is panel itself. &lt;br&gt;&lt;br&gt;I went through many of the tutorials and came to realise it is quite suitable to what we need from the dashboard. &lt;br&gt;&lt;br&gt;Doing this project is not say for example an extremely challenging or difficult problem/job. It's mostly a problem of consistency working on smaller issues and try to get hold of the bigger picture and be consistent in doing your work.&lt;br&gt;&lt;br&gt;I am excited to strive for the best and fulfil not only my mentors expectations but my own expectations with myself. &lt;br&gt; &lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240528_1120_kartikmandar/</guid><pubDate>Tue, 28 May 2024 10:20:00 GMT</pubDate></item><item><title>Good start for the project</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;h3&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-First 2 weeks summarize:
-&lt;/h3&gt;
-
-&lt;p&gt;This week I began working on refactoring &lt;code&gt;hek.py&lt;/code&gt; functions.&lt;br&gt;
-I started by migrating the finished work in &lt;a href="https://github.com/sunpy/sunpy/pull/7059"&gt;GSoC2023&lt;/a&gt; to a new &lt;a href="https://github.com/sunpy/sunpy/pull/7619"&gt;PR&lt;/a&gt; to start working on it.&lt;br&gt;
-My first contribution was creating &lt;code&gt;util.py&lt;/code&gt; file to include all utility functions needed for &lt;code&gt;hek.py&lt;/code&gt;, a lot of functions that was added in HEKClient at first didn't make sense to remain there.&lt;/p&gt;
-
-&lt;p&gt;Now the new &lt;code&gt;util.py&lt;/code&gt; file includes:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_times&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_values_to_quantities&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_columns_to_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attributes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_coord_prop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_coord_prop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_chaincode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;&lt;code&gt;get_unit&lt;/code&gt; has been simplified in terms of implementation and interface, this was the first version:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_coord_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
-&lt;span class="n"&gt;coord1_unit&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coord2_unit&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coord3_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
-&lt;span class="n"&gt;coord_units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;[, ]&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord_units&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="c1"&gt;# deg
-&lt;/span&gt;               &lt;span class="n"&gt;coord1_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;coord2_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord_units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord_units&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;coord1_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord_units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;coord2_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord_units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;coord1_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord_units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;coord2_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord_units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;coord3_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord_units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nf"&gt;locals&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;The first thing that has been done is to use unit aliases inside the function using context manager instead of putting the aliases globally.&lt;/p&gt;
-
-&lt;p&gt;The whole goal of this function is to parse a string into an astropy unit, but the big part of the function was splitting the string into more than one unit if the input was coordinate units, and then returning the unit assigned to &lt;code&gt;unit_prop&lt;/code&gt;. I decided to just remove all of this and convert the unit into an array and return the first index, like this:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;   &lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;[, ]&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;And actually it works just fine with all HEK features and events, so I will keep it like this until some strange error appears.&lt;br&gt;
-And also the interface has been simplified to just take the string of the targeted unit.&lt;/p&gt;
-
-&lt;p&gt;This is the current version of &lt;code&gt;get_unit&lt;/code&gt;:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="sh"&gt;"""&lt;/span&gt;&lt;span class="s"&gt;
-Converts string into astropy unit.
-
-Parameters
-----------
-unit: str
-The targeted unit
-
-Returns
--------
-unit
-Astropy unit object (e.g. &amp;lt;class &lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;astropy.units.core.Unit&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;&amp;gt; or &amp;lt;class &lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;astropy.units.core.CompositeUnit&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;&amp;gt;)
-
-Raises
-------
-ValueError
-Because `unit` did not parse as unit.
-
-Notes
-----
-For the complete list of HEK parameters: https://www.lmsal.com/hek/VOEvent_Spec.html
-
-&lt;/span&gt;&lt;span class="sh"&gt;"""&lt;/span&gt;
-&lt;span class="n"&gt;cm2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cm2&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cm&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;m2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;m2&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;m3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;m3&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;aliases&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;steradian&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;arcseconds&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arcsec&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;degrees&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;sec&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;emx&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Mx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;amperes&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ergs&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;erg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cubic centimeter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ml&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;square centimeter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;cm2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cubic meter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;square meter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_enabled_units&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;cm2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m3&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;set_enabled_aliases&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="c1"&gt;# If they are units of coordinates, it will have more than one unit,
-&lt;/span&gt;        &lt;span class="c1"&gt;# otherwise it will be just one unit.
-&lt;/span&gt;        &lt;span class="c1"&gt;# NOTE: There is an assumption that coord1_unit, coord2_unit and coord3_unit will be the same.
-&lt;/span&gt;        &lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;[, ]&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;Another thing that has been done was adding a documentation string for &lt;code&gt;parse_chaincode&lt;/code&gt; function.&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_chaincode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="sh"&gt;"""&lt;/span&gt;&lt;span class="s"&gt;
-Parses a string representation of coordinates and convert them into a PolygonSkyRegion object
-using units based on the specified coordinate frame.
-
-Parameters
-----------
-value: PolygonSkyRegion
-A polygon defined using vertices in sky coordinates.
-attribute: dict
-An object from coord_properties.json
-unit: str
-The unit of the coordinates
-
-Returns
--------
-PolygonSkyRegion
-A polygon defined using vertices in sky coordinates.
-
-Raises
-------
-IndexError
-Because `value` does not contain the expected &lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;((&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt; and &lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;))&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt; substrings.
-UnitConversionError
-Because the units set by `coord1_unit` or `coord2_unit` are incompatible with the values being assigned.
-
-&lt;/span&gt;&lt;span class="sh"&gt;"""&lt;/span&gt;
-&lt;span class="n"&gt;coord1_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt;
-&lt;span class="n"&gt;coord2_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;frame&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;helioprojective&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;coord1_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arcsec&lt;/span&gt;
-&lt;span class="n"&gt;coord2_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arcsec&lt;/span&gt;
-&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;frame&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;heliocentric&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;coord1_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;R_sun&lt;/span&gt; &lt;span class="c1"&gt;# Nominal solar radius
-&lt;/span&gt;    &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;frame&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;icrs&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;coord1_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;coord2_unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;coordinates_str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;((&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;))&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;coord1_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nf"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;coordinates_str&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;,&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;coord1_unit&lt;/span&gt;
-&lt;span class="n"&gt;coord2_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nf"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;coord&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;coordinates_str&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;,&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;coord2_unit&lt;/span&gt;
-&lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;frame&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;heliocentric&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nc"&gt;SkyCoord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord1_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coord2_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord1_list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AU&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;representation_type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cylindrical&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;heliocentric&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nc"&gt;SkyCoord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coord1_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;coord2_list&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;frame&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;frame&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nc"&gt;PolygonSkyRegion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</guid><pubDate>Mon, 27 May 2024 12:23:44 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=c0fa3bca6157" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240602_0915_nucleongodx/</guid><pubDate>Sun, 02 Jun 2024 08:15:15 GMT</pubDate></item></channel></rss>
