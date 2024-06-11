@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 10 Jun 2024 01:03:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Benchmark Tests</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230825_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I have finished the refactoring the code for vaex and also writtten test cases to compare the spectrum calculated using pandas with the dataframe calculated using vaex dataframe . Also, Various spectroscopic quantities as absorbance , emissitivity is also compared for the both the dataframams.
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 11 Jun 2024 01:02:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>The start</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240610_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;The first aim for this project is to add support for the atomic Kurucz database to RADIS. A &lt;a href="https://github.com/radis/radis/pull/601"&gt;PR&lt;/a&gt; containing previous work done on this provides a starting point. Much use had been made of code from the ExoJax project, which had already implemented support for the Kurucz database and with which RADIS is pursuing a common API.&lt;/p&gt;
+
+&lt;p&gt;After examining the work done so far in that PR, I merged it onto the latest &lt;code class="language-plaintext highlighter-rouge"&gt;develop&lt;/code&gt; branch with few conflicts to resolve. There are a number of errors and/or placeholders in the previous code that are gradually being corrected.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;I began looking into an outstanding issue from the previous work which was implementing Lorentzian broadening for atomic lines, as RADIS has previously catered mainly for molecular databases. ExoJax provides &lt;a href="https://github.com/HajimeKawahara/exojax/blob/78466cef0170ee1a2768b6a6f7b7c911d715c1bd/documents/userguide/atomll.rst#broadening-parameters"&gt;5 functions to choose from&lt;/a&gt; for this, the results of which can &lt;a href="https://github.com/HajimeKawahara/exojax/blob/920bce49e9bf30c33b5d349425dc9b837237974f/tests/endtoend/metals/opacity_Fe_test.py#L59"&gt;differ from each other by up to an order of magnitude&lt;/a&gt;. The &lt;code class="language-plaintext highlighter-rouge"&gt;gamma_vald3&lt;/code&gt; function is the one regularly used in ExoJax and we chose to use it as a basis for the default function in RADIS. I have been reviewing its handling of Stark broadening in particular as some corrections were required.&lt;/p&gt;
+
+&lt;p&gt;Considering the numerous different formulae that have been proposed for Lorentzian broadening of atomic lines, and the significantly different results they produce, I also added a parameter in the &lt;code class="language-plaintext highlighter-rouge"&gt;SpectrumFactory&lt;/code&gt; class for a user to specify their own function to use instead of &lt;code class="language-plaintext highlighter-rouge"&gt;gamma_vald3&lt;/code&gt;. I also added a similar parameter in &lt;code class="language-plaintext highlighter-rouge"&gt;calc_spectrum&lt;/code&gt; (a typical entry point for the end user) for a user to specify a class to use in place of &lt;code class="language-plaintext highlighter-rouge"&gt;SpectrumFactory&lt;/code&gt;, which allows them even more flexibility and control over other parts of the spectrum calculation too.&lt;/p&gt;
+
+&lt;p&gt;I started a PR for this project to enquire about &lt;a href="https://github.com/radis/radis/pull/652#issuecomment-2141212791"&gt;an issue&lt;/a&gt; related to the &lt;code class="language-plaintext highlighter-rouge"&gt;truncation&lt;/code&gt; parameter used in calculating the lineshape and the differing results depending on the choice of &lt;code class="language-plaintext highlighter-rouge"&gt;optimization&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;I’ve also been looking into third-party tools to generate plots of spectra for the same atoms for comparison with the results being generated in RADIS and to potentially indicate through any discrepancies whether there’s an error to be resolved.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240610_0000_code29563/</guid><pubDate>Sun, 09 Jun 2024 23:00:00 GMT</pubDate></item><item><title>Benchmark Tests</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230825_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I have finished the refactoring the code for vaex and also writtten test cases to compare the spectrum calculated using pandas with the dataframe calculated using vaex dataframe . Also, Various spectroscopic quantities as absorbance , emissitivity is also compared for the both the dataframams.
 Also, there was many issues that was raised by the maintainers and I have resolved almost all of these , and commented on the other issues to discuss the problem and discuss some possible solution .Issues raised by the maintainers was mainly related to make changes more matainable and easy to understand and simple programming logic is preferred inplace of using some complex code without explaining that in detail.
 Also , the issue was to ensure a light test suite , that is test cases which takes less resources and time . Initialy , I didn’t focused on this thing and focused on testing the code and changes more elaborately by writing the test cases that cover many areas of code .&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -395,195 +406,4 @@ tracemalloc.stop()
 &lt;p&gt;Here is another example for Ca.&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*q_748Zt_K4rqW5fWtFAdTQ.png"&gt;&lt;/figure&gt;&lt;h4&gt;&lt;strong&gt;What is next ?&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;I will end up this week by adding a few tests to ensure my code doesn’t break any part of the Radis architecture and may go for a PR in the next days.&lt;/p&gt;
 &lt;p&gt;Then the next step for Week 4 will be to implement the TheoReTS database to Radis .&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=27c2724fde74" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230617_2033_menasrac/</guid><pubDate>Sat, 17 Jun 2023 19:33:30 GMT</pubDate></item><item><title>Refactoring code for calculating Spectrum Using Vaex dataframe</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230616_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;After the community bonding period , I continued refactoring the code for vaex .
-I have the following the things in this period&lt;/p&gt;
-
-&lt;!-- TEASER_END --&gt;
-&lt;ul&gt;
-&lt;li&gt;Test cases for fetch_databank() and load_databank() functions&lt;/li&gt;
-&lt;li&gt;Replaced the portion of code which is different for Vaex as compared with Pandas&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id="test-cases-for-loading-dataframe-in-vaex-dataframe-format"&gt;Test Cases for loading dataframe in Vaex dataframe format&lt;/h4&gt;
-
-&lt;p&gt;Test Cases are written to test the following :&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Number of columns are same in both Vaex dataframe and Pandas dataframe&lt;/li&gt;
-&lt;li&gt;Number of lines in same in both the dataframe&lt;/li&gt;
-&lt;li&gt;Compared the value of some of the column with corresponding the column value&lt;/li&gt;
-&lt;li&gt;Calculated the spectrum of CO molecule under equilibrium and compared both the spectrum are the same&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;One of the test case added is following , I have simply fetched dataframe in Vaex dataframe format and pandas , then compared the if the above conditions are satisfied are not .&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;def test_df_from_vaex_and_pandas():
-from radis.lbl import SpectrumFactory
-
-sf = SpectrumFactory(
-2284,
-2300,
-wstep=0.001,  # cm-1
-pressure=20 * 1e-3,  # bar
-cutoff=0,
-path_length=0.1,
-mole_fraction=400e-6,
-molecule="CO",
-isotope="1,2",
-medium="vacuum",
-truncation=5,
-verbose=0,
-)
-sf.engine = 'vaex'
-sf.warnings["MissingSelfBroadeningWarning"] = "ignore"
-# Testing Hitran
-sf.fetch_databank("hitran", memory_mapping_engine='vaex', output='pandas', load_columns="all")
-df_pandas = sf.df0
-
-sf.fetch_databank("hitran", memory_mapping_engine='vaex', output='vaex', load_columns="all")
-df_vaex = sf.df0
-
-assert df_vaex[0][0] == df_pandas.iloc[0]["wav"]
-
-columns_vaex = df_vaex.column_names
-columns_pandas = df_pandas.column
-comparison = (df_vaex.column_names == df_pandas.columns)
-
-assert comparison.all()
-
-# Testing Hitemp
-sf.fetch_databank("hitemp", memory_mapping_engine='vaex', output='pandas', load_columns="all")
-df_pandas = sf.df0
-
-sf.fetch_databank("hitemp", memory_mapping_engine='vaex', output='vaex', load_columns="all")
-df_vaex = sf.df0
-
-assert df_vaex[0][0] == df_pandas.iloc[0]["wav"]
-
-columns_vaex = df_vaex.column_names
-columns_pandas = df_pandas.column
-comparison = (df_vaex.column_names == df_pandas.columns)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id="refactoring-the-code-to-calculate-the-spectrum-using-vaex-dataframe"&gt;Refactoring the code to calculate the Spectrum using Vaex dataframe&lt;/h4&gt;
-
-&lt;p&gt;To calculate the spectrum using the Vaex dataframe ,I had to made changes to the following&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;radis/api/hitranapi.py&lt;/li&gt;
-&lt;li&gt;radis/api/cdsdapi.py&lt;/li&gt;
-&lt;li&gt;radis/api/hdf5.py&lt;/li&gt;
-&lt;li&gt;radis/api/cache_files.py&lt;/li&gt;
-&lt;li&gt;radis/api/tools.py&lt;/li&gt;
-&lt;li&gt;radis/io/exomol.py&lt;/li&gt;
-&lt;li&gt;radis/io/geisa.py&lt;/li&gt;
-&lt;li&gt;radis/io/hitran.py&lt;/li&gt;
-&lt;li&gt;radis/io/query.py&lt;/li&gt;
-&lt;li&gt;radis/lbl/base.py&lt;/li&gt;
-&lt;li&gt;radis/lbl/broadening.py&lt;/li&gt;
-&lt;li&gt;radis/lbl/calc.py&lt;/li&gt;
-&lt;li&gt;radis/lbl/loader.py&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These are all files which are involved in calculating the Spectrum of molecule(s) ,from loading to calculating . I have only refactord the part that is required to Equilibrium Calculations .I kept the previous implementation of Pandas and just added code for Vaex .&lt;/p&gt;
-
-&lt;p&gt;For loading the main changes are done in hitranapi.py for parsing the molecules and i also had to spend a lot time on it to find the equivalent operations functions in Vaex as in Pandas .
-Finally , i was able to resolve the issue and below is final code that worked for me .&lt;/p&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;def _parse_HITRAN_class1(df, verbose=True,dataframe_type="pandas"):
-r"""Diatomic molecules: CO, HF, HCl, HBr, HI, N2, NO+
-
-
-Parameters
-----------
-df: pandas Dataframe
-lines read from a HITRAN-like database
-
-
-Notes
------
-HITRAN syntax [1]_ :
-
-&amp;gt;&amp;gt;&amp;gt;       v
-&amp;gt;&amp;gt;&amp;gt;  13x I2
-
-References
-----------
-
-.. [1] `Table 3 of Rothman et al. HITRAN 2004 &amp;lt;https://www.cfa.harvard.edu/hitran/Download/HITRAN04paper.pdf&amp;gt;`__
-
-
-"""
-
-if dataframe_type == "vaex":
-# 1. Parse
-
-extracted_values = df['globu'].str.extract_regex(pattern = r"[ ]{13}(?P&amp;lt;vu&amp;gt;[\d ]{2})")
-df['vu'] = extracted_values.apply(lambda x : x.get('globu'))
-df['vu'] = df.evaluate(df['vu'])
-
-extracted_values = df['globl'].str.extract_regex(pattern = r"[ ]{13}(?P&amp;lt;vl&amp;gt;[\d ]{2})")
-df['vl'] = extracted_values.get(df['globl'])
-df['vl'] = df.evauate(df['vl'])
-
-# 2. Convert to numeric
-cast_to_int64_with_missing_values(df, ["vu" ,"vl"], dataframe_type=dataframe_type)
-
-# 3. Clean
-del df["globu"]
-del df["globl"]
-
-return df
-elif dataframe_type == "pandas":
-# 1. Parse
-dgu = df["globu"].astype(str).str.extract(r"[ ]{13}(?P&amp;lt;vu&amp;gt;[\d ]{2})", expand=True)
-dgl = df["globl"].astype(str).str.extract(r"[ ]{13}(?P&amp;lt;vl&amp;gt;[\d ]{2})", expand=True)
-
-# 2. Convert to numeric
-cast_to_int64_with_missing_values(dgu, ["vu"],dataframe_type=dataframe_type)
-cast_to_int64_with_missing_values(dgl, ["vl"],dataframe_type=dataframe_type)
-
-# 3. Clean
-del df["globu"]
-del df["globl"]
-
-return pd.concat([df, dgu, dgl], axis=1)
-else:
-raise NotImplementedError(dataframe_type)
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;For other part of the code , i added an additional parameter self.dataframe_type and whenever operations are different for vaex and pandas ,I used it to execute the part of code for the respective dataframe type as whether it is Vaex or Pandas .&lt;/p&gt;
-
-&lt;p&gt;#####Spectrum using Vaex and Pandas&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Code used&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
-
-s, factory_s = calc_spectrum(1800, 2500,         # cm-1
-molecule='H2O',
-isotope='1,2,3',
-pressure=1.01325,   # bar
-Tgas=700,           # K
-mole_fraction=0.1,
-path_length=1,      # cm
-databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
-wstep='auto',
-use_cached=False,
-engine='vaex',
-return_factory=True,
-)
-
-s.apply_slit(0.5, 'nm')       # simulate an experimental slit
-s.plot('radiance')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id="using-vaex"&gt;Using Vaex&lt;/h6&gt;
-&lt;p&gt;&lt;img alt="spectrum using vaex" src="https://1someshverma.github.io/images/specturm-using-vaex.png"&gt;&lt;/p&gt;
-
-&lt;h6 id="using-pandas"&gt;Using Pandas&lt;/h6&gt;
-&lt;p&gt;As i also kept the Pandas implementation , spectrum calculated using that is&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="spectrum using pandas" src="https://1someshverma.github.io/images/specturm-using-vaex.png"&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230616_0000_1someshverma/</guid><pubDate>Thu, 15 Jun 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=27c2724fde74" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230617_2033_menasrac/</guid><pubDate>Sat, 17 Jun 2023 19:33:30 GMT</pubDate></item></channel></rss>
