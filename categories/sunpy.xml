@@ -1,5 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 17 Jun 2024 01:04:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Community Bonding and Week 01 Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240607_2045_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;This post documents the planning of the project, my learnings during the community bonding period, and the tasks I completed in my first week.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 18 Jun 2024 01:02:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Finishing implementation and doc strings</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240617_0444_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;The main implementation and documentation strings phase has been finished.&lt;/p&gt;
+
+&lt;p&gt;One of the functions that have been deleted was &lt;code&gt;parse_unit&lt;/code&gt;, it almost wasn't triggered by any event of HEK events, so I decided to delete it, and we will see in the future if it has any major effects on the code.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;Also &lt;code&gt;parse_columns_to_table&lt;/code&gt; has been refactored by adding more variables to make the code more readable.&lt;/p&gt;
+
+&lt;p&gt;This is the new implementation:&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_columns_to_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attributes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_coord_prop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="sh"&gt;"""&lt;/span&gt;&lt;span class="s"&gt;
+Parses the columns in an Astropy table and convert the values into Astropy objects.
+
+Parameters
+----------
+table: astropy.table
+Astropy table.
+attributes: list
+A list of HEK unit attributes or coordinate attributes.
+is_coord_prop: bool
+To specify if `attributes` is a list of unit attributes or coordinate attributes.
+
+Returns
+-------
+`astropy.table`
+
+Raises
+------
+TypeError
+If `table` is not an Astropy table.
+KeyError
+If any of the attribute dictionaries are missing required keys (i.e. &lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;, &lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;).
+&lt;/span&gt;&lt;span class="sh"&gt;"""&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;attributes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;colnames&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_chaincode&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="n"&gt;unit_attr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sh"&gt;""&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;is_coord_prop&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;unit_attr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;event_coordunit&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;unit_attr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;new_column&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;idx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nf"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]]):&lt;/span&gt;
+&lt;span class="n"&gt;new_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sh"&gt;""&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;""&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+&lt;span class="n"&gt;new_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
+&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_chaincode&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="n"&gt;new_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;parse_chaincode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]][&lt;/span&gt;&lt;span class="n"&gt;idx&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;unit_attr&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;idx&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;new_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;
+&lt;span class="n"&gt;new_column&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new_column&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;attributes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;colnames&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;Also a public interface &lt;code&gt;__all__&lt;/code&gt; has been added to &lt;code&gt;util.py&lt;/code&gt;, until now, the public "api" for &lt;code&gt;util.py&lt;/code&gt; is:&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="n"&gt;__all__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;freeze&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;parse_times&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;parse_values_to_quantities&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;UNIT_FILE_PATH&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;COORD_FILE_PATH&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;&lt;code&gt;UNIT_FILE_PATH&lt;/code&gt; and &lt;code&gt;COORD_FILE_PATH&lt;/code&gt; are used in &lt;code&gt;test_hek.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;There was a problem in &lt;code&gt;get_unit&lt;/code&gt; because of some units that wasn't parsed correctly, one of them is &lt;code&gt;ergs per cubic centimeter&lt;/code&gt;, because of the first implementation of &lt;code&gt;get_unit&lt;/code&gt;:&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_enabled_units&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;cm2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m3&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;set_enabled_aliases&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="c1"&gt;# Units for coordinate frames have more than one unit, otherwise it will be just one unit.
+&lt;/span&gt;        &lt;span class="c1"&gt;# There is an assumption that coord1_unit, coord2_unit and coord3_unit are the same.
+&lt;/span&gt;        &lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;[, ]&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;The function was taking the first "word" of the input and returns the unit, obviously this will be wrong with &lt;code&gt;ergs per cubic centimeter&lt;/code&gt; because it will take only &lt;code&gt;ergs&lt;/code&gt; and returns &lt;code&gt;u.Unit('erg')&lt;/code&gt;.&lt;br&gt;
+But this is the only case with HEK units, the other units works just fine.&lt;br&gt;
+This is the new implementation to correct this behavior:&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="sh"&gt;"""&lt;/span&gt;&lt;span class="s"&gt;
+Converts string into astropy unit.
+
+Parameters
+----------
+unit: str
+The targeted unit
+
+Returns
+-------
+unit
+Astropy unit object (e.g. &amp;lt;class &lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;astropy.units.core.Unit&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;&amp;gt; or &amp;lt;class &lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;astropy.units.core.CompositeUnit&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;&amp;gt;)
+
+Raises
+------
+ValueError
+Because `unit` did not parse as unit.
+
+Notes
+----
+For the complete list of HEK parameters: https://www.lmsal.com/hek/VOEvent_Spec.html
+
+&lt;/span&gt;&lt;span class="sh"&gt;"""&lt;/span&gt;
+&lt;span class="n"&gt;cm2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cm2&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cm&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;m2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;m2&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;m3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;m3&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;erg_per_cm3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ergs/cm^3&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;erg&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ml&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;aliases&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;steradian&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;arcseconds&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arcsec&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;degrees&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;sec&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;emx&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Mx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;amperes&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ergs&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;erg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cubic centimeter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ml&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;square centimeter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;cm2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cubic meter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;square meter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ergs per cubic centimeter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;erg_per_cm3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_enabled_units&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;cm2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m3&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;set_enabled_aliases&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;warnings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;catch_warnings&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;span class="c1"&gt;# Units for coordinate frames have more than one unit, otherwise it will be just one unit.
+&lt;/span&gt;        &lt;span class="c1"&gt;# There is an assumption that coord1_unit, coord2_unit and coord3_unit are the same.
+&lt;/span&gt;        &lt;span class="n"&gt;warnings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;filterwarnings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ignore&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;category&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UnitsWarning&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;[, ]&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;Also, the units warnings were ignored because it's irrelevant to the user of HEK.&lt;/p&gt;
+
+&lt;p&gt;So, the next phase is testing, we will see if our assumptions about the unit parsing and the other refactoring were right or not.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240617_0444_ahmedhosssam/</guid><pubDate>Mon, 17 Jun 2024 03:44:45 GMT</pubDate></item><item><title>Blog 1: Rethinking Coalignment from Ground-up</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;h3 id="the-very-essence-of-coalignment"&gt;The Very Essence of Coalignment&lt;/h3&gt;
+&lt;p&gt;At its core, coalignment is all about making sure our solar images match up as best they can. It uses a few different techniques, like template matching and solar rotation correction, to get this done. This is really important when we’re trying to accurately track and study what’s happening on a part of sun over time.
+We re-thought the entire process of what our new API be providing to the users as well as its structure.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;&lt;img alt="Naive Refactor" src="https://deus1704.vercel.app/images/proposed_struct.png"&gt;&lt;/p&gt;
+&lt;p&gt;This was one of the idea that was very naive version, but focused entierly for the user’s comfort in applying the coalignment methods.&lt;/p&gt;
+&lt;h3 id="the-basic-structure-we-finally-agreed-upon"&gt;The Basic Structure we finally agreed Upon&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="Internal Sturcture" src="https://deus1704.vercel.app/images/internal.png"&gt;&lt;/p&gt;
+&lt;p&gt;We agreed to have this as the very basic structure which we would be working/developing upwards. The following example demonstrates the way it would work.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;aia_map1 &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; sunpy&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;map&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;Map(sunpy&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;data&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;sample&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;AIA_193_CUTOUT01_IMAGE)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;aia_map2 &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; sunpy&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;map&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;Map(sunpy&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;data&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;sample&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;AIA_193_CUTOUT03_IMAGE)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;&lt;span style="color: #75715e;"&gt;### Creating a template from aia_map1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;bottom_left &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; SkyCoord(&lt;span style="color: #ae81ff;"&gt;600&lt;/span&gt; &lt;span style="color: #f92672;"&gt;*&lt;/span&gt; u&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;arcsec, &lt;span style="color: #f92672;"&gt;-&lt;/span&gt;&lt;span style="color: #ae81ff;"&gt;500&lt;/span&gt; &lt;span style="color: #f92672;"&gt;*&lt;/span&gt; u&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;arcsec, frame&lt;span style="color: #f92672;"&gt;=&lt;/span&gt;aia_map1&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;coordinate_frame)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;top_right &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; SkyCoord(&lt;span style="color: #ae81ff;"&gt;800&lt;/span&gt; &lt;span style="color: #f92672;"&gt;*&lt;/span&gt; u&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;arcsec, &lt;span style="color: #f92672;"&gt;-&lt;/span&gt;&lt;span style="color: #ae81ff;"&gt;200&lt;/span&gt; &lt;span style="color: #f92672;"&gt;*&lt;/span&gt; u&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;arcsec, frame&lt;span style="color: #f92672;"&gt;=&lt;/span&gt;aia_map1&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;coordinate_frame)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;submap &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; aia_map1&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;submap(bottom_left, top_right&lt;span style="color: #f92672;"&gt;=&lt;/span&gt;top_right)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;coaligned_map &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; coalignment_interface(&lt;span style="color: #e6db74;"&gt;"match_template"&lt;/span&gt;,aia_map2, submap)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt="combined image" src="https://deus1704.vercel.app/images/combined.png"&gt;&lt;/p&gt;
+&lt;p&gt;I am currently implementing the decorator structure for the sunkit-image, but that would be covered in another blog.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</guid><pubDate>Sat, 15 Jun 2024 13:59:31 GMT</pubDate></item><item><title>Community Bonding and Week 01 Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240607_2045_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;This post documents the planning of the project, my learnings during the community bonding period, and the tasks I completed in my first week.&lt;/p&gt;
 &lt;h3 id="community-bonding-period"&gt;Community Bonding Period&lt;/h3&gt;
 &lt;p&gt;After the euphoria of being accepted into GSoC faded, it was time for setting up my workspace and diving back into the codebase after a month. Planning out the project was key, and meeting with my mentors was a big part of that. I was excited for this chat because the mentors had been super helpful and easy to reach during the proposal stage.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -418,7 +604,41 @@ Because the units set by `coord1_unit` or `coord2_unit` are incompatible with th
 &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nc"&gt;PolygonSkyRegion&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vertices&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;vertices&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</guid><pubDate>Mon, 27 May 2024 12:23:44 GMT</pubDate></item><item><title>Blog 0: The First Two Weeks</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240525_0000_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;p&gt;/*@jsxRuntime automatic @jsxImportSource react*/
+&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240527_1323_ahmedhosssam/</guid><pubDate>Mon, 27 May 2024 12:23:44 GMT</pubDate></item><item><title>Blog 0: The First Two Weeks</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240525_1459_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;h5 id="a-summary-of-activities-completed-in-the-two-weeks-leading-up-to-the-start-of-the-coding-period"&gt;A summary of activities completed in the two weeks leading up to the start of the coding period.&lt;/h5&gt;
+&lt;h3 id="table-of-contents"&gt;Table of Contents&lt;/h3&gt;
+&lt;ul&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;li&gt;&lt;a href="https://deus1704.vercel.app/posts/blog_0/#draft_pr"&gt;Wrapping up the draft pull request&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://deus1704.vercel.app/posts/blog_0/#issue1"&gt;Incorporating suggestions for STARA &amp;amp; its examples&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://deus1704.vercel.app/posts/blog_0/#fix_doc_fails"&gt;Fixing the doc failures&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://deus1704.vercel.app/posts/blog_0/#first_meet"&gt;First Meet with Mentors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After completing my end-semester exams, I was overwhelmed by the outstanding tasks that I had let accumulate over time.
+In order to address those, I tried resolving dependencies and package issues of the previous environments of
+sunpy &amp;amp; sunkit-image but, ultimately gave up and initialised a new environment. After discussions with mentors, the project priorities were clarified, allowing me to efficiently plan &amp;amp; complete my tasks during the community bonding period. What follows is the detailed account of all the tasks completed during these two weeks.&lt;/p&gt;
+&lt;h3 id="incorporating-suggestions-for-sunspot-tracking-and-recognition-algorithm-stara"&gt;Incorporating suggestions for Sunspot Tracking and Recognition Algorithm (STARA)&lt;/h3&gt;
+&lt;p&gt;Incorporated suggestions and made several changes to the STARA example. Attempted to create a mock HMI continuum data with an artificial “sunspot” at a chosen location with a certain radius. But it did not meet the exact requirements of the STARA, hence no regions could be identified. The written mock hmi map are demonstrated below,&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="Mock HMI Map without Sunspot" src="https://deus1704.vercel.app/images/mock_wo.png"&gt;&lt;/th&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="Mock HMI Map with Sunspot" src="https://deus1704.vercel.app/images/mock_withspot.png"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;Mock HMI Map without Sunspot&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;Mock HMI Map with Sunspot&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Discussed alternative approaches with mentor Nabil regarding the mock HMI map. According to his suggestion I tried the HMI continuum test data present in &lt;code&gt;sunpy/data/test&lt;/code&gt; directory, but it had some issues with the WCS hence STARA couldn’t properly find the sunspot regions.&lt;/p&gt;
+&lt;h3 id="wrapping-up-the-draft-pull-request"&gt;Wrapping up the draft pull request&lt;/h3&gt;
+&lt;p&gt;I began working on the transformation of a vector field some time ago but encountered challenges in validating the approach. Using Astropy for the transformation confirmed the accuracy of the function I wrote. The next step is to seek feedback from mentors and the SunPy community. But I still feel a need to test this more rigorously which can validate that this would work with different frames too. I studied about different frames provided by the SPICE toolkit and tried to match the sunpy frames and the SPICE frames and have confirmed that the function works with the static frames.&lt;/p&gt;
+&lt;h3 id="fixing-the-doc-failures"&gt;Fixing the doc failures&lt;/h3&gt;
+&lt;p&gt;Two out of my three open pull requests encountered documentation failures due to incorrect referencing of functions or modules, or example galleries. After studying the conventions of Sphinx and SunPy, I resolved these issues. Additionally, I discovered how to set up GitHub CI actions on my forks.&lt;/p&gt;
+&lt;h3 id="first-meet-with-mentors"&gt;First Meet with Mentors&lt;/h3&gt;
+&lt;p&gt;In our initial meeting, my mentor Will provided a brief overview of the purpose of sunkit-image, emphasizing its primary function: coalignment. He explained the fundamental concepts of coalignment, user expectations, and desired functionalities of the new API. We also reviewed the current coalignment API’s shortcomings. We agreed that an improved API was necessary and discussed my proposed structure for this enhancement. We also drafted a plan for the entire rethinking and redesigning the new API over the span of 4 weeks.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240525_1459_deus1704/</guid><pubDate>Sat, 25 May 2024 13:59:31 GMT</pubDate></item><item><title>Blog 0: The First Two Weeks</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240525_0000_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;p&gt;/*@jsxRuntime automatic @jsxImportSource react*/
 const {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];
 const {useMDXComponents: _provideComponents} = arguments[0];
 &lt;!-- TEASER_END --&gt;
@@ -549,8 +769,4 @@ default: MDXContent
 &lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_1347_viciouseagle03/</guid><pubDate>Thu, 16 May 2024 12:47:06 GMT</pubDate></item><item><title>About Me</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_0000_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;I am a second-year undergraduate student at the Indian Institute of Technology, Roorkee, majoring in Mathematics and Computing.
 How is the blog made? The blog is created using Hugo, a static site generator, and it’s styled with the hugo-paper theme.
 Contact Information Reach me at piyushsharma04321@gmail.com
-&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_0000_viciouseagle03/</guid><pubDate>Wed, 15 May 2024 23:00:00 GMT</pubDate></item><item><title>The trial post</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240514_0000_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;p&gt;To code or debug that is the question
-&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240514_0000_deus1704/</guid><pubDate>Mon, 13 May 2024 23:00:00 GMT</pubDate></item><item><title>Test</title><link>http://openastronomy.org/Universe_OA/posts/2024/05/20240512_2019_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;This is a test post to see if RSS works.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240512_2019_ahmedhosssam/</guid><pubDate>Sun, 12 May 2024 19:19:12 GMT</pubDate></item><item><title>Docs and Marty and the Moving Around of Code and Tests</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0533_exitflynn/</link><dc:creator>exitflynn</dc:creator><description>&lt;p&gt;Since the last post, I worked on the moving-the-code task. Me, Nabil and Alasdair got on a call to discuss what should go where and I ended up creating a &lt;code&gt;scraper_utils.py&lt;/code&gt; file to complement the &lt;code&gt;scraper.py&lt;/code&gt; file. The other options were moving the functions to &lt;code&gt;.util.net&lt;/code&gt; or inside the &lt;code&gt;scraper.py&lt;/code&gt; file but outside the &lt;code&gt;Scraper&lt;/code&gt; class. After I moved the tests as well, I wrote new tests, increased test coverage and renamed some functions which were previously named in the JavaScript-style CamelCase.
-I also added and extended doc-strings to some functions which could use some updating and made fixes as asked in Code-Reviews.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230812_0533_exitflynn/</guid><pubDate>Sat, 12 Aug 2023 04:33:30 GMT</pubDate></item></channel></rss>
+&lt;!-- TEASER_END --&gt;&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/05/20240516_0000_viciouseagle03/</guid><pubDate>Wed, 15 May 2024 23:00:00 GMT</pubDate></item></channel></rss>
