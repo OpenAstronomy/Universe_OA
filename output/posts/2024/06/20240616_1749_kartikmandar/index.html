@@ -11,7 +11,8 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2024/06/20240616_1749_kartikmandar/">
 <!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Kartik Mandar">
-<link rel="prev" href="../20240614_1409_kartikmandar/" title="Starting to now finalise the basic structure" type="text/html">
+<link rel="prev" href="../20240615_1459_deus1704/" title="Blog 1: Rethinking Coalignment from Ground-up" type="text/html">
+<link rel="next" href="../20240617_0444_ahmedhosssam/" title="Finishing implementation and doc strings" type="text/html">
 <meta property="og:site_name" content="Universe OpenAstronomy">
 <meta property="og:title" content="Doing a summer analytics course to understand stuff better">
 <meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2024/06/20240616_1749_kartikmandar/">
@@ -74,10 +75,10 @@ bg-dark
             </style>
 <div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
 <li>
-                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://dev.to/ahmedhosssam" data-toggle="tooltip" data-placement="top" title="2024-05-27 13:23:44+01:00" style="color:rgb(255,0,0)">
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://dev.to/ahmedhosssam" data-toggle="tooltip" data-placement="top" title="2024-06-17 04:44:45+01:00">
                     Ahmed Hossam
                    </a>
-                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
                 </li>
 <li>
                    <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="http://code29563.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-10 00:00:00+01:00">
@@ -92,10 +93,10 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
                 </li>
 <li>
-                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://deus1704.vercel.app" data-toggle="tooltip" data-placement="top" title="2024-05-25 00:00:00+01:00" style="color:rgb(255,0,0)">
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://deus1704.vercel.app" data-toggle="tooltip" data-placement="top" title="2024-06-15 14:59:31+01:00">
                     Deus1704
                    </a>
-                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
                 </li>
 <li>
                    <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://gsoc2024.kartikmandar.com" data-toggle="tooltip" data-placement="top" title="2024-06-16 17:49:00+01:00">
@@ -149,7 +150,10 @@ bg-dark
         </ul>
 <ul class="pager hidden-print">
 <li class="previous">
-                <a href="../20240614_1409_kartikmandar/" rel="prev" title="Starting to now finalise the basic structure">Previous post</a>
+                <a href="../20240615_1459_deus1704/" rel="prev" title="Blog 1: Rethinking Coalignment from Ground-up">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20240617_0444_ahmedhosssam/" rel="next" title="Finishing implementation and doc strings">Next post</a>
             </li>
         </ul></nav></aside></article><!--End of body content--><footer id="footer">
             Contents © 2024         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
