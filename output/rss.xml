@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 23 Jun 2024 01:05:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Making the sidebar intuitive</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240621_1329_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So over the weeks of coding we transformed from building just a quicklook dashboard to an interactive analysis dashboard. Currently I was making the sidebar intuitive to do all the stuff that we are planning to do from it.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 24 Jun 2024 01:03:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>It’s going good.</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0821_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;p&gt;It’s going good.&lt;/p&gt;
+&lt;p&gt;The past two weeks were dedicated to the implementation of wavelength functionality. Now, wavelength has been successfully implemented for the applicable instruments. Along with that, a how-to guide has been created to assist users in navigating querying over wavelength for different instruments. Additionally, a gallery example for wavelength and detector has been added.&lt;/p&gt;
+&lt;h4&gt;What’s the direction of implementation:&lt;/h4&gt;&lt;p&gt;The implementation of wavelength can be divided into two parts:&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;ol&gt;&lt;li&gt;&lt;strong&gt;Instruments with a “wavelength” column in SOAR&lt;/strong&gt;: These remote sensing instruments are EUI, SOLOHI, and METIS. For these instruments, we query on the basis of wavelength.&lt;/li&gt;&lt;/ol&gt;&lt;pre&gt; instrument = a.Instrument("EUI")&lt;br&gt; time = a.Time("2023-04-03 15:00", "2023-04-03 16:00")&lt;br&gt; level = a.Level(1)&lt;br&gt; wavelength = a.Wavelength(304 * u.AA)&lt;br&gt; res = Fido.search(instrument &amp;amp; time &amp;amp; level &amp;amp; wavelength)&lt;/pre&gt;&lt;p&gt;Result:&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*Ty2aSvBet-8KYDf6iE729w.png"&gt;&lt;/figure&gt;&lt;p&gt;A range of wavelength can also be passed, which will be considered wavemin and wavemax for these three instruments.&lt;/p&gt;
+&lt;pre&gt;wavelength = a.Wavelength(171 * u.AA, 185 * u.AA)&lt;/pre&gt;&lt;p&gt;Result:&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*oUBJwth5UcL9IegFG5LjaA.png"&gt;&lt;/figure&gt;&lt;p&gt;2. For the instruments PHI and SPICE, we don’t have a “wavelength” column in their instrument table, so we use wavemin and wavemax for querying.&lt;/p&gt;
+&lt;p&gt;However, there is a problem with SPICE. Since the range of wavelength is only given for the first spectral window of the data, to ensure the data is not misleading to the user, we do not return any wavelength values.&lt;/p&gt;
+&lt;pre&gt; instrument = a.Instrument("PHI")&lt;br&gt; time = a.Time("2023-02-01", "2023-02-02")&lt;br&gt; level = a.Level(2)&lt;br&gt; wavelength = a.Wavelength(6173.065 * u.AA, 6173.501 * u.AA)&lt;br&gt; res = Fido.search(instrument &amp;amp; time &amp;amp; level &amp;amp; wavelength)&lt;/pre&gt;&lt;p&gt;Result:&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*fxkPK8p3KR6xMEv7zIkTXQ.png"&gt;&lt;/figure&gt;&lt;p&gt;Although passing a range of wavelengths is preferred for PHI, if only one value is passed, it will be taken as wavemin, and filtering will be done based on it. Additionally, the corresponding wavemax will be provided in the output table.&lt;/p&gt;
+&lt;pre&gt;wavelength = a.Wavelength(6173.065 * u.AA)&lt;/pre&gt;&lt;p&gt;Result:&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*O-pETZd8HZi9qVt9NQGa-w.png"&gt;&lt;/figure&gt;&lt;h4&gt;Challenges that still needs working:&lt;/h4&gt;&lt;p&gt;There is an issue with PHI’s wavelength data as well. The wavelengths returned are sometimes in the order of 6173 and sometimes 617.3, which are essentially just different units of similar wavelength data, but this is not specified in SOAR.&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=160df7122684" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0821_nucleongodx/</guid><pubDate>Sun, 23 Jun 2024 07:21:59 GMT</pubDate></item><item><title>Stark broadening and the Common API</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;Stark broadening for atomic lines has been implemented with different temperature scalings for neutral and ionised radiators.&lt;/p&gt;
+
+&lt;p&gt;I integrated the API for atomic Kurucz linelists into the Common API, and in doing so the issue related to &lt;code class="language-plaintext highlighter-rouge"&gt;truncation&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;optimization&lt;/code&gt; seems to have been resolved.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;The main differentiating aspect so far in the Common API for Kurucz is that new versions of linelists and lab lines aren’t available for all species, the result being that the url from which to download the Kurucz linelist isn’t known with certainty before actually attempting to download it, so the possibilities are ranked and attempted in order of preference and the first to return a valid response is used.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0000_code29563/</guid><pubDate>Sat, 22 Jun 2024 23:00:00 GMT</pubDate></item><item><title>Deeper into OpenCL</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240622_2045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to give a high level understanding of OpenCL and its workings&lt;/p&gt;
+
+&lt;h2 id="setting-it-up"&gt;Setting it up&lt;/h2&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL ICD" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-icd.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+&lt;p&gt;OpenCL is relatively easy to get up and running on your system.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For users:
+All you need, is the OpenCL runtime for your device!
+In case of Nvidia, this comes with the Nvidia drivers, while for Intel CPUs, this has to be manually installed by a package manager.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For developers:
+You will need the OpenCL library to link against, and the OpenCL headers as well, again easily available in your package manager.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="heres-a-new-perspective"&gt;Here’s a new perspective&lt;/h2&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Platform Model" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-platform.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+&lt;p&gt;OpenCL presents a general interface to the developer, no matter what the device or the architecture.&lt;/p&gt;
+
+&lt;p&gt;Firstly, we have the host, which is responsible for all the book-keeping, and task scheduling on the OpenCL device.&lt;/p&gt;
+
+&lt;p&gt;Then, we have our OpenCL device, which is divided into a number of compute units.
+Each Compute Unit (CU) is further divided into a number of processing elements.&lt;/p&gt;
+
+&lt;p&gt;But what do these words actually mean?&lt;/p&gt;
+
+&lt;p&gt;Well, a Processing Element(PE) is a single unit, that is responsible for executing a single thread(also called a work item). Think of a single function being executed.&lt;/p&gt;
+
+&lt;p&gt;Each PE has its own private memory, not accessible by anyone, but this PE&lt;/p&gt;
+
+&lt;p&gt;A bunch of processing elements are grouped together to form a compute unit which, at a time, executes a single work group(grouping of many work items).&lt;/p&gt;
+
+&lt;p&gt;The CUs all share a global memory, accessible by anyone&lt;/p&gt;
+
+&lt;p&gt;So for a CPU, the maximum number of CU s is the number of CPU cores!&lt;/p&gt;
+
+&lt;p&gt;But why do you want work groups? Why not have work items only?&lt;/p&gt;
+
+&lt;p&gt;Well, having this grouping of work items, allows for a greater deal of complexity, because we can synchronize across items in a work group, have a local memory only for this work group, and more…&lt;/p&gt;
+
+&lt;h2 id="a-complete-walkthrough"&gt;A complete walkthrough&lt;/h2&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Execution Model" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-exec.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Let’s look at a typical workflow for an OpenCL program&lt;/p&gt;
+
+&lt;h3 id="initialisation"&gt;Initialisation&lt;/h3&gt;
+&lt;p&gt;First we need to check the currently available OpenCL platforms, which are basically implementations of OpenCL available on your system&lt;/p&gt;
+
+&lt;p&gt;For example, you can have both Intel OpenCL and POCL OpenCL for your i7 CPU.&lt;/p&gt;
+
+&lt;p&gt;Then from these platforms, you need to choose a device to execute on. OpenCL supports CPUs, GPUs, FPGAs, and all sorts of accelerators.&lt;/p&gt;
+
+&lt;h3 id="context"&gt;Context&lt;/h3&gt;
+&lt;p&gt;Once you have the platform and device you wish to use, you need to create an OpenCL context, which will handle everything for that particular platform and device.&lt;/p&gt;
+
+&lt;h3 id="command-queue"&gt;Command Queue&lt;/h3&gt;
+&lt;p&gt;Then, you have to create a command queue, which, as the name suggests, will store any commands(kernels) you queue for execution, and dispatch them in order(or even out of order if you like!).&lt;/p&gt;
+
+&lt;h3 id="kernel"&gt;Kernel&lt;/h3&gt;
+&lt;p&gt;After the command queue, you must compile the kernel source code(the api provides functions to do this), so that it can be executed later.&lt;/p&gt;
+
+&lt;h3 id="memory"&gt;Memory&lt;/h3&gt;
+&lt;p&gt;Finally, one of the most important parts of this entire process, is passing the input to the OpenCL device.&lt;/p&gt;
+
+&lt;p&gt;Now, initially the data is stored on your CPU RAM, which is unfortunately inaccessible to your GPU.&lt;/p&gt;
+
+&lt;p&gt;Therefore you need to copy the data to your GPU RAM, using the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; interface that OpenCL provides.&lt;/p&gt;
+
+&lt;p&gt;However, if you know that the device being used is the same CPU, then this copy can be skipped, to save time, using the &lt;code class="language-plaintext highlighter-rouge"&gt;CL_MEM_USE_HOST_PTR&lt;/code&gt; flag while creating a &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;h3 id="execution"&gt;Execution&lt;/h3&gt;
+&lt;p&gt;At the end, you can use the command queue created earlier along with the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; created previously to execute the compiled kernel on the device&lt;/p&gt;
+
+&lt;p&gt;Subsequently don’t forget to copy the output data back to CPU RAM, if the execution was done on GPU.&lt;/p&gt;
+
+&lt;p&gt;However, there’s still a ton of unexplained stuff like, “How do you save the time wasted in copying data to the device?” or “Can you pass any data to the device? Even structs?”&lt;/p&gt;
+
+&lt;p&gt;We’ll explore OpenCL more in subsequent posts.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240622_2045_deadspheroid/</guid><pubDate>Sat, 22 Jun 2024 19:45:00 GMT</pubDate></item><item><title>Making the sidebar intuitive</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240621_1329_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So over the weeks of coding we transformed from building just a quicklook dashboard to an interactive analysis dashboard. Currently I was making the sidebar intuitive to do all the stuff that we are planning to do from it.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240621_1329_kartikmandar/</guid><pubDate>Fri, 21 Jun 2024 12:29:00 GMT</pubDate></item><item><title>Finally ported from functional approach to class based approach</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240619_1311_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; I earlier had developed the basic structure of app in terms of functions in separate files and somehow had managed to serve the dashboard through only one panel serve ( panel serve app.py --autoreload). It was a clever use of view to turn on and off when use clicks the button and importing the UI from different functions(that is different .py files). But this was an unmaintainable and unscalable approach. So now I have shifted to a class based approach and have made important classes to do the stuff. &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240619_1311_kartikmandar/</guid><pubDate>Wed, 19 Jun 2024 12:11:00 GMT</pubDate></item><item><title>Finishing implementation and doc strings</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240617_0444_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;The main implementation and documentation strings phase has been finished.&lt;/p&gt;
 
@@ -190,21 +295,4 @@ We re-thought the entire process of what our new API be providing to the users a
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt="combined image" src="https://deus1704.vercel.app/images/combined.png"&gt;&lt;/p&gt;
 &lt;p&gt;I am currently implementing the decorator structure for the sunkit-image, but that would be covered in another blog.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</guid><pubDate>Sat, 15 Jun 2024 13:59:31 GMT</pubDate></item><item><title>Starting to now finalise the basic structure</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240614_1409_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; I was working all this time on demos for some functionality or other but I was not sure that's the final design of the dashboard that I want. But I am not kind convinced in how I want to design the structure of the dashboard. Lets see how it goes. Probably by next week I will make my first commit. &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240614_1409_kartikmandar/</guid><pubDate>Fri, 14 Jun 2024 13:09:00 GMT</pubDate></item><item><title>Beeminder does things man</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240612_1803_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So to keep on top of my things and not procrastinate them away, I use beeminder to do the stuff. &lt;br&gt;Think of beeminder as a tool to keep you on your toes. So we can have any tasks on beeminder and it has all kinds of automations to connect with. So it doesn't do anything if you are completing the work, but if you are not doing your work on your scheduled pace then it stings you. So they charge you money from your bank account if you are not doing the work. I almost failed today but was able to complete the stuff in time to not get money deduct from me.&lt;br&gt;&lt;br&gt;But god it works. It's a really good tool to just stop procrastination. Because it costs you money. &lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240612_1803_kartikmandar/</guid><pubDate>Wed, 12 Jun 2024 17:03:00 GMT</pubDate></item><item><title>The start</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240610_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;The first aim for this project is to add support for the atomic Kurucz database to RADIS. A &lt;a href="https://github.com/radis/radis/pull/601"&gt;PR&lt;/a&gt; containing previous work done on this provides a starting point. Much use had been made of code from the ExoJax project, which had already implemented support for the Kurucz database and with which RADIS is pursuing a common API.&lt;/p&gt;
-
-&lt;p&gt;After examining the work done so far in that PR, I merged it onto the latest &lt;code class="language-plaintext highlighter-rouge"&gt;develop&lt;/code&gt; branch with few conflicts to resolve. There are a number of errors and/or placeholders in the previous code that are gradually being corrected.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;I began looking into an outstanding issue from the previous work which was implementing Lorentzian broadening for atomic lines, as RADIS has previously catered mainly for molecular databases. ExoJax provides &lt;a href="https://github.com/HajimeKawahara/exojax/blob/78466cef0170ee1a2768b6a6f7b7c911d715c1bd/documents/userguide/atomll.rst#broadening-parameters"&gt;5 functions to choose from&lt;/a&gt; for this, the results of which can &lt;a href="https://github.com/HajimeKawahara/exojax/blob/920bce49e9bf30c33b5d349425dc9b837237974f/tests/endtoend/metals/opacity_Fe_test.py#L59"&gt;differ from each other by up to an order of magnitude&lt;/a&gt;. The &lt;code class="language-plaintext highlighter-rouge"&gt;gamma_vald3&lt;/code&gt; function is the one regularly used in ExoJax and we chose to use it as a basis for the default function in RADIS. I have been reviewing its handling of Stark broadening in particular as some corrections were required.&lt;/p&gt;
-
-&lt;p&gt;Considering the numerous different formulae that have been proposed for Lorentzian broadening of atomic lines, and the significantly different results they produce, I also added a parameter in the &lt;code class="language-plaintext highlighter-rouge"&gt;SpectrumFactory&lt;/code&gt; class for a user to specify their own function to use instead of &lt;code class="language-plaintext highlighter-rouge"&gt;gamma_vald3&lt;/code&gt;. I also added a similar parameter in &lt;code class="language-plaintext highlighter-rouge"&gt;calc_spectrum&lt;/code&gt; (a typical entry point for the end user) for a user to specify a class to use in place of &lt;code class="language-plaintext highlighter-rouge"&gt;SpectrumFactory&lt;/code&gt;, which allows them even more flexibility and control over other parts of the spectrum calculation too.&lt;/p&gt;
-
-&lt;p&gt;I started a PR for this project to enquire about &lt;a href="https://github.com/radis/radis/pull/652#issuecomment-2141212791"&gt;an issue&lt;/a&gt; related to the &lt;code class="language-plaintext highlighter-rouge"&gt;truncation&lt;/code&gt; parameter used in calculating the lineshape and the differing results depending on the choice of &lt;code class="language-plaintext highlighter-rouge"&gt;optimization&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;p&gt;I’ve also been looking into third-party tools to generate plots of spectra for the same atoms for comparison with the results being generated in RADIS and to potentially indicate through any discrepancies whether there’s an error to be resolved.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240610_0000_code29563/</guid><pubDate>Sun, 09 Jun 2024 23:00:00 GMT</pubDate></item><item><title>Not having sleep since a few days</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_1708_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; I have not been sleeping well since a few day and have been working all night. I am trying to sleep early today. &lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_1708_kartikmandar/</guid><pubDate>Sun, 09 Jun 2024 16:08:00 GMT</pubDate></item><item><title>Starting the Project</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_1208_lucasmg18/</link><dc:creator>Lucas Martin Garcia</dc:creator><description>&lt;p&gt;We are excited to start this project at the intersection of artificial intelligence and astronomy hosted by the Google Summer of Code (GSoC) program and work with the incredible team at OpenAstronomy. This project, which focuses on leveraging advanced data processing and deep learning models to enhance astronomical research, represents a unique opportunity to bridge the gap between data science and astronomy.&lt;/p&gt;
-&lt;p&gt;I am eager to contribute my skills and enthusiasm aiming to tackle the complexities of diverse astronomical datasets. Working with the dedicated professionals at OpenAstronomy, I am confident that we will make significant strides in advancing the field and promoting the principles of open science and collaboration.&lt;/p&gt;
-&lt;p&gt;Together, we will push the boundaries of what is possible in astronomical research, paving the way for new discoveries and fostering a more inclusive and accessible scientific community. I look forward to the exciting journey ahead and the work we will accomplish as a team.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQc7ZKtKEemrWEqavXXHEAD2JI6FI89n0TRIHmKscmvPuhtD8IvbbfAD0sK86EUXohESyvP4IaxNsaqm9ef_KAWMpEGeOsSt3KtIjOg5ba7UDW_b6QvOgDgtDfQ-Er03Jug0j75PrF8f8Dec0EhdJEOqrM6Er2RnSV52f-QGz7kg1AlaIhq_Xy7IzLQceh/s1000/logo%202.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="40" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQc7ZKtKEemrWEqavXXHEAD2JI6FI89n0TRIHmKscmvPuhtD8IvbbfAD0sK86EUXohESyvP4IaxNsaqm9ef_KAWMpEGeOsSt3KtIjOg5ba7UDW_b6QvOgDgtDfQ-Er03Jug0j75PrF8f8Dec0EhdJEOqrM6Er2RnSV52f-QGz7kg1AlaIhq_Xy7IzLQceh/s320/logo%202.png" width="320"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/a/AVvXsEh53ytB8I6bARNOlCFfADd99BWyQIbg4C6QfWBNFnmvInwwADbdYQUkzRcmeKV8kfzJY_wvtZRBvx62ng6miFSeaq2gSfrYM9IaMEHhPmwlhsiuIy7lF5TR7GkdRQMmXb3RcvVIU1KYt1hfMXgmtrdIJ4B2H_SdGQNJRgGWcwOjczkrSoLpK26u2M8GPci7" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="" height="154" src="https://blogger.googleusercontent.com/img/a/AVvXsEh53ytB8I6bARNOlCFfADd99BWyQIbg4C6QfWBNFnmvInwwADbdYQUkzRcmeKV8kfzJY_wvtZRBvx62ng6miFSeaq2gSfrYM9IaMEHhPmwlhsiuIy7lF5TR7GkdRQMmXb3RcvVIU1KYt1hfMXgmtrdIJ4B2H_SdGQNJRgGWcwOjczkrSoLpK26u2M8GPci7" width="320"&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;span style="color: #0000ee;"&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;span style="color: #0000ee;"&gt;&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;p&gt;&lt;/p&gt;</description><category>irsa-fornax</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_1208_lucasmg18/</guid><pubDate>Sun, 09 Jun 2024 11:08:00 GMT</pubDate></item></channel></rss>
+&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240612_1803_kartikmandar/</guid><pubDate>Wed, 12 Jun 2024 17:03:00 GMT</pubDate></item></channel></rss>
