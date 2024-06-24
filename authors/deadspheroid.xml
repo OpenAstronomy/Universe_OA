@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by DeadSpheroid)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/deadspheroid.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 23 Jun 2024 01:05:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to summarize the work done so far towards my GSoC project for integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by DeadSpheroid)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/deadspheroid.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 24 Jun 2024 01:03:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Deeper into OpenCL</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240622_2045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to give a high level understanding of OpenCL and its workings&lt;/p&gt;
+
+&lt;h2 id="setting-it-up"&gt;Setting it up&lt;/h2&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL ICD" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-icd.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+&lt;p&gt;OpenCL is relatively easy to get up and running on your system.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For users:
+All you need, is the OpenCL runtime for your device!
+In case of Nvidia, this comes with the Nvidia drivers, while for Intel CPUs, this has to be manually installed by a package manager.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For developers:
+You will need the OpenCL library to link against, and the OpenCL headers as well, again easily available in your package manager.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="heres-a-new-perspective"&gt;Here’s a new perspective&lt;/h2&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Platform Model" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-platform.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+&lt;p&gt;OpenCL presents a general interface to the developer, no matter what the device or the architecture.&lt;/p&gt;
+
+&lt;p&gt;Firstly, we have the host, which is responsible for all the book-keeping, and task scheduling on the OpenCL device.&lt;/p&gt;
+
+&lt;p&gt;Then, we have our OpenCL device, which is divided into a number of compute units.
+Each Compute Unit (CU) is further divided into a number of processing elements.&lt;/p&gt;
+
+&lt;p&gt;But what do these words actually mean?&lt;/p&gt;
+
+&lt;p&gt;Well, a Processing Element(PE) is a single unit, that is responsible for executing a single thread(also called a work item). Think of a single function being executed.&lt;/p&gt;
+
+&lt;p&gt;Each PE has its own private memory, not accessible by anyone, but this PE&lt;/p&gt;
+
+&lt;p&gt;A bunch of processing elements are grouped together to form a compute unit which, at a time, executes a single work group(grouping of many work items).&lt;/p&gt;
+
+&lt;p&gt;The CUs all share a global memory, accessible by anyone&lt;/p&gt;
+
+&lt;p&gt;So for a CPU, the maximum number of CU s is the number of CPU cores!&lt;/p&gt;
+
+&lt;p&gt;But why do you want work groups? Why not have work items only?&lt;/p&gt;
+
+&lt;p&gt;Well, having this grouping of work items, allows for a greater deal of complexity, because we can synchronize across items in a work group, have a local memory only for this work group, and more…&lt;/p&gt;
+
+&lt;h2 id="a-complete-walkthrough"&gt;A complete walkthrough&lt;/h2&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Execution Model" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-exec.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Let’s look at a typical workflow for an OpenCL program&lt;/p&gt;
+
+&lt;h3 id="initialisation"&gt;Initialisation&lt;/h3&gt;
+&lt;p&gt;First we need to check the currently available OpenCL platforms, which are basically implementations of OpenCL available on your system&lt;/p&gt;
+
+&lt;p&gt;For example, you can have both Intel OpenCL and POCL OpenCL for your i7 CPU.&lt;/p&gt;
+
+&lt;p&gt;Then from these platforms, you need to choose a device to execute on. OpenCL supports CPUs, GPUs, FPGAs, and all sorts of accelerators.&lt;/p&gt;
+
+&lt;h3 id="context"&gt;Context&lt;/h3&gt;
+&lt;p&gt;Once you have the platform and device you wish to use, you need to create an OpenCL context, which will handle everything for that particular platform and device.&lt;/p&gt;
+
+&lt;h3 id="command-queue"&gt;Command Queue&lt;/h3&gt;
+&lt;p&gt;Then, you have to create a command queue, which, as the name suggests, will store any commands(kernels) you queue for execution, and dispatch them in order(or even out of order if you like!).&lt;/p&gt;
+
+&lt;h3 id="kernel"&gt;Kernel&lt;/h3&gt;
+&lt;p&gt;After the command queue, you must compile the kernel source code(the api provides functions to do this), so that it can be executed later.&lt;/p&gt;
+
+&lt;h3 id="memory"&gt;Memory&lt;/h3&gt;
+&lt;p&gt;Finally, one of the most important parts of this entire process, is passing the input to the OpenCL device.&lt;/p&gt;
+
+&lt;p&gt;Now, initially the data is stored on your CPU RAM, which is unfortunately inaccessible to your GPU.&lt;/p&gt;
+
+&lt;p&gt;Therefore you need to copy the data to your GPU RAM, using the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; interface that OpenCL provides.&lt;/p&gt;
+
+&lt;p&gt;However, if you know that the device being used is the same CPU, then this copy can be skipped, to save time, using the &lt;code class="language-plaintext highlighter-rouge"&gt;CL_MEM_USE_HOST_PTR&lt;/code&gt; flag while creating a &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;h3 id="execution"&gt;Execution&lt;/h3&gt;
+&lt;p&gt;At the end, you can use the command queue created earlier along with the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; created previously to execute the compiled kernel on the device&lt;/p&gt;
+
+&lt;p&gt;Subsequently don’t forget to copy the output data back to CPU RAM, if the execution was done on GPU.&lt;/p&gt;
+
+&lt;p&gt;However, there’s still a ton of unexplained stuff like, “How do you save the time wasted in copying data to the device?” or “Can you pass any data to the device? Even structs?”&lt;/p&gt;
+
+&lt;p&gt;We’ll explore OpenCL more in subsequent posts.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240622_2045_deadspheroid/</guid><pubDate>Sat, 22 Jun 2024 19:45:00 GMT</pubDate></item><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to summarize the work done so far towards my GSoC project for integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
 
 &lt;h2 id="what-is-opencl"&gt;What is OpenCL?&lt;/h2&gt;
 &lt;!-- TEASER_END --&gt;

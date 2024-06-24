@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gnuastro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/gnuastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 23 Jun 2024 01:05:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to summarize the work done so far towards my GSoC project for integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gnuastro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/gnuastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 24 Jun 2024 01:03:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Deeper into OpenCL</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240622_2045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to give a high level understanding of OpenCL and its workings&lt;/p&gt;
+
+&lt;h2 id="setting-it-up"&gt;Setting it up&lt;/h2&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL ICD" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-icd.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+&lt;p&gt;OpenCL is relatively easy to get up and running on your system.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For users:
+All you need, is the OpenCL runtime for your device!
+In case of Nvidia, this comes with the Nvidia drivers, while for Intel CPUs, this has to be manually installed by a package manager.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For developers:
+You will need the OpenCL library to link against, and the OpenCL headers as well, again easily available in your package manager.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="heres-a-new-perspective"&gt;Here’s a new perspective&lt;/h2&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Platform Model" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-platform.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+&lt;p&gt;OpenCL presents a general interface to the developer, no matter what the device or the architecture.&lt;/p&gt;
+
+&lt;p&gt;Firstly, we have the host, which is responsible for all the book-keeping, and task scheduling on the OpenCL device.&lt;/p&gt;
+
+&lt;p&gt;Then, we have our OpenCL device, which is divided into a number of compute units.
+Each Compute Unit (CU) is further divided into a number of processing elements.&lt;/p&gt;
+
+&lt;p&gt;But what do these words actually mean?&lt;/p&gt;
+
+&lt;p&gt;Well, a Processing Element(PE) is a single unit, that is responsible for executing a single thread(also called a work item). Think of a single function being executed.&lt;/p&gt;
+
+&lt;p&gt;Each PE has its own private memory, not accessible by anyone, but this PE&lt;/p&gt;
+
+&lt;p&gt;A bunch of processing elements are grouped together to form a compute unit which, at a time, executes a single work group(grouping of many work items).&lt;/p&gt;
+
+&lt;p&gt;The CUs all share a global memory, accessible by anyone&lt;/p&gt;
+
+&lt;p&gt;So for a CPU, the maximum number of CU s is the number of CPU cores!&lt;/p&gt;
+
+&lt;p&gt;But why do you want work groups? Why not have work items only?&lt;/p&gt;
+
+&lt;p&gt;Well, having this grouping of work items, allows for a greater deal of complexity, because we can synchronize across items in a work group, have a local memory only for this work group, and more…&lt;/p&gt;
+
+&lt;h2 id="a-complete-walkthrough"&gt;A complete walkthrough&lt;/h2&gt;
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Execution Model" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-exec.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Let’s look at a typical workflow for an OpenCL program&lt;/p&gt;
+
+&lt;h3 id="initialisation"&gt;Initialisation&lt;/h3&gt;
+&lt;p&gt;First we need to check the currently available OpenCL platforms, which are basically implementations of OpenCL available on your system&lt;/p&gt;
+
+&lt;p&gt;For example, you can have both Intel OpenCL and POCL OpenCL for your i7 CPU.&lt;/p&gt;
+
+&lt;p&gt;Then from these platforms, you need to choose a device to execute on. OpenCL supports CPUs, GPUs, FPGAs, and all sorts of accelerators.&lt;/p&gt;
+
+&lt;h3 id="context"&gt;Context&lt;/h3&gt;
+&lt;p&gt;Once you have the platform and device you wish to use, you need to create an OpenCL context, which will handle everything for that particular platform and device.&lt;/p&gt;
+
+&lt;h3 id="command-queue"&gt;Command Queue&lt;/h3&gt;
+&lt;p&gt;Then, you have to create a command queue, which, as the name suggests, will store any commands(kernels) you queue for execution, and dispatch them in order(or even out of order if you like!).&lt;/p&gt;
+
+&lt;h3 id="kernel"&gt;Kernel&lt;/h3&gt;
+&lt;p&gt;After the command queue, you must compile the kernel source code(the api provides functions to do this), so that it can be executed later.&lt;/p&gt;
+
+&lt;h3 id="memory"&gt;Memory&lt;/h3&gt;
+&lt;p&gt;Finally, one of the most important parts of this entire process, is passing the input to the OpenCL device.&lt;/p&gt;
+
+&lt;p&gt;Now, initially the data is stored on your CPU RAM, which is unfortunately inaccessible to your GPU.&lt;/p&gt;
+
+&lt;p&gt;Therefore you need to copy the data to your GPU RAM, using the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; interface that OpenCL provides.&lt;/p&gt;
+
+&lt;p&gt;However, if you know that the device being used is the same CPU, then this copy can be skipped, to save time, using the &lt;code class="language-plaintext highlighter-rouge"&gt;CL_MEM_USE_HOST_PTR&lt;/code&gt; flag while creating a &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; object.&lt;/p&gt;
+
+&lt;h3 id="execution"&gt;Execution&lt;/h3&gt;
+&lt;p&gt;At the end, you can use the command queue created earlier along with the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; created previously to execute the compiled kernel on the device&lt;/p&gt;
+
+&lt;p&gt;Subsequently don’t forget to copy the output data back to CPU RAM, if the execution was done on GPU.&lt;/p&gt;
+
+&lt;p&gt;However, there’s still a ton of unexplained stuff like, “How do you save the time wasted in copying data to the device?” or “Can you pass any data to the device? Even structs?”&lt;/p&gt;
+
+&lt;p&gt;We’ll explore OpenCL more in subsequent posts.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240622_2045_deadspheroid/</guid><pubDate>Sat, 22 Jun 2024 19:45:00 GMT</pubDate></item><item><title>OpenCL, meet the Gnuastro Build System</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240609_0045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to summarize the work done so far towards my GSoC project for integrating OpenCL with the Gnuastro library and my relatively limited understanding of OpenCL.&lt;/p&gt;
 
 &lt;h2 id="what-is-opencl"&gt;What is OpenCL?&lt;/h2&gt;
 &lt;!-- TEASER_END --&gt;
@@ -625,100 +712,4 @@ The following image describes how it keeps the core data as well as metadata :
 
 &lt;p&gt;##&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230605_0000_labeeb-7z/</guid><pubDate>Sun, 04 Jun 2023 23:00:00 GMT</pubDate></item><item><title>GSoC - Pre Community Bonding</title><link>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</link><dc:creator>Labib Asari</dc:creator><description>&lt;h3 id="what-is-open-source-and-gsoc"&gt;What is Open-Source and Gsoc?&lt;/h3&gt;
 &lt;p&gt;Open source software is software with source code that anyone can inspect, modify, and enhance. There are many institutions and individuals who write open software, mainly for research or free deployment purposes. Mostly these softwares, have only a few maintainers, and multiple people, writing and debugging the code, helps a lot. This is where Google Summer of Code &lt;code class="language-plaintext highlighter-rouge"&gt;GSOC&lt;/code&gt; comes into the picture. It is a global, online program focused on bringing new contributors into open source software development. Many organisations float projects for the developers to take over the summer and Google mediates in the process, while also paying the contributors for their work over the summer.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item><item><title>My GSoC Journey - Part 4</title><link>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</link><dc:creator>Jash Shah</dc:creator><description>&lt;p&gt;&lt;em&gt;Writing the extension modules and Python wrappers for a package is one thing, but a step that is often overlooked is making a build system that complies with the rest of your program, ensures the correct installation based on your dependencies and also is portable enough to be distributable.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;I learned these things the hard way in Week 3 and 4, where I went as low level as I could to try to solve all the weird build errors and glitches I had while &lt;strong&gt;trying to build a Python Package using GNU Autotools&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;h3 id="building"&gt;Building&lt;/h3&gt;
-&lt;p&gt;As discussed in my last GSoC blog, I was mainly using &lt;code class="language-plaintext highlighter-rouge"&gt;distutils&lt;/code&gt; along with it’s &lt;code class="language-plaintext highlighter-rouge"&gt;distutils.setup&lt;/code&gt; script to take care of all the building and linking required for building the &lt;code class="language-plaintext highlighter-rouge"&gt;.so&lt;/code&gt; (shared object) file required by the  Python Interpreter. However, one of my co-mentors brought up a good point that &lt;code class="language-plaintext highlighter-rouge"&gt;setuptools&lt;/code&gt; is the packaging tool that is recommended by &lt;a href="https://packaging.python.org/en/latest/guides/tool-recommendations/"&gt;PyPA&lt;/a&gt; and also using &lt;code class="language-plaintext highlighter-rouge"&gt;wheels&lt;/code&gt; to package the modules instead of the standard &lt;code class="language-plaintext highlighter-rouge"&gt;setup.py build&lt;/code&gt; command.&lt;/p&gt;
-
-&lt;p&gt;Hence, &lt;strong&gt;Week 3 was spent mainly learning about &lt;code class="language-plaintext highlighter-rouge"&gt;setuptools&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;wheels&lt;/code&gt;&lt;/strong&gt;. &lt;a href="https://realpython.com/python-wheels/#the-manylinux-wheel-tag"&gt;What Are Python Wheels and Why Should You Care?&lt;/a&gt; is a great article to start with Python Wheels. The &lt;a href="https://setuptools.pypa.io/en/latest/index.html"&gt;setuptools documentation&lt;/a&gt; is a great place to know about setuptools, if you already know about distutils like me! Luckily, while &lt;code class="language-plaintext highlighter-rouge"&gt;Setuptools&lt;/code&gt; is a “beefier” version of distutils, as it offers better and more packaging utilities, it keeps the same functions, so in terms of code it was just a change of one line for me.&lt;/p&gt;
-
-&lt;p&gt;Originally, with &lt;code class="language-plaintext highlighter-rouge"&gt;distutils&lt;/code&gt;, the plan was to have the files related to the Python Package in a separate &lt;em&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;python/&lt;/code&gt;&lt;/em&gt; directory at the root of the Gnuastro source like:&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;📦python
-┣ 📂gnuastro.arithmetic
-┃ ┣ 📜arithmetic.c
-┃ ┗ 🔧setup.py
-┣ 📂gnuastro.cosmology
-┃ ┣ 📜cosmology.c
-┃ ┗ 🔧setup.py
-┣ 📂gnuastro.fits
-┃ ┣ 📜fits.c
-┃ ┗ 🔧setup.py
-┗ 📑Makefile.am
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The idea was to have the &lt;code class="language-plaintext highlighter-rouge"&gt;setup.py&lt;/code&gt; script in each folder build that specific extension, and let the Makefile handle the linking. But I soon realized that this was too excessive. A better structure would be:&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt; 📦python
-┣ 📂src
-┃ ┣ 📜arithmetic.c
-┃ ┣ 📜cosmology.c
-┃ ┗ 📜fits.c
-┣ 📑Makefile.am
-┗ 🔧setup.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id="using-autotools-to-build-python-package"&gt;Using Autotools to build Python Package&lt;/h4&gt;
-&lt;p&gt;As the name suggests &lt;strong&gt;GNU&lt;/strong&gt;astro is a GNU project, and thus depends on Autotools(&lt;a href="https://www.gnu.org/software/automake/manual/html_node/index.html#SEC_Contents"&gt;Automake&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/autoconf/"&gt;Autoconf&lt;/a&gt; and &lt;a href="https://www.gnu.org/software/libtool/"&gt;Libtool&lt;/a&gt;) for its building and compiling. These are the tools behind the&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;./configure
-make
-make check
-make install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;set of instructions.&lt;/p&gt;
-
-&lt;p&gt;Alongwith the setup script, I also added a new file(&lt;a href="https://github.com/Jash-Shah/gnuastro-jash/blob/6997730fab6cb18fd7b34f77f9a0f65f0c7e0730/lib/python.c"&gt;&lt;code class="language-plaintext highlighter-rouge"&gt;python.c&lt;/code&gt;&lt;/a&gt;) to the &lt;em&gt;lib/&lt;/em&gt; directory of Gnuastro. This file basically provides any utility functions I might require while building the Python package. Currently, the file provides type conversion functions, which facilitate converting between Gnuastro and NumPy’s datatypes.&lt;/p&gt;
-
-&lt;p&gt;So, what is the difference between your traditional Makefile and using Autotools instead:-&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Autoconf&lt;/strong&gt; easily scans an existing tree to find its dependencies and creates a configure script that will run under almost any kind of shell. The configure script allows the user to control the build behavior (i.e. –with-foo, –without-python, –prefix, –sysconfdir, etc..) as well as doing checks to ensure that the system can compile the program.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Configure generates a &lt;code class="language-plaintext highlighter-rouge"&gt;config.h&lt;/code&gt; file (from a template) which programs can include to work around portability issues. For example, if HAVE_NUMPY is not defined, don’t build the Python package.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Automake&lt;/strong&gt; provides a short template that describes what programs will be built and what objects need to be linked to build them, thus Makefiles that adhere to GNU coding standards can automatically be created.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;My job was to use these tools to also call the &lt;code class="language-plaintext highlighter-rouge"&gt;setup&lt;/code&gt; script for building my Python package.&lt;/p&gt;
-
-&lt;p&gt;My approach to building the package using Autotools involved 4 basic steps:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Adding the necessary checks in the &lt;code class="language-plaintext highlighter-rouge"&gt;configure.ac&lt;/code&gt; script.
-&lt;ul&gt;
-&lt;li&gt;Check if a user has Python 3 on their system and get it’s include path i.e. path to &lt;code class="language-plaintext highlighter-rouge"&gt;Python.h&lt;/code&gt; file.&lt;/li&gt;
-&lt;li&gt;If Python 3 is found, Check if the user has NumPy on their system and get it’s include path.&lt;/li&gt;
-&lt;li&gt;Substitute the include paths as variables to be passed to all &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am's&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Conditionally build the Python package and its utility functions module(&lt;code class="language-plaintext highlighter-rouge"&gt;lib/python.c&lt;/code&gt;) only if the above checks are passed.&lt;/li&gt;
-&lt;li&gt;Write the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt; in the &lt;code class="language-plaintext highlighter-rouge"&gt;python/&lt;/code&gt; directory which would handle the &lt;em&gt;build, install, uninstall and clean&lt;/em&gt; targets for the Python package.&lt;/li&gt;
-&lt;li&gt;Re-write the setup.py script to make it more generic, by using the environment variables passed by the configure script instead of hardcoding the include and install paths.
-&lt;ul&gt;
-&lt;li&gt;This also ensures that the Python package building supports &lt;a href="https://www.gnu.org/software/automake/manual/html_node/VPATH-Builds.html"&gt;VPATH&lt;/a&gt; builds, which is another great feature of Autotools. For the uninitiated, &lt;code class="language-plaintext highlighter-rouge"&gt;VPATH builds&lt;/code&gt; are basically a way to separate your source and build tree, so that all the built files (.o, .so, etc) are in a separate directory than your source files but are symlinked to the source tree.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;This process took a lot of trial and error, digging into the Autotools(mostly Automake) documentation and playing around with the &lt;code class="language-plaintext highlighter-rouge"&gt;Makefile.am&lt;/code&gt; to get right. But it introduced me to these amazing tools and taught me how to make any scrawny personal project distributable!&lt;/p&gt;
-
-&lt;h3 id="installing"&gt;Installing&lt;/h3&gt;
-&lt;p&gt;After running,&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;python3 setup.py build_ext bdist_wheel
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;the distributable wheel file, with all of the package’s metadata, is created under the &lt;code class="language-plaintext highlighter-rouge"&gt;dist/&lt;/code&gt; folder. In order to install this file we use pip as follows:&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;pip install Gnuastro.whl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;YES! It is in fact as simple as that!&lt;/p&gt;
-
-&lt;p&gt;But there is an issue that I faced here, suppose that a user wants to install the Gnuastro library in their root directory, or to any directory where they dont have privileges. This means they’ll run &lt;code class="language-plaintext highlighter-rouge"&gt;sudo make install&lt;/code&gt; from the root of the source. This cascades to calling the Makefile in the &lt;em&gt;python/&lt;/em&gt; directory with root access as well. However, running &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; with sudo access is a big NO, NO. And &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; would warn you of that with a warning like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="PIP sudo error message" height="50" src="https://jash-shah.github.io/Blogs/img/posts/gsoc-week3_4/pip_error.png" width="1000"&gt;&lt;/p&gt;
-
-&lt;!-- ![PIP sudo error message](/Blogs/img/posts/gsoc-week3_4/pip_error.png) --&gt;
-
-&lt;p&gt;This is because, Python packages are generally installed at a local level, in the &lt;code class="language-plaintext highlighter-rouge"&gt;/usr/local&lt;/code&gt; directory. However, if you call &lt;code class="language-plaintext highlighter-rouge"&gt;pip&lt;/code&gt; with &lt;code class="language-plaintext highlighter-rouge"&gt;sudo&lt;/code&gt; then it installs the packages in the root directory. To sove this, we use&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;sudo -u "$SUDO_USER pip install Gnuastro,whl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;which basically runs the pip command as the user who called sudo. This will ensure that your package gets installed in the local directory instead of root!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2022/07/20220720_0000_jash-shah/</guid><pubDate>Tue, 19 Jul 2022 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;!-- TEASER_END --&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2023/05/20230507_0000_labeeb-7z/</guid><pubDate>Sat, 06 May 2023 23:00:00 GMT</pubDate></item></channel></rss>
