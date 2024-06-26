@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC [Week 02-03] Progress | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0719_viciouseagle03/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="ViciousEagle03">
+<link rel="prev" href="../20240623_0000_code29563/" title="Stark broadening and the Common API" type="text/html">
+<link rel="next" href="../20240623_0821_nucleongodx/" title="It’s going good." type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSoC [Week 02-03] Progress">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0719_viciouseagle03/">
+<meta property="og:description" content="This blog post covers all the work done in the second and third week of Google Summer of Code.
+In the past weeks, my focus has been on enhancing the serialization support of NDCube by extending its su">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-06-23T07:19:36+01:00">
+<meta property="article:tag" content="SunPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://dev.to/ahmedhosssam" data-toggle="tooltip" data-placement="top" title="2024-06-17 04:44:45+01:00">
+                    Ahmed Hossam
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="http://code29563.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-23 00:00:00+01:00">
+                    code29563
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://deadspheroid.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-22 20:45:00+01:00">
+                    DeadSpheroid
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://deus1704.vercel.app" data-toggle="tooltip" data-placement="top" title="2024-06-15 14:59:31+01:00">
+                    Deus1704
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://gsoc2024.kartikmandar.com" data-toggle="tooltip" data-placement="top" title="2024-06-25 17:59:00+01:00">
+                    Kartik Mandar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/fornax-navo.png?size=40" height="16" width="16"><a href="https://lucasmartingarciagsoc24openastronomy.blogspot.com" data-toggle="tooltip" data-placement="top" title="2024-06-09 12:08:00+01:00" style="color:rgb(255,0,0)">
+                    Lucas Martin Garcia
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@manitsingh018" data-toggle="tooltip" data-placement="top" title="2024-06-23 08:21:59+01:00">
+                    Manit Singh
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://viciouseagle03.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-23 07:19:36+01:00">
+                    ViciousEagle03
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC [Week 02-03] Progress</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/viciouseagle03/">ViciousEagle03</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2024-06-23T07:19:36+01:00" itemprop="datePublished" title="2024-06-23 07:19">2024-06-23 07:19</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://viciouseagle03.github.io/post/week-02-03-progress/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>This blog post covers all the work done in the second and third week of Google Summer of Code.</p>
+<p>In the past weeks, my focus has been on enhancing the serialization support of NDCube by extending its support for ExtraCoords and GlobalCoords. After establishing serialization support for the fundamental attributes of the NDCube object—such as data and wcs—in the ASDF file format, the next logical step was extending this capability to include <code>ExtraCoords</code> and <code>GlobalCoords</code> object.</p>
+<h3 id="globalcoords-and-extracoords">GlobalCoords and ExtraCoords</h3>
+<!-- TEASER_END -->
+<p>ExtraCoords: The ExtraCoords attribute expand NDCube’s capabilities by incorporating additional spatial or spectral coordinates beyond those defined by the primary WCS. It accommodate complex datasets needing extra dimensions or coordinates, such as spectroscopic data with folded axes.</p>
+<p>GlobalCoords: The GlobalCoords attribute are coordinates in an NDCube that provides universal context across the entire dataset and apply uniformly across all axes. It captures metadata such as observation times or global positional coordinates of the NDCube object.</p>
+<h3 id="extending-the-serialization-support">Extending the Serialization support</h3>
+<p>Now, <code>ExtraCoords</code> can be initialized by specifying a <code>BaseLowLevelWCS</code> object and a mapping, or by building it up using one or more lookup tables. To support the latter method, I had to ensure the <code>lookup_tables</code> were properly preserved during serialization. For this purpose, I designed the schema and wrote the converter class for the following objects:</p>
+<ul>
+<li>ndcube.extra_coords.extra_coords.ExtraCoords</li>
+<li>ndcube.extra_coords.table_coord.TimeTableCoordinate</li>
+<li>ndcube.extra_coords.table_coord.QuantityTableCoordinate</li>
+<li>ndcube.extra_coords.table_coord.SkyCoordTableCoordinate</li>
+</ul>
+<p>The initialization of <code>GlobalCoords</code> is more straightforward, which required me to design the schema and write the converter class for the following object:</p>
+<ul>
+<li>ndcube.global_coords.GlobalCoords</li>
+</ul>
+<blockquote>
+<p>Here’s an example of the <code>ExtraCoords</code> Schema</p>
+</blockquote>
+<pre tabindex="0"><code>%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "asdf://sunpy.org/ndcube/schemas/extra_coords-0.1.0"
+
+title:
+Represents the ndcube ExtraCoords object
+
+description:
+Represents the ndcube ExtraCoords object
+
+type: object
+properties:
+wcs:
+tag: "tag:stsci.edu:gwcs/wcs-1.*"
+mapping:
+type: array
+lookup_tables:
+type: array
+items:
+type: array
+items:
+- oneOf:
+- type: number
+- type: array
+- oneOf:
+- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/quantitytablecoordinate-0.*"
+- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/skycoordtablecoordinate-0.*"
+- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/timetablecoordinate-0.*"
+dropped_tables:
+type: array
+ndcube:
+tag: "tag:sunpy.org:ndcube/ndcube/ndcube-0.*"
+
+required: [ndcube]
+additionalProperties: false
+...
+</code></pre>
+<h3 id="whats-new-keeping-up-with-the-coords">What’s new: Keeping Up with the Coords</h3>
+<p><img alt="img" src="https://viciouseagle03.github.io/images/ASDF-ser-new-type.png"></p>
+<p>Now, when we save an NDCube object to an ASDF file, the file successfully stores the <code>ExtraCoords</code> and <code>GlobalCoords</code> information, which is preserved when we deserialize and generate a new NDCube object by reading the file. The only thing that is still not supported is initializing an ExtraCoords object using a mapping and an <code>astropy.wcs.WCS</code> object. This feature will be supported in the future when I implement serialization support for <code>astropy.wcs.WCS</code> in the asdf-astropy library.</p>
+<h5 id="saving-an-ndcube-with-globalcoords-and-extracoords-attribute">Saving an NDCube with <code>GlobalCoords</code> and <code>ExtraCoords</code> attribute</h5>
+<pre><code>with asdf.open('ndcubeglobal_extra.asdf') as af:
+ndcube2 = af.tree['ndcube']
+</code></pre>
+<h5 id="the-relevant-asdf-file-block">The relevant ASDF file block</h5>
+<pre><code>extra_coords: !&lt;tag:sunpy.org:ndcube/extra_coords/extra_coords/extracoords-0.1.0&gt;
+dropped_tables: []
+lookup_tables:
+- - 0
+- !&lt;tag:sunpy.org:ndcube/extra_coords/table_coord/timetablecoordinate-0.1.0&gt;
+mesh: false
+names: [time]
+reference_time: !time/time-1.1.0 {base_format: fits, value: '2000-01-01T00:00:00.000'}
+table: !time/time-1.1.0
+base_format: fits
+value: !core/ndarray-1.0.0
+byteorder: little
+datatype: [ucs4, 23]
+shape: [10]
+source: 5
+- - 0
+- !&lt;tag:sunpy.org:ndcube/extra_coords/table_coord/skycoordtablecoordinate-0.1.0&gt;
+mesh: false
+names: [lon, lat]
+table: !&lt;tag:astropy.org:astropy/coordinates/skycoord-1.0.0&gt;
+dec: !&lt;tag:astropy.org:astropy/coordinates/latitude-1.0.0&gt;
+unit: !unit/unit-1.0.0 deg
+value: !core/ndarray-1.0.0
+byteorder: little
+datatype: float64
+shape: [10]
+source: 7
+frame: icrs
+ra: !&lt;tag:astropy.org:astropy/coordinates/longitude-1.0.0&gt;
+unit: !unit/unit-1.0.0 deg
+value: !core/ndarray-1.0.0
+byteorder: little
+datatype: float64
+shape: [10]
+source: 6
+wrap_angle: !&lt;tag:astropy.org:astropy/coordinates/angle-1.0.0&gt; {datatype: float64,
+unit: !unit/unit-1.0.0 deg, value: 360.0}
+representation_type: spherical
+- - 1
+- !&lt;tag:sunpy.org:ndcube/extra_coords/table_coord/quantitytablecoordinate-0.1.0&gt;
+mesh: true
+names: [exposure_time]
+table:
+- !unit/quantity-1.1.0
+unit: !unit/unit-1.0.0 s
+value: !core/ndarray-1.0.0
+byteorder: little
+datatype: float64
+shape: [10]
+source: 8
+unit: !unit/unit-1.0.0 s
+ndcube: *id001
+global_coords: !&lt;tag:sunpy.org:ndcube/global_coords/globalcoords-0.1.0&gt;
+internal_coords:
+name1:
+- custom:physical_type1
+- !unit/quantity-1.1.0 {datatype: float64, unit: !unit/unit-1.0.0 m, value: 1.0}
+name2:
+- custom:physical_type2
+- !unit/quantity-1.1.0 {datatype: float64, unit: !unit/unit-1.0.0 s, value: 2.0}
+ndcube: *id001
+</code></pre>
+<p>During my coding period, my mentors have been incredibly helpful, and huge thanks to <a href="https://github.com/braingram">@braingram</a> for explaining and ensuring I understood the entire ASDF serialization process thoroughly. I learned a lot about schema design and JSON schema. I was particularly impressed by the <a href="https://docs.github.com/en/actions/using-workflows">CI workflows</a>, when I set up a dedicated schema testing workflow. It showed me how automated testing can catch errors that manual testing might overlook. Although I implemented a straightforward workflow, it go me curious about learning more about CI workflows.</p>
+<p>I am currently adding tests for the new serialization support in NDCube, which I plan to finish by the next coding week.</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20240623_0000_code29563/" rel="prev" title="Stark broadening and the Common API">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20240623_0821_nucleongodx/" rel="next" title="It’s going good.">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2024         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

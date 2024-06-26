@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2024)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2024.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 25 Jun 2024 01:01:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>It’s going good.</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0821_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;p&gt;It’s going good.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2024)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2024.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 26 Jun 2024 01:02:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Final layout decided, and a demo</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240625_1759_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So, the final layout was decided and I discussed with my mentors about the same. They liked it and suggested some changes. &lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMa67MJ6HJ8F_bfsWuzC7Ro3aL6A-3PB6XfftMKYqVEAxhp6Y8JySOtBydtfw9xJf9lwOuDTPq4uZ0XcdnjIGug776Wuk312LYfB-hEC65hOom8w1zjJwzRNI6W9M-olE2hgKOHexVIEotXea-u7l9g_uuJuRJR1rVQ5_Sp49cqtpOyMP2t7_L32JSFA8p/s3840/B8E1879E-24A0-43AF-A58E-21FCB8A6474F.JPG" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="298" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMa67MJ6HJ8F_bfsWuzC7Ro3aL6A-3PB6XfftMKYqVEAxhp6Y8JySOtBydtfw9xJf9lwOuDTPq4uZ0XcdnjIGug776Wuk312LYfB-hEC65hOom8w1zjJwzRNI6W9M-olE2hgKOHexVIEotXea-u7l9g_uuJuRJR1rVQ5_Sp49cqtpOyMP2t7_L32JSFA8p/w530-h298/B8E1879E-24A0-43AF-A58E-21FCB8A6474F.JPG" width="530"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;All these loading tabs should be made into one. And the structure should be more coherent. &lt;br&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240625_1759_kartikmandar/</guid><pubDate>Tue, 25 Jun 2024 16:59:00 GMT</pubDate></item><item><title>It’s going good.</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0821_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;p&gt;It’s going good.&lt;/p&gt;
 &lt;p&gt;The past two weeks were dedicated to the implementation of wavelength functionality. Now, wavelength has been successfully implemented for the applicable instruments. Along with that, a how-to guide has been created to assist users in navigating querying over wavelength for different instruments. Additionally, a gallery example for wavelength and detector has been added.&lt;/p&gt;
 &lt;h4&gt;What’s the direction of implementation:&lt;/h4&gt;&lt;p&gt;The implementation of wavelength can be divided into two parts:&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -12,7 +15,136 @@
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*fxkPK8p3KR6xMEv7zIkTXQ.png"&gt;&lt;/figure&gt;&lt;p&gt;Although passing a range of wavelengths is preferred for PHI, if only one value is passed, it will be taken as wavemin, and filtering will be done based on it. Additionally, the corresponding wavemax will be provided in the output table.&lt;/p&gt;
 &lt;pre&gt;wavelength = a.Wavelength(6173.065 * u.AA)&lt;/pre&gt;&lt;p&gt;Result:&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*O-pETZd8HZi9qVt9NQGa-w.png"&gt;&lt;/figure&gt;&lt;h4&gt;Challenges that still needs working:&lt;/h4&gt;&lt;p&gt;There is an issue with PHI’s wavelength data as well. The wavelengths returned are sometimes in the order of 6173 and sometimes 617.3, which are essentially just different units of similar wavelength data, but this is not specified in SOAR.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=160df7122684" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0821_nucleongodx/</guid><pubDate>Sun, 23 Jun 2024 07:21:59 GMT</pubDate></item><item><title>Stark broadening and the Common API</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;Stark broadening for atomic lines has been implemented with different temperature scalings for neutral and ionised radiators.&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=160df7122684" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0821_nucleongodx/</guid><pubDate>Sun, 23 Jun 2024 07:21:59 GMT</pubDate></item><item><title>GSoC [Week 02-03] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0719_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;This blog post covers all the work done in the second and third week of Google Summer of Code.&lt;/p&gt;
+&lt;p&gt;In the past weeks, my focus has been on enhancing the serialization support of NDCube by extending its support for ExtraCoords and GlobalCoords. After establishing serialization support for the fundamental attributes of the NDCube object—such as data and wcs—in the ASDF file format, the next logical step was extending this capability to include &lt;code&gt;ExtraCoords&lt;/code&gt; and &lt;code&gt;GlobalCoords&lt;/code&gt; object.&lt;/p&gt;
+&lt;h3 id="globalcoords-and-extracoords"&gt;GlobalCoords and ExtraCoords&lt;/h3&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;ExtraCoords: The ExtraCoords attribute expand NDCube’s capabilities by incorporating additional spatial or spectral coordinates beyond those defined by the primary WCS. It accommodate complex datasets needing extra dimensions or coordinates, such as spectroscopic data with folded axes.&lt;/p&gt;
+&lt;p&gt;GlobalCoords: The GlobalCoords attribute are coordinates in an NDCube that provides universal context across the entire dataset and apply uniformly across all axes. It captures metadata such as observation times or global positional coordinates of the NDCube object.&lt;/p&gt;
+&lt;h3 id="extending-the-serialization-support"&gt;Extending the Serialization support&lt;/h3&gt;
+&lt;p&gt;Now, &lt;code&gt;ExtraCoords&lt;/code&gt; can be initialized by specifying a &lt;code&gt;BaseLowLevelWCS&lt;/code&gt; object and a mapping, or by building it up using one or more lookup tables. To support the latter method, I had to ensure the &lt;code&gt;lookup_tables&lt;/code&gt; were properly preserved during serialization. For this purpose, I designed the schema and wrote the converter class for the following objects:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ndcube.extra_coords.extra_coords.ExtraCoords&lt;/li&gt;
+&lt;li&gt;ndcube.extra_coords.table_coord.TimeTableCoordinate&lt;/li&gt;
+&lt;li&gt;ndcube.extra_coords.table_coord.QuantityTableCoordinate&lt;/li&gt;
+&lt;li&gt;ndcube.extra_coords.table_coord.SkyCoordTableCoordinate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The initialization of &lt;code&gt;GlobalCoords&lt;/code&gt; is more straightforward, which required me to design the schema and write the converter class for the following object:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ndcube.global_coords.GlobalCoords&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Here’s an example of the &lt;code&gt;ExtraCoords&lt;/code&gt; Schema&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;%YAML 1.1
+---
+$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
+id: "asdf://sunpy.org/ndcube/schemas/extra_coords-0.1.0"
+
+title:
+Represents the ndcube ExtraCoords object
+
+description:
+Represents the ndcube ExtraCoords object
+
+type: object
+properties:
+wcs:
+tag: "tag:stsci.edu:gwcs/wcs-1.*"
+mapping:
+type: array
+lookup_tables:
+type: array
+items:
+type: array
+items:
+- oneOf:
+- type: number
+- type: array
+- oneOf:
+- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/quantitytablecoordinate-0.*"
+- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/skycoordtablecoordinate-0.*"
+- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/timetablecoordinate-0.*"
+dropped_tables:
+type: array
+ndcube:
+tag: "tag:sunpy.org:ndcube/ndcube/ndcube-0.*"
+
+required: [ndcube]
+additionalProperties: false
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="whats-new-keeping-up-with-the-coords"&gt;What’s new: Keeping Up with the Coords&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/ASDF-ser-new-type.png"&gt;&lt;/p&gt;
+&lt;p&gt;Now, when we save an NDCube object to an ASDF file, the file successfully stores the &lt;code&gt;ExtraCoords&lt;/code&gt; and &lt;code&gt;GlobalCoords&lt;/code&gt; information, which is preserved when we deserialize and generate a new NDCube object by reading the file. The only thing that is still not supported is initializing an ExtraCoords object using a mapping and an &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object. This feature will be supported in the future when I implement serialization support for &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; in the asdf-astropy library.&lt;/p&gt;
+&lt;h5 id="saving-an-ndcube-with-globalcoords-and-extracoords-attribute"&gt;Saving an NDCube with &lt;code&gt;GlobalCoords&lt;/code&gt; and &lt;code&gt;ExtraCoords&lt;/code&gt; attribute&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;with asdf.open('ndcubeglobal_extra.asdf') as af:
+ndcube2 = af.tree['ndcube']
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id="the-relevant-asdf-file-block"&gt;The relevant ASDF file block&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;extra_coords: !&amp;lt;tag:sunpy.org:ndcube/extra_coords/extra_coords/extracoords-0.1.0&amp;gt;
+dropped_tables: []
+lookup_tables:
+- - 0
+- !&amp;lt;tag:sunpy.org:ndcube/extra_coords/table_coord/timetablecoordinate-0.1.0&amp;gt;
+mesh: false
+names: [time]
+reference_time: !time/time-1.1.0 {base_format: fits, value: '2000-01-01T00:00:00.000'}
+table: !time/time-1.1.0
+base_format: fits
+value: !core/ndarray-1.0.0
+byteorder: little
+datatype: [ucs4, 23]
+shape: [10]
+source: 5
+- - 0
+- !&amp;lt;tag:sunpy.org:ndcube/extra_coords/table_coord/skycoordtablecoordinate-0.1.0&amp;gt;
+mesh: false
+names: [lon, lat]
+table: !&amp;lt;tag:astropy.org:astropy/coordinates/skycoord-1.0.0&amp;gt;
+dec: !&amp;lt;tag:astropy.org:astropy/coordinates/latitude-1.0.0&amp;gt;
+unit: !unit/unit-1.0.0 deg
+value: !core/ndarray-1.0.0
+byteorder: little
+datatype: float64
+shape: [10]
+source: 7
+frame: icrs
+ra: !&amp;lt;tag:astropy.org:astropy/coordinates/longitude-1.0.0&amp;gt;
+unit: !unit/unit-1.0.0 deg
+value: !core/ndarray-1.0.0
+byteorder: little
+datatype: float64
+shape: [10]
+source: 6
+wrap_angle: !&amp;lt;tag:astropy.org:astropy/coordinates/angle-1.0.0&amp;gt; {datatype: float64,
+unit: !unit/unit-1.0.0 deg, value: 360.0}
+representation_type: spherical
+- - 1
+- !&amp;lt;tag:sunpy.org:ndcube/extra_coords/table_coord/quantitytablecoordinate-0.1.0&amp;gt;
+mesh: true
+names: [exposure_time]
+table:
+- !unit/quantity-1.1.0
+unit: !unit/unit-1.0.0 s
+value: !core/ndarray-1.0.0
+byteorder: little
+datatype: float64
+shape: [10]
+source: 8
+unit: !unit/unit-1.0.0 s
+ndcube: *id001
+global_coords: !&amp;lt;tag:sunpy.org:ndcube/global_coords/globalcoords-0.1.0&amp;gt;
+internal_coords:
+name1:
+- custom:physical_type1
+- !unit/quantity-1.1.0 {datatype: float64, unit: !unit/unit-1.0.0 m, value: 1.0}
+name2:
+- custom:physical_type2
+- !unit/quantity-1.1.0 {datatype: float64, unit: !unit/unit-1.0.0 s, value: 2.0}
+ndcube: *id001
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;During my coding period, my mentors have been incredibly helpful, and huge thanks to &lt;a href="https://github.com/braingram"&gt;@braingram&lt;/a&gt; for explaining and ensuring I understood the entire ASDF serialization process thoroughly. I learned a lot about schema design and JSON schema. I was particularly impressed by the &lt;a href="https://docs.github.com/en/actions/using-workflows"&gt;CI workflows&lt;/a&gt;, when I set up a dedicated schema testing workflow. It showed me how automated testing can catch errors that manual testing might overlook. Although I implemented a straightforward workflow, it go me curious about learning more about CI workflows.&lt;/p&gt;
+&lt;p&gt;I am currently adding tests for the new serialization support in NDCube, which I plan to finish by the next coding week.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0719_viciouseagle03/</guid><pubDate>Sun, 23 Jun 2024 06:19:36 GMT</pubDate></item><item><title>Stark broadening and the Common API</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;Stark broadening for atomic lines has been implemented with different temperature scalings for neutral and ionised radiators.&lt;/p&gt;
 
 &lt;p&gt;I integrated the API for atomic Kurucz linelists into the Common API, and in doing so the issue related to &lt;code class="language-plaintext highlighter-rouge"&gt;truncation&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;optimization&lt;/code&gt; seems to have been resolved.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -293,6 +425,4 @@ We re-thought the entire process of what our new API be providing to the users a
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;coaligned_map &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; coalignment_interface(&lt;span style="color: #e6db74;"&gt;"match_template"&lt;/span&gt;,aia_map2, submap)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt="combined image" src="https://deus1704.vercel.app/images/combined.png"&gt;&lt;/p&gt;
-&lt;p&gt;I am currently implementing the decorator structure for the sunkit-image, but that would be covered in another blog.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</guid><pubDate>Sat, 15 Jun 2024 13:59:31 GMT</pubDate></item><item><title>Starting to now finalise the basic structure</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240614_1409_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; I was working all this time on demos for some functionality or other but I was not sure that's the final design of the dashboard that I want. But I am not kind convinced in how I want to design the structure of the dashboard. Lets see how it goes. Probably by next week I will make my first commit. &lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240614_1409_kartikmandar/</guid><pubDate>Fri, 14 Jun 2024 13:09:00 GMT</pubDate></item><item><title>Beeminder does things man</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240612_1803_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So to keep on top of my things and not procrastinate them away, I use beeminder to do the stuff. &lt;br&gt;Think of beeminder as a tool to keep you on your toes. So we can have any tasks on beeminder and it has all kinds of automations to connect with. So it doesn't do anything if you are completing the work, but if you are not doing your work on your scheduled pace then it stings you. So they charge you money from your bank account if you are not doing the work. I almost failed today but was able to complete the stuff in time to not get money deduct from me.&lt;br&gt;&lt;br&gt;But god it works. It's a really good tool to just stop procrastination. Because it costs you money. &lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240612_1803_kartikmandar/</guid><pubDate>Wed, 12 Jun 2024 17:03:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;I am currently implementing the decorator structure for the sunkit-image, but that would be covered in another blog.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</guid><pubDate>Sat, 15 Jun 2024 13:59:31 GMT</pubDate></item></channel></rss>
