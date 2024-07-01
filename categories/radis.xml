@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 30 Jun 2024 01:07:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Stark broadening and the Common API</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;Stark broadening for atomic lines has been implemented with different temperature scalings for neutral and ionised radiators.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 01 Jul 2024 01:09:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Partition functions</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240630_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;Support has been added for the species-specific partition functions that are usually included along with the new linelists. In doing so, a new config parameter was added to allow the user to enable RADIS to automatically modify the local database files and update the config file accordingly.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240630_0000_code29563/</guid><pubDate>Sat, 29 Jun 2024 23:00:00 GMT</pubDate></item><item><title>Stark broadening and the Common API</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;Stark broadening for atomic lines has been implemented with different temperature scalings for neutral and ionised radiators.&lt;/p&gt;
 
 &lt;p&gt;I integrated the API for atomic Kurucz linelists into the Common API, and in doing so the issue related to &lt;code class="language-plaintext highlighter-rouge"&gt;truncation&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;optimization&lt;/code&gt; seems to have been resolved.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -356,41 +357,4 @@ print('Time taken : '+str(t1-t0))
 &lt;p&gt;Since there’s a conflict related to the JAX installation on Windows, I couldn’t add it to the requirements file. Doing so would create a conflict for every Windows user installing Radis. Consequently, I had to write a program to extract the data from this package and store a copy of it in a local file called pfdat.txt. This enabled the problematic function to read from the local copy instead of the ExoJAX file. This solution successfully rectified the problem, and now my PR passes the tests and is awaiting review before merging.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 &lt;p&gt;The next step is to transition to the TheoReTS as planned. According to the TheoReTS website, it is an information system for theoretical spectra based on variational predictions from molecular potential energy and dipole moment surfaces. It is jointly developed by the PMT team of GSMA (Reims), Tomsk University, and IAO Acad Sci. Russia. As a result, it provides two access points, one French and the other Russian. However, I noticed that the access to the French website (&lt;a href="http://theorets.univ-reims.fr/"&gt;http://theorets.univ-reims.fr/&lt;/a&gt;) is currently unavailable, preventing me from visualizing the data. This is an issue I should discuss with my mentors.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=d9643c0269aa" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230702_1407_menasrac/</guid><pubDate>Sun, 02 Jul 2023 13:07:42 GMT</pubDate></item><item><title>Comparing memory performance of Vaex and Pandas</title><link>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;After completing all the changes to compute Spectrum using Vaex , I compared the memory used during the execution of the program . I used tracemalloc to compute memory uses to compute Spectrum .&lt;/p&gt;
-
-&lt;h4 id="computing-the-spectrum"&gt;Computing the spectrum&lt;/h4&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Following code is used , and memory maximum memory used during the execution of this code is recorded for Vaex and Pandas&lt;/p&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;
-from radis import calc_spectrum
-import tracemalloc
-tracemalloc.start()
-
-s, factory_s = calc_spectrum(1800, 2500,         # cm-1
-molecule='H2O',
-isotope='1,2,3',
-pressure=1.01325,   # bar
-Tgas=700,           # K
-mole_fraction=0.1,
-path_length=1,      # cm
-databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
-wstep='auto',
-use_cached=False,
-engine='pandas',
-return_factory=True,
-)
-
-s.apply_slit(0.5, 'nm')       # simulate an experimental slit
-s.plot('radiance')
-
-print(tracemalloc.get_traced_memory())
-tracemalloc.stop()
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id="results"&gt;Results&lt;/h4&gt;
-
-&lt;p&gt;It can be seen from the graph below that Vaex takes very less memory space in comparison to Pandas.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/vaexcomparison.png"&gt;&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/06/20230624_0000_1someshverma/</guid><pubDate>Fri, 23 Jun 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=d9643c0269aa" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/07/20230702_1407_menasrac/</guid><pubDate>Sun, 02 Jul 2023 13:07:42 GMT</pubDate></item></channel></rss>
