@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2024)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2024.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 07 Jul 2024 01:07:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Filling the Temporal Gaps in AGN Light Curve Data</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240630_2331_lucasmg18/</link><dc:creator>Lucas Martin Garcia</dc:creator><description>&lt;p&gt; &lt;strong&gt;Introduction to the Challenge&lt;/strong&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2024)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2024.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 08 Jul 2024 01:04:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Midterm Evaluations Are Close!</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240707_1602_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;p&gt;So, in the past two weeks, upon discussion with my mentors, I started working on the stretch goal, which involves using Astroquery’s TAP Plus for making the URL calls. Additionally, I had to clean up some code and remove the instruments SPICE and PHI from returning wavelength data due to their individual issues.&lt;/p&gt;
+&lt;p&gt;For SPICE, the `wavemin’ and `wavemax` values are only available for the first spectral window in SOAR, so the data is not entirely representative of what a user might be searching for. Similarly, for PHI, the issue is that two different units are used to represent wavelength, which results in very&lt;br&gt;different `wavemin’ and `wavemax` data due to the data being in both angstrom and nanometer units. Unfortunately, this is not specified anywhere in SOAR, so to ensure that `sunpy-soar` does not&lt;br&gt;return any misleading data to the user, we’ve decided to exclude the wavelength data for these instruments.&lt;/p&gt;
+&lt;p&gt;Coming to the change in table fetching methods. TAP Plus basically uses SQL to fetch tables, which is different from the normal TAP that uses ADQL to fetch tables. This avoids the entire process of manually constructing Astropy tables after calling the SOAR API with TAP.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;For comparison, this is how the method looks with TAP:&lt;/p&gt;
+&lt;pre&gt;@staticmethod&lt;br&gt;    def _do_search(query):&lt;br&gt;        """&lt;br&gt;        Query the SOAR server with a single query.&lt;br&gt;&lt;br&gt;        Parameters&lt;br&gt;        ----------&lt;br&gt;        query : list[str]&lt;br&gt;            List of query items.&lt;br&gt;&lt;br&gt;        Returns&lt;br&gt;        -------&lt;br&gt;        astropy.table.QTable&lt;br&gt;            Query results.&lt;br&gt;        """&lt;br&gt;        tap_endpoint = "http://soar.esac.esa.int/soar-sl-tap/tap"&lt;br&gt;        payload = SOARClient._construct_payload(query)&lt;br&gt;        # Need to force requests to not form-encode the parameters&lt;br&gt;        payload = "&amp;amp;".join([f"{key}={val}" for key, val in payload.items()])&lt;br&gt;        # Get request info&lt;br&gt;        r = requests.get(f"{tap_endpoint}/sync", params=payload)&lt;br&gt;        log.debug(f"Sent query: {r.url}")&lt;br&gt;        r.raise_for_status()&lt;br&gt;&lt;br&gt;        # Do some list/dict wrangling&lt;br&gt;        names = [m["name"] for m in r.json()["metadata"]]&lt;br&gt;        info = {name: [] for name in names}&lt;br&gt;&lt;br&gt;        for entry in r.json()["data"]:&lt;br&gt;            for i, name in enumerate(names):&lt;br&gt;                info[name].append(entry[i])&lt;br&gt;&lt;br&gt;        if len(info["begin_time"]):&lt;br&gt;            info["begin_time"] = parse_time(info["begin_time"]).iso&lt;br&gt;            info["end_time"] = parse_time(info["end_time"]).iso&lt;br&gt;&lt;br&gt;        result_table = astropy.table.QTable(&lt;br&gt;            {&lt;br&gt;                "Instrument": info["instrument"],&lt;br&gt;                "Data product": info["descriptor"],&lt;br&gt;                "Level": info["level"],&lt;br&gt;                "Start time": info["begin_time"],&lt;br&gt;                "End time": info["end_time"],&lt;br&gt;                "Data item ID": info["data_item_id"],&lt;br&gt;                "Filename": info["filename"],&lt;br&gt;                "Filesize": info["filesize"],&lt;br&gt;                "SOOP Name": info["soop_name"],&lt;br&gt;            },&lt;br&gt;        )&lt;br&gt;        if "detector" in info:&lt;br&gt;            result_table["Detector"] = info["detector"]&lt;br&gt;        if "wavelength" in info:&lt;br&gt;            result_table["Wavelength"] = info["wavelength"]&lt;br&gt;        result_table.sort("Start time")&lt;br&gt;        return result_table&lt;/pre&gt;&lt;p&gt;This is how the method looks with Astroquery TAP plus.&lt;/p&gt;
+&lt;pre&gt;`def _do_search(query):&lt;br&gt;        """&lt;br&gt;        Query the SOAR server with a single query.&lt;br&gt;&lt;br&gt;        Parameters&lt;br&gt;        ----------&lt;br&gt;        query : list[str]&lt;br&gt;            List of query items.&lt;br&gt;&lt;br&gt;        Returns&lt;br&gt;        -------&lt;br&gt;        astropy.table.Table&lt;br&gt;            Query results.&lt;br&gt;        """&lt;br&gt;        tap_endpoint = "http://soar.esac.esa.int/soar-sl-tap/tap"&lt;br&gt;        sql_query = SOARClient._construct_payload(query)&lt;br&gt;        soar = TapPlus(url=tap_endpoint)&lt;br&gt;        job = soar.launch_job_async(sql_query)&lt;br&gt;        results = job.results&lt;br&gt;        new_colnames = {&lt;br&gt;            "instrument": "Instrument",&lt;br&gt;            "descriptor": "Data product",&lt;br&gt;            "level": "Level",&lt;br&gt;            "begin_time": "Start time",&lt;br&gt;            "end_time": "End time",&lt;br&gt;            "filename": "Filename",&lt;br&gt;            "filesize": "Filesize",&lt;br&gt;            "soop_name": "SOOP Name",&lt;br&gt;        }&lt;br&gt;        new_colnames.update({k: k.capitalize() for k in ["wavelength", "detector"] if k in results.colnames})&lt;br&gt;        for old_name, new_name in new_colnames.items():&lt;br&gt;            results.rename_column(old_name, new_name)&lt;br&gt;        results.sort("Start time")&lt;br&gt;        return results&lt;/pre&gt;&lt;p&gt;Even the query construction methods, they looks a lot more cleaner. As the final query generated is an SQL query not an ADQL query.&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=459d99d953ff" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240707_1602_nucleongodx/</guid><pubDate>Sun, 07 Jul 2024 15:02:57 GMT</pubDate></item><item><title>Blog 3: Side Quests Week</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240703_1159_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;p&gt;While the mentors are waiting for community reviews on the new coalignment API, I’ve been diving into some fun side quests.&lt;/p&gt;
+&lt;h3 id="side-quest-1-asda-examplehttpsgithubcomsunpysunkit-imagepull218"&gt;Side Quest 1: &lt;a href="https://github.com/sunpy/sunkit-image/pull/218"&gt;ASDA Example&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The long-needed &lt;a href="https://doi.org/10.3847/1538-4357/aabd34"&gt;Automated Swirl Detection Algorithm (ASDA)&lt;/a&gt; example gallery in the sunkit-image is now ready. The ASDA module is for identifying the swirls or vortices in the 2D flow field of the solar atmosphere. ASDA offers a robust tool for detecting and analyzing the vortices in the solar atmosphere.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Swirls in the solar atmosphere provide insights into dynamic solar processes such as solar flares and coronal mass ejections. Detecting and analyzing these swirls helps understand the mechanisms driving these solar activities.&lt;/p&gt;
+&lt;p&gt;The Gamma(Γ1 &amp;amp; Γ2) values are used for identifying the vortex center and the vortex edges respectively.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Gamma1 (Γ1): Identifies vortex centers by quantifying rotational motion.&lt;/li&gt;
+&lt;li&gt;Gamma2 (Γ2): Detects vortex edges by measuring the coherence of swirling motion.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These can be visualised as;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="Gamma Visualization" src="https://deus1704.vercel.app/images/gammas.png"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;Gamma values (Γ1 &amp;amp; Γ2)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Using these, the final map with the swirls identified looks like:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="Swirl Map " src="https://deus1704.vercel.app/images/detected_swirls.png"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;Swirl Map with Velocity Field&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The swirl map is crucial for visualizing fluid flow dynamics in the solar atmosphere, helping to identify the distribution, size, and characteristics of vortices.&lt;/p&gt;
+&lt;p&gt;Magnifying a particular section of these for better understanding of the streamlines:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="Magnified Swirl Map " src="https://deus1704.vercel.app/images/magnified_swirls.png"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;Magnified Swirl Map Region with Streamlines&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Magnifying a specific region and overlaying streamlines allows for detailed analysis of flow patterns around swirls, aiding in understanding solar atmospheric dynamics and the interactions between different vortices.&lt;/p&gt;
+&lt;h3 id="side-quest-2-rotation-matrixhttpsgithubcomsunpysunpypull7452"&gt;Side Quest 2: &lt;a href="https://github.com/sunpy/sunpy/pull/7452"&gt;Rotation Matrix&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One of my very first pull requests in SunPy received reviews after a long hiatus. The feedback highlighted some implementation issues with the way the SpicePy API was being used. For instance, the sxform function only accepts a single ephemeris time, which required a workaround to obtain the correct state transformation matrix.
+With the invaluable help of Albert, these issues have been resolved and the test cases have been updated accordingly.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240703_1159_deus1704/</guid><pubDate>Wed, 03 Jul 2024 10:59:31 GMT</pubDate></item><item><title>Filling the Temporal Gaps in AGN Light Curve Data</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240630_2331_lucasmg18/</link><dc:creator>Lucas Martin Garcia</dc:creator><description>&lt;p&gt; &lt;strong&gt;Introduction to the Challenge&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In our ongoing quest to understand Active Galactic Nuclei (AGNs), handling the discontinuous nature of AGN light curve data remains the main goal. The gaps in observation data, caused by unavoidable operational and environmental constraints, obscure the complete picture of these AGN data. To address several methods are taken into account to approach the temporal data interpolation, combining traditional techniques with advanced machine learning models.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Traditional Interpolation Techniques&lt;/strong&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -174,92 +234,4 @@ ndcube: *id001
 &lt;p&gt;I integrated the API for atomic Kurucz linelists into the Common API, and in doing so the issue related to &lt;code class="language-plaintext highlighter-rouge"&gt;truncation&lt;/code&gt; and &lt;code class="language-plaintext highlighter-rouge"&gt;optimization&lt;/code&gt; seems to have been resolved.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
 
-&lt;p&gt;The main differentiating aspect so far in the Common API for Kurucz is that new versions of linelists and lab lines aren’t available for all species, the result being that the url from which to download the Kurucz linelist isn’t known with certainty before actually attempting to download it, so the possibilities are ranked and attempted in order of preference and the first to return a valid response is used.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0000_code29563/</guid><pubDate>Sat, 22 Jun 2024 23:00:00 GMT</pubDate></item><item><title>Deeper into OpenCL</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240622_2045_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to give a high level understanding of OpenCL and its workings&lt;/p&gt;
-
-&lt;h2 id="setting-it-up"&gt;Setting it up&lt;/h2&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p align="center" width="100%"&gt;
-&lt;img alt="OpenCL ICD" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-icd.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
-&lt;/p&gt;
-&lt;p&gt;OpenCL is relatively easy to get up and running on your system.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;For users:
-All you need, is the OpenCL runtime for your device!
-In case of Nvidia, this comes with the Nvidia drivers, while for Intel CPUs, this has to be manually installed by a package manager.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;For developers:
-You will need the OpenCL library to link against, and the OpenCL headers as well, again easily available in your package manager.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="heres-a-new-perspective"&gt;Here’s a new perspective&lt;/h2&gt;
-&lt;p align="center" width="100%"&gt;
-&lt;img alt="OpenCL Platform Model" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-platform.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
-&lt;/p&gt;
-&lt;p&gt;OpenCL presents a general interface to the developer, no matter what the device or the architecture.&lt;/p&gt;
-
-&lt;p&gt;Firstly, we have the host, which is responsible for all the book-keeping, and task scheduling on the OpenCL device.&lt;/p&gt;
-
-&lt;p&gt;Then, we have our OpenCL device, which is divided into a number of compute units.
-Each Compute Unit (CU) is further divided into a number of processing elements.&lt;/p&gt;
-
-&lt;p&gt;But what do these words actually mean?&lt;/p&gt;
-
-&lt;p&gt;Well, a Processing Element(PE) is a single unit, that is responsible for executing a single thread(also called a work item). Think of a single function being executed.&lt;/p&gt;
-
-&lt;p&gt;Each PE has its own private memory, not accessible by anyone, but this PE&lt;/p&gt;
-
-&lt;p&gt;A bunch of processing elements are grouped together to form a compute unit which, at a time, executes a single work group(grouping of many work items).&lt;/p&gt;
-
-&lt;p&gt;The CUs all share a global memory, accessible by anyone&lt;/p&gt;
-
-&lt;p&gt;So for a CPU, the maximum number of CU s is the number of CPU cores!&lt;/p&gt;
-
-&lt;p&gt;But why do you want work groups? Why not have work items only?&lt;/p&gt;
-
-&lt;p&gt;Well, having this grouping of work items, allows for a greater deal of complexity, because we can synchronize across items in a work group, have a local memory only for this work group, and more…&lt;/p&gt;
-
-&lt;h2 id="a-complete-walkthrough"&gt;A complete walkthrough&lt;/h2&gt;
-&lt;p align="center" width="100%"&gt;
-&lt;img alt="OpenCL Execution Model" src="https://deadspheroid.github.io/my-blog/assets/img/ocl-exec.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Let’s look at a typical workflow for an OpenCL program&lt;/p&gt;
-
-&lt;h3 id="initialisation"&gt;Initialisation&lt;/h3&gt;
-&lt;p&gt;First we need to check the currently available OpenCL platforms, which are basically implementations of OpenCL available on your system&lt;/p&gt;
-
-&lt;p&gt;For example, you can have both Intel OpenCL and POCL OpenCL for your i7 CPU.&lt;/p&gt;
-
-&lt;p&gt;Then from these platforms, you need to choose a device to execute on. OpenCL supports CPUs, GPUs, FPGAs, and all sorts of accelerators.&lt;/p&gt;
-
-&lt;h3 id="context"&gt;Context&lt;/h3&gt;
-&lt;p&gt;Once you have the platform and device you wish to use, you need to create an OpenCL context, which will handle everything for that particular platform and device.&lt;/p&gt;
-
-&lt;h3 id="command-queue"&gt;Command Queue&lt;/h3&gt;
-&lt;p&gt;Then, you have to create a command queue, which, as the name suggests, will store any commands(kernels) you queue for execution, and dispatch them in order(or even out of order if you like!).&lt;/p&gt;
-
-&lt;h3 id="kernel"&gt;Kernel&lt;/h3&gt;
-&lt;p&gt;After the command queue, you must compile the kernel source code(the api provides functions to do this), so that it can be executed later.&lt;/p&gt;
-
-&lt;h3 id="memory"&gt;Memory&lt;/h3&gt;
-&lt;p&gt;Finally, one of the most important parts of this entire process, is passing the input to the OpenCL device.&lt;/p&gt;
-
-&lt;p&gt;Now, initially the data is stored on your CPU RAM, which is unfortunately inaccessible to your GPU.&lt;/p&gt;
-
-&lt;p&gt;Therefore you need to copy the data to your GPU RAM, using the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; interface that OpenCL provides.&lt;/p&gt;
-
-&lt;p&gt;However, if you know that the device being used is the same CPU, then this copy can be skipped, to save time, using the &lt;code class="language-plaintext highlighter-rouge"&gt;CL_MEM_USE_HOST_PTR&lt;/code&gt; flag while creating a &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; object.&lt;/p&gt;
-
-&lt;h3 id="execution"&gt;Execution&lt;/h3&gt;
-&lt;p&gt;At the end, you can use the command queue created earlier along with the &lt;code class="language-plaintext highlighter-rouge"&gt;cl_mem&lt;/code&gt; created previously to execute the compiled kernel on the device&lt;/p&gt;
-
-&lt;p&gt;Subsequently don’t forget to copy the output data back to CPU RAM, if the execution was done on GPU.&lt;/p&gt;
-
-&lt;p&gt;However, there’s still a ton of unexplained stuff like, “How do you save the time wasted in copying data to the device?” or “Can you pass any data to the device? Even structs?”&lt;/p&gt;
-
-&lt;p&gt;We’ll explore OpenCL more in subsequent posts.&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240622_2045_deadspheroid/</guid><pubDate>Sat, 22 Jun 2024 19:45:00 GMT</pubDate></item><item><title>Making the sidebar intuitive</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240621_1329_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So over the weeks of coding we transformed from building just a quicklook dashboard to an interactive analysis dashboard. Currently I was making the sidebar intuitive to do all the stuff that we are planning to do from it.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240621_1329_kartikmandar/</guid><pubDate>Fri, 21 Jun 2024 12:29:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;The main differentiating aspect so far in the Common API for Kurucz is that new versions of linelists and lab lines aren’t available for all species, the result being that the url from which to download the Kurucz linelist isn’t known with certainty before actually attempting to download it, so the possibilities are ranked and attempted in order of preference and the first to return a valid response is used.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0000_code29563/</guid><pubDate>Sat, 22 Jun 2024 23:00:00 GMT</pubDate></item></channel></rss>
