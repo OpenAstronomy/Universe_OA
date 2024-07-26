@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 25 Jul 2024 01:04:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Enhancing SOAR Queries: Improved Error Handling and Support for Distance-Based Filtering</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;h4&gt;Improved Error Handling and Support for Distance-Based Filtering&lt;/h4&gt;&lt;h4&gt;Introduction&lt;/h4&gt;&lt;p&gt;Over the past few weeks, I’ve been working on addressing and enhancing certain functionalities within the sunpy-soar package. This post delves into the two main improvements I’ve implemented: better error handling for server downtime and the introduction of support for distance-based query filtering.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 26 Jul 2024 01:03:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Enhancing SOAR Queries: Improved Error Handling and Support for Distance-Based Filtering</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;h4&gt;Improved Error Handling and Support for Distance-Based Filtering&lt;/h4&gt;&lt;h4&gt;Introduction&lt;/h4&gt;&lt;p&gt;Over the past few weeks, I’ve been working on addressing and enhancing certain functionalities within the sunpy-soar package. This post delves into the two main improvements I’ve implemented: better error handling for server downtime and the introduction of support for distance-based query filtering.&lt;/p&gt;
 &lt;h4&gt;Improved Error Handling for Server Downtime&lt;/h4&gt;&lt;p&gt;Previously, when the SOAR server was down, a generic JSONDecodeError would be raised. This was less than ideal as it did not provide a clear indication of what the actual issue was. To improve this, I worked on implementing a more descriptive error message that would be raised in such scenarios.&lt;/p&gt;
 &lt;pre&gt;r = requests.get(f"{tap_endpoint}/sync", params=payload)&lt;br&gt;try:&lt;br&gt;    response_json = r.json()&lt;br&gt;except JSONDecodeError:&lt;br&gt;    msg = "Server returned an invalid JSON response. The SOAR server may be down or not functioning correctly."&lt;br&gt;    raise RuntimeError(msg)&lt;/pre&gt;&lt;p&gt;With this change, users will now see a RuntimeError with a clear message indicating that the server may be down or not functioning correctly, which makes troubleshooting much easier.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -8,7 +8,81 @@
 &lt;p&gt;&lt;strong&gt;Example Query:&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;SELECT * FROM soar.v_sc_data_item WHERE instrument='MAG' AND level='LL02'&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;With Distance Filtering:&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;SELECT * FROM soar.v_sc_data_item WHERE instrument='MAG' AND level='LL02' AND DISTANCE(0.28,0.49)&lt;/pre&gt;&lt;h4&gt;Conclusion&lt;/h4&gt;&lt;p&gt;These enhancements significantly improve the functionality and user experience of the sunpy-soar package. The improved error handling provides clearer feedback to users when the SOAR server is down, and the support for doQueryFilteredByDistance allows for more refined queries based on distance, opening up new possibilities for data analysis.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=79c57af30ffc" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</guid><pubDate>Tue, 23 Jul 2024 15:50:13 GMT</pubDate></item><item><title>The project is almost finished</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240711_1938_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;So, after I finished the main refactoring and the documentation strings, I started the testing phase.&lt;br&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=79c57af30ffc" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</guid><pubDate>Tue, 23 Jul 2024 15:50:13 GMT</pubDate></item><item><title>Blog 4: Testing the New Coalignment with a Catch</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240722_1859_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;p&gt;Now that we’ve agreed on the structure of the co-alignment API and also laid down its foundation, all that’s left is to validate it through actual tests and generate some gallery examples.&lt;/p&gt;
+&lt;h3 id="first-try-with-coaligning-eis-raster-with-aia-map"&gt;First try with coaligning EIS raster with AIA map&lt;/h3&gt;
+&lt;p&gt;Let’s take a closer look at the EIS raster first. I found an AIA image close to the &lt;code&gt;date_average&lt;/code&gt; of the raster.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="EIS raster" src="https://deus1704.vercel.app/images/original_eis.jpeg"&gt;&lt;/th&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="AIA Full-disc image" src="https://deus1704.vercel.app/images/aia_near_raster_avg.jpeg"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;EIS raster&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;AIA Full-disc image&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="Updated EIS" src="https://deus1704.vercel.app/images/updated_eis.png"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;Updated EIS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;At first glance, the results seemed promising, but a more detailed analysis revealed some discrepancies.&lt;/p&gt;
+&lt;p&gt;The updated WCS metadata looked fine at first, but on closer inspection, it wasn’t entirely correct. We’ll dive into the specifics later in this blog. For now, let’s discuss why it might look correct at a glance. How does a common user check if the maps are aligned? By overlaying them and checking the overlaps!&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="EIS overlaid on AIA" src="https://deus1704.vercel.app/images/eis_overlaid_aia.png"&gt;&lt;/th&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="Zoomed" src="https://deus1704.vercel.app/images/eis_overlaid_aia_zoomed.png"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;EIS overlaid on AIA&lt;/td&gt;
+&lt;td style="text-align: center;"&gt;Zoomed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;This visual inspection might convince some that the method works, but it’s far from accurate. We proved this by highlighting the bright regions and focusing on the actual overlaps.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="EIS contours overlaid on AIA" src="https://deus1704.vercel.app/images/old_contours.png"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;EIS contours overlaid on AIA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;This showed us that something was wrong with either the way we were updating the metadata or the co-alignment method. While discussing this, we realized that an assumption in the match_template method was that the maps should have the same type of WCS.&lt;/p&gt;
+&lt;h3 id="the-celestial-fix"&gt;The Celestial Fix&lt;/h3&gt;
+&lt;p&gt;In our initial approach, we focused on adjusting the CRPIX values instead of the CRVAL values. CRPIX specifies the position of the reference pixel in the image, shifting the image in pixel space without correcting the world coordinates directly. This method led to apparent alignment issues because it didn’t address the celestial coordinate system. After consultation, we realized that adjusting CRVAL, which defines the world coordinates of the reference pixel, is essential. This adjustment ensures that the reference points align correctly in world coordinate space, maintaining consistent mapping between pixel and celestial coordinates.&lt;/p&gt;
+&lt;p&gt;Furthermore, for accurate co-alignment, the observers (instruments) should be within a tolerable angular separation to minimize parallax effects. When observers are too far apart, solar features can appear differently due to relative positions, complicating alignment. By correcting CRVAL values and considering angular separation, we achieved precise co-alignment, as evidenced by the corrected overlay of EIS contours on the AIA image, allowing for reliable scientific analysis.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center;"&gt;&lt;img alt="EIS contours overlaid on AIA (corrected)" src="https://deus1704.vercel.app/images/fixed_eis.jpeg"&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center;"&gt;EIS contours overlaid on AIA (corrected)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240722_1859_deus1704/</guid><pubDate>Mon, 22 Jul 2024 17:59:31 GMT</pubDate></item><item><title>The project is almost finished</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240711_1938_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;So, after I finished the main refactoring and the documentation strings, I started the testing phase.&lt;br&gt;
 I started with the smallest functions that don't call any non-tested function, and then went to the bigger functions.&lt;/p&gt;
 
 &lt;!-- TEASER_END --&gt;
@@ -634,198 +708,4 @@ We re-thought the entire process of what our new API be providing to the users a
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;coaligned_map &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; coalignment_interface(&lt;span style="color: #e6db74;"&gt;"match_template"&lt;/span&gt;,aia_map2, submap)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt="combined image" src="https://deus1704.vercel.app/images/combined.png"&gt;&lt;/p&gt;
-&lt;p&gt;I am currently implementing the decorator structure for the sunkit-image, but that would be covered in another blog.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</guid><pubDate>Sat, 15 Jun 2024 13:59:31 GMT</pubDate></item><item><title>Community Bonding and Week 01 Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240607_2045_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;This post documents the planning of the project, my learnings during the community bonding period, and the tasks I completed in my first week.&lt;/p&gt;
-&lt;h3 id="community-bonding-period"&gt;Community Bonding Period&lt;/h3&gt;
-&lt;p&gt;After the euphoria of being accepted into GSoC faded, it was time for setting up my workspace and diving back into the codebase after a month. Planning out the project was key, and meeting with my mentors was a big part of that. I was excited for this chat because the mentors had been super helpful and easy to reach during the proposal stage.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;h3 id="setting-the-stage-mentor-meet-up-and-project-planning"&gt;Setting the Stage: Mentor Meet-Up and Project Planning&lt;/h3&gt;
-&lt;p&gt;During the meet-up, we discussed about the best approach to kick-start the development process. It was mostly the mentors discussing about the possible roadmap and as they outlined the project roadmap, I listened carefully, taking notes on important discussions. One of the key decision was to set up clear communication channels and workflows to make sure we all stay on the same page and to ensure I do not vary off of the project or get stuck in a deadend.&lt;/p&gt;
-&lt;p&gt;Additionally, we agreed to use GitHub projects for project management, making it easier to keep track of tasks and monitor progress. You can check out the GitHub project here: &lt;a href="https://github.com/orgs/sunpy/projects/12/views/1"&gt;&lt;strong&gt;Github Project&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Apart from discussing the project proceedings, I was also tasked with setting up a blog website to document my GSoC journey and share updates with the community. I decided to use Hugo to create the blog website and deployed it through GitHub pages. Additionally, I was asked to share the RSS feed of my blog to ensure that project updates are easily accessible to everyone.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="https://viciouseagle03.github.io/images/tasks.png"&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id="week-01-first-coding-week"&gt;Week [01]: First Coding Week&lt;/h2&gt;
-&lt;h3 id="a-brief-overview-about-my-project"&gt;A brief overview about my project&lt;/h3&gt;
-&lt;p&gt;My projects aims to enable the storage and retrieval of NDCube objects using the ASDF file format. Currently, ndcube lacks native support for saving NDCube objects to files and loading them back, limiting its usability. To address this, the project will implement convertors and schema definitions for NDCube objects and related classes ensuring robust serialization and deserialiazation. The first phase of my project requires the complete imlementation of serialization of an &lt;strong&gt;ndcube.NDCube&lt;/strong&gt; object when &lt;code&gt;.data&lt;/code&gt; is a numpy array and &lt;code&gt;.wcs&lt;/code&gt; is a &lt;strong&gt;gwcs.WCS object&lt;/strong&gt;.&lt;/p&gt;
-&lt;h3 id="the-prototype"&gt;The Prototype&lt;/h3&gt;
-&lt;p&gt;In our meeting, we discussed the initial steps, which centered around laying the groundwork for serialization support for the NDCube object, particularly focusing on establishing basic functionality. This included implementing the convertor class, registering the convertors as ASDF extensions, and ensuring they were readily available via entry points. Getting a good grasp of the whole serialization process took some dedicated reading through the ASDF docs 🧐.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Convertor Class: I implemented the convertor class, including the &lt;code&gt;to_yaml_tree&lt;/code&gt; and &lt;code&gt;from_yaml_tree&lt;/code&gt; methods. The former converts NDCube object attributes into a single node object suitable for serialization. Now, here’s the super cool part the &lt;code&gt;.wcs&lt;/code&gt; attribute of the NDCube object, being a complex object, is accommodated within the node, as the node is permitted to contain nested complex objects.
-&lt;em&gt;Viola!&lt;/em&gt; , so I was able to leverage the existing convertor for GWCS objects which made the process somewhat less complicated. The latter method is exactly the opposite, it accepts a single node object from parsed YAML and returns the corresponding NDCube object.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Schema and Manifests: The Schema was designed to validate the presence, and the datatype of the validator properties for the NDCube object. The manifest was implemented for acheiving the resource mapping of the schema.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;ASDF Integration: In entry_point.py, I’ve implemented get_resource_mapping to retrieve mappings for schema and manifest files, required for ASDF file validation and identifying NDCube objects and the get_extension is implemented to retrieve extensions , here the extension through which the ndcube convertor was registered&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id="code-demonstration"&gt;Code Demonstration&lt;/h3&gt;
-&lt;h4 id="ndcube-initialised-with-gwcswcs-object-as-its-wcs-attribute"&gt;NDCube initialised with gwcs.WCS object as its ‘.wcs’ attribute&lt;/h4&gt;
-&lt;blockquote&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;import numpy as np
-import asdf
-from astropy.time import Time
-from ndcube import NDCube
-from ndcube.extra_coords import QuantityTableCoordinate, TimeTableCoordinate
-import astropy.units as u
-
-
-energy = np.arange(10) * u.keV
-time = Time('2020-01-01 00:00:00') + np.arange(10) * u.s
-energy_coord = QuantityTableCoordinate(energy, names='energy', physical_types='em.energy')
-time_coord = TimeTableCoordinate(time, names='time', physical_types='time')
-
-# Initialize the GWCS object
-wcs = (time_coord &amp;amp; energy_coord).wcs
-data = np.random.rand(len(time), len(energy))
-
-# Initialize the NDCube
-ndcube = NDCube(data, wcs=wcs)
-
-with asdf.AsdfFile() as af:
-af.tree['ndcube'] = ndcube
-af.write_to('ndcube.asdf')
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id="serialized-asdf-file"&gt;Serialized ASDF File&lt;/h4&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;#ASDF 1.0.0
-#ASDF_STANDARD 1.5.0
-%YAML 1.1
-%TAG ! tag:stsci.edu:asdf/
---- !core/asdf-1.1.0
-asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
-name: asdf, version: 3.0.1}
-history:
-extensions:
-- !core/extension_metadata-1.0.0
-extension_class: asdf.extension._manifest.ManifestExtension
-extension_uri: asdf://asdf-format.org/core/extensions/core-1.5.0
-software: !core/software-1.0.0 {name: asdf, version: 3.0.1}
-- !core/extension_metadata-1.0.0
-extension_class: asdf.extension._manifest.ManifestExtension
-extension_uri: asdf://sunpy.org/extensions/ndcube-0.1.0
-software: !core/software-1.0.0 {name: ndcube, version: 2.3.dev224+g04409b5.d20240605}
-- !core/extension_metadata-1.0.0
-extension_class: asdf_astropy._manifest.CompoundManifestExtension
-extension_uri: asdf://astropy.org/core/extensions/core-1.5.0
-software: !core/software-1.0.0 {name: asdf-astropy, version: 0.5.0}
-- !core/extension_metadata-1.0.0
-extension_class: asdf.extension._manifest.ManifestExtension
-extension_uri: asdf://asdf-format.org/transform/extensions/transform-1.5.0
-software: !core/software-1.0.0 {name: asdf-astropy, version: 0.5.0}
-- !core/extension_metadata-1.0.0
-extension_class: asdf.extension._manifest.ManifestExtension
-extension_uri: asdf://asdf-format.org/astronomy/gwcs/extensions/gwcs-1.2.0
-software: !core/software-1.0.0 {name: gwcs, version: 0.20.0}
-ndcube: &amp;amp;id001 !&amp;lt;tag:sunpy.org:ndcube/ndcube/NDCube-0.1.0&amp;gt;
-data: !core/ndarray-1.0.0
-source: 0
-datatype: float64
-byteorder: little
-shape: [10, 10]
-extra_coords: !&amp;lt;tag:sunpy.org:ndcube/extra_coords/extra_coords/ExtraCoords-0.1.0&amp;gt;
-dropped_tables: []
-ndcube: *id001
-wcs: !&amp;lt;tag:stsci.edu:gwcs/wcs-1.2.0&amp;gt;
-name: ''
-pixel_shape: null
-steps:
-- !&amp;lt;tag:stsci.edu:gwcs/step-1.1.0&amp;gt;
-frame: !&amp;lt;tag:stsci.edu:gwcs/frame-1.0.0&amp;gt;
-axes_names: ['', '']
-axes_order: [0, 1]
-axes_type: [PIXEL, PIXEL]
-axis_physical_types: ['custom:PIXEL', 'custom:PIXEL']
-name: PixelFrame
-naxes: 2
-unit: [!unit/unit-1.0.0 pixel, !unit/unit-1.0.0 pixel]
-transform: !transform/concatenate-1.2.0
-forward:
-- !transform/tabular-1.2.0
-bounds_error: false
-fill_value: .nan
-inputs: [x]
-lookup_table: !unit/quantity-1.1.0
-unit: !unit/unit-1.0.0 s
-value: !core/ndarray-1.0.0
-source: 1
-datatype: float64
-byteorder: little
-shape: [10]
-method: linear
-outputs: [y]
-points:
-- !unit/quantity-1.1.0
-unit: !unit/unit-1.0.0 pixel
-value: !core/ndarray-1.0.0
-source: 2
-datatype: float64
-byteorder: little
-shape: [10]
-- !transform/tabular-1.2.0
-bounds_error: false
-fill_value: .nan
-inputs: [x]
-lookup_table: !unit/quantity-1.1.0
-unit: !unit/unit-1.0.0 keV
-value: !core/ndarray-1.0.0
-source: 3
-datatype: float64
-byteorder: little
-shape: [10]
-method: linear
-outputs: [y]
-points:
-- !unit/quantity-1.1.0
-unit: !unit/unit-1.0.0 pixel
-value: !core/ndarray-1.0.0
-source: 4
-datatype: float64
-byteorder: little
-shape: [10]
-inputs: [x0, x1]
-outputs: [y0, y1]
-- !&amp;lt;tag:stsci.edu:gwcs/step-1.1.0&amp;gt;
-frame: !&amp;lt;tag:stsci.edu:gwcs/composite_frame-1.0.0&amp;gt;
-frames:
-- !&amp;lt;tag:stsci.edu:gwcs/temporal_frame-1.0.0&amp;gt;
-axes_names: [time]
-axes_order: [0]
-axis_physical_types: [time]
-name: TemporalFrame
-reference_frame: !time/time-1.1.0 2020-01-01 00:00:00.000
-unit: [!unit/unit-1.0.0 s]
-- !&amp;lt;tag:stsci.edu:gwcs/frame-1.0.0&amp;gt;
-axes_names: [energy]
-axes_order: [1]
-axes_type: [CUSTOM]
-axis_physical_types: [em.energy]
-name: CoordinateFrame
-naxes: 1
-unit: [!unit/unit-1.0.0 keV]
-name: CompositeFrame
-transform: null
-...
-�BLK0 [TY*ߝ��R�4p}Q����?��#���?ȩȏ��?���#��?��ҩ��?*B��y�?ʱ�tv��?������?�fEp�X�?k1^}��?=���A�?�]����?
-�֜���?���H�?��)9�?{juoPW�?p�:����?0�T9��?w�A��?pWݫ  %�?�K#)cB�?�uv����?V‹����?���^�.�?��2���?���eQ�?^߁}���?�$6mwp�?�&amp;amp;�"��?N�;�[�?4�؅J3�?
-����?=&amp;gt;��ܨ?��#%�?J6F=s��?E��}.�?°���
-�?����Qa�?;��0�?vM���?q��ǖ'�?�&amp;lt;5��?G]�X�?��.���?��ɐ?�?j��G�L�?&amp;lt;��&amp;amp;��?��q];I?�̱���?X�Dt�v�?Pҧ���?0�=�E��?����?O&amp;gt;&amp;gt;tGj?D.���#�?p�N����?,$�V)��?j��xƦ�?�v�h�?�"�
-�p�?7S�0�?���ۢ`�?8YI�yְ?"E��o��?J�G�8�?�W�����?����ـ�?t���o�?sg���?h�Ȝ���?�)�=g�?e/B/�?�2�;�?�~�xT��?s�S���?t�|1.��?�n��ʳ?��/�؛�?jd����?�oB���?Lz09��?�����?��ga��?`������?���kW��?���P7�?�|�F@�?Oq���?d���$�?&amp;gt;�e�~�?�t�(�?�Ԓ���?&amp;lt;�P����?���a�?�Q΢���?����?Ѳ�#[[�?� �^�X�?jC�����?�mJA��?�BLK0PPP?�N��{I�?N"F98��?`������? @�     @h�����@ @������@x�����@"@�BLK0PPP�����Z
-�η~�ZH�?@@@@@@ @"@�BLK0PPP�����Z
-�η~�ZH�?@@@@@@ @"@�BLK0PPP�����Z
-�η~�ZH�?@@@@@@ @"@#ASDF BLOCK INDEX
-%YAML 1.1
----
-- 4304
-- 5158
-- 5292
-- 5426
-- 5560
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="gsoc-week-one-reflections"&gt;GSoC Week One: Reflections&lt;/h3&gt;
-&lt;p&gt;My first week with GSoC has been a thrilling ride, full of learning and growth. The support from the community has been incredible. Looking forward to what lies ahead!🚀&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Perseverance is not a long race; it is many short races one after the other.&lt;/p&gt;
-&lt;/blockquote&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240607_2045_viciouseagle03/</guid><pubDate>Fri, 07 Jun 2024 19:45:27 GMT</pubDate></item></channel></rss>
+&lt;p&gt;I am currently implementing the decorator structure for the sunkit-image, but that would be covered in another blog.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</guid><pubDate>Sat, 15 Jun 2024 13:59:31 GMT</pubDate></item></channel></rss>
