@@ -1,5 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 28 Jul 2024 01:09:00 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Issue resolved</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240725_1809_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; The problem with classes was resolved by making factory functions to encase them in, and then they were not conflicting with each other. &lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 29 Jul 2024 01:06:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Towards New Speeds</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_2230_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to illustrate how GPU's actually accelerate parallel operations&lt;/p&gt;
+
+&lt;h2 id="lets-get-started"&gt;Let’s get started&lt;/h2&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Firstly, how do GPU’s really work? Well, at a lower level, the architecture looks something like this…&lt;/p&gt;
+
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="GPU Architecture" src="https://deadspheroid.github.io/my-blog/assets/img/gpu-arch.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Focus on the differences between the two, CPUs have few, very highly specialised and refined cores.
+GPUs on the other hand have hundreds of more primitive, yet powerful cores.&lt;/p&gt;
+
+&lt;p&gt;This is the reason why GPUs can’t do I/O and stuff, its because they are meant solely for mathematical operations.&lt;/p&gt;
+
+&lt;h2 id="but-whats-the-point-of-so-many-cores"&gt;But what’s the point of so many cores??&lt;/h2&gt;
+&lt;p&gt;This is where SIMD or Single Instruction Multiple Data processing comes in handy. See, many operations(image and volume ones notoriously) are extremely taxing for the CPU to perform.
+Imagine being part of a team of 8/16 people, stamping a sheet of paper, except you have 10^6 sheets to stamp.
+Even if you took 1 ms/sheet, it would still take you insanely long to finish your jobs. And I mean, you have better things to do right?&lt;/p&gt;
+
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Map/Unmap Buffers" src="https://deadspheroid.github.io/my-blog/assets/img/simd.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Well what if you could hire 10^3 people for cheap and give each of them a sheet of paper to stamp? Wouldn’t that greatly speed things up?
+This is the core idea behind SIMD processing, you have an operation that is to be done thousands of times, over and over again, just on different data.&lt;/p&gt;
+
+&lt;p&gt;So you give each GPU core a part of the data and let it do the job, since the GPU has so many cores, it’s not really a problem.&lt;/p&gt;
+
+&lt;h2 id="so-whats-the-catch"&gt;So whats the catch?&lt;/h2&gt;
+&lt;p&gt;Continuing the stamping sheet analogy, giving the sheets to 10^3 workers is challenging and time-consuming. In other words, data transfer is a problem, since GPU VRAM is separate from CPU RAM&lt;/p&gt;
+
+&lt;p&gt;Additionally, parallel programming forces you to think in an additional dimension, because your code is being executed 100s of times at the same time. This makes writing efficient kernels difficult, since branching is frowned on at the GPU, and you need some way of preventing data races.&lt;/p&gt;
+
+&lt;p&gt;That is to say nothing of the increased power consumption and high cost of hardware.&lt;/p&gt;
+
+&lt;p&gt;Despite all of this however, GPUs are still heavily favoured, because the speed-up they offer greatly outweights the rest.&lt;/p&gt;
+
+&lt;h2 id="well-how-do-i-use-my-gpu"&gt;Well, how do I use my GPU?&lt;/h2&gt;
+&lt;p&gt;Let’s take an example, hopefully youre already familiar with image convolution. If not, the image below explains it well&lt;/p&gt;
+
+&lt;p align="center" width="100%"&gt;
+&lt;img alt="OpenCL Map/Unmap Buffers" src="https://deadspheroid.github.io/my-blog/assets/img/convol.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
+&lt;/p&gt;
+
+&lt;p&gt;For each iteration, we center the kernel over a pixel, multiply the overlapping values, add them up and then (optionally)divide by sum of kernel values.
+On CPU? For an m x n image and a k x k kernel, this is an O(mn * k^2) operation, meaning the time taken for convolution for a given data size increases tremendously.&lt;/p&gt;
+
+&lt;p&gt;This can be greatly lessened using a GPU.&lt;/p&gt;
+
+&lt;p&gt;But for that, we need to first identify the stamping task here, the tedious computation which is easy to do, but time consuming.&lt;/p&gt;
+
+&lt;h2 id="image-convolution"&gt;Image Convolution&lt;/h2&gt;
+&lt;p&gt;If you thought of the matmul operation happening at each pixel, you’d be correct!
+This is one of the easiest ways to parallelise convolution. We’re repeatedly performing matrix multiplication, with different pixels at the center each time&lt;/p&gt;
+
+&lt;p&gt;Therefore SIMD can be applied here, the instruction being matmul and the data being all the pixels.&lt;/p&gt;
+
+&lt;p&gt;On a lower level, this is represented by the diffferent &lt;code class="language-plaintext highlighter-rouge"&gt;thread_id&lt;/code&gt; given to each thread on the GPU. This id represents a one to one mapping of an integer to input data elements.
+Incase of Images, it is the pixel number that is at the center.&lt;/p&gt;
+
+&lt;p&gt;Here’s an example of how convolution can be parallelized, note that this is not the most efficient and is nowhere near perfect, but it is simple enough to understand.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-C"&gt;__kernel void
+convolution(
+__global float *image_array, __global size_t *image_dsize,
+__global float *kernell_array, __global size_t *kernell_dsize,
+
+__global float *output) {
+
+/* get the image and kernel size */
+int image_height = image_dsize[0];
+int image_width = image_dsize[1];
+int kernell_height = kernell_dsize[0];
+int kernell_width = kernell_dsize[1];
+
+/* get the local group id */
+int id = get_global_id(0);
+int row = id / image_width;
+int col = id % image_width;
+
+if (row &amp;lt; image_height &amp;amp;&amp;amp; col &amp;lt; image_width) {
+
+float sum = 0;
+/* matmul operation as normal*/
+for (int y = -kernell_height / 2; y &amp;lt;= kernell_height / 2; y++) {
+for (int x = -kernell_width / 2; x &amp;lt;= kernell_width / 2; x++) {
+if (row + y &amp;gt;= 0 &amp;amp;&amp;amp; row + y &amp;lt; image_height &amp;amp;&amp;amp; col + x &amp;gt;= 0 &amp;amp;&amp;amp;
+col + x &amp;lt; image_width) {
+sum += (image_array[(row + y) * image_width + col + x] *
+kernell_array[(y + kernell_height / 2) * kernell_width + x +
+kernell_width / 2]);
+}
+}
+}
+output[row * image_width + col] = sum;
+}
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id="a-new-outlook"&gt;A new outlook&lt;/h2&gt;
+&lt;p&gt;Of course, the world would be a lovely place if everything could be parallelised as easily as this. Realistically, parallelizing these operations is hard, but you have tools like local groups, barriers, etc to help you out!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_2230_deadspheroid/</guid><pubDate>Sun, 28 Jul 2024 21:30:00 GMT</pubDate></item><item><title>Issue resolved</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240725_1809_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; The problem with classes was resolved by making factory functions to encase them in, and then they were not conflicting with each other. &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240725_1809_kartikmandar/</guid><pubDate>Thu, 25 Jul 2024 17:09:00 GMT</pubDate></item><item><title>Enhancing SOAR Queries: Improved Error Handling and Support for Distance-Based Filtering</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;h4&gt;Improved Error Handling and Support for Distance-Based Filtering&lt;/h4&gt;&lt;h4&gt;Introduction&lt;/h4&gt;&lt;p&gt;Over the past few weeks, I’ve been working on addressing and enhancing certain functionalities within the sunpy-soar package. This post delves into the two main improvements I’ve implemented: better error handling for server downtime and the introduction of support for distance-based query filtering.&lt;/p&gt;
 &lt;h4&gt;Improved Error Handling for Server Downtime&lt;/h4&gt;&lt;p&gt;Previously, when the SOAR server was down, a generic JSONDecodeError would be raised. This was less than ideal as it did not provide a clear indication of what the actual issue was. To improve this, I worked on implementing a more descriptive error message that would be raised in such scenarios.&lt;/p&gt;
 &lt;pre&gt;r = requests.get(f"{tap_endpoint}/sync", params=payload)&lt;br&gt;try:&lt;br&gt;    response_json = r.json()&lt;br&gt;except JSONDecodeError:&lt;br&gt;    msg = "Server returned an invalid JSON response. The SOAR server may be down or not functioning correctly."&lt;br&gt;    raise RuntimeError(msg)&lt;/pre&gt;&lt;p&gt;With this change, users will now see a RuntimeError with a clear message indicating that the server may be down or not functioning correctly, which makes troubleshooting much easier.&lt;/p&gt;
@@ -472,5 +573,4 @@ This was the initial using of hek in this example:&lt;br&gt;
 
 
 &lt;p&gt;Yeah, and that's it.&lt;br&gt;
-The remaining parts are writing the user documentation, and double-checking the returned data from different events and different queries.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240711_1938_ahmedhosssam/</guid><pubDate>Thu, 11 Jul 2024 18:38:21 GMT</pubDate></item><item><title>Refactoring the codebase</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240711_1548_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; I am refactoring the whole codebase to make it more maintainable and in that hoping to solve the issue with HoloViews. I am making the codebase fully pragmatic and declarative and using Parameterised classes. I hope so it resolves the issue with HoloViews. &lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240711_1548_kartikmandar/</guid><pubDate>Thu, 11 Jul 2024 14:48:00 GMT</pubDate></item></channel></rss>
+The remaining parts are writing the user documentation, and double-checking the returned data from different events and different queries.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240711_1938_ahmedhosssam/</guid><pubDate>Thu, 11 Jul 2024 18:38:21 GMT</pubDate></item></channel></rss>

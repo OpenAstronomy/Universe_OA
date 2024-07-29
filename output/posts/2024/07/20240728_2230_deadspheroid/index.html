@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Towards New Speeds | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2024/07/20240728_2230_deadspheroid/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="DeadSpheroid">
+<link rel="prev" href="../20240725_1809_kartikmandar/" title="Issue resolved" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Towards New Speeds">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2024/07/20240728_2230_deadspheroid/">
+<meta property="og:description" content="In this post, I hope to illustrate how GPU's actually accelerate parallel operations
+
+Let’s get started
+
+Firstly, how do GPU’s really work? Well, at a lower level, the architecture looks something lik">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2024-07-28T22:30:00+01:00">
+<meta property="article:tag" content="gnuastro">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://dev.to/ahmedhosssam" data-toggle="tooltip" data-placement="top" title="2024-07-11 19:38:21+01:00" style="color:rgb(255,0,0)">
+                    Ahmed Hossam
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="http://code29563.github.io" data-toggle="tooltip" data-placement="top" title="2024-07-14 00:00:00+01:00" style="color:rgb(255,0,0)">
+                    code29563
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/gnuastro.svg" height="16" width="16"><a href="https://deadspheroid.github.io" data-toggle="tooltip" data-placement="top" title="2024-07-28 22:30:00+01:00">
+                    DeadSpheroid
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://deus1704.vercel.app" data-toggle="tooltip" data-placement="top" title="2024-07-22 18:59:31+01:00">
+                    Deus1704
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://gsoc2024.kartikmandar.com" data-toggle="tooltip" data-placement="top" title="2024-07-25 18:09:00+01:00">
+                    Kartik Mandar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/fornax-navo.png?size=40" height="16" width="16"><a href="https://lucasmartingarciagsoc24openastronomy.blogspot.com" data-toggle="tooltip" data-placement="top" title="2024-07-15 19:57:00+01:00">
+                    Lucas Martin Garcia
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://medium.com/@manitsingh018" data-toggle="tooltip" data-placement="top" title="2024-07-23 16:50:13+01:00">
+                    Manit Singh
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://viciouseagle03.github.io" data-toggle="tooltip" data-placement="top" title="2024-06-23 07:19:36+01:00" style="color:rgb(255,0,0)">
+                    ViciousEagle03
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-05-27 - 2024-06-10">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-10 - 2024-06-24">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-06-24 - 2024-07-01">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-01 - 2024-07-15">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-15 - 2024-07-29">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2024-07-29 - 2024-08-12">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Towards New Speeds</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/deadspheroid/">DeadSpheroid</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2024-07-28T22:30:00+01:00" itemprop="datePublished" title="2024-07-28 22:30">2024-07-28 22:30</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://deadspheroid.github.io/my-blog/post/Parallelizing/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p class="intro">In this post, I hope to illustrate how GPU's actually accelerate parallel operations</p>
+
+<h2 id="lets-get-started">Let’s get started</h2>
+<!-- TEASER_END -->
+<p>Firstly, how do GPU’s really work? Well, at a lower level, the architecture looks something like this…</p>
+
+<p align="center" width="100%">
+<img alt="GPU Architecture" src="https://deadspheroid.github.io/my-blog/assets/img/gpu-arch.png" style="margin-bottom: 0; margin-top: 24px;"></p>
+
+<p>Focus on the differences between the two, CPUs have few, very highly specialised and refined cores.
+GPUs on the other hand have hundreds of more primitive, yet powerful cores.</p>
+
+<p>This is the reason why GPUs can’t do I/O and stuff, its because they are meant solely for mathematical operations.</p>
+
+<h2 id="but-whats-the-point-of-so-many-cores">But what’s the point of so many cores??</h2>
+<p>This is where SIMD or Single Instruction Multiple Data processing comes in handy. See, many operations(image and volume ones notoriously) are extremely taxing for the CPU to perform.
+Imagine being part of a team of 8/16 people, stamping a sheet of paper, except you have 10^6 sheets to stamp.
+Even if you took 1 ms/sheet, it would still take you insanely long to finish your jobs. And I mean, you have better things to do right?</p>
+
+<p align="center" width="100%">
+<img alt="OpenCL Map/Unmap Buffers" src="https://deadspheroid.github.io/my-blog/assets/img/simd.png" style="margin-bottom: 0; margin-top: 24px;"></p>
+
+<p>Well what if you could hire 10^3 people for cheap and give each of them a sheet of paper to stamp? Wouldn’t that greatly speed things up?
+This is the core idea behind SIMD processing, you have an operation that is to be done thousands of times, over and over again, just on different data.</p>
+
+<p>So you give each GPU core a part of the data and let it do the job, since the GPU has so many cores, it’s not really a problem.</p>
+
+<h2 id="so-whats-the-catch">So whats the catch?</h2>
+<p>Continuing the stamping sheet analogy, giving the sheets to 10^3 workers is challenging and time-consuming. In other words, data transfer is a problem, since GPU VRAM is separate from CPU RAM</p>
+
+<p>Additionally, parallel programming forces you to think in an additional dimension, because your code is being executed 100s of times at the same time. This makes writing efficient kernels difficult, since branching is frowned on at the GPU, and you need some way of preventing data races.</p>
+
+<p>That is to say nothing of the increased power consumption and high cost of hardware.</p>
+
+<p>Despite all of this however, GPUs are still heavily favoured, because the speed-up they offer greatly outweights the rest.</p>
+
+<h2 id="well-how-do-i-use-my-gpu">Well, how do I use my GPU?</h2>
+<p>Let’s take an example, hopefully youre already familiar with image convolution. If not, the image below explains it well</p>
+
+<p align="center" width="100%">
+<img alt="OpenCL Map/Unmap Buffers" src="https://deadspheroid.github.io/my-blog/assets/img/convol.png" style="margin-bottom: 0; margin-top: 24px;"></p>
+
+<p>For each iteration, we center the kernel over a pixel, multiply the overlapping values, add them up and then (optionally)divide by sum of kernel values.
+On CPU? For an m x n image and a k x k kernel, this is an O(mn * k^2) operation, meaning the time taken for convolution for a given data size increases tremendously.</p>
+
+<p>This can be greatly lessened using a GPU.</p>
+
+<p>But for that, we need to first identify the stamping task here, the tedious computation which is easy to do, but time consuming.</p>
+
+<h2 id="image-convolution">Image Convolution</h2>
+<p>If you thought of the matmul operation happening at each pixel, you’d be correct!
+This is one of the easiest ways to parallelise convolution. We’re repeatedly performing matrix multiplication, with different pixels at the center each time</p>
+
+<p>Therefore SIMD can be applied here, the instruction being matmul and the data being all the pixels.</p>
+
+<p>On a lower level, this is represented by the diffferent <code class="language-plaintext highlighter-rouge">thread_id</code> given to each thread on the GPU. This id represents a one to one mapping of an integer to input data elements.
+Incase of Images, it is the pixel number that is at the center.</p>
+
+<p>Here’s an example of how convolution can be parallelized, note that this is not the most efficient and is nowhere near perfect, but it is simple enough to understand.</p>
+
+<pre><code class="language-C">__kernel void
+convolution(
+__global float *image_array, __global size_t *image_dsize,
+__global float *kernell_array, __global size_t *kernell_dsize,
+
+__global float *output) {
+
+/* get the image and kernel size */
+int image_height = image_dsize[0];
+int image_width = image_dsize[1];
+int kernell_height = kernell_dsize[0];
+int kernell_width = kernell_dsize[1];
+
+/* get the local group id */
+int id = get_global_id(0);
+int row = id / image_width;
+int col = id % image_width;
+
+if (row &lt; image_height &amp;&amp; col &lt; image_width) {
+
+float sum = 0;
+/* matmul operation as normal*/
+for (int y = -kernell_height / 2; y &lt;= kernell_height / 2; y++) {
+for (int x = -kernell_width / 2; x &lt;= kernell_width / 2; x++) {
+if (row + y &gt;= 0 &amp;&amp; row + y &lt; image_height &amp;&amp; col + x &gt;= 0 &amp;&amp;
+col + x &lt; image_width) {
+sum += (image_array[(row + y) * image_width + col + x] *
+kernell_array[(y + kernell_height / 2) * kernell_width + x +
+kernell_width / 2]);
+}
+}
+}
+output[row * image_width + col] = sum;
+}
+}
+
+</code></pre>
+<h2 id="a-new-outlook">A new outlook</h2>
+<p>Of course, the world would be a lovely place if everything could be parallelised as easily as this. Realistically, parallelizing these operations is hard, but you have tools like local groups, barriers, etc to help you out!</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/gnuastro/" rel="tag">gnuastro</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20240725_1809_kartikmandar/" rel="prev" title="Issue resolved">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2024         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
