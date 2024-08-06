@@ -1,5 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by ViciousEagle03)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/viciouseagle03.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 05 Aug 2024 01:07:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC [Week 02-03] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0719_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;This blog post covers all the work done in the second and third week of Google Summer of Code.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by ViciousEagle03)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/viciouseagle03.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 06 Aug 2024 01:04:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC [Week 06-07] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/mid_term.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This blog post covers all the work done in the sixth week of Google Summer of Code.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After having developed the serialization logic for NDCube with wcs as &lt;code&gt;gWCS&lt;/code&gt;, the next step was to extend this support to handle the serialization of NDCube where the wcs attribute is &lt;code&gt;astropy.wcs.WCS&lt;/code&gt;. This week my primary focus has been on enabling the serialization of &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; objects to ASDF. This task involves adding the necessary serialization logic to the asdf-astropy repository.&lt;/p&gt;
+&lt;h4 id="discussions-on-wcs-serialization"&gt;Discussions on WCS Serialization&lt;/h4&gt;
+&lt;p&gt;We had a discussion about the process of serializing WCS objects and covered the following points:&lt;/p&gt;
+&lt;h5 id="complex-wcs-types"&gt;Complex WCS Types:&lt;/h5&gt;
+&lt;p&gt;WCS types like tabular and distortion ones are tricky because they involve data tables. Handling these types requires a more sophisticated approach.&lt;/p&gt;
+&lt;h5 id="approach-discussion"&gt;Approach Discussion:&lt;/h5&gt;
+&lt;p&gt;We discussed serializing a HDUList object or using &lt;code&gt;WCS.to_hdu&lt;/code&gt; for the complex WCS types but that seems pretty complex for a first attempt. We agreed on initially not supporting these complex WCS types and just using &lt;code&gt;WCS.to_header()&lt;/code&gt; for now for supporting the serialization of the basic WCS objects.&lt;/p&gt;
+&lt;h4 id="whats-new"&gt;What’s new&lt;/h4&gt;
+&lt;p&gt;So after my PR gets merged asdf-astropy would support the serialization of the &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; objects to ASDF.
+Ideally we would want to detect tabular and distortion WCS types and throw an error if they come up. This way, we’re clear about what’s supported and we agreed on revisiting this part and in the future and to extend this to support the serialization of the complex WCS objects.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Serialized simple &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object to ASDF&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;#ASDF 1.0.0
+#ASDF_STANDARD 1.5.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/
+--- !core/asdf-1.1.0
+asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
+name: asdf, version: 3.0.1}
+history:
+extensions:
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://asdf-format.org/core/extensions/core-1.5.0
+software: !core/software-1.0.0 {name: asdf, version: 3.0.1}
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://astropy.org/astropy/extensions/astropy-1.0.0
+software: !core/software-1.0.0 {name: asdf-astropy, version: 0.6.1.dev10+gdab5b4d.d20240723}
+fits: !&amp;lt;tag:astropy.org:astropy/fits/fitswcs-1.0.0&amp;gt;
+header: {CDELT1: 0.4, CDELT2: 2.0e-11, CDELT3: 0.0055555555555556, CDELT4: 0.0013888888888889,
+CRPIX1: 0.0, CRPIX2: 0.0, CRPIX3: 0.0, CRPIX4: 5.0, CRVAL1: 0.0, CRVAL2: 0.0,
+CRVAL3: 0.0, CRVAL4: 0.0, CTYPE1: TIME, CTYPE2: WAVE, CTYPE3: HPLT-TAN, CTYPE4: HPLN-TAN,
+CUNIT1: min, CUNIT2: m, CUNIT3: deg, CUNIT4: deg, DATEREF: '2020-01-01T00:00:00',
+LATPOLE: 0.0, LONPOLE: 180.0, MJDREF: 58849.0, WCSAXES: 4}
+...
+&lt;/code&gt;&lt;/pre&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</guid><pubDate>Sun, 28 Jul 2024 09:14:09 GMT</pubDate></item><item><title>GSoC [Week 04-05] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_0549_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/test_img.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This blog post covers all the work done in the fourth and fifth week of Google Summer of Code.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;h5 id="mid-term-evaluations-are-nearing"&gt;Mid term evaluations are nearing!&lt;/h5&gt;
+&lt;p&gt;This week, my focus was on extending the test suite to include examples of loading an &lt;code&gt;NDCube&lt;/code&gt; backed by various &lt;code&gt;gwcs.WCS&lt;/code&gt; objects and testing the roundtrip serialization of the NDCube. I needed to verify that the ExtraCoords and GlobalCoords objects are correctly serialized and deserialized. Adding the gWCS test suite presented some challenges, but seeing it function correctly was incredibly rewarding. Completing these tasks was essential to ensure everything was in place for the mid-term evaluation 🚀.&lt;/p&gt;
+&lt;h4 id="adding-gwcs-test-suite"&gt;Adding gWCS Test Suite&lt;/h4&gt;
+&lt;p&gt;This was the most challenging part for me this week. To check the roundtrip serialization of &lt;code&gt;gwcs.WCS&lt;/code&gt; objects (i.e., ensuring all attributes of the &lt;code&gt;wcs&lt;/code&gt; attribute of the NDCube are preserved when read and loaded through an ASDF file), I had to write a test suite for NDCube backed by different &lt;code&gt;gwcs.WCS&lt;/code&gt; objects as the wcs attribute for the NDCube objects which would then be loaded into an NDCube and checked for roundtrip serialization.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;One of the &lt;code&gt;gwcs.WCS&lt;/code&gt; test object which would be loaded in an NDCube and checked for roundtrip serialization.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;def gwcs_4d_t_l_lt_ln():
+"""
+Creates a 4D GWCS object with time, wavelength, and celestial coordinates.
+
+- Time: Axis 0
+- Wavelength: Axis 1
+- Sky: Axes 2 and 3
+
+Returns:
+wcs.WCS: 4D GWCS object.
+"""
+
+time_model = models.Identity(1)
+time_frame = cf.TemporalFrame(axes_order=(0, ), unit=u.s,
+reference_frame=Time("2000-01-01T00:00:00"))
+
+wave_frame = cf.SpectralFrame(axes_order=(1, ), unit=u.m, axes_names=('wavelength',))
+wave_model = models.Scale(0.2)
+
+shift = models.Shift(-5) &amp;amp; models.Shift(0)
+scale = models.Scale(5) &amp;amp; models.Scale(20)
+tan = models.Pix2Sky_TAN()
+celestial_rotation = models.RotateNative2Celestial(0, 0, 180)
+cel_model = shift | scale | tan | celestial_rotation
+sky_frame = cf.CelestialFrame(axes_order=(2, 3), name='icrs',
+reference_frame=coord.ICRS(),
+axes_names=("longitude", "latitude"))
+
+transform = time_model &amp;amp; wave_model &amp;amp; cel_model
+
+frame = cf.CompositeFrame([time_frame, wave_frame, sky_frame])
+detector_frame = cf.CoordinateFrame(name="detector", naxes=4,
+axes_order=(0, 1, 2, 3),
+axes_type=("pixel", "pixel", "pixel", "pixel"),
+unit=(u.pix, u.pix, u.pix, u.pix))
+
+return (wcs.WCS(forward_transform=transform, output_frame=frame, input_frame=detector_frame))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="checking-the-extracoords-and-globalcoords"&gt;Checking the ExtraCoords and GlobalCoords&lt;/h4&gt;
+&lt;p&gt;I had to make sure the converters written for these objects preserved all the required parameters when saved to an ASDF file and read from an ASDF file. Doing this was straightforward as my mentors helped me during the process of writing the tests and ensuring good coverage.&lt;/p&gt;
+&lt;h4 id="handling-unsupported-attributes"&gt;Handling Unsupported Attributes&lt;/h4&gt;
+&lt;p&gt;It is as important to test the supported API as it is to throw a warning to the user when a particular attribute serialization is unsupported. I added warnings for attributes that are not yet supported (such as a sliced &lt;code&gt;NDCube&lt;/code&gt; and &lt;code&gt;wcs&lt;/code&gt; attribute of the &lt;code&gt;NDCube&lt;/code&gt; as the &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object), which I plan to support in the future.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_0549_viciouseagle03/</guid><pubDate>Mon, 15 Jul 2024 04:49:00 GMT</pubDate></item><item><title>GSoC [Week 02-03] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0719_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;This blog post covers all the work done in the second and third week of Google Summer of Code.&lt;/p&gt;
 &lt;p&gt;In the past weeks, my focus has been on enhancing the serialization support of NDCube by extending its support for ExtraCoords and GlobalCoords. After establishing serialization support for the fundamental attributes of the NDCube object—such as data and wcs—in the ASDF file format, the next logical step was extending this capability to include &lt;code&gt;ExtraCoords&lt;/code&gt; and &lt;code&gt;GlobalCoords&lt;/code&gt; object.&lt;/p&gt;
 &lt;h3 id="globalcoords-and-extracoords"&gt;GlobalCoords and ExtraCoords&lt;/h3&gt;
 &lt;!-- TEASER_END --&gt;
