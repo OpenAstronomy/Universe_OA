@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 05 Aug 2024 01:07:09 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Implementing non-equilibrium spectra</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240729_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;ul&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 06 Aug 2024 01:04:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Changing the plotting methods</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240805_1605_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; So the recoding and redesign is done. But we were discussing about how we are plotting things in dashboard and wanted to have floatpanels for doing so.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/08/20240805_1605_kartikmandar/</guid><pubDate>Mon, 05 Aug 2024 15:05:00 GMT</pubDate></item><item><title>Implementing non-equilibrium spectra</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240729_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;ul&gt;
 &lt;li&gt;Support has been added for non-equilibrium spectra. Comparisons with SpectraPlot are still showing discrepancies, the source of which is not yet resolved.&lt;/li&gt;
 &lt;li&gt;References have been added for the Kurucz databank&lt;/li&gt;
 &lt;!-- TEASER_END --&gt;
@@ -105,7 +106,49 @@ output[row * image_width + col] = sum;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="a-new-outlook"&gt;A new outlook&lt;/h2&gt;
-&lt;p&gt;Of course, the world would be a lovely place if everything could be parallelised as easily as this. Realistically, parallelizing these operations is hard, but you have tools like local groups, barriers, etc to help you out!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_2230_deadspheroid/</guid><pubDate>Sun, 28 Jul 2024 21:30:00 GMT</pubDate></item><item><title>Issue resolved</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240725_1809_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; The problem with classes was resolved by making factory functions to encase them in, and then they were not conflicting with each other. &lt;/p&gt;
+&lt;p&gt;Of course, the world would be a lovely place if everything could be parallelised as easily as this. Realistically, parallelizing these operations is hard, but you have tools like local groups, barriers, etc to help you out!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_2230_deadspheroid/</guid><pubDate>Sun, 28 Jul 2024 21:30:00 GMT</pubDate></item><item><title>GSoC [Week 06-07] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/mid_term.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This blog post covers all the work done in the sixth week of Google Summer of Code.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After having developed the serialization logic for NDCube with wcs as &lt;code&gt;gWCS&lt;/code&gt;, the next step was to extend this support to handle the serialization of NDCube where the wcs attribute is &lt;code&gt;astropy.wcs.WCS&lt;/code&gt;. This week my primary focus has been on enabling the serialization of &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; objects to ASDF. This task involves adding the necessary serialization logic to the asdf-astropy repository.&lt;/p&gt;
+&lt;h4 id="discussions-on-wcs-serialization"&gt;Discussions on WCS Serialization&lt;/h4&gt;
+&lt;p&gt;We had a discussion about the process of serializing WCS objects and covered the following points:&lt;/p&gt;
+&lt;h5 id="complex-wcs-types"&gt;Complex WCS Types:&lt;/h5&gt;
+&lt;p&gt;WCS types like tabular and distortion ones are tricky because they involve data tables. Handling these types requires a more sophisticated approach.&lt;/p&gt;
+&lt;h5 id="approach-discussion"&gt;Approach Discussion:&lt;/h5&gt;
+&lt;p&gt;We discussed serializing a HDUList object or using &lt;code&gt;WCS.to_hdu&lt;/code&gt; for the complex WCS types but that seems pretty complex for a first attempt. We agreed on initially not supporting these complex WCS types and just using &lt;code&gt;WCS.to_header()&lt;/code&gt; for now for supporting the serialization of the basic WCS objects.&lt;/p&gt;
+&lt;h4 id="whats-new"&gt;What’s new&lt;/h4&gt;
+&lt;p&gt;So after my PR gets merged asdf-astropy would support the serialization of the &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; objects to ASDF.
+Ideally we would want to detect tabular and distortion WCS types and throw an error if they come up. This way, we’re clear about what’s supported and we agreed on revisiting this part and in the future and to extend this to support the serialization of the complex WCS objects.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Serialized simple &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object to ASDF&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;#ASDF 1.0.0
+#ASDF_STANDARD 1.5.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/
+--- !core/asdf-1.1.0
+asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
+name: asdf, version: 3.0.1}
+history:
+extensions:
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://asdf-format.org/core/extensions/core-1.5.0
+software: !core/software-1.0.0 {name: asdf, version: 3.0.1}
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://astropy.org/astropy/extensions/astropy-1.0.0
+software: !core/software-1.0.0 {name: asdf-astropy, version: 0.6.1.dev10+gdab5b4d.d20240723}
+fits: !&amp;lt;tag:astropy.org:astropy/fits/fitswcs-1.0.0&amp;gt;
+header: {CDELT1: 0.4, CDELT2: 2.0e-11, CDELT3: 0.0055555555555556, CDELT4: 0.0013888888888889,
+CRPIX1: 0.0, CRPIX2: 0.0, CRPIX3: 0.0, CRPIX4: 5.0, CRVAL1: 0.0, CRVAL2: 0.0,
+CRVAL3: 0.0, CRVAL4: 0.0, CTYPE1: TIME, CTYPE2: WAVE, CTYPE3: HPLT-TAN, CTYPE4: HPLN-TAN,
+CUNIT1: min, CUNIT2: m, CUNIT3: deg, CUNIT4: deg, DATEREF: '2020-01-01T00:00:00',
+LATPOLE: 0.0, LONPOLE: 180.0, MJDREF: 58849.0, WCSAXES: 4}
+...
+&lt;/code&gt;&lt;/pre&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</guid><pubDate>Sun, 28 Jul 2024 09:14:09 GMT</pubDate></item><item><title>Issue resolved</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240725_1809_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; The problem with classes was resolved by making factory functions to encase them in, and then they were not conflicting with each other. &lt;/p&gt;
 &lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240725_1809_kartikmandar/</guid><pubDate>Thu, 25 Jul 2024 17:09:00 GMT</pubDate></item><item><title>Enhancing SOAR Queries: Improved Error Handling and Support for Distance-Based Filtering</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;h4&gt;Improved Error Handling and Support for Distance-Based Filtering&lt;/h4&gt;&lt;h4&gt;Introduction&lt;/h4&gt;&lt;p&gt;Over the past few weeks, I’ve been working on addressing and enhancing certain functionalities within the sunpy-soar package. This post delves into the two main improvements I’ve implemented: better error handling for server downtime and the introduction of support for distance-based query filtering.&lt;/p&gt;
 &lt;h4&gt;Improved Error Handling for Server Downtime&lt;/h4&gt;&lt;p&gt;Previously, when the SOAR server was down, a generic JSONDecodeError would be raised. This was less than ideal as it did not provide a clear indication of what the actual issue was. To improve this, I worked on implementing a more descriptive error message that would be raised in such scenarios.&lt;/p&gt;
 &lt;pre&gt;r = requests.get(f"{tap_endpoint}/sync", params=payload)&lt;br&gt;try:&lt;br&gt;    response_json = r.json()&lt;br&gt;except JSONDecodeError:&lt;br&gt;    msg = "Server returned an invalid JSON response. The SOAR server may be down or not functioning correctly."&lt;br&gt;    raise RuntimeError(msg)&lt;/pre&gt;&lt;p&gt;With this change, users will now see a RuntimeError with a clear message indicating that the server may be down or not functioning correctly, which makes troubleshooting much easier.&lt;/p&gt;
@@ -204,164 +247,4 @@ output[row * image_width + col] = sum;
 &lt;ul&gt;&lt;li&gt;&lt;strong&gt;Recurrent Neural Networks (RNNs)&lt;/strong&gt;: RNNs are highly effective for sequential data prediction. They process time-series data by learning from past observations, making them particularly adept at modeling complex dependencies across time steps.&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;&lt;h4&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjTKtAJp5vpjxfVfxOm58PlFyIecLLevLWez3TwGuer5Gjs5sW7Elmw9EYezL7C8lUbQXJMQin3XYwnpIuKh-mYtNelhQ6fdnzKDQJ242yape7FL1JbVAqc7rSgp1BSSTJtk-UdQ1yirdkPOX72xUkfflGm1lwxKYfKMLHx8erF7rHeKdqdLN_54dBuhwpb/s1389/RNN%20inter.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="499" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjTKtAJp5vpjxfVfxOm58PlFyIecLLevLWez3TwGuer5Gjs5sW7Elmw9EYezL7C8lUbQXJMQin3XYwnpIuKh-mYtNelhQ6fdnzKDQJ242yape7FL1JbVAqc7rSgp1BSSTJtk-UdQ1yirdkPOX72xUkfflGm1lwxKYfKMLHx8erF7rHeKdqdLN_54dBuhwpb/w700-h499/RNN%20inter.png" width="700"&gt;&lt;/a&gt;&lt;/div&gt;Future Directions&lt;/h4&gt;&lt;p&gt;The main goals of these approaches are to improve the quality and continuity of AGN light curve data. Evaluation methods are required to compare the models when more advanced models are utilized.&lt;/p&gt;
 &lt;h4&gt;Conclusion&lt;/h4&gt;&lt;p&gt;The interpolation of AGN light curve data, although challenging, is essential for advancing our understanding of these celestial objects. The methodologies discussed here are not only applicable to astrophysics but also have implications for other scientific fields where data completeness affects research outcomes.&lt;/p&gt;
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</description><category>irsa-fornax</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_1957_lucasmg18/</guid><pubDate>Mon, 15 Jul 2024 18:57:00 GMT</pubDate></item><item><title>Finally the issue resolves</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_1528_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; Damn, those 2 weeks were stressful, finally the issue is resolved. I am able to render HoloViews and thus Bokeh plots inside my program and in the process my codebase is much better than before. &lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_1528_kartikmandar/</guid><pubDate>Mon, 15 Jul 2024 14:28:00 GMT</pubDate></item><item><title>Finishing up equilibrium spectra</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240714_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;ul&gt;
-&lt;li&gt;Tests have been added for the implementation of the Kurucz database and associated parts of the code&lt;/li&gt;
-&lt;li&gt;Examples have been added relating to the Lorentzian broadening of atomic lines and partition functions.&lt;/li&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;li&gt;The function to parse Kurucz linelists has been re-written based on Pandas.&lt;/li&gt;
-&lt;li&gt;The precision of some parts of the code has been improved by using &lt;code class="language-plaintext highlighter-rouge"&gt;numpy.expm1&lt;/code&gt; rather than &lt;code class="language-plaintext highlighter-rouge"&gt;numpy.exp&lt;/code&gt;, thereby showing weaker spectra that otherwise weren’t being seen&lt;/li&gt;
-&lt;li&gt;Support has been added for loading existing databanks of atomic species without specifying the species initially.&lt;/li&gt;
-&lt;li&gt;A greater range of formats are now accepted as input to specify the species for which to calculate a spectrum.&lt;/li&gt;
-&lt;li&gt;Documentation for atomic spectra and the Kurucz database has been updated further&lt;/li&gt;
-&lt;/ul&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240714_0000_code29563/</guid><pubDate>Sat, 13 Jul 2024 23:00:00 GMT</pubDate></item><item><title>Exploring OpenCL memory management</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240713_2230_deadspheroid/</link><dc:creator>DeadSpheroid</dc:creator><description>&lt;p class="intro"&gt;In this post, I hope to give a high level understanding of OpenCL's Memory Mechanisms&lt;/p&gt;
-
-&lt;h2 id="the-basics"&gt;The basics&lt;/h2&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;Firstly, its important to have a basic understanding of the hardware involved. Keeping it simple, each OpenCL device represents a different set of hardware, each with its own RAM.
-My own laptop has a 16GB CPU RAM, and 6GB VRAM&lt;/p&gt;
-
-&lt;p&gt;Now, at the heart of C, we have pointers, without them well, you can’t really get much done in C. The pointers we convetionally use are pointers to CPU RAM.&lt;/p&gt;
-
-&lt;p&gt;So what would happen if you try to pass a CPU Pointer to the GPU?
-Well, of course, it wont work, the GPU simply segfaults, as it cannot understand the pointer given to it.
-But we still need to use pointers, we can’t just abandon them. So how do we do this?&lt;/p&gt;
-
-&lt;h2 id="buffers"&gt;Buffers&lt;/h2&gt;
-
-&lt;p align="center" width="100%"&gt;
-&lt;img alt="OpenCL Map/Unmap Buffers" src="https://deadspheroid.github.io/my-blog/assets/img/opencl-map.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;At the simplest level, we have OpenCL Buffers. These buffers are chunks of memory allocated on the OpenCL device as well as on host memory.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-C"&gt;cl_mem clCreateBuffer(
-cl_context context,
-cl_mem_flags flags,
-size_t size,
-void *host_ptr,
-cl_int *errcode_ret)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Creating a buffer is easy, its figuring out what kind of buffer you need that is important.&lt;/p&gt;
-
-&lt;p&gt;Broadly speaking there are 3 types of buffers based on the &lt;code class="language-plaintext highlighter-rouge"&gt;flags&lt;/code&gt; passed:&lt;/p&gt;
-
-&lt;h4 id="cl_mem_use_host_ptr"&gt;CL_MEM_USE_HOST_PTR&lt;/h4&gt;
-&lt;p&gt;This tells OpenCL to use the host pointer provided as the underlying memory on host.&lt;/p&gt;
-
-&lt;h4 id="cl_mem_copy_host_ptr"&gt;CL_MEM_COPY_HOST_PTR&lt;/h4&gt;
-&lt;p&gt;This flag tells OpenCL to make a new buffer and fill it with the memory pointed to by host pointer.&lt;/p&gt;
-
-&lt;h4 id="cl_mem_alloc_host_ptr"&gt;CL_MEM_ALLOC_HOST_PTR&lt;/h4&gt;
-&lt;p&gt;This one is the same as CL_MEM_USE_HOST_PTR, but the allocation of host pointer is also done by OpenCL&lt;/p&gt;
-
-&lt;p&gt;But which one should you use?
-Well, if you desire a zero copy buffer, i.e. create a buffer without copying memory, especially memory on host, then
-CL_MEM_USE_HOST_PTR(if you have the memory already initialised)
-or
-CL_MEM_ALLOC_HOST_PTR(if you plan to initialise the buffer afterward)
-The concept of a zero copy buffer is super helpful when you are targeting the same host CPU as an OpenCL device.&lt;/p&gt;
-
-&lt;p&gt;I mean, you already have the data in CPU RAM, why would you make another copy in CPU RAM by creating a new buffer?&lt;/p&gt;
-
-&lt;h2 id="literacy-for-buffers"&gt;Literacy for Buffers&lt;/h2&gt;
-&lt;p align="center" width="100%"&gt;
-&lt;img alt="OpenCL Map/Unmap Buffers" src="https://deadspheroid.github.io/my-blog/assets/img/opencl-mem.png" style="margin-bottom: 0; margin-top: 24px;"&gt;
-&lt;/p&gt;
-
-&lt;p&gt;The above is enough when you are operating on the same device, which is seldom the case with OpenCL.
-But when you work with GPUs, you need to get the memory into GPU VRAM somehow.&lt;/p&gt;
-
-&lt;p&gt;And this is impossible(maybe) without copying the data over.&lt;/p&gt;
-
-&lt;p&gt;So how do you copy the data over to GPU VRAM?
-Well, after allocating a buffer as seen before, OpenCL will try to recreate the host side buffer on the device as well.&lt;/p&gt;
-
-&lt;p&gt;But when you update the host side buffer(like reading in input), youd want it to reflect on device as well.
-Similary, when your device is done processing, you need to get the output from device memory to host memory.&lt;/p&gt;
-
-&lt;p&gt;There are two main ways to do this:&lt;/p&gt;
-&lt;h4 id="readwrite-buffer"&gt;Read/Write Buffer&lt;/h4&gt;
-&lt;p&gt;You have a buffer on host memory and on device memory that mirror each other.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-C"&gt;cl_int clEnqueueReadBuffer(
-cl_command_queue command_queue,
-cl_mem buffer,
-cl_bool blocking_read,
-size_t offset,
-size_t size,
-void* ptr,
-cl_uint num_events_in_wait_list,
-const cl_event* event_wait_list,
-cl_event* event);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class="language-C"&gt;cl_int clEnqueueWriteBuffer(
-cl_command_queue command_queue,
-cl_mem buffer,
-cl_bool blocking_write,
-size_t offset,
-size_t size,
-const void* ptr,
-cl_uint num_events_in_wait_list,
-const cl_event* event_wait_list,
-cl_event* event);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;OpenCL provides Read/Write commands to force overwrite of one buffer over the other, and in this way, data transfer is achieved.&lt;/p&gt;
-
-&lt;h4 id="mapunmap-buffer"&gt;Map/Unmap Buffer&lt;/h4&gt;
-&lt;p&gt;There is a single buffer on device memory, that is presented to CPU when demanded
-So “mapping” a buffer will bring it from device memory into host RAM.
-Then any changes made will be saved in host RAM.
-Finally, once done with changes, you may “unmap” the buffer, which writes all changes made back to device memory&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-C"&gt;void* clEnqueueMapBuffer(
-cl_command_queue command_queue,
-cl_mem buffer,
-cl_bool blocking_map,
-cl_map_flags map_flags,
-size_t offset,
-size_t size,
-cl_uint num_events_in_wait_list,
-const cl_event* event_wait_list,
-cl_event* event,
-cl_int* errcode_ret);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class="language-C"&gt;cl_int clEnqueueUnmapMemObject(
-cl_command_queue command_queue,
-cl_mem memobj,
-void* mapped_ptr,
-cl_uint num_events_in_wait_list,
-const cl_event* event_wait_list,
-cl_event* event);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this way, data transfer is achieved&lt;/p&gt;
-
-&lt;h2 id="to-map-or-not-to-map"&gt;To map or not to map?&lt;/h2&gt;
-&lt;p&gt;To be honest, performance differences are very minute, atleast from my tests with the gnuastro library.
-However Map and Unmapping makes a world of difference as compared to Read/Write when it comes to simplicity&lt;/p&gt;
-
-&lt;h2 id="the-problem-with-buffers"&gt;The problem with buffers&lt;/h2&gt;
-&lt;p&gt;No matter what you do, when working with buffers, you always end up copying the data
-For example, you load an image into CPU RAM, but actually want to work with it on the GPU.
-So, you end up copying the image into GPU RAM. In the end, you process the same data twice, once while loading and once while copying&lt;/p&gt;
-
-&lt;p&gt;For small images(2000 x 2000) this is barely noticeable
-But gnuastro, and the people using gnuastro deal with astronomical images of incredibly large sizes(i’ve heard 30GB just for one image).&lt;/p&gt;
-
-&lt;p&gt;So, most certainly, any time you save by using parallelised processing on the GPU, is lost and maybe even worsened by the data transfer times.
-Then, using the GPU is almost pointless, unless you use the same data over and over again&lt;/p&gt;
-
-&lt;p&gt;“Well, cant I just load the data on the GPU directly?”
-Thats not possible, atleast not to my knowledge. This is the tradeoff with GPUs.
-On a CPU, you have 4/8/16 highly specialised and capable cores(math, I/O), while on the GPU you have 1000s of some very primitive math operations(only math, no I/O)
-So you always have to load it into CPU RAM first and then go to GPU RAM.&lt;/p&gt;
-
-&lt;p&gt;So how can we fix this problem?
-Well, one of the options is to use Shared Virtual Memory(OpenCL SVM), which enables the GPU to directly access CPU RAM and play with CPU pointers.&lt;/p&gt;
-
-&lt;p&gt;However, I still have yet to test SVM in the context of gnuastro, to see if its useful.
-Besides, SVM also fixes the problem of structs containing pointers(for another post).
-Documentation for OpenCL is already sparse, and to add insult to injury, documentation on OpenCL SVM is even more sparse.
-But I like the challenge…&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240713_2230_deadspheroid/</guid><pubDate>Sat, 13 Jul 2024 21:30:00 GMT</pubDate></item></channel></rss>
+&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_1528_kartikmandar/</guid><pubDate>Mon, 15 Jul 2024 14:28:00 GMT</pubDate></item></channel></rss>

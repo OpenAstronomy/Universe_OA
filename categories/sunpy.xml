@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 05 Aug 2024 01:07:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Enhancing SOAR Queries: Improved Error Handling and Support for Distance-Based Filtering</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;h4&gt;Improved Error Handling and Support for Distance-Based Filtering&lt;/h4&gt;&lt;h4&gt;Introduction&lt;/h4&gt;&lt;p&gt;Over the past few weeks, I’ve been working on addressing and enhancing certain functionalities within the sunpy-soar package. This post delves into the two main improvements I’ve implemented: better error handling for server downtime and the introduction of support for distance-based query filtering.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 06 Aug 2024 01:04:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC [Week 06-07] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/mid_term.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This blog post covers all the work done in the sixth week of Google Summer of Code.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;After having developed the serialization logic for NDCube with wcs as &lt;code&gt;gWCS&lt;/code&gt;, the next step was to extend this support to handle the serialization of NDCube where the wcs attribute is &lt;code&gt;astropy.wcs.WCS&lt;/code&gt;. This week my primary focus has been on enabling the serialization of &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; objects to ASDF. This task involves adding the necessary serialization logic to the asdf-astropy repository.&lt;/p&gt;
+&lt;h4 id="discussions-on-wcs-serialization"&gt;Discussions on WCS Serialization&lt;/h4&gt;
+&lt;p&gt;We had a discussion about the process of serializing WCS objects and covered the following points:&lt;/p&gt;
+&lt;h5 id="complex-wcs-types"&gt;Complex WCS Types:&lt;/h5&gt;
+&lt;p&gt;WCS types like tabular and distortion ones are tricky because they involve data tables. Handling these types requires a more sophisticated approach.&lt;/p&gt;
+&lt;h5 id="approach-discussion"&gt;Approach Discussion:&lt;/h5&gt;
+&lt;p&gt;We discussed serializing a HDUList object or using &lt;code&gt;WCS.to_hdu&lt;/code&gt; for the complex WCS types but that seems pretty complex for a first attempt. We agreed on initially not supporting these complex WCS types and just using &lt;code&gt;WCS.to_header()&lt;/code&gt; for now for supporting the serialization of the basic WCS objects.&lt;/p&gt;
+&lt;h4 id="whats-new"&gt;What’s new&lt;/h4&gt;
+&lt;p&gt;So after my PR gets merged asdf-astropy would support the serialization of the &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; objects to ASDF.
+Ideally we would want to detect tabular and distortion WCS types and throw an error if they come up. This way, we’re clear about what’s supported and we agreed on revisiting this part and in the future and to extend this to support the serialization of the complex WCS objects.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Serialized simple &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object to ASDF&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;#ASDF 1.0.0
+#ASDF_STANDARD 1.5.0
+%YAML 1.1
+%TAG ! tag:stsci.edu:asdf/
+--- !core/asdf-1.1.0
+asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
+name: asdf, version: 3.0.1}
+history:
+extensions:
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://asdf-format.org/core/extensions/core-1.5.0
+software: !core/software-1.0.0 {name: asdf, version: 3.0.1}
+- !core/extension_metadata-1.0.0
+extension_class: asdf.extension._manifest.ManifestExtension
+extension_uri: asdf://astropy.org/astropy/extensions/astropy-1.0.0
+software: !core/software-1.0.0 {name: asdf-astropy, version: 0.6.1.dev10+gdab5b4d.d20240723}
+fits: !&amp;lt;tag:astropy.org:astropy/fits/fitswcs-1.0.0&amp;gt;
+header: {CDELT1: 0.4, CDELT2: 2.0e-11, CDELT3: 0.0055555555555556, CDELT4: 0.0013888888888889,
+CRPIX1: 0.0, CRPIX2: 0.0, CRPIX3: 0.0, CRPIX4: 5.0, CRVAL1: 0.0, CRVAL2: 0.0,
+CRVAL3: 0.0, CRVAL4: 0.0, CTYPE1: TIME, CTYPE2: WAVE, CTYPE3: HPLT-TAN, CTYPE4: HPLN-TAN,
+CUNIT1: min, CUNIT2: m, CUNIT3: deg, CUNIT4: deg, DATEREF: '2020-01-01T00:00:00',
+LATPOLE: 0.0, LONPOLE: 180.0, MJDREF: 58849.0, WCSAXES: 4}
+...
+&lt;/code&gt;&lt;/pre&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</guid><pubDate>Sun, 28 Jul 2024 09:14:09 GMT</pubDate></item><item><title>Enhancing SOAR Queries: Improved Error Handling and Support for Distance-Based Filtering</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;h4&gt;Improved Error Handling and Support for Distance-Based Filtering&lt;/h4&gt;&lt;h4&gt;Introduction&lt;/h4&gt;&lt;p&gt;Over the past few weeks, I’ve been working on addressing and enhancing certain functionalities within the sunpy-soar package. This post delves into the two main improvements I’ve implemented: better error handling for server downtime and the introduction of support for distance-based query filtering.&lt;/p&gt;
 &lt;h4&gt;Improved Error Handling for Server Downtime&lt;/h4&gt;&lt;p&gt;Previously, when the SOAR server was down, a generic JSONDecodeError would be raised. This was less than ideal as it did not provide a clear indication of what the actual issue was. To improve this, I worked on implementing a more descriptive error message that would be raised in such scenarios.&lt;/p&gt;
 &lt;pre&gt;r = requests.get(f"{tap_endpoint}/sync", params=payload)&lt;br&gt;try:&lt;br&gt;    response_json = r.json()&lt;br&gt;except JSONDecodeError:&lt;br&gt;    msg = "Server returned an invalid JSON response. The SOAR server may be down or not functioning correctly."&lt;br&gt;    raise RuntimeError(msg)&lt;/pre&gt;&lt;p&gt;With this change, users will now see a RuntimeError with a clear message indicating that the server may be down or not functioning correctly, which makes troubleshooting much easier.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -82,7 +124,60 @@
 &lt;td style="text-align: center;"&gt;EIS contours overlaid on AIA (corrected)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240722_1859_deus1704/</guid><pubDate>Mon, 22 Jul 2024 17:59:31 GMT</pubDate></item><item><title>The project is almost finished</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240711_1938_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;So, after I finished the main refactoring and the documentation strings, I started the testing phase.&lt;br&gt;
+&lt;/table&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240722_1859_deus1704/</guid><pubDate>Mon, 22 Jul 2024 17:59:31 GMT</pubDate></item><item><title>GSoC [Week 04-05] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_0549_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/test_img.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This blog post covers all the work done in the fourth and fifth week of Google Summer of Code.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;h5 id="mid-term-evaluations-are-nearing"&gt;Mid term evaluations are nearing!&lt;/h5&gt;
+&lt;p&gt;This week, my focus was on extending the test suite to include examples of loading an &lt;code&gt;NDCube&lt;/code&gt; backed by various &lt;code&gt;gwcs.WCS&lt;/code&gt; objects and testing the roundtrip serialization of the NDCube. I needed to verify that the ExtraCoords and GlobalCoords objects are correctly serialized and deserialized. Adding the gWCS test suite presented some challenges, but seeing it function correctly was incredibly rewarding. Completing these tasks was essential to ensure everything was in place for the mid-term evaluation 🚀.&lt;/p&gt;
+&lt;h4 id="adding-gwcs-test-suite"&gt;Adding gWCS Test Suite&lt;/h4&gt;
+&lt;p&gt;This was the most challenging part for me this week. To check the roundtrip serialization of &lt;code&gt;gwcs.WCS&lt;/code&gt; objects (i.e., ensuring all attributes of the &lt;code&gt;wcs&lt;/code&gt; attribute of the NDCube are preserved when read and loaded through an ASDF file), I had to write a test suite for NDCube backed by different &lt;code&gt;gwcs.WCS&lt;/code&gt; objects as the wcs attribute for the NDCube objects which would then be loaded into an NDCube and checked for roundtrip serialization.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;One of the &lt;code&gt;gwcs.WCS&lt;/code&gt; test object which would be loaded in an NDCube and checked for roundtrip serialization.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;def gwcs_4d_t_l_lt_ln():
+"""
+Creates a 4D GWCS object with time, wavelength, and celestial coordinates.
+
+- Time: Axis 0
+- Wavelength: Axis 1
+- Sky: Axes 2 and 3
+
+Returns:
+wcs.WCS: 4D GWCS object.
+"""
+
+time_model = models.Identity(1)
+time_frame = cf.TemporalFrame(axes_order=(0, ), unit=u.s,
+reference_frame=Time("2000-01-01T00:00:00"))
+
+wave_frame = cf.SpectralFrame(axes_order=(1, ), unit=u.m, axes_names=('wavelength',))
+wave_model = models.Scale(0.2)
+
+shift = models.Shift(-5) &amp;amp; models.Shift(0)
+scale = models.Scale(5) &amp;amp; models.Scale(20)
+tan = models.Pix2Sky_TAN()
+celestial_rotation = models.RotateNative2Celestial(0, 0, 180)
+cel_model = shift | scale | tan | celestial_rotation
+sky_frame = cf.CelestialFrame(axes_order=(2, 3), name='icrs',
+reference_frame=coord.ICRS(),
+axes_names=("longitude", "latitude"))
+
+transform = time_model &amp;amp; wave_model &amp;amp; cel_model
+
+frame = cf.CompositeFrame([time_frame, wave_frame, sky_frame])
+detector_frame = cf.CoordinateFrame(name="detector", naxes=4,
+axes_order=(0, 1, 2, 3),
+axes_type=("pixel", "pixel", "pixel", "pixel"),
+unit=(u.pix, u.pix, u.pix, u.pix))
+
+return (wcs.WCS(forward_transform=transform, output_frame=frame, input_frame=detector_frame))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="checking-the-extracoords-and-globalcoords"&gt;Checking the ExtraCoords and GlobalCoords&lt;/h4&gt;
+&lt;p&gt;I had to make sure the converters written for these objects preserved all the required parameters when saved to an ASDF file and read from an ASDF file. Doing this was straightforward as my mentors helped me during the process of writing the tests and ensuring good coverage.&lt;/p&gt;
+&lt;h4 id="handling-unsupported-attributes"&gt;Handling Unsupported Attributes&lt;/h4&gt;
+&lt;p&gt;It is as important to test the supported API as it is to throw a warning to the user when a particular attribute serialization is unsupported. I added warnings for attributes that are not yet supported (such as a sliced &lt;code&gt;NDCube&lt;/code&gt; and &lt;code&gt;wcs&lt;/code&gt; attribute of the &lt;code&gt;NDCube&lt;/code&gt; as the &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object), which I plan to support in the future.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_0549_viciouseagle03/</guid><pubDate>Mon, 15 Jul 2024 04:49:00 GMT</pubDate></item><item><title>The project is almost finished</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240711_1938_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;So, after I finished the main refactoring and the documentation strings, I started the testing phase.&lt;br&gt;
 I started with the smallest functions that don't call any non-tested function, and then went to the bigger functions.&lt;/p&gt;
 
 &lt;!-- TEASER_END --&gt;
@@ -522,190 +617,4 @@ We might be discussing this issue in the next community meet once Stuart is back
 &lt;td style="text-align: center;"&gt;Sunspot identified by STARA on the Test Map&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240620_1059_deus1704/</guid><pubDate>Thu, 20 Jun 2024 09:59:31 GMT</pubDate></item><item><title>Finishing implementation and doc strings</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240617_0444_ahmedhosssam/</link><dc:creator>Ahmed Hossam</dc:creator><description>&lt;p&gt;The main implementation and documentation strings phase has been finished.&lt;/p&gt;
-
-&lt;p&gt;One of the functions that have been deleted was &lt;code&gt;parse_unit&lt;/code&gt;, it almost wasn't triggered by any event of HEK events, so I decided to delete it, and we will see in the future if it has any major effects on the code.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;Also &lt;code&gt;parse_columns_to_table&lt;/code&gt; has been refactored by adding more variables to make the code more readable.&lt;/p&gt;
-
-&lt;p&gt;This is the new implementation:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;parse_columns_to_table&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attributes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;is_coord_prop&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="sh"&gt;"""&lt;/span&gt;&lt;span class="s"&gt;
-Parses the columns in an Astropy table and convert the values into Astropy objects.
-
-Parameters
-----------
-table: astropy.table
-Astropy table.
-attributes: list
-A list of HEK unit attributes or coordinate attributes.
-is_coord_prop: bool
-To specify if `attributes` is a list of unit attributes or coordinate attributes.
-
-Returns
--------
-`astropy.table`
-
-Raises
-------
-TypeError
-If `table` is not an Astropy table.
-KeyError
-If any of the attribute dictionaries are missing required keys (i.e. &lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;, &lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;).
-&lt;/span&gt;&lt;span class="sh"&gt;"""&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;attributes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;colnames&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="ow"&gt;or&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_chaincode&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="n"&gt;unit_attr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sh"&gt;""&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;is_coord_prop&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;unit_attr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;event_coordunit&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;unit_attr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-
-&lt;span class="n"&gt;new_column&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;idx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nf"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]]):&lt;/span&gt;
-&lt;span class="n"&gt;new_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sh"&gt;""&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;""&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
-&lt;span class="n"&gt;new_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt;
-&lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_chaincode&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="n"&gt;new_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;parse_chaincode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]][&lt;/span&gt;&lt;span class="n"&gt;idx&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;unit_attr&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;idx&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="n"&gt;new_value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;value&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;
-&lt;span class="n"&gt;new_column&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;new_value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new_column&lt;/span&gt;
-
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;attributes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;is_unit_prop&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;colnames&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="k"&gt;del&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;table&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;Also a public interface &lt;code&gt;__all__&lt;/code&gt; has been added to &lt;code&gt;util.py&lt;/code&gt;, until now, the public "api" for &lt;code&gt;util.py&lt;/code&gt; is:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="n"&gt;__all__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;freeze&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;parse_times&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;parse_values_to_quantities&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;UNIT_FILE_PATH&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;COORD_FILE_PATH&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;
-&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;&lt;code&gt;UNIT_FILE_PATH&lt;/code&gt; and &lt;code&gt;COORD_FILE_PATH&lt;/code&gt; are used in &lt;code&gt;test_hek.py&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;There was a problem in &lt;code&gt;get_unit&lt;/code&gt; because of some units that wasn't parsed correctly, one of them is &lt;code&gt;ergs per cubic centimeter&lt;/code&gt;, because of the first implementation of &lt;code&gt;get_unit&lt;/code&gt;:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_enabled_units&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;cm2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m3&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;set_enabled_aliases&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="c1"&gt;# Units for coordinate frames have more than one unit, otherwise it will be just one unit.
-&lt;/span&gt;        &lt;span class="c1"&gt;# There is an assumption that coord1_unit, coord2_unit and coord3_unit are the same.
-&lt;/span&gt;        &lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;[, ]&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;The function was taking the first "word" of the input and returns the unit, obviously this will be wrong with &lt;code&gt;ergs per cubic centimeter&lt;/code&gt; because it will take only &lt;code&gt;ergs&lt;/code&gt; and returns &lt;code&gt;u.Unit('erg')&lt;/code&gt;.&lt;br&gt;
-But this is the only case with HEK units, the other units works just fine.&lt;br&gt;
-This is the new implementation to correct this behavior:&lt;br&gt;
-&lt;/p&gt;
-
-&lt;div class="highlight js-code-highlight"&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;span class="sh"&gt;"""&lt;/span&gt;&lt;span class="s"&gt;
-Converts string into astropy unit.
-
-Parameters
-----------
-unit: str
-The targeted unit
-
-Returns
--------
-unit
-Astropy unit object (e.g. &amp;lt;class &lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;astropy.units.core.Unit&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;&amp;gt; or &amp;lt;class &lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;astropy.units.core.CompositeUnit&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;&amp;gt;)
-
-Raises
-------
-ValueError
-Because `unit` did not parse as unit.
-
-Notes
-----
-For the complete list of HEK parameters: https://www.lmsal.com/hek/VOEvent_Spec.html
-
-&lt;/span&gt;&lt;span class="sh"&gt;"""&lt;/span&gt;
-&lt;span class="n"&gt;cm2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cm2&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cm&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;m2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;m2&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;m3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;m3&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;erg_per_cm3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;def_unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ergs/cm^3&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;erg&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ml&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;aliases&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;steradian&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;arcseconds&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arcsec&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;degrees&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;deg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;sec&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;emx&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Mx&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;amperes&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;A&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ergs&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;erg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cubic centimeter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ml&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;square centimeter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;cm2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;cubic meter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;square meter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ergs per cubic centimeter&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;erg_per_cm3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_enabled_units&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;cm2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;m3&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;set_enabled_aliases&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;warnings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;catch_warnings&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-&lt;span class="c1"&gt;# Units for coordinate frames have more than one unit, otherwise it will be just one unit.
-&lt;/span&gt;        &lt;span class="c1"&gt;# There is an assumption that coord1_unit, coord2_unit and coord3_unit are the same.
-&lt;/span&gt;        &lt;span class="n"&gt;warnings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;filterwarnings&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="s"&gt;ignore&lt;/span&gt;&lt;span class="sh"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;category&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;UnitsWarning&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;aliases&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-&lt;span class="n"&gt;unit&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;Unit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;[, ]&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nf"&gt;lower&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;unit&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;/div&gt;
-
-
-
-&lt;p&gt;Also, the units warnings were ignored because it's irrelevant to the user of HEK.&lt;/p&gt;
-
-&lt;p&gt;So, the next phase is testing, we will see if our assumptions about the unit parsing and the other refactoring were right or not.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240617_0444_ahmedhosssam/</guid><pubDate>Mon, 17 Jun 2024 03:44:45 GMT</pubDate></item><item><title>Blog 1: Rethinking Coalignment from Ground-up</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</link><dc:creator>Deus1704</dc:creator><description>&lt;h3 id="the-very-essence-of-coalignment"&gt;The Very Essence of Coalignment&lt;/h3&gt;
-&lt;p&gt;At its core, coalignment is all about making sure our solar images match up as best they can. It uses a few different techniques, like template matching and solar rotation correction, to get this done. This is really important when we’re trying to accurately track and study what’s happening on a part of sun over time.
-We re-thought the entire process of what our new API be providing to the users as well as its structure.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;&lt;img alt="Naive Refactor" src="https://deus1704.vercel.app/images/proposed_struct.png"&gt;&lt;/p&gt;
-&lt;p&gt;This was one of the idea that was very naive version, but focused entierly for the user’s comfort in applying the coalignment methods.&lt;/p&gt;
-&lt;h3 id="the-basic-structure-we-finally-agreed-upon"&gt;The Basic Structure we finally agreed Upon&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="Internal Sturcture" src="https://deus1704.vercel.app/images/internal.png"&gt;&lt;/p&gt;
-&lt;p&gt;We agreed to have this as the very basic structure which we would be working/developing upwards. The following example demonstrates the way it would work.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre tabindex="0"&gt;&lt;code class="language-python"&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;aia_map1 &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; sunpy&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;map&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;Map(sunpy&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;data&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;sample&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;AIA_193_CUTOUT01_IMAGE)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;aia_map2 &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; sunpy&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;map&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;Map(sunpy&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;data&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;sample&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;AIA_193_CUTOUT03_IMAGE)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;&lt;span style="color: #75715e;"&gt;### Creating a template from aia_map1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;bottom_left &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; SkyCoord(&lt;span style="color: #ae81ff;"&gt;600&lt;/span&gt; &lt;span style="color: #f92672;"&gt;*&lt;/span&gt; u&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;arcsec, &lt;span style="color: #f92672;"&gt;-&lt;/span&gt;&lt;span style="color: #ae81ff;"&gt;500&lt;/span&gt; &lt;span style="color: #f92672;"&gt;*&lt;/span&gt; u&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;arcsec, frame&lt;span style="color: #f92672;"&gt;=&lt;/span&gt;aia_map1&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;coordinate_frame)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;top_right &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; SkyCoord(&lt;span style="color: #ae81ff;"&gt;800&lt;/span&gt; &lt;span style="color: #f92672;"&gt;*&lt;/span&gt; u&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;arcsec, &lt;span style="color: #f92672;"&gt;-&lt;/span&gt;&lt;span style="color: #ae81ff;"&gt;200&lt;/span&gt; &lt;span style="color: #f92672;"&gt;*&lt;/span&gt; u&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;arcsec, frame&lt;span style="color: #f92672;"&gt;=&lt;/span&gt;aia_map1&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;coordinate_frame)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;submap &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; aia_map1&lt;span style="color: #f92672;"&gt;.&lt;/span&gt;submap(bottom_left, top_right&lt;span style="color: #f92672;"&gt;=&lt;/span&gt;top_right)
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style="display: flex;"&gt;&lt;span&gt;coaligned_map &lt;span style="color: #f92672;"&gt;=&lt;/span&gt; coalignment_interface(&lt;span style="color: #e6db74;"&gt;"match_template"&lt;/span&gt;,aia_map2, submap)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img alt="combined image" src="https://deus1704.vercel.app/images/combined.png"&gt;&lt;/p&gt;
-&lt;p&gt;I am currently implementing the decorator structure for the sunkit-image, but that would be covered in another blog.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240615_1459_deus1704/</guid><pubDate>Sat, 15 Jun 2024 13:59:31 GMT</pubDate></item></channel></rss>
+&lt;/table&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240620_1059_deus1704/</guid><pubDate>Thu, 20 Jun 2024 09:59:31 GMT</pubDate></item></channel></rss>
