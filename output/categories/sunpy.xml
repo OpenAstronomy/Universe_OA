@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 25 Aug 2024 01:11:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>During GSoC 2024, I made several key contributions to the sunpy-soar project:</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240823_1710_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;ol&gt;&lt;li&gt;&lt;strong&gt;Initial Implementation of Metadata for Remote Sensing Instrument(merged):&lt;/strong&gt;&lt;/li&gt;&lt;/ol&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunpy-soar/pull/118"&gt;PR #118&lt;/a&gt;: This was my initial pull request where I established join operations for tables and implemented metadata for wavelength and detector for remote sensing instruments.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;2. Gallery Examples and How-to Guide for recent implementations(merged):&lt;/strong&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 26 Aug 2024 01:06:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2024 @OpenAstronomy: Overview of Merged and Pending PRs</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240824_1117_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/PR-Merged.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This blogpost deals with all the PRs that were merged/opened in NDCube/ SunPy / Astropy for completing the project.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The PRs were filed in accordance with the tasks recorded in the GitHub &lt;a href="https://github.com/orgs/sunpy/projects/12"&gt;task-tab&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="ndcube"&gt;NDCube&lt;/h3&gt;
+&lt;h5 id="pr-708-asdf-supporthttpsgithubcomsunpyndcubepull708"&gt;PR #708: &lt;a href="https://github.com/sunpy/ndcube/pull/708"&gt;Asdf-Support&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="merged"&gt;(Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;PR for supporting the serialization of basic &lt;code&gt;ndcube.NDCube&lt;/code&gt; objects with the serialization logic written for the below classes
+NDCube, GlobalCoords, ExtraCoords.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="pr-751-add-support-for-the-serialization-of-the-ndcube-wcs-wrappershttpsgithubcomsunpyndcubepull751"&gt;PR #751: &lt;a href="https://github.com/sunpy/ndcube/pull/751"&gt;Add support for the serialization of the ndcube WCS wrappers&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="yet-to-be-merged"&gt;(Yet to be Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR introduces serialization support for &lt;code&gt;ndcube&lt;/code&gt; WCS wrappers, including &lt;code&gt;CompoundLowLevelWCS&lt;/code&gt;, &lt;code&gt;ResampledLowLevelWCS&lt;/code&gt; and &lt;code&gt;ReorderedLowLevelWCS&lt;/code&gt;, allowing them to be saved in ASDF format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="pr-756-add-serialization-logic-for-the-ndcubesequence-and-ndcollectionhttpsgithubcomsunpyndcubepull756"&gt;PR #756: &lt;a href="https://github.com/sunpy/ndcube/pull/756"&gt;Add serialization logic for the NDCubeSequence and NDCollection&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="yet-to-be-merged-1"&gt;(Yet to be Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR introduces serialization support for &lt;code&gt;NDCubeSequence&lt;/code&gt; and &lt;code&gt;NDCollection&lt;/code&gt; objects, enabling their conversion to and from ASDF format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="astropy"&gt;Astropy&lt;/h3&gt;
+&lt;h5 id="pr-237-remove-astropy-version-checkhttpsgithubcomastropyasdf-astropypull237"&gt;PR #237: &lt;a href="https://github.com/astropy/asdf-astropy/pull/237"&gt;Remove astropy version check&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="merged-1"&gt;(Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR removes the &lt;code&gt;astropy&lt;/code&gt; version check, which was previously set to version 5.1, from the codebase. The minimum required version is updated to 5.2, and associated conditional logic in &lt;code&gt;test_transform.py&lt;/code&gt; is removed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="pr-235-support-serialization-of-astropywcswcs-objects-to-asdfhttpsgithubcomastropyasdf-astropypull235"&gt;PR #235: &lt;a href="https://github.com/astropy/asdf-astropy/pull/235"&gt;Support serialization of astropy.wcs.WCS objects to ASDF&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="yet-to-be-merged-2"&gt;(Yet to be Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR introduces support for serializing &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; and &lt;code&gt;astropy.wcs.wcsapi.SlicedLowLevelWCS&lt;/code&gt; objects to ASDF format. With this enhancement, any &lt;code&gt;ndcube.NDCube&lt;/code&gt; objects can be serialized to ASDF while preserving the underlying WCS as &lt;code&gt;astropy.wcs.WCS&lt;/code&gt;. Additionally, it ensures that sliced &lt;code&gt;ndcube.NDCube&lt;/code&gt; objects maintain proper WCS preservation when serialized and are restored correctly upon deserialization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="pr-239-add-serialization-logic-for-uncertainty-objectshttpsgithubcomastropyasdf-astropypull239"&gt;PR #239: &lt;a href="https://github.com/astropy/asdf-astropy/pull/239"&gt;Add serialization logic for uncertainty objects&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="yet-to-be-merged-3"&gt;(Yet to be Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR adds serialization logic for &lt;code&gt;astropy.nddata.StdDevUncertainty&lt;/code&gt; and &lt;code&gt;astropy.nddata.UnknownUncertainty&lt;/code&gt; objects. This update enables the serialization of these uncertainty types, ensuring that the uncertainty attribute of the &lt;code&gt;ndcube.NDCube&lt;/code&gt; object is properly preserved and restored.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="sunpy"&gt;SunPy&lt;/h3&gt;
+&lt;h5 id="pr-7686-asdf-schema-update-minor-changehttpsgithubcomsunpysunpypull7686"&gt;PR #7686: &lt;a href="https://github.com/sunpy/sunpy/pull/7686"&gt;ASDF schema update: minor change&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="merged-2"&gt;(Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR updates the ASDF schema by removing incorrect usage of the unsupported &lt;code&gt;allowAdditionalProperties&lt;/code&gt; validator. This minor change ensures that the schema files for generic_map (versions &lt;code&gt;1.0.0&lt;/code&gt;, &lt;code&gt;1.1.0&lt;/code&gt;, and &lt;code&gt;1.2.0&lt;/code&gt;) are correctly formatted.&lt;/li&gt;
+&lt;/ul&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/08/20240824_1117_viciouseagle03/</guid><pubDate>Sat, 24 Aug 2024 10:17:02 GMT</pubDate></item><item><title>During GSoC 2024, I made several key contributions to the sunpy-soar project:</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240823_1710_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;ol&gt;&lt;li&gt;&lt;strong&gt;Initial Implementation of Metadata for Remote Sensing Instrument(merged):&lt;/strong&gt;&lt;/li&gt;&lt;/ol&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunpy-soar/pull/118"&gt;PR #118&lt;/a&gt;: This was my initial pull request where I established join operations for tables and implemented metadata for wavelength and detector for remote sensing instruments.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;2. Gallery Examples and How-to Guide for recent implementations(merged):&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunpy-soar/pull/127"&gt;PR #127&lt;/a&gt;: In this pull request, I added gallery examples and a how-to guide showcasing the newly implemented wavelength and detector metadata.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;3. Error Handling for SOAR Server Downtime(merged):&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunpy-soar/pull/135"&gt;PR #135&lt;/a&gt;: This update involved catching server errors thrown by SOAR when it’s down, enhancing the robustness of the system.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;4. Distance Filtering Query Support(merged):&lt;/strong&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -472,133 +519,4 @@ With the invaluable help of Albert, these issues have been resolved and the test
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*fxkPK8p3KR6xMEv7zIkTXQ.png"&gt;&lt;/figure&gt;&lt;p&gt;Although passing a range of wavelengths is preferred for PHI, if only one value is passed, it will be taken as wavemin, and filtering will be done based on it. Additionally, the corresponding wavemax will be provided in the output table.&lt;/p&gt;
 &lt;pre&gt;wavelength = a.Wavelength(6173.065 * u.AA)&lt;/pre&gt;&lt;p&gt;Result:&lt;/p&gt;
 &lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*O-pETZd8HZi9qVt9NQGa-w.png"&gt;&lt;/figure&gt;&lt;h4&gt;Challenges that still needs working:&lt;/h4&gt;&lt;p&gt;There is an issue with PHI’s wavelength data as well. The wavelengths returned are sometimes in the order of 6173 and sometimes 617.3, which are essentially just different units of similar wavelength data, but this is not specified in SOAR.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=160df7122684" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0821_nucleongodx/</guid><pubDate>Sun, 23 Jun 2024 07:21:59 GMT</pubDate></item><item><title>GSoC [Week 02-03] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0719_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;This blog post covers all the work done in the second and third week of Google Summer of Code.&lt;/p&gt;
-&lt;p&gt;In the past weeks, my focus has been on enhancing the serialization support of NDCube by extending its support for ExtraCoords and GlobalCoords. After establishing serialization support for the fundamental attributes of the NDCube object—such as data and wcs—in the ASDF file format, the next logical step was extending this capability to include &lt;code&gt;ExtraCoords&lt;/code&gt; and &lt;code&gt;GlobalCoords&lt;/code&gt; object.&lt;/p&gt;
-&lt;h3 id="globalcoords-and-extracoords"&gt;GlobalCoords and ExtraCoords&lt;/h3&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;ExtraCoords: The ExtraCoords attribute expand NDCube’s capabilities by incorporating additional spatial or spectral coordinates beyond those defined by the primary WCS. It accommodate complex datasets needing extra dimensions or coordinates, such as spectroscopic data with folded axes.&lt;/p&gt;
-&lt;p&gt;GlobalCoords: The GlobalCoords attribute are coordinates in an NDCube that provides universal context across the entire dataset and apply uniformly across all axes. It captures metadata such as observation times or global positional coordinates of the NDCube object.&lt;/p&gt;
-&lt;h3 id="extending-the-serialization-support"&gt;Extending the Serialization support&lt;/h3&gt;
-&lt;p&gt;Now, &lt;code&gt;ExtraCoords&lt;/code&gt; can be initialized by specifying a &lt;code&gt;BaseLowLevelWCS&lt;/code&gt; object and a mapping, or by building it up using one or more lookup tables. To support the latter method, I had to ensure the &lt;code&gt;lookup_tables&lt;/code&gt; were properly preserved during serialization. For this purpose, I designed the schema and wrote the converter class for the following objects:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ndcube.extra_coords.extra_coords.ExtraCoords&lt;/li&gt;
-&lt;li&gt;ndcube.extra_coords.table_coord.TimeTableCoordinate&lt;/li&gt;
-&lt;li&gt;ndcube.extra_coords.table_coord.QuantityTableCoordinate&lt;/li&gt;
-&lt;li&gt;ndcube.extra_coords.table_coord.SkyCoordTableCoordinate&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The initialization of &lt;code&gt;GlobalCoords&lt;/code&gt; is more straightforward, which required me to design the schema and write the converter class for the following object:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ndcube.global_coords.GlobalCoords&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Here’s an example of the &lt;code&gt;ExtraCoords&lt;/code&gt; Schema&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre tabindex="0"&gt;&lt;code&gt;%YAML 1.1
----
-$schema: "http://stsci.edu/schemas/yaml-schema/draft-01"
-id: "asdf://sunpy.org/ndcube/schemas/extra_coords-0.1.0"
-
-title:
-Represents the ndcube ExtraCoords object
-
-description:
-Represents the ndcube ExtraCoords object
-
-type: object
-properties:
-wcs:
-tag: "tag:stsci.edu:gwcs/wcs-1.*"
-mapping:
-type: array
-lookup_tables:
-type: array
-items:
-type: array
-items:
-- oneOf:
-- type: number
-- type: array
-- oneOf:
-- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/quantitytablecoordinate-0.*"
-- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/skycoordtablecoordinate-0.*"
-- tag: "tag:sunpy.org:ndcube/extra_coords/table_coord/timetablecoordinate-0.*"
-dropped_tables:
-type: array
-ndcube:
-tag: "tag:sunpy.org:ndcube/ndcube/ndcube-0.*"
-
-required: [ndcube]
-additionalProperties: false
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id="whats-new-keeping-up-with-the-coords"&gt;What’s new: Keeping Up with the Coords&lt;/h3&gt;
-&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/ASDF-ser-new-type.png"&gt;&lt;/p&gt;
-&lt;p&gt;Now, when we save an NDCube object to an ASDF file, the file successfully stores the &lt;code&gt;ExtraCoords&lt;/code&gt; and &lt;code&gt;GlobalCoords&lt;/code&gt; information, which is preserved when we deserialize and generate a new NDCube object by reading the file. The only thing that is still not supported is initializing an ExtraCoords object using a mapping and an &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object. This feature will be supported in the future when I implement serialization support for &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; in the asdf-astropy library.&lt;/p&gt;
-&lt;h5 id="saving-an-ndcube-with-globalcoords-and-extracoords-attribute"&gt;Saving an NDCube with &lt;code&gt;GlobalCoords&lt;/code&gt; and &lt;code&gt;ExtraCoords&lt;/code&gt; attribute&lt;/h5&gt;
-&lt;pre&gt;&lt;code&gt;with asdf.open('ndcubeglobal_extra.asdf') as af:
-ndcube2 = af.tree['ndcube']
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h5 id="the-relevant-asdf-file-block"&gt;The relevant ASDF file block&lt;/h5&gt;
-&lt;pre&gt;&lt;code&gt;extra_coords: !&amp;lt;tag:sunpy.org:ndcube/extra_coords/extra_coords/extracoords-0.1.0&amp;gt;
-dropped_tables: []
-lookup_tables:
-- - 0
-- !&amp;lt;tag:sunpy.org:ndcube/extra_coords/table_coord/timetablecoordinate-0.1.0&amp;gt;
-mesh: false
-names: [time]
-reference_time: !time/time-1.1.0 {base_format: fits, value: '2000-01-01T00:00:00.000'}
-table: !time/time-1.1.0
-base_format: fits
-value: !core/ndarray-1.0.0
-byteorder: little
-datatype: [ucs4, 23]
-shape: [10]
-source: 5
-- - 0
-- !&amp;lt;tag:sunpy.org:ndcube/extra_coords/table_coord/skycoordtablecoordinate-0.1.0&amp;gt;
-mesh: false
-names: [lon, lat]
-table: !&amp;lt;tag:astropy.org:astropy/coordinates/skycoord-1.0.0&amp;gt;
-dec: !&amp;lt;tag:astropy.org:astropy/coordinates/latitude-1.0.0&amp;gt;
-unit: !unit/unit-1.0.0 deg
-value: !core/ndarray-1.0.0
-byteorder: little
-datatype: float64
-shape: [10]
-source: 7
-frame: icrs
-ra: !&amp;lt;tag:astropy.org:astropy/coordinates/longitude-1.0.0&amp;gt;
-unit: !unit/unit-1.0.0 deg
-value: !core/ndarray-1.0.0
-byteorder: little
-datatype: float64
-shape: [10]
-source: 6
-wrap_angle: !&amp;lt;tag:astropy.org:astropy/coordinates/angle-1.0.0&amp;gt; {datatype: float64,
-unit: !unit/unit-1.0.0 deg, value: 360.0}
-representation_type: spherical
-- - 1
-- !&amp;lt;tag:sunpy.org:ndcube/extra_coords/table_coord/quantitytablecoordinate-0.1.0&amp;gt;
-mesh: true
-names: [exposure_time]
-table:
-- !unit/quantity-1.1.0
-unit: !unit/unit-1.0.0 s
-value: !core/ndarray-1.0.0
-byteorder: little
-datatype: float64
-shape: [10]
-source: 8
-unit: !unit/unit-1.0.0 s
-ndcube: *id001
-global_coords: !&amp;lt;tag:sunpy.org:ndcube/global_coords/globalcoords-0.1.0&amp;gt;
-internal_coords:
-name1:
-- custom:physical_type1
-- !unit/quantity-1.1.0 {datatype: float64, unit: !unit/unit-1.0.0 m, value: 1.0}
-name2:
-- custom:physical_type2
-- !unit/quantity-1.1.0 {datatype: float64, unit: !unit/unit-1.0.0 s, value: 2.0}
-ndcube: *id001
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;During my coding period, my mentors have been incredibly helpful, and huge thanks to &lt;a href="https://github.com/braingram"&gt;@braingram&lt;/a&gt; for explaining and ensuring I understood the entire ASDF serialization process thoroughly. I learned a lot about schema design and JSON schema. I was particularly impressed by the &lt;a href="https://docs.github.com/en/actions/using-workflows"&gt;CI workflows&lt;/a&gt;, when I set up a dedicated schema testing workflow. It showed me how automated testing can catch errors that manual testing might overlook. Although I implemented a straightforward workflow, it go me curious about learning more about CI workflows.&lt;/p&gt;
-&lt;p&gt;I am currently adding tests for the new serialization support in NDCube, which I plan to finish by the next coding week.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0719_viciouseagle03/</guid><pubDate>Sun, 23 Jun 2024 06:19:36 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=160df7122684" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240623_0821_nucleongodx/</guid><pubDate>Sun, 23 Jun 2024 07:21:59 GMT</pubDate></item></channel></rss>

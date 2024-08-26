@@ -1,5 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 25 Aug 2024 01:11:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>During GSoC 2024, I made several key contributions to the sunpy-soar project:</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240823_1710_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;ol&gt;&lt;li&gt;&lt;strong&gt;Initial Implementation of Metadata for Remote Sensing Instrument(merged):&lt;/strong&gt;&lt;/li&gt;&lt;/ol&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunpy-soar/pull/118"&gt;PR #118&lt;/a&gt;: This was my initial pull request where I established join operations for tables and implemented metadata for wavelength and detector for remote sensing instruments.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;2. Gallery Examples and How-to Guide for recent implementations(merged):&lt;/strong&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 26 Aug 2024 01:06:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A summary</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240825_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;RADIS describes itself as &lt;a href="https://radis.readthedocs.io/en/latest/"&gt;‘a fast line-by-line code for high resolution infrared molecular spectra’&lt;/a&gt;. My project focussed on adding support for atomic line databases to RADIS, which has up till now catered only for molecular databases. Atomic lines differ significantly from molecular lines in how they are affected by Lorentzian broadening and how non-equilibrium spectra are handled.&lt;/p&gt;
+
+&lt;p&gt;The main goal was &lt;a href="https://github.com/radis/radis/pull/652"&gt;adding support for the Kurucz atomic database&lt;/a&gt;, which is now complete. This laid the basic structure for adding new atomic databases, and &lt;a href="https://github.com/radis/radis/pull/689"&gt;a PR is now open for adding NIST&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;A number of side issues have arisen throughout the course of the project and been tended to within those PRs, whereas independent issues and PRs have been opened for other issues:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The non-equilibrium linestrength calculation for both atoms and molecules now &lt;a href="https://github.com/radis/radis/pull/676"&gt;uses the Einstein Coefficient instead of the reference linestrength&lt;/a&gt;, thereby allowing weaker spectra to be seen&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/radis/radis/issues/661"&gt;The issue was also raised&lt;/a&gt; as to whether RADIS should be automatically modifying the user config file, and if so then how. That has been tended to in the Kurucz and NIST implementation so far and could be expanded to the molecular databases too.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/radis/radis/pull/675"&gt;fixing the removal of ‘object’ type columns from the line dataframe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/radis/radis/issues/666"&gt;Debugging a docstring example that didn’t actually work&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Prior to the project starting, &lt;a href="https://github.com/radis/radis/pull/646"&gt;a PR&lt;/a&gt; was also opened to allow users to specify the minimum linestrength at which to cut off weaker lines by specifying them as the weakest x% of lines.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/08/20240825_0000_code29563/</guid><pubDate>Sat, 24 Aug 2024 23:00:00 GMT</pubDate></item><item><title>GSoC 2024 @OpenAstronomy: Overview of Merged and Pending PRs</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240824_1117_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/PR-Merged.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This blogpost deals with all the PRs that were merged/opened in NDCube/ SunPy / Astropy for completing the project.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The PRs were filed in accordance with the tasks recorded in the GitHub &lt;a href="https://github.com/orgs/sunpy/projects/12"&gt;task-tab&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="ndcube"&gt;NDCube&lt;/h3&gt;
+&lt;h5 id="pr-708-asdf-supporthttpsgithubcomsunpyndcubepull708"&gt;PR #708: &lt;a href="https://github.com/sunpy/ndcube/pull/708"&gt;Asdf-Support&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="merged"&gt;(Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;PR for supporting the serialization of basic &lt;code&gt;ndcube.NDCube&lt;/code&gt; objects with the serialization logic written for the below classes
+NDCube, GlobalCoords, ExtraCoords.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="pr-751-add-support-for-the-serialization-of-the-ndcube-wcs-wrappershttpsgithubcomsunpyndcubepull751"&gt;PR #751: &lt;a href="https://github.com/sunpy/ndcube/pull/751"&gt;Add support for the serialization of the ndcube WCS wrappers&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="yet-to-be-merged"&gt;(Yet to be Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR introduces serialization support for &lt;code&gt;ndcube&lt;/code&gt; WCS wrappers, including &lt;code&gt;CompoundLowLevelWCS&lt;/code&gt;, &lt;code&gt;ResampledLowLevelWCS&lt;/code&gt; and &lt;code&gt;ReorderedLowLevelWCS&lt;/code&gt;, allowing them to be saved in ASDF format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="pr-756-add-serialization-logic-for-the-ndcubesequence-and-ndcollectionhttpsgithubcomsunpyndcubepull756"&gt;PR #756: &lt;a href="https://github.com/sunpy/ndcube/pull/756"&gt;Add serialization logic for the NDCubeSequence and NDCollection&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="yet-to-be-merged-1"&gt;(Yet to be Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR introduces serialization support for &lt;code&gt;NDCubeSequence&lt;/code&gt; and &lt;code&gt;NDCollection&lt;/code&gt; objects, enabling their conversion to and from ASDF format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="astropy"&gt;Astropy&lt;/h3&gt;
+&lt;h5 id="pr-237-remove-astropy-version-checkhttpsgithubcomastropyasdf-astropypull237"&gt;PR #237: &lt;a href="https://github.com/astropy/asdf-astropy/pull/237"&gt;Remove astropy version check&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="merged-1"&gt;(Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR removes the &lt;code&gt;astropy&lt;/code&gt; version check, which was previously set to version 5.1, from the codebase. The minimum required version is updated to 5.2, and associated conditional logic in &lt;code&gt;test_transform.py&lt;/code&gt; is removed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="pr-235-support-serialization-of-astropywcswcs-objects-to-asdfhttpsgithubcomastropyasdf-astropypull235"&gt;PR #235: &lt;a href="https://github.com/astropy/asdf-astropy/pull/235"&gt;Support serialization of astropy.wcs.WCS objects to ASDF&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="yet-to-be-merged-2"&gt;(Yet to be Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR introduces support for serializing &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; and &lt;code&gt;astropy.wcs.wcsapi.SlicedLowLevelWCS&lt;/code&gt; objects to ASDF format. With this enhancement, any &lt;code&gt;ndcube.NDCube&lt;/code&gt; objects can be serialized to ASDF while preserving the underlying WCS as &lt;code&gt;astropy.wcs.WCS&lt;/code&gt;. Additionally, it ensures that sliced &lt;code&gt;ndcube.NDCube&lt;/code&gt; objects maintain proper WCS preservation when serialized and are restored correctly upon deserialization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id="pr-239-add-serialization-logic-for-uncertainty-objectshttpsgithubcomastropyasdf-astropypull239"&gt;PR #239: &lt;a href="https://github.com/astropy/asdf-astropy/pull/239"&gt;Add serialization logic for uncertainty objects&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="yet-to-be-merged-3"&gt;(Yet to be Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR adds serialization logic for &lt;code&gt;astropy.nddata.StdDevUncertainty&lt;/code&gt; and &lt;code&gt;astropy.nddata.UnknownUncertainty&lt;/code&gt; objects. This update enables the serialization of these uncertainty types, ensuring that the uncertainty attribute of the &lt;code&gt;ndcube.NDCube&lt;/code&gt; object is properly preserved and restored.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="sunpy"&gt;SunPy&lt;/h3&gt;
+&lt;h5 id="pr-7686-asdf-schema-update-minor-changehttpsgithubcomsunpysunpypull7686"&gt;PR #7686: &lt;a href="https://github.com/sunpy/sunpy/pull/7686"&gt;ASDF schema update: minor change&lt;/a&gt;&lt;/h5&gt;
+&lt;h5 id="merged-2"&gt;(Merged)&lt;/h5&gt;
+&lt;ul&gt;
+&lt;li&gt;This PR updates the ASDF schema by removing incorrect usage of the unsupported &lt;code&gt;allowAdditionalProperties&lt;/code&gt; validator. This minor change ensures that the schema files for generic_map (versions &lt;code&gt;1.0.0&lt;/code&gt;, &lt;code&gt;1.1.0&lt;/code&gt;, and &lt;code&gt;1.2.0&lt;/code&gt;) are correctly formatted.&lt;/li&gt;
+&lt;/ul&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/08/20240824_1117_viciouseagle03/</guid><pubDate>Sat, 24 Aug 2024 10:17:02 GMT</pubDate></item><item><title>During GSoC 2024, I made several key contributions to the sunpy-soar project:</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240823_1710_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;ol&gt;&lt;li&gt;&lt;strong&gt;Initial Implementation of Metadata for Remote Sensing Instrument(merged):&lt;/strong&gt;&lt;/li&gt;&lt;/ol&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunpy-soar/pull/118"&gt;PR #118&lt;/a&gt;: This was my initial pull request where I established join operations for tables and implemented metadata for wavelength and detector for remote sensing instruments.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;2. Gallery Examples and How-to Guide for recent implementations(merged):&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunpy-soar/pull/127"&gt;PR #127&lt;/a&gt;: In this pull request, I added gallery examples and a how-to guide showcasing the newly implemented wavelength and detector metadata.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;3. Error Handling for SOAR Server Downtime(merged):&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;&lt;li&gt;&lt;a href="https://github.com/sunpy/sunpy-soar/pull/135"&gt;PR #135&lt;/a&gt;: This update involved catching server errors thrown by SOAR when it’s down, enhancing the robustness of the system.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;4. Distance Filtering Query Support(merged):&lt;/strong&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -129,47 +189,4 @@ output[row * image_width + col] = sum;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2 id="a-new-outlook"&gt;A new outlook&lt;/h2&gt;
-&lt;p&gt;Of course, the world would be a lovely place if everything could be parallelised as easily as this. Realistically, parallelizing these operations is hard, but you have tools like local groups, barriers, etc to help you out!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_2230_deadspheroid/</guid><pubDate>Sun, 28 Jul 2024 21:30:00 GMT</pubDate></item><item><title>GSoC [Week 06-07] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/mid_term.png"&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This blog post covers all the work done in the sixth week of Google Summer of Code.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;After having developed the serialization logic for NDCube with wcs as &lt;code&gt;gWCS&lt;/code&gt;, the next step was to extend this support to handle the serialization of NDCube where the wcs attribute is &lt;code&gt;astropy.wcs.WCS&lt;/code&gt;. This week my primary focus has been on enabling the serialization of &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; objects to ASDF. This task involves adding the necessary serialization logic to the asdf-astropy repository.&lt;/p&gt;
-&lt;h4 id="discussions-on-wcs-serialization"&gt;Discussions on WCS Serialization&lt;/h4&gt;
-&lt;p&gt;We had a discussion about the process of serializing WCS objects and covered the following points:&lt;/p&gt;
-&lt;h5 id="complex-wcs-types"&gt;Complex WCS Types:&lt;/h5&gt;
-&lt;p&gt;WCS types like tabular and distortion ones are tricky because they involve data tables. Handling these types requires a more sophisticated approach.&lt;/p&gt;
-&lt;h5 id="approach-discussion"&gt;Approach Discussion:&lt;/h5&gt;
-&lt;p&gt;We discussed serializing a HDUList object or using &lt;code&gt;WCS.to_hdu&lt;/code&gt; for the complex WCS types but that seems pretty complex for a first attempt. We agreed on initially not supporting these complex WCS types and just using &lt;code&gt;WCS.to_header()&lt;/code&gt; for now for supporting the serialization of the basic WCS objects.&lt;/p&gt;
-&lt;h4 id="whats-new"&gt;What’s new&lt;/h4&gt;
-&lt;p&gt;So after my PR gets merged asdf-astropy would support the serialization of the &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; objects to ASDF.
-Ideally we would want to detect tabular and distortion WCS types and throw an error if they come up. This way, we’re clear about what’s supported and we agreed on revisiting this part and in the future and to extend this to support the serialization of the complex WCS objects.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Serialized simple &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object to ASDF&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;#ASDF 1.0.0
-#ASDF_STANDARD 1.5.0
-%YAML 1.1
-%TAG ! tag:stsci.edu:asdf/
---- !core/asdf-1.1.0
-asdf_library: !core/software-1.0.0 {author: The ASDF Developers, homepage: 'http://github.com/asdf-format/asdf',
-name: asdf, version: 3.0.1}
-history:
-extensions:
-- !core/extension_metadata-1.0.0
-extension_class: asdf.extension._manifest.ManifestExtension
-extension_uri: asdf://asdf-format.org/core/extensions/core-1.5.0
-software: !core/software-1.0.0 {name: asdf, version: 3.0.1}
-- !core/extension_metadata-1.0.0
-extension_class: asdf.extension._manifest.ManifestExtension
-extension_uri: asdf://astropy.org/astropy/extensions/astropy-1.0.0
-software: !core/software-1.0.0 {name: asdf-astropy, version: 0.6.1.dev10+gdab5b4d.d20240723}
-fits: !&amp;lt;tag:astropy.org:astropy/fits/fitswcs-1.0.0&amp;gt;
-header: {CDELT1: 0.4, CDELT2: 2.0e-11, CDELT3: 0.0055555555555556, CDELT4: 0.0013888888888889,
-CRPIX1: 0.0, CRPIX2: 0.0, CRPIX3: 0.0, CRPIX4: 5.0, CRVAL1: 0.0, CRVAL2: 0.0,
-CRVAL3: 0.0, CRVAL4: 0.0, CTYPE1: TIME, CTYPE2: WAVE, CTYPE3: HPLT-TAN, CTYPE4: HPLN-TAN,
-CUNIT1: min, CUNIT2: m, CUNIT3: deg, CUNIT4: deg, DATEREF: '2020-01-01T00:00:00',
-LATPOLE: 0.0, LONPOLE: 180.0, MJDREF: 58849.0, WCSAXES: 4}
-...
-&lt;/code&gt;&lt;/pre&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</guid><pubDate>Sun, 28 Jul 2024 09:14:09 GMT</pubDate></item><item><title>Issue resolved</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240725_1809_kartikmandar/</link><dc:creator>Kartik Mandar</dc:creator><description>&lt;p&gt; The problem with classes was resolved by making factory functions to encase them in, and then they were not conflicting with each other. &lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240725_1809_kartikmandar/</guid><pubDate>Thu, 25 Jul 2024 17:09:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Of course, the world would be a lovely place if everything could be parallelised as easily as this. Realistically, parallelizing these operations is hard, but you have tools like local groups, barriers, etc to help you out!&lt;/p&gt;</description><category>gnuastro</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_2230_deadspheroid/</guid><pubDate>Sun, 28 Jul 2024 21:30:00 GMT</pubDate></item></channel></rss>
