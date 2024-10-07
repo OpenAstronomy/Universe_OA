@@ -1,0 +1,392 @@
+.. title: Final GSoC Report
+.. slug:
+.. date: 2024-10-06 22:30:00 
+.. tags: gnuastro
+.. author: DeadSpheroid
+.. link: https://deadspheroid.github.io/my-blog/post/FinalReport/
+.. description:
+.. category: gsoc2024
+
+
+.. raw:: html
+
+    <p class="intro">In this post, I'll be discussing my GSoC'24 project, the goals set, work done, and future scope</p>
+    
+    <h1 id="about-openastronomy">About OpenAstronomy</h1>
+    <!-- TEASER_END -->
+    <p align="center" width="100%">
+    <img alt="OpenAstronomy Logo" src="https://deadspheroid.github.io/my-blog/assets/img/logoOA_svg.png" style="margin-bottom: 0; margin-top: 24px;" />
+    </p>
+    <p>OpenAstronomy is a collaboration between open source astronomy and astrophysics projects to share resources, ideas, and to improve code.</p>
+    
+    <p>OpenAstronomy consists of many different projects: astropy, sunpy, stingray, radis</p>
+    
+    <p>and of course GNU Astronomy Utilities (Gnuastro)</p>
+    
+    <h1 id="about-gnuastro">About Gnuastro</h1>
+    <p align="center" width="100%">
+    <img alt="Gnuastro Logo" src="https://deadspheroid.github.io/my-blog/assets/img/gnu-logo.png" style="margin-bottom: 0; margin-top: 24px;" />
+    </p>
+    
+    <p>Gnuastro is an official GNU package that consists of many CLI programs as well as library functions for manipulation and analysis of astronomical data.
+    Something important to note about Gnuastro is that it is written entirely in C99 and shell script.
+    The Gnuastro team meets every Tuesday to exchange notes and review progress</p>
+    
+    <h1 id="goals-of-the-project">Goals of the project</h1>
+    
+    <p>Going into this project, there were two main goals decided</p>
+    <ul>
+    <li>Setting up the low level wrapper infrastructure for using OpenCL within Gnuastro, putting minimal requirements on the developers/users to know OpenCL.</li>
+    <li>Parallelizing Gnuastro subroutines using the aforementioned wrappers to offload compute-heavy tasks to the GPU.</li>
+    </ul>
+    
+    <p>The first goal deals with how users of the library would interact with the OpenCL modules. Ideally, you would want the users to have no knowledge about OpenCL and only interact with it through GNUAstro.</p>
+    
+    <p>The second goal deals with analyzing parts of the Gnuastro library, identifying easy to parallelize sections and writing optimised OpenCL Kernels for them, leveraging the wrapper infrastructure for execution.</p>
+    
+    <p>The majority of my work lives <a href="https://github.com/DeadSpheroid/gnuastro/tree/final">here</a></p>
+    
+    <h1 id="pre-gsoc">Pre GSoC</h1>
+    
+    <p>Prior to GSoC, my experience consisted mostly of Deep Learning and Natural Language Processing. My knowledge of GPU Processing was limited and naive.</p>
+    
+    <p>During the proposal drafting period, candidates were asked to submit a task, which was implementing simple image convolution on both CPU and GPU using OpenCL.</p>
+    
+    <h1 id="during-gsoc">During GSoC</h1>
+    
+    <p>Work on GSoC kicked off around May 1st with the first objective being</p>
+    
+    <h2 id="build-system-integration">Build System Integration</h2>
+    
+    <p>Now, Gnuastro being a GNU project uses the GNU Build System, GNU Autotools(Autoconf, Automake, Libtool).</p>
+    
+    <p>This was a completely new build system for me to work with and I had to get the library to include OpenCL and link against the OpenCL library at compile time.</p>
+    
+    <p>Thanks to some helpful pointers from Mohammad, I was able to grasp the working pretty quickly and was able to set up Gnuastro to include and build with OpenCL if it was detected on the system.</p>
+    
+    <p>For more information, you can read <a href="https://deadspheroid.github.io/my-blog/post/GettingStarted/">here</a></p>
+    
+    <h2 id="wrapper-infrastructure">Wrapper Infrastructure</h2>
+    
+    <p>The next goal was to create wrappers around the OpenCL C API, for various operations(data transfer, launching kernels, querying devices).</p>
+    
+    <p>This was done in the form of a new Gnuastro module called <code class="language-plaintext highlighter-rouge">cl-utils.c</code> which contained</p>
+    
+    <h4 id="initialisation">Initialisation</h4>
+    <p>Functions dealing with initialising OpenCL and creating, destroying OpenCL objects</p>
+    
+    <h4 id="data-transfer-functions">Data Transfer Functions</h4>
+    <p>Functions dealing with data transfer to and from the GPU.
+    This is one of the biggest overheads in GPU Programming. Additionally, OpenCL presented another challenge in the form of transferring structs to the GPU, which was problematic as one of Gnuastro’s most important data structures <code class="language-plaintext highlighter-rouge">gal_data_t</code> could not be directly transferred.</p>
+    
+    <p>So, this module provides two ways of transferring data to the GPU</p>
+    <ol>
+    <li>OpenCL Buffers
+    and</li>
+    <li>OpenCL SVM</li>
+    </ol>
+    
+    <p>Buffers are intended to be used for simple data structures, while OpenCL SVM is better with more complex data structures involving internal pointers.</p>
+    
+    <p>The interface looks something like this</p>
+    <pre><code class="language-C">void
+    gal_cl_write_to_device (cl_mem *buffer, void *mapped_ptr,
+    cl_command_queue command_queue);
+    
+    void *
+    gal_cl_read_to_host (cl_mem buffer, size_t size,
+    cl_command_queue command_queue);
+    .
+    .
+    .
+    gal_data_t *
+    gal_cl_alloc_svm (size_t size_of_array, size_t size_of_dsize,
+    cl_context context, cl_command_queue command_queue);
+    
+    void
+    gal_cl_map_svm_to_cpu (cl_context context, cl_command_queue command_queue,
+    void *svm_ptr, size_t size);
+    </code></pre>
+    
+    <p>For more information on the two, and a comparison see <a href="https://deadspheroid.github.io/my-blog/post/ExploringFurther/">here</a></p>
+    
+    <h4 id="executing-kernels">Executing Kernels</h4>
+    <p>Now, the main code running on the GPU is the OpenCL Kernel, usually defined in a .cl file and compiled at runtime.</p>
+    
+    <p>The idea when making this module, was to keep the interface as similar to the original pthreads <code class="language-plaintext highlighter-rouge">gal_threads_spin_off()</code> interface that Gnuastro already had. So i created a <code class="language-plaintext highlighter-rouge">gal_cl_threads_spinoff()</code> function, taking information like the kernel filepath, number of inputs, list of inputs, number of threads executed and more.</p>
+    
+    <pre><code class="language-C">typedef struct clprm
+    {
+    char               *kernel_path; /* Path to kernel.cl file */
+    char               *kernel_name; /* Name of __kernel function */
+    char             *compiler_opts; /* Additional compiler options */
+    cl_device_id          device_id; /* Device to be targeted */
+    cl_context              context; /* Context of OpenCL in use */
+    int             num_kernel_args; /* Number of total kernel arguments */
+    int                num_svm_args; /* Number of SVM args*/
+    void              **kernel_args; /* Array of pointers to kernel args */
+    size_t       *kernel_args_sizes; /* Sizes of non SVM args */
+    int          num_extra_svm_args; /* Number of implicit SVM args */
+    void           **extra_svm_args; /* Array of pointers to these args */
+    int                    work_dim; /* Work dimension of job - 1,2,3 */
+    size_t        *global_work_size; /* Array of global sizes of size work_dim */
+    size_t         *local_work_size; /* Array of local sizes of size work_dim */
+    } clprm;
+    </code></pre>
+    
+    <p>These wrappers were not developed all at once, but rather in conjunction with the next section, writing wrappers as and when I needed them.</p>
+    
+    <h2 id="parallelized-subroutines">Parallelized Subroutines</h2>
+    <p>To achieve the goal of GPU acceleration, first we needed to identify parts of the library that could be parallelized.
+    Its important to note that not everything can be parallelized, and just because something can be, doesnt mean it should be.</p>
+    
+    <p>The most obvious candidate for this of course was 2D Image Convolution, already implemented in Gnuastro in the <code class="language-plaintext highlighter-rouge">astconvolve</code> module.</p>
+    
+    <h4 id="same-code-on-cpu-and-gpu">Same code on CPU and GPU</h4>
+    <p>The initial idea was to have the exact same code running on both the CPU(via pthread) and the GPU(via OpenCL). This is possible because OpenCL Kernels are based on OpenCL C which is a variant(kind of a subset) of C99.</p>
+    
+    <p>This is because Gnuastro is a “minimal dependencies” package and having two separate implementations would greatly overcomplicate the codebase.</p>
+    
+    <p>However for the time being, this idea was shelved, till I had a working implementation of convolution in OpenCL.</p>
+    
+    <h4 id="convolution">Convolution</h4>
+    <p>I got to work creating a new module <code class="language-plaintext highlighter-rouge">cl-convolve.c</code> containing the new implementation of convolution <code class="language-plaintext highlighter-rouge">gal_convolve_cl()</code></p>
+    
+    <p>The exact code can be viewed <a href="https://github.com/DeadSpheroid/gnuastro/blob/final/lib/cl-convolve.c">here</a>, but in short</p>
+    <ol>
+    <li>Transfer input, kernel and output images to GPU</li>
+    <li>Spin off a thread for each pixel in the input, convolving that particular pixel.</li>
+    <li>Copy the output image back to CPU</li>
+    </ol>
+    
+    <h4 id="additional-features">Additional features</h4>
+    <p>However, Gnuastro doesn’t use a <strong>simple 2D convolution</strong>, it also performs an additional three important tasks:</p>
+    <ol>
+    <li><strong>Edge Correction:</strong> Pixels near the edge use a different kernel weight than others. More info <a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/manual/html_node/Edges-in-the-spatial-domain.html">here</a></li>
+    <li><strong>NAN Checking:</strong> Often, images captured by astronomical cameras, have missing pixels(represented as NANs). These pixels are to be ignored.</li>
+    <li><strong>Channels:</strong> Cameras use multiple different sensors to capture images, and convolution should not mix pixels from different sensors. For a better idea, read <a href="https://www.gnu.org/savannah-checkouts/gnu/gnuastro/manual/html_node/Tessellation.html">Gnuastro’s explanation</a></li>
+    </ol>
+    
+    <p>The first two were rather easy to implement, but the third was a bit troublesome, especially because the existing implementation of gnuastro was complex and hard to understand.</p>
+    
+    <p>Eventually however, with a little bit of math it was possible, and the final kernel looked like <a href="https://github.com/DeadSpheroid/gnuastro/blob/4442a544db5d33d64290ac0b15a97bd627ad6335/bin/convolve/astconvolve-conv.cl">this</a></p>
+    
+    <p>After these parts were completed, now, all that was left was to actually integrate it properly with Gnuastro.</p>
+    
+    <h4 id="optimised-convolution">Optimised Convolution</h4>
+    <p>The power of GPUs comes not from the many threads that are launched, but rather from the many optimisations possible, from organising threads into blocks, to special kinds of memory. I decided to try optimising Convolution based on Labeeb’s suggestion of using shared memory.</p>
+    
+    <p>However most of the optimisation out there are for CUDA, not OpenCL, but the principles in question were the same. Thanks to <a href="https://www.evl.uic.edu/sjames/cs525/final.html">this article</a>, I was able to implement an optimised 2Dconvolution kernel in OpenCL.</p>
+    
+    <p>The results of the optimisation were surprisingly positive:
+    For a 5000 x 5000 image, times recorded for the convolution operation(excluding data reading/writing in seconds were)</p>
+    
+    <table>
+    <thead>
+    <tr>
+    <th style="text-align: left;"> </th>
+    <th style="text-align: center;">Pthread</th>
+    <th style="text-align: center;">OpenCL-CPU</th>
+    <th style="text-align: center;">OpenCL-GPU</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style="text-align: left;">w/out optimisations</td>
+    <td style="text-align: center;">1.014374</td>
+    <td style="text-align: center;">0.918015</td>
+    <td style="text-align: center;"><strong>0.025869</strong></td>
+    </tr>
+    <tr>
+    <td style="text-align: left;">w/ optimisations</td>
+    <td style="text-align: center;">1.053622</td>
+    <td style="text-align: center;">0.326756</td>
+    <td style="text-align: center;"><strong>0.004184</strong></td>
+    </tr>
+    </tbody>
+    </table>
+    
+    <p>Thats a speedup of <strong>~6.2 times</strong> over the non optimised GPU run, and <strong>~242 times</strong> over the existing pthread implementation in Gnuastro!</p>
+    
+    <p>Further optimisations are possible using special native functions like MUL24 and constant memory. But the details of those and how these optimisation work is a topic for a separate post.</p>
+    
+    <h4 id="revisiting-same-code-on-cpu-vs-gpu">Revisiting Same Code on CPU vs GPU</h4>
+    <p>After a discussion, it was decided that the best path forward for OpenCL in Gnuastro would be to completely replace the existing pthread implementation.</p>
+    
+    <p>In essence, the existing “convoluted” convolution implementation would be replaced with my new one, allowing the same code to be ran in 3 different ways:</p>
+    <ul>
+    <li>With OpenCL on the GPU</li>
+    <li>With OpenCL on the CPU</li>
+    <li>With GCC+Pthreads on the CPU</li>
+    </ul>
+    
+    <p>This decision was made to adhere to the Gnuastro philosophy of “Minimal Dependencies” so the user does not have to install many packages just to use the library.</p>
+    
+    <p>It was challenging, owing to the different styles in which we write code for a CPU device versus a GPU device. But I managed to get a partially working version using some C macros here and there to do so. It still fails some Gnuastro tests, which is yet to be resolved.</p>
+    
+    <p>However, doing so prevents the library from utilising the full power of GPUs with several GPU specific optimisations seen previously.</p>
+    
+    <h4 id="using-the-opencl-modules-in-your-program">Using the OpenCL modules in your program</h4>
+    <p>Finally, when a user wants to use Gnuastro’s OpenCL capabilities within their own programs, the flow followed would look like:</p>
+    <ul>
+    <li>Intialize OpenCL</li>
+    <li>Transfer Input to Device</li>
+    <li>Write an OpenCL Kernel</li>
+    <li>Spinoff Threads</li>
+    <li>Copy Output back to Host</li>
+    </ul>
+    
+    <p>Lets take an example where we need to simply add two fits images.</p>
+    
+    <h5 id="initialize-opencl">Initialize OpenCl</h5>
+    <pre><code class="language-C">  cl_context context;
+    cl_platform_id platform_id;
+    cl_device_id device_id;
+    
+    gal_cl_init (CL_DEVICE_TYPE_GPU, &amp;context, &amp;platform_id, &amp;device_id);
+    cl_command_queue command_queue
+    = gal_cl_create_command_queue (context, device_id);
+    </code></pre>
+    <p>This initializes and OpenCL context, among other objects for use in future function calls.</p>
+    
+    <h5 id="transfer-input-to-device">Transfer Input to Device</h5>
+    <p>Make use of <code class="language-plaintext highlighter-rouge">gal_cl_copy_data_to_gpu()</code> to transfer the loaded fits files to the GPU, passing the previously initialized context and command queue. Make sure the command queue finishes before proceeding ahead through <code class="language-plaintext highlighter-rouge">gal_cl_finish_queue()</code></p>
+    
+    <pre><code class="language-C">  gal_data_t *input_image1_gpu
+    = gal_cl_copy_data_to_gpu (context, command_queue, input_image1);
+    gal_data_t *input_image2_gpu
+    = gal_cl_copy_data_to_gpu (context, command_queue, input_image2);
+    gal_data_t *output_image_gpu
+    = gal_cl_copy_data_to_gpu (context, command_queue, output_image);
+    
+    gal_cl_finish_queue (command_queue);
+    </code></pre>
+    
+    <h5 id="write-an-opencl-kernel">Write an OpenCL Kernel</h5>
+    <p>First, any custom structs you use, must be defined in the kernel, here we define gal_data_t.</p>
+    
+    <p>Then, you create the “per thread” function that will be executed, prefixed by <code class="language-plaintext highlighter-rouge">__kernel</code> and always returning <code class="language-plaintext highlighter-rouge">void</code>.</p>
+    
+    <p>In the arguments, mention the pointers to the inputs/outputs, as well as a <code class="language-plaintext highlighter-rouge">__global</code> identifier, since your input is acessible by all threads.</p>
+    
+    <p>Make use of OpenCl’s <code class="language-plaintext highlighter-rouge">get_global_id(0)</code> to get the thread id along the 0th dimension.</p>
+    
+    <p>Perform the core operation of your program.</p>
+    
+    <p>Putting it all together, it looks like this:</p>
+    
+    <pre><code class="language-C">typedef struct  __attribute__((aligned(4))) gal_data_t
+    {
+    /* Basic information on array of data. */
+    void *restrict array; /* Array keeping data elements.               */
+    uchar type;         /* Type of data (see 'gnuastro/type.h').      */
+    size_t ndim;          /* Number of dimensions in the array.         */
+    size_t *dsize;        /* Size of array along each dimension.        */
+    size_t size;          /* Total number of data-elements.             */
+    .
+    .
+    .
+    /* Pointers to other data structures. */
+    struct gal_data_t *next;  /* To use it as a linked list if necessary.   */
+    struct gal_data_t *block; /* 'gal_data_t' of hosting block, see above.  */
+    } gal_data_t;
+    
+    __kernel void
+    add(__global gal_data_t *input_image1,
+    __global gal_data_t *input_image2,
+    __global gal_data_t *output_image)
+    {
+    int id = get_global_id(0);
+    
+    float *input_array1 = (float *)input_image1-&gt;array;
+    float *input_array2 = (float *)input_image2-&gt;array;
+    float *output_array = (float *)output_image-&gt;array;
+    
+    output_array[id] = input_array1[id] + input_array2[id];
+    return;
+    }
+    </code></pre>
+    
+    <h5 id="spin-off-threads">Spin Off Threads</h5>
+    <p>Make use of the <code class="language-plaintext highlighter-rouge">clprm</code> struct defined in <code class="language-plaintext highlighter-rouge">gnuastro/cl-utils.h</code> to group all the relevant parameters.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Kernel Path</code> is the filepath to the OpenCL Kernel you just wrote.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Kernel Name</code> is the name of the function you defined with <code class="language-plaintext highlighter-rouge">__kernel</code> earlier.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Compiler Options</code> is a string of any special compiler options like macros/debug options you wish to use for the kernel.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Device Id &amp; Context</code> are the objects intialized in the first step.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Number of Kernel Arguments</code> is the number of kernel arguments.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Number of SVM Arguments</code> is the number of arguments that use SVM(all the gal_data_t’s)</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Kernel Arguments</code> is an array to void pointers of kernel arguments.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Number of Extra SVM Arguments</code> is the number of arguments that are implicitly referenced with a struct. For example, <code class="language-plaintext highlighter-rouge">input_image1_gpu</code> is directly referenced as a kernel argument, but the <code class="language-plaintext highlighter-rouge">input_image1_gpu-&gt;array</code> is implicitly referenced.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Extra SVM Arguments</code> is an array of void pointers to the aforementioned special arguments.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Work Dim</code> is the number of dimensions of the threads (1, 2, 3)
+    For example, an array would have 1 dimension(0,1,2,…34,35,36) x
+    an image would have 2 dimensions(0:0, 0:1, 1:0, 1:1,….) x:y
+    a volume would have 3 dimensions.</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Global Work Size</code> is the total number of threads spun off</p>
+    
+    <p><code class="language-plaintext highlighter-rouge">Local Work Size</code> is the number of threads in a block on one GPU core. Leaving it blank lets the device choose this number.</p>
+    
+    <pre><code class="language-C">
+    clprm *sprm = (clprm *)malloc (sizeof (clprm));
+    
+    void *kernel_args[] = { (void *)input_image1_gpu, (void *)input_image2_gpu,
+    (void *)output_image_gpu };
+    
+    void *svm_ptrs[]
+    = { (void *)input_image1_gpu-&gt;array, (void *)input_image2_gpu-&gt;array,
+    (void *)output_image_gpu-&gt;array };
+    
+    size_t numactions = input_image1-&gt;size;
+    
+    sprm-&gt;kernel_path = "./lib/kernels/add.cl";
+    sprm-&gt;kernel_name = "add";
+    sprm-&gt;compiler_opts = "";
+    sprm-&gt;device_id = device_id;
+    sprm-&gt;context = context;
+    sprm-&gt;num_kernel_args = 3;
+    sprm-&gt;num_svm_args = 3;
+    sprm-&gt;kernel_args = kernel_args;
+    sprm-&gt;num_extra_svm_args = 3;
+    sprm-&gt;extra_svm_args = svm_ptrs;
+    sprm-&gt;work_dim = 1;
+    sprm-&gt;global_work_size = &amp;numactions;
+    sprm-&gt;local_work_size = NULL;
+    
+    gal_cl_finish_queue (command_queue);
+    </code></pre>
+    <h5 id="copy-output-back-to-host">Copy Output back to Host</h5>
+    <pre><code class="language-C">gal_cl_read_data_to_cpu(context, command_queue, output_image_gpu);
+    </code></pre>
+    
+    <p>The complete program can be accessed <a href="https://github.com/DeadSpheroid/gnuastro/blob/final/cl-example-add-fits.c">here</a></p>
+    
+    <h1 id="post-gsoc">Post GSoC</h1>
+    <p>Now, that the wrapper infrastructure is set up and convolution is implemented, whats left is to test the implementation against real life scenarios to make sure it lives up to the expectations of the Gnuastro users.
+    We also need to come up with a consistent way to execute the same kernel on both OpenCL and GCC, as mentioned earlier.</p>
+    
+    <p>Additionally, now that work on one module is complete, it opens the scope for more modules to be implemented on the GPU (like statistics, interpolation and more)</p>
+    
+    <h1 id="acknowledgements">Acknowledgements</h1>
+    <p>GSoC has been an incredible learning experience for me both from a technical view and from a personal view.</p>
+    
+    <p>On the technical side, I learned a lot about one of my favourite domains in Low Level Programming, GPU Programming and my understanding of how to write libraries that are easy to use, performant and above and all else, FOSS, improved tremendously. It’s one thing when you learn and write code for your own personal projects, but it’s a completely different experience contributing to something like Gnuastro.</p>
+    
+    <p>On the personal side, the weekly meetings with the Gnuastro team were always extremely engaging and i got to learn a lot from the team, Giacomo’s work on Astrometry, Alvaro’s work on Deconvolution and Ronald too. Their feedback on stuff like debugging using valgrind/gdb and references to other projects using OpenCL, alongside other topics has been invaluable.</p>
+    
+    <p>Above and all else im thankful to my mentor <a href="https://akhlaghi.org/">Mohammad Akhlagi</a>. Its been amazing getting to interact with someone so experienced and I learned a lot from him, ranging from Astronomy to Hacking the GNU C Library. He was always patient and understanding of my other responsibilities and allowed me to work at my own pace. I’m grateful to him for the opportunity to be a part of the Gnuastro community.</p>
+    
+    <p>Finally, I can’t explain how indebited I am to my mentor <a href="https://www.linkedin.com/in/labib-asari/?originalSubdomain=in">Labeeb Asari</a>. His knowledge about GPU Programming has been vital to my work on this project and I’m grateful to him for introducing me to the Gnuastro team. From <a href="https://github.com/ProjectX-VJTI">Project X</a>, to GSoC to college in general, he has been a big help in everything I’ve done and im glad to have him as a mentor and friend.</p>
+    
+    <p>A huge thank you to the Google Summer of Code Team for undertaking this wonderful initiative and I hope they continue this program in future years.</p>
+
