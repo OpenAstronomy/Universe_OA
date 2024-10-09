@@ -39,9 +39,20 @@ class MLStripper(HTMLParser):
 
 
 def strip_tags(html):
+    """Function to strip HTML tags, but preserve <pre> and <code> tags for code snippets."""
     s = MLStripper()
     s.feed(html)
-    return s.get_data()
+
+    stripped_html = s.get_data()
+
+    # Handle <pre> and <code> tags manually for code snippets
+    stripped_html = stripped_html.replace('<pre>', '\n.. code-block:: python\n\n    ')
+    stripped_html = stripped_html.replace('</pre>', '\n')
+    stripped_html = stripped_html.replace('<code>', '`')
+    stripped_html = stripped_html.replace('</code>', '`')
+
+    return stripped_html
+
 
 def remove_indent(text):
     lines = text.splitlines()
@@ -49,14 +60,25 @@ def remove_indent(text):
     return "\n".join(lines)
 
 def html2rst_allign_post(text):
-    lines = text.splitlines()
+    """Converts HTML content into reStructuredText (rst) format, handling code snippets."""
     if not text:
         raise ValueError("Empty post!")
 
+    lines = text.splitlines()
     if len(lines) < 2:
         lines = '\n'.join(lines).replace("br>", "newline>\n").replace("/p>", "/pline>\n").splitlines()
         lines = [x.replace("newline>", "br>").replace("/pline>","/p>") for x in lines]
+
+    # Insert teaser marker
     lines.insert(3, "<!-- TEASER_END -->")
+
+    # Convert <pre> and <code> HTML tags into rst code block formatting
+    text_with_code_blocks = text.replace('<pre>', '\n.. code-block:: python\n\n    ')
+    text_with_code_blocks = text_with_code_blocks.replace('</pre>', '\n')
+    text_with_code_blocks = text_with_code_blocks.replace('<code>', '`')
+    text_with_code_blocks = text_with_code_blocks.replace('</code>', '`')
+
+    lines = text_with_code_blocks.splitlines()
     lines = ["    " + x.strip() for x in lines]
     lines = [".. raw:: html", ""] + lines
     return "\n".join(lines)
