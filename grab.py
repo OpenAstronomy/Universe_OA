@@ -93,7 +93,7 @@ def grab_student(last_date, rss_url, project, student, season):
                 print("#################### Empty post!")
                 continue
 
-            with open(os.path.join(directory, filename), 'w') as post:
+            with open(os.path.join(directory, filename), 'w', encoding="utf-8") as post:
                 # some posts have an empty title, taking the first 30 characters.
                 title_post = item['title'] if item['title'] != '' else strip_tags(item['summary'])[:30]+'...'
                 author = item.get('author_detail', {'name': student})  # Not everyone got their author name in their blog :(
