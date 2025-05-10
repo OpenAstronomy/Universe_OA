@@ -1,0 +1,22 @@
+name: run-tests
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test-code:
+    name: ""
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: 'main'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: pip install -r requirements-dev.txt
+      - name: test
+        run: pytest
