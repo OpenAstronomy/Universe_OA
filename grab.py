@@ -51,10 +51,12 @@ def remove_indent(text):
 
 
 def html2rst_allign_post(text):
-    lines = text.splitlines()
     if not text:
         raise ValueError("Empty post!")
 
+    lines = text.splitlines()
+    # Some feed provide the whole post into a single line. This won't work on the RST file
+    # so we split it by introducing `\n` at the end of <br> and </p> tags.
     if len(lines) < 2:
         lines = '\n'.join(lines).replace("br>", "newline>\n").replace("/p>", "/pline>\n").splitlines()
         lines = [x.replace("newline>", "br>").replace("/pline>","/p>") for x in lines]
