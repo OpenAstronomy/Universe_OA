@@ -6,7 +6,7 @@ gsoc2025:
     rss_feed: ''
     project: 'radis'
   kashish2210:
-    rss_feed: ''
+    rss_feed: 'https://kashish2210.blogspot.com/feeds/posts/default/-/gsoc25'
     project: 'juliaastro'
   mohyware:
     rss_feed: ''
