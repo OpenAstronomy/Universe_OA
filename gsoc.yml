@@ -1,3 +1,19 @@
+gsoc2025:
+  aDNAn-itis:
+    rss_feed: 'https://sejifukishima.blogspot.com/feeds/posts/default'
+    project: 'stingray'
+  darshvn:
+    rss_feed: ''
+    project: 'radis'
+  kashish2210:
+    rss_feed: ''
+    project: 'juliaastro'
+  mohyware:
+    rss_feed: ''
+    project: 'radis'
+  Prtm2110:
+    rss_feed: ''
+    project: 'radis'
 gsoc2024:
   ahmedhosssam:
     rss_feed: 'https://dev.to/feed/ahmedhosssam/'
