@@ -42,6 +42,3 @@ class TestYAMLFiles(unittest.TestCase):
                 yaml.load(file, Loader=yaml.BaseLoader)
         except yaml.YAMLError as exc:
             self.fail(f"gsoc_times.yml failed to load: {exc}")
-
-if __name__ == '__main__':
-    unittest.main()
