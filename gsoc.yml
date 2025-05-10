@@ -3,7 +3,7 @@ gsoc2025:
     rss_feed: 'https://sejifukishima.blogspot.com/feeds/posts/default'
     project: 'stingray'
   darshvn:
-    rss_feed: ''
+    rss_feed: 'https://medium.com/feed/@darshvn'
     project: 'radis'
   kashish2210:
     rss_feed: 'https://kashish2210.blogspot.com/feeds/posts/default/-/gsoc25'
