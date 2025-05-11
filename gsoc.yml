@@ -1,6 +1,6 @@
 gsoc2025:
   aDNAn-itis:
-    rss_feed: 'https://sejifukishima.blogspot.com/feeds/posts/default'
+    rss_feed: 'https://sejifukishima.blogspot.com/feeds/posts/default/-/GSOC?alt=rss'
     project: 'stingray'
   darshvn:
     rss_feed: 'https://medium.com/feed/@darshvn'
