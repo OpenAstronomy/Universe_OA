@@ -12,7 +12,7 @@ gsoc2025:
     rss_feed: 'https://medium.com/feed/@mohyware'
     project: 'radis'
   Prtm2110:
-    rss_feed: ''
+    rss_feed: 'https://medium.com/feed/@prathamhole'
     project: 'radis'
 gsoc2024:
   ahmedhosssam:
