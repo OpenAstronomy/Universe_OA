@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Mohammad Adnan)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/mohammad-adnan.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 05 Jun 2025 02:01:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Oops, I’m a GSoC Dev Now?</title><link>http://openastronomy.org/Universe_OA/posts/2025/06/20250604_1803_adnan-itis/</link><dc:creator>Mohammad Adnan</dc:creator><description>&lt;p&gt;Wow! I still can't believe I'm actually in Google Summer of Code! This was a dream, and now here I am, officially past the Community Bonding Period and diving headfirst into the Coding Phase.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;What’s Happening Right Now?&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Right now, I’m sketching out the basic structure of the application interface. The first big task? Fetching event files from specific sources. Sounds simple, right? Well… not quite&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Turns out, HEASARC (the database I need) is having a little meltdown (don’t we all sometimes?). So while I wait for it to get its act together, I’ve been tweaking the pipeline that’ll handle the data retrieval.&lt;/p&gt;
+&lt;p&gt;Oh, and my mentor dropped a fun suggestion: "Hey, why not try running this on SciServer?" So guess what I’ll be wrestling with next? &lt;/p&gt;
+&lt;p&gt;The last two weeks were chaos. My end-semester exams decided to crash the party right in the middle of the Community Bonding Period. Juggling study sessions, meeting my mentors, and trying not to panic about code I hadn’t even written yet? Yeah, that was… an experience.&lt;/p&gt;
+&lt;p&gt;But I survived! And soon, I’ll spill all the tea in a proper "How I Got Into GSoC" post—complete with:&lt;/p&gt;
+&lt;p&gt;Why I chose Stingray &lt;b&gt;(spoiler: space data is cool)&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;The emotional rollercoaster of the application process&lt;/p&gt;
+&lt;p&gt;Why I may or may not have happy-cried when I got accepted&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;What’s Next? Big Dreams &amp;amp; Messy Code&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;I’ve got so many ideas for this project, and the best part? We’re still figuring things out as we go. It’s like exploring uncharted territory—sometimes you hit a wall, sometimes you find a hidden shortcut, but it’s always an adventure.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;This is my very first GSoC blog, and honestly? I’m just excited to share the journey—bugs, breakthroughs, and all. Thanks for reading! More updates coming soon. 🚀 :})&lt;/p&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2025/06/20250604_1803_adnan-itis/</guid><pubDate>Wed, 04 Jun 2025 17:03:00 GMT</pubDate></item></channel></rss>
