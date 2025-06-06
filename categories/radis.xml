@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 05 Jun 2025 02:01:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>A summary</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240825_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;RADIS describes itself as &lt;a href="https://radis.readthedocs.io/en/latest/"&gt;‘a fast line-by-line code for high resolution infrared molecular spectra’&lt;/a&gt;. My project focussed on adding support for atomic line databases to RADIS, which has up till now catered only for molecular databases. Atomic lines differ significantly from molecular lines in how they are affected by Lorentzian broadening and how non-equilibrium spectra are handled.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 06 Jun 2025 02:00:30 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2025 Blog — Week 1: Starting the Project</title><link>http://openastronomy.org/Universe_OA/posts/2025/06/20250605_0225_mohyware/</link><dc:creator>mohyware</dc:creator><description>&lt;h4&gt;GSoC 2025 Blog — Starting the Project&lt;/h4&gt;&lt;h4&gt;Kicking Things Off&lt;/h4&gt;&lt;p&gt;The first weeks of GSoC were all about getting familiar with the project, understanding its current state, and laying the groundwork for upcoming work. We began by &lt;strong&gt;listing the key features&lt;/strong&gt; we plan to implement and prioritizing them based on impact and feasibility.&lt;/p&gt;
+&lt;h4&gt;Cleaning Up the Repo&lt;/h4&gt;&lt;p&gt;Before diving into development, we focused on improving the current state of the codebase:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Filtered through existing PRs.&lt;/li&gt;&lt;li&gt;Merged those that were ready.&lt;/li&gt;&lt;li&gt;Closed duplicates or low-quality submissions.&lt;/li&gt;&lt;li&gt;Requested changes when necessary.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;This cleanup helped fix some bugs and made the repository more maintainable moving forward.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;h4&gt;CI Enhancements&lt;/h4&gt;&lt;p&gt;To ensure future contributions are smoother, we improved the Continuous Integration setup:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Added conditional CI jobs to run &lt;strong&gt;frontend or backend tests&lt;/strong&gt; only when their respective files are changed.&lt;/li&gt;&lt;li&gt;Introduced &lt;strong&gt;Codecov comments&lt;/strong&gt; to show coverage of newly added lines, making it easier to track test quality in PRs.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;These changes should streamline reviews and reduce unnecessary CI runs.&lt;/p&gt;
+&lt;h4&gt;Early Contributions&lt;/h4&gt;&lt;p&gt;I also started contributing new features and improvements:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Integrated ExoMol and NIST databases&lt;/strong&gt; into the backend.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;While integrating the NIST database, I encountered a tricky error related to the RADIS package:&lt;/p&gt;
+&lt;pre&gt;No databank named nist in `/home/mohy/radis.json`. Available databanks: […]&lt;/pre&gt;&lt;p&gt;It turned out that the version of RADIS in the was outdated and didn’t recognize the `nist` databank. This was fixed by upgrading RADIS:&lt;/p&gt;
+&lt;pre&gt;pip install — upgrade radis&lt;/pre&gt;&lt;p&gt;Then, another error popped up related to pandas:&lt;/p&gt;
+&lt;pre&gt;No such keys(s): 'future.no_silent_downcasting'&lt;/pre&gt;&lt;p&gt;This was caused by version incompatibility, which was resolved by upgrading pandas:&lt;/p&gt;
+&lt;pre&gt;pip install — upgrade pandas&lt;/pre&gt;&lt;p&gt;After these upgrades, the databases worked correctly on the backend. The frontend integration and performance optimizations (e.g., caching) are next on my list.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Increased backend test coverage&lt;/strong&gt;, especially for newly added endpoints and database integrations.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;That’s a wrap for the first weeks! It’s been a productive start, and I’m excited to keep building and learning in the coming weeks. Stay tuned for more updates!&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=59a02a05ae58" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2025/06/20250605_0225_mohyware/</guid><pubDate>Thu, 05 Jun 2025 01:25:44 GMT</pubDate></item><item><title>A summary</title><link>http://openastronomy.org/Universe_OA/posts/2024/08/20240825_0000_code29563/</link><dc:creator>code29563</dc:creator><description>&lt;p&gt;RADIS describes itself as &lt;a href="https://radis.readthedocs.io/en/latest/"&gt;‘a fast line-by-line code for high resolution infrared molecular spectra’&lt;/a&gt;. My project focussed on adding support for atomic line databases to RADIS, which has up till now catered only for molecular databases. Atomic lines differ significantly from molecular lines in how they are affected by Lorentzian broadening and how non-equilibrium spectra are handled.&lt;/p&gt;
 
 &lt;p&gt;The main goal was &lt;a href="https://github.com/radis/radis/pull/652"&gt;adding support for the Kurucz atomic database&lt;/a&gt;, which is now complete. This laid the basic structure for adding new atomic databases, and &lt;a href="https://github.com/radis/radis/pull/689"&gt;a PR is now open for adding NIST&lt;/a&gt;.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -184,66 +197,4 @@ config["DATAFRAME_ENGINE"] = initial_engine
 &lt;p&gt;I also cleaned my PR : removed all the unused methods from the Kurucz API,added references, moved hardcoded arrays to proper files.&lt;/p&gt;
 &lt;p&gt;We asked the Exojax team for more help about the broadening parameters. For the moment, there are some approximations and placeholders about the airbrd (air broadening which is required in the Radis format) by computing it thanks to the Kurucz parameters.&lt;br&gt;A simplified version of the broadening allows to plot spectra for now but there are still values to adjust for the various species.&lt;/p&gt;
 &lt;p&gt;I also started to work on the NIST database by fixing a parsers developed last year. Though I can plot NIST spectra for some wavelength, there still are issues particularly about the FWHM to deal with.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=e955d61c1591" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</guid><pubDate>Fri, 11 Aug 2023 16:23:24 GMT</pubDate></item><item><title>Writing Test Cases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;For testing specturm produce using vaex and pandas for non-equilibrium calculations are same , the code similar to equilibrium calculations is used&lt;/p&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;from radis import calc_spectrum
-&lt;!-- TEASER_END --&gt;
-
-import time
-t0=time.time()
-
-s, factory_s = calc_spectrum(1800, 1820,         # cm-1
-molecule='CO',
-isotope='1',
-pressure=1.01325,   # bar
-Tgas=700,           # K
-Tvib=710,
-Trot=710,
-mole_fraction=0.1,
-wstep='auto',
-path_length=1,      # cm
-databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
-optimization=None,
-engine='vaex',
-verbose=3,
-return_factory=True,
-)
-
-s.apply_slit(0.5, 'nm')       # simulate an experimental slit
-
-t1=time.time()
-print('Time taken : '+str(t1 - t0))
-
-t0=time.time()
-
-s1, factory_s1 = calc_spectrum(1800, 1820,         # cm-1
-molecule='CO',
-isotope='1',
-pressure=1.01325,   # bar
-Tgas=700,           # K
-Tvib=710,
-Trot=710,
-mole_fraction=0.1,
-wstep='auto',
-path_length=1,      # cm
-databank='hitemp',  # or 'hitemp', 'geisa', 'exomol'
-engine='pandas',
-verbose=3,
-return_factory=True,
-)
-
-s.apply_slit(0.5, 'nm')       # simulate an experimental slit
-
-t1=time.time()
-print(s.get("absorbance"))
-s.plot('radiance_noslit')
-print('Time taken : '+str(t1 - t0))
-
-import numpy as np
-print(np.allclose(s.get("absorbance"), s1.get("absorbance")))
-
-for column in factory_s1.df1.columns:
-assert np.all(factory_s1.df1[column] == factory_s.df1[column].to_numpy())
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I will add more test cases .&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230801_0000_1someshverma/</guid><pubDate>Mon, 31 Jul 2023 23:00:00 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=e955d61c1591" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</guid><pubDate>Fri, 11 Aug 2023 16:23:24 GMT</pubDate></item></channel></rss>
