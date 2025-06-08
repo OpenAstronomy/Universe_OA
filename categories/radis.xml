@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 07 Jun 2025 01:59:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2025 Blog — Week 1: Starting the Project</title><link>http://openastronomy.org/Universe_OA/posts/2025/06/20250605_0225_mohyware/</link><dc:creator>mohyware</dc:creator><description>&lt;h4&gt;GSoC 2025 Blog — Starting the Project&lt;/h4&gt;&lt;h4&gt;Kicking Things Off&lt;/h4&gt;&lt;p&gt;The first weeks of GSoC were all about getting familiar with the project, understanding its current state, and laying the groundwork for upcoming work. We began by &lt;strong&gt;listing the key features&lt;/strong&gt; we plan to implement and prioritizing them based on impact and feasibility.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about radis)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/radis.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 08 Jun 2025 02:11:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Yeah! I have a GSoC project with Radis</title><link>http://openastronomy.org/Universe_OA/posts/2025/06/20250607_0949_prtm2110/</link><dc:creator>Pratham</dc:creator><description>&lt;p&gt;Finally, I have been contributing to scientific open source for about a year now and it has taught me a lot I mean a lot, I still remember searching for a simple documentation issue so I could get it merged and call myself a “contributor” haha, and that got me started in scientific open source. Since then, I have been able to make some truly meaningful contributions to many projects, and here I am writing a blog for GSoC with Radis which is a pythonic library for fast line-by-line code for high resolution infrared molecular spectra, under the OpenAstronomy umbrella.&lt;/p&gt;
+&lt;p&gt;So my project is cool ngl, and it is titled “Fast Parsing of Large Databases and Execution Bottlenecks” basically there exists a large highly compressed CO₂ spectroscopic database of size 6 GB file that decompresses to about 50 GB and takes at least 2.5 hours to parse and convert into a DataFrame. As you might expect, my project is about significantly reducing the parsing time and finding a workaround for storing only the “necessary” parts of the decompressed file.&lt;/p&gt;
+&lt;p&gt;Radis is pythonic and sometimes python gets real slow if not used the way it is meant to be used, so my initial thought was to first clean up the existing code and use vectorised operations and with numba we should be able to see some real optimisation. But then I realized the current implementation already has the right vectorized operations on DataFrames, and Pandas’ vectorized methods are already implemented in optimized C/Cython loops. So there isn’t much more to do here other than replace a few overheads with other operations. After that, as discussed with my mentors I can use a C++ Single Instruction Multiple Data (SIMD) mechanism to parse the file and create a python interface on top of that with pybind11 or cython and other option but this will cost us portability as compilation will be a thing that is to considered. Other approach which is using vulkan API in python as it supports CPU as well GPU parallelism and its cross platform as it will works on all CPU architectures.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;The first thing I did was profile the hit2df function for the NO₂ molecule, which is much smaller compared to CO₂ but uses the same operations. That gave a good idea of the actual bottlenecks and where I need to work.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*9OApPZeVUuVw2vAwSCqGQg.png"&gt;&lt;figcaption&gt;Profiling of `hit2df` function for NO₂ molecule&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;As you can see, most of the time is spent in post_process_hitran_data and which is expected because this function calls parse_local_quanta and parse_global_quanta both applies regex across multiple string columns, which is slow at scale, so I switced to fixed‐width slicing to avoid that per-row overhead, of course this was possible as the dataset is consistent and doesn’t require regex at all (I really hope).&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/0*4T1gkGX-4N4_CzO3"&gt;&lt;/figure&gt;&lt;p&gt;This resulted in a clean improvement of about 38%, which will serve as the default option, along with the Vulkan-API mechanism, which I expect will yield a huge optimization compared to the default. That’s something we will see that in the next episode, stay tuned ;)&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=113900105c46" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2025/06/20250607_0949_prtm2110/</guid><pubDate>Sat, 07 Jun 2025 08:49:18 GMT</pubDate></item><item><title>Starting My GSoC Journey with RADIS</title><link>http://openastronomy.org/Universe_OA/posts/2025/06/20250607_0422_darshvn/</link><dc:creator>Darshan Patil</dc:creator><description>&lt;h4&gt;Getting Started&lt;/h4&gt;&lt;p&gt;A month has passed since the GSoC results came out, and honestly, and the excitement still hasn’t quite settled. That announcement day was pretty intense, my mind was racing, second-guessing everything. But wow, things worked out even better than I’d hoped.&lt;/p&gt;
+&lt;p&gt;The community bonding period hit right during my final exams, which was tricky timing. So I focused on what mattered most, getting to know my mentors, joining the weekly calls, and really wrapping my head around the project from a theoretical standpoint.&lt;/p&gt;
+&lt;h4&gt;What I’m Working On&lt;/h4&gt;&lt;p&gt;I’m working on something called “&lt;strong&gt;Electronic Spectra for RADIS.&lt;/strong&gt;” Basically, RADIS is this awesome library for modeling rovibrational spectra, but it’s missing one key piece; electronic transitions. That’s where I come in! I want to add that missing functionality and make RADIS even more powerful.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;Even though I already knew RADIS pretty well, I spent time going through everything again to make sure I really understood what needed to be done. No point in reinventing the wheel, right? My mentor Nicolas helped me put together a solid plan that actually makes sense.&lt;/p&gt;
+&lt;h4&gt;Breaking It Down&lt;/h4&gt;&lt;p&gt;Here’s how I’m breaking it down into four main chunks:&lt;/p&gt;
+&lt;p&gt;First up is &lt;strong&gt;OH Electronic Spectra Calculation&lt;/strong&gt; — I’m starting with OH molecules as my test case and building the ability to manually tweak electronic band intensities when things are not in equilibrium as suggested by Nicolas in the project idea, “&lt;em&gt;starting with non-equilibrium spectra of atomic species makes sense since the physics is slightly easier than for molecules&lt;/em&gt;.”&lt;/p&gt;
+&lt;p&gt;Then comes &lt;strong&gt;Electronic Temperature Support&lt;/strong&gt; — this is where I’ll add calculations for electronic state populations, assuming the electronic temperature is different from the other temperatures.&lt;/p&gt;
+&lt;p&gt;Third is &lt;strong&gt;Equilibrium OH Spectrum&lt;/strong&gt; — putting together everything from the earlier steps to calculate OH spectra when things are in equilibrium.&lt;/p&gt;
+&lt;p&gt;Finally, &lt;strong&gt;Extension to ExoMol Molecules&lt;/strong&gt; — taking what I’ve built and making it work for all ExoMol molecules.&lt;/p&gt;
+&lt;p&gt;This approach builds on what RADIS already does well while systematically adding the electronic transition stuff, all within the GSoC timeline.&lt;/p&gt;
+&lt;h4&gt;The Technical Stuff&lt;/h4&gt;&lt;h4&gt;Working with Data Files&lt;/h4&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*pTN3jp3K2szObHXmSYp3gw.png"&gt;&lt;figcaption&gt;Sample of the OH .states file format showing electronic state information and quantum numbers.&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;To kick off the first milestone, I’m using the .states file from ExoMol for OH molecules, which has all the electronic state info and quantum numbers. RADIS already has a read_states() function in exomolapi.py that can parse this format, but right now it only extracts:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;i: State counting number&lt;/li&gt;&lt;li&gt;E: State energy&lt;/li&gt;&lt;li&gt;g: State degeneracy&lt;/li&gt;&lt;li&gt;J: Total angular momentum&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;I’ll modify this to additionally extract the electronic-specific parameters:&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;State: Electronic state label (e.g., X(²Π))&lt;/li&gt;&lt;li&gt;Λ: Electronic angular momentum quantum number&lt;/li&gt;&lt;li&gt;Σ: Spin angular momentum quantum number&lt;/li&gt;&lt;li&gt;Ω: Total electronic angular momentum quantum number&lt;/li&gt;&lt;li&gt;Type: State type (e.g., Ma for main)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;This will be the foundation for getting electronic transitions working in RADIS.&lt;/p&gt;
+&lt;h4&gt;Making the Calculations Work&lt;/h4&gt;&lt;p&gt;For the population calculations, I’ll be working with the existing partfunc.py file. I'm planning to create a new ElectronicPartitionFunction class and implement the Boltzmann distribution for electronic states. Nicolas referenced a formula from his &lt;a href="https://theses.fr/2020UPAST052"&gt;thesis (Chapter 1, Section 1.1)&lt;/a&gt; that’s relevant to what I’m implementing.&lt;/p&gt;
+&lt;figure&gt;&lt;img alt="Boltzmann distribution" src="https://cdn-images-1.medium.com/max/1024/1*bEtk5kQGqpD5kbzwgmLeCQ.png"&gt;&lt;figcaption&gt;Boltzmann distribution&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;All of this will eventually get integrated into SpectrumFactory to compute electronic spectra in SpectrumFactory.non_eq_spectrum(). I'll be adding an electronic temperature (Telec) parameter and thinking about using the overpopulation parameter for manually adjusting electronic band intensities.&lt;/p&gt;
+&lt;h4&gt;What’s Next&lt;/h4&gt;&lt;p&gt;I’m planning to work on all this over the next few weeks to nail the first milestone. I’m genuinely excited to be part of this project and can’t wait to learn tons and build something really cool. This is going to be an amazing journey!&lt;/p&gt;
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=14b98a245c55" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2025/06/20250607_0422_darshvn/</guid><pubDate>Sat, 07 Jun 2025 03:22:57 GMT</pubDate></item><item><title>GSoC 2025 Blog — Week 1: Starting the Project</title><link>http://openastronomy.org/Universe_OA/posts/2025/06/20250605_0225_mohyware/</link><dc:creator>mohyware</dc:creator><description>&lt;h4&gt;GSoC 2025 Blog — Starting the Project&lt;/h4&gt;&lt;h4&gt;Kicking Things Off&lt;/h4&gt;&lt;p&gt;The first weeks of GSoC were all about getting familiar with the project, understanding its current state, and laying the groundwork for upcoming work. We began by &lt;strong&gt;listing the key features&lt;/strong&gt; we plan to implement and prioritizing them based on impact and feasibility.&lt;/p&gt;
 &lt;h4&gt;Cleaning Up the Repo&lt;/h4&gt;&lt;p&gt;Before diving into development, we focused on improving the current state of the codebase:&lt;/p&gt;
 &lt;ul&gt;&lt;li&gt;Filtered through existing PRs.&lt;/li&gt;&lt;li&gt;Merged those that were ready.&lt;/li&gt;&lt;li&gt;Closed duplicates or low-quality submissions.&lt;/li&gt;&lt;li&gt;Requested changes when necessary.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;This cleanup helped fix some bugs and made the repository more maintainable moving forward.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -63,138 +87,4 @@
 
 &lt;p&gt;I started a PR for this project to enquire about &lt;a href="https://github.com/radis/radis/pull/652#issuecomment-2141212791"&gt;an issue&lt;/a&gt; related to the &lt;code class="language-plaintext highlighter-rouge"&gt;truncation&lt;/code&gt; parameter used in calculating the lineshape and the differing results depending on the choice of &lt;code class="language-plaintext highlighter-rouge"&gt;optimization&lt;/code&gt; method.&lt;/p&gt;
 
-&lt;p&gt;I’ve also been looking into third-party tools to generate plots of spectra for the same atoms for comparison with the results being generated in RADIS and to potentially indicate through any discrepancies whether there’s an error to be resolved.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240610_0000_code29563/</guid><pubDate>Sun, 09 Jun 2024 23:00:00 GMT</pubDate></item><item><title>Benchmark Tests</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230825_0000_1someshverma/</link><dc:creator>Somesh Verma</dc:creator><description>&lt;p&gt;I have finished the refactoring the code for vaex and also writtten test cases to compare the spectrum calculated using pandas with the dataframe calculated using vaex dataframe . Also, Various spectroscopic quantities as absorbance , emissitivity is also compared for the both the dataframams.
-Also, there was many issues that was raised by the maintainers and I have resolved almost all of these , and commented on the other issues to discuss the problem and discuss some possible solution .Issues raised by the maintainers was mainly related to make changes more matainable and easy to understand and simple programming logic is preferred inplace of using some complex code without explaining that in detail.
-Also , the issue was to ensure a light test suite , that is test cases which takes less resources and time . Initialy , I didn’t focused on this thing and focused on testing the code and changes more elaborately by writing the test cases that cover many areas of code .&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;But, later as told by maintainer I have refacatored the changes and made the changes more light and test cases more light .It helped to reduce the time required test the new commit as excecution time of the test cases were reduced.
-After, all this another thing was to add benchmark test to compare the memory use by vaex and pandas and also compare the execution time used by both these engines.&lt;/p&gt;
-
-&lt;p&gt;Benchmark Test added to compare time taken by code is :&lt;/p&gt;
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;def compare_vaex_pandas_time():
-"""
-Compares the time performance of pandas and Vaex and generates a plot. This scripts takes several minutes to run.
-This results shoud shown that vaex and pandas provide similar performances in term if speed.
-Returns
--------
-None.
-"""
-time_list, timeC_list, lines_list = [], [], []
-time_list_va, timeC_list_va, lines_list_va = [], [], []
-wmin = 1000
-steps = 5
-wmax_arr = np.geomspace(10, 1000, steps)
-
-initial_engine = config[
-"DATAFRAME_ENGINE"
-]  # To make sure dataframe engine not changed after running this test
-pb = ProgressBar(N=2 * steps)
-for i, engine in enumerate(["vaex", "pandas"]):
-config["DATAFRAME_ENGINE"] = engine
-for j, w_range in enumerate(wmax_arr):
-t0 = time.time()
-s = calc_spectrum(
-wmin,
-wmin + w_range,  # cm-1
-molecule="H2O",
-isotope="1,2,3",
-pressure=1.01325,  # bar
-Tgas=1000,
-mole_fraction=0.1,
-databank="hitemp",  # or 'hitemp'
-wstep="auto",
-cutoff=1e-28,
-verbose=0,
-)
-t1 = time.time()
-if engine == "vaex":
-timeC_list_va.append(s.conditions["calculation_time"])
-lines_list_va.append(s.conditions["lines_calculated"])
-time_list_va.append(t1 - t0)
-# lines_list_va.append(s.conditions['lines_calculated']+s.conditions['lines_cutoff'])
-else:
-timeC_list.append(s.conditions["calculation_time"])
-lines_list.append(s.conditions["lines_calculated"])
-time_list.append(t1 - t0)
-# lines_list.append(s.conditions['lines_calculated']+s.conditions['lines_cutoff'])
-pb.update(i * steps + (j + 1))
-plt.figure()
-plt.plot(lines_list, time_list, "k", label="pandas total")
-plt.plot(lines_list, timeC_list, "k--", label="pandas computation")
-plt.plot(lines_list_va, time_list_va, "r", label="vaex total")
-plt.plot(lines_list_va, timeC_list_va, "r--", label="vaex computation")
-plt.ylabel("Time [s]")
-plt.xlabel("Number of lines")
-plt.legend()
-
-config["DATAFRAME_ENGINE"] = initial_engine
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;img alt="Vaex Comparison Time" src="https://1someshverma.github.io/images/timeComparison.png"&gt;&lt;/p&gt;
-
-&lt;p&gt;while Graph for Memory use and code are :
-&lt;img alt="Vaex Comparison" src="https://1someshverma.github.io/images/vaexcomparison.png"&gt;&lt;/p&gt;
-
-&lt;div class="language-plaintext highlighter-rouge"&gt;&lt;div class="highlight"&gt;&lt;pre class="highlight"&gt;&lt;code&gt;# Compare the memory performance of Pandas and Vaex
-def compare_pandas_vs_vaex_memory():
-"""
-Compare memory usage of `engine="vaex"` and `engine="pandas"` in calc_spectrum.
-Expected behavior is "vaex" using much less memory. This function takes tens of seconds to run.
-Returns
--------
-None.
-"""
-
-import tracemalloc
-
-initial_engine = config[
-"DATAFRAME_ENGINE"
-]  # To make sure dataframe engine not changed after running this test
-for engine in ["pandas", "vaex"]:
-config["DATAFRAME_ENGINE"] = engine
-tracemalloc.start()
-s = calc_spectrum(
-1000,
-1500,  # cm-1
-molecule="H2O",
-isotope="1,2,3",
-pressure=1.01325,  # bar
-Tgas=1000,  # K
-mole_fraction=0.1,
-wstep="auto",
-databank="hitemp",  # or 'hitemp', 'geisa', 'exomol'
-verbose=0,
-)
-snapshot = tracemalloc.take_snapshot()
-memory = tracemalloc.get_traced_memory()
-tracemalloc.stop()
-
-# Some raw outputs
-print("\n******** Engine = {} ***********".format(engine))
-print(
-"Peak, current = {:.1e}, {:.1e} for {:} lines calculated".format(
-*memory, s.conditions["lines_calculated"]
-)
-)
-
-# More sophisticated
-print("*** List of biggest objects ***")
-top_stats = snapshot.statistics("lineno")
-for rank, stat in enumerate(top_stats[:3]):
-print("#{}".format(rank + 1))
-print(stat)
-
-# Clear for next engine in the loop
-tracemalloc.clear_traces()
-
-config["DATAFRAME_ENGINE"] = initial_engine
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230825_0000_1someshverma/</guid><pubDate>Thu, 24 Aug 2023 23:00:00 GMT</pubDate></item><item><title>Progress on Kurucz and NIST databases</title><link>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</link><dc:creator>Racim MENASRIA</dc:creator><description>&lt;p&gt;Since the last article, I received a lot of feedback and comments about the Kurucz PR.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/952/1*iyB8Ya_dKD5OIkQ8gbcovg.png"&gt;&lt;/figure&gt;&lt;p&gt;Here is and example of a Fe_I spectrum I can obtain with these conditions.&lt;/p&gt;
-&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*alxgHx0L0Bg54hyUcp8h0Q.png"&gt;&lt;/figure&gt;&lt;h4&gt;The main remarks where that :&lt;/h4&gt;&lt;p&gt;I needed to adjust the code to make it more general and user friendly. I introduced a specie argument to SpectrumFactory and calc_spectrum to replace atom and molecule and gather them under a same name.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;p&gt;I made sure to respect the Radis structure by mooving files where I needed to and adding a new Partfunc class for Kurucz. &lt;br&gt;Then I added a few tests and removed old tests that were not needed any longer.&lt;/p&gt;
-&lt;p&gt;I also cleaned my PR : removed all the unused methods from the Kurucz API,added references, moved hardcoded arrays to proper files.&lt;/p&gt;
-&lt;p&gt;We asked the Exojax team for more help about the broadening parameters. For the moment, there are some approximations and placeholders about the airbrd (air broadening which is required in the Radis format) by computing it thanks to the Kurucz parameters.&lt;br&gt;A simplified version of the broadening allows to plot spectra for now but there are still values to adjust for the various species.&lt;/p&gt;
-&lt;p&gt;I also started to work on the NIST database by fixing a parsers developed last year. Though I can plot NIST spectra for some wavelength, there still are issues particularly about the FWHM to deal with.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=e955d61c1591" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2023/08/20230811_1723_menasrac/</guid><pubDate>Fri, 11 Aug 2023 16:23:24 GMT</pubDate></item></channel></rss>
+&lt;p&gt;I’ve also been looking into third-party tools to generate plots of spectra for the same atoms for comparison with the results being generated in RADIS and to potentially indicate through any discrepancies whether there’s an error to be resolved.&lt;/p&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2024/06/20240610_0000_code29563/</guid><pubDate>Sun, 09 Jun 2024 23:00:00 GMT</pubDate></item></channel></rss>
