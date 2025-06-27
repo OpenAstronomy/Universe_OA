@@ -135,7 +135,7 @@ bg-dark
 <p>We now need to register all ‘attrs’ supported by the client in PR #4321. This helped me to escape from defining optional attrs. We use register_values() only to know whether the client can serve the query or not.</p>
 <h4>Fido metadata queries Gallery Example</h4>
 <p>I have added a new gallery example in <a href="https://github.com/sunpy/sunpy/pull/4358">PR #4358</a> which summarizes what we can do after the pull request is merged. We can make metadata queries and easily inspect them. A lot of minor improvements were also made in the PR.</p>
-<iframe src="." width="0" height="0" frameborder="0" scrolling="no"><a href="https://medium.com/media/0e1004e2649bfd262dda2f4e37fed4a8/href">https://medium.com/media/0e1004e2649bfd262dda2f4e37fed4a8/href</a></iframe><h4>Extracting client responses from Fido result</h4>
+<iframe src="." width="0" height="0" frameborder="0" scrolling="no">&amp;amp;lt;a href="https://medium.com/media/0e1004e2649bfd262dda2f4e37fed4a8/href"&amp;amp;gt;https://medium.com/media/0e1004e2649bfd262dda2f4e37fed4a8/href&amp;amp;lt;/a&amp;amp;gt;</iframe><h4>Extracting client responses from Fido result</h4>
 <p>Earlier we have to specify index as an argument to get_response() to do that. It required us to count the records to find the correct index. Now we can easily use the name of the client to retrieve QueryResponse instances for that client. If there are multiple such records, then a list of all matching records will be returned.</p>
 <h4>ToDos for the final two weeks</h4>
 <p>I have to document how to write Fido clients and add tests to the Fido metadata compatibility. Let’s see what other issues I can tackle in these pull requests.</p>
