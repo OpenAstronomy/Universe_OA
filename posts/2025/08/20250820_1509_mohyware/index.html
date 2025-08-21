@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RADIS Web App Final GSoC Blog | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2025/08/20250820_1509_mohyware/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="mohyware">
+<link rel="prev" href="../20250803_1955_darshvn/" title="We’re onto something." type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="RADIS Web App Final GSoC Blog">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2025/08/20250820_1509_mohyware/">
+<meta property="og:description" content="In this final update, I’ll be covering the latest improvements.
+Option to run the backend locally with Docker:Simply follow the steps in the app to get started:Improve performance if local machine is ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-08-20T15:09:45+01:00">
+<meta property="article:tag" content="radis">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@darshvn" data-toggle="tooltip" data-placement="top" title="2025-08-03 19:55:57+01:00" style="color:rgb(255,0,0)">
+                    Darshan Patil
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="https://kashish2210.blogspot.com" data-toggle="tooltip" data-placement="top" title="2025-07-26 06:07:00+01:00" style="color:rgb(255,0,0)">
+                    kashish shrivastav
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://sejifukishima.blogspot.com" data-toggle="tooltip" data-placement="top" title="2025-07-03 11:15:00+01:00" style="color:rgb(255,0,0)">
+                    Mohammad Adnan
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@mohyware" data-toggle="tooltip" data-placement="top" title="2025-08-20 15:09:45+01:00">
+                    mohyware
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">✅</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@prathamhole" data-toggle="tooltip" data-placement="top" title="2025-07-27 12:24:19+01:00" style="color:rgb(255,0,0)">
+                    Pratham
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">RADIS Web App Final GSoC Blog</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/mohyware/">mohyware</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2025-08-20T15:09:45+01:00" itemprop="datePublished" title="2025-08-20 15:09">2025-08-20 15:09</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://medium.com/@mohyware/radis-web-app-final-gsoc-blog-f1f5580da556?source=rss-9dc0b0efcdaa------2">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p>In this final update, I’ll be covering the latest improvements.</p>
+<h4><strong>Option to run the backend locally with Docker:</strong></h4>
+<ul><li>Simply follow the steps in the app to get started:</li></ul>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/634/1*Qmn_cqV9vRFldFA_0ydUAQ.png"></figure><ul>
+<li>Improve performance if local machine is powerful.</li>
+<li>You can even mount your existing databases (if you’ve used the RADIS package) by running the container with the following command:</li>
+</ul>
+<pre>docker run -d -p 8080:8080 \<br>-v /home/mohy/.radisdb:/root/.radisdb \ <br>-v /home/mohy/radis.json:/root/radis.json \<br>radis-app-backend</pre>
+<h4>
+<strong>Moved to </strong><strong>SpectrumFactory instead of the simpler </strong><strong>calc_spectrum:</strong>
+</h4>
+<ul>
+<li>This enables GPU-based calculations if implemented in the future.</li>
+<li>Also improves ExoMol database performance by avoiding unnecessary broad file downloads.</li>
+</ul>
+<h4><strong>UI improvements:</strong></h4>
+<ul><li>Better layout and space utilization to make the graph display larger and clearer.</li></ul>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*nIhU6Hej2xRGMecUAN7m2A.png"></figure><h4>
+<strong>There is a new option to c</strong>hoose between using <strong>all isotopes</strong> or <strong>only the first one</strong>.</h4>
+<figure><img alt="" src="https://cdn-images-1.medium.com/max/714/1*TD8Ks6cnUBMSIE1yQKzLqQ.png"></figure><h4>Testing</h4>
+<p>I’ve added tests for all the new features on both the frontend and backend, and ensured coverage of the core existing functionalities.</p>
+<p>Overall, it has been a fantastic journey working on this project with such a supportive community and mentors.</p>
+<!-- TEASER_END -->
+<img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=f1f5580da556" width="1">
+</div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20250803_1955_darshvn/" rel="prev" title="We’re onto something.">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2025         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
