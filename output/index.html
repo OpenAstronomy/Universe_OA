@@ -12,7 +12,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/">
 <link rel="next" href="index-57.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2025/08/20250824_1636_prtm2110/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2025/08/20250829_2145_prtm2110/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -92,7 +92,7 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">✅</span></span>
                 </li>
 <li>
-                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@prathamhole" data-toggle="tooltip" data-placement="top" title="2025-08-24 16:36:41+01:00">
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@prathamhole" data-toggle="tooltip" data-placement="top" title="2025-08-29 21:45:07+01:00">
                     Pratham
                    </a>
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">✅</span></span>
@@ -106,7 +106,27 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2025/08/20250824_1636_prtm2110/" class="u-url">Building a super-fast SIMD parser for dataset - The final episode</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2025/08/20250829_2145_prtm2110/" class="u-url">Google Summer of Code: Final Submission</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/pratham/">Pratham</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2025/08/20250829_2145_prtm2110/" rel="bookmark">
+            <time class="published dt-published" datetime="2025-08-29T21:45:07+01:00" itemprop="datePublished" title="2025-08-29 21:45">2025-08-29 21:45</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<figure><img alt="Google Summer of Code @ OpenAstronomy" src="https://cdn-images-1.medium.com/max/600/1*l_oPQ2kA7gI5Weqqp0dTbQ.png"></figure><p>I have completed my Google Summer of Code project, “Fast Parsing of Large Databases and Execution Bottlenecks,” on the Radis project under the OpenAstronomy umbrella. The project developed high-performance, line-by-line parsing for high-resolution infrared molecular spectra, and this is the final blog posts to document the results and lessons learned. Most important of all, I loved the work I was able to do; it was interesting and made possible by my helpful and amazing mentors. I am incredibly grateful to Dr. Nicolas Minesi, Dr. Dirk van den Bekerom and Tran Huu Nhat Huy.</p>
+<h5>Project Description?</h5>
+<p>The problem is that the HITEMP CO₂ spectroscopic database is extremely large and inefficient to work with: the distributed file is about 6 GB when compressed but expands to roughly 50 GB, and the existing workflow requires fully decompressing and then batch-parsing the entire file an operation that takes on the order of 2.5 hours and uses a lot of disk I/O, memory, and network bandwidth. That full-decompress/parse approach creates several practical bottlenecks: it forces users to have large, fast storage and long processing windows, makes quick exploratory analysis or iterative development impractical, wastes bandwidth and time when only small portions of the data are needed. In short, the dataset’s size and the parser’s all-or-nothing design prevent efficient, selective access and slow down every downstream analysis that depends on these spectral lines.</p>
+<h4>Project Walk Through</h4>
+<p>After discussing the project we divided it into three parts. The first part was optimizing the existing code so that, at a minimum, we would have a better working infrastructure. The second part was enabling partial downloads so a user can retrieve only the necessary part of the file without downloading it entirely. The last part was building a C++ Single Instruction, Multiple Data (SIMD) parser using Intel intrinsic. Below I have described each of these in detail.</p>
+<p class="more"><a href="posts/2025/08/20250829_2145_prtm2110/">Read more…</a></p>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2025/08/20250824_1636_prtm2110/" class="u-url">Building a super-fast SIMD parser for dataset - The final episode</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/pratham/">Pratham</a>
@@ -290,25 +310,6 @@ bg-dark
 <h4>Revised Approach</h4>
 <figure><img alt="" src="https://cdn-images-1.medium.com/max/876/1*XSL9jIwlwb7FZpoD5oZjEg.png"></figure><p>The core approach is the same as originally planned, but now the rovibrational populations are calculated using the existing RovibParFuncCalculator. This lets me reuse code while adding the electronic state functionality we need.</p>
 <p class="more"><a href="posts/2025/06/20250629_1859_darshvn/">Read more…</a></p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2025/06/20250629_0626_kashish2210/" class="u-url">✨Good Time, Bad Time: GTI/BTI :)</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/kashish-shrivastav/">kashish shrivastav</a>
-            </span></p>
-            <p class="dateline">
-            <a href="posts/2025/06/20250629_0626_kashish2210/" rel="bookmark">
-            <time class="published dt-published" datetime="2025-06-29T06:26:00+01:00" itemprop="datePublished" title="2025-06-29 06:26">2025-06-29 06:26</time></a>
-            </p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<p>In my continued journey with <code>Stingray.jl</code> During GSoC 2025, this phase focused on a core aspect of high-energy astrophysics: time filtering using <strong>GTIs (Good Time Intervals)</strong> and <strong>BTIs (Bad Time Intervals)</strong>. After a productive discussion with my mentor <a class="" href="https://github.com/matteobachetti" rel="noopener" target="_new">@matteobachetti</a> during our meet, I dove into implementing and refining functionality around GTIs—an essential tool in the timing analysis of astrophysical data.</p>
-<div class="flex basis-auto flex-col -mb-(--composer-overlap-px) [--composer-overlap-px:24px] grow overflow-hidden"><div class="relative h-full"><div class="flex h-full flex-col overflow-y-auto [scrollbar-gutter:stable_both-edges] @[84rem]/thread:pt-(--header-height)"><div class="@thread-xl/thread:pt-header-height flex flex-col text-sm pb-25"><article class="text-token-text-primary w-full" dir="auto"><div class="text-base my-auto mx-auto py-5 [--thread-content-margin:--spacing(4)] @[37rem]:[--thread-content-margin:--spacing(6)] @[72rem]:[--thread-content-margin:--spacing(16)] px-(--thread-content-margin)"><div class="[--thread-content-max-width:32rem] @[34rem]:[--thread-content-max-width:40rem] @[64rem]:[--thread-content-max-width:48rem] mx-auto flex max-w-(--thread-content-max-width) flex-1 text-base gap-4 md:gap-5 lg:gap-6 group/turn-messages focus-visible:outline-hidden" tabindex="-1"><div class="group/conversation-turn relative flex w-full min-w-0 flex-col agent-turn"><div class="relative flex-col gap-1 md:gap-3"><div class="flex max-w-full flex-col grow"><div class="min-h-8 text-message relative flex w-full flex-col items-end gap-2 text-start break-words whitespace-normal [.text-message+&amp;]:mt-5" dir="auto"><div class="flex w-full flex-col gap-1 empty:hidden first:pt-[3px]"><div class="markdown prose dark:prose-invert w-full break-words dark">
-<h4>What Are GTIs and BTIs?</h4>
-<ul><p class="more"><a href="posts/2025/06/20250629_0626_kashish2210/">Read more…</a></p></ul>
-</div></div></div></div></div></div></div></div></article></div></div></div></div>
 </div>
     </div>
     </article>
