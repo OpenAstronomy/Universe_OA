@@ -1,5 +1,514 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by kashish shrivastav)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/kashish-shrivastav.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 30 Aug 2025 01:47:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>RECIPES RECIPES WHAT KIND OF RECIPES? :)</title><link>http://openastronomy.org/Universe_OA/posts/2025/07/20250726_0607_kashish2210/</link><dc:creator>kashish shrivastav</dc:creator><description>&lt;p&gt; &lt;/p&gt;&lt;h2&gt;&lt;strong&gt;Exploring Light Curve Plotting in Stingray.jl: Recipes and Examples:&lt;/strong&gt;&lt;/h2&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by kashish shrivastav)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/kashish-shrivastav.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 31 Aug 2025 01:58:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Time Series Analysis in Stingray.jl</title><link>http://openastronomy.org/Universe_OA/posts/2025/08/20250830_1321_kashish2210/</link><dc:creator>kashish shrivastav</dc:creator><description>&lt;h3&gt;From Stargazing Dreams to Code Stargazing:)&lt;/h3&gt;&lt;p&gt;
+&lt;/p&gt;&lt;p&gt;Ever since childhood, I have been passionate about the &lt;strong&gt;mysteries of the universe&lt;/strong&gt;. Over time, that passion grew into something more technical — not just looking at the stars, but wanting to understand their signals.&lt;/p&gt;&lt;p&gt;
+&lt;/p&gt;&lt;p&gt;This summer, through &lt;strong&gt;Google Summer of Code 2025 (GSoC)&lt;/strong&gt;, I had the opportunity to contribute to &lt;strong&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl"&gt;Stingray.jl&lt;/a&gt;&lt;/strong&gt;, a Julia library for time series analysis in astronomy. What follows is both a story of my personal journey and an exploration of the science and code I worked on.&lt;/p&gt;&lt;h3&gt;The Beginning – Switching Languages and First Steps&lt;/h3&gt;&lt;p&gt;When the organization was announced, I immediately started exploring &lt;strong&gt;Stingray&lt;/strong&gt; (the Python version). I wanted to understand the structure, so I made my first PRs there.&lt;/p&gt;&lt;p&gt;Soon, I understood the Stingray a bit, then I started working on &lt;strong&gt;Stingray.jl&lt;/strong&gt;, the Julia port of Stingray initiated by &lt;em&gt;&lt;a href="https://github.com/Aman-Pandey-afk" target="_blank"&gt;Aman Pandey&lt;/a&gt;&lt;/em&gt; in 2022. That meant learning Julia from scratch! Thankfully, Julia was similar to Python in many ways, so I picked it up quickly.&lt;/p&gt;&lt;p&gt;During my early testing, I noticed outdated dependencies — for example, some packages were only compatible with Julia 1.7, while the project was moving towards Julia 1.11. My first clumsy PR (on &lt;em&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/25" target="_blank"&gt;power_colors&lt;/a&gt;&lt;/em&gt;) wasn’t great, will tell you in a bit,t but it gave me valuable lessons.&lt;/p&gt;&lt;p&gt;Later, I worked on updating &lt;code&gt;fourier.jl&lt;/code&gt;. This was also my first time seriously using &lt;strong&gt;structs&lt;/strong&gt; in Julia. My mentor &lt;a class="decorated-link" href="https://github.com/fjebaker" rel="noopener" target="_new"&gt;@fjebaker&lt;/a&gt; guided me on abstract methods and struct design, while &lt;a class="decorated-link" href="https://github.com/matteobachetti" rel="noopener" target="_new"&gt;@matteobachetti&lt;span class="ms-0.5 inline-block align-middle leading-none"&gt;&lt;svg class="block h-[0.75em] w-[0.75em] stroke-current stroke-[0.75]" fill="currentColor" height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M14.3349 13.3301V6.60645L5.47065 15.4707C5.21095 15.7304 4.78895 15.7304 4.52925 15.4707C4.26955 15.211 4.26955 14.789 4.52925 14.5293L13.3935 5.66504H6.66011C6.29284 5.66504 5.99507 5.36727 5.99507 5C5.99507 4.63273 6.29284 4.33496 6.66011 4.33496H14.9999L15.1337 4.34863C15.4369 4.41057 15.665 4.67857 15.665 5V13.3301C15.6649 13.6973 15.3672 13.9951 14.9999 13.9951C14.6327 13.9951 14.335 13.6973 14.3349 13.3301Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/a&gt; helped me understand what kind of astronomical data the project needed.&lt;/p&gt;&lt;p&gt;At first, I was confused about telescopes and their instruments. To learn, I went to &lt;strong&gt;&lt;a href="https://heasarc.gsfc.nasa.gov/" target="_blank"&gt;NASA HEASARC&lt;/a&gt;&lt;/strong&gt; documentation, where I discovered &lt;strong&gt;FITS data&lt;/strong&gt; (Flexible Image Transport System) — the standard format for astronomical data. That’s when things started making sense.&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;My First Big Task – Reading Event Data&lt;/h3&gt;&lt;p&gt;&lt;a class="decorated-link" href="https://github.com/fjebaker" rel="noopener" target="_new"&gt;@fjebaker&lt;/a&gt; opened a &lt;a href="https://github.com/StingraySoftware/Stingray.jl/issues/26" target="_blank"&gt;milestone&lt;/a&gt; and assigned me the &lt;strong&gt;&lt;code&gt;readevent&lt;/code&gt;&lt;/strong&gt; task. At the same time, I became good friends with fellow contributor &lt;em&gt;&lt;a href="https://github.com/JawadAhmadCS"&gt;Jawd Ahmad&lt;/a&gt;&lt;/em&gt;. We often helped each other understand the codebase.&lt;/p&gt;&lt;p&gt;I implemented the &lt;code&gt;readevent&lt;/code&gt; function with a small struct called &lt;br&gt;&lt;code&gt;EventList &lt;/code&gt;something like : &lt;br&gt;&lt;/p&gt;&lt;h5 style="text-align: left;"&gt;&lt;span style="font-family: courier;"&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;pre&gt;&lt;code class="language-julia"&gt;
+struct DictMetadata
+headers::Vector{Dict{String,Any}}
+end
+
+struct EventList{T}
+filename::String
+times::Vector{T}
+energies::Vector{T}
+metadata::DictMetadata
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/span&gt;&lt;/h5&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Initially, it was just reading &lt;code&gt;.fits&lt;/code&gt; files (not &lt;code&gt;.evt&lt;/code&gt; Yet). After mentor suggestions and fixes, my first PR was finally merged into Stingray.jl. That moment felt amazing, it was the first pr to be merged into open source.&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;Recipes and Lightcurves&lt;/h3&gt;&lt;p&gt;The next milestone was implementing &lt;strong&gt;recipes&lt;/strong&gt; (plotting methods). Earlier, my &lt;em&gt;worst PR&lt;/em&gt;  &lt;code&gt;power_colors&lt;/code&gt; involved directly plotting arrays inside functions (yes, it was a mess 😅). This time, I studied &lt;code&gt;&lt;a href="https://discourse.julialang.org/t/understanding-recipes-in-plots-jl/1912"&gt;RecipesBase.jl&lt;/a&gt;&lt;/code&gt; and realized how it allows clean plotting through micro-functions.&lt;/p&gt;&lt;p&gt;I implemented &lt;strong&gt;lightcurve recipes&lt;/strong&gt;,  so one can now simply call &lt;code&gt;plot(lc)&lt;/code&gt; in the Julia REPL.&lt;/p&gt;&lt;p&gt;
+
+&lt;!--Prism.js for Syntax Highlighting--&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;/p&gt;&lt;p&gt;At this stage, I was still generating my own FITS files with &lt;code&gt;FITSIO.jl&lt;/code&gt;. While testing, I hit a table HDU error, which led me to file issues (and even attempt fixes) in that library.&lt;/p&gt;&lt;h3&gt;Proposal Time&lt;/h3&gt;&lt;p&gt;By then, I had collected dozens of reference links in my notepad and shaped them into my official &lt;a href="https://docs.google.com/document/d/1D5k8QmM794vG5hocUoVRuGoIY-pcp_cZ/edit?usp=sharing&amp;amp;ouid=118246482974985812318&amp;amp;rtpof=true&amp;amp;sd=true" target="_blank"&gt;&lt;strong&gt;GSoC proposal&lt;/strong&gt;.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;On &lt;strong&gt;May 8th&lt;/strong&gt;, I got selected. That was one of the happiest moments of my life! 🎉&lt;/p&gt;&lt;p&gt;We had our first meeting with mentors, where we discussed our next plans. From then on, meetings were held almost every Friday at 3 PM (Rome time).&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;Building Functions Step by Step&lt;/h3&gt;&lt;h4&gt;&lt;span style="font-size: large;"&gt;Event Functions&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;I refined &lt;code&gt;readevent&lt;/code&gt; and created better struct definitions. &lt;a class="decorated-link" href="https://github.com/fjebaker" rel="noopener" target="_new"&gt;@fjebaker&lt;/a&gt; even made a &lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/50" target="_blank"&gt;PR&lt;/a&gt; to demonstrate how things are usually structured in Julia — it was extremely helpful.&lt;br&gt;The final results had these functions:&lt;br&gt;&lt;/p&gt;&lt;pre&gt;&lt;code class="language-julia"&gt;event1 = readevents("ni1050360108_0mpu7_cl.evt", load_gti=true, sort=true)
+ev_lowE  = filter_energy(x -&amp;gt; x &amp;gt;= 20 &amp;amp;&amp;amp; x &amp;lt; 500, event1)
+ev_highE = filter_energy(x -&amp;gt; x &amp;gt;= 500 &amp;amp;&amp;amp; x &amp;lt;= 1500, event1)
+
+println("Low energy events: ", length(ev_lowE))
+println("High energy events: ", length(ev_highE))
+
+#Output:
+&lt;pre&gt;Low energy events: 28841910
+High energy events: 2941370&lt;/pre&gt;&lt;pre&gt;&lt;br&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;/p&gt;&lt;p style="text-align: left;"&gt;&lt;span style="font-family: inherit;"&gt;&lt;span color="rgba(0, 0, 0, 0.87)" style="background-color: white;"&gt;&lt;span style="font-size: small;"&gt;From here, as you can see, we have a readvent function that has some parameters, and you make a read &lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;span color="rgba(0, 0, 0, 0.87)" style="background-color: white;"&gt;.evt, fits, and etc files with and we have one of the good function filter_energy,get_gti_info, and &lt;/span&gt;&lt;/span&gt;&lt;span style="background-color: white; font-family: inherit;"&gt;many more:[reference PRs: &lt;/span&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/30" style="font-family: inherit;" target="_blank"&gt;readevent&lt;/a&gt;&lt;span style="background-color: white; font-family: inherit;"&gt; evolved to &lt;/span&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/47" style="font-family: inherit;" target="_blank"&gt;eventlist&lt;/a&gt;&lt;span style="background-color: white; font-family: inherit;"&gt; evolved to &lt;/span&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/61" style="font-family: inherit;"&gt;events&lt;/a&gt;&lt;span style="background-color: white; font-family: inherit;"&gt;]&lt;/span&gt;&lt;/p&gt;&lt;p style="text-align: left;"&gt;&lt;span style="font-family: inherit;"&gt;&lt;span color="rgba(0, 0, 0, 0.87)" style="background-color: white;"&gt;Finally, we have a function that reads GTI info and all other telescope metadata.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p style="text-align: left;"&gt;&lt;span style="font-family: inherit;"&gt;&lt;span color="rgba(0, 0, 0, 0.87)" style="background-color: white;"&gt;Reference [&lt;/span&gt;&lt;/span&gt;&lt;a href="https://heasarc.gsfc.nasa.gov/FTP/nicer/data/obs/2018_03/1200120104/xti/event_cl/"&gt;ni1050360108_0mpu7_cl.evt&lt;/a&gt; file &lt;span style="background-color: white; font-family: inherit;"&gt;], so you will see two types of files there :&lt;/span&gt;&lt;/p&gt;&lt;p style="text-align: left;"&gt;&lt;strong&gt;&lt;code&gt;.ufa&lt;/code&gt; Files&lt;/strong&gt; are unfiltered, calibrated NICER event files containing all raw events, including bad or non-X-ray events, mainly for initial analysis.&lt;/p&gt;&lt;p style="text-align: left;"&gt;&lt;strong&gt;&lt;code&gt;.cl&lt;/code&gt; Files&lt;/strong&gt; are clean, calibrated event files that have been screened to remove bad or non-X-ray events, ready for scientific analysis.&lt;/p&gt;&lt;p style="text-align: left;"&gt;&lt;span class="relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] attribution-highlight-bg transition-colors duration-100 ease-in-out"&gt;For more detailed information on NICER data processing and file formats, you can refer to the official HEASARC documentation: &lt;/span&gt;&lt;span&gt;&lt;span class="ms-1 inline-flex max-w-full items-center relative top-[-0.094rem] animate-[show_150ms_ease-in]"&gt;&lt;a alt="https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/help/nicerl3-spect.html?utm_source=chatgpt.com" class="flex h-4.5 overflow-hidden rounded-xl px-2 text-[9px] font-medium bg-token-text-primary! text-token-main-surface-primary! transition-colors duration-150 ease-in-out" href="https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/help/nicerl3-spect.html" rel="noopener" target="_blank"&gt;&lt;span class="relative start-0 bottom-0 flex h-full w-full items-center"&gt;HEASARC&lt;/span&gt;&lt;/a&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p style="text-align: left;"&gt;&lt;span style="background-color: white; font-family: inherit;"&gt;
+
+&lt;/span&gt;&lt;/p&gt;&lt;h4&gt;&lt;span style="font-size: large;"&gt;Lightcurve Functions:&lt;/span&gt;&lt;/h4&gt;&lt;div&gt;We then moved to &lt;strong&gt;filtering&lt;/strong&gt; and &lt;strong&gt;error functions&lt;/strong&gt; inside Lightcurves. I really loved working on these — it felt like building a scientific toolkit piece by piece.&lt;/div&gt;&lt;div&gt;I was able to create many functions like:&lt;/div&gt;&lt;div&gt;[the thing, like most,u can write one line code in the Julia terminal after reading the event]:&lt;/div&gt;&lt;h4 id="-lightcurve-t-"&gt;&lt;code&gt;LightCurve{T}&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;Main structure for binned time series with uncertainties and properties&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-attr"&gt;lc&lt;/span&gt; = create_lightcurve(eventlist, &lt;span class="hljs-number"&gt;1.0&lt;/span&gt;)  # &lt;span class="hljs-number"&gt;1&lt;/span&gt;-second bins
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="key-functions"&gt;&lt;span style="font-size: medium;"&gt;Key Functions:&lt;/span&gt;&lt;/h3&gt;
+&lt;h4 id="light-curve-creation"&gt;&lt;span style="font-size: medium;"&gt;Light Curve Creation&lt;/span&gt;&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-comment"&gt;# Basic usage&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;lc&lt;/span&gt; = create_lightcurve(eventlist, binsize)
+
+&lt;span class="hljs-comment"&gt;# With filtering&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;lc&lt;/span&gt; = create_lightcurve(eventlist, &lt;span class="hljs-number"&gt;0.1&lt;/span&gt;;
+&lt;span class="hljs-attr"&gt;tstart=1000.0,&lt;/span&gt; &lt;span class="hljs-attr"&gt;tstop=2000.0,&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;energy_filter=(0.5,&lt;/span&gt; &lt;span class="hljs-number"&gt;10.0&lt;/span&gt;))
+
+&lt;span class="hljs-comment"&gt;# Custom filtering (recommended)&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;filtered_events&lt;/span&gt; = eventlist |&amp;gt;
+ev -&amp;gt; filter_time(t -&amp;gt; t &amp;gt; &lt;span class="hljs-number"&gt;1000.0&lt;/span&gt;, ev) |&amp;gt;
+ev -&amp;gt; filter_energy(e -&amp;gt; e &amp;lt; &lt;span class="hljs-number"&gt;10.0&lt;/span&gt;, ev)
+&lt;span class="hljs-attr"&gt;lc&lt;/span&gt; = create_lightcurve(filtered_events, &lt;span class="hljs-number"&gt;1.0&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="error-handling"&gt;&lt;span style="font-size: medium;"&gt;Error Handling&lt;/span&gt;&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;# &lt;span class="hljs-keyword"&gt;Set&lt;/span&gt; Poisson &lt;span class="hljs-comment"&gt;errors (default)&lt;/span&gt;
+set_errors!(lc)
+
+# &lt;span class="hljs-keyword"&gt;Set&lt;/span&gt; &lt;span class="hljs-comment"&gt;custom Gaussian errors&lt;/span&gt;
+set_errors!(lc, [0.5, 1.2, 0.8, 1.1])
+
+# Recalculate &lt;span class="hljs-comment"&gt;errors after modifying counts&lt;/span&gt;
+lc.counts &lt;span class="hljs-comment"&gt;.+= background_correction&lt;/span&gt;
+calculate_errors!(lc)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="rebinning"&gt;Rebinning&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-comment"&gt;# Rebin to larger time bins&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;lc_10s&lt;/span&gt; = rebin(lc_1s, &lt;span class="hljs-number"&gt;10.0&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;button class="learn-more"&gt;
+&lt;a class="learn-more" href="https://github.com/StingraySoftware/Stingray.jl/pull/51#issuecomment-2994034403"&gt;
+&lt;span class="circle"&gt;
+&lt;span class="icon arrow"&gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;span class="button-text"&gt;Learn More&lt;/span&gt;
+&lt;/a&gt;
+&lt;/button&gt;
+&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Example light-curve of NICER X-ray data (counts vs time), &lt;/div&gt;&lt;div&gt;produced by the new Stingray.jl routines. &lt;/div&gt;&lt;div&gt;The simple command &lt;code&gt;plot(events)&lt;/code&gt; now generates a basic light curve plot, and built-in options allow filtering and annotating the data (e.g., highlighting Good Time Intervals or applying energy/time filters). The snippet below shows a NICER light curve with peaks at regular intervals.&lt;/div&gt;&lt;h3 id="using-plots-ploting-examples-for-lightcurve-"&gt;&lt;span style="font-size: large;"&gt;USING PLOTS [PLOTTING EXAMPLES FOR LIGHTCURVE]&lt;/span&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-keyword"&gt;using&lt;/span&gt; Plots
+events = readevents(&lt;span class="hljs-string"&gt;"ni1200120104_0mpu7_cl.evt"&lt;/span&gt;, load_gti=&lt;span class="hljs-literal"&gt;true&lt;/span&gt;, &lt;span class="hljs-built_in"&gt;sort&lt;/span&gt;=&lt;span class="hljs-literal"&gt;true&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;Found GTI data: &lt;span class="hljs-number"&gt;16&lt;/span&gt; intervals
+GTI &lt;span class="hljs-built_in"&gt;time&lt;/span&gt; range: &lt;span class="hljs-number"&gt;1.3253976595089495e8&lt;/span&gt; &lt;span class="hljs-keyword"&gt;to&lt;/span&gt; &lt;span class="hljs-number"&gt;1.3261337476368216e8&lt;/span&gt;
+EventList &lt;span class="hljs-keyword"&gt;with&lt;/span&gt; &lt;span class="hljs-number"&gt;21244574&lt;/span&gt; &lt;span class="hljs-keyword"&gt;times&lt;/span&gt; &lt;span class="hljs-keyword"&gt;and&lt;/span&gt; energies
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="simple-plot"&gt;simple plot&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;plot&lt;/span&gt;&lt;span class="hljs-params"&gt;(events)&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="358" src="https://github.com/user-attachments/assets/712dd00a-d7f6-4773-9ad6-cbbe936e2cd4" width="593"&gt;&lt;/p&gt;
+&lt;h4 id="light-curve-with-time-range-filtering"&gt;Light curve with time range filtering&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;plot&lt;/span&gt;&lt;span class="hljs-params"&gt;(events, tstart=&lt;span class="hljs-number"&gt;1.32540&lt;/span&gt;e8, tstop=&lt;span class="hljs-number"&gt;1.32546&lt;/span&gt;e8)&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="335" src="https://github.com/user-attachments/assets/cf1157b2-1d2d-4c01-85cb-918c7b87a8f4" width="504"&gt;&lt;/p&gt;
+&lt;h4 id="lightcurves-how_gtis-and-show_btis"&gt;lightcurves show_gtis and show_btis&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(events, &lt;span class="hljs-attr"&gt;show_btis=true,&lt;/span&gt; &lt;span class="hljs-attr"&gt;bti_alpha=0.4,show_gtis=true,&lt;/span&gt; &lt;span class="hljs-attr"&gt;gti_alpha=0.3)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="335" src="https://github.com/user-attachments/assets/70b57f89-aee9-4712-80a0-06bc968eb18f" width="472"&gt;&lt;/p&gt;
+&lt;button class="learn-more"&gt;
+&lt;a class="learn-more" href="https://github.com/StingraySoftware/Stingray.jl/pull/60#issue-3307865719"&gt;
+&lt;span class="circle"&gt;
+&lt;span class="icon arrow"&gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;span class="button-text"&gt;Learn More&lt;/span&gt;
+&lt;/a&gt;
+&lt;/button&gt;
+&lt;p style="text-align: left;"&gt;&lt;span style="font-weight: normal;"&gt;These capabilities come directly from the new &lt;em&gt;lightcurve recipes.&lt;/em&gt; The examples show how a few keywords (like &lt;code&gt;axis_limits&lt;/code&gt;, &lt;code&gt;show_gtis&lt;/code&gt;, &lt;code&gt;show_btis&lt;/code&gt;, etc.) can dramatically change the plot appearance without extra coding, making Stingray.JL is much more user-friendly for exploratory plotting.&lt;/span&gt;&lt;/p&gt;&lt;h4&gt;Midterm Success&lt;/h4&gt;&lt;p&gt;By midterm evaluation, I had multiple PRs merged, including &lt;strong&gt;Lightcurve recipes&lt;/strong&gt;. I even optimized performance: initially, plotting a huge event file (34 million events, ~1.1 GB) took &lt;strong&gt;1 minute 33 seconds&lt;/strong&gt;. Using Julia broadcasting and matrix operations{suggested by &lt;a class="decorated-link" href="https://github.com/fjebaker" rel="noopener" target="_new"&gt;@fjebaker&lt;/a&gt;}, I reduced it to &lt;strong&gt;11 seconds&lt;/strong&gt;.&lt;br&gt;And I have passed the midterm evaluation &lt;/p&gt;&lt;h4&gt;&lt;span style="font-size: large;"&gt;Moving towards GTI (Good Time Intervals) And BTI (Bad Time Intervals)&lt;/span&gt;&lt;br&gt;&lt;span style="font-weight: normal;"&gt;&lt;a href="https://kashish2210.blogspot.com/2025/06/good-time-bad-time-gtibti.html" target="_blank"&gt;Refer to my previous blog&lt;/a&gt;&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;After discussions with &lt;a class="decorated-link" href="https://github.com/matteobachetti" rel="noopener" target="_new"&gt;@matteobachetti&lt;span class="ms-0.5 inline-block align-middle leading-none"&gt;&lt;svg class="block h-[0.75em] w-[0.75em] stroke-current stroke-[0.75]" fill="currentColor" height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M14.3349 13.3301V6.60645L5.47065 15.4707C5.21095 15.7304 4.78895 15.7304 4.52925 15.4707C4.26955 15.211 4.26955 14.789 4.52925 14.5293L13.3935 5.66504H6.66011C6.29284 5.66504 5.99507 5.36727 5.99507 5C5.99507 4.63273 6.29284 4.33496 6.66011 4.33496H14.9999L15.1337 4.34863C15.4369 4.41057 15.665 4.67857 15.665 5V13.3301C15.6649 13.6973 15.3672 13.9951 14.9999 13.9951C14.6327 13.9951 14.335 13.6973 14.3349 13.3301Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/a&gt;, I implemented &lt;strong&gt;GTI interfaces&lt;/strong&gt;:&lt;/p&gt;&lt;p&gt;&lt;code&gt;apply_gtis() (LightCurve version)&lt;/code&gt;- Segments light curves by GTIs, creating independent LightCurve objects suitable for:&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Independent periodogram calculations&lt;/li&gt;&lt;li&gt;Variability analysis per observation segment&lt;/li&gt;&lt;li&gt;Maintaining uniform sampling requirements&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;code&gt;create_filtered_lightcurve()&lt;/code&gt; - Internal function that creates filtered LightCurve objects while preserving metadata and recalculating statistical properties.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Data Gap Filling Function&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;code&gt;fill_bad_time_intervals!()&lt;/code&gt; - Fills short gaps between GTIs with synthetic events to maintain temporal sampling continuity. This is used when:&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Periodogram analysis requires uniform sampling&lt;/li&gt;&lt;li&gt;Short data gaps would introduce artifacts&lt;/li&gt;&lt;li&gt;Statistical methods assume continuous time series&lt;/li&gt;&lt;li&gt;These functions ensure we only analyze valid parts of data (avoiding bad intervals).&lt;/li&gt;&lt;/ul&gt;
+&lt;button class="learn-more"&gt;
+&lt;a class="learn-more" href="https://github.com/StingraySoftware/Stingray.jl/pull/52#issue-3186192211"&gt;
+&lt;span class="circle"&gt;
+&lt;span class="icon arrow"&gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;span class="button-text"&gt;Learn More&lt;/span&gt;&lt;/a&gt;&lt;/button&gt;&lt;hr&gt;&lt;h3&gt;&lt;span style="font-size: large;"&gt;Diving into Spectral Analysis :)&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;Next came the &lt;strong&gt;Power Spectrum&lt;/strong&gt; and &lt;strong&gt;Averaged Power Spectrum&lt;/strong&gt; implementations.&lt;/p&gt;&lt;h5&gt;&lt;span style="font-size: medium;"&gt;Power Spectrum&lt;/span&gt;&lt;/h5&gt;&lt;p&gt;This decomposes lightcurves into frequencies (like listening to the rhythm of a star).&lt;/p&gt;&lt;h5&gt;Averaged Power Spectrum&lt;/h5&gt;&lt;pre class="overflow-visible!"&gt;&lt;div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"&gt;&lt;div class="sticky top-9"&gt;&lt;div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"&gt;&lt;div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="overflow-y-auto p-4" dir="ltr"&gt;This method cancels noise and highlights true signals.&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;p&gt;&lt;b&gt;&lt;span style="font-size: medium;"&gt;Functions:&lt;br&gt;&lt;/span&gt;&lt;/b&gt;&lt;span style="font-size: medium;"&gt;events[unbinned]&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-attr"&gt;events&lt;/span&gt; = readevents(&lt;span class="hljs-string"&gt;"ni1200120104_0mpu7_cl.evt"&lt;/span&gt;, load_gti=&lt;span class="hljs-literal"&gt;true&lt;/span&gt;, sort=&lt;span class="hljs-literal"&gt;true&lt;/span&gt;)
+&lt;span class="hljs-attr"&gt;ps&lt;/span&gt; = Powerspectrum(events, norm=&lt;span class="hljs-string"&gt;"leahy"&lt;/span&gt;)
+&lt;span class="hljs-attr"&gt;avg_ps&lt;/span&gt; = AveragedPowerspectrum(events, &lt;span class="hljs-number"&gt;1024.0&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"leahy"&lt;/span&gt;, dt=&lt;span class="hljs-number"&gt;0.1&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="output-data-ik-redunddant-"&gt;&lt;span style="font-size: medium;"&gt;output: data [ik redunddant :)]&lt;/span&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img alt="image" height="96" src="https://github.com/user-attachments/assets/91802da1-d070-4417-a857-d4955e8ac43f" width="500"&gt;
+&lt;img alt="image" height="86" src="https://github.com/user-attachments/assets/5f5bf813-923b-4bc6-9808-b5b845edf640" width="499"&gt;&lt;/p&gt;
+&lt;h4 id="lightcurve-binned-"&gt;&lt;span style="font-size: medium;"&gt;lightcurve[binned]&lt;/span&gt;&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-attr"&gt;lc&lt;/span&gt; = create_lightcurve(events, &lt;span class="hljs-number"&gt;0.1&lt;/span&gt;)
+&lt;span class="hljs-attr"&gt;ps_lc&lt;/span&gt; = Powerspectrum(lc, norm=&lt;span class="hljs-string"&gt;"leahy"&lt;/span&gt;)
+&lt;span class="hljs-attr"&gt;ps_avg_lc&lt;/span&gt; = AveragedPowerspectrum(lc, &lt;span class="hljs-number"&gt;1024.0&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"leahy"&lt;/span&gt;)
+&lt;span class="hljs-attr"&gt;ps_avg_lc&lt;/span&gt; = AveragedPowerspectrum(lc, &lt;span class="hljs-number"&gt;1024.0&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"leahy"&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="output-the-same-type-as-the-above-one-"&gt;&lt;span style="font-size: medium;"&gt;output the same type as the above one:)&lt;/span&gt;&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;println&lt;/span&gt;&lt;span class="hljs-params"&gt;(ps.df)&lt;/span&gt;&lt;/span&gt;
+&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;println&lt;/span&gt;&lt;span class="hljs-params"&gt;(avg_ps.df)&lt;/span&gt;&lt;/span&gt;
+&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;println&lt;/span&gt;&lt;span class="hljs-params"&gt;(ps_lc.df)&lt;/span&gt;&lt;/span&gt;
+&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;println&lt;/span&gt;&lt;span class="hljs-params"&gt;(ps_avg_lc.df)&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="output-"&gt;&lt;span style="font-size: medium;"&gt;Output:&lt;/span&gt;&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;1&lt;span class="hljs-selector-class"&gt;.3662135391761732e-5&lt;/span&gt;
+0&lt;span class="hljs-selector-class"&gt;.0009765625&lt;/span&gt;
+1&lt;span class="hljs-selector-class"&gt;.3662135391761732e-5&lt;/span&gt;
+0&lt;span class="hljs-selector-class"&gt;.0009765625&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;println&lt;/span&gt;&lt;span class="hljs-params"&gt;(ps.m)&lt;/span&gt;&lt;/span&gt;
+&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;println&lt;/span&gt;&lt;span class="hljs-params"&gt;(avg_ps.m)&lt;/span&gt;&lt;/span&gt;
+&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;println&lt;/span&gt;&lt;span class="hljs-params"&gt;(ps_lc.m)&lt;/span&gt;&lt;/span&gt;
+&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;println&lt;/span&gt;&lt;span class="hljs-params"&gt;(ps_avg_lc.m)&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="output-"&gt;&lt;span style="font-size: medium;"&gt;Output:&lt;/span&gt;&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&lt;span class="hljs-number"&gt;1&lt;/span&gt;
+&lt;span class="hljs-number"&gt;7&lt;/span&gt;
+&lt;span class="hljs-number"&gt;1&lt;/span&gt;
+&lt;span class="hljs-number"&gt;7&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;button class="learn-more"&gt;
+&lt;a class="learn-more" href="https://github.com/StingraySoftware/Stingray.jl/pull/57#issue-3271315226"&gt;
+&lt;span class="circle"&gt;
+&lt;span class="icon arrow"&gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;span class="button-text"&gt;Learn More&lt;/span&gt;
+&lt;/a&gt;
+&lt;/button&gt;&lt;h5&gt;&lt;b&gt;&lt;span style="font-size: medium;"&gt;Functions with plots :&lt;/span&gt;&lt;/b&gt;&lt;/h5&gt;&lt;p&gt;Basis setup:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;using Plots
+events = readevents(&lt;span class="hljs-string"&gt;"ni1200120104_0mpu7_cl.evt"&lt;/span&gt;, sort=true)
+lc = create_lightcurve(&lt;span class="hljs-name"&gt;events&lt;/span&gt;, &lt;span class="hljs-number"&gt;0.1&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id="plotting-"&gt;Plotting:&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(events, &lt;span class="hljs-attr"&gt;segment_size=256.0,&lt;/span&gt; &lt;span class="hljs-attr"&gt;dt=0.01,&lt;/span&gt; &lt;span class="hljs-attr"&gt;norm="frac",&lt;/span&gt; &lt;span class="hljs-attr"&gt;show_noise=true)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="319" src="https://github.com/user-attachments/assets/2aee73e4-4098-4d05-9bd1-83e4dc589086" width="496"&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(events, segment_size=&lt;span class="hljs-number"&gt;256.0&lt;/span&gt;, show_noise=true, axis_limits=[&lt;span class="hljs-number"&gt;1&lt;/span&gt;,&lt;span class="hljs-number"&gt;1&lt;/span&gt;/&lt;span class="hljs-number"&gt;10&lt;/span&gt;])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="307" src="https://github.com/user-attachments/assets/2133d848-f091-4750-8721-c2c6e38c364f" width="479"&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-comment"&gt;# Create the power spectra objects&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;ps2&lt;/span&gt; = AveragedPowerspectrum(events, &lt;span class="hljs-number"&gt;256.0&lt;/span&gt;; &lt;span class="hljs-attr"&gt;dt=0.01,&lt;/span&gt; &lt;span class="hljs-attr"&gt;norm="frac")&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;ps3&lt;/span&gt; = AveragedPowerspectrum(events, &lt;span class="hljs-number"&gt;256.0&lt;/span&gt;; &lt;span class="hljs-attr"&gt;dt=0.01,&lt;/span&gt; &lt;span class="hljs-attr"&gt;norm="leahy")&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;ps4&lt;/span&gt; = AveragedPowerspectrum(events, &lt;span class="hljs-number"&gt;256.0&lt;/span&gt;; &lt;span class="hljs-attr"&gt;dt=0.01,&lt;/span&gt; &lt;span class="hljs-attr"&gt;norm="abs")&lt;/span&gt;
+plot([ps2, ps3, ps4],
+&lt;span class="hljs-attr"&gt;labels=[&lt;/span&gt; &lt;span class="hljs-string"&gt;"Fractional"&lt;/span&gt;, &lt;span class="hljs-string"&gt;"Leahy"&lt;/span&gt;, &lt;span class="hljs-string"&gt;"Absolute"&lt;/span&gt;],
+&lt;span class="hljs-attr"&gt;colors=[&lt;/span&gt; :red, :green, :orange],
+&lt;span class="hljs-attr"&gt;linewidth=2.0,&lt;/span&gt;
+&lt;span class="hljs-attr"&gt;show_noise=true)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="309" src="https://github.com/user-attachments/assets/6f54bbf1-06d5-440a-a39b-02393d4955ab" width="477"&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;ps = AveragedPowerspectrum(&lt;span class="hljs-name"&gt;events&lt;/span&gt;, &lt;span class="hljs-number"&gt;256.0&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"frac"&lt;/span&gt;)
+plot(&lt;span class="hljs-name"&gt;ps&lt;/span&gt;, show_noise=true, meanrate=ps.mean_rate)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="279" src="https://github.com/user-attachments/assets/a6afc49f-a4ce-47d9-b47b-2f42e5b4ba1b" width="477"&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(ps, &lt;span class="hljs-attr"&gt;show_noise=true,&lt;/span&gt; &lt;span class="hljs-attr"&gt;show_errors=true,&lt;/span&gt; &lt;span class="hljs-attr"&gt;subtract_noise=true,&lt;/span&gt; &lt;span class="hljs-attr"&gt;meanrate=ps.mean_rate)&lt;/span&gt;
+plot(ps, &lt;span class="hljs-attr"&gt;freq_mult=true,&lt;/span&gt; &lt;span class="hljs-attr"&gt;show_noise=true,&lt;/span&gt; &lt;span class="hljs-attr"&gt;meanrate=ps.mean_rate)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="314" src="https://github.com/user-attachments/assets/735ab6bd-097d-4c4d-8fab-111094fd2ec7" width="513"&gt;
+&lt;img alt="image" height="281" src="https://github.com/user-attachments/assets/638dfd22-67e2-4c0c-b142-ccb8dcd487d5" width="493"&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;ps1 = AveragedPowerspectrum(&lt;span class="hljs-name"&gt;events&lt;/span&gt;, &lt;span class="hljs-number"&gt;128.0&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"frac"&lt;/span&gt;)
+ps2 = AveragedPowerspectrum(&lt;span class="hljs-name"&gt;events&lt;/span&gt;, &lt;span class="hljs-number"&gt;256.0&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"frac"&lt;/span&gt;)
+ps3 = AveragedPowerspectrum(&lt;span class="hljs-name"&gt;events&lt;/span&gt;, &lt;span class="hljs-number"&gt;512.0&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"frac"&lt;/span&gt;)
+
+plot([ps1, ps2, ps3], labels=[&lt;span class="hljs-string"&gt;"128s"&lt;/span&gt;, &lt;span class="hljs-string"&gt;"256s"&lt;/span&gt;, &lt;span class="hljs-string"&gt;"512s"&lt;/span&gt;])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="288" src="https://github.com/user-attachments/assets/a5408610-8d27-4501-be81-e8051b767be7" width="458"&gt;&lt;/p&gt;
+&lt;button class="learn-more"&gt;
+&lt;a class="learn-more" href="https://github.com/StingraySoftware/Stingray.jl/pull/59#issue-3273135469"&gt;
+&lt;span class="circle"&gt;
+&lt;span class="icon arrow"&gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;span class="button-text"&gt;Learn More&lt;/span&gt;&lt;/a&gt;&lt;/button&gt;&lt;br&gt;&lt;br&gt;While building this function, I faced trouble in gti since if u read .evt files from previous functions, it was excluding edge gtis, so &lt;a class="decorated-link" href="https://github.com/matteobachetti" rel="noopener" target="_new"&gt;@matteobachetti&lt;/a&gt; suggested to use  &lt;a href="https://github.com/StingraySoftware/Stingray.jl/blob/2c52daff3963bff886fad652c415d88c757e570d/src/gti.jl#L481" target="_blank"&gt;generate_indices_of_segment_boundaries_binned &lt;/a&gt;and this &lt;a href="https://github.com/StingraySoftware/Stingray.jl/blob/2c52daff3963bff886fad652c415d88c757e570d/src/gti.jl#L494C21-L494C66" target="_blank"&gt;generate_indices_of_segment_boundaries_unbinned&lt;/a&gt;&lt;br&gt;This was a key feature to handle GTI correctly, thank Matteo&lt;br&gt;&lt;hr&gt;&lt;h3&gt;Cross Spectrum – A Big Milestone&lt;/h3&gt;&lt;p&gt;The most challenging task was &lt;span style="margin: 0px; padding: 0px;"&gt;implementing Cross-Spectrum&lt;/span&gt;, which compares two lightcurves to study phase lags and time lags.&lt;/p&gt;&lt;p&gt;At first, I faced countless issues: GTI misalignment, event loss, and overflow errors. My mentor reminded me: &lt;em&gt;“You are not reading complete &lt;code&gt;.evt&lt;/code&gt; files”&lt;/em&gt;. Once I corrected that, things started working.&lt;/p&gt;
+&lt;h4 id="extended-fitsmetadata-struct-with-timing-keyword-fields-"&gt;&lt;span style="font-size: small;"&gt;Extended FITSMetadata struct with timing keyword fields:&lt;/span&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;mjd_ref: MJD reference time (supports both MJDREF and MJDREFI+MJDREFF)&lt;/li&gt;
+&lt;li&gt;time_zero: Time zero offset (TIMEZERO)&lt;/li&gt;
+&lt;li&gt;time_unit: Time unit conversion factor (TIMEUNIT)&lt;/li&gt;
+&lt;li&gt;time_sys: Time system (TIMESYS)&lt;/li&gt;
+&lt;li&gt;time_pixr: Time pixel reference (TIMEPIXR)&lt;/li&gt;&lt;li&gt;time_del: Time resolution/bin size (TIMEDEL)&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The implementation follows the &lt;a href="https://heasarc.gsfc.nasa.gov/docs/xte/abc/time_tutorial.html"&gt;HEASARC timing tutorial&lt;/a&gt; specifications and handles various edge cases commonly found in X-ray astronomy FITS files.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also thought units were mismatched, but it turned out Julia automatically handled them. Lesson learned![after implementing events with these extensions]&lt;/p&gt;&lt;p&gt;Once I got past that misunderstanding, finally, things were aligning, and the cross-spectrum started working properly. The alignment was correct, our filter function worked, and my mentor suggested something super smart: &lt;em&gt;use the same &lt;code&gt;.evt&lt;/code&gt; file, filter it out, and then use both filtered versions.&lt;/em&gt;&lt;/p&gt;&lt;p&gt;This was a relief, especially because I couldn’t find matching &lt;code&gt;.evt&lt;/code&gt; files from different detectors. That trick really saved me. 🙌&lt;/p&gt;&lt;p&gt;
+
+&lt;/p&gt;&lt;p&gt;Along the way, I started developing a secret interest in telescope observatories. Working on real telescope data made me curious about how things actually operate behind the scenes.&lt;/p&gt;&lt;p&gt;Finally, I submitted my &lt;strong&gt;biggest PR (~5.7k lines of code)&lt;/strong&gt; —sorry, mentors 😅. It includes Cross-Spectrum implementation.n&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Average Cross-Spectrum and single&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Recipes for plotting&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;div&gt;&lt;p&gt;At first, I was building separate structures for the cross-spectrum and the averaged cross-spectrum. But my mentor asked: &lt;em&gt;“Why not just make it one?”&lt;/em&gt; And then &lt;a class="decorated-link" href="https://github.com/matteobachetti" rel="noopener" target="_new"&gt;@matteobachetti&lt;span class="ms-0.5 inline-block align-middle leading-none"&gt;&lt;svg class="block h-[0.75em] w-[0.75em] stroke-current stroke-[0.75]" fill="currentColor" height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path d="M14.3349 13.3301V6.60645L5.47065 15.4707C5.21095 15.7304 4.78895 15.7304 4.52925 15.4707C4.26955 15.211 4.26955 14.789 4.52925 14.5293L13.3935 5.66504H6.66011C6.29284 5.66504 5.99507 5.36727 5.99507 5C5.99507 4.63273 6.29284 4.33496 6.66011 4.33496H14.9999L15.1337 4.34863C15.4369 4.41057 15.665 4.67857 15.665 5V13.3301C15.6649 13.6973 15.3672 13.9951 14.9999 13.9951C14.6327 13.9951 14.335 13.6973 14.3349 13.3301Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;&lt;/a&gt;  suggested I could detect whether it was a cross-spectrum or an average by "m" and handle both within the same structure. That idea really helped reduce code size and made things much cleaner.&lt;/p&gt;
+&lt;p&gt;The best part? The recipes work automatically working now, which feels &lt;strong&gt;amazing&lt;/strong&gt;. (Okay, I’ll admit it: I’ve used &lt;em&gt;a lot&lt;/em&gt; of &lt;code&gt;if-else&lt;/code&gt; statements, but hey—it works!)&lt;/p&gt;&lt;/div&gt;&lt;p&gt;&lt;b&gt;&lt;span style="font-size: medium;"&gt;Methods and Plots:&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-attr"&gt;lc1&lt;/span&gt; = create_lightcurve(ev_lowE,&lt;span class="hljs-number"&gt;0.01&lt;/span&gt;)
+&lt;span class="hljs-attr"&gt;lc2&lt;/span&gt; = create_lightcurve(ev_highE,&lt;span class="hljs-number"&gt;0.01&lt;/span&gt;)
+&lt;span class="hljs-attr"&gt;cs&lt;/span&gt; = CrossSpectrum(ev_lowE, ev_highE, &lt;span class="hljs-number"&gt;64.0&lt;/span&gt;, &lt;span class="hljs-number"&gt;0.01&lt;/span&gt;; norm=&lt;span class="hljs-string"&gt;"frac"&lt;/span&gt;)
+&lt;span class="hljs-attr"&gt;acs&lt;/span&gt; = AveragedCrossSpectrum(ev_lowE, ev_highE, &lt;span class="hljs-number"&gt;64.0&lt;/span&gt;, &lt;span class="hljs-number"&gt;0.01&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;CrossSpectrum{Float64} (Single)
+&lt;span class="hljs-symbol"&gt;  Frequencies:&lt;/span&gt; &lt;span class="hljs-number"&gt;3199&lt;/span&gt;
+&lt;span class="hljs-symbol"&gt;  Normalization:&lt;/span&gt; frac
+CrossSpectrum{Float64} (Averaged)
+&lt;span class="hljs-symbol"&gt;  Frequencies:&lt;/span&gt; &lt;span class="hljs-number"&gt;3199&lt;/span&gt;
+Segments averaged: &lt;span class="hljs-number"&gt;53&lt;/span&gt;
+Segment size: &lt;span class="hljs-number"&gt;64.0&lt;/span&gt;
+Mean rates: &lt;span class="hljs-number"&gt;8205.026827830188&lt;/span&gt;, &lt;span class="hljs-number"&gt;828.4949882075472&lt;/span&gt;
+&lt;span class="hljs-symbol"&gt;  Normalization:&lt;/span&gt; frac
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id="i-am-using-these-functions-to-determine-whether-it-s-an-averaged-or-a-single-cross-spectrum"&gt;I am using these functions to determine whether it's an averaged or a single cross-spectrum&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;is_averaged&lt;/span&gt;&lt;span class="hljs-params"&gt;(cs::CrossSpectrum)&lt;/span&gt;&lt;/span&gt; = cs&lt;span class="hljs-selector-class"&gt;.m&lt;/span&gt; &amp;gt; &lt;span class="hljs-number"&gt;1&lt;/span&gt;
+&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;is_single&lt;/span&gt;&lt;span class="hljs-params"&gt;(cs::CrossSpectrum)&lt;/span&gt;&lt;/span&gt; = cs&lt;span class="hljs-selector-class"&gt;.m&lt;/span&gt; == &lt;span class="hljs-number"&gt;1&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="now-plotting-"&gt;Now plotting:&lt;/h3&gt;
+&lt;h4 id="simple-plot-direct-cs-and-acs-"&gt;simple plot direct &lt;code&gt;cs&lt;/code&gt; and  &lt;code&gt;acs&lt;/code&gt;&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;plot&lt;/span&gt;&lt;span class="hljs-params"&gt;(cs)&lt;/span&gt;&lt;/span&gt;
+&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;plot&lt;/span&gt;&lt;span class="hljs-params"&gt;(acs)&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, plot_type=&lt;span class="hljs-symbol"&gt;:amplitude&lt;/span&gt;)
+plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, plot_type=&lt;span class="hljs-symbol"&gt;:amplitude&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/c9c20a05-032f-4b83-bbe4-2f7f6f4d9238" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/73ad1f32-4022-420b-92aa-132aecad0fb7" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="u-can-add-a-frequency-range-to-"&gt;u can add a frequency range to:&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, plot_type=&lt;span class="hljs-symbol"&gt;:amplitude&lt;/span&gt;, freq_range=(&lt;span class="hljs-number"&gt;0.1&lt;/span&gt;, &lt;span class="hljs-number"&gt;10.0&lt;/span&gt;), color=&lt;span class="hljs-symbol"&gt;:green&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/dc477b0e-d889-4edf-a214-6eb6a7556d8c" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="time-lag-spectrum"&gt;Time lag spectrum&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, plot_type=&lt;span class="hljs-symbol"&gt;:time_lag&lt;/span&gt;, color=&lt;span class="hljs-symbol"&gt;:orange&lt;/span&gt;)
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, plot_type=&lt;span class="hljs-symbol"&gt;:time_lag&lt;/span&gt;, color=&lt;span class="hljs-symbol"&gt;:orange&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/50dd08b2-bf40-4d50-b7b4-c0409cb81b53" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/2e02035e-2cc2-48a8-84a0-2b658f38a955" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="coherence-function"&gt;Coherence function&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, plot_type=&lt;span class="hljs-symbol"&gt;:coherence&lt;/span&gt;, color=&lt;span class="hljs-symbol"&gt;:green&lt;/span&gt;)
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, plot_type=&lt;span class="hljs-symbol"&gt;:coherence&lt;/span&gt;, color=&lt;span class="hljs-symbol"&gt;:green&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/a78f703c-413f-4f3c-9c1e-bdb4397d9015" width="320"&gt;  &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/f86f4b01-cf7f-4663-925a-cc749bd944e1" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="coherence-with-confidence-levels"&gt;Coherence with confidence levels&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:coherence_confidence&lt;/span&gt;))
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:coherence_confidence&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/219d73d7-fbd4-451c-82b3-2d33aa80660e" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/f8f9d293-a498-4e6a-8a49-2d15c9d432bd" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="time-lag-with-error-bars-and-reference-values"&gt;Time lag with error bars and reference values.&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:lag_frequency_errors&lt;/span&gt;),
+freq_range=(&lt;span class="hljs-number"&gt;1.0&lt;/span&gt;, &lt;span class="hljs-number"&gt;5.0&lt;/span&gt;),
+reference_lag=Dict(&lt;span class="hljs-symbol"&gt;:frequency&lt;/span&gt; =&amp;gt; &lt;span class="hljs-number"&gt;3.0&lt;/span&gt;, &lt;span class="hljs-symbol"&gt;:expected_lag&lt;/span&gt; =&amp;gt; &lt;span class="hljs-number"&gt;0.15&lt;/span&gt;))
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:lag_frequency_errors&lt;/span&gt;),
+freq_range=(&lt;span class="hljs-number"&gt;1.0&lt;/span&gt;, &lt;span class="hljs-number"&gt;5.0&lt;/span&gt;),
+reference_lag=Dict(&lt;span class="hljs-symbol"&gt;:frequency&lt;/span&gt; =&amp;gt; &lt;span class="hljs-number"&gt;3.0&lt;/span&gt;, &lt;span class="hljs-symbol"&gt;:expected_lag&lt;/span&gt; =&amp;gt; &lt;span class="hljs-number"&gt;0.15&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/3b47243e-ac5f-439a-bdec-051c21e75e20" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/1e07bf03-0c52-4356-896b-2338f5df17f5" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="phase-lag-with-error-bars-and-reference-values"&gt;Phase lag with error bars and reference values&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:phase_frequency_errors&lt;/span&gt;),
+freq_range=(&lt;span class="hljs-number"&gt;2.0&lt;/span&gt;, &lt;span class="hljs-number"&gt;5.0&lt;/span&gt;),
+reference_phase=Dict(&lt;span class="hljs-symbol"&gt;:frequency&lt;/span&gt; =&amp;gt; &lt;span class="hljs-number"&gt;3.0&lt;/span&gt;, &lt;span class="hljs-symbol"&gt;:expected_phase&lt;/span&gt; =&amp;gt; π/3))
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:phase_frequency_errors&lt;/span&gt;),
+freq_range=(&lt;span class="hljs-number"&gt;2.0&lt;/span&gt;, &lt;span class="hljs-number"&gt;5.0&lt;/span&gt;),
+reference_phase=Dict(&lt;span class="hljs-symbol"&gt;:frequency&lt;/span&gt; =&amp;gt; &lt;span class="hljs-number"&gt;3.0&lt;/span&gt;, &lt;span class="hljs-symbol"&gt;:expected_phase&lt;/span&gt; =&amp;gt; π/3))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/dc3cb2ed-461f-49e6-821d-c8ae26529807" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/17234213-e730-4f9a-a217-80661cd3de92" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="time-lag-with-rebinning"&gt;Time lag with rebinning.&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:lag_frequency_errors&lt;/span&gt;), rebin_factor=4, freq_range=(&lt;span class="hljs-number"&gt;1.0&lt;/span&gt;, &lt;span class="hljs-number"&gt;10.0&lt;/span&gt;))
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:lag_frequency_errors&lt;/span&gt;), rebin_factor=4, freq_range=(&lt;span class="hljs-number"&gt;1.0&lt;/span&gt;, &lt;span class="hljs-number"&gt;10.0&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/658e7b4a-9ee1-4d6b-a024-fa12468b4126" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/3586bcaa-65ba-4b26-86be-7aad4b54c3c2" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="compare-two-light-curves"&gt;Compare two light curves.s&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;&lt;span class="hljs-function"&gt;&lt;span class="hljs-title"&gt;plot&lt;/span&gt;&lt;span class="hljs-params"&gt;(lc1, lc2)&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/f3902f9c-0fa2-4a88-834e-90ba3a4a3611" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="normalization-comparison-requires-an-array-of-differently-normalized-crossspectra-"&gt;Normalization comparison (requires an array of differently normalized CrossSpectra)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;cs_leahy = CrossSpectrum(&lt;span class="hljs-name"&gt;lc1&lt;/span&gt;, lc2, norm=&lt;span class="hljs-string"&gt;"leahy"&lt;/span&gt;)
+cs_frac = CrossSpectrum(&lt;span class="hljs-name"&gt;lc1&lt;/span&gt;, lc2, norm=&lt;span class="hljs-string"&gt;"frac"&lt;/span&gt;)
+cs_abs = CrossSpectrum(&lt;span class="hljs-name"&gt;lc1&lt;/span&gt;, lc2, norm=&lt;span class="hljs-string"&gt;"abs"&lt;/span&gt;)
+
+plot([cs_leahy, cs_frac, cs_abs], Val(&lt;span class="hljs-symbol"&gt;:normalization_comparison&lt;/span&gt;))
+
+plot([cs_leahy, cs_frac, cs_abs], Val(&lt;span class="hljs-symbol"&gt;:normalization_comparison&lt;/span&gt;),
+norm_labels=[&lt;span class="hljs-string"&gt;"Leahy Norm"&lt;/span&gt;, &lt;span class="hljs-string"&gt;"Fractional RMS"&lt;/span&gt;, &lt;span class="hljs-string"&gt;"Absolute RMS"&lt;/span&gt;])
+
+acs_leahy = AveragedCrossSpectrum(&lt;span class="hljs-name"&gt;lc1&lt;/span&gt;, lc2,&lt;span class="hljs-number"&gt;62&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"leahy"&lt;/span&gt;)
+acs_frac = AveragedCrossSpectrum(&lt;span class="hljs-name"&gt;lc1&lt;/span&gt;, lc2,&lt;span class="hljs-number"&gt;62&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"frac"&lt;/span&gt;)
+acs_abs = AveragedCrossSpectrum(&lt;span class="hljs-name"&gt;lc1&lt;/span&gt;, lc2,&lt;span class="hljs-number"&gt;62&lt;/span&gt;, norm=&lt;span class="hljs-string"&gt;"abs"&lt;/span&gt;)
+
+plot([acs_leahy, acs_frac, acs_abs], Val(&lt;span class="hljs-symbol"&gt;:normalization_comparison&lt;/span&gt;))
+
+plot([acs_leahy, acs_frac, acs_abs], Val(&lt;span class="hljs-symbol"&gt;:normalization_comparison&lt;/span&gt;),
+norm_labels=[&lt;span class="hljs-string"&gt;"Leahy Norm"&lt;/span&gt;, &lt;span class="hljs-string"&gt;"Fractional RMS"&lt;/span&gt;, &lt;span class="hljs-string"&gt;"Absolute RMS"&lt;/span&gt;])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="320" src="https://github.com/user-attachments/assets/2b1787f1-50ed-4c69-8d3d-ffa8272cbe9b" width="320"&gt;   &lt;img alt="image" height="320" src="https://github.com/user-attachments/assets/1030c147-0a5c-4f10-a0fd-947cfd95ae45" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="rebinning-comparison-original-vs-rebinned-"&gt;Rebinning comparison (original vs rebinned)&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;cs_rebinned = rebin(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, &lt;span class="hljs-number"&gt;0.25&lt;/span&gt;)  # Your rebinning function
+plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, cs_rebinned, Val(&lt;span class="hljs-symbol"&gt;:rebinning_comparison&lt;/span&gt;), rebin_type=&lt;span class="hljs-string"&gt;"Linear"&lt;/span&gt;)
+acs_rebinned = rebin(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, &lt;span class="hljs-number"&gt;0.25&lt;/span&gt;)  # Your rebinning function
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, acs_rebinned, Val(&lt;span class="hljs-symbol"&gt;:rebinning_comparison&lt;/span&gt;), rebin_type=&lt;span class="hljs-string"&gt;"Linear"&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/e1b71928-d060-4806-96eb-dffea3a9798e" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/3dd52ac5-6a8e-4ce8-905a-0c118ab4a96a" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="log-rebinning-comparison"&gt;Log rebinning comparison&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;cs_log_rebinned = rebin_log(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, f=0.&lt;span class="hljs-number"&gt;02&lt;/span&gt;)
+plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, cs_log_rebinned, Val(&lt;span class="hljs-symbol"&gt;:rebinning_comparison&lt;/span&gt;), rebin_type=&lt;span class="hljs-string"&gt;"Logarithmic"&lt;/span&gt;)
+acs_log_rebinned = rebin_log(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, f=0.&lt;span class="hljs-number"&gt;02&lt;/span&gt;)
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, acs_log_rebinned, Val(&lt;span class="hljs-symbol"&gt;:rebinning_comparison&lt;/span&gt;), rebin_type=&lt;span class="hljs-string"&gt;"Logarithmic"&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/70f2207d-e583-4b8b-850b-9e80842e2544" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/357c65bc-70a9-4d39-8ffd-b6fa2404d0cd" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="noise-compare"&gt;noise compare&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:noise_comparison&lt;/span&gt;))
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:noise_comparison&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/15d805d7-81be-4a0d-ab3a-88cb86bf9a46" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/d30fed6a-5692-4293-bf4b-92023ee42a50" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="white-noise"&gt;white noise&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-juia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:white_noise&lt;/span&gt;), high_freq_fraction=0.&lt;span class="hljs-number"&gt;3&lt;/span&gt;)
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:white_noise&lt;/span&gt;), high_freq_fraction=0.&lt;span class="hljs-number"&gt;3&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;output: same as amplitude: Phase lag errors&lt;/p&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:phase_lag_errors&lt;/span&gt;))
+plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:phase_lag_errors&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/d144d7e3-9f92-49a5-a980-750b99aca3b0" width="320"&gt;   &lt;img alt="image" height="240" src="https://github.com/user-attachments/assets/37b2088c-6ba8-428f-b4e9-be0caf064826" width="320"&gt;&lt;/p&gt;
+&lt;h4 id="significant_detections"&gt;significant_detections&lt;/h4&gt;
+&lt;pre&gt;&lt;code class="lang-julia"&gt;plot(&lt;span class="hljs-name"&gt;acs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:significant_detections&lt;/span&gt;), threshold=3.&lt;span class="hljs-number"&gt;0&lt;/span&gt;)
+plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-symbol"&gt;:significant_detections&lt;/span&gt;), threshold=3.&lt;span class="hljs-number"&gt;0&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img alt="image" height="402" src="https://github.com/user-attachments/assets/48b42385-d051-4e89-9f24-10bf59812ed4" width="671"&gt;
+&lt;img alt="image" height="374" src="https://github.com/user-attachments/assets/3cc27fd1-3e96-4b0c-8f21-a2af40765f0c" width="616"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;span style="font-size: medium;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;Yeah, I have used if-else in the plot's title to hehehehehehe:)&lt;br&gt;
+&lt;button class="learn-more"&gt;
+&lt;a class="learn-more" href="https://github.com/StingraySoftware/Stingray.jl/pull/65#issue-3363831936"&gt;
+&lt;span class="circle"&gt;
+&lt;span class="icon arrow"&gt;&lt;/span&gt;
+&lt;/span&gt;
+&lt;span class="button-text"&gt;Learn More&lt;/span&gt;
+&lt;/a&gt;
+&lt;/button&gt;&lt;hr&gt;&lt;h3&gt;What’s Next:&lt;/h3&gt;&lt;p&gt;After GSoC, I plan to continue working on:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dynamic Power Spectrum&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cross-Spectrumectrum improvements&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Combining with &lt;strong&gt;Power Colors&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;I also want to become a &lt;strong&gt;watcher&lt;/strong&gt; of Stingray.jl and contribute to astronomy-related open source projects long term.&lt;/p&gt;&lt;p&gt;One of my mentors, &lt;a href="https://github.com/stefanocovino" target="_blank"&gt;@stefanocovino&lt;/a&gt;, also suggested&lt;br&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://fredrikekre.github.io/Literate.jl/v2/" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;" target="_blank"&gt;&lt;img alt="" height="37" src="https://blogger.googleusercontent.com/img/a/AVvXsEiAYjoLRnDxk191r5Kv7NHxQ8YAL2rwzDv6vj7rLtqmcpt26QCM2OkgRbCagKPv0dI_cxymQc30wQyUNspjLSN99-fzzR9xg986CH8-E9-hh0ViDZuXhCADJ3vat3zdikUNverfFFcZrMBMiZASQkfdbaJgCr9Oz--8sW-lYpriKA9zYeh96-O1-D56KJwY=w45-h37" width="45"&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;h3&gt;&lt;span style="font-size: medium; font-weight: normal;"&gt;Since I haven't created any docs for this, although I have many &lt;a href="https://github.com/kashish2210/notebooks" target="_blank"&gt;notebooks here&lt;/a&gt;, but they are all scattered, I will make an unstable branch which will include all the changes I have made, and then I will document it as solving puzzles&lt;/span&gt;&lt;/h3&gt;&lt;h3&gt;&lt;br&gt;&lt;/h3&gt;&lt;h3&gt;SumUps:)&lt;/h3&gt;&lt;p&gt;Looking back, my journey was full of:&lt;/p&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Struggles (debugging metadata, bad first PRs, HDU errors).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Learning (structs in Julia, broadcasting, telescope instruments, GTIs).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Wins (my first merge, lightcurve recipes, big Cross Spectrum PR).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;Most importantly, it connected my &lt;strong&gt;childhood passion for astronomy&lt;/strong&gt; with my &lt;strong&gt;programming skills&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;/p&gt;&lt;p&gt;Working with &lt;a class="decorated-link" href="https://github.com/fjebaker" rel="noopener" target="_new"&gt;@fjebaker&lt;/a&gt;, &lt;a class="decorated-link" href="https://github.com/matteobachetti" rel="noopener" target="_new"&gt;@matteobachetti&lt;/a&gt;, and collaborating with peers like &lt;em&gt;Jawd Ahmed&lt;/em&gt; made this journey unforgettable.&lt;/p&gt;&lt;table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; text-align: center; width: 100%;"&gt;
+&lt;thead&gt;
+&lt;tr style="background-color: #f2f2f2;"&gt;
+&lt;th&gt;PR Number&lt;/th&gt;
+&lt;th&gt;Title / Description&lt;/th&gt;
+&lt;th&gt;Status&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/65" target="_blank"&gt;#65&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Cross-spectrum &amp;amp; recipes&lt;/td&gt;
+&lt;td style="color: orange; font-weight: bold;"&gt;Open&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/60" target="_blank"&gt;#60&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Lightcurve recipes (GTI/BTI, plotting)&lt;/td&gt;
+&lt;td style="color: orange; font-weight: bold;"&gt;Open&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/59" target="_blank"&gt;#59&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Power spectrum recipes&lt;/td&gt;
+&lt;td style="color: orange; font-weight: bold;"&gt;Open&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/58" target="_blank"&gt;#58&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Spectra adjustments&lt;/td&gt;
+&lt;td style="color: orange; font-weight: bold;"&gt;Open&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/57" target="_blank"&gt;#57&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Powerspectrum &amp;amp; AveragedPowerspectrum&lt;/td&gt;
+&lt;td style="color: orange; font-weight: bold;"&gt;Open&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/53" target="_blank"&gt;#53&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;GTI interface methods&lt;/td&gt;
+&lt;td style="color: green; font-weight: bold;"&gt;Closed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/52" target="_blank"&gt;#52&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Good Time Interval enhancements&lt;/td&gt;
+&lt;td style="color: green; font-weight: bold;"&gt;Closed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/51" target="_blank"&gt;#51&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Lightcurve creation &amp;amp; rebinning&lt;/td&gt;
+&lt;td style="color: green; font-weight: bold;"&gt;Closed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/49" target="_blank"&gt;#49&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Mission support additions&lt;/td&gt;
+&lt;td style="color: grey; font-weight: bold;"&gt;Drafted&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/47" target="_blank"&gt;#47&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;`EventList` read event implementation&lt;/td&gt;
+&lt;td style="color: green; font-weight: bold;"&gt;Closed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/30" target="_blank"&gt;#30&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Initial `readevent` groundwork&lt;/td&gt;
+&lt;td style="color: green; font-weight: bold;"&gt;Closed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl/pull/61https://github.com/StingraySoftware/Stingray.jl/pull/61" target="_blank"&gt;#61&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Events feature&lt;/td&gt;
+&lt;td style="color: green; font-weight: bold;"&gt;Closed&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2025/08/20250830_1321_kashish2210/</guid><pubDate>Sat, 30 Aug 2025 12:21:00 GMT</pubDate></item><item><title>RECIPES RECIPES WHAT KIND OF RECIPES? :)</title><link>http://openastronomy.org/Universe_OA/posts/2025/07/20250726_0607_kashish2210/</link><dc:creator>kashish shrivastav</dc:creator><description>&lt;p&gt; &lt;/p&gt;&lt;h2&gt;&lt;strong&gt;Exploring Light Curve Plotting in Stingray.jl: Recipes and Examples:&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;In my continued work with &lt;strong&gt;&lt;a href="https://github.com/StingraySoftware/Stingray.jl"&gt;Stingray.jl&lt;/a&gt;, &lt;/strong&gt;&lt;span&gt;so hello everyone, let's learns about plotting my favorite topic:)&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Light curves are essential in high-energy astrophysics, as they represent the brightness of an astronomical object as a function of time. Precise visualization and filtering of these curves help astronomers perform accurate timing analysis, detect variability, and identify astrophysical phenomena.&lt;/p&gt;
 &lt;p&gt;This post demonstrates how to generate and customize light curve plots using &lt;strong&gt;Stingray.jl&lt;/strong&gt;, leveraging real NICER datasets.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
