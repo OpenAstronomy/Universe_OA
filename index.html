@@ -12,7 +12,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="rss.xml">
 <link rel="canonical" href="http://openastronomy.org/Universe_OA/">
 <link rel="next" href="index-57.html" type="text/html">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2025/08/20250829_2145_prtm2110/" type="text/html">
+<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><link rel="prefetch" href="posts/2025/08/20250830_1321_kashish2210/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -74,7 +74,7 @@ bg-dark
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">❌</span></span>
                 </li>
 <li>
-                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="https://kashish2210.blogspot.com" data-toggle="tooltip" data-placement="top" title="2025-07-26 06:07:00+01:00" style="color:rgb(255,0,0)">
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="https://kashish2210.blogspot.com" data-toggle="tooltip" data-placement="top" title="2025-08-30 13:21:00+01:00">
                     kashish shrivastav
                    </a>
                    <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">❌</span></span>
@@ -106,7 +106,40 @@ bg-dark
 
     
 <div class="postindex">
-    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2025/08/20250829_2145_prtm2110/" class="u-url">Google Summer of Code: Final Submission</a></h1>
+    <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2025/08/20250830_1321_kashish2210/" class="u-url">Time Series Analysis in Stingray.jl</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/kashish-shrivastav/">kashish shrivastav</a>
+            </span></p>
+            <p class="dateline">
+            <a href="posts/2025/08/20250830_1321_kashish2210/" rel="bookmark">
+            <time class="published dt-published" datetime="2025-08-30T13:21:00+01:00" itemprop="datePublished" title="2025-08-30 13:21">2025-08-30 13:21</time></a>
+            </p>
+        </div>
+    </header><div class="p-summary entry-summary">
+    <div>
+<h3>From Stargazing Dreams to Code Stargazing:)</h3>
+<p>
+</p>
+<p>Ever since childhood, I have been passionate about the <strong>mysteries of the universe</strong>. Over time, that passion grew into something more technical — not just looking at the stars, but wanting to understand their signals.</p>
+<p>
+</p>
+<p>This summer, through <strong>Google Summer of Code 2025 (GSoC)</strong>, I had the opportunity to contribute to <strong><a href="https://github.com/StingraySoftware/Stingray.jl">Stingray.jl</a></strong>, a Julia library for time series analysis in astronomy. What follows is both a story of my personal journey and an exploration of the science and code I worked on.</p>
+<h3>The Beginning – Switching Languages and First Steps</h3>
+<p>When the organization was announced, I immediately started exploring <strong>Stingray</strong> (the Python version). I wanted to understand the structure, so I made my first PRs there.</p>
+<p>Soon, I understood the Stingray a bit, then I started working on <strong>Stingray.jl</strong>, the Julia port of Stingray initiated by <em><a href="https://github.com/Aman-Pandey-afk" target="_blank">Aman Pandey</a></em> in 2022. That meant learning Julia from scratch! Thankfully, Julia was similar to Python in many ways, so I picked it up quickly.</p>
+<p>During my early testing, I noticed outdated dependencies — for example, some packages were only compatible with Julia 1.7, while the project was moving towards Julia 1.11. My first clumsy PR (on <em><a href="https://github.com/StingraySoftware/Stingray.jl/pull/25" target="_blank">power_colors</a></em>) wasn’t great, will tell you in a bit,t but it gave me valuable lessons.</p>
+<p>Later, I worked on updating <code>fourier.jl</code>. This was also my first time seriously using <strong>structs</strong> in Julia. My mentor <a class="decorated-link" href="https://github.com/fjebaker" rel="noopener" target="_new">@fjebaker</a> guided me on abstract methods and struct design, while <a class="decorated-link" href="https://github.com/matteobachetti" rel="noopener" target="_new">@matteobachetti<span class="ms-0.5 inline-block align-middle leading-none"><svg class="block h-[0.75em] w-[0.75em] stroke-current stroke-[0.75]" fill="currentColor" height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M14.3349 13.3301V6.60645L5.47065 15.4707C5.21095 15.7304 4.78895 15.7304 4.52925 15.4707C4.26955 15.211 4.26955 14.789 4.52925 14.5293L13.3935 5.66504H6.66011C6.29284 5.66504 5.99507 5.36727 5.99507 5C5.99507 4.63273 6.29284 4.33496 6.66011 4.33496H14.9999L15.1337 4.34863C15.4369 4.41057 15.665 4.67857 15.665 5V13.3301C15.6649 13.6973 15.3672 13.9951 14.9999 13.9951C14.6327 13.9951 14.335 13.6973 14.3349 13.3301Z"></path></svg></span></a> helped me understand what kind of astronomical data the project needed.</p>
+<p>At first, I was confused about telescopes and their instruments. To learn, I went to <strong><a href="https://heasarc.gsfc.nasa.gov/" target="_blank">NASA HEASARC</a></strong> documentation, where I discovered <strong>FITS data</strong> (Flexible Image Transport System) — the standard format for astronomical data. That’s when things started making sense.</p>
+<hr>
+<h3>My First Big Task – Reading Event Data</h3>
+<p><a class="decorated-link" href="https://github.com/fjebaker" rel="noopener" target="_new">@fjebaker</a> opened a <a href="https://github.com/StingraySoftware/Stingray.jl/issues/26" target="_blank">milestone</a> and assigned me the <strong><code>readevent</code></strong> task. At the same time, I became good friends with fellow contributor <em><a href="https://github.com/JawadAhmadCS">Jawd Ahmad</a></em>. We often helped each other understand the codebase.</p>
+<p>I implemented the <code>readevent</code> function with a small struct called <br><code>EventList </code>something like : <br></p>
+<h5 style="text-align: left;"><span style="font-family: courier;">
+<p class="more"><a href="posts/2025/08/20250830_1321_kashish2210/">Read more…</a></p></span></h5>
+</div>
+    </div>
+    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2025/08/20250829_2145_prtm2110/" class="u-url">Google Summer of Code: Final Submission</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/pratham/">Pratham</a>
@@ -291,25 +324,6 @@ bg-dark
 <p>So, what’s the big catch here? Well, the CO₂ dataset I’m working with is about 6 GB in its compressed .bz2form, and when you decompress it, it explodes into 50 GB. Most systems struggle to load that much data into memory or parse it into a DataFrame, either due to storage limits, memory, or swap issues.</p>
 <p>And obviously not everyone wants the whole 50 GB anyway. Usually, people need just a 1 GB chunk from somewhere inside. So decompressing the entire thing just to fetch a small part is a massive waste of time and resources.</p>
 <p class="more"><a href="posts/2025/07/20250702_0858_prtm2110/">Read more…</a></p>
-</div>
-    </div>
-    </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="posts/2025/06/20250629_1859_darshvn/" class="u-url">Things Are Starting to Come Together</a></h1>
-        <div class="metadata">
-            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
-                <a href="authors/darshan-patil/">Darshan Patil</a>
-            </span></p>
-            <p class="dateline">
-            <a href="posts/2025/06/20250629_1859_darshvn/" rel="bookmark">
-            <time class="published dt-published" datetime="2025-06-29T18:59:01+01:00" itemprop="datePublished" title="2025-06-29 18:59">2025-06-29 18:59</time></a>
-            </p>
-        </div>
-    </header><div class="p-summary entry-summary">
-    <div>
-<p>The past couple of weeks have been really productive. After the initial planning and community bonding period, I’ve finally started working on the actual implementation. The transition from understanding the theory to getting hands-on with the code has been challenging but rewarding.</p>
-<p>After writing my last blog post and going through the codebase more thoroughly, I discovered there are several existing classes and methods that can be reused for this project. This has led to a revised approach that builds on what’s already working well in RADIS.</p>
-<h4>Revised Approach</h4>
-<figure><img alt="" src="https://cdn-images-1.medium.com/max/876/1*XSL9jIwlwb7FZpoD5oZjEg.png"></figure><p>The core approach is the same as originally planned, but now the rovibrational populations are calculated using the existing RovibParFuncCalculator. This lets me reuse code while adding the electronic state functionality we need.</p>
-<p class="more"><a href="posts/2025/06/20250629_1859_darshvn/">Read more…</a></p>
 </div>
     </div>
     </article>
