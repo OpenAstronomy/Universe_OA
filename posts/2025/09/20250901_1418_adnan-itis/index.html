@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC 2025 Final ReportFlyingRa... | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2025/09/20250901_1418_adnan-itis/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Mohammad Adnan">
+<link rel="prev" href="../../08/20250830_1321_kashish2210/" title="Time Series Analysis in Stingray.jl" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSoC 2025 Final ReportFlyingRa...">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2025/09/20250901_1418_adnan-itis/">
+<meta property="og:description" content="GSoC 2025 Final Report
+
+
+FlyingRay
+
+Interactive Database for X-ray observationsOrganisation:Open Astronomy (Stingray)Duration:May - September 2025Mentors:Matteo Bachetti, Guglielmo MastroserioProject ">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-09-01T14:18:00+01:00">
+<meta property="article:tag" content="stingray">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@darshvn" data-toggle="tooltip" data-placement="top" title="2025-08-03 19:55:57+01:00" style="color:rgb(255,0,0)">
+                    Darshan Patil
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">❌</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="https://kashish2210.blogspot.com" data-toggle="tooltip" data-placement="top" title="2025-08-30 13:21:00+01:00">
+                    kashish shrivastav
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">❌</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://sejifukishima.blogspot.com" data-toggle="tooltip" data-placement="top" title="2025-09-01 14:18:00+01:00">
+                    Mohammad Adnan
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">❌</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@mohyware" data-toggle="tooltip" data-placement="top" title="2025-08-20 15:09:45+01:00">
+                    mohyware
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">✅</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@prathamhole" data-toggle="tooltip" data-placement="top" title="2025-08-29 21:45:07+01:00">
+                    Pratham
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">✅</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC 2025 Final ReportFlyingRa...</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/mohammad-adnan/">Mohammad Adnan</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2025-09-01T14:18:00+01:00" itemprop="datePublished" title="2025-09-01 14:18">2025-09-01 14:18</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://sejifukishima.blogspot.com/2025/09/gsoc-2025-final-report-flyingray.html">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p></p>
+<div class="horizontal-scroll-wrapper">
+<div class="table-block-component" style="text-align: left;"><span style="font-family: georgia;"><div class="table-block has-export-button">
+<div class="table-content not-end-of-paragraph">
+<p></p>
+<h2 style="text-align: left;">GSoC 2025 Final Report</h2>
+<p></p>
+<!-- TEASER_END -->
+<p></p>
+<h3>FlyingRay</h3>
+<p></p>
+<p></p>
+<h4>Interactive Database for X-ray observations</h4>
+<div class="horizontal-scroll-wrapper"><div class="table-block-component">
+<!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><div class="table-block has-export-button">
+<div class="table-content not-end-of-paragraph">
+<table>
+<thead><tr>
+<td></td>
+<td></td>
+</tr></thead>
+<tbody>
+<tr>
+<td><b>Organisation:</b></td>
+<td>Open Astronomy (Stingray)</td>
+</tr>
+<tr>
+<td><b>Duration:</b></td>
+<td>May - September 2025</td>
+</tr>
+<tr>
+<td><b>Mentors:</b></td>
+<td>Matteo Bachetti, Guglielmo Mastroserio</td>
+</tr>
+</tbody>
+</table>
+<b>Project link:    <a href="https://github.com/StingraySoftware/FlyingRay" target="_blank">GitHub Repo. (FlyingRay)</a></b>
+</div>
+<!---->
+</div>
+<!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!----><!---->
+</div></div>
+<hr>
+<p></p>
+<h4>1. Project Summary :</h4>
+<div>
+<p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"><span style="vertical-align: baseline;">An interactive dashboard for the analysis and on-the-fly visualisation of X-ray binary data, built with the Stingray library.</span></p>
+<p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"><span style="vertical-align: baseline;">FlyingRay is an interactive database and quick-look dashboard for X-ray observations, enabling the on-the-fly visualisation of scientific data products. The system provides a unified interface to store, analyse, and organize key data products from multiple missions, allowing the astrophysics research community to efficiently track and predict the evolution of black hole binaries. By abstracting away the complexities of mission-specific data processing, FlyingRay simplifies the analysis workflow for researchers. Combining the use of the Panel, Stingray, Plotly, and Matplotlib packages, FlyingRay enables researchers to take full advantage of advanced timing analysis without needing to be well-versed in the underlying instrument-specific software</span></p>
+<br>
+</div>
+<div>
+<p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 11pt; font-weight: 700; vertical-align: baseline;">Technologies:</span></p>
+<p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 11pt; vertical-align: baseline;">Prefect, Python, TailwindCSS, HoloViz, Panel, Plotly, HDF5, Matplotlib</span></p>
+<p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 11pt; font-weight: 700; vertical-align: baseline;">Topics:</span></p>
+<p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"><span style="font-size: 11pt; vertical-align: baseline;">Machine Learning, Data Visualization, X-ray Analysis, Interactive Plots, Dashboard for Stingray</span></p>
+</div>
+</div>
+<span><a name="more"></a></span><b>2. What I Did :</b>
+</div>
+<div class="table-block has-export-button"><b><br></b></div>
+<div class="table-block has-export-button">Interactive Database and Dashboard</div>
+<p style="text-align: left;"></p>
+<ul style="text-align: left;"><li>Built the primary user interface using <b>Panel</b> and the <b>HoloViz</b> ecosystem, providing an intuitive dashboard for searching, browsing, and visualising results (x-ray observations).</li></ul>
+<ul style="text-align: left;">
+<li>Integrated <b>Plotly</b> and <b>Matplotlib</b> to create dynamic, publication-quality visualisations of all generated data products.</li>
+<li>
+<p>Developed custom widgets for querying the database by target, mission, or observation ID, and for interacting with the plots.</p>
+</li>
+</ul>Data Storage and Management<ul style="text-align: left;">
+<p></p>
+<h5></h5>
+</ul>
+<p></p>
+</span></div>
+<div class="table-block-component" style="text-align: left;">
+<ul style="text-align: left;">
+<li>
+<p><span style="font-family: georgia;">Implemented a persistent data storage system using <b>HDF5</b> to efficiently cache and serve all generated data products, preventing the need to re-run analyses.</span></p>
+</li>
+<li>
+<span style="font-family: georgia;">Created a structured data schema to logically organize the scientific products, making the database easy to query and maintain</span><p></p>
+</li>
+</ul>
+<span style="font-family: georgia;">Automated Data Processing Pipeline</span>
+</div>
+<div class="table-block-component" style="text-align: left;">
+<ul style="text-align: left;"><li><span style="font-family: georgia;">Integrated and extended the <b>HEASARC retrieval pipeline</b> by Matteo Bachetti into a robust, automated workflow for end-to-end data retrieval and processing.</span></li></ul>
+<p style="display: inline !important;"><span style="font-family: georgia;">Developed custom modules to handle and standardize the pipeline's output for multiple X-ray missions (e.g., NICER, NuSTAR &amp; RXTE ), ensuring compatibility with the <b>Stingray</b> library<br>.</span></p>
+<div class="separator" style="clear: both; text-align: center;">
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBPdbe-8ONqUk9NS3SXM6QJ48FMQ7djNQ8jsb4XKLBgEsje0ix1gBQwBt6vxTKd7xZJsADHLn8mitGqtP9Sz9UveA5IjW8O-y_gch1POs1wUX-CzRkmXiITyqdQrVkT_HkU3ErFT8-ulf-gNMSRNU_k2W9M7Vx8i4A3KHYxKQ2JJolk5KszGeuN_TtQ2M/s1918/Screenshot%202025-09-01%20180543.png" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><span style="clear: left; float: left; font-family: georgia; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="216" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBPdbe-8ONqUk9NS3SXM6QJ48FMQ7djNQ8jsb4XKLBgEsje0ix1gBQwBt6vxTKd7xZJsADHLn8mitGqtP9Sz9UveA5IjW8O-y_gch1POs1wUX-CzRkmXiITyqdQrVkT_HkU3ErFT8-ulf-gNMSRNU_k2W9M7Vx8i4A3KHYxKQ2JJolk5KszGeuN_TtQ2M/w400-h216/Screenshot%202025-09-01%20180543.png" width="400"></span></a></div>
+<a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjVywLG1BT8P1dFA3EWy9mdd8zXCSuruqnxEHsihKEBkanSs4ve9iOclBi4lpzD1HTXutiXIqpmqe4MH-Hex1T4uqTp1dKxAN-3VlO9tzz1l6CL930gU4gfWySEzoM-OCCTxejV0mpf49rxTE_0PeZROJCBpeTmKopqPVBZssNHJG1jNaYsjfYFujZrjs/s1912/Screenshot%202025-09-01%20180603.png" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><span style="clear: right; float: right; font-family: georgia; margin-bottom: 1em; margin-left: 1em;"><img border="0" height="216" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjVywLG1BT8P1dFA3EWy9mdd8zXCSuruqnxEHsihKEBkanSs4ve9iOclBi4lpzD1HTXutiXIqpmqe4MH-Hex1T4uqTp1dKxAN-3VlO9tzz1l6CL930gU4gfWySEzoM-OCCTxejV0mpf49rxTE_0PeZROJCBpeTmKopqPVBZssNHJG1jNaYsjfYFujZrjs/w400-h216/Screenshot%202025-09-01%20180603.png" width="400"></span></a>
+</div>
+<span style="font-family: georgia;"><div style="text-align: justify;"> </div>
+<div style="text-align: justify;">Fig. 1: The initial interface of the dashboard, where the user can select a telescope and a specific observation and then run the pipeline for data downloading, reduction, and database creation; the pipeline &amp; controls card shows both the local database and the data (observations) available on the HEASARC browser.</div></span><div><br></div>
+<div>
+<span style="clear: left; float: left; font-family: georgia; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="214" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0kGwkdlyebgf3UwqrUxGKx_B-1GaS31zTnAVtzKGEeNwyAkKsg-mvfglrWSAl47AqJEZzL8HLFgGPsDDkoSQcprlkM1I3mvrpns19ZcZzUBU7Q33TmS2ICuVfYrrXf-WVfg9OK2bvzWJq-bS69nNv5h9-Wtm3BLFS0d0shnxNOqpiru4WfWZfzeJ4jpo/w400-h214/Screenshot%202025-09-01%20180711.png" width="400"></span><div style="text-align: justify;"><span style="font-family: georgia;"><br></span></div>
+<div style="text-align: justify;"><span style="font-family: georgia;"><br></span></div>
+<div style="text-align: justify;">
+<span style="font-family: georgia;">Fig. 2: This figure shows the HID diagrams of each source, which, after the completion of the database creation, the user can plot via the l</span><span style="font-family: georgia;">ocal database section in the pipeline &amp; plotting controls section. Each HID is an interactive plot associated with the PNGs and resembling observations of that source.</span>
+</div>
+<div style="text-align: justify;"><span style="font-family: georgia; font-size: 11pt;"><br></span></div>
+<div style="text-align: justify;"><span style="font-family: georgia; font-size: 11pt;"><br></span></div>
+<div style="text-align: justify;"><span style="font-family: georgia; font-size: 11pt;"><br></span></div>
+<div style="text-align: justify;"><span style="font-family: georgia; font-size: 11pt;"><br></span></div>
+<div style="text-align: justify;"><span style="font-family: georgia; font-size: 11pt;"><br></span></div>
+<div style="text-align: justify;"><span style="font-family: georgia; font-size: 11pt;">Fig.3: This figure displays data products, such as light curves and Power Density Spectra (PDS), for specific observations. These static plots are created as PNG images using Matplotlib and the Stingray library. All data products and metadata are stored in a main database file, which is an HDF5 file named after the source.</span></div>
+<div style="text-align: justify;">
+<p><br style="text-align: left;"></p>
+</div>
+</div>
+<div>
+<blockquote><div style="text-align: justify;"><br></div></blockquote>
+<blockquote><div class="separator" style="clear: both; text-align: center;"><div style="text-align: justify;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDm5G4q6wY3PkH5x-tABroS0Vcjdemx_8my1Ncpr69SAskfcCvBAsoxXuNDeA9qMmjsSeqcdNQOK3icuDOCd5POzhJjZ9flGUvc7CfE8Ra4_8y0T8SPg_VDX60S_3e9r4WV327EohiXdAbegEdQD4fUvPZX1TM9K6uUqmZM-PoqHII_PYHK825XaQ3XI8/s1919/Screenshot%202025-09-01%20180744.png" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" height="213" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDm5G4q6wY3PkH5x-tABroS0Vcjdemx_8my1Ncpr69SAskfcCvBAsoxXuNDeA9qMmjsSeqcdNQOK3icuDOCd5POzhJjZ9flGUvc7CfE8Ra4_8y0T8SPg_VDX60S_3e9r4WV327EohiXdAbegEdQD4fUvPZX1TM9K6uUqmZM-PoqHII_PYHK825XaQ3XI8/w400-h213/Screenshot%202025-09-01%20180744.png" width="400"></a></div></div></blockquote>
+<p></p>
+<div style="text-align: left;"><span>Fig 4: The figure below shows the Global HID diagram, which means plotting all sources of the same telescope in a single HID plot diagram. This way we can compare different outbursts and observations of the sources here; also, each point in the HID plot is interactive and associated with two data products: light curves and PDS.</span></div>
+<h4>3. Project Repository</h4>
+<p></p>
+<p>The complete source code is available on GitHub. All contributions are documented, and one can check the commit history. </p>
+<p>check here :<b><span style="color: #3d85c6;"> <a href="https://github.com/StingraySoftware/FlyingRay">Flyingray ( The Interactive X-ray Binaries Database ) Built with StingraySoftware</a></span></b></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<h4>4. What's Left to Do</h4>
+<div>
+<h5>Machine Learning Integration</h5>
+<p></p>
+<p></p>
+</div>
+<p></p>
+<ul style="text-align: left;"><li>
+<b>Implement ML Models:</b> Research and integrate the best machine learning algorithms  according to our need (to <b>classify sources</b> into different states (e.g., hard, soft, intermediate) based on their PDS characteristics.</li></ul>
+<ul style="text-align: left;"><li>
+<b>Model Training Interface:</b> Add a new section to the dashboard that allows users to train these models on the generated datasets and visualize the results (e.g., classification reports).</li></ul>
+<div class="horizontal-scroll-wrapper"><div class="table-block-component"><div class="table-block has-export-button"><div class="table-content not-end-of-paragraph">
+<h5>Documentation and Community</h5>
+<p></p>
+<ul>
+<li>
+<p><b>Develop User Documentation:</b> Create a comprehensive user guide and video tutorials to help new astronomers and students get started with the dashboard.</p>
+</li>
+<li>
+<p><b>Strengthen Testing:</b> Build a suite of unit and integration tests to ensure the long-term reliability of the data processing pipeline, making the project more maintainable for future contributors.</p>
+</li>
+<li>
+<p><b>In-App Scientific Context:</b> Add help sections within the dashboard that explain the astrophysical significance of the data products (e.g., "The information of different light curves ?", "difference  b/w the data products?"), making FlyingRay a valuable  tool.</p>
+</li>
+</ul>
+</div></div></div></div>
+<p> </p>
+</div>
+<ul style="text-align: left;">
+<p></p>
+<h5></h5>
+</ul>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/stingray/" rel="tag">stingray</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../../08/20250830_1321_kashish2210/" rel="prev" title="Time Series Analysis in Stingray.jl">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2025         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
