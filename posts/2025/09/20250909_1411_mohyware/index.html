@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My GSoC journey @Open-Astronomy | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2025/09/20250909_1411_mohyware/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="mohyware">
+<link rel="prev" href="../20250901_1418_adnan-itis/" title="GSoC 2025 Final ReportFlyingRa..." type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="My GSoC journey @Open-Astronomy">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2025/09/20250909_1411_mohyware/">
+<meta property="og:description" content="IntroductionSo for people who don’t know, Google Summer of Code is a global program by Google where students and developers get the chance to work on real open-source projects with mentors from around">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2025-09-09T14:11:52+01:00">
+<meta property="article:tag" content="radis">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@darshvn" data-toggle="tooltip" data-placement="top" title="2025-08-03 19:55:57+01:00" style="color:rgb(255,0,0)">
+                    Darshan Patil
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">❌</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="https://kashish2210.blogspot.com" data-toggle="tooltip" data-placement="top" title="2025-08-30 13:21:00+01:00">
+                    kashish shrivastav
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">❌</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://sejifukishima.blogspot.com" data-toggle="tooltip" data-placement="top" title="2025-09-01 14:18:00+01:00">
+                    Mohammad Adnan
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">❌</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@mohyware" data-toggle="tooltip" data-placement="top" title="2025-09-09 14:11:52+01:00">
+                    mohyware
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">✅</span></span>
+                </li>
+<li>
+                   <img src="https://openastronomy.org/img/members/radis_ico.png" height="16" width="16"><a href="https://medium.com/@prathamhole" data-toggle="tooltip" data-placement="top" title="2025-08-29 21:45:07+01:00">
+                    Pratham
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-05-01 - 2025-06-02">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-02 - 2025-06-16">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-16 - 2025-06-30">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-06-30 - 2025-07-14">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-14 - 2025-07-28">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-07-28 - 2025-08-11">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2025-08-11 - 2025-08-25">✅</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">My GSoC journey @Open-Astronomy</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/mohyware/">mohyware</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2025-09-09T14:11:52+01:00" itemprop="datePublished" title="2025-09-09 14:11">2025-09-09 14:11</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://medium.com/@mohyware/my-gsoc-journey-open-astronomy-091ee225b895?source=rss-9dc0b0efcdaa------2">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <figure><img alt="" src="https://cdn-images-1.medium.com/max/680/0*OZnL3CQDNm2t_QA3.jpeg"></figure><h4>Introduction</h4>
+<p>So for people who don’t know, Google Summer of Code is a global program by Google where students and developers get the chance to work on real open-source projects with mentors from around the world. It’s not just about coding it’s about learning how to collaborate, contribute to big projects, and ship something useful. And yes, there’s also a stipend, which makes it even more exciting.</p>
+<p>Well, the first time I heard about GSoC was in my first year of college, but I didn’t give it much attention. I thought it would be really hard to get in. Then, in my second year, two of my friends got accepted, and that really inspired me. It made me realize it was actually possible.</p>
+<h4>Starting Early</h4>
+<p>So I started searching deep, even before the orgs got announced. I really wanted to get in, since there aren’t many internships out there that give both good experience and a stipend. I navigated through different orgs' codebases, read a lot of issues and PRs from different orgs to understand how OSS contributions are done, but I didn’t pick a specific org at that point.</p>
+<!-- TEASER_END -->
+<p>Some orgs announced ideas early, before the official list, and I spent a lot of time building a prototype for a web project, a simple blog app with a “summarize” button using Gemini or OpenAI API. The idea was that the api calls had to be in Python while the app was in TypeScript, to show off Metacall’s ability to integrate different languages. The mentor liked it and even published it in the org. I also got a PR merged in another repo there. This was my first time really navigating a written codebase and making changes. But when the official orgs got announced, Metacall wasn’t accepted. That was tough, but I’m grateful for the time with the mentor. I learned a lot, got experience in OSS, and felt ready for the next step.</p>
+<h4>Second Attempt</h4>
+<p>I made a list of suitable orgs and ended up choosing Open Astronomy. I’ve always liked astronomy, and one of my friends had been there the previous year. Under the Open Astronomy, I found radis, a Python package to simulate and analyze molecular spectra from databases like HITRAN and ExoMol, <a href="https://github.com/radis/radis">more here</a>.</p>
+<p>I got 5 PRs merged in the main repo, also had other contributions on the web app (ui website for the package), which was related to the idea I chose (it wasn’t as active as the main package, tho). I noticed some competition on this idea, so I pushed contributions to both repos and asked mentors whenever I wasn’t clear about something while writing the proposal.</p>
+<p>I was a bit paranoid, so I also contributed to another org called <a href="https://github.com/PalisadoesFoundation">The Palisadoes</a>, just in case my proposal didn’t get accepted in Radis. I even got a PR merged there, but there wasn’t enough time to dive into their ideas and write a good proposal, not just an AI-generated one. In the end, I stuck with radis and kept contributing there to raise my chances also, during that time, I kept myself busy with another project too (another article coming soon about this project, stay tuned :) ).</p>
+<h4>The Big Moment</h4>
+<p>When the student results came out voila, I was a GSoC student. The first accepted word in my email inbox :)</p>
+<p>After that, things felt a lot easier. Once you choose an idea you’re confident you can handle, the rest of the process is really easy.</p>
+<h5>Things I think helped my chances:</h5>
+<ul>
+<li>Contact mentors and introduce yourself in chat. Don’t just contribute to inactive repos (some of my competitors did that). I contributed to the main repo, which wasn’t even mandatory for my idea, but it helped me connect with mentors and get noticed. (but also: don’t contact mentors without having any work done first).</li>
+<li>The time I spent with Metacall wasn’t wasted. Even though it didn’t get accepted, it gave me experience in OSS and helped me move from building side projects alone to actually working with mentors and understanding the development process in open source. If you don’t have any experience, start early.</li>
+<li>Make sure the idea you pick is important to the org or that the org gets enough slots from Google. There’s a GSoC stats site where you can check orgs' stats from past years.</li>
+<li>If you have no previous experience, start with something less popular (like I did with Open Astronomy). The competition will be easier. Of course, the big orgs have more pros; they look better on your resume and may open more doors beyond GSoC. It really depends on what you want.</li>
+</ul>
+<p>Important links:</p>
+<ul>
+<li><a href="https://summerofcode.withgoogle.com/programs/2025/projects/iYVASbTw">My project</a></li>
+<li><a href="https://www.gsocorganizations.dev/">GSoC stats website</a></li>
+<li><a href="https://github.com/radis/radis">Radis</a></li>
+<li><a href="https://github.com/PalisadoesFoundation">The Palisadoes</a></li>
+<li><a href="https://github.com/metacall/core">MetaCall</a></li>
+</ul>
+<img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=091ee225b895" width="1">
+</div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/radis/" rel="tag">radis</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20250901_1418_adnan-itis/" rel="prev" title="GSoC 2025 Final ReportFlyingRa...">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2025         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
