@@ -49,7 +49,7 @@ The plugin looks whether there are posts in the ranges between the dates provide
    ```
    git restore --source origin/run gsoc_times.yml
    ```
-   This brings the latest updates to `gsoc_times.yml`.
+   This brings the latest updates to `gsoc_times.yml`. Commit them to main, put quotes if you like. This will be the first commit to move over later.
 
 1. Add properties on `gsoc.yml` and on `gsoc_times.yml` for new students. For names we are using their github handles.
    ```yaml
