@@ -47,7 +47,7 @@ The plugin looks whether there are posts in the ranges between the dates provide
 
 1. Update `gsoc_times.yml` from `run` into `main`
    ```
-   git restore --source run gsoc_times.yml
+   git restore --source origin/run gsoc_times.yml
    ```
    This brings the latest updates to `gsoc_times.yml`.
 
