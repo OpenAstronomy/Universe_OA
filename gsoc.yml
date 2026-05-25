@@ -1,3 +1,19 @@
+gsoc2026:
+  Amityush-lgtm:
+    rss_feed: 'https://sunpy-radiospectra.blogspot.com/feeds/posts/default?alt=rss'
+    project: 'SunPy'
+  jamesrafe:
+    rss_feed: 'https://jamesraffertylee.wordpress.com/feed/'
+    project: 'JuliaAstro'
+  OmBiradar:
+    rss_feed: 'https://imporving-pyarrow-for-nested-structures.hashnode.dev/rss.xml'
+    project: 'lincc-fw'
+  Omiii-215:
+    rss_feed: 'https://medium.com/feed/@omhabib311'
+    project: 'stingray'
+  ReemHamraz:
+    rss_feed: 'https://dev.to/feed/reemhamraz'
+    project: 'astropy'
 gsoc2025:
   aDNAn-itis:
     rss_feed: 'https://sejifukishima.blogspot.com/feeds/posts/default/-/GSOC?alt=rss'
