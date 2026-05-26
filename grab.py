@@ -8,6 +8,15 @@ import pprint
 import yaml
 import feedparser
 
+from bs4 import BeautifulSoup
+
+from markdownify import markdownify as md
+
+def convert_html_to_markdown(html):
+    return md(html)
+
+
+
 pp = pprint.PrettyPrinter(indent=4)
 
 TEMPLATE = '''.. title: {title}
@@ -98,11 +107,19 @@ def grab_student(last_date, rss_url, project, student, season):
 
             # Fetch content, either HTML or plain text
             try:
-                html = "html" in item['content'][0]['type']
-                content = item['content'][0]['value']
+               html = "html" in item['content'][0]['type']
+               content = item['content'][0]['value']
+               if html:
+                content = convert_html_to_markdown(content)
             except KeyError:
-                html = "html" in item['summary_detail']['type']
-                content = item['summary']
+              html = "html" in item['summary_detail']['type']
+            content = item['summary']
+            if html:
+             content = convert_html_to_markdown(content)
+             print("\n------------MARKDOWN OUTPUT---------------\n")
+             print(content)
+             print("\n------------------END---------------------\n")
+
 
             try:
                 # Convert the content to rst with correct handling of HTML
@@ -160,3 +177,17 @@ with open('gsoc.yml', 'r') as stream:
 # Save the updated student times back to YAML
 with open('gsoc_times.yml', 'w') as file_times:
     file_times.write(yaml.dump(students_times, default_flow_style=False))
+
+    sample_html = '''
+<h1>Test Heading</h1>
+<ul>
+  <li>Point 1</li>
+  <li>Point 2</li>
+</ul>
+<b>Bold Demo</b>
+<pre><code>print("Hello world")</code></pre>
+'''
+
+print("\n------MARKDOWN OUTPUT------\n")
+print(convert_html_to_markdown(sample_html))
+print("\n------END------\n")
