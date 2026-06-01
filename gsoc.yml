@@ -13,7 +13,7 @@ gsoc2026:
     project: 'stingray'
   ReemHamraz:
     rss_feed: 'https://dev.to/feed/reemhamraz'
-    project: 'astropy'
+    project: 'Astropy'
 gsoc2025:
   aDNAn-itis:
     rss_feed: 'https://sejifukishima.blogspot.com/feeds/posts/default/-/GSOC?alt=rss'
