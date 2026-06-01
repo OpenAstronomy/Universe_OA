@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2026)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2026.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 31 May 2026 04:47:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 - My Journey to SunPy Under OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/posts/2026/05/20260517_1853_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h2&gt;My GSoC Journey&lt;/h2&gt;&lt;p&gt;I’m incredibly excited to share that I’ve been selected for &lt;em&gt;Google Summer of Code 2026&lt;/em&gt; under &lt;em&gt;OpenAstronomy&lt;/em&gt; for the &lt;em&gt;SunPy&lt;/em&gt; project: &lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2026)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2026.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 01 Jun 2026 18:37:11 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Beyond the Abstraction</title><link>http://openastronomy.org/Universe_OA/posts/2026/05/20260531_2014_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;The glow of the screen hits different when you're reading an email that dictates your entire summer. Getting accepted into Google Summer of Code 2026 programme for Astropy, under the OpenAstronomy umbrella, was one of those really defining moments; all I could do was stare at the screen in disbelief (I'd done it). Then, the abstraction fades away, and suddenly, you need to get down to the real work.&lt;/p&gt;
+
+&lt;p&gt;This post, is the first of many. I plan to keep these updates transparent and real—documenting, so it's really not just going to be about the code that ships, but rather the (not-so)basic commands I need to google, or the dumb mistakes, or the long hours spent scouring the internet for things that developers ought to know (but I don't), and the brutal reality of open-source development or at least the reality from the perspective of a first-timer (that would be me needing to google how to squash and rebase, haha fun times:| or not)&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;h4&gt;
+
+
+Let's break down my project
+&lt;/h4&gt;
+
+&lt;p&gt;This summer, my life will revolve around Astropy's low-level test suite, or more formally speaking:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;"Hardening Astropy's Core Stability" &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I am skipping the wrappers and going straight for the raw C-extensions. Which, when you think about it, there is a kind of profound honesty in testing the core engine. It forces transparency. It demands technical accountability (excuse my philosophical analysis). What I meant to say is that no one can fake it you know? By the end of the day you really gotta understand what you're doing because otherwise you'll be lost as hell. So yeah, this is what I plan to do all summer and I can't wait for it! So totafreakingly excited!!&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+Speaking of being lost
+&lt;/h4&gt;
+
+&lt;p&gt;My greatest advice to anyone starting would be to find your mentors, and I will swear upon this, that you really need to find your perfect organization and your perfect mentors! I wouldn't have even started down this path if it weren't for @neutrinoceros. It was a fateful email, and one that led to many many more and here I am. So, I'd really like to give a huge shoutout to my mentors for this project, @nstarman and @neutrinoceros. Open-source can be so intimidating, but having mentors who are just straight up transparent and value direct communication makes it all so much more manageable, and I'm pretty grateful that I have that experience. &lt;/p&gt;
+
+&lt;p&gt;And moreover, I am not starting from absolute zero either. We actually got some real momentum going recently. I finally got PR #19458 merged! The one adding direct tests for join_inner in table/_np_utils Cython extension. IT GOT MERGED. Though, ideally this would've been my first PR right after the community bonding period, I tackled it before-hand and well it paid off (proof that I can actually write code that works, phew). &lt;/p&gt;
+
+&lt;p&gt;A lil side note: I'm writing this post after the community bonding period but I'm starting from the very start so bear with me please. The next post will deep dive into my the coding details of my first and second set of test cases, mentor meetings, Astropy's dev telecon and all the wonderful stuff.&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+The next 2 weeks
+&lt;/h4&gt;
+
+&lt;p&gt;Now that the official coding phase is here, my life for the next fortnight is basically going to be staring at architecture maps. I need get going with the test coverage for these Cython extensions. Plus, I really have to optimize my local setup so my laptop doesn't literally take off into orbit while running these low-level builds. Although @neutrinoceros did have a meeting with me, to help set me with the local setup, GitHub CLI and UV tools, plus a bunch of cool commands that have literally helped me a tonne.&lt;/p&gt;
+
+&lt;p&gt;I know, that it is going to be a grind, but like, a really good grind. I'll be back here in, whenever I feel like it, (though most probably within the next 2 weeks) to let you all in on more cool things I learnt over the course of these weeks. Check back then for more raw updates and probably more stories of me overcomplicating basic git commands. &lt;/p&gt;
+
+&lt;p&gt;Toodles!&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/05/20260531_2014_reemhamraz/</guid><pubDate>Sun, 31 May 2026 19:14:31 GMT</pubDate></item><item><title>GSoC 2026 - My Journey to SunPy Under OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/posts/2026/05/20260517_1853_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h2&gt;My GSoC Journey&lt;/h2&gt;&lt;p&gt;I’m incredibly excited to share that I’ve been selected for &lt;em&gt;Google Summer of Code 2026&lt;/em&gt; under &lt;em&gt;OpenAstronomy&lt;/em&gt; for the &lt;em&gt;SunPy&lt;/em&gt; project: &lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;
 &lt;blockquote&gt;&lt;strong&gt;Improving radiospectra’s Functionality and Interoperability.&lt;/strong&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
