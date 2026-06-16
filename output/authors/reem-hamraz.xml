@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Reem Hamraz)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/reem-hamraz.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 15 Jun 2026 05:22:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Beyond the Abstraction</title><link>http://openastronomy.org/Universe_OA/posts/2026/05/20260531_2014_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;The glow of the screen hits different when you're reading an email that dictates your entire summer. Getting accepted into Google Summer of Code 2026 programme for Astropy, under the OpenAstronomy umbrella, was one of those really defining moments; all I could do was stare at the screen in disbelief (I'd done it). Then, the abstraction fades away, and suddenly, you need to get down to the real work.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Reem Hamraz)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/reem-hamraz.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 16 Jun 2026 05:25:34 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Biting Into It: My Astropy Summer (Weeks 1-3)</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260615_0948_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;blockquote&gt;
+&lt;p&gt;"I really want to be something in life. I don't want to be forgotten."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;It's a heavy thought for a Tuesday night, but it's been bouncing around my head a lot lately. I read this Sartre quote recently about living a "toothless life", just waiting around, reserving yourself for later, and then suddenly realizing your teeth are gone. I decided a while ago that I'm not doing that. If I'm going to leave something behind, it has to be through work that actually matters.&lt;/p&gt;
+
+&lt;p&gt;Right now, that work looks like deliberately bypassing high-level Python APIs to aggressively test raw, compiled C-engines for Astropy.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;
+
+
+The Weekly Grind
+&lt;/h3&gt;
+
+&lt;p&gt;Juggling CS coursework while trying to wrangle Cython for Google Summer of Code is a lot. But honestly? I've been loving every damn second of it. Reading documentation in a vacuum is one thing, actually hashing out C-level memory bindings is where the reality sets in. My mentors don't just let me write code; they force me to hold my work to strict architectural standards, which honestly gives me an immense sense of accomplishment once I clear them.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;
+
+
+&lt;code&gt;test_np_utils.py&lt;/code&gt;: First Blood
+&lt;/h3&gt;
+
+&lt;p&gt;Getting this merged was my first real bite into the codebase. Instead of playing it safe with high-level Astropy &lt;code&gt;Table&lt;/code&gt; objects, I stripped away the Python wrapper to test the raw C-engine underneath. I threw every Cartesian edge case at the &lt;code&gt;join_inner&lt;/code&gt; function just to see if the explosive $O(N^2)$ memory allocations would break it.&lt;/p&gt;
+
+&lt;p&gt;They didn't.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;
+
+
+&lt;code&gt;test_column_mixins.py&lt;/code&gt;: The Beast
+&lt;/h3&gt;
+
+&lt;p&gt;Absolute beast of a PR. I had to write &lt;code&gt;MinimalColumn&lt;/code&gt; shims and cast them directly onto raw NumPy arrays just to isolate the Cython &lt;code&gt;__getitem__&lt;/code&gt; routing. Somewhere in there I found a legitimate C-level trapdoor — indexing a structured array with a single string was silently dropping the dtype entirely. That became Issue #19827, which I later learned was actually expected behavior, so I closed it. End of story.&lt;/p&gt;
+
+&lt;p&gt;But the real boss fight wasn't even the code (funny, right?!). It was Git. I ran a terrifying interactive rebase in Nano to squash six messy commits before force-pushing to my branch. Truly character-building.&lt;/p&gt;
+
+&lt;p&gt;If it isn't clear by now, let me spell it out:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;"I absolutely despise GitHub squash and rebase. Actually, I don't think we (me and GitHub) can ever be on amicable terms."&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+
+&lt;h3&gt;
+
+
+APE Split &amp;amp; &lt;code&gt;_parse_times.c&lt;/code&gt;: Standing on Shoulders
+&lt;/h3&gt;
+
+&lt;p&gt;Lately I've been laying the tracks for the APE split, writing isolated tests for the &lt;code&gt;_parse_times.c&lt;/code&gt; extension. This was mostly building on another contributor's accepted PR, but it was enlightening to understand how other brains work. I'll be honest, I spent a good chunk of time just deciphering the existing test cases before touching anything, making sure I didn't alter their original essence.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;That's weeks 1–3, folks.&lt;/p&gt;
+
+&lt;p&gt;It's a blur of memory buffers, strict type checking, and fighting CI matrices. But when those green checkmarks come in, and especially when I see those purple merged PRs, I know I'm actually building something.&lt;/p&gt;
+
+&lt;p&gt;I'm biting into it. I'm not waiting anymore.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260615_0948_reemhamraz/</guid><pubDate>Mon, 15 Jun 2026 08:48:44 GMT</pubDate></item><item><title>Beyond the Abstraction</title><link>http://openastronomy.org/Universe_OA/posts/2026/05/20260531_2014_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;The glow of the screen hits different when you're reading an email that dictates your entire summer. Getting accepted into Google Summer of Code 2026 programme for Astropy, under the OpenAstronomy umbrella, was one of those really defining moments; all I could do was stare at the screen in disbelief (I'd done it). Then, the abstraction fades away, and suddenly, you need to get down to the real work.&lt;/p&gt;
 
 &lt;p&gt;This post, is the first of many. I plan to keep these updates transparent and real—documenting, so it's really not just going to be about the code that ships, but rather the (not-so)basic commands I need to google, or the dumb mistakes, or the long hours spent scouring the internet for things that developers ought to know (but I don't), and the brutal reality of open-source development or at least the reality from the perspective of a first-timer (that would be me needing to google how to squash and rebase, haha fun times:| or not)&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
