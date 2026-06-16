@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 15 Jun 2026 05:22:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 - Weeks 1 &amp; 2: Understanding Before Implementing</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260607_2113_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;The Journey Begins 💪&lt;/h3&gt;&lt;p&gt;The first two weeks of the coding period have been a mixture of excitement, confusion, debugging, learning and the occasional moment of staring at a terminal wondering why something that worked five minutes ago suddenly doesn't.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 16 Jun 2026 05:25:35 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Biting Into It: My Astropy Summer (Weeks 1-3)</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260615_0948_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;blockquote&gt;
+&lt;p&gt;"I really want to be something in life. I don't want to be forgotten."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;It's a heavy thought for a Tuesday night, but it's been bouncing around my head a lot lately. I read this Sartre quote recently about living a "toothless life", just waiting around, reserving yourself for later, and then suddenly realizing your teeth are gone. I decided a while ago that I'm not doing that. If I'm going to leave something behind, it has to be through work that actually matters.&lt;/p&gt;
+
+&lt;p&gt;Right now, that work looks like deliberately bypassing high-level Python APIs to aggressively test raw, compiled C-engines for Astropy.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;
+
+
+The Weekly Grind
+&lt;/h3&gt;
+
+&lt;p&gt;Juggling CS coursework while trying to wrangle Cython for Google Summer of Code is a lot. But honestly? I've been loving every damn second of it. Reading documentation in a vacuum is one thing, actually hashing out C-level memory bindings is where the reality sets in. My mentors don't just let me write code; they force me to hold my work to strict architectural standards, which honestly gives me an immense sense of accomplishment once I clear them.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;
+
+
+&lt;code&gt;test_np_utils.py&lt;/code&gt;: First Blood
+&lt;/h3&gt;
+
+&lt;p&gt;Getting this merged was my first real bite into the codebase. Instead of playing it safe with high-level Astropy &lt;code&gt;Table&lt;/code&gt; objects, I stripped away the Python wrapper to test the raw C-engine underneath. I threw every Cartesian edge case at the &lt;code&gt;join_inner&lt;/code&gt; function just to see if the explosive $O(N^2)$ memory allocations would break it.&lt;/p&gt;
+
+&lt;p&gt;They didn't.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;
+
+
+&lt;code&gt;test_column_mixins.py&lt;/code&gt;: The Beast
+&lt;/h3&gt;
+
+&lt;p&gt;Absolute beast of a PR. I had to write &lt;code&gt;MinimalColumn&lt;/code&gt; shims and cast them directly onto raw NumPy arrays just to isolate the Cython &lt;code&gt;__getitem__&lt;/code&gt; routing. Somewhere in there I found a legitimate C-level trapdoor — indexing a structured array with a single string was silently dropping the dtype entirely. That became Issue #19827, which I later learned was actually expected behavior, so I closed it. End of story.&lt;/p&gt;
+
+&lt;p&gt;But the real boss fight wasn't even the code (funny, right?!). It was Git. I ran a terrifying interactive rebase in Nano to squash six messy commits before force-pushing to my branch. Truly character-building.&lt;/p&gt;
+
+&lt;p&gt;If it isn't clear by now, let me spell it out:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;"I absolutely despise GitHub squash and rebase. Actually, I don't think we (me and GitHub) can ever be on amicable terms."&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+
+
+&lt;h3&gt;
+
+
+APE Split &amp;amp; &lt;code&gt;_parse_times.c&lt;/code&gt;: Standing on Shoulders
+&lt;/h3&gt;
+
+&lt;p&gt;Lately I've been laying the tracks for the APE split, writing isolated tests for the &lt;code&gt;_parse_times.c&lt;/code&gt; extension. This was mostly building on another contributor's accepted PR, but it was enlightening to understand how other brains work. I'll be honest, I spent a good chunk of time just deciphering the existing test cases before touching anything, making sure I didn't alter their original essence.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;That's weeks 1–3, folks.&lt;/p&gt;
+
+&lt;p&gt;It's a blur of memory buffers, strict type checking, and fighting CI matrices. But when those green checkmarks come in, and especially when I see those purple merged PRs, I know I'm actually building something.&lt;/p&gt;
+
+&lt;p&gt;I'm biting into it. I'm not waiting anymore.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260615_0948_reemhamraz/</guid><pubDate>Mon, 15 Jun 2026 08:48:44 GMT</pubDate></item><item><title>GSoC 2026 - Weeks 1 &amp; 2: Understanding Before Implementing</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260607_2113_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;The Journey Begins 💪&lt;/h3&gt;&lt;p&gt;The first two weeks of the coding period have been a mixture of excitement, confusion, debugging, learning and the occasional moment of staring at a terminal wondering why something that worked five minutes ago suddenly doesn't.&lt;/p&gt;
 &lt;p&gt;As someone once said:&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;"The expert in anything was once a beginner who refused to give up."&lt;/em&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -699,8 +769,4 @@ plot(&lt;span class="hljs-name"&gt;cs&lt;/span&gt;, Val(&lt;span class="hljs-sym
 &lt;p&gt;Because we now download compressed chunks that expand into exact 500 MB windows, caching becomes both simpler and more powerful. These decompressed windows are reproducible, so if a user requests data close to something we’ve already seen, we can serve parsed results directly from the cache. In practice this completely changes the onboarding experience from &lt;em&gt;“download six gigabytes before you can even start”&lt;/em&gt; to &lt;em&gt;“get results for the region you care about as fast as possible”.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;So finally, after merging this pull requests, my Google Summer of Code project is complete. The project felt medium-sized at the start, but it turned into something much bigger than I expected I learned a ton over the last three months. Combining the partial-download + decompression approach with a super-fast SIMD parser took extra effort but it was worth it, new users can now get large parsed slices of the dataset quickly without downloading the whole archive.&lt;/p&gt;
 &lt;p&gt;Huge thanks to the maintainers for all their feedback and patience especially Dr. Nicolas Minesi and Dr. Dirk van den Bekerom. Their reviews pushed the code and design in the right direction. This is the final technical GSOC post in the series, and I’ll keep contributing and maintaining the project. Stay tuned for more blog posts soon. ;)&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=e146aa83826a" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2025/08/20250824_1636_prtm2110/</guid><pubDate>Sun, 24 Aug 2025 15:36:41 GMT</pubDate></item><item><title>RADIS Web App Final GSoC Blog</title><link>http://openastronomy.org/Universe_OA/posts/2025/08/20250820_1509_mohyware/</link><dc:creator>mohyware</dc:creator><description>&lt;p&gt;In this final update, I’ll be covering the latest improvements.&lt;/p&gt;
-&lt;h4&gt;&lt;strong&gt;Option to run the backend locally with Docker:&lt;/strong&gt;&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;Simply follow the steps in the app to get started:&lt;/li&gt;&lt;/ul&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/634/1*Qmn_cqV9vRFldFA_0ydUAQ.png"&gt;&lt;/figure&gt;&lt;ul&gt;&lt;li&gt;Improve performance if local machine is powerful.&lt;/li&gt;&lt;li&gt;You can even mount your existing databases (if you’ve used the RADIS package) by running the container with the following command:&lt;/li&gt;&lt;/ul&gt;&lt;pre&gt;docker run -d -p 8080:8080 \&lt;br&gt;-v /home/mohy/.radisdb:/root/.radisdb \ &lt;br&gt;-v /home/mohy/radis.json:/root/radis.json \&lt;br&gt;radis-app-backend&lt;/pre&gt;&lt;h4&gt;&lt;strong&gt;Moved to &lt;/strong&gt;&lt;strong&gt;SpectrumFactory instead of the simpler &lt;/strong&gt;&lt;strong&gt;calc_spectrum:&lt;/strong&gt;&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;This enables GPU-based calculations if implemented in the future.&lt;/li&gt;&lt;li&gt;Also improves ExoMol database performance by avoiding unnecessary broad file downloads.&lt;/li&gt;&lt;/ul&gt;&lt;h4&gt;&lt;strong&gt;UI improvements:&lt;/strong&gt;&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;Better layout and space utilization to make the graph display larger and clearer.&lt;/li&gt;&lt;/ul&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/1024/1*nIhU6Hej2xRGMecUAN7m2A.png"&gt;&lt;/figure&gt;&lt;h4&gt;&lt;strong&gt;There is a new option to c&lt;/strong&gt;hoose between using &lt;strong&gt;all isotopes&lt;/strong&gt; or &lt;strong&gt;only the first one&lt;/strong&gt;.&lt;/h4&gt;&lt;figure&gt;&lt;img alt="" src="https://cdn-images-1.medium.com/max/714/1*TD8Ks6cnUBMSIE1yQKzLqQ.png"&gt;&lt;/figure&gt;&lt;h4&gt;Testing&lt;/h4&gt;&lt;p&gt;I’ve added tests for all the new features on both the frontend and backend, and ensured coverage of the core existing functionalities.&lt;/p&gt;
-&lt;p&gt;Overall, it has been a fantastic journey working on this project with such a supportive community and mentors.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=f1f5580da556" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2025/08/20250820_1509_mohyware/</guid><pubDate>Wed, 20 Aug 2025 14:09:45 GMT</pubDate></item></channel></rss>
+&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=e146aa83826a" width="1"&gt;</description><category>radis</category><guid>http://openastronomy.org/Universe_OA/posts/2025/08/20250824_1636_prtm2110/</guid><pubDate>Sun, 24 Aug 2025 15:36:41 GMT</pubDate></item></channel></rss>
