@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by James)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/james.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 17 Jun 2026 05:05:46 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 Weeks 1-2: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_1057_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Starting out&lt;/h3&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p class="wp-block-paragraph"&gt;I spent the first two weeks of the coding period figuring out the problem I was solving more than I was writing code.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;My GSoC project is about moving OGIP/X-ray spectrum loading into a separate Julia package, currently &lt;code&gt;XraySpectra.jl&lt;/code&gt;, while keeping reusable spectrum types in &lt;code&gt;SpectrumBase.jl&lt;/code&gt; and leaving fitting in &lt;code&gt;SpectralFitting.jl&lt;/code&gt;. Written that way, it sounds clean and obvious. It did not feel clean and obvious when I started.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;At the beginning, I spent a lot of time just trying to understand the boundaries. What belongs in a generic spectrum package? What is specific to X-ray astronomy? What should a loader return if it only has part of the observation? I think that was a good way to begin. It would have been easy to rush into implementation and only later realize I had built the wrong interface.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;What I worked on first&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;My first concrete goal was simple: get OGIP PHA loading working in the new package without inventing too much too early.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The first working version reads a PHA I file into an existing `SpectrumBase` type instead of immediately creating a brand new X-ray-specific spectrum container. But it led to one of the questions I kept coming back to: what does a PHA file actually mean if it does not contain physical energy bin edges?&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Looking through NuSTAR and XMM examples helped a lot here. What became clear is that the physical energy bins usually do not come from the PHA file itself. They typically come from the response, especially the RMF and its EBOUNDS information.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;That changed how I was thinking about the data. A PHA file is not automatically “the spectrum in energy.” A lot of the time it is really the detector-space version of the spectrum, stored in channels. You only get the mapping into physical energy once the response is involved. That ended up being one of the most useful conceptual shifts for me in these first two weeks.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Looking at real data made it feel more real&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-117" height="559" src="https://jamesraffertylee.wordpress.com/wp-content/uploads/2026/06/image.png?w=1024" width="1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;One of my favorite parts so far was spending time in ESASky and looking at real observations instead of only staring at FITS headers and Julia structs.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;It was genuinely cool to compare the same region of sky across different wavelengths. In optical images, some objects can look almost quiet, or at least not obviously dramatic. With black holes especially, you are usually not directly “seeing the black hole” in the way people imagine. But once you look in X-rays, the surrounding physics starts to show up much more clearly: hot gas, accretion, compact-object activity, and all the energetic processes happening around the source.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;That contrast made the project click in a different way for me. I was not just moving file readers between packages. I was building toward a workflow that helps turn those high-energy observations into something we can actually inspect and fit.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Moving past PHA-only loading&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After the PHA side started to make sense, I began porting the response side of the OGIP loader too. That meant reading RMF files, building a response matrix, and experimenting with an energy-binned view once the response bins are available.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;I also added support for ancillary response files (ARFs), background PHA loading, and a higher-level &lt;code&gt;read_spectrum&lt;/code&gt; helper&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For now, that higher-level loader returns a named tuple instead of a heavier observation type. That feels like the right level of structure while the API is still moving around. It is simple enough to experiment with, but still makes it very clear what pieces are present: the source spectrum, response matrix, ancillary response, background, and resolved paths.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;What I learned&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;One thing I learned very quickly is that even “just loading data” carries a lot of scientific and software design weight.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Channels versus energies, whether missing linked files should error or be tolerated, where uncertainties should live, and what shape a grouped loader should return all sound like implementation details until you actually have to choose. Then you realize they shape how the whole package feels to use.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;I think the most useful thing I did in these first two weeks was not pretending I understood everything right away. I spent a lot of time asking questions, tracing how existing code works, and trying small pieces first. My mentors helped me by explaining every bit carefully, making sure I understood things clearly enough to solve the problem. That slowed the start a bit, but it also made the project feel much less foggy by the end of the second week.&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_1057_jamesrafe/</guid><pubDate>Tue, 16 Jun 2026 09:57:33 GMT</pubDate></item></channel></rss>
