@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about lincc-fw)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/lincc-fw.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 24 Jun 2026 04:19:43 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Results are out!!!</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260614_1208_ombiradar/</link><dc:creator>Om Biradar</dc:creator><description>&lt;p&gt;My GSoC project's main goals includes parallelizing the reading of structs in parquet files. This is very beneficial to the community as astronomical data involves data stored in structs and other nested structures.&lt;/p&gt;
+&lt;img alt="" src="https://cdn.hashnode.com/uploads/covers/69cbd2f4c1e86567d73c63eb/79712cfd-bfff-44aa-b909-7dd5cb572175.png" style="display: block; margin: 0 auto;"&gt;
+
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;This figure shows the performance increase/decrease the optimized parquet reader (which I made) has over the baseline main branch of apache/arrow when run on a standard free GitHub runner and the file in loaded into the RAM to remove the I/O overhead which is not relevant here.&lt;/p&gt;
+&lt;p&gt;For smaller files, the overhead of multi threading causes it to be slower, but for real life cases when the file sizes are large, the optimized reader now provides 25%-30%+ faster reading times.&lt;/p&gt;
+&lt;img alt="" src="https://cdn.hashnode.com/uploads/covers/69cbd2f4c1e86567d73c63eb/8f49160a-b4ca-43a5-810f-b5bfa82d9766.png" style="display: block; margin: 0 auto;"&gt;
+
+&lt;p&gt;When compared to flat parquet files, the nested struct now offer similar read speeds with multi threading enabled!!&lt;/p&gt;
+&lt;p&gt;Overally, the project is going at a great pace with verifiable results. I hope this integrates with the upstream apache arrow library soon so that this performance boost can help the people working with PyArrow on astronomy datasets.&lt;/p&gt;
+&lt;p&gt;The link to the PR - &lt;a href="https://github.com/apache/arrow/pull/50158"&gt;https://github.com/apache/arrow/pull/50158&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Link to the results colab notebook - &lt;a href="https://colab.research.google.com/drive/1TsxFkBSI_Iq0hfXEwNDs_D24acr3yxdC?usp=sharing"&gt;https://colab.research.google.com/drive/1TsxFkBSI_Iq0hfXEwNDs_D24acr3yxdC?usp=sharing&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Orchestrating and benchmarking repo - &lt;a href="https://github.com/OmBiradar/pyarrow-lincc-fw-openastronomy-gsoc26"&gt;https://github.com/OmBiradar/pyarrow-lincc-fw-openastronomy-gsoc26&lt;/a&gt;&lt;/p&gt;</description><category>lincc-fw</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260614_1208_ombiradar/</guid><pubDate>Sun, 14 Jun 2026 11:08:19 GMT</pubDate></item><item><title>Community Bonding and week 1 &amp; 2</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260609_0327_ombiradar/</link><dc:creator>Om Biradar</dc:creator><description>&lt;p&gt;The start was amazing! The community bonding was really great. I got to meet the mentors, get to know the whole organization structure of OpenAstronomy and LINCC frameworks, the work they do, the people and facilities associated with it, the ways PyArrow and nested-pandas was being used in astronomy and the expectations they had form the internship. They offered to help me through tasks if I could not do it on my own along with some content to look through to get a deeper understanding of the project. I attended the Apache Arrow community meeting with my mentor to introduce the project them and get their views on it. They were really helpful and even suggested certain thing to do to improve the final PR.&lt;/p&gt;
+&lt;p&gt;Week 1 and 2 were spent on improving the parallel reading of parquet files, which was successfully implemented by me. The benchmarking of these performance changes proved quite hard, as this would require the following, starting with the main arrow branch:&lt;/p&gt;
+&lt;ol&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;li&gt;&lt;p&gt;Building arrow C++ from source&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Building PyArrow from source&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Running benchmarking scripts&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Switching the branch from the main branch and repeating steps 1-3&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The time taken to benchmark the changes for all order of magnitude of files proved to be very long, approximately ~140 hours or 6 days. I could speed this up using parallel jobs in github which needed to be configured separately using config settings and matrix github runners. This needed to be done because github sets a timeout of 6 hours on each github action with at max 20 concurrent jobs and a 24 hour auto cancel timeout on jobs in queue. Based on these constraints I had to figure out a way to orchestrate different runners and combine their results for which I used sqlite3.&lt;/p&gt;</description><category>lincc-fw</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260609_0327_ombiradar/</guid><pubDate>Tue, 09 Jun 2026 02:27:42 GMT</pubDate></item></channel></rss>
