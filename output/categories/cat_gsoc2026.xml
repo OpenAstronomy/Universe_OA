@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2026)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2026.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 01 Jul 2026 04:49:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 – Weeks 3 &amp; 4: Looking Beyond the Code</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260622_1228_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;Understanding the Infrastructure&lt;/h3&gt;&lt;p&gt;The past two weeks have been quite different from the start of the coding period.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2026)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2026.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 02 Jul 2026 04:16:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Comfort is a Trap</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I've realized something over these last few weeks. Comfort is a trap.&lt;/p&gt;
+
+&lt;p&gt;In Python, everything is comfortable. You have these beautiful, high-level wrappers that hide the ugly reality of how the machine actually works. But if I want to do work that matters—if I want to build things that last—I can't stay in the comfortable layers. I have to go down to where it's dark and unforgiving.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;Lately, that means staring down the &lt;code&gt;_iterparser&lt;/code&gt; C-extension.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+The Raw Machine
+&lt;/h3&gt;
+
+&lt;p&gt;I decided to completely bypass the Python safety nets. The goal was to mathematically prove that the underlying &lt;code&gt;libexpat&lt;/code&gt; state machine could handle brutally malformed XML byte streams without breaking.&lt;/p&gt;
+
+&lt;p&gt;When you dig this deep, you realize the C-engine doesn't care about being polite. High-level code gives you clean outputs, but down here? Closing tags don't yield nice, empty strings. To save precious CPU cycles on memory reallocation, the engine just yields the closing flag along with whatever lingering text is still bleeding over in the shared memory buffer. It's messy. It's raw. But it is beautifully, ruthlessly efficient.&lt;/p&gt;
+
+&lt;p&gt;The standard for this kind of open-source architecture is completely unforgiving. You can't just casually check if data matches; I had to explicitly enforce &lt;code&gt;strict=True&lt;/code&gt; on my iterables just to guarantee identical lengths and prevent silent failures.&lt;/p&gt;
+
+&lt;p&gt;It forces a kind of discipline I didn't know I had in me.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Ghosts in the Infrastructure
+&lt;/h3&gt;
+
+&lt;p&gt;And then, of course, the infrastructure decides to humble you.&lt;/p&gt;
+
+&lt;p&gt;I spent hours losing my mind over a corrupted Windows virtual environment that was failing my GitHub Actions for no apparent reason. The fix? Literally just clearing the cache to force a fresh dependency rebuild. Add in Ruff pre-commit hooks aborting my commits to protect the working directory, and my patience was practically non-existent.&lt;/p&gt;
+
+&lt;p&gt;But I finally conquered the interactive rebase against upstream targets (&lt;code&gt;git rebase -i upstream/main&lt;/code&gt;). I managed to squash my messy, chaotic review iterations into a single, clean production commit. I might still despise GitHub squash and rebase, but at least now I know how to wield them.&lt;/p&gt;
+
+&lt;p&gt;I'd be lying if i said that it isn't tiring at times. It's exhausting. It's isolating. BUT when I force the C-engine to crash on a truncated byte stream, safely catch the error, and watch the internal 4-tuple align flawlessly across the Python-C boundary...&lt;/p&gt;
+
+&lt;p&gt;Yeah. That's the feeling. That's why I love this.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</guid><pubDate>Wed, 01 Jul 2026 21:24:13 GMT</pubDate></item><item><title>GSoC 2026 – Weeks 3 &amp; 4: Looking Beyond the Code</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260622_1228_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;Understanding the Infrastructure&lt;/h3&gt;&lt;p&gt;The past two weeks have been quite different from the start of the coding period.&lt;/p&gt;
 &lt;p&gt;Instead of spending most of my time implementing new functionality, I found myself exploring a part of open source development that I had very little experience with before: testing infrastructure, CI workflows and release tooling.&lt;/p&gt;
 &lt;p&gt;One thing I've learned so far is that writing code is only part of maintaining a project. Making sure that code continues to work months or years later is an equally important challenge.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;

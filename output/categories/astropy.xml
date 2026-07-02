@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about Astropy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/astropy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 01 Jul 2026 04:49:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Biting Into It: My Astropy Summer (Weeks 1-3)</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260615_0948_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;blockquote&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about Astropy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/astropy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 02 Jul 2026 04:16:37 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Comfort is a Trap</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I've realized something over these last few weeks. Comfort is a trap.&lt;/p&gt;
+
+&lt;p&gt;In Python, everything is comfortable. You have these beautiful, high-level wrappers that hide the ugly reality of how the machine actually works. But if I want to do work that matters—if I want to build things that last—I can't stay in the comfortable layers. I have to go down to where it's dark and unforgiving.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;Lately, that means staring down the &lt;code&gt;_iterparser&lt;/code&gt; C-extension.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+The Raw Machine
+&lt;/h3&gt;
+
+&lt;p&gt;I decided to completely bypass the Python safety nets. The goal was to mathematically prove that the underlying &lt;code&gt;libexpat&lt;/code&gt; state machine could handle brutally malformed XML byte streams without breaking.&lt;/p&gt;
+
+&lt;p&gt;When you dig this deep, you realize the C-engine doesn't care about being polite. High-level code gives you clean outputs, but down here? Closing tags don't yield nice, empty strings. To save precious CPU cycles on memory reallocation, the engine just yields the closing flag along with whatever lingering text is still bleeding over in the shared memory buffer. It's messy. It's raw. But it is beautifully, ruthlessly efficient.&lt;/p&gt;
+
+&lt;p&gt;The standard for this kind of open-source architecture is completely unforgiving. You can't just casually check if data matches; I had to explicitly enforce &lt;code&gt;strict=True&lt;/code&gt; on my iterables just to guarantee identical lengths and prevent silent failures.&lt;/p&gt;
+
+&lt;p&gt;It forces a kind of discipline I didn't know I had in me.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Ghosts in the Infrastructure
+&lt;/h3&gt;
+
+&lt;p&gt;And then, of course, the infrastructure decides to humble you.&lt;/p&gt;
+
+&lt;p&gt;I spent hours losing my mind over a corrupted Windows virtual environment that was failing my GitHub Actions for no apparent reason. The fix? Literally just clearing the cache to force a fresh dependency rebuild. Add in Ruff pre-commit hooks aborting my commits to protect the working directory, and my patience was practically non-existent.&lt;/p&gt;
+
+&lt;p&gt;But I finally conquered the interactive rebase against upstream targets (&lt;code&gt;git rebase -i upstream/main&lt;/code&gt;). I managed to squash my messy, chaotic review iterations into a single, clean production commit. I might still despise GitHub squash and rebase, but at least now I know how to wield them.&lt;/p&gt;
+
+&lt;p&gt;I'd be lying if i said that it isn't tiring at times. It's exhausting. It's isolating. BUT when I force the C-engine to crash on a truncated byte stream, safely catch the error, and watch the internal 4-tuple align flawlessly across the Python-C boundary...&lt;/p&gt;
+
+&lt;p&gt;Yeah. That's the feeling. That's why I love this.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</guid><pubDate>Wed, 01 Jul 2026 21:24:13 GMT</pubDate></item><item><title>Biting Into It: My Astropy Summer (Weeks 1-3)</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260615_0948_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;blockquote&gt;
 &lt;p&gt;"I really want to be something in life. I don't want to be forgotten."&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;!-- TEASER_END --&gt;
@@ -133,5 +168,4 @@ The next 2 weeks
 &lt;p&gt;Anyway, Bye.&lt;/p&gt;
 &lt;p&gt;See ya the next time! 🙋‍♂️&lt;/p&gt;
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210619_2154_suyog7130/</guid><pubDate>Sat, 19 Jun 2021 20:54:00 GMT</pubDate></item><item><title>astropy@GSoC Blog Post #1</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210606_1659_suyog7130/</link><dc:creator>Suyog Garg</dc:creator><description>&lt;div&gt;Hey there,&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;How are you?&lt;/div&gt;&lt;div&gt;Chances are that you are coming across me for the first time.&lt;/div&gt;&lt;div&gt;Nice meeting you too! 😄&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;  Since this is an introductory astropy@GSoC Blog Post, I would keep things   brief.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;  &lt;br&gt;  &lt;div class="separator" style="clear: both; text-align: center;"&gt;    &lt;img alt="" height="336" src="https://lh3.googleusercontent.com/-kVduvrsYzQ4/YL0ClAcy0hI/AAAAAAAA3Yk/PrbBQBkgxu8Y_f7-qpLAPlI6tr0zISXFgCLcBGAsYHQ/w336-h336/image.png" width="336"&gt;&lt;div style="margin-left: 1em; margin-right: 1em;"&gt;                      &lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://lh3.googleusercontent.com/-OkQcow92n4s/YL0DELFw56I/AAAAAAAA3Y0/43e2Ak8Bsy8VaTSw6RYB3ryocKQUCnM1ACLcBGAsYHQ/image.png" style="margin-left: 1em; margin-right: 1em; text-align: center;"&gt;&lt;img alt="" height="154" src="https://lh3.googleusercontent.com/-OkQcow92n4s/YL0DELFw56I/AAAAAAAA3Y0/43e2Ak8Bsy8VaTSw6RYB3ryocKQUCnM1ACLcBGAsYHQ/image.png" width="320"&gt;&lt;/a&gt;&lt;img alt="" height="169" src="https://lh3.googleusercontent.com/-qshucfTcxpY/YL0CwsGOS2I/AAAAAAAA3Yo/OGuKkhEkZtkmz3xw6qVy3YYTANGN5Zi2gCLcBGAsYHQ/w169-h169/image.png" style="text-align: center;" width="169"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;As you probably already know, my name is Suyog and I am a participant for Google Summer of Code (GSoC) 2021. Over the course of the next 10 weeks or so, I will be working on the Astropy project under the umbrella organisation OpenAstronomy. During this while, I aim to add a CDS format writer to the Astropy library with the help of my affable mentors Aarya and Moritz.   &lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;I had actually also applied for GSoC last summer, however I had failed to pass   one of the eligibility criteria, and so wasn't selected. This astropy@GSoC   project, therefore, is quite an awesome opportunity for me. I am looking   forward to making the most of it and enjoying the time all the same. &lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;There are two preliminary observations:&lt;/div&gt;&lt;div&gt;      1. The associated stipend, albeit somewhat lower than what used   to be the case a few years back, is freaking awesome. 😉 &lt;/div&gt;&lt;div&gt;      2. Dunno, why this project is marked as Difficultly Low!?   Nothing as easy as being just the third person to write a Table writer for the   world's largest Astronomy code library! 😂😎 &lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Alright. Bye.&lt;/div&gt;&lt;div&gt;See ya the next time! 🙋‍♂️&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;  Stay tuned for more GSoC updates, or what is far better, for the next post in   general. &lt;/div&gt;
-&lt;!-- TEASER_END --&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210606_1659_suyog7130/</guid><pubDate>Sun, 06 Jun 2021 15:59:00 GMT</pubDate></item></channel></rss>
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210619_2154_suyog7130/</guid><pubDate>Sat, 19 Jun 2021 20:54:00 GMT</pubDate></item></channel></rss>
