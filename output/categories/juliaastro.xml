@@ -1,5 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about JuliaAstro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/juliaastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 06 Jul 2026 04:23:28 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 Weeks 1-2: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_1057_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Starting out&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about JuliaAstro)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/juliaastro.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 07 Jul 2026 04:12:52 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 Weeks 3-4: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_1320_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Moving from loading files to using them&lt;/strong&gt;&lt;/p&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-124" height="420" src="https://jamesraffertylee.wordpress.com/wp-content/uploads/2026/07/image.png?w=1024" width="1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;During weeks 3 and 4, the project started to feel less like “can I read this FITS file?” and more like “can someone actually use this package on real data?”&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After getting the basic OGIP pieces loaded, I worked more on how the pieces fit together: PHA files, RMFs, ARFs, backgrounds, and the higher-level dataset loader. A lot of the work was still small and careful, but the direction became clearer. The package should not just expose a pile of parsed FITS columns. It should give users the parts of an observation in a way that makes sense.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;One useful change was moving toward &lt;code&gt;read_dataset&lt;/code&gt; as the higher-level loader name. A PHA file is already the spectrum-like data, so calling the full observation loader &lt;code&gt;read_spectrum&lt;/code&gt; felt a little confusing. &lt;code&gt;read_dataset&lt;/code&gt; better describes what is happening: read the spectrum, and optionally read the response, ancillary response, and background too.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Response folding&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A big part of these weeks was response folding. This is where the model or flux is passed through the instrument response to predict what the detector would see.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;At first, the math looked simple:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code&gt;&lt;div class="cm-line"&gt;response matrix * flux&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;But as usual, the details matter. The ARF has effective area values, and the RMF redistributes photons from true energy bins into detector channels. Combining the ARF and RMF means scaling the response matrix by the effective area before folding.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;I also learned more about performance here. Some response matrices can be sparse, so preserving sparsity matters. Otherwise, a matrix operation that looks harmless could accidentally allocate a much larger dense matrix. This led to improving &lt;code&gt;combine!&lt;/code&gt; so it could work better with sparse matrices instead of creating unnecessary temporary arrays.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Rebinning and real data&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Another major topic was rebinning. The important idea is that rebinning should be explicit. The package should not silently change a user’s data just because two grids do not match.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For channel rebinning, the basic idea is simple: combine neighboring detector channels and preserve the right quantities. Counts should be summed. Bad quality flags should propagate if any channel in the group is bad. Errors need more care, especially depending on whether they are Poisson or explicitly provided numeric errors.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;I spent time comparing this with how &lt;code&gt;SpectralFitting.jl&lt;/code&gt; already approaches grouping and rebinning. That helped keep the new package from drifting too far away from the ecosystem it is supposed to support.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Testing with real files&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A lot of these weeks were also about test data. Instead of committing large binary files directly, I worked on using Julia artifacts and GitHub release assets so tests can download data only when needed. That seems like the right direction for real mission files, because FITS files can get large very quickly.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;I also started looking outside X-rays a bit. I inspected JWST and MAST products to understand what “spectrum loading” might mean for infrared data. That was useful because JWST products are not all the same shape. Some are already extracted 1D spectra, while others are 2D spectral images, imaging products, or source catalogs.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;That made the boundary clearer again: extracted 1D products like &lt;code&gt;x1d&lt;/code&gt; are closer to SpectrumBase. 2D images or slitless spectroscopy products may need more thought before forcing them into the same interface.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;What I learned&lt;/strong&gt;&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The main thing I learned in weeks 3 and 4 is that a loader is also an interface design problem.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;It is not enough to parse the file correctly. The package also needs to make the scientific meaning hard to misuse. Is this detector channel data or physical energy data? Has the ARF already been folded in? Is this one spectrum or many spectra? Are we looking at a 1D extracted product or a 2D image?&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;These questions kept showing up in different forms. The work is still incremental, but I feel like I understand the shape of the problem much better now. The next steps are to keep tightening the loader API, improve rebinning behavior, and keep testing against real mission data instead of only artificial examples.&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_1320_jamesrafe/</guid><pubDate>Mon, 06 Jul 2026 12:20:27 GMT</pubDate></item><item><title>GSoC 2026 Weeks 1-2: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_1057_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Starting out&lt;/h3&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -911,21 +1006,4 @@ segment_colors=[:blue, :red, :green, :orange, :purple])
 
 &lt;p&gt;Stay tuned to know more!&lt;/p&gt;
 
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/07/20200729_1113_siddharthlal25/</guid><pubDate>Wed, 29 Jul 2020 10:13:56 GMT</pubDate></item><item><title>Week 5 &amp; 6: The second month begins!</title><link>http://openastronomy.org/Universe_OA/posts/2020/07/20200713_0044_siddharthlal25/</link><dc:creator>siddharthlal25</dc:creator><description>&lt;h3 id="hey-sid-did-you-pass-your-first-evaluations"&gt;&lt;em&gt;Hey Sid, did you pass your first evaluations?&lt;/em&gt;&lt;/h3&gt;
-
-&lt;p&gt;The results of the first evaluation was declared on the 4th of July and yes, I successfully completed my first evaluation!&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;h3 id="how-was-your-experience-till-now"&gt;&lt;em&gt;How was your experience till now?&lt;/em&gt;&lt;/h3&gt;
-
-&lt;p&gt;It seems as if I started working yesterday, but reality is one and a half months are complete. The experience of working on this project was awesome, all thanks to my mentors.&lt;/p&gt;
-
-&lt;h3 id="so-what-are-the-updates-of-these-two-weeks"&gt;&lt;em&gt;So, what are the updates of these two weeks?&lt;/em&gt;&lt;/h3&gt;
-
-&lt;p&gt;I have been a bit puzzled in designing the end-user interface of the package, I was working on the issue &lt;a href="https://github.com/JuliaAstro/CCDReduction.jl/issues/28"&gt;#28&lt;/a&gt; during which Miles figured out that use of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; is not good, since it is not operable upon once the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; file is closed. So, we won’t be able to operate on some collected &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt;s via iteration, since their respective &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files would have been closed after iteration.&lt;/p&gt;
-
-&lt;h3 id="hmmm-that-seems-like-a-problem-so-what-next"&gt;&lt;em&gt;Hmmm, that seems like a problem, so what next?&lt;/em&gt;&lt;/h3&gt;
-
-&lt;p&gt;We have thought of designing a new data structure &lt;code class="language-plaintext highlighter-rouge"&gt;CCDData&lt;/code&gt;, that would keep the header and image data of &lt;code class="language-plaintext highlighter-rouge"&gt;ImageHDU&lt;/code&gt; coupled and can be even accessed when the &lt;code class="language-plaintext highlighter-rouge"&gt;FITS&lt;/code&gt; files are closed. Once, this is done we will go for release (the major one, about which I talked in the last blog). Stay tuned to find out more!&lt;/p&gt;
-
-&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/07/20200713_0044_siddharthlal25/</guid><pubDate>Sun, 12 Jul 2020 23:44:56 GMT</pubDate></item></channel></rss>
+&lt;p&gt;-sl&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2020/07/20200729_1113_siddharthlal25/</guid><pubDate>Wed, 29 Jul 2020 10:13:56 GMT</pubDate></item></channel></rss>
