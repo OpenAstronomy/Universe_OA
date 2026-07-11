@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Reem Hamraz)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/reem-hamraz.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 10 Jul 2026 04:07:00 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Comfort is a Trap</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I've realized something over these last few weeks. Comfort is a trap.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by Reem Hamraz)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/reem-hamraz.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 11 Jul 2026 03:33:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Coming up for Air</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260710_1453_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;After the absolute gauntlet of the past few weeks, this week finally offered a little bit of breathing room. I'm not going to lie, I needed it. But "lighter" in the open-source world doesn't mean stopping; it just means you finally have the time to sit back and actually think before you code.&lt;/p&gt;
+
+&lt;h3&gt;
+&lt;!-- TEASER_END --&gt;
+
+
+Writing .pyi Stub Files
+&lt;/h3&gt;
+
+&lt;p&gt;A good chunk of my time went into writing &lt;code&gt;.pyi&lt;/code&gt; stub files. It sounds mundane on the surface, like just writing Python type hints, BUT it's actually this bizarre, highly precise exercise in translation. You are basically acting as a diplomat between the ruthless C-engine and Python's static type checkers. It's microscopic work. Every single argument has to align perfectly with how the C-level memory actually allocates it, otherwise the whole illusion shatters. It requires a sort of discipline.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+My Main Target
+&lt;/h3&gt;
+
+&lt;p&gt;But my main focus, and what I'm gearing up to dive back into, is the &lt;code&gt;unit_list_proxy.c&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;There is a nasty runtime dependency lurking in there. Right now, the C-code aggressively tries to import a massive Python library the second it gets created, locking everything into this heavy, tangled cycle. For a minute, I was dreading having to do a complete, tear-it-down-to-the-studs refactor just to untangle it.&lt;/p&gt;
+
+&lt;p&gt;Thankfully, I pitched an alternative to my mentor, Clément, and he gave me the green light to run with it. We'll see how that goes.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+The fix?
+&lt;/h3&gt;
+
+&lt;p&gt;Instead of a massive rewrite, we are going to use &lt;strong&gt;structural sub-typing&lt;/strong&gt; which is a more specific form of &lt;strong&gt;duck typing&lt;/strong&gt; (I guess don't come at me if I'm wrong) right at the C-level. Rather than forcing the C-engine to check an object's exact, official DNA (which requires importing the whole Python library), we are just going to check its behavior. Does it have the method we need? If it walks like a duck and quacks like a duck, the C-engine will blindly trust that it's a duck and process it.&lt;/p&gt;
+
+&lt;p&gt;It is such an elegant workaround. It completely severs the nasty dependency chain without us having to burn the house down to fix the plumbing (I was pretty proud of actually thinking about it).&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Thoughts..
+&lt;/h3&gt;
+
+&lt;p&gt;It's a smarter, cleaner way forward. The C-layer is still intimidating, but for the first time in a while, I feel like I'm actually outsmarting the machine instead of just wrestling with it.&lt;/p&gt;
+
+&lt;p&gt;Back into the dark I go.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260710_1453_reemhamraz/</guid><pubDate>Fri, 10 Jul 2026 13:53:14 GMT</pubDate></item><item><title>Comfort is a Trap</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I've realized something over these last few weeks. Comfort is a trap.&lt;/p&gt;
 
 &lt;p&gt;In Python, everything is comfortable. You have these beautiful, high-level wrappers that hide the ugly reality of how the machine actually works. But if I want to do work that matters—if I want to build things that last—I can't stay in the comfortable layers. I have to go down to where it's dark and unforgiving.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;

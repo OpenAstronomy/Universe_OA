@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 10 Jul 2026 04:07:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 Weeks 3-4: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_1320_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Moving from loading files to using them&lt;/strong&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 11 Jul 2026 03:33:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Coming up for Air</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260710_1453_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;After the absolute gauntlet of the past few weeks, this week finally offered a little bit of breathing room. I'm not going to lie, I needed it. But "lighter" in the open-source world doesn't mean stopping; it just means you finally have the time to sit back and actually think before you code.&lt;/p&gt;
+
+&lt;h3&gt;
+&lt;!-- TEASER_END --&gt;
+
+
+Writing .pyi Stub Files
+&lt;/h3&gt;
+
+&lt;p&gt;A good chunk of my time went into writing &lt;code&gt;.pyi&lt;/code&gt; stub files. It sounds mundane on the surface, like just writing Python type hints, BUT it's actually this bizarre, highly precise exercise in translation. You are basically acting as a diplomat between the ruthless C-engine and Python's static type checkers. It's microscopic work. Every single argument has to align perfectly with how the C-level memory actually allocates it, otherwise the whole illusion shatters. It requires a sort of discipline.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+My Main Target
+&lt;/h3&gt;
+
+&lt;p&gt;But my main focus, and what I'm gearing up to dive back into, is the &lt;code&gt;unit_list_proxy.c&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;There is a nasty runtime dependency lurking in there. Right now, the C-code aggressively tries to import a massive Python library the second it gets created, locking everything into this heavy, tangled cycle. For a minute, I was dreading having to do a complete, tear-it-down-to-the-studs refactor just to untangle it.&lt;/p&gt;
+
+&lt;p&gt;Thankfully, I pitched an alternative to my mentor, Clément, and he gave me the green light to run with it. We'll see how that goes.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+The fix?
+&lt;/h3&gt;
+
+&lt;p&gt;Instead of a massive rewrite, we are going to use &lt;strong&gt;structural sub-typing&lt;/strong&gt; which is a more specific form of &lt;strong&gt;duck typing&lt;/strong&gt; (I guess don't come at me if I'm wrong) right at the C-level. Rather than forcing the C-engine to check an object's exact, official DNA (which requires importing the whole Python library), we are just going to check its behavior. Does it have the method we need? If it walks like a duck and quacks like a duck, the C-engine will blindly trust that it's a duck and process it.&lt;/p&gt;
+
+&lt;p&gt;It is such an elegant workaround. It completely severs the nasty dependency chain without us having to burn the house down to fix the plumbing (I was pretty proud of actually thinking about it).&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Thoughts..
+&lt;/h3&gt;
+
+&lt;p&gt;It's a smarter, cleaner way forward. The C-layer is still intimidating, but for the first time in a while, I feel like I'm actually outsmarting the machine instead of just wrestling with it.&lt;/p&gt;
+
+&lt;p&gt;Back into the dark I go.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260710_1453_reemhamraz/</guid><pubDate>Fri, 10 Jul 2026 13:53:14 GMT</pubDate></item><item><title>GSoC 2026 Weeks 3-4: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_1320_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Moving from loading files to using them&lt;/strong&gt;&lt;/p&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -401,17 +442,4 @@ APE Split &amp;amp; &lt;code&gt;_parse_times.c&lt;/code&gt;: Standing on Shoulde
 &lt;p&gt;Overally, the project is going at a great pace with verifiable results. I hope this integrates with the upstream apache arrow library soon so that this performance boost can help the people working with PyArrow on astronomy datasets.&lt;/p&gt;
 &lt;p&gt;The link to the PR - &lt;a href="https://github.com/apache/arrow/pull/50158"&gt;https://github.com/apache/arrow/pull/50158&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Link to the results colab notebook - &lt;a href="https://colab.research.google.com/drive/1TsxFkBSI_Iq0hfXEwNDs_D24acr3yxdC?usp=sharing"&gt;https://colab.research.google.com/drive/1TsxFkBSI_Iq0hfXEwNDs_D24acr3yxdC?usp=sharing&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Orchestrating and benchmarking repo - &lt;a href="https://github.com/OmBiradar/pyarrow-lincc-fw-openastronomy-gsoc26"&gt;https://github.com/OmBiradar/pyarrow-lincc-fw-openastronomy-gsoc26&lt;/a&gt;&lt;/p&gt;</description><category>lincc-fw</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260614_1208_ombiradar/</guid><pubDate>Sun, 14 Jun 2026 11:08:19 GMT</pubDate></item><item><title>Community Bonding and week 1 &amp; 2</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260609_0327_ombiradar/</link><dc:creator>Om Biradar</dc:creator><description>&lt;p&gt;The start was amazing! The community bonding was really great. I got to meet the mentors, get to know the whole organization structure of OpenAstronomy and LINCC frameworks, the work they do, the people and facilities associated with it, the ways PyArrow and nested-pandas was being used in astronomy and the expectations they had form the internship. They offered to help me through tasks if I could not do it on my own along with some content to look through to get a deeper understanding of the project. I attended the Apache Arrow community meeting with my mentor to introduce the project them and get their views on it. They were really helpful and even suggested certain thing to do to improve the final PR.&lt;/p&gt;
-&lt;p&gt;Week 1 and 2 were spent on improving the parallel reading of parquet files, which was successfully implemented by me. The benchmarking of these performance changes proved quite hard, as this would require the following, starting with the main arrow branch:&lt;/p&gt;
-&lt;ol&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;li&gt;&lt;p&gt;Building arrow C++ from source&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Building PyArrow from source&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Running benchmarking scripts&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Switching the branch from the main branch and repeating steps 1-3&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The time taken to benchmark the changes for all order of magnitude of files proved to be very long, approximately ~140 hours or 6 days. I could speed this up using parallel jobs in github which needed to be configured separately using config settings and matrix github runners. This needed to be done because github sets a timeout of 6 hours on each github action with at max 20 concurrent jobs and a 24 hour auto cancel timeout on jobs in queue. Based on these constraints I had to figure out a way to orchestrate different runners and combine their results for which I used sqlite3.&lt;/p&gt;</description><category>lincc-fw</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260609_0327_ombiradar/</guid><pubDate>Tue, 09 Jun 2026 02:27:42 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Orchestrating and benchmarking repo - &lt;a href="https://github.com/OmBiradar/pyarrow-lincc-fw-openastronomy-gsoc26"&gt;https://github.com/OmBiradar/pyarrow-lincc-fw-openastronomy-gsoc26&lt;/a&gt;&lt;/p&gt;</description><category>lincc-fw</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260614_1208_ombiradar/</guid><pubDate>Sun, 14 Jun 2026 11:08:19 GMT</pubDate></item></channel></rss>
