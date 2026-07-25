@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2026)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2026.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 24 Jul 2026 03:35:20 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Rebinning Updates!</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260715_1426_omiii-215/</link><dc:creator>Om S Habib</dc:creator><description>&lt;p&gt; &lt;/p&gt;&lt;span id="docs-internal-guid-c4e4087b-7fff-d3b4-3f6f-e10d8c48e721"&gt;&lt;h3 style="line-height: 1.38; margin-bottom: 6pt; margin-top: 20pt; text-align: left;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;&lt;span style="font-family: georgia; font-size: large;"&gt;Updates on Rebinning in Stingray.jl&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;div&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span id="docs-internal-guid-bb9b6fde-7fff-1f2a-9439-f7daadecf5dd"&gt;&lt;span&gt;&lt;p style="font-family: georgia; font-weight: 400; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: left; white-space: pre-wrap;"&gt;&lt;span style="font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;Welcome back! Over the past couple of weeks, we have been working hard on expanding the capabilities of Stingray.jl. One of the key features we've recently added is data rebinning. Rebinning is an essential part of time series analysis, especially when dealing with noisy light curves or power spectra where we want to trade off some resolution for a higher signal-to-noise ratio.&lt;br&gt;&lt;/span&gt;&lt;span style="font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;In this post, we'll walk through the two new rebinning functions we've introduced: rebin_data for linear rebinning and rebin_data_log for logarithmic rebinning.&lt;/span&gt;&lt;/p&gt;&lt;h3 dir="ltr" style="font-size: 20pt; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; white-space: pre-wrap;"&gt;&lt;span id="docs-internal-guid-8acb23a5-7fff-5b5e-2864-e485d1ad3f1c"&gt;&lt;span style="font-size: 16pt; font-variant: normal; vertical-align: baseline;"&gt;&lt;span style="font-family: georgia;"&gt;Linear Rebinning with rebin_data&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3 dir="ltr" style="font-family: georgia; font-weight: 400; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; white-space: pre-wrap;"&gt;&lt;span face="Arial,sans-serif" style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"&gt;The rebin_data function allows you to linearly rebin your data array to a new, coarser resolution. &lt;/span&gt;&lt;/h3&gt;&lt;h3 dir="ltr" style="font-family: georgia; font-weight: 400; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; white-space: pre-wrap;"&gt;&lt;span face="Arial,sans-serif" style="color: black; font-size: small; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;You can choose to either sum or average the data points falling into the new bins using the method keyword argument. &lt;/span&gt;&lt;/h3&gt;&lt;h3 dir="ltr" style="font-family: georgia; font-weight: 400; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: small;"&gt;&lt;span face="Arial,sans-serif" style="color: black; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;It also automatically propagates uncertainties if you provide them!&lt;/span&gt;&lt;span style="white-space: pre;"&gt;Here is a quick example of how you can use it to rebin a light curve or a signal:&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="font-family: georgia; font-size: 16pt; font-weight: 400; white-space: pre-wrap;"&gt;&lt;a name="more"&gt;&lt;/a&gt;&lt;/span&gt;&lt;span id="docs-internal-guid-30de9976-7fff-1d0b-c183-40dad9086b9f"&gt;&lt;span style="font-family: georgia; font-size: small;"&gt;&lt;span style="font-weight: 400;"&gt;using Stingray
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2026)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2026.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 25 Jul 2026 03:32:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What Six Weeks of GSoC Have Taught Me</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260724_1322_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;div style="text-align: left;"&gt;&lt;h3 style="text-align: left;"&gt;What Six Weeks of GSoC Have Taught Me 🚀&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;"I came into GSoC thinking I'd spend most of my time writing code. Six weeks later, I realized that's only a small part of the journey."&lt;/em&gt;&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A few days ago, I successfully passed my &lt;strong&gt;Google Summer of Code 2026 midterm evaluation&lt;/strong&gt; 🎉 and it felt like the perfect time to look back on everything that's happened over the past six weeks.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/a/AVvXsEgmhFPrMLPIt4ESIcx25xyy8XQSvGc4PznXnOuS8gha_rHGhQAurpmnWKRVWQOU2h9TrVZfc6YpDtSH0nfFHK8hnViKWJuBmoYQda5F3CQZ2EoM_UkXadCfSW46bR0wJoJBgBaBm3cpIv5yAVetVpCK1HDdVWhRs7ODGSIj1rgbRGvldQxbQsSIS8l-YUM" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="" height="193" src="https://blogger.googleusercontent.com/img/a/AVvXsEgmhFPrMLPIt4ESIcx25xyy8XQSvGc4PznXnOuS8gha_rHGhQAurpmnWKRVWQOU2h9TrVZfc6YpDtSH0nfFHK8hnViKWJuBmoYQda5F3CQZ2EoM_UkXadCfSW46bR0wJoJBgBaBm3cpIv5yAVetVpCK1HDdVWhRs7ODGSIj1rgbRGvldQxbQsSIS8l-YUM" width="320"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;I've been working with the &lt;strong&gt;SunPy&lt;/strong&gt; community on &lt;strong&gt;radiospectra&lt;/strong&gt; and honestly, this experience has been very different from what I expected.&lt;/p&gt;
+&lt;p&gt;Sure, I've written code, opened pull requests and fixed bugs - but that's only part of the story.&lt;/p&gt;
+&lt;p&gt;The bigger lesson has been learning &lt;strong&gt;how&lt;/strong&gt; an open-source project is built and how people from different parts of the world collaborate to make it better.&lt;/p&gt;
+&lt;p&gt;So instead of another weekly update, I thought I'd share a few things this journey has taught me so far.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Learning a Large Codebase Takes Time ⌚&lt;/h3&gt;
+&lt;p&gt;When I opened the repository for the first time, it was... a lot.&lt;/p&gt;
+&lt;p&gt;There were spectrograms, WCS, NDCube, plotting code, metadata classes, different instrument readers, tests and somehow everything depended on everything else.&lt;/p&gt;
+&lt;p&gt;My first reaction was honestly,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;"Where do I even begin?"&lt;/em&gt;  😅&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At first, I felt like I wasn't making much progress because I was spending more time reading code than writing it.&lt;/p&gt;
+&lt;p&gt;I'd follow a single function into another file, then another and before I knew it, I had ten tabs open trying to understand how everything fit together.&lt;/p&gt;
+&lt;p&gt;Looking back, that was probably the most important part of the journey.&lt;/p&gt;
+&lt;p&gt;Once I understood &lt;em&gt;why&lt;/em&gt; the code was written a certain way, making changes became much easier.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;One thing I've learned is that understanding a project isn't time wasted - it's time invested.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Every Code Review Is a Learning Opportunity 💬&lt;/h3&gt;
+&lt;p&gt;Before GSoC, I used to think code reviews were mainly about pointing out mistakes.&lt;/p&gt;
+&lt;p&gt;Now I see them very differently.&lt;/p&gt;
+&lt;p&gt;Some of my pull requests worked exactly as intended, but my mentors would still suggest changes - not because the code was wrong, but because there was a cleaner API, a simpler implementation, or a design that would be easier to maintain in the future.&lt;/p&gt;
+&lt;p&gt;Those conversations completely changed how I think while writing code.&lt;/p&gt;
+&lt;p&gt;Instead of asking myself,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;"Does this work?"&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I now find myself asking,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+Is this easy to understand?
+&lt;/li&gt;
+&lt;li&gt;
+Does it fit naturally with the rest of the project?
+&lt;/li&gt;
+&lt;li&gt;
+Will this still make sense a year from now?
+&lt;/li&gt;
+&lt;li&gt;
+Can someone else build on top of this easily?
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Those are questions I rarely thought about before GSoC.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Small Improvements Matter 😊&lt;/h3&gt;
+&lt;p&gt;One thing I really appreciate about open source now is that every contribution doesn't have to be a huge feature.&lt;/p&gt;
+&lt;p&gt;Sometimes, making something a little easier for users is enough.&lt;/p&gt;
+&lt;p&gt;One of my recent pull requests focused on making spectrogram cropping more intuitive.&lt;/p&gt;&lt;p class="PDq2pG_selectionAnchorContainer"&gt;I worked on making spectrogram cropping easier for users.&lt;span class="PDq2pG_selectionAnchor"&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Previously, users had to interact directly with the underlying NDCube API.&lt;/p&gt;&lt;p&gt;Now they can simply do this:&lt;/p&gt;&lt;pre class="overflow-visible! px-0!"&gt;&lt;div class="relative w-full mt-4 mb-1"&gt;&lt;div class=""&gt;&lt;div class="contents"&gt;&lt;div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"&gt;&lt;div class="relative h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback"&gt;&lt;div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"&gt;&lt;div class="pointer-events-none sticky z-40 shrink-0 z-1!"&gt;&lt;div class="sticky bg-token-border-light"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="relative"&gt;&lt;div class="h-full min-h-0 min-w-0"&gt;&lt;div class="h-full min-h-0 min-w-0"&gt;&lt;div class=""&gt;&lt;div class="relative"&gt;&lt;div class=""&gt;&lt;div class="relative z-0 flex max-w-full"&gt;&lt;div class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼs ͼ16" dir="ltr" id="code-block-viewer"&gt;&lt;div class="cm-scroller"&gt;&lt;pre class="cm-content q9tKkq_readonly m-0"&gt;&lt;code&gt;&lt;b&gt;&lt;span class="ͼ11"&gt;spec&lt;/span&gt;&lt;span class="ͼv"&gt;.&lt;/span&gt;crop_time(&lt;span class="ͼ11"&gt;start&lt;/span&gt;, &lt;span class="ͼ11"&gt;end&lt;/span&gt;)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=""&gt;&lt;div class=""&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;p&gt;instead of&lt;/p&gt;&lt;p&gt;
+
+
+
+
+&lt;/p&gt;&lt;pre class="overflow-visible! px-0!"&gt;&lt;div class="relative w-full mt-4 mb-1"&gt;&lt;div class=""&gt;&lt;div class="contents"&gt;&lt;div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"&gt;&lt;div class="relative h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback"&gt;&lt;div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"&gt;&lt;div class="pointer-events-none sticky z-40 shrink-0 z-1!"&gt;&lt;div class="sticky bg-token-border-light"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="relative"&gt;&lt;div class="h-full min-h-0 min-w-0"&gt;&lt;div class="h-full min-h-0 min-w-0"&gt;&lt;div class=""&gt;&lt;div class="relative"&gt;&lt;div class=""&gt;&lt;div class="relative z-0 flex max-w-full"&gt;&lt;div class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼs ͼ16" dir="ltr" id="code-block-viewer"&gt;&lt;div class="cm-scroller"&gt;&lt;pre class="cm-content q9tKkq_readonly m-0"&gt;&lt;code&gt;&lt;b&gt;&lt;span class="ͼ11"&gt;spec&lt;/span&gt;&lt;span class="ͼv"&gt;.&lt;/span&gt;crop((&lt;span class="ͼ11"&gt;start&lt;/span&gt;, &lt;span class="ͼy"&gt;None&lt;/span&gt;), (&lt;span class="ͼ11"&gt;end&lt;/span&gt;, &lt;span class="ͼy"&gt;None&lt;/span&gt;))&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;
+&lt;p&gt;Instead of interacting directly with the underlying NDCube API, users can now use simpler convenience methods.&lt;/p&gt;
+&lt;p&gt;It isn't a massive feature.&lt;/p&gt;
+&lt;p&gt;It probably won't make headlines.&lt;/p&gt;
+&lt;p&gt;But if it makes someone's life a little easier, I'd call that a success.&lt;/p&gt;
+&lt;p&gt;That's something GSoC has taught me - small improvements add up.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Communication Is Part of Engineering 🤝&lt;/h3&gt;
+&lt;p&gt;This was probably the most unexpected lesson.&lt;/p&gt;
+&lt;p&gt;Writing code is only one part of contributing.&lt;/p&gt;
+&lt;p&gt;The other part is explaining your ideas, asking questions, discussing different approaches and responding to reviews.&lt;/p&gt;
+&lt;p&gt;At first, I was hesitant to ask questions because I thought I should already know the answers.&lt;/p&gt;
+&lt;p&gt;Thankfully, my mentors were incredibly patient and always encouraged discussion.&lt;/p&gt;
+&lt;p&gt;Over time, I realized that asking questions doesn't make you look inexperienced.&lt;/p&gt;
+&lt;p&gt;If anything, it shows that you're trying to understand the problem before jumping to a solution.&lt;/p&gt;
+&lt;p&gt;And more often than not, those conversations led to better ideas than I would have come up with on my own.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Progress Isn't Always Visible 🧠&lt;/h3&gt;
+&lt;p&gt;There were weeks when I didn't have a shiny new merged pull request to show.&lt;/p&gt;
+&lt;p&gt;Earlier, that would've made me feel like I wasn't doing enough.&lt;/p&gt;
+&lt;p&gt;But during those same weeks, I was reading architecture, understanding how different components worked together, experimenting with ideas and having discussions with my mentors.&lt;/p&gt;
+&lt;p&gt;Those weeks were just as valuable.&lt;/p&gt;
+&lt;p&gt;Maybe even more.&lt;/p&gt;
+&lt;p&gt;One thing I've learned is that progress isn't always measured by commits or merged PRs.&lt;/p&gt;
+&lt;p&gt;Sometimes progress is simply understanding something that confused you yesterday.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Looking Back 📈&lt;/h3&gt;
+&lt;p&gt;If someone had asked me six weeks ago what I'd learn during GSoC, I would've probably answered,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Python."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now my answer would be very different.&lt;/p&gt;
+&lt;p&gt;I've learned how to approach a large codebase.&lt;/p&gt;
+&lt;p&gt;I've learned how valuable thoughtful code reviews are.&lt;/p&gt;
+&lt;p&gt;I've become more comfortable asking questions and discussing design decisions.&lt;/p&gt;
+&lt;p&gt;Most importantly, I've learned that great software isn't built by one person writing perfect code.&lt;/p&gt;
+&lt;p&gt;It's built by people sharing ideas, reviewing each other's work and learning together.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;What's Next? 🚀&lt;/h3&gt;
+&lt;p&gt;Passing the midterm evaluation feels less like reaching the finish line and more like reaching the halfway point.&lt;/p&gt;
+&lt;p&gt;There's still a lot I want to learn and I'm excited about the work ahead.&lt;/p&gt;
+&lt;p&gt;Over the next few weeks, I'll be diving deeper into the architecture of &lt;b&gt;radiospectra&lt;/b&gt;, working on larger improvements and hopefully contributing even more to the project.&lt;/p&gt;
+&lt;p&gt;I'm looking forward to sharing that journey in my next blog.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Thank You ❤️&lt;/h3&gt;
+&lt;p&gt;Before wrapping up, I'd like to thank my mentors, &lt;strong&gt;&lt;a href="https://github.com/samaloney" target="_blank"&gt;Shane Maloney&lt;/a&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;a href="https://github.com/hayesla" target="_blank"&gt;Laura Hayes&lt;/a&gt;&lt;/strong&gt;, for all their guidance, thoughtful feedback and encouragement throughout these six weeks.&lt;/p&gt;
+&lt;p&gt;Every review comment, every discussion and every suggestion has helped me grow, not just as an open-source contributor, but as a developer.&lt;/p&gt;
+&lt;p&gt;I'm excited to see what the second half of GSoC has in store.&lt;/p&gt;
+&lt;p&gt;See you in the next blog!&lt;/p&gt;&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260724_1322_amityush-lgtm/</guid><pubDate>Fri, 24 Jul 2026 12:22:21 GMT</pubDate></item><item><title>Rebinning Updates!</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260715_1426_omiii-215/</link><dc:creator>Om S Habib</dc:creator><description>&lt;p&gt; &lt;/p&gt;&lt;span id="docs-internal-guid-c4e4087b-7fff-d3b4-3f6f-e10d8c48e721"&gt;&lt;h3 style="line-height: 1.38; margin-bottom: 6pt; margin-top: 20pt; text-align: left;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;&lt;span style="font-family: georgia; font-size: large;"&gt;Updates on Rebinning in Stingray.jl&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;div&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span id="docs-internal-guid-bb9b6fde-7fff-1f2a-9439-f7daadecf5dd"&gt;&lt;span&gt;&lt;p style="font-family: georgia; font-weight: 400; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: left; white-space: pre-wrap;"&gt;&lt;span style="font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;Welcome back! Over the past couple of weeks, we have been working hard on expanding the capabilities of Stingray.jl. One of the key features we've recently added is data rebinning. Rebinning is an essential part of time series analysis, especially when dealing with noisy light curves or power spectra where we want to trade off some resolution for a higher signal-to-noise ratio.&lt;br&gt;&lt;/span&gt;&lt;span style="font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;In this post, we'll walk through the two new rebinning functions we've introduced: rebin_data for linear rebinning and rebin_data_log for logarithmic rebinning.&lt;/span&gt;&lt;/p&gt;&lt;h3 dir="ltr" style="font-size: 20pt; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; white-space: pre-wrap;"&gt;&lt;span id="docs-internal-guid-8acb23a5-7fff-5b5e-2864-e485d1ad3f1c"&gt;&lt;span style="font-size: 16pt; font-variant: normal; vertical-align: baseline;"&gt;&lt;span style="font-family: georgia;"&gt;Linear Rebinning with rebin_data&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3 dir="ltr" style="font-family: georgia; font-weight: 400; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; white-space: pre-wrap;"&gt;&lt;span face="Arial,sans-serif" style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: 400; text-decoration: none; vertical-align: baseline; white-space: pre;"&gt;The rebin_data function allows you to linearly rebin your data array to a new, coarser resolution. &lt;/span&gt;&lt;/h3&gt;&lt;h3 dir="ltr" style="font-family: georgia; font-weight: 400; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; white-space: pre-wrap;"&gt;&lt;span face="Arial,sans-serif" style="color: black; font-size: small; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;You can choose to either sum or average the data points falling into the new bins using the method keyword argument. &lt;/span&gt;&lt;/h3&gt;&lt;h3 dir="ltr" style="font-family: georgia; font-weight: 400; line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: small;"&gt;&lt;span face="Arial,sans-serif" style="color: black; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;It also automatically propagates uncertainties if you provide them!&lt;/span&gt;&lt;span style="white-space: pre;"&gt;Here is a quick example of how you can use it to rebin a light curve or a signal:&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt;"&gt;&lt;span style="vertical-align: baseline;"&gt;&lt;span style="font-family: georgia; font-size: 16pt; font-weight: 400; white-space: pre-wrap;"&gt;&lt;a name="more"&gt;&lt;/a&gt;&lt;/span&gt;&lt;span id="docs-internal-guid-30de9976-7fff-1d0b-c183-40dad9086b9f"&gt;&lt;span style="font-family: georgia; font-size: small;"&gt;&lt;span style="font-weight: 400;"&gt;using Stingray
 using Plots
 
 &lt;!-- TEASER_END --&gt;
@@ -385,74 +491,4 @@ Ghosts in the Infrastructure
 &lt;/li&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Lomb-Scargle Periodograms: Bringing Lomb-Scargle into our shiny new type system to handle unevenly sampled datasets like a champ.&lt;/span&gt;&lt;/p&gt;
 &lt;/li&gt;&lt;/ol&gt;&lt;div style="text-align: justify;"&gt;&lt;span style="font-size: 14.6667px;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;This GSoC journey has been an absolute blast so far. Marrying the expressive flexibility of Python with the raw speed of Julia isn't without its brain-bending moments, but seeing those beautiful lag-frequency plots render from our native Julia types makes every hour of debugging worth it.&lt;/span&gt;&lt;/p&gt;
 &lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Catch you in the next update as we dive deep into frequency rebinning!&lt;/span&gt;&lt;/p&gt;
-&lt;div style="text-align: justify;"&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/span&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_0827_omiii-215/</guid><pubDate>Tue, 16 Jun 2026 07:27:18 GMT</pubDate></item><item><title>Biting Into It: My Astropy Summer (Weeks 1-3)</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260615_0948_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;blockquote&gt;
-&lt;p&gt;"I really want to be something in life. I don't want to be forgotten."&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;It's a heavy thought for a Tuesday night, but it's been bouncing around my head a lot lately. I read this Sartre quote recently about living a "toothless life", just waiting around, reserving yourself for later, and then suddenly realizing your teeth are gone. I decided a while ago that I'm not doing that. If I'm going to leave something behind, it has to be through work that actually matters.&lt;/p&gt;
-
-&lt;p&gt;Right now, that work looks like deliberately bypassing high-level Python APIs to aggressively test raw, compiled C-engines for Astropy.&lt;/p&gt;
-
-
-
-
-&lt;h3&gt;
-
-
-The Weekly Grind
-&lt;/h3&gt;
-
-&lt;p&gt;Juggling CS coursework while trying to wrangle Cython for Google Summer of Code is a lot. But honestly? I've been loving every damn second of it. Reading documentation in a vacuum is one thing, actually hashing out C-level memory bindings is where the reality sets in. My mentors don't just let me write code; they force me to hold my work to strict architectural standards, which honestly gives me an immense sense of accomplishment once I clear them.&lt;/p&gt;
-
-
-
-
-&lt;h3&gt;
-
-
-&lt;code&gt;test_np_utils.py&lt;/code&gt;: First Blood
-&lt;/h3&gt;
-
-&lt;p&gt;Getting this merged was my first real bite into the codebase. Instead of playing it safe with high-level Astropy &lt;code&gt;Table&lt;/code&gt; objects, I stripped away the Python wrapper to test the raw C-engine underneath. I threw every Cartesian edge case at the &lt;code&gt;join_inner&lt;/code&gt; function just to see if the explosive $O(N^2)$ memory allocations would break it.&lt;/p&gt;
-
-&lt;p&gt;They didn't.&lt;/p&gt;
-
-
-
-
-&lt;h3&gt;
-
-
-&lt;code&gt;test_column_mixins.py&lt;/code&gt;: The Beast
-&lt;/h3&gt;
-
-&lt;p&gt;Absolute beast of a PR. I had to write &lt;code&gt;MinimalColumn&lt;/code&gt; shims and cast them directly onto raw NumPy arrays just to isolate the Cython &lt;code&gt;__getitem__&lt;/code&gt; routing. Somewhere in there I found a legitimate C-level trapdoor — indexing a structured array with a single string was silently dropping the dtype entirely. That became Issue #19827, which I later learned was actually expected behavior, so I closed it. End of story.&lt;/p&gt;
-
-&lt;p&gt;But the real boss fight wasn't even the code (funny, right?!). It was Git. I ran a terrifying interactive rebase in Nano to squash six messy commits before force-pushing to my branch. Truly character-building.&lt;/p&gt;
-
-&lt;p&gt;If it isn't clear by now, let me spell it out:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;"I absolutely despise GitHub squash and rebase. Actually, I don't think we (me and GitHub) can ever be on amicable terms."&lt;/p&gt;
-&lt;/blockquote&gt;
-
-
-
-
-&lt;h3&gt;
-
-
-APE Split &amp;amp; &lt;code&gt;_parse_times.c&lt;/code&gt;: Standing on Shoulders
-&lt;/h3&gt;
-
-&lt;p&gt;Lately I've been laying the tracks for the APE split, writing isolated tests for the &lt;code&gt;_parse_times.c&lt;/code&gt; extension. This was mostly building on another contributor's accepted PR, but it was enlightening to understand how other brains work. I'll be honest, I spent a good chunk of time just deciphering the existing test cases before touching anything, making sure I didn't alter their original essence.&lt;/p&gt;
-
-
-
-
-&lt;p&gt;That's weeks 1–3, folks.&lt;/p&gt;
-
-&lt;p&gt;It's a blur of memory buffers, strict type checking, and fighting CI matrices. But when those green checkmarks come in, and especially when I see those purple merged PRs, I know I'm actually building something.&lt;/p&gt;
-
-&lt;p&gt;I'm biting into it. I'm not waiting anymore.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260615_0948_reemhamraz/</guid><pubDate>Mon, 15 Jun 2026 08:48:44 GMT</pubDate></item></channel></rss>
+&lt;div style="text-align: justify;"&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/span&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_0827_omiii-215/</guid><pubDate>Tue, 16 Jun 2026 07:27:18 GMT</pubDate></item></channel></rss>
