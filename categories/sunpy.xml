@@ -1,5 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 24 Jul 2026 03:35:23 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 5 &amp; 6 - The Work You Don't See 👀</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_0533_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;🔍 Behind the Scenes&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 25 Jul 2026 03:32:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What Six Weeks of GSoC Have Taught Me</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260724_1322_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;div style="text-align: left;"&gt;&lt;h3 style="text-align: left;"&gt;What Six Weeks of GSoC Have Taught Me 🚀&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;"I came into GSoC thinking I'd spend most of my time writing code. Six weeks later, I realized that's only a small part of the journey."&lt;/em&gt;&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A few days ago, I successfully passed my &lt;strong&gt;Google Summer of Code 2026 midterm evaluation&lt;/strong&gt; 🎉 and it felt like the perfect time to look back on everything that's happened over the past six weeks.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/a/AVvXsEgmhFPrMLPIt4ESIcx25xyy8XQSvGc4PznXnOuS8gha_rHGhQAurpmnWKRVWQOU2h9TrVZfc6YpDtSH0nfFHK8hnViKWJuBmoYQda5F3CQZ2EoM_UkXadCfSW46bR0wJoJBgBaBm3cpIv5yAVetVpCK1HDdVWhRs7ODGSIj1rgbRGvldQxbQsSIS8l-YUM" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="" height="193" src="https://blogger.googleusercontent.com/img/a/AVvXsEgmhFPrMLPIt4ESIcx25xyy8XQSvGc4PznXnOuS8gha_rHGhQAurpmnWKRVWQOU2h9TrVZfc6YpDtSH0nfFHK8hnViKWJuBmoYQda5F3CQZ2EoM_UkXadCfSW46bR0wJoJBgBaBm3cpIv5yAVetVpCK1HDdVWhRs7ODGSIj1rgbRGvldQxbQsSIS8l-YUM" width="320"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;I've been working with the &lt;strong&gt;SunPy&lt;/strong&gt; community on &lt;strong&gt;radiospectra&lt;/strong&gt; and honestly, this experience has been very different from what I expected.&lt;/p&gt;
+&lt;p&gt;Sure, I've written code, opened pull requests and fixed bugs - but that's only part of the story.&lt;/p&gt;
+&lt;p&gt;The bigger lesson has been learning &lt;strong&gt;how&lt;/strong&gt; an open-source project is built and how people from different parts of the world collaborate to make it better.&lt;/p&gt;
+&lt;p&gt;So instead of another weekly update, I thought I'd share a few things this journey has taught me so far.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Learning a Large Codebase Takes Time ⌚&lt;/h3&gt;
+&lt;p&gt;When I opened the repository for the first time, it was... a lot.&lt;/p&gt;
+&lt;p&gt;There were spectrograms, WCS, NDCube, plotting code, metadata classes, different instrument readers, tests and somehow everything depended on everything else.&lt;/p&gt;
+&lt;p&gt;My first reaction was honestly,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;"Where do I even begin?"&lt;/em&gt;  😅&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;At first, I felt like I wasn't making much progress because I was spending more time reading code than writing it.&lt;/p&gt;
+&lt;p&gt;I'd follow a single function into another file, then another and before I knew it, I had ten tabs open trying to understand how everything fit together.&lt;/p&gt;
+&lt;p&gt;Looking back, that was probably the most important part of the journey.&lt;/p&gt;
+&lt;p&gt;Once I understood &lt;em&gt;why&lt;/em&gt; the code was written a certain way, making changes became much easier.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;One thing I've learned is that understanding a project isn't time wasted - it's time invested.&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Every Code Review Is a Learning Opportunity 💬&lt;/h3&gt;
+&lt;p&gt;Before GSoC, I used to think code reviews were mainly about pointing out mistakes.&lt;/p&gt;
+&lt;p&gt;Now I see them very differently.&lt;/p&gt;
+&lt;p&gt;Some of my pull requests worked exactly as intended, but my mentors would still suggest changes - not because the code was wrong, but because there was a cleaner API, a simpler implementation, or a design that would be easier to maintain in the future.&lt;/p&gt;
+&lt;p&gt;Those conversations completely changed how I think while writing code.&lt;/p&gt;
+&lt;p&gt;Instead of asking myself,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;"Does this work?"&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I now find myself asking,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+Is this easy to understand?
+&lt;/li&gt;
+&lt;li&gt;
+Does it fit naturally with the rest of the project?
+&lt;/li&gt;
+&lt;li&gt;
+Will this still make sense a year from now?
+&lt;/li&gt;
+&lt;li&gt;
+Can someone else build on top of this easily?
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Those are questions I rarely thought about before GSoC.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Small Improvements Matter 😊&lt;/h3&gt;
+&lt;p&gt;One thing I really appreciate about open source now is that every contribution doesn't have to be a huge feature.&lt;/p&gt;
+&lt;p&gt;Sometimes, making something a little easier for users is enough.&lt;/p&gt;
+&lt;p&gt;One of my recent pull requests focused on making spectrogram cropping more intuitive.&lt;/p&gt;&lt;p class="PDq2pG_selectionAnchorContainer"&gt;I worked on making spectrogram cropping easier for users.&lt;span class="PDq2pG_selectionAnchor"&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Previously, users had to interact directly with the underlying NDCube API.&lt;/p&gt;&lt;p&gt;Now they can simply do this:&lt;/p&gt;&lt;pre class="overflow-visible! px-0!"&gt;&lt;div class="relative w-full mt-4 mb-1"&gt;&lt;div class=""&gt;&lt;div class="contents"&gt;&lt;div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"&gt;&lt;div class="relative h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback"&gt;&lt;div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"&gt;&lt;div class="pointer-events-none sticky z-40 shrink-0 z-1!"&gt;&lt;div class="sticky bg-token-border-light"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="relative"&gt;&lt;div class="h-full min-h-0 min-w-0"&gt;&lt;div class="h-full min-h-0 min-w-0"&gt;&lt;div class=""&gt;&lt;div class="relative"&gt;&lt;div class=""&gt;&lt;div class="relative z-0 flex max-w-full"&gt;&lt;div class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼs ͼ16" dir="ltr" id="code-block-viewer"&gt;&lt;div class="cm-scroller"&gt;&lt;pre class="cm-content q9tKkq_readonly m-0"&gt;&lt;code&gt;&lt;b&gt;&lt;span class="ͼ11"&gt;spec&lt;/span&gt;&lt;span class="ͼv"&gt;.&lt;/span&gt;crop_time(&lt;span class="ͼ11"&gt;start&lt;/span&gt;, &lt;span class="ͼ11"&gt;end&lt;/span&gt;)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=""&gt;&lt;div class=""&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;p&gt;instead of&lt;/p&gt;&lt;p&gt;
+
+
+
+
+&lt;/p&gt;&lt;pre class="overflow-visible! px-0!"&gt;&lt;div class="relative w-full mt-4 mb-1"&gt;&lt;div class=""&gt;&lt;div class="contents"&gt;&lt;div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"&gt;&lt;div class="relative h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback"&gt;&lt;div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"&gt;&lt;div class="pointer-events-none sticky z-40 shrink-0 z-1!"&gt;&lt;div class="sticky bg-token-border-light"&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="relative"&gt;&lt;div class="h-full min-h-0 min-w-0"&gt;&lt;div class="h-full min-h-0 min-w-0"&gt;&lt;div class=""&gt;&lt;div class="relative"&gt;&lt;div class=""&gt;&lt;div class="relative z-0 flex max-w-full"&gt;&lt;div class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼs ͼ16" dir="ltr" id="code-block-viewer"&gt;&lt;div class="cm-scroller"&gt;&lt;pre class="cm-content q9tKkq_readonly m-0"&gt;&lt;code&gt;&lt;b&gt;&lt;span class="ͼ11"&gt;spec&lt;/span&gt;&lt;span class="ͼv"&gt;.&lt;/span&gt;crop((&lt;span class="ͼ11"&gt;start&lt;/span&gt;, &lt;span class="ͼy"&gt;None&lt;/span&gt;), (&lt;span class="ͼ11"&gt;end&lt;/span&gt;, &lt;span class="ͼy"&gt;None&lt;/span&gt;))&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;
+&lt;p&gt;Instead of interacting directly with the underlying NDCube API, users can now use simpler convenience methods.&lt;/p&gt;
+&lt;p&gt;It isn't a massive feature.&lt;/p&gt;
+&lt;p&gt;It probably won't make headlines.&lt;/p&gt;
+&lt;p&gt;But if it makes someone's life a little easier, I'd call that a success.&lt;/p&gt;
+&lt;p&gt;That's something GSoC has taught me - small improvements add up.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Communication Is Part of Engineering 🤝&lt;/h3&gt;
+&lt;p&gt;This was probably the most unexpected lesson.&lt;/p&gt;
+&lt;p&gt;Writing code is only one part of contributing.&lt;/p&gt;
+&lt;p&gt;The other part is explaining your ideas, asking questions, discussing different approaches and responding to reviews.&lt;/p&gt;
+&lt;p&gt;At first, I was hesitant to ask questions because I thought I should already know the answers.&lt;/p&gt;
+&lt;p&gt;Thankfully, my mentors were incredibly patient and always encouraged discussion.&lt;/p&gt;
+&lt;p&gt;Over time, I realized that asking questions doesn't make you look inexperienced.&lt;/p&gt;
+&lt;p&gt;If anything, it shows that you're trying to understand the problem before jumping to a solution.&lt;/p&gt;
+&lt;p&gt;And more often than not, those conversations led to better ideas than I would have come up with on my own.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Progress Isn't Always Visible 🧠&lt;/h3&gt;
+&lt;p&gt;There were weeks when I didn't have a shiny new merged pull request to show.&lt;/p&gt;
+&lt;p&gt;Earlier, that would've made me feel like I wasn't doing enough.&lt;/p&gt;
+&lt;p&gt;But during those same weeks, I was reading architecture, understanding how different components worked together, experimenting with ideas and having discussions with my mentors.&lt;/p&gt;
+&lt;p&gt;Those weeks were just as valuable.&lt;/p&gt;
+&lt;p&gt;Maybe even more.&lt;/p&gt;
+&lt;p&gt;One thing I've learned is that progress isn't always measured by commits or merged PRs.&lt;/p&gt;
+&lt;p&gt;Sometimes progress is simply understanding something that confused you yesterday.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Looking Back 📈&lt;/h3&gt;
+&lt;p&gt;If someone had asked me six weeks ago what I'd learn during GSoC, I would've probably answered,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Python."&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now my answer would be very different.&lt;/p&gt;
+&lt;p&gt;I've learned how to approach a large codebase.&lt;/p&gt;
+&lt;p&gt;I've learned how valuable thoughtful code reviews are.&lt;/p&gt;
+&lt;p&gt;I've become more comfortable asking questions and discussing design decisions.&lt;/p&gt;
+&lt;p&gt;Most importantly, I've learned that great software isn't built by one person writing perfect code.&lt;/p&gt;
+&lt;p&gt;It's built by people sharing ideas, reviewing each other's work and learning together.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;What's Next? 🚀&lt;/h3&gt;
+&lt;p&gt;Passing the midterm evaluation feels less like reaching the finish line and more like reaching the halfway point.&lt;/p&gt;
+&lt;p&gt;There's still a lot I want to learn and I'm excited about the work ahead.&lt;/p&gt;
+&lt;p&gt;Over the next few weeks, I'll be diving deeper into the architecture of &lt;b&gt;radiospectra&lt;/b&gt;, working on larger improvements and hopefully contributing even more to the project.&lt;/p&gt;
+&lt;p&gt;I'm looking forward to sharing that journey in my next blog.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 style="text-align: left;"&gt;Thank You ❤️&lt;/h3&gt;
+&lt;p&gt;Before wrapping up, I'd like to thank my mentors, &lt;strong&gt;&lt;a href="https://github.com/samaloney" target="_blank"&gt;Shane Maloney&lt;/a&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;a href="https://github.com/hayesla" target="_blank"&gt;Laura Hayes&lt;/a&gt;&lt;/strong&gt;, for all their guidance, thoughtful feedback and encouragement throughout these six weeks.&lt;/p&gt;
+&lt;p&gt;Every review comment, every discussion and every suggestion has helped me grow, not just as an open-source contributor, but as a developer.&lt;/p&gt;
+&lt;p&gt;I'm excited to see what the second half of GSoC has in store.&lt;/p&gt;
+&lt;p&gt;See you in the next blog!&lt;/p&gt;&lt;/div&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260724_1322_amityush-lgtm/</guid><pubDate>Fri, 24 Jul 2026 12:22:21 GMT</pubDate></item><item><title>Week 5 &amp; 6 - The Work You Don't See 👀</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_0533_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;🔍 Behind the Scenes&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;Users probably won't notice most of the work from these past two weeks... and that's completely okay.&lt;/em&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -279,57 +385,4 @@ LATPOLE: 0.0, LONPOLE: 180.0, MJDREF: 58849.0, WCSAXES: 4}
 &lt;td style="text-align: center;"&gt;EIS contours overlaid on AIA (corrected)&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240722_1859_deus1704/</guid><pubDate>Mon, 22 Jul 2024 17:59:31 GMT</pubDate></item><item><title>GSoC [Week 04-05] Progress</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_0549_viciouseagle03/</link><dc:creator>ViciousEagle03</dc:creator><description>&lt;p&gt;&lt;img alt="img" src="https://viciouseagle03.github.io/images/test_img.png"&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;This blog post covers all the work done in the fourth and fifth week of Google Summer of Code.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;/blockquote&gt;
-&lt;h5 id="mid-term-evaluations-are-nearing"&gt;Mid term evaluations are nearing!&lt;/h5&gt;
-&lt;p&gt;This week, my focus was on extending the test suite to include examples of loading an &lt;code&gt;NDCube&lt;/code&gt; backed by various &lt;code&gt;gwcs.WCS&lt;/code&gt; objects and testing the roundtrip serialization of the NDCube. I needed to verify that the ExtraCoords and GlobalCoords objects are correctly serialized and deserialized. Adding the gWCS test suite presented some challenges, but seeing it function correctly was incredibly rewarding. Completing these tasks was essential to ensure everything was in place for the mid-term evaluation 🚀.&lt;/p&gt;
-&lt;h4 id="adding-gwcs-test-suite"&gt;Adding gWCS Test Suite&lt;/h4&gt;
-&lt;p&gt;This was the most challenging part for me this week. To check the roundtrip serialization of &lt;code&gt;gwcs.WCS&lt;/code&gt; objects (i.e., ensuring all attributes of the &lt;code&gt;wcs&lt;/code&gt; attribute of the NDCube are preserved when read and loaded through an ASDF file), I had to write a test suite for NDCube backed by different &lt;code&gt;gwcs.WCS&lt;/code&gt; objects as the wcs attribute for the NDCube objects which would then be loaded into an NDCube and checked for roundtrip serialization.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;One of the &lt;code&gt;gwcs.WCS&lt;/code&gt; test object which would be loaded in an NDCube and checked for roundtrip serialization.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;def gwcs_4d_t_l_lt_ln():
-"""
-Creates a 4D GWCS object with time, wavelength, and celestial coordinates.
-
-- Time: Axis 0
-- Wavelength: Axis 1
-- Sky: Axes 2 and 3
-
-Returns:
-wcs.WCS: 4D GWCS object.
-"""
-
-time_model = models.Identity(1)
-time_frame = cf.TemporalFrame(axes_order=(0, ), unit=u.s,
-reference_frame=Time("2000-01-01T00:00:00"))
-
-wave_frame = cf.SpectralFrame(axes_order=(1, ), unit=u.m, axes_names=('wavelength',))
-wave_model = models.Scale(0.2)
-
-shift = models.Shift(-5) &amp;amp; models.Shift(0)
-scale = models.Scale(5) &amp;amp; models.Scale(20)
-tan = models.Pix2Sky_TAN()
-celestial_rotation = models.RotateNative2Celestial(0, 0, 180)
-cel_model = shift | scale | tan | celestial_rotation
-sky_frame = cf.CelestialFrame(axes_order=(2, 3), name='icrs',
-reference_frame=coord.ICRS(),
-axes_names=("longitude", "latitude"))
-
-transform = time_model &amp;amp; wave_model &amp;amp; cel_model
-
-frame = cf.CompositeFrame([time_frame, wave_frame, sky_frame])
-detector_frame = cf.CoordinateFrame(name="detector", naxes=4,
-axes_order=(0, 1, 2, 3),
-axes_type=("pixel", "pixel", "pixel", "pixel"),
-unit=(u.pix, u.pix, u.pix, u.pix))
-
-return (wcs.WCS(forward_transform=transform, output_frame=frame, input_frame=detector_frame))
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id="checking-the-extracoords-and-globalcoords"&gt;Checking the ExtraCoords and GlobalCoords&lt;/h4&gt;
-&lt;p&gt;I had to make sure the converters written for these objects preserved all the required parameters when saved to an ASDF file and read from an ASDF file. Doing this was straightforward as my mentors helped me during the process of writing the tests and ensuring good coverage.&lt;/p&gt;
-&lt;h4 id="handling-unsupported-attributes"&gt;Handling Unsupported Attributes&lt;/h4&gt;
-&lt;p&gt;It is as important to test the supported API as it is to throw a warning to the user when a particular attribute serialization is unsupported. I added warnings for attributes that are not yet supported (such as a sliced &lt;code&gt;NDCube&lt;/code&gt; and &lt;code&gt;wcs&lt;/code&gt; attribute of the &lt;code&gt;NDCube&lt;/code&gt; as the &lt;code&gt;astropy.wcs.WCS&lt;/code&gt; object), which I plan to support in the future.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240715_0549_viciouseagle03/</guid><pubDate>Mon, 15 Jul 2024 04:49:00 GMT</pubDate></item></channel></rss>
+&lt;/table&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240722_1859_deus1704/</guid><pubDate>Mon, 22 Jul 2024 17:59:31 GMT</pubDate></item></channel></rss>
