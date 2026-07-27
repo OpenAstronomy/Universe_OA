@@ -1,5 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 26 Jul 2026 03:47:54 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>What Six Weeks of GSoC Have Taught Me</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260724_1322_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;div style="text-align: left;"&gt;&lt;h3 style="text-align: left;"&gt;What Six Weeks of GSoC Have Taught Me 🚀&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 27 Jul 2026 03:56:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 Weeks 7-8: What Counts as One Spectrum?</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1528_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Looking beyond X-rays&lt;/h3&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-135" height="576" src="https://jamesraffertylee.wordpress.com/wp-content/uploads/2026/07/image-1.png?w=1024" width="1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After working with OGIP products and X-ray response matrices, I spent weeks 7 and 8 exploring infrared spectral data from JWST.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;An already extracted JWST spectrum usually provides wavelength, flux, uncertainty, data-quality information, and other calibrated columns directly. It does not use the same PHA, RMF, and ARF workflow that shaped &lt;code&gt;XraySpectra.jl&lt;/code&gt;. More importantly, a single JWST spectral product does not always contain only one spectrum.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;The many shapes of an extracted spectrum&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The first NIRSpec fixed-slit &lt;code&gt;x1d&lt;/code&gt; file I inspected looked reassuringly familiar. Its &lt;code&gt;EXTRACT1D&lt;/code&gt; table had one scalar wavelength and one scalar flux value per row. The complete table represented one extracted spectrum and mapped naturally to a &lt;code&gt;SpectrumBase.SingleSpectrum&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;NIRISS wide-field slitless spectroscopy was very different. WFSS observes many sources in the same field without using a slit for each one. In the files I inspected, one FITS table row contained an entire vector of wavelengths and fluxes for one source. One extension could therefore produce many spectra, and the file could contain several &lt;code&gt;EXTRACT1D&lt;/code&gt; extensions for different exposures or spectral orders.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;NIRISS SOSS introduced another layout. Its spectra represented different spectral orders, with one extracted spectrum in each extension. NIRCam WFSS also produced a collection of extracted spectra. NIRSpec IFU and MIRI MRS began from spectral cubes, but their final &lt;code&gt;x1d&lt;/code&gt; products could still contain one extracted 1D spectrum.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The same product suffix was not enough to tell me whether a file represented one spectrum, several orders, or hundreds of sources. The observing mode and the structure of the FITS table mattered.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Building &lt;code&gt;InfraredSpectra.jl&lt;/code&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To experiment with these products, I created a separate package called &lt;code&gt;InfraredSpectra.jl&lt;/code&gt;. Its initial scope is deliberately limited to extracted JWST &lt;code&gt;x1d&lt;/code&gt; and &lt;code&gt;c1d&lt;/code&gt; products. Multidimensional products such as &lt;code&gt;cal&lt;/code&gt;, &lt;code&gt;s2d&lt;/code&gt;, &lt;code&gt;s3d&lt;/code&gt;, and &lt;code&gt;i2d&lt;/code&gt;, as well as time-series &lt;code&gt;x1dints&lt;/code&gt;, remain outside the first version.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The public interface currently looks like this:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code class="language-julia"&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;read_spectrum&lt;/span&gt;(&lt;span class="tok-variableName"&gt;path&lt;/span&gt;)&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;read_spectra&lt;/span&gt;(&lt;span class="tok-variableName"&gt;path&lt;/span&gt;)&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;inspect_product&lt;/span&gt;(&lt;span class="tok-variableName"&gt;path&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;code&gt;read_spectrum&lt;/code&gt; requires the file to contain exactly one usable spectrum. If it finds several, it reports how many were found and points the user toward &lt;code&gt;read_spectra&lt;/code&gt;. &lt;code&gt;read_spectra&lt;/code&gt; always returns a vector, so the same function works for fixed-slit, multi-source, and multi-order products. &lt;code&gt;inspect_product&lt;/code&gt; reports the telescope, instrument, observing mode, product type, and HDU structure before the science arrays are fully parsed.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Internally, small &lt;code&gt;X1D&lt;/code&gt; and &lt;code&gt;C1D&lt;/code&gt; marker types use multiple dispatch to select the correct parser. They are not part of the public interface. Users should only need to ask for one spectrum, all spectra, or a product description.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The returned objects reuse &lt;code&gt;SpectrumBase.SingleSpectrum&lt;/code&gt;. Wavelength and flux units from the FITS table are attached without converting the stored values. Uncertainty arrays, DQ values, source IDs, spectral orders, slit information, and extension identity are retained in metadata.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;code&gt;x1d&lt;/code&gt; versus &lt;code&gt;c1d&lt;/code&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Looking at corresponding &lt;code&gt;x1d&lt;/code&gt; and &lt;code&gt;c1d&lt;/code&gt; files helped me understand what “combined” means in the JWST pipeline.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;An &lt;code&gt;x1d&lt;/code&gt; product can preserve extracted spectra from separate exposures. A &lt;code&gt;c1d&lt;/code&gt; product combines corresponding spectra, but it does not merge unrelated sources or spectral orders. A SOSS observation therefore still contains separate spectra for its different orders after combination.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In one NIRISS WFSS example, the &lt;code&gt;x1d&lt;/code&gt; file produced 1,200 usable spectra spread across 12 &lt;code&gt;EXTRACT1D&lt;/code&gt; extensions. The related &lt;code&gt;c1d&lt;/code&gt; product contained 113 combined source spectra. Seeing those actual outputs made the distinction much clearer than the filenames alone.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For now, &lt;code&gt;read_spectra&lt;/code&gt; flattens spectra from all matching extensions into one vector. Each spectrum keeps its source, order, slit, and extension metadata, so the original identity is not discarded. Whether a future API should also offer grouped lookup by source or extension is still something I want to discuss with my mentors.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Testing several observing modes&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-138" height="544" src="https://jamesraffertylee.wordpress.com/wp-content/uploads/2026/07/image-2.png?w=1024" width="1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;By the end of this exploration, I had tried the loader on extracted products from all four JWST science instruments used in the sample: NIRSpec, NIRISS, NIRCam, and MIRI.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The real-data checks include NIRSpec fixed-slit, IFU, and MSA products; NIRISS WFSS and SOSS; NIRCam WFSS; and MIRI LRS and MRS. These files cover the important table layouts I had encountered: scalar samples per row, complete spectrum vectors per row, one spectrum per extension, many spectra per extension, and several spectral orders.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The ordinary package tests still use small generated FITS tables so they remain portable. The larger real files live outside the repository and are enabled through an environment variable. This gives me both precise unit tests and realistic integration checks without putting large mission datasets directly into the package.&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1528_jamesrafe/</guid><pubDate>Sun, 26 Jul 2026 14:28:59 GMT</pubDate></item><item><title>GSoC 2026 Weeks 5-6: Folding Models and Rebinning X-ray Data</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1524_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Moving from loading to using the data&lt;/h3&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p class="wp-block-paragraph"&gt;During weeks 5 and 6, I moved from loading X-ray observation files toward actually doing something with the pieces that had been loaded. Until this point, much of my work in &lt;code&gt;XraySpectra.jl&lt;/code&gt; had focused on reading PHA, RMF, ARF, background, and RSP products and deciding how they should be represented. The next step was response folding and channel rebinning.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;These features made the earlier work feel more connected. A PHA file, response matrix, and ancillary response are not just separate files that happen to be shipped together. They describe different parts of the path from an incoming photon to the counts recorded by the detector.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Understanding response folding&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A physical model usually predicts flux as a function of energy. The telescope does not observe that model directly. The ARF describes the instrument’s effective collecting area, while the RMF describes how photons from each true energy bin are redistributed into detector channels. Folding applies those instrument effects to the model and produces the detector-space prediction that can eventually be compared with the observed PHA data.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The basic interface now looks like this:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code class="language-julia"&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;folded&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;fold&lt;/span&gt;(&lt;span class="tok-variableName"&gt;response&lt;/span&gt;, &lt;span class="tok-variableName"&gt;flux&lt;/span&gt;; &lt;span class="tok-variableName"&gt;ancillary&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;ancillary&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;This initially looked like a fairly small matrix operation. It became more interesting once I had to make the dimensions and physical meaning explicit. The model vector must match the response input-energy bins, while the output must match the detector-channel bins. A mismatched length is not merely an inconvenient Julia error; it can mean that two scientifically incompatible grids are being combined.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The loader also distinguishes between a redistribution-only RMF and a full RSP response where the effective area may already be included. I used response types rather than a Boolean flag to represent that difference. This lets multiple dispatch reject an attempt to combine another ARF with a response that is already complete, which helps avoid accidentally applying the effective area twice.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Sparse matrices and in-place operations&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Real response matrices contain many zero values, so they are normally stored as sparse matrices. Treating one as an ordinary dense matrix could use much more memory than necessary.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This became important while implementing &lt;code&gt;combine&lt;/code&gt; and &lt;code&gt;combine!&lt;/code&gt;. The first returns a new response matrix after applying the ancillary effective area. The second writes into an output matrix supplied by the caller:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code class="language-julia"&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;combined&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;combine&lt;/span&gt;(&lt;span class="tok-variableName"&gt;response&lt;/span&gt;, &lt;span class="tok-variableName"&gt;ancillary&lt;/span&gt;)&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;output&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;copy&lt;/span&gt;(&lt;span class="tok-variableName"&gt;response&lt;/span&gt;&lt;span class="tok-operator"&gt;.&lt;/span&gt;&lt;span class="tok-variableName"&gt;matrix&lt;/span&gt;)&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;combine!&lt;/span&gt;(&lt;span class="tok-variableName"&gt;output&lt;/span&gt;, &lt;span class="tok-variableName"&gt;response&lt;/span&gt;, &lt;span class="tok-variableName"&gt;ancillary&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;The exclamation mark does not have special behavior built into Julia. It is a naming convention that tells users that the function mutates one of its arguments. For the sparse method, I scale only the stored non-zero values instead of constructing a large temporary dense array. This was a useful reminder that code can be mathematically correct while still behaving badly for real scientific data sizes.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Combining detector channels&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The next feature was channel-side rebinning. X-ray spectra can have thousands of detector channels, many of which contain few counts. Users often combine adjacent channels before fitting, either with a simple fixed factor or with the grouping information already stored in an OGIP file.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For the common case, the API is:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code class="language-julia"&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;rebinned&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;rebin_channels&lt;/span&gt;(&lt;span class="tok-variableName"&gt;data&lt;/span&gt;; &lt;span class="tok-variableName"&gt;factor&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-number"&gt;16&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;It also accepts an explicit grouping vector. In the OGIP convention used by the NuSTAR and XMM files I inspected, &lt;code&gt;1&lt;/code&gt; starts a group and &lt;code&gt;-1&lt;/code&gt; continues the current group. The implementation also accepts &lt;code&gt;0&lt;/code&gt; as a continuation value to match behavior already used by &lt;code&gt;SpectralFitting.jl&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Rebinning a complete dataset means more than summing the source counts. The corresponding response rows and background channels must be combined as well. Channel bounds need to expand to cover the complete group, and the new channels are renumbered sequentially. Users can also turn off response or background rebinning when they only want to operate on the source spectrum.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Uncertainties required another distinction. Explicit numeric errors are combined in quadrature. For Poisson data, the counts are grouped first and the Poisson uncertainty is then calculated from the grouped result. If the spectrum stores rates, the exposure time is used when moving between rates and the underlying count statistics.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Quality follows a conservative rule: if any channel in a new group is marked bad, the combined channel is also marked bad. Rebinning should reduce resolution, but it should not quietly erase warnings about the original data.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Checking the behavior with NuSTAR&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Small generated arrays are useful for testing individual rules, but I also wanted to know whether the complete workflow made sense with real mission files.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Using the NuSTAR test observation, I loaded the PHA, RMF, and ARF, folded a test model through the response, and then rebinned the detector channels by a factor of 16. The spectrum went from 4,096 channels to 256. The response output dimension changed to match, while its input-energy grid and the ARF stayed unchanged.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The tests check that grouped counts are preserved, response contributions are summed correctly, the first rebinned folded value equals the sum of the first 16 original values, and the total folded prediction remains the same apart from numerical precision. Those checks were more useful than only testing the final array dimensions because they describe what rebinning is supposed to preserve.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Deciding not to rebin the energy axis&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;We also discussed rebinning the response on its input-energy axis. At first, this seemed like the natural companion to channel rebinning. However, directly averaging or combining response columns can introduce artificial response support. It may suggest that a photon can be detected in an energy range where the original instrument response assigned no probability.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For now, direct response energy-axis rebinning has been deferred. A safer direction is closer to the existing &lt;code&gt;SpectralFitting.jl&lt;/code&gt; workflow: evaluate the model, then interpolate or rebin the model values onto the response input grid before folding. This keeps the calibrated response intact.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;I think this was an important outcome of these weeks. Progress is not always adding the next function on a list. Sometimes it is understanding the scientific consequences well enough to decide that a feature needs a more careful design.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Looking ahead&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;By the end of week 6, the X-ray loader could not only assemble the observation products but also support response folding and explicit channel rebinning. The next question was how much of this design was truly general to spectra and how much came specifically from the OGIP/X-ray workflow.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;That led me to start looking at infrared spectra from JWST. I expected different units and wavelengths. I did not yet realize how many different meanings the phrase “one spectrum” was about to acquire.&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1524_jamesrafe/</guid><pubDate>Sun, 26 Jul 2026 14:24:28 GMT</pubDate></item><item><title>What Six Weeks of GSoC Have Taught Me</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260724_1322_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;div style="text-align: left;"&gt;&lt;h3 style="text-align: left;"&gt;What Six Weeks of GSoC Have Taught Me 🚀&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;"I came into GSoC thinking I'd spend most of my time writing code. Six weeks later, I realized that's only a small part of the journey."&lt;/em&gt;&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -378,117 +632,4 @@ Ghosts in the Infrastructure
 &lt;blockquote&gt;&lt;p&gt;Understanding the system is often more important than changing the system.&lt;/p&gt;
 &lt;/blockquote&gt;&lt;p&gt;A lot of progress during this period came from understanding existing workflows, asking questions, exploring project infrastructure, and learning how different parts of the ecosystem connect together.&lt;/p&gt;
 &lt;p&gt;With the initial figure testing setup now in place, I'm looking forward to expanding the coverage further and continuing the NDCube-related work in the coming weeks.&lt;/p&gt;
-&lt;p&gt;As always, many thanks to my mentors and the SunPy community for their guidance, patience, and feedback along the way. 🚀&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260622_1228_amityush-lgtm/</guid><pubDate>Mon, 22 Jun 2026 11:28:09 GMT</pubDate></item><item><title>GSoC 2026 Weeks 1-2: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_1057_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Starting out&lt;/h3&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-
-&lt;p class="wp-block-paragraph"&gt;I spent the first two weeks of the coding period figuring out the problem I was solving more than I was writing code.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;My GSoC project is about moving OGIP/X-ray spectrum loading into a separate Julia package, currently &lt;code&gt;XraySpectra.jl&lt;/code&gt;, while keeping reusable spectrum types in &lt;code&gt;SpectrumBase.jl&lt;/code&gt; and leaving fitting in &lt;code&gt;SpectralFitting.jl&lt;/code&gt;. Written that way, it sounds clean and obvious. It did not feel clean and obvious when I started.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;At the beginning, I spent a lot of time just trying to understand the boundaries. What belongs in a generic spectrum package? What is specific to X-ray astronomy? What should a loader return if it only has part of the observation? I think that was a good way to begin. It would have been easy to rush into implementation and only later realize I had built the wrong interface.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;What I worked on first&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;My first concrete goal was simple: get OGIP PHA loading working in the new package without inventing too much too early.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The first working version reads a PHA I file into an existing `SpectrumBase` type instead of immediately creating a brand new X-ray-specific spectrum container. But it led to one of the questions I kept coming back to: what does a PHA file actually mean if it does not contain physical energy bin edges?&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Looking through NuSTAR and XMM examples helped a lot here. What became clear is that the physical energy bins usually do not come from the PHA file itself. They typically come from the response, especially the RMF and its EBOUNDS information.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;That changed how I was thinking about the data. A PHA file is not automatically “the spectrum in energy.” A lot of the time it is really the detector-space version of the spectrum, stored in channels. You only get the mapping into physical energy once the response is involved. That ended up being one of the most useful conceptual shifts for me in these first two weeks.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Looking at real data made it feel more real&lt;/h3&gt;
-
-
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-117" height="559" src="https://jamesraffertylee.wordpress.com/wp-content/uploads/2026/06/image.png?w=1024" width="1024"&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;One of my favorite parts so far was spending time in ESASky and looking at real observations instead of only staring at FITS headers and Julia structs.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;It was genuinely cool to compare the same region of sky across different wavelengths. In optical images, some objects can look almost quiet, or at least not obviously dramatic. With black holes especially, you are usually not directly “seeing the black hole” in the way people imagine. But once you look in X-rays, the surrounding physics starts to show up much more clearly: hot gas, accretion, compact-object activity, and all the energetic processes happening around the source.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;That contrast made the project click in a different way for me. I was not just moving file readers between packages. I was building toward a workflow that helps turn those high-energy observations into something we can actually inspect and fit.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;Moving past PHA-only loading&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;After the PHA side started to make sense, I began porting the response side of the OGIP loader too. That meant reading RMF files, building a response matrix, and experimenting with an energy-binned view once the response bins are available.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;I also added support for ancillary response files (ARFs), background PHA loading, and a higher-level &lt;code&gt;read_spectrum&lt;/code&gt; helper&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;For now, that higher-level loader returns a named tuple instead of a heavier observation type. That feels like the right level of structure while the API is still moving around. It is simple enough to experiment with, but still makes it very clear what pieces are present: the source spectrum, response matrix, ancillary response, background, and resolved paths.&lt;/p&gt;
-
-
-
-&lt;h3 class="wp-block-heading"&gt;What I learned&lt;/h3&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;One thing I learned very quickly is that even “just loading data” carries a lot of scientific and software design weight.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Channels versus energies, whether missing linked files should error or be tolerated, where uncertainties should live, and what shape a grouped loader should return all sound like implementation details until you actually have to choose. Then you realize they shape how the whole package feels to use.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;I think the most useful thing I did in these first two weeks was not pretending I understood everything right away. I spent a lot of time asking questions, tracing how existing code works, and trying small pieces first. My mentors helped me by explaining every bit carefully, making sure I understood things clearly enough to solve the problem. That slowed the start a bit, but it also made the project feel much less foggy by the end of the second week.&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_1057_jamesrafe/</guid><pubDate>Tue, 16 Jun 2026 09:57:33 GMT</pubDate></item><item><title> Lift off: Weeks 1 &amp; 2The firs...</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_0827_omiii-215/</link><dc:creator>Om S Habib</dc:creator><description>&lt;p&gt; &lt;/p&gt;
-&lt;span id="docs-internal-guid-c79a753d-7fff-eef0-db84-593d0b6d8ea0"&gt;&lt;span style="font-family: georgia;"&gt;&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: justify;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Lift off: Weeks 1 &amp;amp; 2&lt;/span&gt;&lt;/h3&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;The first month of Google Summer of Code has been nothing short of a whirlwind. Here's a quick breakdown of how the first two weeks went down:&lt;/span&gt;&lt;/p&gt;
-&lt;ul style="margin-bottom: 0; margin-top: 0; padding-inline-start: 48px;"&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Navigating the Codebase: If you've ever stared at a massive codebase and wondered where to begin, you know how my first few days felt. Getting my hands dirty made things click into place rapidly.&lt;/span&gt;&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;/li&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Finishing Power Colors: My immediate target was getting the Power Colors implementation over the finish line. Classifying spectral states based on power spectral shapes is a huge deal in X-ray binaries.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Porting from Python to Julia: Bringing this capability from the established Python ecosystem to our native Julia environment felt like unlocking a new superpower.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Rigorous Testing: It required strict testing against established scientific benchmarks, but finally seeing those PR checks turn green was an absolute thrill.
-&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;div style="text-align: justify;"&gt;&lt;span style="font-size: 14.6667px;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;span id="docs-internal-guid-6f068243-7fff-ce7c-015b-630f72a80949"&gt;&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Leveling Up: Core Spectral Types: Weeks 3 &amp;amp; 4&lt;/span&gt;&lt;/h3&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;With the confidence boost from the Power Colors merge, Weeks 3 and 4 were all about the heavy lifting: the Core Spectral Types.&lt;/span&gt;&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;If you've used Stingray.jl before, you might remember that functions like avg_cs_from_events would just spit out a raw DataFrame. Sure, it got the job done, but it wasn't exactly user-friendly for building a high-level scientific pipeline. Our mission? Build rock-solid, type-safe Julia structs that not only map beautifully to the Python Stingray API but also squeeze out every ounce of Julia's performance through multiple dispatch.&lt;/span&gt;&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;I am super pumped to announce that the Core Spectral Types are officially baked in! We rolled out the AbstractCrossspectrum hierarchy, featuring the brand-new Crossspectrum{T} and Powerspectrum{T} types.&lt;/span&gt;&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Here is a quick look at how slick the reverberation lag measurement looks now:&lt;/span&gt;&lt;/p&gt;
-&lt;br&gt;&lt;div&gt;&lt;span&gt;&lt;a name="more"&gt;&lt;/a&gt;&lt;/span&gt;# Reverberation lag measurement using our new Core Spectral Types&lt;/div&gt;&lt;div&gt;ev = readevents("observation.fits")&lt;/div&gt;&lt;div&gt;soft_ev = filter_energy(e -&amp;gt; 0.3 &amp;lt;= e &amp;lt;= 1.0, ev)  # soft band (thermal disk)&lt;/div&gt;&lt;div&gt;hard_ev = filter_energy(e -&amp;gt; 2.0 &amp;lt;= e &amp;lt;= 10.0, ev)  # hard band (Comptonized corona)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;# Meet the new Crossspectrum type!&lt;/div&gt;&lt;div&gt;cs = Crossspectrum(soft_ev, hard_ev, segment_size=64.0, dt=1/256)&lt;/div&gt;&lt;div&gt;lags = time_lag(cs)  # Grab those frequency-dependent time lags&lt;/div&gt;&lt;div&gt;coh = coherence(cs)  # Intrinsic coherence, calculated seamlessly&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;# Visualizing the data is literally a one-liner now&lt;/div&gt;&lt;div&gt;plot(cs, :lag_frequency)  # lag-frequency plot&lt;br&gt;&lt;/div&gt;&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIX9x-1QfIcBhJZeSaCNPGQ9VtPXmpXFfqc0HbSiGuWyyLU8DjI1vmFrAXUDnpY2NSCeHk2svS_rfeFI96EBvnLsUriSH7kC7upCJE874HQrKTguhNEdO9EcVQ7b5jnhFOXNOPTiGk7ALJB9HuJyMWAN2djeyvXe0RTRXiG-1v5KUWSIJelIdVE1S0z5wz/s1024/Lag%20Frequency%20Plot.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="453" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiIX9x-1QfIcBhJZeSaCNPGQ9VtPXmpXFfqc0HbSiGuWyyLU8DjI1vmFrAXUDnpY2NSCeHk2svS_rfeFI96EBvnLsUriSH7kC7upCJE874HQrKTguhNEdO9EcVQ7b5jnhFOXNOPTiGk7ALJB9HuJyMWAN2djeyvXe0RTRXiG-1v5KUWSIJelIdVE1S0z5wz/w453-h453/Lag%20Frequency%20Plot.png" width="453"&gt;&lt;/a&gt;&lt;br&gt;&lt;span id="docs-internal-guid-de35dd1a-7fff-4f5d-36ea-fdd30969164b"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;&lt;i&gt;Observed X-ray Lag-Frequency Spectrum showing reverberation dip&lt;/i&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;/span&gt;&lt;/div&gt;&lt;span id="docs-internal-guid-e30d73c9-7fff-120b-65fa-6bffbc159cd6"&gt;&lt;h4 dir="ltr" style="line-height: 1.38; margin-bottom: 4pt; margin-top: 16pt; text-align: justify;"&gt;&lt;span style="color: #434343; font-size: 14pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Under the Hood: Supercharging Stingray.jl&lt;/span&gt;&lt;/h4&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;The real magic happens beneath the surface. By designing Crossspectrum parametrically (Crossspectrum{T&amp;lt;:Real}), we guaranteed type stability. This means Julia's Just-In-Time (JIT) compiler can optimize the math down to the bare metal.&lt;/span&gt;&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Check out a snippet of the foundation we laid in crossspectrum.jl:&lt;/span&gt;&lt;/p&gt;
-&lt;div style="text-align: justify;"&gt;&lt;br&gt;&lt;/div&gt;&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;&lt;div style="text-align: justify;"&gt;&lt;div&gt;struct Crossspectrum{T&amp;lt;:Real} &amp;lt;: AbstractCrossspectrum&lt;/div&gt;&lt;div&gt;    freq::Vector{T}&lt;/div&gt;&lt;div&gt;    power::Vector{Complex{T}}&lt;/div&gt;&lt;div&gt;    power_err::Vector{Complex{T}}&lt;/div&gt;&lt;div&gt;    unnorm_power::Vector{Complex{T}}&lt;/div&gt;&lt;div&gt;    unnorm_power_err::Vector{Complex{T}}&lt;/div&gt;&lt;div&gt;    pds1::Union{Nothing, Vector{T}}&lt;/div&gt;&lt;div&gt;    pds2::Union{Nothing, Vector{T}}&lt;/div&gt;&lt;div&gt;    df::T&lt;/div&gt;&lt;div&gt;    dt::T&lt;/div&gt;&lt;div&gt;    n::Int&lt;/div&gt;&lt;div&gt;    m::Int&lt;/div&gt;&lt;div&gt;    # ... tracking all the crucial metadata internally!&lt;/div&gt;&lt;div&gt;end&lt;/div&gt;&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;span id="docs-internal-guid-2d803f6f-7fff-b1d1-03fa-5cdf7d489f35"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;By ditching the raw DataFrame returns in favor of these robust structs, the developer ergonomics have improved tenfold:&lt;/span&gt;&lt;/p&gt;
-&lt;ul style="margin-bottom: 0; margin-top: 0; padding-inline-start: 48px;"&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Strong Typing: No more hunting for array columns, everything you need is strongly typed.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Ready for Analysis: The data is immediately ready for complex downstream computations.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Smart Constructors: We wired up convenient constructors that ingest EventList or LightCurve objects directly.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Automated GTIs: These constructors take care of Good Time Intervals (GTIs) automatically under the hood.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style="font-family: Arial, sans-serif; font-size: 16pt; white-space: pre-wrap;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="text-align: justify;"&gt;&lt;span style="font-size: 16pt; white-space: pre-wrap;"&gt;&lt;b&gt;What’s Next on the Radar?&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="text-align: justify;"&gt;&lt;span style="font-size: 16pt; white-space: pre-wrap;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span id="docs-internal-guid-748a0857-7fff-451d-c416-02cdba175c0c"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;We've covered a lot of ground, but we are far from done. Here is the roadmap for the upcoming weeks:&lt;/span&gt;&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;ol style="margin-bottom: 0; margin-top: 0; padding-inline-start: 48px;"&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Frequency Rebinning: This is the very next hurdle. We are actively working on logarithmic (geometric) and linear frequency rebinning for the Powerspectrum and Crossspectrum objects. Getting the logarithmic rebinning dialed in is non-negotiable for high-quality broadband noise studies, as it drastically improves the signal-to-noise ratio at high frequencies.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;/ol&gt;&lt;div style="text-align: justify;"&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNjEEkwVQKDS-06pwfNAxTyj9UDXnKg2UDy3_yd60JRzIMng-SMF6YLG1iv1s-4snp-BmfiWYXoPLGZqCGv3fCfNhYEbjkS1s6qGstEf4iaJP3M_yCEVlhOXFi0HQVwdtm1PT7mQkr2vyOi6xpdIrgERJMdysy-_dNW6L8bDAWJ_ekPcef_2-Xn2F3MsU0/s1024/power%20spectrum%20qpo.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="441" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNjEEkwVQKDS-06pwfNAxTyj9UDXnKg2UDy3_yd60JRzIMng-SMF6YLG1iv1s-4snp-BmfiWYXoPLGZqCGv3fCfNhYEbjkS1s6qGstEf4iaJP3M_yCEVlhOXFi0HQVwdtm1PT7mQkr2vyOi6xpdIrgERJMdysy-_dNW6L8bDAWJ_ekPcef_2-Xn2F3MsU0/w441-h441/power%20spectrum%20qpo.png" width="441"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;span id="docs-internal-guid-2a972987-7fff-bd2e-54be-0971e61f5010"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;&lt;i&gt;X-ray Power Density Spectrum with a QPO peak at 5 Hz&lt;/i&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;div&gt;&lt;span style="font-family: Arial, sans-serif; font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span id="docs-internal-guid-1a770530-7fff-52a4-e5dc-deecf44616a6"&gt;&lt;ol start="2" style="margin-bottom: 0; margin-top: 0; padding-inline-start: 48px;"&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Covariance Spectra and the Lag-Energy Framework: With rebinning out of the way, we will pivot to the variability-vs-energy framework the holy grail for mapping X-ray reverberations.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Lomb-Scargle Periodograms: Bringing Lomb-Scargle into our shiny new type system to handle unevenly sampled datasets like a champ.&lt;/span&gt;&lt;/p&gt;
-&lt;/li&gt;&lt;/ol&gt;&lt;div style="text-align: justify;"&gt;&lt;span style="font-size: 14.6667px;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;This GSoC journey has been an absolute blast so far. Marrying the expressive flexibility of Python with the raw speed of Julia isn't without its brain-bending moments, but seeing those beautiful lag-frequency plots render from our native Julia types makes every hour of debugging worth it.&lt;/span&gt;&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Catch you in the next update as we dive deep into frequency rebinning!&lt;/span&gt;&lt;/p&gt;
-&lt;div style="text-align: justify;"&gt;&lt;br&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/span&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260616_0827_omiii-215/</guid><pubDate>Tue, 16 Jun 2026 07:27:18 GMT</pubDate></item></channel></rss>
+&lt;p&gt;As always, many thanks to my mentors and the SunPy community for their guidance, patience, and feedback along the way. 🚀&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260622_1228_amityush-lgtm/</guid><pubDate>Mon, 22 Jun 2026 11:28:09 GMT</pubDate></item></channel></rss>
