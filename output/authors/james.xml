@@ -1,5 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by James)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/james.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 26 Jul 2026 03:47:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 Weeks 3-4: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_1320_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Moving from loading files to using them&lt;/strong&gt;&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts by James)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/authors/james.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 27 Jul 2026 03:56:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 Weeks 7-8: What Counts as One Spectrum?</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1528_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Looking beyond X-rays&lt;/h3&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-135" height="576" src="https://jamesraffertylee.wordpress.com/wp-content/uploads/2026/07/image-1.png?w=1024" width="1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;After working with OGIP products and X-ray response matrices, I spent weeks 7 and 8 exploring infrared spectral data from JWST.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;An already extracted JWST spectrum usually provides wavelength, flux, uncertainty, data-quality information, and other calibrated columns directly. It does not use the same PHA, RMF, and ARF workflow that shaped &lt;code&gt;XraySpectra.jl&lt;/code&gt;. More importantly, a single JWST spectral product does not always contain only one spectrum.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;The many shapes of an extracted spectrum&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The first NIRSpec fixed-slit &lt;code&gt;x1d&lt;/code&gt; file I inspected looked reassuringly familiar. Its &lt;code&gt;EXTRACT1D&lt;/code&gt; table had one scalar wavelength and one scalar flux value per row. The complete table represented one extracted spectrum and mapped naturally to a &lt;code&gt;SpectrumBase.SingleSpectrum&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;NIRISS wide-field slitless spectroscopy was very different. WFSS observes many sources in the same field without using a slit for each one. In the files I inspected, one FITS table row contained an entire vector of wavelengths and fluxes for one source. One extension could therefore produce many spectra, and the file could contain several &lt;code&gt;EXTRACT1D&lt;/code&gt; extensions for different exposures or spectral orders.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;NIRISS SOSS introduced another layout. Its spectra represented different spectral orders, with one extracted spectrum in each extension. NIRCam WFSS also produced a collection of extracted spectra. NIRSpec IFU and MIRI MRS began from spectral cubes, but their final &lt;code&gt;x1d&lt;/code&gt; products could still contain one extracted 1D spectrum.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The same product suffix was not enough to tell me whether a file represented one spectrum, several orders, or hundreds of sources. The observing mode and the structure of the FITS table mattered.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Building &lt;code&gt;InfraredSpectra.jl&lt;/code&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;To experiment with these products, I created a separate package called &lt;code&gt;InfraredSpectra.jl&lt;/code&gt;. Its initial scope is deliberately limited to extracted JWST &lt;code&gt;x1d&lt;/code&gt; and &lt;code&gt;c1d&lt;/code&gt; products. Multidimensional products such as &lt;code&gt;cal&lt;/code&gt;, &lt;code&gt;s2d&lt;/code&gt;, &lt;code&gt;s3d&lt;/code&gt;, and &lt;code&gt;i2d&lt;/code&gt;, as well as time-series &lt;code&gt;x1dints&lt;/code&gt;, remain outside the first version.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The public interface currently looks like this:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code class="language-julia"&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;read_spectrum&lt;/span&gt;(&lt;span class="tok-variableName"&gt;path&lt;/span&gt;)&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;read_spectra&lt;/span&gt;(&lt;span class="tok-variableName"&gt;path&lt;/span&gt;)&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;inspect_product&lt;/span&gt;(&lt;span class="tok-variableName"&gt;path&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;&lt;code&gt;read_spectrum&lt;/code&gt; requires the file to contain exactly one usable spectrum. If it finds several, it reports how many were found and points the user toward &lt;code&gt;read_spectra&lt;/code&gt;. &lt;code&gt;read_spectra&lt;/code&gt; always returns a vector, so the same function works for fixed-slit, multi-source, and multi-order products. &lt;code&gt;inspect_product&lt;/code&gt; reports the telescope, instrument, observing mode, product type, and HDU structure before the science arrays are fully parsed.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Internally, small &lt;code&gt;X1D&lt;/code&gt; and &lt;code&gt;C1D&lt;/code&gt; marker types use multiple dispatch to select the correct parser. They are not part of the public interface. Users should only need to ask for one spectrum, all spectra, or a product description.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The returned objects reuse &lt;code&gt;SpectrumBase.SingleSpectrum&lt;/code&gt;. Wavelength and flux units from the FITS table are attached without converting the stored values. Uncertainty arrays, DQ values, source IDs, spectral orders, slit information, and extension identity are retained in metadata.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;&lt;code&gt;x1d&lt;/code&gt; versus &lt;code&gt;c1d&lt;/code&gt;&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Looking at corresponding &lt;code&gt;x1d&lt;/code&gt; and &lt;code&gt;c1d&lt;/code&gt; files helped me understand what “combined” means in the JWST pipeline.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;An &lt;code&gt;x1d&lt;/code&gt; product can preserve extracted spectra from separate exposures. A &lt;code&gt;c1d&lt;/code&gt; product combines corresponding spectra, but it does not merge unrelated sources or spectral orders. A SOSS observation therefore still contains separate spectra for its different orders after combination.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;In one NIRISS WFSS example, the &lt;code&gt;x1d&lt;/code&gt; file produced 1,200 usable spectra spread across 12 &lt;code&gt;EXTRACT1D&lt;/code&gt; extensions. The related &lt;code&gt;c1d&lt;/code&gt; product contained 113 combined source spectra. Seeing those actual outputs made the distinction much clearer than the filenames alone.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For now, &lt;code&gt;read_spectra&lt;/code&gt; flattens spectra from all matching extensions into one vector. Each spectrum keeps its source, order, slit, and extension metadata, so the original identity is not discarded. Whether a future API should also offer grouped lookup by source or extension is still something I want to discuss with my mentors.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Testing several observing modes&lt;/h3&gt;
+
+
+
+&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-138" height="544" src="https://jamesraffertylee.wordpress.com/wp-content/uploads/2026/07/image-2.png?w=1024" width="1024"&gt;&lt;/figure&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;By the end of this exploration, I had tried the loader on extracted products from all four JWST science instruments used in the sample: NIRSpec, NIRISS, NIRCam, and MIRI.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The real-data checks include NIRSpec fixed-slit, IFU, and MSA products; NIRISS WFSS and SOSS; NIRCam WFSS; and MIRI LRS and MRS. These files cover the important table layouts I had encountered: scalar samples per row, complete spectrum vectors per row, one spectrum per extension, many spectra per extension, and several spectral orders.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The ordinary package tests still use small generated FITS tables so they remain portable. The larger real files live outside the repository and are enabled through an environment variable. This gives me both precise unit tests and realistic integration checks without putting large mission datasets directly into the package.&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1528_jamesrafe/</guid><pubDate>Sun, 26 Jul 2026 14:28:59 GMT</pubDate></item><item><title>GSoC 2026 Weeks 5-6: Folding Models and Rebinning X-ray Data</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1524_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Moving from loading to using the data&lt;/h3&gt;
+
+
+&lt;!-- TEASER_END --&gt;
+
+&lt;p class="wp-block-paragraph"&gt;During weeks 5 and 6, I moved from loading X-ray observation files toward actually doing something with the pieces that had been loaded. Until this point, much of my work in &lt;code&gt;XraySpectra.jl&lt;/code&gt; had focused on reading PHA, RMF, ARF, background, and RSP products and deciding how they should be represented. The next step was response folding and channel rebinning.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;These features made the earlier work feel more connected. A PHA file, response matrix, and ancillary response are not just separate files that happen to be shipped together. They describe different parts of the path from an incoming photon to the counts recorded by the detector.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Understanding response folding&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;A physical model usually predicts flux as a function of energy. The telescope does not observe that model directly. The ARF describes the instrument’s effective collecting area, while the RMF describes how photons from each true energy bin are redistributed into detector channels. Folding applies those instrument effects to the model and produces the detector-space prediction that can eventually be compared with the observed PHA data.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The basic interface now looks like this:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code class="language-julia"&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;folded&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;fold&lt;/span&gt;(&lt;span class="tok-variableName"&gt;response&lt;/span&gt;, &lt;span class="tok-variableName"&gt;flux&lt;/span&gt;; &lt;span class="tok-variableName"&gt;ancillary&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;ancillary&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;This initially looked like a fairly small matrix operation. It became more interesting once I had to make the dimensions and physical meaning explicit. The model vector must match the response input-energy bins, while the output must match the detector-channel bins. A mismatched length is not merely an inconvenient Julia error; it can mean that two scientifically incompatible grids are being combined.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The loader also distinguishes between a redistribution-only RMF and a full RSP response where the effective area may already be included. I used response types rather than a Boolean flag to represent that difference. This lets multiple dispatch reject an attempt to combine another ARF with a response that is already complete, which helps avoid accidentally applying the effective area twice.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Sparse matrices and in-place operations&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Real response matrices contain many zero values, so they are normally stored as sparse matrices. Treating one as an ordinary dense matrix could use much more memory than necessary.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;This became important while implementing &lt;code&gt;combine&lt;/code&gt; and &lt;code&gt;combine!&lt;/code&gt;. The first returns a new response matrix after applying the ancillary effective area. The second writes into an output matrix supplied by the caller:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code class="language-julia"&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;combined&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;combine&lt;/span&gt;(&lt;span class="tok-variableName"&gt;response&lt;/span&gt;, &lt;span class="tok-variableName"&gt;ancillary&lt;/span&gt;)&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;output&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;copy&lt;/span&gt;(&lt;span class="tok-variableName"&gt;response&lt;/span&gt;&lt;span class="tok-operator"&gt;.&lt;/span&gt;&lt;span class="tok-variableName"&gt;matrix&lt;/span&gt;)&lt;/div&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;combine!&lt;/span&gt;(&lt;span class="tok-variableName"&gt;output&lt;/span&gt;, &lt;span class="tok-variableName"&gt;response&lt;/span&gt;, &lt;span class="tok-variableName"&gt;ancillary&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;The exclamation mark does not have special behavior built into Julia. It is a naming convention that tells users that the function mutates one of its arguments. For the sparse method, I scale only the stored non-zero values instead of constructing a large temporary dense array. This was a useful reminder that code can be mathematically correct while still behaving badly for real scientific data sizes.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Combining detector channels&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The next feature was channel-side rebinning. X-ray spectra can have thousands of detector channels, many of which contain few counts. Users often combine adjacent channels before fitting, either with a simple fixed factor or with the grouping information already stored in an OGIP file.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For the common case, the API is:&lt;/p&gt;
+
+
+&lt;div class="wp-block-code"&gt;
+&lt;div class="cm-editor"&gt;
+&lt;div class="cm-scroller"&gt;
+
+&lt;pre&gt;
+&lt;code class="language-julia"&gt;&lt;div class="cm-line"&gt;&lt;span class="tok-variableName"&gt;rebinned&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-variableName"&gt;rebin_channels&lt;/span&gt;(&lt;span class="tok-variableName"&gt;data&lt;/span&gt;; &lt;span class="tok-variableName"&gt;factor&lt;/span&gt; &lt;span class="tok-operator"&gt;=&lt;/span&gt; &lt;span class="tok-number"&gt;16&lt;/span&gt;)&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p class="wp-block-paragraph"&gt;It also accepts an explicit grouping vector. In the OGIP convention used by the NuSTAR and XMM files I inspected, &lt;code&gt;1&lt;/code&gt; starts a group and &lt;code&gt;-1&lt;/code&gt; continues the current group. The implementation also accepts &lt;code&gt;0&lt;/code&gt; as a continuation value to match behavior already used by &lt;code&gt;SpectralFitting.jl&lt;/code&gt;.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Rebinning a complete dataset means more than summing the source counts. The corresponding response rows and background channels must be combined as well. Channel bounds need to expand to cover the complete group, and the new channels are renumbered sequentially. Users can also turn off response or background rebinning when they only want to operate on the source spectrum.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Uncertainties required another distinction. Explicit numeric errors are combined in quadrature. For Poisson data, the counts are grouped first and the Poisson uncertainty is then calculated from the grouped result. If the spectrum stores rates, the exposure time is used when moving between rates and the underlying count statistics.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Quality follows a conservative rule: if any channel in a new group is marked bad, the combined channel is also marked bad. Rebinning should reduce resolution, but it should not quietly erase warnings about the original data.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Checking the behavior with NuSTAR&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Small generated arrays are useful for testing individual rules, but I also wanted to know whether the complete workflow made sense with real mission files.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;Using the NuSTAR test observation, I loaded the PHA, RMF, and ARF, folded a test model through the response, and then rebinned the detector channels by a factor of 16. The spectrum went from 4,096 channels to 256. The response output dimension changed to match, while its input-energy grid and the ARF stayed unchanged.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;The tests check that grouped counts are preserved, response contributions are summed correctly, the first rebinned folded value equals the sum of the first 16 original values, and the total folded prediction remains the same apart from numerical precision. Those checks were more useful than only testing the final array dimensions because they describe what rebinning is supposed to preserve.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Deciding not to rebin the energy axis&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;We also discussed rebinning the response on its input-energy axis. At first, this seemed like the natural companion to channel rebinning. However, directly averaging or combining response columns can introduce artificial response support. It may suggest that a photon can be detected in an energy range where the original instrument response assigned no probability.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;For now, direct response energy-axis rebinning has been deferred. A safer direction is closer to the existing &lt;code&gt;SpectralFitting.jl&lt;/code&gt; workflow: evaluate the model, then interpolate or rebin the model values onto the response input grid before folding. This keeps the calibrated response intact.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;I think this was an important outcome of these weeks. Progress is not always adding the next function on a list. Sometimes it is understanding the scientific consequences well enough to decide that a feature needs a more careful design.&lt;/p&gt;
+
+
+
+&lt;h3 class="wp-block-heading"&gt;Looking ahead&lt;/h3&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;By the end of week 6, the X-ray loader could not only assemble the observation products but also support response folding and explicit channel rebinning. The next question was how much of this design was truly general to spectra and how much came specifically from the OGIP/X-ray workflow.&lt;/p&gt;
+
+
+
+&lt;p class="wp-block-paragraph"&gt;That led me to start looking at infrared spectra from JWST. I expected different units and wavelengths. I did not yet realize how many different meanings the phrase “one spectrum” was about to acquire.&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1524_jamesrafe/</guid><pubDate>Sun, 26 Jul 2026 14:24:28 GMT</pubDate></item><item><title>GSoC 2026 Weeks 3-4: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_1320_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Moving from loading files to using them&lt;/strong&gt;&lt;/p&gt;
 
 
 &lt;!-- TEASER_END --&gt;

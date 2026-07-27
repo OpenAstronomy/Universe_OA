@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GSoC 2026 Weeks 5-6: Folding Models and Rebinning X-ray Data | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1524_jamesrafe/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="James">
+<link rel="prev" href="../20260724_1322_amityush-lgtm/" title="What Six Weeks of GSoC Have Taught Me" type="text/html">
+<link rel="next" href="../20260726_1528_jamesrafe/" title="GSoC 2026 Weeks 7-8: What Counts as One Spectrum?" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="GSoC 2026 Weeks 5-6: Folding Models and Rebinning X-ray Data">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1524_jamesrafe/">
+<meta property="og:description" content="Moving from loading to using the data
+
+
+
+
+During weeks 5 and 6, I moved from loading X-ray observation files toward actually doing something with the pieces that had been loaded. Until this point, muc">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-07-26T15:24:28+01:00">
+<meta property="article:tag" content="JuliaAstro">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="https://jamesraffertylee.wordpress.com" data-toggle="tooltip" data-placement="top" title="2026-07-26 15:28:59+01:00">
+                    James
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://sunpy-radiospectra.blogspot.com" data-toggle="tooltip" data-placement="top" title="2026-07-24 13:22:21+01:00">
+                    Kumar Amityush
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">✅</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/lincc-frameworks.png?size=40" height="16" width="16"><a href="https://imporving-pyarrow-for-nested-structures.hashnode.dev" data-toggle="tooltip" data-placement="top" title="2026-06-14 12:08:19+01:00" style="color:rgb(255,0,0)">
+                    Om Biradar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://spectral-timing-julia.blogspot.com" data-toggle="tooltip" data-placement="top" title="2026-07-15 14:26:03+01:00">
+                    Om S Habib
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://dev.to/reemhamraz" data-toggle="tooltip" data-placement="top" title="2026-07-10 14:53:14+01:00" style="color:rgb(255,0,0)">
+                    Reem Hamraz
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">🔲</span><span style="display:table-cell; width:7%;opacity: 0.5;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">GSoC 2026 Weeks 5-6: Folding Models and Rebinning X-ray Data</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/james/">James</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2026-07-26T15:24:28+01:00" itemprop="datePublished" title="2026-07-26 15:24">2026-07-26 15:24</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://jamesraffertylee.wordpress.com/2026/07/26/gsoc-2026-weeks-5-6-folding-models-and-rebinning-x-ray-data/">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <h3 class="wp-block-heading">Moving from loading to using the data</h3>
+
+
+<!-- TEASER_END -->
+
+<p class="wp-block-paragraph">During weeks 5 and 6, I moved from loading X-ray observation files toward actually doing something with the pieces that had been loaded. Until this point, much of my work in <code>XraySpectra.jl</code> had focused on reading PHA, RMF, ARF, background, and RSP products and deciding how they should be represented. The next step was response folding and channel rebinning.</p>
+
+
+
+<p class="wp-block-paragraph">These features made the earlier work feel more connected. A PHA file, response matrix, and ancillary response are not just separate files that happen to be shipped together. They describe different parts of the path from an incoming photon to the counts recorded by the detector.</p>
+
+
+
+<h3 class="wp-block-heading">Understanding response folding</h3>
+
+
+
+<p class="wp-block-paragraph">A physical model usually predicts flux as a function of energy. The telescope does not observe that model directly. The ARF describes the instrument’s effective collecting area, while the RMF describes how photons from each true energy bin are redistributed into detector channels. Folding applies those instrument effects to the model and produces the detector-space prediction that can eventually be compared with the observed PHA data.</p>
+
+
+
+<p class="wp-block-paragraph">The basic interface now looks like this:</p>
+
+
+<div class="wp-block-code">
+<div class="cm-editor">
+<div class="cm-scroller">
+
+<pre>
+<code class="language-julia"><div class="cm-line">
+<span class="tok-variableName">folded</span> <span class="tok-operator">=</span> <span class="tok-variableName">fold</span>(<span class="tok-variableName">response</span>, <span class="tok-variableName">flux</span>; <span class="tok-variableName">ancillary</span> <span class="tok-operator">=</span> <span class="tok-variableName">ancillary</span>)</div></code></pre>
+</div>
+</div>
+</div>
+
+
+<p class="wp-block-paragraph">This initially looked like a fairly small matrix operation. It became more interesting once I had to make the dimensions and physical meaning explicit. The model vector must match the response input-energy bins, while the output must match the detector-channel bins. A mismatched length is not merely an inconvenient Julia error; it can mean that two scientifically incompatible grids are being combined.</p>
+
+
+
+<p class="wp-block-paragraph">The loader also distinguishes between a redistribution-only RMF and a full RSP response where the effective area may already be included. I used response types rather than a Boolean flag to represent that difference. This lets multiple dispatch reject an attempt to combine another ARF with a response that is already complete, which helps avoid accidentally applying the effective area twice.</p>
+
+
+
+<h3 class="wp-block-heading">Sparse matrices and in-place operations</h3>
+
+
+
+<p class="wp-block-paragraph">Real response matrices contain many zero values, so they are normally stored as sparse matrices. Treating one as an ordinary dense matrix could use much more memory than necessary.</p>
+
+
+
+<p class="wp-block-paragraph">This became important while implementing <code>combine</code> and <code>combine!</code>. The first returns a new response matrix after applying the ancillary effective area. The second writes into an output matrix supplied by the caller:</p>
+
+
+<div class="wp-block-code">
+<div class="cm-editor">
+<div class="cm-scroller">
+
+<pre>
+<code class="language-julia"><div class="cm-line">
+<span class="tok-variableName">combined</span> <span class="tok-operator">=</span> <span class="tok-variableName">combine</span>(<span class="tok-variableName">response</span>, <span class="tok-variableName">ancillary</span>)</div>
+<div class="cm-line"></div>
+<div class="cm-line">
+<span class="tok-variableName">output</span> <span class="tok-operator">=</span> <span class="tok-variableName">copy</span>(<span class="tok-variableName">response</span><span class="tok-operator">.</span><span class="tok-variableName">matrix</span>)</div>
+<div class="cm-line">
+<span class="tok-variableName">combine!</span>(<span class="tok-variableName">output</span>, <span class="tok-variableName">response</span>, <span class="tok-variableName">ancillary</span>)</div></code></pre>
+</div>
+</div>
+</div>
+
+
+<p class="wp-block-paragraph">The exclamation mark does not have special behavior built into Julia. It is a naming convention that tells users that the function mutates one of its arguments. For the sparse method, I scale only the stored non-zero values instead of constructing a large temporary dense array. This was a useful reminder that code can be mathematically correct while still behaving badly for real scientific data sizes.</p>
+
+
+
+<h3 class="wp-block-heading">Combining detector channels</h3>
+
+
+
+<p class="wp-block-paragraph">The next feature was channel-side rebinning. X-ray spectra can have thousands of detector channels, many of which contain few counts. Users often combine adjacent channels before fitting, either with a simple fixed factor or with the grouping information already stored in an OGIP file.</p>
+
+
+
+<p class="wp-block-paragraph">For the common case, the API is:</p>
+
+
+<div class="wp-block-code">
+<div class="cm-editor">
+<div class="cm-scroller">
+
+<pre>
+<code class="language-julia"><div class="cm-line">
+<span class="tok-variableName">rebinned</span> <span class="tok-operator">=</span> <span class="tok-variableName">rebin_channels</span>(<span class="tok-variableName">data</span>; <span class="tok-variableName">factor</span> <span class="tok-operator">=</span> <span class="tok-number">16</span>)</div></code></pre>
+</div>
+</div>
+</div>
+
+
+<p class="wp-block-paragraph">It also accepts an explicit grouping vector. In the OGIP convention used by the NuSTAR and XMM files I inspected, <code>1</code> starts a group and <code>-1</code> continues the current group. The implementation also accepts <code>0</code> as a continuation value to match behavior already used by <code>SpectralFitting.jl</code>.</p>
+
+
+
+<p class="wp-block-paragraph">Rebinning a complete dataset means more than summing the source counts. The corresponding response rows and background channels must be combined as well. Channel bounds need to expand to cover the complete group, and the new channels are renumbered sequentially. Users can also turn off response or background rebinning when they only want to operate on the source spectrum.</p>
+
+
+
+<p class="wp-block-paragraph">Uncertainties required another distinction. Explicit numeric errors are combined in quadrature. For Poisson data, the counts are grouped first and the Poisson uncertainty is then calculated from the grouped result. If the spectrum stores rates, the exposure time is used when moving between rates and the underlying count statistics.</p>
+
+
+
+<p class="wp-block-paragraph">Quality follows a conservative rule: if any channel in a new group is marked bad, the combined channel is also marked bad. Rebinning should reduce resolution, but it should not quietly erase warnings about the original data.</p>
+
+
+
+<h3 class="wp-block-heading">Checking the behavior with NuSTAR</h3>
+
+
+
+<p class="wp-block-paragraph">Small generated arrays are useful for testing individual rules, but I also wanted to know whether the complete workflow made sense with real mission files.</p>
+
+
+
+<p class="wp-block-paragraph">Using the NuSTAR test observation, I loaded the PHA, RMF, and ARF, folded a test model through the response, and then rebinned the detector channels by a factor of 16. The spectrum went from 4,096 channels to 256. The response output dimension changed to match, while its input-energy grid and the ARF stayed unchanged.</p>
+
+
+
+<p class="wp-block-paragraph">The tests check that grouped counts are preserved, response contributions are summed correctly, the first rebinned folded value equals the sum of the first 16 original values, and the total folded prediction remains the same apart from numerical precision. Those checks were more useful than only testing the final array dimensions because they describe what rebinning is supposed to preserve.</p>
+
+
+
+<h3 class="wp-block-heading">Deciding not to rebin the energy axis</h3>
+
+
+
+<p class="wp-block-paragraph">We also discussed rebinning the response on its input-energy axis. At first, this seemed like the natural companion to channel rebinning. However, directly averaging or combining response columns can introduce artificial response support. It may suggest that a photon can be detected in an energy range where the original instrument response assigned no probability.</p>
+
+
+
+<p class="wp-block-paragraph">For now, direct response energy-axis rebinning has been deferred. A safer direction is closer to the existing <code>SpectralFitting.jl</code> workflow: evaluate the model, then interpolate or rebin the model values onto the response input grid before folding. This keeps the calibrated response intact.</p>
+
+
+
+<p class="wp-block-paragraph">I think this was an important outcome of these weeks. Progress is not always adding the next function on a list. Sometimes it is understanding the scientific consequences well enough to decide that a feature needs a more careful design.</p>
+
+
+
+<h3 class="wp-block-heading">Looking ahead</h3>
+
+
+
+<p class="wp-block-paragraph">By the end of week 6, the X-ray loader could not only assemble the observation products but also support response folding and explicit channel rebinning. The next question was how much of this design was truly general to spectra and how much came specifically from the OGIP/X-ray workflow.</p>
+
+
+
+<p class="wp-block-paragraph">That led me to start looking at infrared spectra from JWST. I expected different units and wavelengths. I did not yet realize how many different meanings the phrase “one spectrum” was about to acquire.</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/juliaastro/" rel="tag">JuliaAstro</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20260724_1322_amityush-lgtm/" rel="prev" title="What Six Weeks of GSoC Have Taught Me">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../20260726_1528_jamesrafe/" rel="next" title="GSoC 2026 Weeks 7-8: What Counts as One Spectrum?">Next post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2026         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
