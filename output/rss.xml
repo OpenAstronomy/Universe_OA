@@ -1,5 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Thu, 30 Jul 2026 03:16:56 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2026 Weeks 7-8: What Counts as One Spectrum?</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1528_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Looking beyond X-rays&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 31 Jul 2026 03:43:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Wiring the Abyss</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260730_1622_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I can see the finish line. Send help, or snacks, or both.&lt;/p&gt;
+
+&lt;h3&gt;
+&lt;!-- TEASER_END --&gt;
+
+
+The &lt;code&gt;unit_list_proxy.c&lt;/code&gt; Exorcism
+&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;unit_list_proxy.c&lt;/code&gt; is in review. That circular dependency on &lt;code&gt;astropy.units.UnitBase&lt;/code&gt; was a nightmare: it kept re-importing the entire units module at runtime just to check if something looked vaguely unit-shaped. So I ripped out &lt;code&gt;PyImport_ImportModule&lt;/code&gt; completely and built a proper Dependency Injection bridge instead: &lt;code&gt;astropy.units.Unit&lt;/code&gt; now gets handed straight to the C-layer during module init [no more knocking on Python's door mid-runtime, it just lives there now]. &lt;code&gt;setitem&lt;/code&gt; uses that injected class to enforce FITS formatting, and it's smarter than a blunt gatekeeper about it. Feed it something like &lt;code&gt;"bananas // sekonds"&lt;/code&gt; and it doesn't slam the &lt;code&gt;TypeError&lt;/code&gt; hammer down; it shrugs, emits a &lt;code&gt;UnitsWarning&lt;/code&gt;, and keeps the string around for backward compatibility [petty tolerance for legacy nonsense, but tolerance nonetheless]. It only throws a hard &lt;code&gt;TypeError&lt;/code&gt; when the input is genuinely un-parseable garbage. And &lt;code&gt;getitem&lt;/code&gt;, this is the actual win, stopped handing back plain strings altogether. It now returns real &lt;code&gt;Unit&lt;/code&gt; objects, like &lt;code&gt;CompositeUnit&lt;/code&gt;, straight across the C boundary, which is what fixed the sequence math bug that started this whole mess. Tests skip the &lt;code&gt;astropy.wcs&lt;/code&gt; wrappers entirely and hit &lt;code&gt;_wcs.Wcsprm&lt;/code&gt;'s C-slots directly to prove the whole thing is airtight.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+The &lt;code&gt;bls&lt;/code&gt; Extension, Numerically Unbothered
+&lt;/h3&gt;
+
+&lt;p&gt;Also finished the Box Least Squares (&lt;code&gt;bls&lt;/code&gt;) extension, feeding typed &lt;code&gt;np.float64&lt;/code&gt; buffers straight into &lt;code&gt;bls_impl&lt;/code&gt;/&lt;code&gt;run_bls&lt;/code&gt; and bypassing the high-level API entirely. Built a &lt;code&gt;SyntheticTransit&lt;/code&gt; fixture with a fake star, a fake dip, a fake planet doing exactly what it's told, and confirmed the C engine recovers period, depth, duration correctly. First pass, I hit some phase-binning drift and figured I'd just loosen &lt;code&gt;rtol&lt;/code&gt; to &lt;code&gt;5e-2&lt;/code&gt; and call it a day [the coward's tolerance]. Mentor feedback said otherwise. Cranked the fixture to 10,000 points, hunted down a sneaky &lt;code&gt;np.linspace&lt;/code&gt; grid-spacing bug, and tightened &lt;code&gt;rtol&lt;/code&gt; all the way to a genuinely crisp &lt;code&gt;1e-4&lt;/code&gt;. Turns out the drift was never the model's fault, it was mine. Also confirmed the early-exit flags (1 and 2) raise real &lt;code&gt;ValueError&lt;/code&gt;s instead of just disappearing without a word.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+On Being a Translator at the Cython Border
+&lt;/h3&gt;
+
+&lt;p&gt;This Cython boundary work is basically being a translator between two people who are both right and also both furious. C doesn't warn you before it breaks. Python will forgive almost anything. I'm just standing in the middle going "she just needs a &lt;code&gt;float64&lt;/code&gt;, please don't segfault."&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+What's Left
+&lt;/h3&gt;
+
+&lt;p&gt;One thing left: &lt;code&gt;lombscargle&lt;/code&gt;. Then I'm done.&lt;/p&gt;
+
+&lt;p&gt;Tired. Wired. Diving back in for one more compile.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260730_1622_reemhamraz/</guid><pubDate>Thu, 30 Jul 2026 15:22:22 GMT</pubDate></item><item><title>GSoC 2026 Weeks 7-8: What Counts as One Spectrum?</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260726_1528_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;h3 class="wp-block-heading"&gt;Looking beyond X-rays&lt;/h3&gt;
 
 
 &lt;!-- TEASER_END --&gt;
@@ -613,23 +648,4 @@ Ghosts in the Infrastructure
 
 &lt;p&gt;I'd be lying if i said that it isn't tiring at times. It's exhausting. It's isolating. BUT when I force the C-engine to crash on a truncated byte stream, safely catch the error, and watch the internal 4-tuple align flawlessly across the Python-C boundary...&lt;/p&gt;
 
-&lt;p&gt;Yeah. That's the feeling. That's why I love this.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</guid><pubDate>Wed, 01 Jul 2026 21:24:13 GMT</pubDate></item><item><title>GSoC 2026 – Weeks 3 &amp; 4: Looking Beyond the Code</title><link>http://openastronomy.org/Universe_OA/posts/2026/06/20260622_1228_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;Understanding the Infrastructure&lt;/h3&gt;&lt;p&gt;The past two weeks have been quite different from the start of the coding period.&lt;/p&gt;
-&lt;p&gt;Instead of spending most of my time implementing new functionality, I found myself exploring a part of open source development that I had very little experience with before: testing infrastructure, CI workflows and release tooling.&lt;/p&gt;
-&lt;p&gt;One thing I've learned so far is that writing code is only part of maintaining a project. Making sure that code continues to work months or years later is an equally important challenge.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;h3&gt;Bringing Figure Tests to Radiospectra&lt;/h3&gt;&lt;p&gt;The main focus of the last two weeks was introducing the initial figure testing infrastructure to radiospectra.&lt;/p&gt;
-&lt;p&gt;Before this, I had never worked with figure tests. My understanding of testing was mostly limited to checking outputs and functionality. Testing plots turned out to be a completely different world.&lt;/p&gt;
-&lt;p&gt;To understand how it worked, I spent time exploring the figure testing workflow used across the SunPy ecosystem. This involved learning about baseline images, hash generation, automated image comparisons, and the CI infrastructure that keeps everything running.&lt;/p&gt;
-&lt;p&gt;After a lot of reading, experimenting, and asking questions, I was able to get the initial setup working for radiospectra and add the first figure tests using real WIND/WAVES data. Although only WAVES is covered for now, it provides a foundation for expanding figure test coverage across other spectrogram sources in the future.&lt;/p&gt;
-&lt;h3&gt;Learning the CI Side of Open Source&lt;/h3&gt;&lt;p&gt;One of the most interesting parts of this work was understanding how figure tests interact with CI systems.&lt;/p&gt;
-&lt;p&gt;What initially sounded like "just add some tests" quickly became a deep dive into CircleCI workflows, baseline image repositories. 😓&lt;/p&gt;
-&lt;p&gt;I spent quite a bit of time comparing radiospectra's setup with other SunPy projects and understanding how these pieces fit together behind the scenes. It was one of those tasks where the amount of learning happening around the code was much larger than the amount of code being written.&lt;/p&gt;
-&lt;h3&gt;Small Contributions Along the Way&lt;/h3&gt;&lt;p&gt;Alongside the figure testing work, I also contributed a couple of smaller fixes.&lt;/p&gt;
-&lt;p&gt;One PR removed some remaining legacy scraper-related code that was no longer needed now that newer SunPy versions are required.&lt;/p&gt;
-&lt;p&gt;Another fix addressed an issue where links in the generated changelog were pointing to incorrect GitHub URLs. While investigating it, I ended up learning more about how release notes and documentation are generated than I originally expected.&lt;/p&gt;
-&lt;p&gt;Another exciting milestone during this period was the release of radiospectra 0.7. Being able to contribute while a new release was being prepared and published gave me a better understanding of the project's release process, documentation generation, and the work that goes into maintaining a scientific open-source package beyond feature development. Here is the link you can check it out: &lt;a href="https://anaconda.org/channels/conda-forge/packages/radiospectra/overview"&gt;https://anaconda.org/channels/conda-forge/packages/radiospectra/overview&lt;/a&gt;&lt;/p&gt;
-&lt;h3&gt;Looking Ahead&lt;/h3&gt;&lt;p&gt;The last two weeks reinforced something I've been learning throughout GSoC:&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;Understanding the system is often more important than changing the system.&lt;/p&gt;
-&lt;/blockquote&gt;&lt;p&gt;A lot of progress during this period came from understanding existing workflows, asking questions, exploring project infrastructure, and learning how different parts of the ecosystem connect together.&lt;/p&gt;
-&lt;p&gt;With the initial figure testing setup now in place, I'm looking forward to expanding the coverage further and continuing the NDCube-related work in the coming weeks.&lt;/p&gt;
-&lt;p&gt;As always, many thanks to my mentors and the SunPy community for their guidance, patience, and feedback along the way. 🚀&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/06/20260622_1228_amityush-lgtm/</guid><pubDate>Mon, 22 Jun 2026 11:28:09 GMT</pubDate></item></channel></rss>
+&lt;p&gt;Yeah. That's the feeling. That's why I love this.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</guid><pubDate>Wed, 01 Jul 2026 21:24:13 GMT</pubDate></item></channel></rss>
