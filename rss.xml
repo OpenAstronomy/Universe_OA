@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Fri, 31 Jul 2026 03:43:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Wiring the Abyss</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260730_1622_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I can see the finish line. Send help, or snacks, or both.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sat, 01 Aug 2026 03:42:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Weeks 7 &amp; 8: Making Spectrograms a Little Easier to Work With</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260731_0703_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;Making Spectrograms a Little Easier to Work With&lt;/h3&gt;
+&lt;p&gt;Another couple of weeks have gone by and it's been a mix of writing code, responding to reviews and learning more about the &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt; codebase.&lt;/p&gt;
+&lt;p&gt;Compared to the first few weeks, I spent less time figuring out &lt;em&gt;where&lt;/em&gt; things lived and more time thinking about &lt;em&gt;how&lt;/em&gt; people actually use the library. That shift has been really fun because even small improvements can make a noticeable difference for users.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;h3&gt;&lt;span&gt;&lt;a name="more"&gt;&lt;/a&gt;&lt;/span&gt;Cropping, but Simpler&lt;/h3&gt;
+&lt;p&gt;One of the things I worked on was making it easier to crop spectrograms.&lt;/p&gt;
+&lt;p&gt;The functionality already existed through &lt;code&gt;ndcube&lt;/code&gt;, but it wasn't something you could immediately discover if you were new to the library. So I added two convenience methods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;b&gt;&lt;code&gt;crop_time()&lt;/code&gt;
+&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;code&gt;&lt;b&gt;crop_freq()&lt;/b&gt;&lt;/code&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;They're fairly small additions, but they make common workflows much nicer.&lt;/p&gt;
+&lt;p&gt;Instead of digging into the underlying API, you can now crop directly using the quantities you already have.&lt;/p&gt;
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCzPb5YrFGlO5VutMwWM17KywyGMsCHm4ysQm2ycK3uet-n0p-kJracFOgDwru12pcHDPcTIWyfEwFxtflLrfrbFCVkcVFAj-8FijjjR5remwmCMv65cxqSHTtan0B2WoZdxz113JuIM1PuZLDUnoWWu9ZLn822sRmjBWQp4sjokNkoE0ATxZV0kuKYh8/s1400/spectrogram_time_crop.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="261" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCzPb5YrFGlO5VutMwWM17KywyGMsCHm4ysQm2ycK3uet-n0p-kJracFOgDwru12pcHDPcTIWyfEwFxtflLrfrbFCVkcVFAj-8FijjjR5remwmCMv65cxqSHTtan0B2WoZdxz113JuIM1PuZLDUnoWWu9ZLn822sRmjBWQp4sjokNkoE0ATxZV0kuKYh8/w609-h261/spectrogram_time_crop.png" width="609"&gt;&lt;/a&gt;&lt;/div&gt;&lt;p style="text-align: center;"&gt;&lt;b&gt;Time Cropping&lt;/b&gt;&lt;/p&gt;&lt;p style="text-align: left;"&gt;&lt;br&gt;&lt;/p&gt;
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0Eo3Axqivbdh4W5DyXiJy3OYBhkabdjIZxtjG02AlXuR5SbDAWG2xJGJkOfK_bj8B7jTQEmqa_bh530mF0jJ6EY_xLz5ISd4cUyfmsmwYQ8SHYnPXmlr6V1Wet56aA03ynMoYSJ93B5IpCw0w4zSmxAT__L1KXJaJfovmZS5W8qSyuNWD96u4ugKIQNM/s1400/spectrogram_freq_crop.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="232" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0Eo3Axqivbdh4W5DyXiJy3OYBhkabdjIZxtjG02AlXuR5SbDAWG2xJGJkOfK_bj8B7jTQEmqa_bh530mF0jJ6EY_xLz5ISd4cUyfmsmwYQ8SHYnPXmlr6V1Wet56aA03ynMoYSJ93B5IpCw0w4zSmxAT__L1KXJaJfovmZS5W8qSyuNWD96u4ugKIQNM/w610-h232/spectrogram_freq_crop.png" width="610"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;b&gt;Frequency Cropping&lt;/b&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvvmUGxmicyqbi627amQ_T3pLmEpJ0koNSnvRS_ReIcyxLhg0gcnf_-zq-2SAdTZlGjCUUA_xcR3qPUooPedk57ZqGUb7j9pZpDg6aDrXOtn_9I0MtrPAbqeuQdtdNvnN-T2D2RdUn1-wuU6-pZtDsVH_0nHdYlVrHZUH0W15IzXhqc325W6wv6QXZWWg/s1400/spectrogram_both_crop.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="265" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhvvmUGxmicyqbi627amQ_T3pLmEpJ0koNSnvRS_ReIcyxLhg0gcnf_-zq-2SAdTZlGjCUUA_xcR3qPUooPedk57ZqGUb7j9pZpDg6aDrXOtn_9I0MtrPAbqeuQdtdNvnN-T2D2RdUn1-wuU6-pZtDsVH_0nHdYlVrHZUH0W15IzXhqc325W6wv6QXZWWg/w623-h265/spectrogram_both_crop.png" width="623"&gt;&lt;/a&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;b&gt;Frequency + Time Cropping&lt;/b&gt;&lt;/div&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;Playing Around with Slicing&lt;/h3&gt;
+&lt;p&gt;After finishing the cropping work, I started experimenting with slicing.&lt;/p&gt;
+&lt;p&gt;Since &lt;code&gt;&lt;b&gt;GenericSpectrogram&lt;/b&gt;&lt;/code&gt; inherits from &lt;code&gt;&lt;b&gt;ndcube&lt;/b&gt;&lt;/code&gt;, slicing "just works", but what I found really cool is that it keeps all the coordinate information intact.&lt;/p&gt;
+&lt;p&gt;That means extracting useful data becomes surprisingly simple.&lt;/p&gt;
+&lt;p&gt;Want to see how the intensity changes over time at a particular frequency? That's just a time profile.&lt;/p&gt;
+&lt;p&gt;Or maybe you want to look at the spectrum at a specific instant? That's a line profile.&lt;/p&gt;
+&lt;p&gt;It was one of those moments where I stopped thinking &lt;em&gt;"this is another feature"&lt;/em&gt; and started thinking &lt;em&gt;"this is actually really nice to use."&lt;/em&gt;&lt;/p&gt;
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIfSA7wdPFHEoEXDE1yGIAr-CVDCXRINRUUiECvKNLbznVUwE4kQscmXO-pQdiRNT3yTl-lEhnCOIp7UHraKxfvALl9oXIRx_9MIbR5XqpZ5EbB3NnJ9HnbV8hiRyk5itvDKIf6BxhjqxrS1VWwdWjLBE2QYILxk0_rRjEhHUfFyLyO4dNjA1JssU-W10/s1400/spectrogram_profiles.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="256" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIfSA7wdPFHEoEXDE1yGIAr-CVDCXRINRUUiECvKNLbznVUwE4kQscmXO-pQdiRNT3yTl-lEhnCOIp7UHraKxfvALl9oXIRx_9MIbR5XqpZ5EbB3NnJ9HnbV8hiRyk5itvDKIf6BxhjqxrS1VWwdWjLBE2QYILxk0_rRjEhHUfFyLyO4dNjA1JssU-W10/w598-h256/spectrogram_profiles.png" width="598"&gt;&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;Reviews, Reviews... and More Reviews 😄&lt;/h3&gt;
+&lt;p&gt;A good chunk of these two weeks was spent going through review comments.&lt;/p&gt;
+&lt;p&gt;At first, I used to think reviews were mostly about fixing mistakes. Now I realize they're often about finding cleaner ways to solve the same problem.&lt;/p&gt;
+&lt;p&gt;Some comments were tiny, others led to bigger discussions about API design and a few even made me rethink parts of the implementation altogether.&lt;/p&gt;
+&lt;p&gt;It's probably been one of the most valuable parts of GSoC so far.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;What's Next?&lt;/h3&gt;
+&lt;p&gt;I'm now starting to look at some of the bigger architectural changes in &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt;, especially around the metadata factory and how instruments parse their data.&lt;/p&gt;
+&lt;p&gt;There's still quite a bit to explore, but I'm excited to keep building on the work from the past few weeks.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;That's all for this update!&lt;/p&gt;
+&lt;p&gt;Thanks to my mentors for all the helpful feedback and discussions. Every review teaches me something new and I'm looking forward to sharing more progress in the next blog post.&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260731_0703_amityush-lgtm/</guid><pubDate>Fri, 31 Jul 2026 06:03:03 GMT</pubDate></item><item><title>Wiring the Abyss</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260730_1622_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I can see the finish line. Send help, or snacks, or both.&lt;/p&gt;
 
 &lt;h3&gt;
 &lt;!-- TEASER_END --&gt;
@@ -613,39 +653,4 @@ My editor has been full of Julia code for crossspectrum.jl and powerspectrum.jl.
 &lt;/span&gt;&lt;/span&gt;&lt;p&gt;&lt;/p&gt;&lt;div&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span style="font-family: georgia;"&gt;What's Next?&lt;/span&gt;&lt;/span&gt;&lt;/h3&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline;"&gt;&lt;span style="font-family: georgia;"&gt;The momentum is building! Now that we are getting these advanced methods integrated, the next phase will likely involve connecting these pieces to build out the full spectral timing pipeline.&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline;"&gt;&lt;span style="font-family: georgia;"&gt;Working in Julia continues to be a blast, and seeing the pieces of Stingray.jl come together is super rewarding.
 
 &lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;span style="font-family: georgia;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/a/AVvXsEh1bCbUvUPYds320cjbiatfdAjcIbn6x0X8i9Be9dodjvE4myqMvqcxJVpUksJEpezUErXldyZDAxqFxeZZ2SXPSEYuf6-Sa7dKqynV24544nhoiouqS6eiQyqR6zUSW2flMKAh0_d_DP3e6gpnbxg8ufj7HsdcyivnyjOsKAhVmB-UnJp2IOyveurQuLVt" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="" height="339" src="https://blogger.googleusercontent.com/img/a/AVvXsEh1bCbUvUPYds320cjbiatfdAjcIbn6x0X8i9Be9dodjvE4myqMvqcxJVpUksJEpezUErXldyZDAxqFxeZZ2SXPSEYuf6-Sa7dKqynV24544nhoiouqS6eiQyqR6zUSW2flMKAh0_d_DP3e6gpnbxg8ufj7HsdcyivnyjOsKAhVmB-UnJp2IOyveurQuLVt=w602-h339" width="602"&gt;&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;&lt;span style="font-family: georgia;"&gt;&lt;br&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;p&gt;&lt;/p&gt;&lt;span style="font-family: Arial, sans-serif;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260703_0753_omiii-215/</guid><pubDate>Fri, 03 Jul 2026 06:53:39 GMT</pubDate></item><item><title>Comfort is a Trap</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I've realized something over these last few weeks. Comfort is a trap.&lt;/p&gt;
-
-&lt;p&gt;In Python, everything is comfortable. You have these beautiful, high-level wrappers that hide the ugly reality of how the machine actually works. But if I want to do work that matters—if I want to build things that last—I can't stay in the comfortable layers. I have to go down to where it's dark and unforgiving.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-
-&lt;p&gt;Lately, that means staring down the &lt;code&gt;_iterparser&lt;/code&gt; C-extension.&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-The Raw Machine
-&lt;/h3&gt;
-
-&lt;p&gt;I decided to completely bypass the Python safety nets. The goal was to mathematically prove that the underlying &lt;code&gt;libexpat&lt;/code&gt; state machine could handle brutally malformed XML byte streams without breaking.&lt;/p&gt;
-
-&lt;p&gt;When you dig this deep, you realize the C-engine doesn't care about being polite. High-level code gives you clean outputs, but down here? Closing tags don't yield nice, empty strings. To save precious CPU cycles on memory reallocation, the engine just yields the closing flag along with whatever lingering text is still bleeding over in the shared memory buffer. It's messy. It's raw. But it is beautifully, ruthlessly efficient.&lt;/p&gt;
-
-&lt;p&gt;The standard for this kind of open-source architecture is completely unforgiving. You can't just casually check if data matches; I had to explicitly enforce &lt;code&gt;strict=True&lt;/code&gt; on my iterables just to guarantee identical lengths and prevent silent failures.&lt;/p&gt;
-
-&lt;p&gt;It forces a kind of discipline I didn't know I had in me.&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-Ghosts in the Infrastructure
-&lt;/h3&gt;
-
-&lt;p&gt;And then, of course, the infrastructure decides to humble you.&lt;/p&gt;
-
-&lt;p&gt;I spent hours losing my mind over a corrupted Windows virtual environment that was failing my GitHub Actions for no apparent reason. The fix? Literally just clearing the cache to force a fresh dependency rebuild. Add in Ruff pre-commit hooks aborting my commits to protect the working directory, and my patience was practically non-existent.&lt;/p&gt;
-
-&lt;p&gt;But I finally conquered the interactive rebase against upstream targets (&lt;code&gt;git rebase -i upstream/main&lt;/code&gt;). I managed to squash my messy, chaotic review iterations into a single, clean production commit. I might still despise GitHub squash and rebase, but at least now I know how to wield them.&lt;/p&gt;
-
-&lt;p&gt;I'd be lying if i said that it isn't tiring at times. It's exhausting. It's isolating. BUT when I force the C-engine to crash on a truncated byte stream, safely catch the error, and watch the internal 4-tuple align flawlessly across the Python-C boundary...&lt;/p&gt;
-
-&lt;p&gt;Yeah. That's the feeling. That's why I love this.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260701_2224_reemhamraz/</guid><pubDate>Wed, 01 Jul 2026 21:24:13 GMT</pubDate></item></channel></rss>
+&lt;/span&gt;&lt;/span&gt;&lt;p&gt;&lt;/p&gt;&lt;span style="font-family: Arial, sans-serif;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260703_0753_omiii-215/</guid><pubDate>Fri, 03 Jul 2026 06:53:39 GMT</pubDate></item></channel></rss>
