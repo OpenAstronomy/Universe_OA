@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weeks 9 &amp; 10: Slicing, Profiles and a New Factory | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2026/08/20260811_0543_amityush-lgtm/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Kumar Amityush">
+<link rel="prev" href="../20260808_1537_omiii-215/" title="From Photons to Power Spectra: Journey with Stingray.jl" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="Weeks 9 &amp; 10: Slicing, Profiles and a New Factory">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2026/08/20260811_0543_amityush-lgtm/">
+<meta property="og:description" content="Slicing, Profiles and a New Factory 🚀
+The last two weeks have been a pretty interesting mix of working on spectrogram slicing and starting to look at one of the bigger architectural changes in radiosp">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-08-11T05:43:29+01:00">
+<meta property="article:tag" content="SunPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="https://jamesraffertylee.wordpress.com" data-toggle="tooltip" data-placement="top" title="2026-07-26 15:28:59+01:00" style="color:rgb(255,0,0)">
+                    James
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://sunpy-radiospectra.blogspot.com" data-toggle="tooltip" data-placement="top" title="2026-08-11 05:43:29+01:00">
+                    Kumar Amityush
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/lincc-frameworks.png?size=40" height="16" width="16"><a href="https://imporving-pyarrow-for-nested-structures.hashnode.dev" data-toggle="tooltip" data-placement="top" title="2026-06-14 12:08:19+01:00" style="color:rgb(255,0,0)">
+                    Om Biradar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">🔲</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://spectral-timing-julia.blogspot.com" data-toggle="tooltip" data-placement="top" title="2026-08-08 15:37:12+01:00">
+                    Om S Habib
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://dev.to/reemhamraz" data-toggle="tooltip" data-placement="top" title="2026-07-30 16:22:22+01:00">
+                    Reem Hamraz
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">🔲</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">Weeks 9 &amp; 10: Slicing, Profiles and a New Factory</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/kumar-amityush/">Kumar Amityush</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2026-08-11T05:43:29+01:00" itemprop="datePublished" title="2026-08-11 05:43">2026-08-11 05:43</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://sunpy-radiospectra.blogspot.com/2026/08/weeks-9-10-slicing-profiles-and-new.html">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <h3 style="text-align: left;"> Slicing, Profiles and a New Factory 🚀</h3>
+<p class="">The last two weeks have been a pretty interesting mix of working on spectrogram slicing and starting to look at one of the bigger architectural changes in <code><b>radiospectra</b></code>.</p>
+<p>A lot of the work this time was about understanding how the different pieces fit together and figuring out how to make things easier for users and contributors.</p>
+<!-- TEASER_END -->
+<h3>Exploring Slicing and Profiles 🔍</h3>
+<p>After the <code><b>ndcube</b></code> refactor, I started looking more closely at how users could work with individual parts of a spectrogram.</p>
+<p>One thing I wanted to make easier was getting a <strong>time profile at a particular frequency</strong> or a <strong>frequency profile at a particular time</strong>.</p>
+<p>Initially, I worked on adding <code><b><i>time_profile()</i></b></code> and <code><b><i>line_profile()</i></b></code> methods to <code><b>GenericSpectrogram</b></code>.</p>
+<p>To make this work, I had to deal with something I hadn't worked with much before—converting physical coordinates into the actual array indices behind the spectrogram.</p>
+<p>I added a couple of internal helpers to handle this conversion, so users could provide things like an <code><b>astropy.time.Time</b></code> or a frequency with units without having to figure out the corresponding array index themselves.</p>
+<p>I also added tests to make sure these conversions work correctly across different cases.</p>
+<p>This was a nice learning experience for me because it made me look much more closely at how the WCS and the actual data array are connected.</p>
+<hr>
+<h3>Starting the SpectrogramFactory Migration 🔧</h3>
+<p>The other major thing I've been working on is the <code><b>SpectrogramFactory</b></code> migration.</p>
+<p>This is definitely one of the bigger changes I've worked on so far.</p>
+<p>The existing factory would basically parse the entire file first and create the data and metadata before checking which instrument the file belonged to.</p>
+<p>That means quite a lot of work could happen before we even knew which instrument was supposed to handle the file.</p>
+<p>The idea behind the new approach is to keep this much lighter.</p>
+<p>Instead of fully parsing the file first, the factory can get the basic information needed to identify the instrument. Once the correct instrument is found, that instrument can handle the actual parsing through a new <code><b><i>from_raw()</i></b></code> method.</p>
+<p>So the basic idea becomes:</p>
+<p><strong>Old:</strong></p>
+<p><code><i>Read everything → Identify instrument → Create spectrogram</i></code></p>
+<p><strong>New:</strong></p>
+<p><code><i>Read basic information → Identify instrument → Let the instrument parse the data</i></code></p>
+<p>I've started implementing this approach and have migrated the first two sources:</p>
+<ul>
+<li>
+<strong>WAVES</strong>
+</li>
+<li>
+<strong>e-CALLISTO</strong>
+</li>
+</ul>
+<p>There's still a lot to migrate, but getting these two working has given me a much better idea of how the rest of the factory can be moved over.</p>
+<hr>
+<h3>What's Next? 👀</h3>
+<p>For the next couple of weeks, I'll be working through the feedback on the slicing and profiling work and continuing the <code><b>SpectrogramFactory</b></code> migration.</p>
+<p>There are still several instruments to move to the new <code>from_raw()</code> pattern, so I'm looking forward to seeing how the factory looks once the migration is complete.</p>
+<p>It's been really interesting moving from smaller API improvements to working on the bigger architecture of <code><b>radiospectra</b></code>, and I'm excited to keep going!</p>
+<p>Until next time! 🚀</p>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20260808_1537_omiii-215/" rel="prev" title="From Photons to Power Spectra: Journey with Stingray.jl">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2026         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>

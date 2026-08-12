@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Tue, 11 Aug 2026 02:21:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Weeks 7 &amp; 8: Making Spectrograms a Little Easier to Work With</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260731_0703_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;Making Spectrograms a Little Easier to Work With&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about SunPy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/sunpy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Wed, 12 Aug 2026 02:36:20 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Weeks 9 &amp; 10: Slicing, Profiles and a New Factory</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260811_0543_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt; Slicing, Profiles and a New Factory 🚀&lt;/h3&gt;
+&lt;p class=""&gt;The last two weeks have been a pretty interesting mix of working on spectrogram slicing and starting to look at one of the bigger architectural changes in &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;A lot of the work this time was about understanding how the different pieces fit together and figuring out how to make things easier for users and contributors.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;h3&gt;Exploring Slicing and Profiles 🔍&lt;/h3&gt;
+&lt;p&gt;After the &lt;code&gt;&lt;b&gt;ndcube&lt;/b&gt;&lt;/code&gt; refactor, I started looking more closely at how users could work with individual parts of a spectrogram.&lt;/p&gt;
+&lt;p&gt;One thing I wanted to make easier was getting a &lt;strong&gt;time profile at a particular frequency&lt;/strong&gt; or a &lt;strong&gt;frequency profile at a particular time&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Initially, I worked on adding &lt;code&gt;&lt;b&gt;&lt;i&gt;time_profile()&lt;/i&gt;&lt;/b&gt;&lt;/code&gt; and &lt;code&gt;&lt;b&gt;&lt;i&gt;line_profile()&lt;/i&gt;&lt;/b&gt;&lt;/code&gt; methods to &lt;code&gt;&lt;b&gt;GenericSpectrogram&lt;/b&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;To make this work, I had to deal with something I hadn't worked with much before—converting physical coordinates into the actual array indices behind the spectrogram.&lt;/p&gt;
+&lt;p&gt;I added a couple of internal helpers to handle this conversion, so users could provide things like an &lt;code&gt;&lt;b&gt;astropy.time.Time&lt;/b&gt;&lt;/code&gt; or a frequency with units without having to figure out the corresponding array index themselves.&lt;/p&gt;
+&lt;p&gt;I also added tests to make sure these conversions work correctly across different cases.&lt;/p&gt;
+&lt;p&gt;This was a nice learning experience for me because it made me look much more closely at how the WCS and the actual data array are connected.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;Starting the SpectrogramFactory Migration 🔧&lt;/h3&gt;
+&lt;p&gt;The other major thing I've been working on is the &lt;code&gt;&lt;b&gt;SpectrogramFactory&lt;/b&gt;&lt;/code&gt; migration.&lt;/p&gt;
+&lt;p&gt;This is definitely one of the bigger changes I've worked on so far.&lt;/p&gt;
+&lt;p&gt;The existing factory would basically parse the entire file first and create the data and metadata before checking which instrument the file belonged to.&lt;/p&gt;
+&lt;p&gt;That means quite a lot of work could happen before we even knew which instrument was supposed to handle the file.&lt;/p&gt;
+&lt;p&gt;The idea behind the new approach is to keep this much lighter.&lt;/p&gt;
+&lt;p&gt;Instead of fully parsing the file first, the factory can get the basic information needed to identify the instrument. Once the correct instrument is found, that instrument can handle the actual parsing through a new &lt;code&gt;&lt;b&gt;&lt;i&gt;from_raw()&lt;/i&gt;&lt;/b&gt;&lt;/code&gt; method.&lt;/p&gt;
+&lt;p&gt;So the basic idea becomes:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Old:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&lt;i&gt;Read everything → Identify instrument → Create spectrogram&lt;/i&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;New:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&lt;i&gt;Read basic information → Identify instrument → Let the instrument parse the data&lt;/i&gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;I've started implementing this approach and have migrated the first two sources:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;WAVES&lt;/strong&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;e-CALLISTO&lt;/strong&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There's still a lot to migrate, but getting these two working has given me a much better idea of how the rest of the factory can be moved over.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;What's Next? 👀&lt;/h3&gt;
+&lt;p&gt;For the next couple of weeks, I'll be working through the feedback on the slicing and profiling work and continuing the &lt;code&gt;&lt;b&gt;SpectrogramFactory&lt;/b&gt;&lt;/code&gt; migration.&lt;/p&gt;
+&lt;p&gt;There are still several instruments to move to the new &lt;code&gt;from_raw()&lt;/code&gt; pattern, so I'm looking forward to seeing how the factory looks once the migration is complete.&lt;/p&gt;
+&lt;p&gt;It's been really interesting moving from smaller API improvements to working on the bigger architecture of &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt;, and I'm excited to keep going!&lt;/p&gt;
+&lt;p&gt;Until next time! 🚀&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/08/20260811_0543_amityush-lgtm/</guid><pubDate>Tue, 11 Aug 2026 04:43:29 GMT</pubDate></item><item><title>Weeks 7 &amp; 8: Making Spectrograms a Little Easier to Work With</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260731_0703_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt;Making Spectrograms a Little Easier to Work With&lt;/h3&gt;
 &lt;p&gt;Another couple of weeks have gone by and it's been a mix of writing code, responding to reviews and learning more about the &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt; codebase.&lt;/p&gt;
 &lt;p&gt;Compared to the first few weeks, I spent less time figuring out &lt;em&gt;where&lt;/em&gt; things lived and more time thinking about &lt;em&gt;how&lt;/em&gt; people actually use the library. That shift has been really fun because even small improvements can make a noticeable difference for users.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -342,13 +382,4 @@ CRVAL3: 0.0, CRVAL4: 0.0, CTYPE1: TIME, CTYPE2: WAVE, CTYPE3: HPLT-TAN, CTYPE4: 
 CUNIT1: min, CUNIT2: m, CUNIT3: deg, CUNIT4: deg, DATEREF: '2020-01-01T00:00:00',
 LATPOLE: 0.0, LONPOLE: 180.0, MJDREF: 58849.0, WCSAXES: 4}
 ...
-&lt;/code&gt;&lt;/pre&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</guid><pubDate>Sun, 28 Jul 2024 09:14:09 GMT</pubDate></item><item><title>Enhancing SOAR Queries: Improved Error Handling and Support for Distance-Based Filtering</title><link>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</link><dc:creator>Manit Singh</dc:creator><description>&lt;h4&gt;Improved Error Handling and Support for Distance-Based Filtering&lt;/h4&gt;&lt;h4&gt;Introduction&lt;/h4&gt;&lt;p&gt;Over the past few weeks, I’ve been working on addressing and enhancing certain functionalities within the sunpy-soar package. This post delves into the two main improvements I’ve implemented: better error handling for server downtime and the introduction of support for distance-based query filtering.&lt;/p&gt;
-&lt;h4&gt;Improved Error Handling for Server Downtime&lt;/h4&gt;&lt;p&gt;Previously, when the SOAR server was down, a generic JSONDecodeError would be raised. This was less than ideal as it did not provide a clear indication of what the actual issue was. To improve this, I worked on implementing a more descriptive error message that would be raised in such scenarios.&lt;/p&gt;
-&lt;pre&gt;r = requests.get(f"{tap_endpoint}/sync", params=payload)&lt;br&gt;try:&lt;br&gt;    response_json = r.json()&lt;br&gt;except JSONDecodeError:&lt;br&gt;    msg = "Server returned an invalid JSON response. The SOAR server may be down or not functioning correctly."&lt;br&gt;    raise RuntimeError(msg)&lt;/pre&gt;&lt;p&gt;With this change, users will now see a RuntimeError with a clear message indicating that the server may be down or not functioning correctly, which makes troubleshooting much easier.&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;
-&lt;h4&gt;Implementing Support for Different REQUEST Types&lt;/h4&gt;&lt;p&gt;After resolving the error handling issue, I moved on to implementing support for different REQUEST types. Sunpy-soar initially only supported the doQuery REQUEST type. However, there was a need to expand this to support the doQueryFilteredByDistance REQUEST type as well.&lt;/p&gt;
-&lt;h4&gt;What is doQueryFilteredByDistance?&lt;/h4&gt;&lt;p&gt;The doQueryFilteredByDistance REQUEST type allows for filtering the query results based on a specified distance range. The main change here is setting the REQUEST parameter to doQueryFilteredByDistance and appending &amp;amp;DISTANCE(distancemin,distancemax) to the query.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Example Query:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;SELECT * FROM soar.v_sc_data_item WHERE instrument='MAG' AND level='LL02'&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;With Distance Filtering:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;SELECT * FROM soar.v_sc_data_item WHERE instrument='MAG' AND level='LL02' AND DISTANCE(0.28,0.49)&lt;/pre&gt;&lt;h4&gt;Conclusion&lt;/h4&gt;&lt;p&gt;These enhancements significantly improve the functionality and user experience of the sunpy-soar package. The improved error handling provides clearer feedback to users when the SOAR server is down, and the support for doQueryFilteredByDistance allows for more refined queries based on distance, opening up new possibilities for data analysis.&lt;/p&gt;
-&lt;img alt="" height="1" src="https://medium.com/_/stat?event=post.clientViewed&amp;amp;referrerSource=full_rss&amp;amp;postId=79c57af30ffc" width="1"&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240723_1650_nucleongodx/</guid><pubDate>Tue, 23 Jul 2024 15:50:13 GMT</pubDate></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2024/07/20240728_1014_viciouseagle03/</guid><pubDate>Sun, 28 Jul 2024 09:14:09 GMT</pubDate></item></channel></rss>
