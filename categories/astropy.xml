@@ -1,5 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about Astropy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/astropy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 16 Aug 2026 01:53:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Wiring the Abyss</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260730_1622_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I can see the finish line. Send help, or snacks, or both.&lt;/p&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about Astropy)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/astropy.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 17 Aug 2026 01:50:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Learning to Speak C &amp; Cython: My GSoC Summer with Astropy</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260816_1535_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;The summer is officially over. I am staring at a remarkably clean Git branch, my laptop didn't literally take off into orbit (though the CPU fans certainly tried a few times during local CI builds), and I somehow know what &lt;code&gt;git rebase -i&lt;/code&gt; does without having to Google it in a cold sweat.&lt;/p&gt;
+
+&lt;p&gt;If you'd asked me back in May what I was going to be doing, I would have confidently told you I was going to "write tests for Astropy's C extensions." It sounded so neat. So contained. But open source doesn't really work like that. I came in thinking I was just going to write tests, and somewhere along the way, I ended up learning how the actual machinery underneath the Python abstraction works, how maintainers think about architecture, and how to safely catch C-level memory panics without taking down the entire interpreter.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;So, here is the real story of what I did for the last few months, what broke, how we fixed it, and where the project stands now.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+So, what was I actually supposed to do?
+&lt;/h3&gt;
+
+&lt;p&gt;Astropy is a beast of a library. The Python-facing API is incredibly robust and beautifully documented. But underneath all those pretty Python classes is a complex, mixed-language architecture. The library relies heavily on compiled C, and Cython extensions to handle the performance-critical hot-paths.&lt;/p&gt;
+
+&lt;p&gt;The problem? That compiled layer was a massive testing blind spot. Before this summer, these performance-critical extensions were almost entirely tested indirectly, meaning they were only validated by calling the high-level Python wrappers. That is a risky abstraction. If a regression happens deep inside the C code, the Python layer sitting above it can accidentally mask it. You wouldn't know something was fundamentally broken until a downstream package started acting weird.&lt;/p&gt;
+
+&lt;p&gt;My project goal was to build a dedicated, de novo test suite that bypassed the public API completely and exercised each compiled extension module directly. This wasn't just for code coverage. It was an absolute prerequisite for three massive Astropy milestones:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;The APE Split&lt;/strong&gt;: Proving the extensions are stable enough to live in a completely separate package.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Meson Migration&lt;/strong&gt;: Having a safety net to catch silent regressions when the build system transitions.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Python 3.15 Limited API&lt;/strong&gt;: Safely testing internal C-refactors for the upcoming free-threaded builds.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The mission was to harden Astropy's core stability. The reality was peeling away layers of Python abstractions until I was staring at raw memory buffers.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Turns out, "testing C extensions" is not quite as simple as it sounds
+&lt;/h3&gt;
+
+&lt;p&gt;I started my summer in &lt;code&gt;astropy/table&lt;/code&gt;, which my mentors flagged as a solid starting point. My first target was &lt;code&gt;test_np_utils.py&lt;/code&gt;, writing a low-level suite for the &lt;code&gt;join_inner&lt;/code&gt; Cython extension.&lt;/p&gt;
+
+&lt;p&gt;The thing is, Cython engines don't want your high-level &lt;code&gt;Table&lt;/code&gt; objects. They want raw data. I had to build a helper function, &lt;code&gt;_make_join_inputs&lt;/code&gt;, which acted as a pre-processor. It took two arrays, concatenated them, sorted them with &lt;code&gt;argsort(kind="stable")&lt;/code&gt;, and used a boolean &lt;code&gt;diffs&lt;/code&gt; array to find the exact boundaries of unique keys. It output the exact &lt;code&gt;np.intp&lt;/code&gt; bindings that Cython demanded.&lt;/p&gt;
+
+&lt;p&gt;Once I could feed the raw engine, I built strictly typed dataclasses (&lt;code&gt;ArrayMaskPair&lt;/code&gt; and &lt;code&gt;ExpectedResults&lt;/code&gt;) to hold the outputs without making the pytest matrices unreadable with massive tuples. I tested standard overlaps, but the real fun was the Cartesian edge cases. I threw O(N²) expansions at the engine, where duplicate keys joined with duplicate keys, just to prove the C-engine could handle the explosive memory allocation without crashing. I also verified that it properly handles &lt;code&gt;np.nan&lt;/code&gt; as a unique entity (since &lt;code&gt;nan != nan&lt;/code&gt; in Python).&lt;/p&gt;
+
+&lt;p&gt;And all this stands as proof that I can actually write code that works, phew!&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+The C-Slots
+&lt;/h4&gt;
+
+&lt;p&gt;Things got significantly more complicated when I moved to &lt;code&gt;test_column_mixins.py&lt;/code&gt;. The objective here was to test the Cython &lt;code&gt;__getitem__&lt;/code&gt; routing in pure isolation.&lt;/p&gt;
+
+&lt;p&gt;I couldn't just pass a standard array. I had to create a "Shim Strategy" (so fancy), so I wrote &lt;code&gt;MinimalColumn&lt;/code&gt; and &lt;code&gt;MinimalMaskedColumn&lt;/code&gt; classes that inherited directly from the Cython mixins (&lt;code&gt;_ColumnGetitemShim&lt;/code&gt;, &lt;code&gt;_MaskedColumnGetitemShim&lt;/code&gt;) and mapped them directly onto raw NumPy arrays using &lt;code&gt;.view()&lt;/code&gt; casting. By overriding the &lt;code&gt;.data&lt;/code&gt; property to return a pure ndarray view, I stopped the Cython engine from returning raw memoryview buffers, which would have hard-crashed the tests. We were hitting the &lt;code&gt;tp_as_mapping-&amp;gt;mp_subscript&lt;/code&gt; C-slot directly.&lt;/p&gt;
+
+&lt;p&gt;But this is where I hit my first major hurdle.&lt;/p&gt;
+
+&lt;p&gt;While I was writing a test for structured arrays, indexing it with a single string, the structured dtype suddenly just dropped, and it returned a 1D array of the underlying field's type. I spent hours going down this rabbit hole, utterly convinced my test was wrong. Eventually, I found the machinery underneath: a literal trapdoor in &lt;code&gt;base_getitem&lt;/code&gt;.&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;dtype_kind&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;V&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="nf"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;STRING_TYPES&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;Because it accessed the raw &lt;code&gt;.data&lt;/code&gt; array, it inherited NumPy's default behavior and lost the structure. Rather than cementing this unintended behavior by writing a passing test for it, I dropped the test case and opened Issue &lt;a href="https://github.com/astropy/astropy/issues/19827" rel="noopener noreferrer"&gt;#19827&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This was my first realization that tests aren't just a safety net; when written at this level, they act like a microscope.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+And then things started breaking in interesting ways
+&lt;/h3&gt;
+
+&lt;p&gt;Open source isn't just writing code, getting a green checkmark, and merging. The messy middle is where the actual work happens. I mean everyone knows that right? Yeah no sometimes people get a reality check; people is me, I am people.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;The Masked Array &lt;code&gt;isinstance&lt;/code&gt; Trap&lt;/strong&gt;: I proudly swapped &lt;code&gt;isinstance()&lt;/code&gt; checks for strict &lt;code&gt;type(result) is ...&lt;/code&gt; assertions, which instantly caused my masked array tests to fail. It turns out standard ndarray slicing strips subclasses, but &lt;code&gt;np.ma.MaskedArray.__getitem__&lt;/code&gt; inherently preserves them. The C-slot was actively returning the &lt;code&gt;MinimalMaskedColumn&lt;/code&gt; shim.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;The CI Gatekeeper&lt;/strong&gt;: While working on the mixins, I used an &lt;code&gt;@override&lt;/code&gt; decorator. Python 3.12 CI matrices immediately failed because &lt;code&gt;typing_extensions&lt;/code&gt; wasn't in the base test environment. Instead of bloating &lt;code&gt;pyproject.toml&lt;/code&gt; with a new dependency just for one test file, I made the architectural choice to drop the decorator completely. CI went green.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Git History looking like a crime scene&lt;/strong&gt;: At one point, a &lt;code&gt;.uv.lock&lt;/code&gt; file triggered a &lt;code&gt;check-added-large-files&lt;/code&gt; pre-commit hook failure. My branch had some incredibly messy commits. So I took a couple a deep breaths, paced around, and after a midly dramatic breakdown, I ran &lt;code&gt;git restore --staged&lt;/code&gt;, and fired up a local interactive rebase (&lt;code&gt;git rebase -i HEAD~6&lt;/code&gt;) via Nano to squash the chaos into a single, clean production commit (see told ya it was simple :) )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;
+
+
+Somewhere along the way, I stopped just writing tests
+&lt;/h3&gt;
+
+&lt;p&gt;As the summer progressed, the project evolved. The APE split required not just test coverage, but rigorous structural boundaries. I started writing &lt;code&gt;.pyi&lt;/code&gt; type stubs to define the Python-facing boundaries of compiled extensions so static type checkers could understand them without executing the C-engine, not to forget the Proof of Concept, all in a days work (I'm lying, I almost cried trying the machete strategy).&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+The XML C-Extension Stubs (&lt;code&gt;iterparser_iterparser.pyi&lt;/code&gt;)
+&lt;/h4&gt;
+
+&lt;p&gt;When I looked at the C struct for the &lt;code&gt;_iterparser&lt;/code&gt; extension, it looked like the parser accepted &lt;code&gt;fd&lt;/code&gt;, &lt;code&gt;buffersize&lt;/code&gt;, &lt;code&gt;file&lt;/code&gt;, and &lt;code&gt;buffer&lt;/code&gt;. But looking at the C struct is like looking at a map and realizing the map is wrong.&lt;/p&gt;
+
+&lt;p&gt;By analyzing the C-API execution (&lt;code&gt;PyArg_ParseTupleAndKeywords&lt;/code&gt;), I discovered that &lt;code&gt;file&lt;/code&gt; and &lt;code&gt;buffer&lt;/code&gt; were strictly internal C-state variables generated after crossing the Python boundary. The Python &lt;code&gt;__init__&lt;/code&gt; only actually takes &lt;code&gt;fd&lt;/code&gt; and &lt;code&gt;buffersize&lt;/code&gt;. Because the C-engine didn't natively support keyword argument routing here, I had to enforce positional-only arguments using the PEP 570 &lt;code&gt;/&lt;/code&gt; marker in Python.&lt;/p&gt;
+
+&lt;p&gt;Even better, we had a friendly discussion about the &lt;code&gt;fd.read&lt;/code&gt; callable. My mentor pointed out &lt;code&gt;read(self-&amp;gt;file, self-&amp;gt;buffer...)&lt;/code&gt; in the C code. But tracing the Python C-API showed a &lt;code&gt;Py_BuildValue("(n)", buffersize)&lt;/code&gt; call directly before &lt;code&gt;PyObject_CallObject&lt;/code&gt;. The C-engine was packing a C &lt;code&gt;Py_ssize_t&lt;/code&gt; into a 1-element Python tuple. We proved the Python callable only ever receives one integer, finalizing the strict protocol signature as &lt;code&gt;Callable[[int], bytes]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+Dimensionality Locking in &lt;code&gt;_convolve&lt;/code&gt;
+&lt;/h4&gt;
+
+&lt;p&gt;For &lt;code&gt;_convolve.pyx&lt;/code&gt;, we needed to ensure that arrays passed to the C engine matched perfectly before runtime. I used bounded &lt;code&gt;TypeVar&lt;/code&gt; aliases (&lt;code&gt;_D1&lt;/code&gt;, &lt;code&gt;_D2&lt;/code&gt;, &lt;code&gt;_D3&lt;/code&gt;) to enforce a strict mathematical rule at the static analysis level. The result, &lt;code&gt;array_to_convolve&lt;/code&gt;, and kernel arrays can be 1D, 2D, or 3D, but the linter now mathematically locks them so all three must have the exact same dimensionality.&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+The &lt;code&gt;unit_list_proxy.c&lt;/code&gt; Dependency Injection
+&lt;/h4&gt;
+
+&lt;p&gt;This was easily one of the coolest things I worked on. &lt;code&gt;astropy/wcs/src/unit_list_proxy.c&lt;/code&gt; had a massive circular dependency problem. It was relying on &lt;code&gt;astropy.units.UnitBase&lt;/code&gt; via &lt;code&gt;PyImport_ImportModule&lt;/code&gt; at runtime.&lt;/p&gt;
+
+&lt;p&gt;We discovered that &lt;code&gt;cunit&lt;/code&gt; wasn't a normal attribute; it was a C-level mutable proxy array. Standard Python &lt;code&gt;@property&lt;/code&gt; wrappers broke the memory linkage, meaning the C-array never received updates.&lt;/p&gt;
+
+&lt;p&gt;Following my mentor Clément's strategy, we scrapped the Python wrappers and built a Dependency Injection architecture. We implemented a &lt;code&gt;_setup_unit_class(PyObject* unit_class)&lt;/code&gt; function, dynamically exposed to &lt;code&gt;_wcs&lt;/code&gt;. It runs exactly once during Python initialization to cache the &lt;code&gt;Unit&lt;/code&gt; class pointer in a static C variable, completely severing the heavy &lt;code&gt;PyImport&lt;/code&gt; dependency. We updated the getitem C-slot to natively yield &lt;code&gt;Unit&lt;/code&gt; objects (like &lt;code&gt;CompositeUnit&lt;/code&gt;) back to Python, and made the setitem slot use duck-typing (&lt;code&gt;parse_strict="warn"&lt;/code&gt;) so it gracefully emits a &lt;code&gt;UnitsWarning&lt;/code&gt; for garbage FITS strings instead of hard-crashing. I was super elated when I finally succeeded and to see the CI checks green? Goodness was that rewarding, so I treated myself to an ice-cream sundae!&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+Numerical sanity and the "Grid Trap"
+&lt;/h4&gt;
+
+&lt;p&gt;I also wrote isolated suites for the &lt;code&gt;astropy.timeseries&lt;/code&gt; periodogram C-extensions. Bypassing the high-level &lt;code&gt;BoxLeastSquares&lt;/code&gt; API, I fed raw &lt;code&gt;np.float64&lt;/code&gt; memory buffers directly into the Cython boundary (&lt;code&gt;_impl.pyx&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;I built a &lt;code&gt;SyntheticTransit&lt;/code&gt; fixture to inject a perfect transit dip into a simulated light curve to prove the C-engine's &lt;code&gt;best_objective&lt;/code&gt; algorithm peaked accurately.&lt;/p&gt;
+
+&lt;p&gt;But math is cruel :(&lt;/p&gt;
+
+&lt;p&gt;My tests were failing to recover a mathematically perfect period of 2.0. Why? Because I generated my frequency grid using &lt;code&gt;np.linspace(1.5, 2.5, 100)&lt;/code&gt;. If you do the floating-point math, the step size is ~0.0101. The number 2.0 literally did not exist in the array (the closest it got was 2.005). I was stuck fighting my own numerical grid. I changed it to 101 steps, and voila it hit the target perfectly!&lt;/p&gt;
+
+&lt;p&gt;We also dealt with a fascinating accuracy tradeoff. When using a coarse grid (1,000 points, &lt;code&gt;oversample=10&lt;/code&gt;), the discrete phase-binning of the BLS algorithm caused the edges of the transit to smear, changing the recovered depth from a perfect 0.5 to 0.478. My mentor challenged the 5% tolerance. By fixing the &lt;code&gt;linspace&lt;/code&gt; bug and adjusting the points, we tightened the mathematical accuracy to &lt;code&gt;1e-4&lt;/code&gt; while balancing the matrix to keep the isolated test executing in under 300ms so we didn't anger the CI limits.&lt;/p&gt;
+
+&lt;p&gt;I ran into a similar trapdoor testing the Lomb-Scargle Cython implementation (&lt;code&gt;cython_impl.pyx&lt;/code&gt;). I tried to test the Cython-level &lt;code&gt;t.ndim != 1&lt;/code&gt; error. But when I passed a 2D array for &lt;code&gt;t&lt;/code&gt; and 1D arrays for &lt;code&gt;y&lt;/code&gt;, &lt;code&gt;np.broadcast_arrays&lt;/code&gt; panicked and raised a Python &lt;code&gt;ValueError&lt;/code&gt; before the C-engine ever saw it. The fix? I deliberately passed identical 2D arrays for all parameters so it survived the Python broadcasting check and successfully crashed directly on the C-boundary. Hurrayy!&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+The parts that didn't go according to plan
+&lt;/h3&gt;
+
+&lt;p&gt;Of course, not everything matched the original proposal. My initial timeline had me delivering tests for &lt;code&gt;astropy/erfa&lt;/code&gt; and &lt;code&gt;astropy.coordinates&lt;/code&gt; towards the end of the summer (Deliverables 5 and 6).&lt;/p&gt;
+
+&lt;p&gt;The reality of open-source struck: &lt;code&gt;astropy/erfa&lt;/code&gt; had already been spun out into the standalone &lt;code&gt;pyerfa&lt;/code&gt; package, and &lt;code&gt;astropy.coordinates&lt;/code&gt; was delegating its math to that external library. You can't write isolated C-extension tests for an architecture that doesn't live in your repository anymore.&lt;/p&gt;
+
+&lt;p&gt;Rather than viewing this as a failure, I contacted my mentors, pivoted, and spent that time significantly deepening the coverage and architectural stability of the &lt;code&gt;.pyi&lt;/code&gt; stubs and the XML parsers.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+So, where did we end up? (Current State)
+&lt;/h3&gt;
+
+&lt;p&gt;The goal was to make the compiled layer testable, and I am leaving behind an architecture to ensure it stays that way.&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+Merged work &amp;amp; contributions
+&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Table C-extensions: merged isolated tests for &lt;code&gt;join_inner&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/19458" rel="noopener noreferrer"&gt;#19458&lt;/a&gt;), documented &lt;code&gt;jointype&lt;/code&gt; integer mappings (PR #19468), and added direct C-slot tests for &lt;code&gt;_column_mixins&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/19806" rel="noopener noreferrer"&gt;#19806&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;XML iterparser: built structural 4-tuple boundary tests for the &lt;code&gt;_iterparser&lt;/code&gt; C-extension and caught memory buffer behaviors (PR &lt;a href="https://github.com/astropy/astropy/pull/19922" rel="noopener noreferrer"&gt;#19922&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Type stubs: defined the static type boundaries for &lt;code&gt;_iterparser.pyi&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/20006" rel="noopener noreferrer"&gt;#20006&lt;/a&gt;, positional-only) and &lt;code&gt;_convolve&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/20093" rel="noopener noreferrer"&gt;#20093&lt;/a&gt;, dimensionality locking).&lt;/li&gt;
+&lt;li&gt;Time parse extension: overhauled the &lt;code&gt;_parse_times.c&lt;/code&gt; boundary test using strict &lt;code&gt;type(parser) is np.ufunc&lt;/code&gt; assertions and byte arrays (&lt;code&gt;"S24"&lt;/code&gt;) (PR &lt;a href="https://github.com/astropy/astropy/pull/19875" rel="noopener noreferrer"&gt;#19875&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Quantity unit extraction: fixed unit extraction in &lt;code&gt;structured_to_unstructured&lt;/code&gt; for &lt;code&gt;StructuredQuantity&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/19106" rel="noopener noreferrer"&gt;#19106&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;APE split expansion: contributed to the proof of concept for the APE split, expanding the implementation section in Clement's fork (PR &lt;a href="https://github.com/neutrinoceros/astropy-APEs/pull/3" rel="noopener noreferrer"&gt;#3&lt;/a&gt;) to define what the low-level tests look like.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;
+
+
+Still open, waiting on review
+&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;WCS dependency injection: refactored &lt;code&gt;unit_list_proxy.c&lt;/code&gt; to cache the &lt;code&gt;Unit&lt;/code&gt; class pointer, severing the &lt;code&gt;PyImport&lt;/code&gt; overhead (PR &lt;a href="https://github.com/astropy/astropy/pull/20072" rel="noopener noreferrer"&gt;#20072&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Timeseries math engines: built exact synthetic recovery matrices for Box Least Squares (&lt;code&gt;bls.c&lt;/code&gt; / &lt;code&gt;_impl.pyx&lt;/code&gt;, PR &lt;a href="https://github.com/astropy/astropy/pull/20151" rel="noopener noreferrer"&gt;#20151&lt;/a&gt;) and Lomb-Scargle (&lt;code&gt;cython_impl.pyx&lt;/code&gt;, PR &lt;a href="https://github.com/astropy/astropy/pull/20222" rel="noopener noreferrer"&gt;#20222&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;
+
+
+The Developer Guide
+&lt;/h4&gt;
+
+&lt;p&gt;Perhaps the most lasting piece of work I did was writing and merging &lt;code&gt;testing_extensions.rst&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/20239" rel="noopener noreferrer"&gt;#20239&lt;/a&gt;) into Astropy's core documentation. This document establishes the architectural standards for making low-level compiled modules testable. It outlines the rules for bypassing Python wrappers, strictly avoiding &lt;code&gt;isinstance()&lt;/code&gt; at the compiled boundary, structural validation, safe exception handling using &lt;code&gt;pytest.raises&lt;/code&gt; substring matching, and &lt;code&gt;.pyi&lt;/code&gt; architecture. If anyone has any questions regarding the project I think this would serve as a good starting point (before the actual coding part of course).&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+What's left after I leave?
+&lt;/h3&gt;
+
+&lt;p&gt;The work on &lt;code&gt;astropy/erfa&lt;/code&gt; was pivoted to the external &lt;code&gt;pyerfa&lt;/code&gt; repository, so testing that boundary remains a future task for whoever manages that standalone package.&lt;/p&gt;
+
+&lt;p&gt;Beyond that, the primary future work is maintenance. When a new Cython extension is updated or a C-boundary changes, these isolated tests will immediately flag it. The &lt;code&gt;testing_extensions.rst&lt;/code&gt; guide exists specifically so future contributors don't have to stumble through the same trapdoors I did. Future contributors can use this suite as a blueprint to expand coverage into newer subpackages.&lt;/p&gt;
+
+&lt;p&gt;Sidenote: I plan on staying (long time). I'm not going to disappear just because GSoC is over but rather continue to contribute to this epic organization. I'll keep working, raising PRs, beefing with GitHub and most importantly, I'll help guide all those who stumble across Astropy just as Clément and Nathaniel were always there for me!!&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+What I actually took away from this
+&lt;/h3&gt;
+
+&lt;p&gt;I came into GSoC thinking I was going to write tests. Somewhere along the way, I ended up learning how to actually reason about a mature codebase.&lt;/p&gt;
+
+&lt;p&gt;I learned that you have to read the C code before writing the Python test. I learned to question unexpected behavior rather than blindly cementing it into a test. I learned that CI is a judgmental gatekeeper, Git history tells a story, and numerical tolerances matter a whole lot more than just getting the test to pass. I learned that maybe breaking a huge problem into separate sections wasn't such a bad idea after all and it's this lesson that I'll be applying to my life as well.&lt;/p&gt;
+
+&lt;p&gt;Most importantly, I learned how maintainer-level review actually works. The feedback I got wasn't just "fix this bug," it was "let's structure this so it's statically typed, mathematically locked, and future-proof." And it really shaped my journey. I mean the Reem from January decided to open her very first PR and make huge changes in 4 different files, which ultimately was pretty overwhelming and she closed the PR. My point is that I have grown as a contributor and that makes me so very proud. &lt;/p&gt;
+
+&lt;h3&gt;
+
+
+A HUGE thank you
+&lt;/h3&gt;
+
+&lt;p&gt;All this is just because I had the BEST mentors EVER, Clément Robert (@neutrinoceros), and Nathaniel Starkman (@nstarman).&lt;/p&gt;
+
+&lt;p&gt;Clément, thank you for never once making me feel dumb for asking the same question twice, and for having the patience to let me actually sit with a hard bug instead of just handing me the fix. For taking time out from your busy schedule every week, just so that I could ask you all the questions I saved, and to go through my code, suggest changes and help me understand all the whys. You didn't just correct my code, you really changed how I think about coding. I came into this summer knowing how to write Python and I'm ending it knowing how to reason about the machine underneath.&lt;/p&gt;
+
+&lt;p&gt;Nathaniel, thank you for being just as generous with your time, and just as willing to slow down and explain something properly even when the answer must have felt obvious from where you were standing. &lt;/p&gt;
+
+&lt;p&gt;Having two mentors who both cared this much about getting it right, and not just getting it merged, made all the difference. And I couldn't be more grateful!&lt;/p&gt;
+
+&lt;p&gt;To the OpenAstronomy and Astropy community: thank you for letting me poke around the raw engine of your library.&lt;/p&gt;
+
+&lt;p&gt;Until next time,&lt;br&gt;
+Reem &amp;lt;3&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/08/20260816_1535_reemhamraz/</guid><pubDate>Sun, 16 Aug 2026 14:35:15 GMT</pubDate></item><item><title>Wiring the Abyss</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260730_1622_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;I can see the finish line. Send help, or snacks, or both.&lt;/p&gt;
 
 &lt;h3&gt;
 &lt;!-- TEASER_END --&gt;
@@ -233,5 +475,4 @@ The next 2 weeks
 &lt;ul style="text-align: left;"&gt;&lt;li&gt;Leave out writing all the optional CDS ReadMe fields as of now. These can be dealt with individual PRs later.&lt;/li&gt;&lt;li&gt;Some tests fail because &lt;span style="font-family: courier;"&gt;start_line = None&lt;/span&gt; doesn't work. It has been introduced once again within &lt;span style="font-family: courier;"&gt;CdsData.write&lt;/span&gt; function in addition to been defined in the main &lt;span style="font-family: courier;"&gt;Cds&lt;/span&gt; class. The test failure occurs because CdsData now inherits from &lt;span style="font-family: courier;"&gt;FixedWidthData&lt;/span&gt; which itself inherits &lt;span style="font-family: courier;"&gt;basic.BasicReader&lt;/span&gt; instead of BaseReader. I should make sure that all tests pass properly.&lt;/li&gt;&lt;li&gt;Have a template for MRT tables and write them first. &lt;b&gt;Title&lt;/b&gt;, &lt;b&gt;Authors&lt;/b&gt;, &lt;b&gt;Date&lt;/b&gt;, &lt;b&gt;Caption&lt;/b&gt; and &lt;b&gt;Notes&lt;/b&gt; sections, i.e. all sections except the Byte-By-Byte and the Data itself, will be left blank in the template, with warning for the user to put them in manually afterwards.&lt;/li&gt;&lt;li&gt;Documentation for the CDS/MRT format writer.&lt;/li&gt;&lt;li&gt;At present issue a warning note for tables with two or more mix-in columns (&lt;span style="font-family: courier;"&gt;SkyCoord&lt;/span&gt; cols primarily). If ways to correctly work out such situations is thought of, add that feature in a separate PR.&lt;/li&gt;&lt;li&gt;Work with a copy of the original table, so that  the copy is modified and not the original table, when component coordinate columns are written. The modified copy of the table is written to a file, while the user retains access to the columns of the original table.&lt;/li&gt;&lt;li&gt;Need to have features to recognise non Spherical coordinates, like the Cartesian coordinates, and either skip them or write them as Single column string values. Add test for such other coordinates. Also for cases when coordinates are in a &lt;span style="font-family: courier;"&gt;SkyCoord&lt;/span&gt; object but the frame is not Spherical.&lt;/li&gt;&lt;li&gt;Have two other templates, one for CDS in which the user fills values of optional fields manually later and another in which filling optional fields can be done from within Astropy, via a &lt;span style="font-family: courier;"&gt;cdsdict&lt;/span&gt;. In separate PRs. Here too write only the required fields in the ReadMe first, like &lt;b&gt;Abstract&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Have features for Time columns later within the original PR or much later.&lt;/li&gt;&lt;li&gt;Simplify how column format is obtained for float columns. The current manner of string formatting is too complicated. &lt;span style="font-family: courier;"&gt;col.width&lt;/span&gt; value can be directly used in some cases. The &lt;span style="font-family: courier;"&gt;Outputter&lt;/span&gt; class will also know the column format since it writes out the table.&lt;/li&gt;&lt;li&gt;Other minor/major edits and modifications as suggested by others.&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;With this PR for the MRT format table writing getting eventually merged to Astropy, the main goal of my astropy@GSoC project will be completed. The support for other extra features essentially serves as appendages to the primary task been done by this PR.&lt;/div&gt;&lt;div&gt;Let's see how it goes.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Oh! On another note, a few days back I received the GSoC First Evaluations payment! 😁&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Adious!&lt;/div&gt;&lt;p&gt;&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210721_2000_suyog7130/</guid><pubDate>Wed, 21 Jul 2021 19:00:00 GMT</pubDate></item><item><title>astropy@GSoC Blog Post #4, Week 4</title><link>http://openastronomy.org/Universe_OA/posts/2021/07/20210709_2232_suyog7130/</link><dc:creator>Suyog Garg</dc:creator><description>&lt;p&gt;Hi,&lt;/p&gt;
 &lt;p&gt;How you doing?&lt;/p&gt;
 &lt;p&gt;Yup! Lots of things done again. I have finally completed the main goal of the project. Yahoo!&lt;/p&gt;
-&lt;!-- TEASER_END --&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210709_2232_suyog7130/</guid><pubDate>Fri, 09 Jul 2021 21:32:00 GMT</pubDate></item><item><title>astropy@GSoC Blog Post #3, Week 3</title><link>http://openastronomy.org/Universe_OA/posts/2021/06/20210623_2223_suyog7130/</link><dc:creator>Suyog Garg</dc:creator><description>So, it's the start of the 3rd week now. I will be virtually meeting Aarya and Moritz again Tom.&lt;br&gt;&lt;br&gt;For the past few weeks now, I have been pushing commits to a Draft PR &lt;a href="https://github.com/astropy/astropy/pull/11835"&gt;https://github.com/astropy/astropy/pull/11835&lt;/a&gt; on GitHub. I wanted to have something working quite early in the project, in order to be able to pinpoint accurately when something doesn't work. This is why I started with directly adding the &lt;b&gt;cdspyreadme&lt;/b&gt; code within Astropy. Afterwards, I am also writing the code from scratch. As more of the required features from &lt;b&gt;cdspyreadme&lt;/b&gt; get integrated into &lt;i&gt;cds.py&lt;/i&gt;, those files and codes added earlier will be removed.&lt;br&gt;&lt;br&gt;About the reading/writing to Machine Readable Table format, in fact I wrote about it briefly in my GSoC Proposal that I could attempt it as an extension. I don't have an opinion on whether or not it should have it's own format classes etc. However, since the title of my GSoC project is to &lt;b&gt;Add a CDS format writer to Astropy&lt;/b&gt;, I would prefer to work on the CDS format writer first and then on the MRT format. The MRT header anyway appears to be a bit simpler than the CDS header, so there shouldn't be much difficulty in the extension.&lt;br&gt;&lt;br&gt;So, in a nutshell, this is my workflow:&lt;br&gt;&lt;ul style="text-align: left;"&gt;&lt;li&gt;Try out directly using &lt;b&gt;cdspyreadme&lt;/b&gt; from within Astropy.&lt;/li&gt;&lt;li&gt;Add CdsData.write method.&lt;/li&gt;&lt;li&gt;Add a ByteByByte writer.&lt;/li&gt;&lt;li&gt;Write features to add complete ReadMe to the Header, starting off with having both ReadMe and Data in a single file.&lt;/li&gt;&lt;li&gt;Have features for writing separate CDS ReadMe and Data file.&lt;/li&gt;&lt;li&gt;Further work on some specific table columns, for instance, those containing Units and Coordinates.&lt;/li&gt;&lt;li&gt;Add appropriate tests along the way.&lt;/li&gt;&lt;li&gt;Resolve other issues that come up.&lt;/li&gt;&lt;li&gt;MRT format reader/writer.&lt;/li&gt;&lt;/ul&gt;&lt;br&gt;I have completed the first three tasks and will now work on the fourth. I think by the time this finishes, a separate &lt;i&gt;CDSColumn.py&lt;/i&gt; won't be required. I can open another PR which adds the Data writer, in the meantime.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Let's see how it goes!&lt;/div&gt;
-&lt;!-- TEASER_END --&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/06/20210623_2223_suyog7130/</guid><pubDate>Wed, 23 Jun 2021 21:23:00 GMT</pubDate></item></channel></rss>
+&lt;!-- TEASER_END --&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2021/07/20210709_2232_suyog7130/</guid><pubDate>Fri, 09 Jul 2021 21:32:00 GMT</pubDate></item></channel></rss>

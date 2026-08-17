@@ -1,5 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2026)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2026.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 16 Aug 2026 01:53:06 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Weeks 9 &amp; 10: Slicing, Profiles and a New Factory</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260811_0543_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt; Slicing, Profiles and a New Factory 🚀&lt;/h3&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy (Posts about gsoc2026)</title><link>http://openastronomy.org/Universe_OA/</link><description></description><atom:link href="http://openastronomy.org/Universe_OA/categories/cat_gsoc2026.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Mon, 17 Aug 2026 01:50:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>12 Weeks of GSoC: A Lot Learned, A Lot More to Do</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260816_1804_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;p&gt;&lt;/p&gt;&lt;h2&gt;A Lot Learned, A Lot More to Do 🚀&lt;/h2&gt;&lt;p&gt;And just like that, &lt;strong&gt;12 weeks of GSoC are over!&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;The last two weeks have been quite different from the earlier ones. There was a lot of finishing up, reviewing, fixing things that broke along the way and making sure the bigger pieces of the project were coming together properly.&lt;/p&gt;&lt;p&gt;Here's what I've been up to.&lt;/p&gt;&lt;h3&gt;Learning to Write Less Code 😅&lt;/h3&gt;&lt;p&gt;One of the biggest lessons from these weeks actually came from a code review.&lt;/p&gt;&lt;p&gt;I had previously added some custom methods for getting time and frequency profiles from a spectrogram. The code worked, but there were some change of plans, during review we realized that &lt;b&gt;&lt;code&gt;ndcube&lt;/code&gt; &lt;/b&gt;already provided the functionality needed to achieve the same thing.&lt;/p&gt;&lt;p&gt;So instead of keeping the extra code, I removed it and focused on showing users how to use the existing &lt;b&gt;&lt;code&gt;ndcube&lt;/code&gt; &lt;/b&gt;methods.&lt;/p&gt;&lt;p&gt;It was a really good reminder that &lt;strong&gt;adding more code isn't always the right solution&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;Sometimes the better approach is to make better use of what already exists.&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;Making the Examples More Useful 📚&lt;/h3&gt;&lt;p&gt;After removing the custom wrappers, I wanted to make sure users could still easily understand how to perform these operations.&lt;/p&gt;&lt;p&gt;I worked on a Sphinx-Gallery example showing how to crop spectrograms and extract profiles using the &lt;code&gt;ndcube&lt;/code&gt; API.&lt;/p&gt;&lt;p&gt;The example covers cropping by time, cropping by frequency, combining both and extracting 1D profiles.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/a/AVvXsEg6vWMP08O8A4z4svI3BzWw6F0ELnbUbqxBWEXjNWYk1rMBpz36BjVE3XHZXmVnrTXFKWqp0oK7WxqL-W_O6LWMmkbe0dzCSwQ8KlnsQDvJXuiIJnOI6ePn8lYAtLYQniv7PBKmA-noj4Sy_70CONLO5NjjvyGBLKahuw2oiXVI0ptemiRyx5pEC_eajLo" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="" height="290" src="https://blogger.googleusercontent.com/img/a/AVvXsEg6vWMP08O8A4z4svI3BzWw6F0ELnbUbqxBWEXjNWYk1rMBpz36BjVE3XHZXmVnrTXFKWqp0oK7WxqL-W_O6LWMmkbe0dzCSwQ8KlnsQDvJXuiIJnOI6ePn8lYAtLYQniv7PBKmA-noj4Sy_70CONLO5NjjvyGBLKahuw2oiXVI0ptemiRyx5pEC_eajLo=w579-h290" width="579"&gt;&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/a/AVvXsEiOTPP3McOdbhfvbgoCEKulPj6i-C6BxfAYQA1Thb2VvWMo6-KQx4yIfkNBJxiRsh7BV-xvoc3g8jJfT6ArQbkBhM2Jjkgl_A2f42F2ziUNyNrWSoDDevfeQvysti7xxlXujZpWw5dGRzZj_w6y-XBeyyrCMbYnfQmFv_wujNSE1ZEr4IZTdccHsNW7Mgo" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="" height="284" src="https://blogger.googleusercontent.com/img/a/AVvXsEiOTPP3McOdbhfvbgoCEKulPj6i-C6BxfAYQA1Thb2VvWMo6-KQx4yIfkNBJxiRsh7BV-xvoc3g8jJfT6ArQbkBhM2Jjkgl_A2f42F2ziUNyNrWSoDDevfeQvysti7xxlXujZpWw5dGRzZj_w6y-XBeyyrCMbYnfQmFv_wujNSE1ZEr4IZTdccHsNW7Mgo=w580-h284" width="580"&gt;&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/a/AVvXsEjn9GwthcIyCGsoqFzOYu9wI1d-oBEiQea6535IPyI4ALBkRDdiGMzC1JBoXR-OI2SuHoa0JGOU6vDRMRCTkD_n_VGbExe9HlINApUnbjOCdBwbsUkehAA3RhhYnXY0Am0SLNiJjJxiPwrD3ZQ9KTH7-86MH2Ylm88VLRU3WkheB-dqAU3_mrIly4SaPr0" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img alt="" height="289" src="https://blogger.googleusercontent.com/img/a/AVvXsEjn9GwthcIyCGsoqFzOYu9wI1d-oBEiQea6535IPyI4ALBkRDdiGMzC1JBoXR-OI2SuHoa0JGOU6vDRMRCTkD_n_VGbExe9HlINApUnbjOCdBwbsUkehAA3RhhYnXY0Am0SLNiJjJxiPwrD3ZQ9KTH7-86MH2Ylm88VLRU3WkheB-dqAU3_mrIly4SaPr0=w579-h289" width="579"&gt;&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;br&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;I also changed the example based on mentor feedback so that the explanation, code and plots appear step by step instead of having all the plots at the end.&lt;/p&gt;&lt;p&gt;I think it makes the whole example much easier to follow.&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;Finally Finishing the Factory Migration 🔧&lt;/h3&gt;&lt;p&gt;The biggest piece of work during these two weeks was completing the &lt;code&gt;&lt;b&gt;SpectrogramFactory&lt;/b&gt;&lt;/code&gt; migration.&lt;/p&gt;&lt;p&gt;I had previously migrated &lt;b&gt;WAVES&lt;/b&gt; and &lt;b&gt;e-CALLISTO&lt;/b&gt; and during these weeks I worked through the remaining instruments.&lt;/p&gt;&lt;p&gt;The idea behind the new design is to keep the factory simple:&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Before:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;code&gt;&lt;b&gt;Read everything → Find instrument → Create spectrogram&lt;/b&gt;&lt;/code&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Now:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;code&gt;&lt;b&gt;Read basic information → Find instrument → Let the instrument parse the data&lt;/b&gt;&lt;/code&gt;&lt;/p&gt;&lt;p&gt;The instrument-specific parsing now lives inside the individual instrument classes through &lt;code&gt;&lt;b&gt;from_raw()&lt;/b&gt;&lt;/code&gt; instead of having all of it inside the factory.&lt;/p&gt;&lt;p&gt;Getting all the instruments moved over was definitely one of the bigger milestones of my GSoC project.&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;The Final Few Fixes 🛠️&lt;/h3&gt;&lt;p&gt;Of course, finishing a large refactor also meant dealing with a few unexpected things.&lt;/p&gt;&lt;p&gt;I worked through some documentation build issues, resolved merge conflicts while keeping &lt;code&gt;&lt;b&gt;ndcube-refactor&lt;/b&gt;&lt;/code&gt; up to date with &lt;code&gt;&lt;b&gt;main&lt;/b&gt; &lt;/code&gt;and fixed a few smaller issues that came up along the way.&lt;/p&gt;&lt;p&gt;These weren't necessarily the most exciting changes, but they were a good reminder that a project doesn't end when the main code is written. There's always testing, documentation, reviews and cleanup.&lt;/p&gt;&lt;hr&gt;&lt;h3 class="PDq2pG_selectionAnchorContainer"&gt;12 Weeks Done… But Not Finished Yet 🚀&lt;span class="PDq2pG_selectionAnchor"&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;And that's officially &lt;strong&gt;12 weeks of GSoC done!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Looking back, it's honestly hard to believe how much I've learned in these three months. I started with a lot of questions about the codebase and now I'm working on things like the architecture of the &lt;code&gt;SpectrogramFactory&lt;/code&gt;, &lt;code&gt;ndcube&lt;/code&gt; integration, documentation, testing and all the little things that come with maintaining an open-source project.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+&lt;p&gt;But even though the official GSoC period has come to an end, &lt;strong&gt;there's still plenty left to do.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There are reviews to finish, things I'd like to improve and ideas that I didn't get the chance to explore fully during these 12 weeks.&lt;/p&gt;
+&lt;p&gt;And honestly, I'm still very excited to keep working on &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p class=""&gt;One of the biggest things GSoC gave me wasn't just the code I contributed, but the feeling that I can actually be part of an open-source project and continue contributing even after the program ends.&lt;/p&gt;
+&lt;p&gt;So this isn't really a goodbye.&lt;/p&gt;
+&lt;p&gt;It's more like:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;12 weeks down. Let's see what comes next. ❤️&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A huge thank you to &lt;strong&gt;&lt;a href="https://github.com/samaloney" target="_blank"&gt;Shane Maloney&lt;/a&gt; and &lt;a href="https://github.com/samaloney" target="_blank"&gt;Laura Hayes&lt;/a&gt;&lt;/strong&gt; for all the reviews, discussions, patience and guidance throughout these weeks. I've learned something from almost every review and conversation and I'm really grateful for that.&lt;/p&gt;
+&lt;p&gt;And of course, thanks to the entire &lt;strong&gt;&lt;a href="https://sunpy.org/" target="_blank"&gt;SunPy&lt;/a&gt; and &lt;a href="https://openastronomy.org/" target="_blank"&gt;OpenAstronomy&lt;/a&gt; community&lt;/strong&gt; for making these 12 weeks such a great experience.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GSoC may be ending, but I'm definitely not done with radiospectra yet. &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Peace Out ✌🚀&lt;/strong&gt;&lt;/p&gt;&lt;h3&gt;&lt;/h3&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/08/20260816_1804_amityush-lgtm/</guid><pubDate>Sun, 16 Aug 2026 17:04:57 GMT</pubDate></item><item><title>Learning to Speak C &amp; Cython: My GSoC Summer with Astropy</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260816_1535_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;The summer is officially over. I am staring at a remarkably clean Git branch, my laptop didn't literally take off into orbit (though the CPU fans certainly tried a few times during local CI builds), and I somehow know what &lt;code&gt;git rebase -i&lt;/code&gt; does without having to Google it in a cold sweat.&lt;/p&gt;
+
+&lt;p&gt;If you'd asked me back in May what I was going to be doing, I would have confidently told you I was going to "write tests for Astropy's C extensions." It sounded so neat. So contained. But open source doesn't really work like that. I came in thinking I was just going to write tests, and somewhere along the way, I ended up learning how the actual machinery underneath the Python abstraction works, how maintainers think about architecture, and how to safely catch C-level memory panics without taking down the entire interpreter.&lt;/p&gt;
+&lt;!-- TEASER_END --&gt;
+
+&lt;p&gt;So, here is the real story of what I did for the last few months, what broke, how we fixed it, and where the project stands now.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+So, what was I actually supposed to do?
+&lt;/h3&gt;
+
+&lt;p&gt;Astropy is a beast of a library. The Python-facing API is incredibly robust and beautifully documented. But underneath all those pretty Python classes is a complex, mixed-language architecture. The library relies heavily on compiled C, and Cython extensions to handle the performance-critical hot-paths.&lt;/p&gt;
+
+&lt;p&gt;The problem? That compiled layer was a massive testing blind spot. Before this summer, these performance-critical extensions were almost entirely tested indirectly, meaning they were only validated by calling the high-level Python wrappers. That is a risky abstraction. If a regression happens deep inside the C code, the Python layer sitting above it can accidentally mask it. You wouldn't know something was fundamentally broken until a downstream package started acting weird.&lt;/p&gt;
+
+&lt;p&gt;My project goal was to build a dedicated, de novo test suite that bypassed the public API completely and exercised each compiled extension module directly. This wasn't just for code coverage. It was an absolute prerequisite for three massive Astropy milestones:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;The APE Split&lt;/strong&gt;: Proving the extensions are stable enough to live in a completely separate package.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Meson Migration&lt;/strong&gt;: Having a safety net to catch silent regressions when the build system transitions.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Python 3.15 Limited API&lt;/strong&gt;: Safely testing internal C-refactors for the upcoming free-threaded builds.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The mission was to harden Astropy's core stability. The reality was peeling away layers of Python abstractions until I was staring at raw memory buffers.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+Turns out, "testing C extensions" is not quite as simple as it sounds
+&lt;/h3&gt;
+
+&lt;p&gt;I started my summer in &lt;code&gt;astropy/table&lt;/code&gt;, which my mentors flagged as a solid starting point. My first target was &lt;code&gt;test_np_utils.py&lt;/code&gt;, writing a low-level suite for the &lt;code&gt;join_inner&lt;/code&gt; Cython extension.&lt;/p&gt;
+
+&lt;p&gt;The thing is, Cython engines don't want your high-level &lt;code&gt;Table&lt;/code&gt; objects. They want raw data. I had to build a helper function, &lt;code&gt;_make_join_inputs&lt;/code&gt;, which acted as a pre-processor. It took two arrays, concatenated them, sorted them with &lt;code&gt;argsort(kind="stable")&lt;/code&gt;, and used a boolean &lt;code&gt;diffs&lt;/code&gt; array to find the exact boundaries of unique keys. It output the exact &lt;code&gt;np.intp&lt;/code&gt; bindings that Cython demanded.&lt;/p&gt;
+
+&lt;p&gt;Once I could feed the raw engine, I built strictly typed dataclasses (&lt;code&gt;ArrayMaskPair&lt;/code&gt; and &lt;code&gt;ExpectedResults&lt;/code&gt;) to hold the outputs without making the pytest matrices unreadable with massive tuples. I tested standard overlaps, but the real fun was the Cartesian edge cases. I threw O(N²) expansions at the engine, where duplicate keys joined with duplicate keys, just to prove the C-engine could handle the explosive memory allocation without crashing. I also verified that it properly handles &lt;code&gt;np.nan&lt;/code&gt; as a unique entity (since &lt;code&gt;nan != nan&lt;/code&gt; in Python).&lt;/p&gt;
+
+&lt;p&gt;And all this stands as proof that I can actually write code that works, phew!&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+The C-Slots
+&lt;/h4&gt;
+
+&lt;p&gt;Things got significantly more complicated when I moved to &lt;code&gt;test_column_mixins.py&lt;/code&gt;. The objective here was to test the Cython &lt;code&gt;__getitem__&lt;/code&gt; routing in pure isolation.&lt;/p&gt;
+
+&lt;p&gt;I couldn't just pass a standard array. I had to create a "Shim Strategy" (so fancy), so I wrote &lt;code&gt;MinimalColumn&lt;/code&gt; and &lt;code&gt;MinimalMaskedColumn&lt;/code&gt; classes that inherited directly from the Cython mixins (&lt;code&gt;_ColumnGetitemShim&lt;/code&gt;, &lt;code&gt;_MaskedColumnGetitemShim&lt;/code&gt;) and mapped them directly onto raw NumPy arrays using &lt;code&gt;.view()&lt;/code&gt; casting. By overriding the &lt;code&gt;.data&lt;/code&gt; property to return a pure ndarray view, I stopped the Cython engine from returning raw memoryview buffers, which would have hard-crashed the tests. We were hitting the &lt;code&gt;tp_as_mapping-&amp;gt;mp_subscript&lt;/code&gt; C-slot directly.&lt;/p&gt;
+
+&lt;p&gt;But this is where I hit my first major hurdle.&lt;/p&gt;
+
+&lt;p&gt;While I was writing a test for structured arrays, indexing it with a single string, the structured dtype suddenly just dropped, and it returned a 1D array of the underlying field's type. I spent hours going down this rabbit hole, utterly convinced my test was wrong. Eventually, I found the machinery underneath: a literal trapdoor in &lt;code&gt;base_getitem&lt;/code&gt;.&lt;br&gt;
+&lt;/p&gt;
+
+&lt;div class="highlight js-code-highlight"&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;dtype_kind&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="sh"&gt;'&lt;/span&gt;&lt;span class="s"&gt;V&lt;/span&gt;&lt;span class="sh"&gt;'&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="nf"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;STRING_TYPES&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;p&gt;Because it accessed the raw &lt;code&gt;.data&lt;/code&gt; array, it inherited NumPy's default behavior and lost the structure. Rather than cementing this unintended behavior by writing a passing test for it, I dropped the test case and opened Issue &lt;a href="https://github.com/astropy/astropy/issues/19827" rel="noopener noreferrer"&gt;#19827&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This was my first realization that tests aren't just a safety net; when written at this level, they act like a microscope.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+And then things started breaking in interesting ways
+&lt;/h3&gt;
+
+&lt;p&gt;Open source isn't just writing code, getting a green checkmark, and merging. The messy middle is where the actual work happens. I mean everyone knows that right? Yeah no sometimes people get a reality check; people is me, I am people.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;strong&gt;The Masked Array &lt;code&gt;isinstance&lt;/code&gt; Trap&lt;/strong&gt;: I proudly swapped &lt;code&gt;isinstance()&lt;/code&gt; checks for strict &lt;code&gt;type(result) is ...&lt;/code&gt; assertions, which instantly caused my masked array tests to fail. It turns out standard ndarray slicing strips subclasses, but &lt;code&gt;np.ma.MaskedArray.__getitem__&lt;/code&gt; inherently preserves them. The C-slot was actively returning the &lt;code&gt;MinimalMaskedColumn&lt;/code&gt; shim.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;The CI Gatekeeper&lt;/strong&gt;: While working on the mixins, I used an &lt;code&gt;@override&lt;/code&gt; decorator. Python 3.12 CI matrices immediately failed because &lt;code&gt;typing_extensions&lt;/code&gt; wasn't in the base test environment. Instead of bloating &lt;code&gt;pyproject.toml&lt;/code&gt; with a new dependency just for one test file, I made the architectural choice to drop the decorator completely. CI went green.&lt;/li&gt;
+&lt;li&gt;
+&lt;strong&gt;Git History looking like a crime scene&lt;/strong&gt;: At one point, a &lt;code&gt;.uv.lock&lt;/code&gt; file triggered a &lt;code&gt;check-added-large-files&lt;/code&gt; pre-commit hook failure. My branch had some incredibly messy commits. So I took a couple a deep breaths, paced around, and after a midly dramatic breakdown, I ran &lt;code&gt;git restore --staged&lt;/code&gt;, and fired up a local interactive rebase (&lt;code&gt;git rebase -i HEAD~6&lt;/code&gt;) via Nano to squash the chaos into a single, clean production commit (see told ya it was simple :) )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;
+
+
+Somewhere along the way, I stopped just writing tests
+&lt;/h3&gt;
+
+&lt;p&gt;As the summer progressed, the project evolved. The APE split required not just test coverage, but rigorous structural boundaries. I started writing &lt;code&gt;.pyi&lt;/code&gt; type stubs to define the Python-facing boundaries of compiled extensions so static type checkers could understand them without executing the C-engine, not to forget the Proof of Concept, all in a days work (I'm lying, I almost cried trying the machete strategy).&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+The XML C-Extension Stubs (&lt;code&gt;iterparser_iterparser.pyi&lt;/code&gt;)
+&lt;/h4&gt;
+
+&lt;p&gt;When I looked at the C struct for the &lt;code&gt;_iterparser&lt;/code&gt; extension, it looked like the parser accepted &lt;code&gt;fd&lt;/code&gt;, &lt;code&gt;buffersize&lt;/code&gt;, &lt;code&gt;file&lt;/code&gt;, and &lt;code&gt;buffer&lt;/code&gt;. But looking at the C struct is like looking at a map and realizing the map is wrong.&lt;/p&gt;
+
+&lt;p&gt;By analyzing the C-API execution (&lt;code&gt;PyArg_ParseTupleAndKeywords&lt;/code&gt;), I discovered that &lt;code&gt;file&lt;/code&gt; and &lt;code&gt;buffer&lt;/code&gt; were strictly internal C-state variables generated after crossing the Python boundary. The Python &lt;code&gt;__init__&lt;/code&gt; only actually takes &lt;code&gt;fd&lt;/code&gt; and &lt;code&gt;buffersize&lt;/code&gt;. Because the C-engine didn't natively support keyword argument routing here, I had to enforce positional-only arguments using the PEP 570 &lt;code&gt;/&lt;/code&gt; marker in Python.&lt;/p&gt;
+
+&lt;p&gt;Even better, we had a friendly discussion about the &lt;code&gt;fd.read&lt;/code&gt; callable. My mentor pointed out &lt;code&gt;read(self-&amp;gt;file, self-&amp;gt;buffer...)&lt;/code&gt; in the C code. But tracing the Python C-API showed a &lt;code&gt;Py_BuildValue("(n)", buffersize)&lt;/code&gt; call directly before &lt;code&gt;PyObject_CallObject&lt;/code&gt;. The C-engine was packing a C &lt;code&gt;Py_ssize_t&lt;/code&gt; into a 1-element Python tuple. We proved the Python callable only ever receives one integer, finalizing the strict protocol signature as &lt;code&gt;Callable[[int], bytes]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+Dimensionality Locking in &lt;code&gt;_convolve&lt;/code&gt;
+&lt;/h4&gt;
+
+&lt;p&gt;For &lt;code&gt;_convolve.pyx&lt;/code&gt;, we needed to ensure that arrays passed to the C engine matched perfectly before runtime. I used bounded &lt;code&gt;TypeVar&lt;/code&gt; aliases (&lt;code&gt;_D1&lt;/code&gt;, &lt;code&gt;_D2&lt;/code&gt;, &lt;code&gt;_D3&lt;/code&gt;) to enforce a strict mathematical rule at the static analysis level. The result, &lt;code&gt;array_to_convolve&lt;/code&gt;, and kernel arrays can be 1D, 2D, or 3D, but the linter now mathematically locks them so all three must have the exact same dimensionality.&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+The &lt;code&gt;unit_list_proxy.c&lt;/code&gt; Dependency Injection
+&lt;/h4&gt;
+
+&lt;p&gt;This was easily one of the coolest things I worked on. &lt;code&gt;astropy/wcs/src/unit_list_proxy.c&lt;/code&gt; had a massive circular dependency problem. It was relying on &lt;code&gt;astropy.units.UnitBase&lt;/code&gt; via &lt;code&gt;PyImport_ImportModule&lt;/code&gt; at runtime.&lt;/p&gt;
+
+&lt;p&gt;We discovered that &lt;code&gt;cunit&lt;/code&gt; wasn't a normal attribute; it was a C-level mutable proxy array. Standard Python &lt;code&gt;@property&lt;/code&gt; wrappers broke the memory linkage, meaning the C-array never received updates.&lt;/p&gt;
+
+&lt;p&gt;Following my mentor Clément's strategy, we scrapped the Python wrappers and built a Dependency Injection architecture. We implemented a &lt;code&gt;_setup_unit_class(PyObject* unit_class)&lt;/code&gt; function, dynamically exposed to &lt;code&gt;_wcs&lt;/code&gt;. It runs exactly once during Python initialization to cache the &lt;code&gt;Unit&lt;/code&gt; class pointer in a static C variable, completely severing the heavy &lt;code&gt;PyImport&lt;/code&gt; dependency. We updated the getitem C-slot to natively yield &lt;code&gt;Unit&lt;/code&gt; objects (like &lt;code&gt;CompositeUnit&lt;/code&gt;) back to Python, and made the setitem slot use duck-typing (&lt;code&gt;parse_strict="warn"&lt;/code&gt;) so it gracefully emits a &lt;code&gt;UnitsWarning&lt;/code&gt; for garbage FITS strings instead of hard-crashing. I was super elated when I finally succeeded and to see the CI checks green? Goodness was that rewarding, so I treated myself to an ice-cream sundae!&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+Numerical sanity and the "Grid Trap"
+&lt;/h4&gt;
+
+&lt;p&gt;I also wrote isolated suites for the &lt;code&gt;astropy.timeseries&lt;/code&gt; periodogram C-extensions. Bypassing the high-level &lt;code&gt;BoxLeastSquares&lt;/code&gt; API, I fed raw &lt;code&gt;np.float64&lt;/code&gt; memory buffers directly into the Cython boundary (&lt;code&gt;_impl.pyx&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;I built a &lt;code&gt;SyntheticTransit&lt;/code&gt; fixture to inject a perfect transit dip into a simulated light curve to prove the C-engine's &lt;code&gt;best_objective&lt;/code&gt; algorithm peaked accurately.&lt;/p&gt;
+
+&lt;p&gt;But math is cruel :(&lt;/p&gt;
+
+&lt;p&gt;My tests were failing to recover a mathematically perfect period of 2.0. Why? Because I generated my frequency grid using &lt;code&gt;np.linspace(1.5, 2.5, 100)&lt;/code&gt;. If you do the floating-point math, the step size is ~0.0101. The number 2.0 literally did not exist in the array (the closest it got was 2.005). I was stuck fighting my own numerical grid. I changed it to 101 steps, and voila it hit the target perfectly!&lt;/p&gt;
+
+&lt;p&gt;We also dealt with a fascinating accuracy tradeoff. When using a coarse grid (1,000 points, &lt;code&gt;oversample=10&lt;/code&gt;), the discrete phase-binning of the BLS algorithm caused the edges of the transit to smear, changing the recovered depth from a perfect 0.5 to 0.478. My mentor challenged the 5% tolerance. By fixing the &lt;code&gt;linspace&lt;/code&gt; bug and adjusting the points, we tightened the mathematical accuracy to &lt;code&gt;1e-4&lt;/code&gt; while balancing the matrix to keep the isolated test executing in under 300ms so we didn't anger the CI limits.&lt;/p&gt;
+
+&lt;p&gt;I ran into a similar trapdoor testing the Lomb-Scargle Cython implementation (&lt;code&gt;cython_impl.pyx&lt;/code&gt;). I tried to test the Cython-level &lt;code&gt;t.ndim != 1&lt;/code&gt; error. But when I passed a 2D array for &lt;code&gt;t&lt;/code&gt; and 1D arrays for &lt;code&gt;y&lt;/code&gt;, &lt;code&gt;np.broadcast_arrays&lt;/code&gt; panicked and raised a Python &lt;code&gt;ValueError&lt;/code&gt; before the C-engine ever saw it. The fix? I deliberately passed identical 2D arrays for all parameters so it survived the Python broadcasting check and successfully crashed directly on the C-boundary. Hurrayy!&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+The parts that didn't go according to plan
+&lt;/h3&gt;
+
+&lt;p&gt;Of course, not everything matched the original proposal. My initial timeline had me delivering tests for &lt;code&gt;astropy/erfa&lt;/code&gt; and &lt;code&gt;astropy.coordinates&lt;/code&gt; towards the end of the summer (Deliverables 5 and 6).&lt;/p&gt;
+
+&lt;p&gt;The reality of open-source struck: &lt;code&gt;astropy/erfa&lt;/code&gt; had already been spun out into the standalone &lt;code&gt;pyerfa&lt;/code&gt; package, and &lt;code&gt;astropy.coordinates&lt;/code&gt; was delegating its math to that external library. You can't write isolated C-extension tests for an architecture that doesn't live in your repository anymore.&lt;/p&gt;
+
+&lt;p&gt;Rather than viewing this as a failure, I contacted my mentors, pivoted, and spent that time significantly deepening the coverage and architectural stability of the &lt;code&gt;.pyi&lt;/code&gt; stubs and the XML parsers.&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+So, where did we end up? (Current State)
+&lt;/h3&gt;
+
+&lt;p&gt;The goal was to make the compiled layer testable, and I am leaving behind an architecture to ensure it stays that way.&lt;/p&gt;
+
+&lt;h4&gt;
+
+
+Merged work &amp;amp; contributions
+&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Table C-extensions: merged isolated tests for &lt;code&gt;join_inner&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/19458" rel="noopener noreferrer"&gt;#19458&lt;/a&gt;), documented &lt;code&gt;jointype&lt;/code&gt; integer mappings (PR #19468), and added direct C-slot tests for &lt;code&gt;_column_mixins&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/19806" rel="noopener noreferrer"&gt;#19806&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;XML iterparser: built structural 4-tuple boundary tests for the &lt;code&gt;_iterparser&lt;/code&gt; C-extension and caught memory buffer behaviors (PR &lt;a href="https://github.com/astropy/astropy/pull/19922" rel="noopener noreferrer"&gt;#19922&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Type stubs: defined the static type boundaries for &lt;code&gt;_iterparser.pyi&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/20006" rel="noopener noreferrer"&gt;#20006&lt;/a&gt;, positional-only) and &lt;code&gt;_convolve&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/20093" rel="noopener noreferrer"&gt;#20093&lt;/a&gt;, dimensionality locking).&lt;/li&gt;
+&lt;li&gt;Time parse extension: overhauled the &lt;code&gt;_parse_times.c&lt;/code&gt; boundary test using strict &lt;code&gt;type(parser) is np.ufunc&lt;/code&gt; assertions and byte arrays (&lt;code&gt;"S24"&lt;/code&gt;) (PR &lt;a href="https://github.com/astropy/astropy/pull/19875" rel="noopener noreferrer"&gt;#19875&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Quantity unit extraction: fixed unit extraction in &lt;code&gt;structured_to_unstructured&lt;/code&gt; for &lt;code&gt;StructuredQuantity&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/19106" rel="noopener noreferrer"&gt;#19106&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;APE split expansion: contributed to the proof of concept for the APE split, expanding the implementation section in Clement's fork (PR &lt;a href="https://github.com/neutrinoceros/astropy-APEs/pull/3" rel="noopener noreferrer"&gt;#3&lt;/a&gt;) to define what the low-level tests look like.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;
+
+
+Still open, waiting on review
+&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;WCS dependency injection: refactored &lt;code&gt;unit_list_proxy.c&lt;/code&gt; to cache the &lt;code&gt;Unit&lt;/code&gt; class pointer, severing the &lt;code&gt;PyImport&lt;/code&gt; overhead (PR &lt;a href="https://github.com/astropy/astropy/pull/20072" rel="noopener noreferrer"&gt;#20072&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Timeseries math engines: built exact synthetic recovery matrices for Box Least Squares (&lt;code&gt;bls.c&lt;/code&gt; / &lt;code&gt;_impl.pyx&lt;/code&gt;, PR &lt;a href="https://github.com/astropy/astropy/pull/20151" rel="noopener noreferrer"&gt;#20151&lt;/a&gt;) and Lomb-Scargle (&lt;code&gt;cython_impl.pyx&lt;/code&gt;, PR &lt;a href="https://github.com/astropy/astropy/pull/20222" rel="noopener noreferrer"&gt;#20222&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;
+
+
+The Developer Guide
+&lt;/h4&gt;
+
+&lt;p&gt;Perhaps the most lasting piece of work I did was writing and merging &lt;code&gt;testing_extensions.rst&lt;/code&gt; (PR &lt;a href="https://github.com/astropy/astropy/pull/20239" rel="noopener noreferrer"&gt;#20239&lt;/a&gt;) into Astropy's core documentation. This document establishes the architectural standards for making low-level compiled modules testable. It outlines the rules for bypassing Python wrappers, strictly avoiding &lt;code&gt;isinstance()&lt;/code&gt; at the compiled boundary, structural validation, safe exception handling using &lt;code&gt;pytest.raises&lt;/code&gt; substring matching, and &lt;code&gt;.pyi&lt;/code&gt; architecture. If anyone has any questions regarding the project I think this would serve as a good starting point (before the actual coding part of course).&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+What's left after I leave?
+&lt;/h3&gt;
+
+&lt;p&gt;The work on &lt;code&gt;astropy/erfa&lt;/code&gt; was pivoted to the external &lt;code&gt;pyerfa&lt;/code&gt; repository, so testing that boundary remains a future task for whoever manages that standalone package.&lt;/p&gt;
+
+&lt;p&gt;Beyond that, the primary future work is maintenance. When a new Cython extension is updated or a C-boundary changes, these isolated tests will immediately flag it. The &lt;code&gt;testing_extensions.rst&lt;/code&gt; guide exists specifically so future contributors don't have to stumble through the same trapdoors I did. Future contributors can use this suite as a blueprint to expand coverage into newer subpackages.&lt;/p&gt;
+
+&lt;p&gt;Sidenote: I plan on staying (long time). I'm not going to disappear just because GSoC is over but rather continue to contribute to this epic organization. I'll keep working, raising PRs, beefing with GitHub and most importantly, I'll help guide all those who stumble across Astropy just as Clément and Nathaniel were always there for me!!&lt;/p&gt;
+
+&lt;h3&gt;
+
+
+What I actually took away from this
+&lt;/h3&gt;
+
+&lt;p&gt;I came into GSoC thinking I was going to write tests. Somewhere along the way, I ended up learning how to actually reason about a mature codebase.&lt;/p&gt;
+
+&lt;p&gt;I learned that you have to read the C code before writing the Python test. I learned to question unexpected behavior rather than blindly cementing it into a test. I learned that CI is a judgmental gatekeeper, Git history tells a story, and numerical tolerances matter a whole lot more than just getting the test to pass. I learned that maybe breaking a huge problem into separate sections wasn't such a bad idea after all and it's this lesson that I'll be applying to my life as well.&lt;/p&gt;
+
+&lt;p&gt;Most importantly, I learned how maintainer-level review actually works. The feedback I got wasn't just "fix this bug," it was "let's structure this so it's statically typed, mathematically locked, and future-proof." And it really shaped my journey. I mean the Reem from January decided to open her very first PR and make huge changes in 4 different files, which ultimately was pretty overwhelming and she closed the PR. My point is that I have grown as a contributor and that makes me so very proud. &lt;/p&gt;
+
+&lt;h3&gt;
+
+
+A HUGE thank you
+&lt;/h3&gt;
+
+&lt;p&gt;All this is just because I had the BEST mentors EVER, Clément Robert (@neutrinoceros), and Nathaniel Starkman (@nstarman).&lt;/p&gt;
+
+&lt;p&gt;Clément, thank you for never once making me feel dumb for asking the same question twice, and for having the patience to let me actually sit with a hard bug instead of just handing me the fix. For taking time out from your busy schedule every week, just so that I could ask you all the questions I saved, and to go through my code, suggest changes and help me understand all the whys. You didn't just correct my code, you really changed how I think about coding. I came into this summer knowing how to write Python and I'm ending it knowing how to reason about the machine underneath.&lt;/p&gt;
+
+&lt;p&gt;Nathaniel, thank you for being just as generous with your time, and just as willing to slow down and explain something properly even when the answer must have felt obvious from where you were standing. &lt;/p&gt;
+
+&lt;p&gt;Having two mentors who both cared this much about getting it right, and not just getting it merged, made all the difference. And I couldn't be more grateful!&lt;/p&gt;
+
+&lt;p&gt;To the OpenAstronomy and Astropy community: thank you for letting me poke around the raw engine of your library.&lt;/p&gt;
+
+&lt;p&gt;Until next time,&lt;br&gt;
+Reem &amp;lt;3&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/08/20260816_1535_reemhamraz/</guid><pubDate>Sun, 16 Aug 2026 14:35:15 GMT</pubDate></item><item><title>Weeks 9 &amp; 10: Slicing, Profiles and a New Factory</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260811_0543_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;h3 style="text-align: left;"&gt; Slicing, Profiles and a New Factory 🚀&lt;/h3&gt;
 &lt;p class=""&gt;The last two weeks have been a pretty interesting mix of working on spectrogram slicing and starting to look at one of the bigger architectural changes in &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;A lot of the work this time was about understanding how the different pieces fit together and figuring out how to make things easier for users and contributors.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -502,140 +757,4 @@ xlog, ylog, ylogerr, nsamples = rebin_data_log(freq, power, f)
 # Plot on a log-log scale
 p2 = plot(freq, power, label="Original Power", xlabel="Frequency (Hz)", ylabel="Power", xscale=:log10, yscale=:log10, alpha=0.5, marker=:circle, markersize=2, seriestype=:scatter)
 plot!(p2, xlog, ylog, label="Log-Rebinned Power (f=0.1)", linewidth=3, color=:red)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH-Gm31EyvgH8rQ_G8IqIFdktW8P9CYJ7cZQqJs7CeiM_OEpMBEZ8Y-KoCLqN0wRNfPdskcfaI7V6vnQZDKEq3ElKO1jzDfRSQWudIxraH-r9yAV546A5K5LjXHGr3rOAZMhwdgAA4UVe2oq8FaL1mRdJxWPJIhzmrbErLtmBcgthCG3f-VXARmaLywaDA/s600/rebin_log.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="430" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH-Gm31EyvgH8rQ_G8IqIFdktW8P9CYJ7cZQqJs7CeiM_OEpMBEZ8Y-KoCLqN0wRNfPdskcfaI7V6vnQZDKEq3ElKO1jzDfRSQWudIxraH-r9yAV546A5K5LjXHGr3rOAZMhwdgAA4UVe2oq8FaL1mRdJxWPJIhzmrbErLtmBcgthCG3f-VXARmaLywaDA/w647-h430/rebin_log.png" width="647"&gt;&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; text-align: center; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;i&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;span id="docs-internal-guid-1f8900ae-7fff-cae2-347d-fc9c1f2b55ff"&gt;&lt;span style="font-family: Arial, sans-serif; font-size: 11pt; font-variant: normal; vertical-align: baseline;"&gt;Logarithmic Rebinning&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="white-space: pre-wrap;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;&lt;span style="font-size: 16pt; font-weight: 400;"&gt;&lt;!--more--&gt;&lt;/span&gt;&lt;span style="font-family: georgia;"&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;This function returns the new bin midpoints (xlog), the rebinned power (ylog), the propagated errors (ylogerr), and the number of original samples combined into each new bin (nsamples). As &lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;expected, the higher frequency bins are significantly wider in linear space, which cleans up the high-frequency noise beautifully on a log-log plot.&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;/p&gt;&lt;h3 style="line-height: 1.38; margin-bottom: 4pt; margin-top: 16pt; text-align: left;"&gt;&lt;span style="color: #434343; font-variant: normal; vertical-align: baseline;"&gt;What's Next?&lt;/span&gt;&lt;/h3&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;Both of these functions fully support propagating errors via quadrature and properly handle Complex numbers, which is essential when rebinning cross-spectra. We're excited to have these core utilities merged!&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;Stay tuned for more updates as we continue porting spectral timing capabilities to Julia!&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260715_1426_omiii-215/</guid><pubDate>Wed, 15 Jul 2026 13:26:03 GMT</pubDate></item><item><title>Coming up for Air</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260710_1453_reemhamraz/</link><dc:creator>Reem Hamraz</dc:creator><description>&lt;p&gt;After the absolute gauntlet of the past few weeks, this week finally offered a little bit of breathing room. I'm not going to lie, I needed it. But "lighter" in the open-source world doesn't mean stopping; it just means you finally have the time to sit back and actually think before you code.&lt;/p&gt;
-
-&lt;h3&gt;
-&lt;!-- TEASER_END --&gt;
-
-
-Writing .pyi Stub Files
-&lt;/h3&gt;
-
-&lt;p&gt;A good chunk of my time went into writing &lt;code&gt;.pyi&lt;/code&gt; stub files. It sounds mundane on the surface, like just writing Python type hints, BUT it's actually this bizarre, highly precise exercise in translation. You are basically acting as a diplomat between the ruthless C-engine and Python's static type checkers. It's microscopic work. Every single argument has to align perfectly with how the C-level memory actually allocates it, otherwise the whole illusion shatters. It requires a sort of discipline.&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-My Main Target
-&lt;/h3&gt;
-
-&lt;p&gt;But my main focus, and what I'm gearing up to dive back into, is the &lt;code&gt;unit_list_proxy.c&lt;/code&gt; file.&lt;/p&gt;
-
-&lt;p&gt;There is a nasty runtime dependency lurking in there. Right now, the C-code aggressively tries to import a massive Python library the second it gets created, locking everything into this heavy, tangled cycle. For a minute, I was dreading having to do a complete, tear-it-down-to-the-studs refactor just to untangle it.&lt;/p&gt;
-
-&lt;p&gt;Thankfully, I pitched an alternative to my mentor, Clément, and he gave me the green light to run with it. We'll see how that goes.&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-The fix?
-&lt;/h3&gt;
-
-&lt;p&gt;Instead of a massive rewrite, we are going to use &lt;strong&gt;structural sub-typing&lt;/strong&gt; which is a more specific form of &lt;strong&gt;duck typing&lt;/strong&gt; (I guess don't come at me if I'm wrong) right at the C-level. Rather than forcing the C-engine to check an object's exact, official DNA (which requires importing the whole Python library), we are just going to check its behavior. Does it have the method we need? If it walks like a duck and quacks like a duck, the C-engine will blindly trust that it's a duck and process it.&lt;/p&gt;
-
-&lt;p&gt;It is such an elegant workaround. It completely severs the nasty dependency chain without us having to burn the house down to fix the plumbing (I was pretty proud of actually thinking about it).&lt;/p&gt;
-
-&lt;h3&gt;
-
-
-Thoughts..
-&lt;/h3&gt;
-
-&lt;p&gt;It's a smarter, cleaner way forward. The C-layer is still intimidating, but for the first time in a while, I feel like I'm actually outsmarting the machine instead of just wrestling with it.&lt;/p&gt;
-
-&lt;p&gt;Back into the dark I go.&lt;/p&gt;</description><category>Astropy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260710_1453_reemhamraz/</guid><pubDate>Fri, 10 Jul 2026 13:53:14 GMT</pubDate></item><item><title>GSoC 2026 Weeks 3-4: Building the First Pieces of XraySpectra.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_1320_jamesrafe/</link><dc:creator>James</dc:creator><description>&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Moving from loading files to using them&lt;/strong&gt;&lt;/p&gt;
-
-
-&lt;!-- TEASER_END --&gt;
-
-&lt;figure class="wp-block-image size-large"&gt;&lt;img alt="" class="wp-image-124" height="420" src="https://jamesraffertylee.wordpress.com/wp-content/uploads/2026/07/image.png?w=1024" width="1024"&gt;&lt;/figure&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;During weeks 3 and 4, the project started to feel less like “can I read this FITS file?” and more like “can someone actually use this package on real data?”&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;After getting the basic OGIP pieces loaded, I worked more on how the pieces fit together: PHA files, RMFs, ARFs, backgrounds, and the higher-level dataset loader. A lot of the work was still small and careful, but the direction became clearer. The package should not just expose a pile of parsed FITS columns. It should give users the parts of an observation in a way that makes sense.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;One useful change was moving toward &lt;code&gt;read_dataset&lt;/code&gt; as the higher-level loader name. A PHA file is already the spectrum-like data, so calling the full observation loader &lt;code&gt;read_spectrum&lt;/code&gt; felt a little confusing. &lt;code&gt;read_dataset&lt;/code&gt; better describes what is happening: read the spectrum, and optionally read the response, ancillary response, and background too.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Response folding&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;A big part of these weeks was response folding. This is where the model or flux is passed through the instrument response to predict what the detector would see.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;At first, the math looked simple:&lt;/p&gt;
-
-
-&lt;div class="wp-block-code"&gt;
-&lt;div class="cm-editor"&gt;
-&lt;div class="cm-scroller"&gt;
-
-&lt;pre&gt;
-&lt;code&gt;&lt;div class="cm-line"&gt;response matrix * flux&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;p class="wp-block-paragraph"&gt;But as usual, the details matter. The ARF has effective area values, and the RMF redistributes photons from true energy bins into detector channels. Combining the ARF and RMF means scaling the response matrix by the effective area before folding.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;I also learned more about performance here. Some response matrices can be sparse, so preserving sparsity matters. Otherwise, a matrix operation that looks harmless could accidentally allocate a much larger dense matrix. This led to improving &lt;code&gt;combine!&lt;/code&gt; so it could work better with sparse matrices instead of creating unnecessary temporary arrays.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Rebinning and real data&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;Another major topic was rebinning. The important idea is that rebinning should be explicit. The package should not silently change a user’s data just because two grids do not match.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;For channel rebinning, the basic idea is simple: combine neighboring detector channels and preserve the right quantities. Counts should be summed. Bad quality flags should propagate if any channel in the group is bad. Errors need more care, especially depending on whether they are Poisson or explicitly provided numeric errors.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;I spent time comparing this with how &lt;code&gt;SpectralFitting.jl&lt;/code&gt; already approaches grouping and rebinning. That helped keep the new package from drifting too far away from the ecosystem it is supposed to support.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;Testing with real files&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;A lot of these weeks were also about test data. Instead of committing large binary files directly, I worked on using Julia artifacts and GitHub release assets so tests can download data only when needed. That seems like the right direction for real mission files, because FITS files can get large very quickly.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;I also started looking outside X-rays a bit. I inspected JWST and MAST products to understand what “spectrum loading” might mean for infrared data. That was useful because JWST products are not all the same shape. Some are already extracted 1D spectra, while others are 2D spectral images, imaging products, or source catalogs.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;That made the boundary clearer again: extracted 1D products like &lt;code&gt;x1d&lt;/code&gt; are closer to SpectrumBase. 2D images or slitless spectroscopy products may need more thought before forcing them into the same interface.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;&lt;strong&gt;What I learned&lt;/strong&gt;&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;The main thing I learned in weeks 3 and 4 is that a loader is also an interface design problem.&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;It is not enough to parse the file correctly. The package also needs to make the scientific meaning hard to misuse. Is this detector channel data or physical energy data? Has the ARF already been folded in? Is this one spectrum or many spectra? Are we looking at a 1D extracted product or a 2D image?&lt;/p&gt;
-
-
-
-&lt;p class="wp-block-paragraph"&gt;These questions kept showing up in different forms. The work is still incremental, but I feel like I understand the shape of the problem much better now. The next steps are to keep tightening the loader API, improve rebinning behavior, and keep testing against real mission data instead of only artificial examples.&lt;/p&gt;</description><category>JuliaAstro</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260706_1320_jamesrafe/</guid><pubDate>Mon, 06 Jul 2026 12:20:27 GMT</pubDate></item></channel></rss>
+&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;span&gt;&lt;!--more--&gt;&lt;/span&gt;&lt;div class="separator" style="clear: both; text-align: center;"&gt;&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH-Gm31EyvgH8rQ_G8IqIFdktW8P9CYJ7cZQqJs7CeiM_OEpMBEZ8Y-KoCLqN0wRNfPdskcfaI7V6vnQZDKEq3ElKO1jzDfRSQWudIxraH-r9yAV546A5K5LjXHGr3rOAZMhwdgAA4UVe2oq8FaL1mRdJxWPJIhzmrbErLtmBcgthCG3f-VXARmaLywaDA/s600/rebin_log.png" style="margin-left: 1em; margin-right: 1em;"&gt;&lt;img border="0" height="430" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjH-Gm31EyvgH8rQ_G8IqIFdktW8P9CYJ7cZQqJs7CeiM_OEpMBEZ8Y-KoCLqN0wRNfPdskcfaI7V6vnQZDKEq3ElKO1jzDfRSQWudIxraH-r9yAV546A5K5LjXHGr3rOAZMhwdgAA4UVe2oq8FaL1mRdJxWPJIhzmrbErLtmBcgthCG3f-VXARmaLywaDA/w647-h430/rebin_log.png" width="647"&gt;&lt;/a&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; text-align: center; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;i&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;span id="docs-internal-guid-1f8900ae-7fff-cae2-347d-fc9c1f2b55ff"&gt;&lt;span style="font-family: Arial, sans-serif; font-size: 11pt; font-variant: normal; vertical-align: baseline;"&gt;Logarithmic Rebinning&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/i&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="white-space: pre-wrap;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;&lt;span style="font-size: 16pt; font-weight: 400;"&gt;&lt;!--more--&gt;&lt;/span&gt;&lt;span style="font-family: georgia;"&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;This function returns the new bin midpoints (xlog), the rebinned power (ylog), the propagated errors (ylogerr), and the number of original samples combined into each new bin (nsamples). As &lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;expected, the higher frequency bins are significantly wider in linear space, which cleans up the high-frequency noise beautifully on a log-log plot.&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;/p&gt;&lt;h3 style="line-height: 1.38; margin-bottom: 4pt; margin-top: 16pt; text-align: left;"&gt;&lt;span style="color: #434343; font-variant: normal; vertical-align: baseline;"&gt;What's Next?&lt;/span&gt;&lt;/h3&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;Both of these functions fully support propagating errors via quadrature and properly handle Complex numbers, which is essential when rebinning cross-spectra. We're excited to have these core utilities merged!&lt;/span&gt;&lt;/p&gt;&lt;p dir="ltr" style="font-weight: 400; line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;&lt;span style="font-variant: normal; vertical-align: baseline;"&gt;Stay tuned for more updates as we continue porting spectral timing capabilities to Julia!&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style="font-size: 20pt; white-space: pre-wrap;"&gt;&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline;"&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;</description><category>stingray</category><guid>http://openastronomy.org/Universe_OA/posts/2026/07/20260715_1426_omiii-215/</guid><pubDate>Wed, 15 Jul 2026 13:26:03 GMT</pubDate></item></channel></rss>

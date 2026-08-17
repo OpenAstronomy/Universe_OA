@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12 Weeks of GSoC: A Lot Learned, A Lot More to Do | Universe OpenAstronomy</title>
+<link href="../../../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../../../rss.xml">
+<link rel="canonical" href="http://openastronomy.org/Universe_OA/posts/2026/08/20260816_1804_amityush-lgtm/">
+<!--[if lt IE 9]><script src="../../../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Kumar Amityush">
+<link rel="prev" href="../20260816_1535_reemhamraz/" title="Learning to Speak C &amp; Cython: My GSoC Summer with Astropy" type="text/html">
+<meta property="og:site_name" content="Universe OpenAstronomy">
+<meta property="og:title" content="12 Weeks of GSoC: A Lot Learned, A Lot More to Do">
+<meta property="og:url" content="http://openastronomy.org/Universe_OA/posts/2026/08/20260816_1804_amityush-lgtm/">
+<meta property="og:description" content="A Lot Learned, A Lot More to Do 🚀And just like that, 12 weeks of GSoC are over!The last two weeks have been quite different from the earlier ones. There was a lot of finishing up, reviewing, fixing th">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-08-16T18:04:57+01:00">
+<meta property="article:tag" content="SunPy">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-expand-md static-top mb-4
+navbar-dark
+bg-dark
+"><div class="container">
+<!-- This keeps the margins nice -->
+        <a class="navbar-brand" href="../../../../">
+
+            <span id="blog-title">Universe OpenAstronomy</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="bs-navbar">
+            <ul class="navbar-nav mr-auto">
+<li class="nav-item">
+<a href="../../../../archive.html" class="nav-link">Archive</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../categories/" class="nav-link">Tags</a>
+                </li>
+<li class="nav-item">
+<a href="../../../../rss.xml" class="nav-link">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="navbar-nav navbar-right"></ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        
+            <style>
+@media screen and (max-width: 600px) {
+.table-done {
+    visibility: hidden;
+    clear: both;
+    padding: 0px 300px;
+    width: 50%;
+    display: block;
+  }
+}
+            </style>
+<div class="sidebar" style="width:100%; max-width:100%; float:initial; margin:0px;"><ul>
+<li>
+                   <img src="https://github.com/juliaastro.png?size=40" height="16" width="16"><a href="https://jamesraffertylee.wordpress.com" data-toggle="tooltip" data-placement="top" title="2026-07-26 15:28:59+01:00" style="color:rgb(255,0,0)">
+                    James
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">❌</span></span>
+                </li>
+<li>
+                   <img src="https://cdn.rawgit.com/sunpy/sunpy-logo/master/generated/sunpy_icon.svg" height="16" width="16"><a href="https://sunpy-radiospectra.blogspot.com" data-toggle="tooltip" data-placement="top" title="2026-08-16 18:04:57+01:00">
+                    Kumar Amityush
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/lincc-frameworks.png?size=40" height="16" width="16"><a href="https://imporving-pyarrow-for-nested-structures.hashnode.dev" data-toggle="tooltip" data-placement="top" title="2026-06-14 12:08:19+01:00" style="color:rgb(255,0,0)">
+                    Om Biradar
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">❌</span></span>
+                </li>
+<li>
+                   <img src="https://github.com/StingraySoftware.png?size=40" height="16" width="16"><a href="https://spectral-timing-julia.blogspot.com" data-toggle="tooltip" data-placement="top" title="2026-08-08 15:37:12+01:00">
+                    Om S Habib
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">✅</span></span>
+                </li>
+<li>
+                   <img src="https://raw.githubusercontent.com/astropy/astropy-logo/master/astropy_logo_notext.svg" height="16" width="16"><a href="https://dev.to/reemhamraz" data-toggle="tooltip" data-placement="top" title="2026-08-16 15:35:15+01:00">
+                    Reem Hamraz
+                   </a>
+                   <span class="table-done" style="float: right; padding-right:600px;"><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-01 - 2026-05-25">❌</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-05-25 - 2026-06-08">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-08 - 2026-06-22">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-06-22 - 2026-07-06">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-06 - 2026-07-20">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-07-20 - 2026-08-03">✅</span><span style="display:table-cell; width:7%;" data-toggle="tooltip" title="2026-08-03 - 2026-08-17">✅</span></span>
+                </li>
+</ul></div>
+        
+        
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">12 Weeks of GSoC: A Lot Learned, A Lot More to Do</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">
+                    <a class="u-url" href="../../../../authors/kumar-amityush/">Kumar Amityush</a>
+            </span></p>
+            <p class="dateline">
+            <a href="." rel="bookmark">
+            <time class="published dt-published" datetime="2026-08-16T18:04:57+01:00" itemprop="datePublished" title="2026-08-16 18:04">2026-08-16 18:04</time></a>
+            </p>
+            
+
+                    <p class="linkline"><a href="https://sunpy-radiospectra.blogspot.com/2026/08/12-weeks-of-gsoc-lot-learned-lot-more.html">Original site</a></p>
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <p></p>
+<h2>A Lot Learned, A Lot More to Do 🚀</h2>
+<p>And just like that, <strong>12 weeks of GSoC are over!</strong></p>
+<p>The last two weeks have been quite different from the earlier ones. There was a lot of finishing up, reviewing, fixing things that broke along the way and making sure the bigger pieces of the project were coming together properly.</p>
+<p>Here's what I've been up to.</p>
+<h3>Learning to Write Less Code 😅</h3>
+<p>One of the biggest lessons from these weeks actually came from a code review.</p>
+<p>I had previously added some custom methods for getting time and frequency profiles from a spectrogram. The code worked, but there were some change of plans, during review we realized that <b><code>ndcube</code> </b>already provided the functionality needed to achieve the same thing.</p>
+<p>So instead of keeping the extra code, I removed it and focused on showing users how to use the existing <b><code>ndcube</code> </b>methods.</p>
+<p>It was a really good reminder that <strong>adding more code isn't always the right solution</strong>.</p>
+<p>Sometimes the better approach is to make better use of what already exists.</p>
+<hr>
+<h3>Making the Examples More Useful 📚</h3>
+<p>After removing the custom wrappers, I wanted to make sure users could still easily understand how to perform these operations.</p>
+<p>I worked on a Sphinx-Gallery example showing how to crop spectrograms and extract profiles using the <code>ndcube</code> API.</p>
+<p>The example covers cropping by time, cropping by frequency, combining both and extracting 1D profiles.</p>
+<p></p>
+<div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/a/AVvXsEg6vWMP08O8A4z4svI3BzWw6F0ELnbUbqxBWEXjNWYk1rMBpz36BjVE3XHZXmVnrTXFKWqp0oK7WxqL-W_O6LWMmkbe0dzCSwQ8KlnsQDvJXuiIJnOI6ePn8lYAtLYQniv7PBKmA-noj4Sy_70CONLO5NjjvyGBLKahuw2oiXVI0ptemiRyx5pEC_eajLo" style="margin-left: 1em; margin-right: 1em;"><img alt="" height="290" src="https://blogger.googleusercontent.com/img/a/AVvXsEg6vWMP08O8A4z4svI3BzWw6F0ELnbUbqxBWEXjNWYk1rMBpz36BjVE3XHZXmVnrTXFKWqp0oK7WxqL-W_O6LWMmkbe0dzCSwQ8KlnsQDvJXuiIJnOI6ePn8lYAtLYQniv7PBKmA-noj4Sy_70CONLO5NjjvyGBLKahuw2oiXVI0ptemiRyx5pEC_eajLo=w579-h290" width="579"></a></div>
+<br><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/a/AVvXsEiOTPP3McOdbhfvbgoCEKulPj6i-C6BxfAYQA1Thb2VvWMo6-KQx4yIfkNBJxiRsh7BV-xvoc3g8jJfT6ArQbkBhM2Jjkgl_A2f42F2ziUNyNrWSoDDevfeQvysti7xxlXujZpWw5dGRzZj_w6y-XBeyyrCMbYnfQmFv_wujNSE1ZEr4IZTdccHsNW7Mgo" style="margin-left: 1em; margin-right: 1em;"><img alt="" height="284" src="https://blogger.googleusercontent.com/img/a/AVvXsEiOTPP3McOdbhfvbgoCEKulPj6i-C6BxfAYQA1Thb2VvWMo6-KQx4yIfkNBJxiRsh7BV-xvoc3g8jJfT6ArQbkBhM2Jjkgl_A2f42F2ziUNyNrWSoDDevfeQvysti7xxlXujZpWw5dGRzZj_w6y-XBeyyrCMbYnfQmFv_wujNSE1ZEr4IZTdccHsNW7Mgo=w580-h284" width="580"></a></div>
+<br><br><br><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/a/AVvXsEjn9GwthcIyCGsoqFzOYu9wI1d-oBEiQea6535IPyI4ALBkRDdiGMzC1JBoXR-OI2SuHoa0JGOU6vDRMRCTkD_n_VGbExe9HlINApUnbjOCdBwbsUkehAA3RhhYnXY0Am0SLNiJjJxiPwrD3ZQ9KTH7-86MH2Ylm88VLRU3WkheB-dqAU3_mrIly4SaPr0" style="margin-left: 1em; margin-right: 1em;"><img alt="" height="289" src="https://blogger.googleusercontent.com/img/a/AVvXsEjn9GwthcIyCGsoqFzOYu9wI1d-oBEiQea6535IPyI4ALBkRDdiGMzC1JBoXR-OI2SuHoa0JGOU6vDRMRCTkD_n_VGbExe9HlINApUnbjOCdBwbsUkehAA3RhhYnXY0Am0SLNiJjJxiPwrD3ZQ9KTH7-86MH2Ylm88VLRU3WkheB-dqAU3_mrIly4SaPr0=w579-h289" width="579"></a></div>
+<br><br><p></p>
+<p>I also changed the example based on mentor feedback so that the explanation, code and plots appear step by step instead of having all the plots at the end.</p>
+<p>I think it makes the whole example much easier to follow.</p>
+<hr>
+<h3>Finally Finishing the Factory Migration 🔧</h3>
+<p>The biggest piece of work during these two weeks was completing the <code><b>SpectrogramFactory</b></code> migration.</p>
+<p>I had previously migrated <b>WAVES</b> and <b>e-CALLISTO</b> and during these weeks I worked through the remaining instruments.</p>
+<p>The idea behind the new design is to keep the factory simple:</p>
+<p><strong>Before:</strong></p>
+<p><code><b>Read everything → Find instrument → Create spectrogram</b></code></p>
+<p><strong>Now:</strong></p>
+<p><code><b>Read basic information → Find instrument → Let the instrument parse the data</b></code></p>
+<p>The instrument-specific parsing now lives inside the individual instrument classes through <code><b>from_raw()</b></code> instead of having all of it inside the factory.</p>
+<p>Getting all the instruments moved over was definitely one of the bigger milestones of my GSoC project.</p>
+<hr>
+<h3>The Final Few Fixes 🛠️</h3>
+<p>Of course, finishing a large refactor also meant dealing with a few unexpected things.</p>
+<p>I worked through some documentation build issues, resolved merge conflicts while keeping <code><b>ndcube-refactor</b></code> up to date with <code><b>main</b> </code>and fixed a few smaller issues that came up along the way.</p>
+<p>These weren't necessarily the most exciting changes, but they were a good reminder that a project doesn't end when the main code is written. There's always testing, documentation, reviews and cleanup.</p>
+<hr>
+<h3 class="PDq2pG_selectionAnchorContainer">12 Weeks Done… But Not Finished Yet 🚀<span class="PDq2pG_selectionAnchor"></span>
+</h3>
+<p>And that's officially <strong>12 weeks of GSoC done!</strong></p>
+<p>Looking back, it's honestly hard to believe how much I've learned in these three months. I started with a lot of questions about the codebase and now I'm working on things like the architecture of the <code>SpectrogramFactory</code>, <code>ndcube</code> integration, documentation, testing and all the little things that come with maintaining an open-source project.</p>
+<!-- TEASER_END -->
+<p>But even though the official GSoC period has come to an end, <strong>there's still plenty left to do.</strong></p>
+<p>There are reviews to finish, things I'd like to improve and ideas that I didn't get the chance to explore fully during these 12 weeks.</p>
+<p>And honestly, I'm still very excited to keep working on <code><b>radiospectra</b></code>.</p>
+<p class="">One of the biggest things GSoC gave me wasn't just the code I contributed, but the feeling that I can actually be part of an open-source project and continue contributing even after the program ends.</p>
+<p>So this isn't really a goodbye.</p>
+<p>It's more like:</p>
+<p><strong>12 weeks down. Let's see what comes next. ❤️</strong></p>
+<p>A huge thank you to <strong><a href="https://github.com/samaloney" target="_blank">Shane Maloney</a> and <a href="https://github.com/samaloney" target="_blank">Laura Hayes</a></strong> for all the reviews, discussions, patience and guidance throughout these weeks. I've learned something from almost every review and conversation and I'm really grateful for that.</p>
+<p>And of course, thanks to the entire <strong><a href="https://sunpy.org/" target="_blank">SunPy</a> and <a href="https://openastronomy.org/" target="_blank">OpenAstronomy</a> community</strong> for making these 12 weeks such a great experience.</p>
+<p><strong>GSoC may be ending, but I'm definitely not done with radiospectra yet. </strong></p>
+<p><strong>Peace Out ✌🚀</strong></p>
+<h3></h3>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../../../categories/sunpy/" rel="tag">SunPy</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../20260816_1535_reemhamraz/" rel="prev" title="Learning to Speak C &amp; Cython: My GSoC Summer with Astropy">Previous post</a>
+            </li>
+        </ul></nav></aside></article><!--End of body content--><footer id="footer">
+            Contents © 2026         <a href="mailto:openastronomy@openastronomy.com">OpenAstronomy</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+<a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons License BY-SA" style="border-width:0; margin-bottom:12px;" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a>
+            
+            
+        </footer>
+</div>
+</div>
+
+
+        <script src="../../../../assets/js/all-nocdn.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element){var i=element.getElementsByTagName('img')[0];return i===undefined?'':i.alt;}});
+    </script>
+</body>
+</html>
