@@ -1,0 +1,314 @@
+.. title: My GSoC 2026 Journey (Final Report): 12 Weeks of Learning and Contributing
+.. slug:
+.. date: 2026-08-19 15:13:00 
+.. tags: SunPy
+.. author: Kumar Amityush
+.. link: https://sunpy-radiospectra.blogspot.com/2026/08/my-gsoc-2026-journey-final-report-12.html
+.. description:
+.. category: gsoc2026
+
+
+.. raw:: html
+
+    <p></p><h2 style="text-align: left;">12 Weeks of Learning and Contributing to SunPy</h2><div>
+    <p>I’m really grateful that I got the opportunity to work on <code><b>radiospectra</b></code> during GSoC. Over these 12 weeks, I got to work across several areas of the project - from the <code><b>ndcube</b></code> migration and metadata to plotting, testing, documentation, support for different data sources and eventually the <code><b>SpectrogramFactory</b></code> redesign.</p><p class="PDq2pG_selectionAnchorContainer">
+    </p><p>What made the experience especially valuable was getting to learn from my mentors and the wider <b>SunPy</b> community along the way. Each review, discussion and challenge helped me understand the project better and become more thoughtful about how I approach a change.</p>
+    <!-- TEASER_END -->
+    <hr />
+    <h2><span>Before GSoC: Getting Started with <code>radiospectra</code></span></h2>
+    <p>My GSoC work actually started before the official coding period.</p>
+    <p>I had already made a few contributions to <code><b>radiospectra</b></code>&nbsp;including restoring the <b>WIND/WAVES</b> client, fixing time and frequency handling in plotting and migrating network clients to newer <b>SunPy</b> APIs.</p>
+    <p>Some of my early contributions were:</p>
+    <ul>
+    <li>
+    <strong>PR #142:</strong>&nbsp;<a href="https://github.com/sunpy/radiospectra/pull/142" target="_blank">Migrate network clients to the new unified Scraper format</a></li>
+    <li>
+    <strong>PR #144:</strong>&nbsp;<a href="https://github.com/sunpy/radiospectra/pull/144" target="_blank">Fix non-UTC time handling in spectrogram plotting</a></li>
+    <li>
+    <strong>PR #151:</strong>&nbsp;<a href="https://github.com/sunpy/radiospectra/pull/151" target="_blank">Fix mixed frequency units while plotting</a></li>
+    <li>
+    <strong>PR #158:</strong>&nbsp;<a href="https://github.com/sunpy/radiospectra/pull/158" target="_blank">Restore the WIND/WAVES Fido client</a></li>
+    </ul>
+    <p>These contributions helped me become familiar with the codebase and made me understand the project better.</p>
+    <p>They also gave me an early idea of how different contributing to an existing open-source project is from building something on your own. You have to understand the existing architecture, conventions, tests and the reasoning behind previous decisions before making changes.</p>
+    <hr />
+    <h1><span>Moving <code>GenericSpectrogram</code> to <code>ndcube</code></span></h1>
+    <p>One of the main goals of my project was to move <code><b>GenericSpectrogram</b></code> towards <code><b>ndcube.NDCube</b></code>.</p>
+    <p>This was an important architectural change because <code><b>NDCube</b></code> already provides functionality that is very useful for spectrogram data, including coordinate-aware operations, WCS handling, slicing and unit-aware data handling.</p>
+    <p>Instead of maintaining similar functionality inside <code><b>radiospectra</b></code>, the idea was to build on top of the existing <code><b>ndcube</b></code> ecosystem.</p>
+    <p>My work included:</p>
+    <ul>
+    <li>
+    Making <code><b>GenericSpectrogram</b></code> inherit from <code><b>NDCube</b></code>
+    </li>
+    <li>
+    Building the spectrogram WCS from its time and frequency axes
+    </li>
+    <li>
+    Fixing coordinate ordering in the WCS
+    </li>
+    <li>
+    Updating plotting mixins to work with the new <code><b>NDCube</b></code> structure
+    </li>
+    <li>
+    Updating tests and instrument integrations affected by the change
+    </li>
+    </ul>
+    <h3><span>PR #228: <a href="https://github.com/sunpy/radiospectra/pull/228" target="_blank">Initial <code>GenericSpectrogram</code> base using NDCube</a></span></h3>
+    <p><strong>Status: Merged</strong></p>
+    <p>This became the foundation for several of the changes that followed.</p>
+    <p>Once <code><b>GenericSpectrogram</b></code> started using <code><b>NDCube</b></code>, it also changed how I approached some of the other features I had planned. In several cases, functionality I initially thought needed to be implemented in <b><code>radiospectra</code> </b>was already available through <code><b>ndcube</b></code>.</p>
+    <p>That became particularly important when I started working on slicing and profiles.</p>
+    <hr />
+    <h1>Structuring Spectrogram Metadata</h1>
+    <p>Another major part of the project was improving metadata handling.</p>
+    <p>Previously, spectrogram metadata was essentially represented as dictionaries. While this worked, it made it harder to clearly define which metadata fields were expected and how instrument-specific metadata should be handled.</p>
+    <p>I introduced a metadata hierarchy with a common <b><code>SpectrogramMeta</code> </b>class and instrument-specific classes</p><ul>
+    </ul>
+    <h3>PR #245: <a href="https://github.com/sunpy/radiospectra/pull/245" target="_blank">Add spectrogram metadata classes</a></h3>
+    <p><strong>Status: Merged</strong></p>
+    <p>The goal was to give metadata a more structured interface while still allowing individual instruments to define their own requirements.</p>
+    <p>This also became useful later during the <code><b>SpectrogramFactory</b></code> migration, where the factory needed to work with lightweight metadata before handing the actual parsing over to the appropriate instrument class.</p>
+    <br /></div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjpoKgt7m6rKvzXl-1TLKg8PQAZuNnfN4YbGBGOkkWw0XZibpDMG0LTpRtYcGmKTfcgzVE2fQ4dP4MKzhumHUViAB5gkEoOCYVBf6Dd4OQgfCsxKENGIKowkHtFitnlXZZ3557FZ3N_UGkLuzIpRG0DfQBIqzOU-tbkoI7TsdN3WfiofFiCjUqThY-kXHQ/s4730/class_heirarchy_diagram.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="640" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjpoKgt7m6rKvzXl-1TLKg8PQAZuNnfN4YbGBGOkkWw0XZibpDMG0LTpRtYcGmKTfcgzVE2fQ4dP4MKzhumHUViAB5gkEoOCYVBf6Dd4OQgfCsxKENGIKowkHtFitnlXZZ3557FZ3N_UGkLuzIpRG0DfQBIqzOU-tbkoI7TsdN3WfiofFiCjUqThY-kXHQ/w445-h640/class_heirarchy_diagram.png" width="445" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /><span><a name="more"></a></span></div><div>
+    <h1>Testing, Plotting and Data Sources</h1>
+    <p>Alongside the larger architectural work, I also worked on testing, plotting and adding support for additional data sources.</p>
+    <h3>PR #202: <a href="https://github.com/sunpy/radiospectra/pull/202" target="_blank">Online integration tests</a></h3>
+    <p><strong>Status: Merged</strong></p>
+    <p>I added integration tests using real online data sources. These were useful for catching problems that weren't always visible when working only with local test data.</p>
+    <h3>PR #240: <a href="https://github.com/sunpy/radiospectra/pull/240" target="_blank">Figure testing for WAVES</a></h3>
+    <p><strong>Status: Merged</strong></p>
+    <p>I added <code><b>pytest-mpl</b></code> based figure comparisons to help detect visual regressions in plotting.</p>
+    <p>This was particularly useful for a project where plotting is an important part of how users interact with spectrogram data.</p>
+    <h3>PR #231: <a href="https://github.com/sunpy/radiospectra/pull/231" target="_blank">Nançay Decameter Array support</a></h3>
+    <p><strong>Status: Merged</strong></p>
+    <p>This added support for <b>Nançay Decameter Array</b> observations.</p>
+    <h3>PR #227: <a href="https://github.com/sunpy/radiospectra/pull/227" target="_blank">Example Gallery setup</a></h3>
+    <p><strong>Status: Merged</strong></p>
+    <p>This introduced an Example Gallery to the documentation using sphinx-gallery following the same configuration and directory structure as <b>SunPy</b>.</p>
+    <p>These contributions were not all part of the refactor, but they helped strengthen the project around it, especially the testing and documentation infrastructure.</p>
+    <hr />
+    <h1>Adding CDAWeb Support for WIND and STEREO</h1>
+    <p>Another significant part of the project was adding CDAWeb CDF support.</p>
+    <h3>PR #254: <a href="https://github.com/sunpy/radiospectra/pull/254" target="_blank">Add CDAWeb CDF support for WIND and STEREO</a></h3>
+    <p><strong>Status: Under review</strong></p>
+    <p>The goal was to allow <b><code>radiospectra</code> </b>to read CDF data from <b>NASA's CDAWeb</b> and construct spectrograms from it.</p>
+    <p>The implementation involved handling things such as:</p>
+    <ul>
+    <li>
+    CDF variables and metadata
+    </li>
+    <li>
+    Time conversion
+    </li>
+    <li>
+    Invalid/fill values
+    </li>
+    <li>
+    Instrument identification
+    </li>
+    <li>
+    Frequency axes
+    </li>
+    <li>
+    Plotting the resulting spectrograms
+    </li>
+    </ul>
+    <p>The STEREO data also required some additional consideration because its LFR and HFR observations cover different frequency ranges and need to be represented appropriately.</p>
+    <div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-x9KM17efMKT7_GiiuSKWFVfI92iEjXUxaAj0jfHfm3Pgx28s9M3Ctr3oDYXTJHuTAvgJrL1bYzzcTsZPC0Xh7Uho2H2LN3XMnCV4p6p2bBtrKwE5a8ic0E0xSJjBWAhwJm1cr6dyVDHeL6odV-fqc08oumNy6aVQo8OBLS0NK1wj-fa-nXfCRDT8uU0/s883/cdaweb.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="327" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-x9KM17efMKT7_GiiuSKWFVfI92iEjXUxaAj0jfHfm3Pgx28s9M3Ctr3oDYXTJHuTAvgJrL1bYzzcTsZPC0Xh7Uho2H2LN3XMnCV4p6p2bBtrKwE5a8ic0E0xSJjBWAhwJm1cr6dyVDHeL6odV-fqc08oumNy6aVQo8OBLS0NK1wj-fa-nXfCRDT8uU0/w386-h327/cdaweb.png" width="386" /></a></div><div class="separator" style="clear: both; text-align: center;"><br /></div>
+    <hr />
+    <h1>A Lesson in Keeping the API Simple</h1>
+    <p>One of the more interesting parts of the project started with me trying to make spectrogram slicing more convenient.</p>
+    <p>I initially added methods such as:</p>
+    <pre class="overflow-visible! px-0!"><div class="relative w-full mt-4 mb-1"><div><div class="contents"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="relative h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback"><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!"><div class="sticky bg-token-border-light"></div></div></div><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div><div class="relative"><div><div class="relative z-0 flex h-full min-h-0 max-w-full"><div class="Rx43rG_codemirror z-10 flex h-full min-h-0 w-full flex-col items-stretch" dir="ltr" id="1b4ba20c-d568-4ab5-a30b-441f78ac33d6:0:editor"><div class="cm-editor ͼ1 ͼ3 ͼs ͼ16"><div class="cm-announced"></div><div class="cm-scroller" tabindex="-1"><div class="cm-content" contenteditable="false"><div class="cm-line"><b><i><span class="ͼ11">spec</span><span class="ͼv">.</span>crop_time(...)</i></b></div><div class="cm-line"><b><i><span class="ͼ11">spec</span><span class="ͼv">.</span>crop_freq(...)</i></b></div><div class="cm-line"><b><i><span class="ͼ11">spec</span><span class="ͼv">.</span>time_profile(...)</i></b></div><div class="cm-line"><b><i><span class="ͼ11">spec</span><span class="ͼv">.</span>line_profile(...)</i></b></div></div></div></div></div></div></div></div></div></div></div><div><div></div></div></div></div></div></div></div></div></pre>
+    <p>I also implemented internal helpers to convert physical values such as frequencies and times into the corresponding array indices.</p>
+    <p>The implementation worked and the tests were passing.</p>
+    <p>Then came the review.</p>
+    <p>The important point raised during review was that <code><b>GenericSpectrogram</b></code> already inherits from <code><b>ndcube.NDCube</b></code>, which provides coordinate-aware methods such as <code><b><i>.crop()</i></b></code> and <code><b><i>.crop_by_values()</i></b></code>.</p>
+    <p>So although my implementation worked, it was effectively adding another layer around functionality that already existed.</p>
+    <h3>PR #256: <a href="https://github.com/sunpy/radiospectra/pull/256" target="_blank">Add crop wrappers</a></h3>
+    <p><strong>Status: Merged</strong></p>
+    <h3>PR #262: <a href="https://github.com/sunpy/radiospectra/pull/262" target="_blank">Remove custom crop wrappers</a> (to remove the work done <a href="https://github.com/sunpy/radiospectra/pull/256" target="_blank">PR #256</a>)</h3>
+    <p><strong>Status: Merged</strong></p>
+    <p>We removed the custom wrappers and instead decided to demonstrate the existing <code><b>ndcube</b></code> functionality properly.</p>
+    <p>This was probably one of the most useful lessons I learned during GSoC:</p>
+    <blockquote>
+    <p><strong>A working implementation is not necessarily the right implementation.</strong></p>
+    </blockquote>
+    <p>It is very easy to think about how to add a feature. It is much more important to first ask whether the project already has the right abstraction for it.</p>
+    <hr />
+    <h1>Turning the Slicing Work into Documentation</h1>
+    <p>Removing the wrappers didn't mean that the original goal was lost.</p>
+    <p>I still wanted users to have an easy way to discover how to crop spectrograms and extract profiles.</p>
+    <p>So I moved the work into the example gallery.</p>
+    <h3>PR #263: <a href="https://github.com/sunpy/radiospectra/pull/263" target="_blank">Add gallery examples for cropping and extracting profiles</a></h3>
+    <p><strong>Status: Under review</strong></p>
+    <p>The example demonstrates how to use the native <code>ndcube</code> functionality for:</p>
+    <ul>
+    <li>
+    Cropping the time axis using <code><b><i>NDCube.crop()</i></b></code>
+    </li>
+    <li>
+    Cropping the frequency axis using <code><b><i>NDCube.crop_by_values()</i></b></code>
+    </li>
+    <li>
+    Cropping both axes together
+    </li>
+    <li>
+    Extracting a time profile
+    </li>
+    <li>
+    Extracting a frequency profile
+    </li>
+    </ul>
+    <p>One particularly useful part is that setting the lower and upper bounds to the same coordinate can collapse a dimension and produce a 1D profile.</p>
+    <div class="separator" style="clear: both; text-align: center;"><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWLfZMAq_0sJ6PBHbdicODlKAhg_3cZLJbznhuvxZm6TdXk3n5gaZbi9GR5PdwobEz2hngWlXXtFw7Z262s9_j-U4DRgot9AuU8bMUHkOCSS1PXAT71fDIoI8JBQnxuxfTBuW9DRTRI7cy9Rh6axn8Fe_O0-JLjJzJJ1wJUpQZZJunoNxvQetp_ziovPw/s1400/spectrogram_time_crop.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="239" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWLfZMAq_0sJ6PBHbdicODlKAhg_3cZLJbznhuvxZm6TdXk3n5gaZbi9GR5PdwobEz2hngWlXXtFw7Z262s9_j-U4DRgot9AuU8bMUHkOCSS1PXAT71fDIoI8JBQnxuxfTBuW9DRTRI7cy9Rh6axn8Fe_O0-JLjJzJJ1wJUpQZZJunoNxvQetp_ziovPw/w559-h239/spectrogram_time_crop.png" width="559" /></a></div><div class="separator" style="clear: both; text-align: center;">Time-Cropped Spectrogram</div><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgImpBLxWdBrKppvayGfN9VrsCCUcZSZJ3bwEvLK-GVEPtg0lmT1fi6Tmqd6-96NO6RKMk39K71nyFLVm8S43q68E3XiZhoO5dgQ-Jpn8k-vz87n7EyIjGa-0U7Ne9Gsm7nNZTtY-Bj4jzw06WU99m08ZSDvSLLphqrsTqzGgErxBoxoxa0grM9m6CjTW4/s1400/spectrogram_freq_crop.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="242" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgImpBLxWdBrKppvayGfN9VrsCCUcZSZJ3bwEvLK-GVEPtg0lmT1fi6Tmqd6-96NO6RKMk39K71nyFLVm8S43q68E3XiZhoO5dgQ-Jpn8k-vz87n7EyIjGa-0U7Ne9Gsm7nNZTtY-Bj4jzw06WU99m08ZSDvSLLphqrsTqzGgErxBoxoxa0grM9m6CjTW4/w567-h242/spectrogram_freq_crop.png" width="567" /></a></div><div class="separator" style="clear: both; text-align: center;">Frequency-Cropped Spectrogram</div><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPOXRWPQed1NGGRAsanhexqzu9_RZmPch_3qDgJ5N1pCedmpkg9WnG7Um6qf08mCpJtKqMy-fzEQpLEJJxBSKdw15S3XCooQiw433oxc-d1Ly7ZY4vRy06PU9tkekh5bg-vsTtbg3N9gvXnCJwWMoJXSPSRi2_YsDFsFz3_m3vqy_CVcHQwXngL022J9o/s1400/spectrogram_both_crop.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="244" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPOXRWPQed1NGGRAsanhexqzu9_RZmPch_3qDgJ5N1pCedmpkg9WnG7Um6qf08mCpJtKqMy-fzEQpLEJJxBSKdw15S3XCooQiw433oxc-d1Ly7ZY4vRy06PU9tkekh5bg-vsTtbg3N9gvXnCJwWMoJXSPSRi2_YsDFsFz3_m3vqy_CVcHQwXngL022J9o/w571-h244/spectrogram_both_crop.png" width="571" /></a></div><div class="separator" style="clear: both; text-align: center;">Time + Frequency Cropped Spectrogram</div><div class="separator" style="clear: both; text-align: center;"><br /></div><img border="0" height="241" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfpOYAB45E-YRnTuWbAp6eAaZ_htMFqG4Y-EURuHIWZ6fnHQ2qpPa_oslreUXgj2UqtL_Yr6lxRbF2zpGBH_ka58fNWgSr4YdAuZINcWy9fdF_4VbARoanznFyAkYiE_US5-eKdazZXac4grwXRcfTSCogalSxlxSpudblSGtyZYXIg-3OzoTF1wBJwu8/w565-h241/spectrogram_profiles.png" width="565" /></div><div class="separator" style="clear: both; text-align: center;">Time and Frequency Profiles</div><div class="separator" style="clear: both; text-align: center;"><br /></div>
+    <p class="PDq2pG_selectionAnchorContainer">I also changed the example based on the review feedback, keeping the explanation, code and plots together step by step. This made it much easier to follow instead of having all the code first and the plots at the end.<span class="PDq2pG_selectionAnchor"></span></p><p>
+    </p><p>It was also nice to see the slicing work come together this way. I started by trying to add new convenience methods but ended up showing users how to use the functionality that <code><b>ndcube</b></code> already provides.</p>
+    <hr />
+    <h1><span>The <code>SpectrogramFactory</code> Migration</span></h1>
+    <p>The largest architectural part of my GSoC project was the <code><b>SpectrogramFactory</b></code> migration.</p>
+    <p>Previously, the factory would do most of the parsing work before determining which instrument class should handle the file.<br /></p>
+    <p>The general flow was roughly:</p>
+    <pre class="overflow-visible! px-0!"><div class="relative w-full mt-4 mb-1"><div class="contents"><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="relative"><div class="pe-11 pt-3"><div class="relative z-0 flex h-full min-h-0 max-w-full"><div class="Rx43rG_codemirror z-10 flex h-full min-h-0 w-full flex-col items-stretch" dir="ltr" id="1b4ba20c-d568-4ab5-a30b-441f78ac33d6:1:editor"><div class="cm-editor ͼ1 ͼ3 ͼs ͼ16"><div class="cm-announced"></div><div class="cm-scroller" tabindex="-1"><div class="cm-content" contenteditable="false"><div class="cm-line"><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhT2DKb19mX73kgb_wKWUvFYQlDuEkRKDCs27biA2NyR_jQ811fhyJWIO37KB5AvLtKLAmwQcW8UBfXGN32EiWWOl1mkNX1K5qZlPHjuIYRF7sOoW900To3lXuxGcLvifX4XWW4SsYoR81aFV0eEBLnHcA70RFe8HIiu533rGbddnZrGS4YDzJMl7WgjP8/s2680/SpectrogramFactory%20Data%20Flow-2026-08-19-142326.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="400" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhT2DKb19mX73kgb_wKWUvFYQlDuEkRKDCs27biA2NyR_jQ811fhyJWIO37KB5AvLtKLAmwQcW8UBfXGN32EiWWOl1mkNX1K5qZlPHjuIYRF7sOoW900To3lXuxGcLvifX4XWW4SsYoR81aFV0eEBLnHcA70RFe8HIiu533rGbddnZrGS4YDzJMl7WgjP8/w164-h400/SpectrogramFactory%20Data%20Flow-2026-08-19-142326.png" width="164" /></a></div></div><div class="cm-line"><br /></div></div></div></div></div></div></div></div></div></div></div></div><div><div></div></div></div></div></div></pre>
+    <p>This meant that the factory itself had to know quite a lot about the individual instruments and had to perform parsing before the correct instrument was even identified.</p>
+    <p>The new design changes this approach.</p>
+    <pre class="overflow-visible! px-0!"><div class="relative w-full mt-4 mb-1"><div class="contents"><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="relative"><div class="pe-11 pt-3"><div class="relative z-0 flex h-full min-h-0 max-w-full"><div class="Rx43rG_codemirror z-10 flex h-full min-h-0 w-full flex-col items-stretch" dir="ltr" id="1b4ba20c-d568-4ab5-a30b-441f78ac33d6:2:editor"><div class="cm-editor ͼ1 ͼ3 ͼs ͼ16"><div class="cm-announced"></div><div class="cm-scroller" tabindex="-1"><div class="cm-content" contenteditable="false"><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimdSvWNTzDAwJ5SbdgFfSkssrh_IqxngCA-c9WVajXyKKGQWXOUY-LCB5TUancRkbWgHYJsBllmnD0AvJscvM7ANC1W6feA9UCvvF4sakqxy0oAhp3dxtRSSVBd88hrVATzO-OVbkR6W5fvhSKlD1HBLkMmguxC-5AilVfTHnCSXFKPk69GZec0TjGqH4/s2785/Instrument%20Identification-2026-08-19-142759.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="400" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEimdSvWNTzDAwJ5SbdgFfSkssrh_IqxngCA-c9WVajXyKKGQWXOUY-LCB5TUancRkbWgHYJsBllmnD0AvJscvM7ANC1W6feA9UCvvF4sakqxy0oAhp3dxtRSSVBd88hrVATzO-OVbkR6W5fvhSKlD1HBLkMmguxC-5AilVfTHnCSXFKPk69GZec0TjGqH4/w178-h400/Instrument%20Identification-2026-08-19-142759.png" width="178" /></a></div><br /><div class="cm-line"><br /></div></div></div></div></div></div></div></div></div></div></div></div><div><div></div></div></div></div></div></pre>
+    <p>The factory is now responsible mainly for reading the file and routing it to the correct instrument, while the instrument class handles the actual parsing.</p>
+    <h3>PR #259: <a href="https://github.com/sunpy/radiospectra/pull/259" target="_blank">Metadata factory migration</a></h3>
+    <p><strong>Status: Under review</strong></p>
+    <p>I initially migrated:</p>
+    <ul>
+    <li><b>
+    WAVES
+    </b></li>
+    <li><b>
+    e-CALLISTO
+    </b></li>
+    </ul>
+    <p>and then continued the migration for:</p>
+    <ul>
+    <li><b>
+    PSP RFS
+    </b></li>
+    <li><b>
+    Solar Orbiter RPW
+    </b></li>
+    <li><b>
+    SWAVES
+    </b></li>
+    <li><b>
+    RSTN
+    </b></li>
+    <li><b>
+    ILOFAR
+    </b></li>
+    <li><b>
+    EOVSA
+    </b></li><li><b>NDA</b></li>
+    </ul>
+    <p>Each instrument had its own details to deal with.</p>
+    <p>For example, some sources use CDF files, some use FITS, some use binary formats and some require reconstruction of indices or frequencies from instrument-specific information.</p>
+    <p>The common pattern was to move that instrument-specific logic out of the central factory and into:</p>
+    <pre class="overflow-visible! px-0!"><div class="relative w-full mt-4 mb-1"><div><div class="contents"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="relative h-full w-full border-radius-3xl bg-(--code-block-surface) corner-superellipse/1.1 overflow-clip rounded-3xl [--code-block-surface:var(--bg-elevated-secondary)] dark:[--code-block-surface:var(--composer-surface-primary)] lxnfua_clipPathFallback"><div class="pointer-events-none absolute inset-x-4 top-12 bottom-4"><div class="pointer-events-none sticky z-40 shrink-0 z-1!"><div class="sticky bg-token-border-light"></div></div></div><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div><div class="relative"><div><div class="relative z-0 flex h-full min-h-0 max-w-full"><div class="Rx43rG_codemirror z-10 flex h-full min-h-0 w-full flex-col items-stretch" dir="ltr" id="1b4ba20c-d568-4ab5-a30b-441f78ac33d6:3:editor"><div class="cm-editor ͼ1 ͼ3 ͼs ͼ16"><div class="cm-announced"></div><div class="cm-scroller" tabindex="-1"><div class="cm-content" contenteditable="false"><div class="cm-line"><b><i><span class="ͼ11">InstrumentSpectrogram</span><span class="ͼv">.</span>from_raw(...)</i></b></div></div></div></div></div></div></div></div></div></div></div><div><div></div></div></div></div></div></div></div></div></pre>
+    <p>This keeps the factory smaller and makes each instrument responsible for understanding its own raw data.</p>
+    <hr />
+    <h1>What I Learned</h1><p>The technical side of the project was a big part of GSoC, but I’m equally grateful for everything I learned through the process of working with the project and the community.</p><p>One of the biggest things I learned was to look at what the project and its dependencies already provide before adding something new. The slicing work was a great example of this. What started as custom wrappers eventually became a much simpler solution using the functionality already available in <code><b>ndcube</b></code>.</p><p>I’m especially grateful for the reviews I received throughout the project. They often went beyond pointing out what needed to change and helped me understand <em>why</em> a particular approach was better. Some of my best learning came from those discussions.</p><p>The <code><b>SpectrogramFactory</b></code> migration taught me that architectural changes need a lot of thought. Understanding where each piece of logic belongs and how it affects the rest of the project is just as important as writing the code itself.</p><p>Working on the example gallery also showed me how important it is to make existing functionality easy to discover. A good feature is much more useful when users can easily understand how to use it.</p><p>Over these 12 weeks, I got to learn about testing, CI, reviews, releases, branches, communication and working with other contributors. I’m really grateful that GSoC gave me the chance to experience all of this as part of a real project.</p><hr /><h1>12 Weeks Later</h1><p>And now, the official 12 weeks of GSoC are over.</p><p>Looking back, I’m genuinely grateful for how much I got to experience during these few months. I started with contributions around plotting and data sources and eventually got to work on deeper architectural changes in <strong><code>radiospectra</code></strong>.</p><p>There are still PRs under review, ideas that didn't fit into the GSoC timeline, and parts of <strong><code>radiospectra</code></strong> that I would still like to understand and improve.</p><p>So while the GSoC coding period has ended, I don't really see this as the end of my journey with the project.</p><p>I’m really looking forward to continuing to contribute to <strong><code>radiospectra</code></strong> and the wider SunPy community.</p><hr /><h1>Thank You</h1><p>A huge thank you to <strong><a href="https://github.com/hayesla" target="_blank">Laura Hayes</a></strong> and <strong><a href="https://github.com/samaloney" target="_blank">Shane Maloney</a></strong> for all the guidance, reviews, discussions and patience throughout these twelve weeks.</p><p>I’m especially thankful for how willing they were to discuss ideas with me and help me understand the reasoning behind different design decisions. There were several times when I had a working implementation, but a review discussion helped me step back and find a better approach.</p><p>I’d also like to thank everyone in the <strong><a href="https://sunpy.org/" target="_blank">SunPy community</a></strong> who reviewed my work, answered my questions, discussed ideas or helped me understand different parts of the project.</p><p>I’m truly grateful for the opportunity to spend these 12 weeks contributing to an open-source scientific Python project and learning from such a welcoming community. This experience has taught me a lot and I’m really happy that I got to be a part of it.</p><hr /><h1>Looking Ahead</h1><p>When I started GSoC, one of my main goals was to become better at writing code.</p><p>After these 12 weeks, I think I came away with something even more valuable: a better understanding of <strong>how to think about the code I write and the decisions behind it</strong>.</p><p>There is still a lot I want to learn and plenty that I want to contribute.</p><p>So rather than ending with <em>“GSoC is over”</em>, I think I'll end with:</p><p></p><blockquote><strong>12 weeks are over. The work isn't.</strong></blockquote><p></p><h1><span><!--more--></span>My GSoC Contributions</h1>
+    
+    <p>Here is a summary of the main work I contributed to during GSoC:</p>
+    
+    <table style="border-collapse: collapse; text-align: left; width: 100%;">
+    <thead>
+    <tr>
+    <th style="border: 1px solid rgb(221, 221, 221); padding: 10px;">PR</th>
+    <th style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Contribution</th>
+    <th style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Status</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/202">#202</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Added online integration tests for <code>radiospectra</code> data sources</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><b>Merged</b></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/227">#227</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Added example gallery with WAVES plot</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/228">#228</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Initial <code>GenericSpectrogram</code> base using <code>NDCube</code></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/231">#231</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Added source for Nançay Decameter Array observations</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/237">#237</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Finalized SunPy&gt;7.0 support</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/240">#240</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Added initial figure test support for WAVES</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/242">#242</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Fixed issue/PR links in the changelog</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/245">#245</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Added spectrogram metadata classes</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/254">#254</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Added CDAWeb CDF support for WIND and STEREO</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><b>Under Review</b></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/256">#256</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Added <code>crop_time</code> and <code>crop_freq</code> wrappers to <code>GenericSpectrogram</code></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/259">#259</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Metadata factory migration</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><b>Under Review</b></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/262">#262</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Removed custom crop wrappers from <code>GenericSpectrogram</code></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/263">#263</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Added gallery examples for cropping and extracting profiles</td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><b>Under Review</b></td>
+    </tr>
+    
+    <tr>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><a href="https://github.com/sunpy/radiospectra/pull/267">#267</a></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;">Updated <code><b>ndcube-refactor</b></code> with <code><b>main</b></code></td>
+    <td style="border: 1px solid rgb(221, 221, 221); padding: 10px;"><strong>Merged</strong></td>
+    </tr>
+    </tbody>
+    </table></div>
+
