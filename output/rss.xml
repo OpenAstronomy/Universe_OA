@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 27 Sep 2026 18:16:57 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My GSoC 2026 Journey (Final Report): 12 Weeks of Learning and Contributing</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260819_1513_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;12 Weeks of Learning and Contributing to SunPy&lt;/h3&gt;&lt;div&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Universe OpenAstronomy</title><link>http://openastronomy.org/Universe_OA/</link><description>This is an aggregator of openastronomy people</description><atom:link href="http://openastronomy.org/Universe_OA/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><lastBuildDate>Sun, 27 Sep 2026 19:12:21 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>My GSoC 2026 Journey (Final Report): 12 Weeks of Learning and Contributing</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260819_1513_amityush-lgtm/</link><dc:creator>Kumar Amityush</dc:creator><description>&lt;p&gt;&lt;/p&gt;&lt;h3 style="text-align: left;"&gt;12 Weeks of Learning and Contributing to SunPy&lt;/h3&gt;&lt;div&gt;
 &lt;p&gt;I’m really grateful that I got the opportunity to work on &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt; during GSoC. Over these 12 weeks, I got to work across several areas of the project - from the &lt;code&gt;&lt;b&gt;ndcube&lt;/b&gt;&lt;/code&gt; migration and metadata to plotting, testing, documentation, support for different data sources and eventually the &lt;code&gt;&lt;b&gt;SpectrogramFactory&lt;/b&gt;&lt;/code&gt; redesign.&lt;/p&gt;&lt;p class="PDq2pG_selectionAnchorContainer"&gt;
 &lt;/p&gt;&lt;p&gt;What made the experience especially valuable was getting to learn from my mentors and the wider &lt;b&gt;SunPy&lt;/b&gt; community along the way. Each review, discussion and challenge helped me understand the project better and become more thoughtful about how I approach a change.&lt;/p&gt;
 &lt;!-- TEASER_END --&gt;
@@ -596,485 +596,90 @@ Reem &amp;lt;3&lt;/p&gt;</description><category>Astropy</category><guid>http://o
 &lt;p&gt;It's been really interesting moving from smaller API improvements to working on the bigger architecture of &lt;code&gt;&lt;b&gt;radiospectra&lt;/b&gt;&lt;/code&gt;, and I'm excited to keep going!&lt;/p&gt;
 &lt;p&gt;Until next time! 🚀&lt;/p&gt;</description><category>SunPy</category><guid>http://openastronomy.org/Universe_OA/posts/2026/08/20260811_0543_amityush-lgtm/</guid><pubDate>Tue, 11 Aug 2026 04:43:29 GMT</pubDate></item><item><title>From Photons to Power Spectra: Journey with Stingray.jl</title><link>http://openastronomy.org/Universe_OA/posts/2026/08/20260808_1537_omiii-215/</link><dc:creator>Om S Habib</dc:creator><description>&lt;span id="docs-internal-guid-454d8c0d-7fff-65e5-1559-d66da11b356a"&gt;
 &lt;span style="font-family: georgia;"&gt;
-&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: justify;"&gt;
-&lt;span style="font-size: 20pt; font-weight: 400; white-space: pre-wrap;"&gt;From Photons to Power Spectra: Journey with Stingray.jl &lt;/span&gt; &lt;/h3&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;
-The final week of Google Summer of Code is here. As I sit back and look at the codebase, it feels surreal. Three months ago, I was an undergraduate with a deep fascination for black holes, neutron stars, and the extreme physics of the cosmos. I knew I wanted to write code that would help decode the universe, but I never imagined the ride would be this thrilling.
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;When I
-started my journey with &lt;/span&gt; &lt;a href="https://github.com/StingraySoftware/Stingray.jl" style="text-decoration: none;"&gt; &lt;span style="color: #1155cc; font-size: 11pt; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;"&gt;Stingray.jl &lt;/span&gt; &lt;/a&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; under the OpenAstronomy umbrella, the mission was clear: take the powerful spectral-timing capabilities of the Python Stingray library and bring them to the Julia ecosystem. Python is fantastic, but when you are dealing with millions of X-ray photons and computing averaged cross-spectra over thousands of segments, the blazing speed of Julia becomes a game-changer.
-&lt;/span&gt;
-&lt;/p&gt;
+&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: justify;"&gt; &lt;span style="font-size: 20pt; font-weight: 400; white-space: pre-wrap;"&gt;From Photons to Power Spectra: Journey with Stingray.jl &lt;/span&gt; &lt;/h3&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; The final week of Google Summer of Code is here. As I sit back and look at the codebase, it feels surreal. Three months ago, I was an undergraduate with a deep fascination for black holes, neutron stars, and the extreme physics of the cosmos. I knew I wanted to write code that would help decode the universe, but I never imagined the ride would be this thrilling. &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;When I started my journey with &lt;/span&gt; &lt;a href="https://github.com/StingraySoftware/Stingray.jl" style="text-decoration: none;"&gt; &lt;span style="color: #1155cc; font-size: 11pt; font-variant: normal; text-decoration: underline; vertical-align: baseline; white-space: pre-wrap;"&gt;Stingray.jl &lt;/span&gt; &lt;/a&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; under the OpenAstronomy umbrella, the mission was clear: take the powerful spectral-timing capabilities of the Python Stingray library and bring them to the Julia ecosystem. Python is fantastic, but when you are dealing with millions of X-ray photons and computing averaged cross-spectra over thousands of segments, the blazing speed of Julia becomes a game-changer. &lt;/span&gt; &lt;/p&gt;
 &lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt;
 &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;This is the story of how we built a high-performance spectral timing engine, the promises we kept, the fun we had, and where we go from here. &lt;/span&gt; &lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt;
-&lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt;
 &lt;hr style="text-align: justify;"&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: justify;"&gt;
-&lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline; white-space: pre-wrap;"&gt;What was Promised vs. What was Delivered
-&lt;/span&gt;
-&lt;/h3&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;At the start of the summer, my proposal outlined an ambitious set of goals: building high-level spectral types, implementing time lags, porting the Lomb-Scargle periodogram, and laying the foundation for a variability-vs-energy framework.
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top:
-0pt;"&gt;
-&lt;/p&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;As we got into the weeds of the Fourier transforms and spectral analysis, here is what we successfully shipped into the core library:
-&lt;/span&gt;
-&lt;/div&gt; &lt;span style="font-size: 14.6667px; vertical-align: baseline;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height:
-1.38; margin-bottom: 0pt; margin-top:
-0pt;"&gt;
-&lt;/p&gt;
-&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;High-Level Spectral Types: We implemented the Powerspectrum and Crossspectrum struct types from scratch, giving users a clean, type-safe API rather than dealing with raw DataFrames.
-&lt;/span&gt;
-&lt;/div&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: justify;"&gt; &lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline; white-space: pre-wrap;"&gt;What was Promised vs. What was Delivered &lt;/span&gt; &lt;/h3&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;At the start of the summer, my proposal outlined an ambitious set of goals: building high-level spectral types, implementing time lags, porting the Lomb-Scargle periodogram, and laying the foundation for a variability-vs-energy framework. &lt;/span&gt; &lt;/p&gt; &lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;As we got into the weeds of the Fourier transforms and spectral analysis, here is what we successfully shipped into the core library: &lt;/span&gt; &lt;/div&gt; &lt;span style="font-size: 14.6667px; vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt;
+&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;High-Level Spectral Types: We implemented the Powerspectrum and Crossspectrum struct types from scratch, giving users a clean, type-safe API rather than dealing with raw DataFrames. &lt;/span&gt; &lt;/div&gt;
+&lt;span style="vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 14.6667px;"&gt; &lt;br&gt; &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt;"&gt;Mission-Specific FITS Support: We added telescope-specific event file readers for missions like NICER, NuSTAR, XMM-Newton, and RXTE. &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 14.6667px;"&gt; &lt;br&gt; &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt;"&gt;Frequency Rebinning: Implemented both geometric (logarithmic) and linear frequency rebinning for proper broadband noise studies. &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 14.6667px;"&gt; &lt;br&gt; &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt;"&gt;Robust Normalizations: Added support for Leahy, Fractional RMS, and Absolute RMS normalizations, rigorously tested against Poisson noise statistics. &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 14.6667px;"&gt; &lt;br&gt; &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt;"&gt;Lomb-Scargle Periodograms: Ported the Lomb-Scargle algorithm to handle unevenly sampled astrophysical data. &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 14.6667px;"&gt; &lt;br&gt; &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt;"&gt;Fourier Utilities: Successfully ported complex utility functions like shift_and_add for dynamic spectral analysis. &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 14.6667px;"&gt; &lt;br&gt; &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;div style="text-align: justify;"&gt;
+&lt;span style="font-size: 11pt;"&gt;Codecov &amp;amp; Testing: Integrated Codecov and dramatically improved the test suite to ensure our Julia port produces scientifically valid results matching its Python sibling. &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt; &lt;hr style="text-align: justify;"&gt; &lt;p&gt; &lt;/p&gt;
+&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: justify;"&gt; &lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline; white-space: pre-wrap;"&gt;Code In Action: Power Spectra and Time Lags &lt;/span&gt; &lt;/h3&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;To give you a taste of what the new Stingray.jl API feels like, let's look at a real-world workflow. Imagine you have raw photon event data from the NICER telescope and you are hunting for a Quasi-Periodic Oscillation (QPO) from an accreting black hole. &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Before GSoC, this would have required manual DataFrame manipulation. Now? It’s beautifully concise. &lt;/span&gt; &lt;/p&gt;
+&lt;h4 dir="ltr" style="line-height: 1.38; margin-bottom: 4pt; margin-top: 16pt; text-align: justify;"&gt; &lt;span style="color: #434343; font-size: 14pt; font-variant: normal; font-weight: 400; vertical-align: baseline; white-space: pre-wrap;"&gt;Generating and Rebinning a Power Spectrum &lt;/span&gt; &lt;/h4&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;julia &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;using Stingray &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;using CairoMakie &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# 1. Load up mission data (e.g., NICER) &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;ev = readevents("nicer_observation.fits") &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# 2. Generate an Averaged Power Spectrum &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# (128s segments, Leahy normalization sets Poisson noise at power = 2) &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;ps = Powerspectrum(ev, segment_size=128.0, dt=1/4096, norm="leahy") &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# 3. Logarithmic Rebinning for broadband noise studies &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# (Bins get 3% wider at each step, perfect for log-log plots!) &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt;
+&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;ps_rebinned = rebin(ps, factor=1.03, method=:geometric) &lt;/span&gt; &lt;/div&gt;
+&lt;span style="vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 14.6667px;"&gt; &lt;br&gt; &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt;
+&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;With our plotting utilities and Makie integration, we can easily visualize what a QPO looks like on top of a red-noise continuum: &lt;/span&gt; &lt;/div&gt;
 &lt;span style="vertical-align: baseline;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 14.6667px;"&gt;
-&lt;br&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 11pt;"&gt;Mission-Specific FITS Support: We added telescope-specific event file readers for missions like NICER, NuSTAR, XMM-Newton, and RXTE.
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="vertical-align: baseline;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 14.6667px;"&gt;
-&lt;br&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 11pt;"&gt;Frequency Rebinning: Implemented both geometric (logarithmic) and linear frequency rebinning for proper broadband noise studies.
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="vertical-align: baseline;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 14.6667px;"&gt;
-&lt;br&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 11pt;"&gt;Robust Normalizations: Added support for Leahy, Fractional RMS, and Absolute RMS normalizations, rigorously tested against Poisson noise statistics.
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="vertical-align: baseline;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 14.6667px;"&gt;
-&lt;br&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;
-&lt;div style="text-align: justify;"&gt;
-&lt;span style="font-size: 11pt;"&gt;Lomb-Scargle Periodograms: Ported the Lomb-Scargle algorithm to handle unevenly sampled astrophysical data. &lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="vertical-align:
-baseline;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size:
-14.6667px;"&gt;
-&lt;br&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="font-size:
-11pt; font-variant: normal; vertical-align: baseline; white-space:
-pre-wrap;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt;"&gt;Fourier Utilities: Successfully ported complex utility functions like shift_and_add for dynamic spectral analysis.
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="vertical-align:
-baseline;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size:
-14.6667px;"&gt;
-&lt;br&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;span style="font-size:
-11pt; font-variant: normal; vertical-align: baseline; white-space:
-pre-wrap;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt;"&gt;Codecov &amp;amp; Testing: Integrated Codecov and dramatically improved the test suite to ensure our Julia port produces scientifically valid results matching its Python sibling. &lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top:
-0pt;"&gt;
-&lt;/p&gt;
-&lt;hr style="text-align: justify;"&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt;
-text-align: justify;"&gt;
-&lt;span style="font-size: 16pt; font-variant:
-normal; font-weight: 400; vertical-align: baseline; white-space:
-pre-wrap;"&gt;Code In Action: Power Spectra and Time Lags
-&lt;/span&gt;
-&lt;/h3&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;To give you a taste of what the new Stingray.jl API feels like, let's look at a real-world workflow. Imagine you have raw photon event data from the NICER telescope and you are hunting for a Quasi-Periodic Oscillation (QPO) from an accreting black hole.
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;Before GSoC, this would have required manual DataFrame manipulation. Now? It’s beautifully concise.
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;h4 dir="ltr" style="line-height:
-1.38; margin-bottom: 4pt; margin-top: 16pt; text-align:
-justify;"&gt;
-&lt;span style="color: #434343; font-size: 14pt;
-font-variant: normal; font-weight: 400; vertical-align: baseline;
-white-space: pre-wrap;"&gt;Generating and Rebinning a Power
-Spectrum
-&lt;/span&gt;
-&lt;/h4&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space:
-pre-wrap;"&gt;julia
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;using Stingray &lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;using CairoMakie
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;# 1. Load up mission data (e.g., NICER)
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;
-text-align: justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant:
-normal; vertical-align: baseline; white-space: pre-wrap;"&gt;ev = readevents("nicer_observation.fits")
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;
-text-align: justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant:
-normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# 2. Generate an Averaged Power Spectrum
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;
-text-align: justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant:
-normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# (128s segments, Leahy normalization sets Poisson noise at power = 2)
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom:
-0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;ps = Powerspectrum(ev, segment_size=128.0, dt=1/4096, norm="leahy")
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;# 3. Logarithmic Rebinning for broadband noise studies
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;
-text-align: justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant:
-normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# (Bins get 3% wider at each step, perfect for log-log plots!)
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt;"&gt;
-&lt;/p&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; white-space:
-pre-wrap;"&gt;ps_rebinned = rebin(ps, factor=1.03, method=:geometric)
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span style="vertical-align:
-baseline;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 14.6667px;"&gt;
-&lt;br&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt;"&gt;
-&lt;/p&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; white-space:
-pre-wrap;"&gt;With our plotting utilities and Makie integration, we can easily visualize what a QPO looks like on top of a red-noise continuum:
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span style="vertical-align:
-baseline;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size:
-14.6667px;"&gt;
-&lt;br&gt;
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;div class="separator" style="clear: both; font-size: 11pt; text-align: justify;
-white-space:
-pre-wrap;"&gt;
-&lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinAacJWgVxdlsOdBqD93UXPbKa4TRGZyxcsuDotpm-dMYxKTd4j8ZmGcbfAzCqJFyh_P9GFN9XMtLZMeNvu2xzX9IwinwTei_ioma4k_rm4BxjlIB_qPXUosM2iEEi7K5QefChXqDTDaPG0luZ-TBnQuZSB_pO0NYIijIg6fGuZQZJ7HD6Awtn9NHm5mXp/s1600/qpo_plot.png" style="margin-left: 1em; margin-right: 1em;"&gt;
-&lt;img border="0" height="457" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinAacJWgVxdlsOdBqD93UXPbKa4TRGZyxcsuDotpm-dMYxKTd4j8ZmGcbfAzCqJFyh_P9GFN9XMtLZMeNvu2xzX9IwinwTei_ioma4k_rm4BxjlIB_qPXUosM2iEEi7K5QefChXqDTDaPG0luZ-TBnQuZSB_pO0NYIijIg6fGuZQZJ7HD6Awtn9NHm5mXp/w608-h457/qpo_plot.png" width="608"&gt;
-&lt;/a&gt;
-&lt;/div&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;br&gt;
-&lt;/div&gt;
+&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 14.6667px;"&gt; &lt;br&gt; &lt;/span&gt; &lt;/div&gt;
+&lt;div class="separator" style="clear: both; font-size: 11pt; text-align: justify; white-space: pre-wrap;"&gt; &lt;a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinAacJWgVxdlsOdBqD93UXPbKa4TRGZyxcsuDotpm-dMYxKTd4j8ZmGcbfAzCqJFyh_P9GFN9XMtLZMeNvu2xzX9IwinwTei_ioma4k_rm4BxjlIB_qPXUosM2iEEi7K5QefChXqDTDaPG0luZ-TBnQuZSB_pO0NYIijIg6fGuZQZJ7HD6Awtn9NHm5mXp/s1600/qpo_plot.png" style="margin-left: 1em; margin-right: 1em;"&gt; &lt;img border="0" height="457" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinAacJWgVxdlsOdBqD93UXPbKa4TRGZyxcsuDotpm-dMYxKTd4j8ZmGcbfAzCqJFyh_P9GFN9XMtLZMeNvu2xzX9IwinwTei_ioma4k_rm4BxjlIB_qPXUosM2iEEi7K5QefChXqDTDaPG0luZ-TBnQuZSB_pO0NYIijIg6fGuZQZJ7HD6Awtn9NHm5mXp/w608-h457/qpo_plot.png" width="608"&gt; &lt;/a&gt; &lt;/div&gt; &lt;div style="text-align: justify;"&gt; &lt;br&gt; &lt;/div&gt; &lt;/span&gt;
 &lt;!-- TEASER_END --&gt;
-&lt;/span&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt;"&gt;
-&lt;span style="font-size:
-11pt; font-variant: normal; vertical-align: baseline; white-space:
-pre-wrap;"&gt;
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space:
-pre-wrap;"&gt;Review
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;Simulated QPO
-Plot
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;A simulated power spectrum showing a 5 Hz Quasi-Periodic Oscillation (QPO) sitting above the Poisson (white) noise level, correctly normalized using the Leahy formulation. The red points show the geometrically rebinned power. &lt;/span&gt;
-&lt;/p&gt;
-&lt;h4 dir="ltr" style="line-height: 1.38; margin-bottom: 4pt; margin-top: 16pt;
-text-align: justify;"&gt;
-&lt;span style="color: #434343; font-size:
-14pt; font-variant: normal; font-weight: 400; vertical-align:
-baseline; white-space: pre-wrap;"&gt;Computing Time Lags via Cross-Spectra
-&lt;/span&gt;
-&lt;/h4&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt;"&gt;
-&lt;/p&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; white-space:
-pre-wrap;"&gt;What if we want to measure the light-travel time delay between soft X-ray photons reflecting off the accretion disk and hard X-ray photons from the corona? We use the Crossspectrum:
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span style="font-size: 14.6667px;
-vertical-align: baseline;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height:
-1.38; margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space:
-pre-wrap;"&gt;julia
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;# Filter events into soft (0.3-1.0 keV) and hard (2.0-10.0 keV)
-bands
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;soft_ev = filter_energy(e -&amp;gt; 0.3 &amp;lt;= e &amp;lt;= 1.0, ev)
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;hard_ev = filter_energy(e -&amp;gt; 2.0 &amp;lt;= e &amp;lt;= 10.0, ev)
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;# Compute the averaged cross spectrum
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height:
-1.38; margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;cs = Crossspectrum(soft_ev, hard_ev, segment_size=64.0, dt=1/256)
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;# Calculate the frequency-dependent time lags (and intrinsic coherence)
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;lags, lag_err = time_lag(cs)
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt;"&gt;
-&lt;/p&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; white-space:
-pre-wrap;"&gt;coh, coh_err = coherence(cs)
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span style="font-size: 14.6667px;
-vertical-align: baseline;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height:
-1.38; margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;This API mimics the flexibility of Python but compiles down to heavily optimized Julia machine code!
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height:
-1.38; margin-bottom: 0pt; margin-top:
-0pt;"&gt;
-&lt;/p&gt;
-&lt;hr style="text-align: justify;"&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt;
-text-align: justify;"&gt;
-&lt;span style="font-size: 16pt; font-variant:
-normal; font-weight: 400; vertical-align: baseline; white-space:
-pre-wrap;"&gt;Fun Times, Mentorship, and the Open Source Spirit
-&lt;/span&gt;
-&lt;/h3&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;None of this would have been possible without my mentors, Fergus and Matteo. &lt;/span&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height: 1.38;
-margin-bottom: 0pt; margin-top: 0pt;"&gt;
-&lt;/p&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; white-space:
-pre-wrap;"&gt;Our weekly sync-up meetings were the absolute highlight of my GSoC experience.
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span style="font-size: 11pt;
-font-variant: normal; vertical-align: baseline; white-space:
-pre-wrap;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt;"&gt;Whether we were diving deep into the math behind intrinsic coherence, squashing sneaky bugs related to phase wrapping in complex cross-spectra, or just having a good laugh about timezone differences, those meetings were something I looked forward to every week. &lt;/span&gt;
-&lt;/div&gt;
-&lt;/span&gt;
-&lt;p&gt;
-&lt;/p&gt;
-&lt;p dir="ltr" style="line-height:
-1.38; margin-bottom: 0pt; margin-top:
-0pt;"&gt;
-&lt;/p&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; white-space:
-pre-wrap;"&gt;They taught me more than just how to write good Julia code; they taught me how to think like a scientific software engineer.
-&lt;/span&gt;
-&lt;/div&gt;
-&lt;span style="font-size: 11pt; font-variant:
-normal; vertical-align: baseline; white-space:
-pre-wrap;"&gt;
-&lt;div style="text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt;"&gt;They pushed me to rigorously test edge cases (like making sure our Leahy normalization perfectly averaged to 2.0 for Poisson noise!) and showed me what it takes to maintain an open-source astrophysics package. Thank you, Fergus and Matteo, for an unforgettable summer!
+&lt;p&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Review &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Simulated QPO Plot &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;A simulated power spectrum showing a 5 Hz Quasi-Periodic Oscillation (QPO) sitting above the Poisson (white) noise level, correctly normalized using the Leahy formulation. The red points show the geometrically rebinned power. &lt;/span&gt; &lt;/p&gt;
+&lt;h4 dir="ltr" style="line-height: 1.38; margin-bottom: 4pt; margin-top: 16pt; text-align: justify;"&gt; &lt;span style="color: #434343; font-size: 14pt; font-variant: normal; font-weight: 400; vertical-align: baseline; white-space: pre-wrap;"&gt;Computing Time Lags via Cross-Spectra &lt;/span&gt; &lt;/h4&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt;
+&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;What if we want to measure the light-travel time delay between soft X-ray photons reflecting off the accretion disk and hard X-ray photons from the corona? We use the Crossspectrum: &lt;/span&gt; &lt;/div&gt;
+&lt;span style="font-size: 14.6667px; vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;julia &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# Filter events into soft (0.3-1.0 keV) and hard (2.0-10.0 keV) bands &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;soft_ev = filter_energy(e -&amp;gt; 0.3 &amp;lt;= e &amp;lt;= 1.0, ev) &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;hard_ev = filter_energy(e -&amp;gt; 2.0 &amp;lt;= e &amp;lt;= 10.0, ev) &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# Compute the averaged cross spectrum &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;cs = Crossspectrum(soft_ev, hard_ev, segment_size=64.0, dt=1/256) &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;# Calculate the frequency-dependent time lags (and intrinsic coherence) &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;lags, lag_err = time_lag(cs) &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt;
+&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;coh, coh_err = coherence(cs) &lt;/span&gt; &lt;/div&gt;
+&lt;span style="font-size: 14.6667px; vertical-align: baseline;"&gt; &lt;div style="text-align: justify;"&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;This API mimics the flexibility of Python but compiles down to heavily optimized Julia machine code! &lt;/span&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt; &lt;hr style="text-align: justify;"&gt; &lt;p&gt; &lt;/p&gt;
+&lt;h3 dir="ltr" style="line-height: 1.38; margin-bottom: 6pt; margin-top: 18pt; text-align: justify;"&gt; &lt;span style="font-size: 16pt; font-variant: normal; font-weight: 400; vertical-align: baseline; white-space: pre-wrap;"&gt;Fun Times, Mentorship, and the Open Source Spirit &lt;/span&gt; &lt;/h3&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;None of this would have been possible without my mentors, Fergus and Matteo. &lt;/span&gt; &lt;/p&gt; &lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt;
+&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;Our weekly sync-up meetings were the absolute highlight of my GSoC experience. &lt;/span&gt; &lt;/div&gt;
+&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt;"&gt;Whether we were diving deep into the math behind intrinsic coherence, squashing sneaky bugs related to phase wrapping in complex cross-spectra, or just having a good laugh about timezone differences, those meetings were something I looked forward to every week. &lt;/span&gt; &lt;/div&gt; &lt;/span&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt;"&gt; &lt;/p&gt;
+&lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt; white-space: pre-wrap;"&gt;They taught me more than just how to write good Julia code; they taught me how to think like a scientific software engineer. &lt;/span&gt; &lt;/div&gt;
+&lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt; &lt;div style="text-align: justify;"&gt; &lt;span style="font-size: 11pt;"&gt;They pushed me to rigorously test edge cases (like making sure our Leahy normalization perfectly averaged to 2.0 for Poisson noise!) and showed me what it takes to maintain an open-source astrophysics package. Thank you, Fergus and Matteo, for an unforgettable summer!
 &lt;/span&gt;
 &lt;/div&gt;
 &lt;/span&gt;
@@ -1109,38 +714,9 @@ normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Moving forward, I p
 &lt;/p&gt;
 &lt;ol style="margin-bottom: 0; margin-top: 0;
 padding-inline-start: 48px;"&gt;
-&lt;li dir="ltr" style="font-size: 11pt;
-font-variant: normal; vertical-align: baseline; white-space:
-pre;"&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt;
-margin-top: 0pt; text-align: justify;"&gt;
-&lt;span style="font-size:
-11pt; font-variant: normal; vertical-align: baseline; white-space:
-pre-wrap;"&gt;The Variability-vs-Energy Framework: Completing the LagEnergySpectrum and CovarianceSpectrum implementations to allow researchers to easily map out the geometry of accretion disks.
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;li dir="ltr" style="font-size: 11pt;
-font-variant: normal; vertical-align: baseline; white-space:
-pre;"&gt;
-&lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt;
-margin-top: 0pt; text-align: justify;"&gt;
-&lt;span style="font-size:
-11pt; font-variant: normal; vertical-align: baseline; white-space:
-pre-wrap;"&gt;Native Plot Recipes: Finalizing our Makie.jl and Plots.jl recipes so users can generate publication-ready plots with a simple plot(ps) command.
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;/li&gt;
-&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align:
-baseline; white-space: pre;"&gt;
-&lt;p dir="ltr" style="line-height:
-1.38; margin-bottom: 0pt; margin-top: 0pt; text-align:
-justify;"&gt;
-&lt;span style="font-size: 11pt; font-variant: normal;
-vertical-align: baseline; white-space: pre-wrap;"&gt;Community Mentorship: I want to help onboard the next wave of students who discover Stingray.jl, just as Fergus and Matteo helped me.
-&lt;/span&gt;
-&lt;/p&gt;
-&lt;/li&gt;
+&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt; &lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;The Variability-vs-Energy Framework: Completing the LagEnergySpectrum and CovarianceSpectrum implementations to allow researchers to easily map out the geometry of accretion disks. &lt;/span&gt; &lt;/p&gt; &lt;/li&gt;
+&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt; &lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Native Plot Recipes: Finalizing our Makie.jl and Plots.jl recipes so users can generate publication-ready plots with a simple plot(ps) command. &lt;/span&gt; &lt;/p&gt; &lt;/li&gt;
+&lt;li dir="ltr" style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre;"&gt; &lt;p dir="ltr" style="line-height: 1.38; margin-bottom: 0pt; margin-top: 0pt; text-align: justify;"&gt; &lt;span style="font-size: 11pt; font-variant: normal; vertical-align: baseline; white-space: pre-wrap;"&gt;Community Mentorship: I want to help onboard the next wave of students who discover Stingray.jl, just as Fergus and Matteo helped me. &lt;/span&gt; &lt;/p&gt; &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p dir="ltr" style="line-height: 1.38;
 margin-bottom: 0pt; margin-top: 0pt; text-align:
